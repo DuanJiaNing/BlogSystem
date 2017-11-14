@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+        <!--使用 jdbc 的 getGeneratedKeys 获取数据库自增主键-->
+        <setting name="useGeneratedKeys" value="true"/>
+
+        <!--使用列别名替换列名 默认 true-->
+        <setting name="useColumnLabel" value="true"/>
+
+        <!--开启驼峰命名转换：表(book_id) -> entity(bookId)-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+</configuration>
