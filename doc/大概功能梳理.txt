@@ -1,0 +1,32 @@
+* 主页 home 
+* 关于我 about
+  * 联系方式
+* 搜索 search
+* 归档 archives
+* 分类 category
+* 标签 tag
+* 友情链接 link
+公告 notice
+留言（最新留言）
+收藏
+系列文章
+
+文章
+分享 share
+评论系统 comment
+发表时间
+所属类别
+本文作者
+本文链接
+字数统计
+版权声明
+阅读量
+评论量
+收藏量
+举报
+私密
+
+文章信息
+许可协议：创意共享 https://creativecommons.org/licenses/by-nc-sa/3.0/deed.zh
+
+广告
