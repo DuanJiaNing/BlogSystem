@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
   <artifact type="war" name="BlogSystem:war">
     <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="blog-system.war">
+    <root id="archive" name="blog-system-1.0-SNAPSHOT.war">
       <element id="artifact" artifact-name="BlogSystem:war exploded" />
     </root>
   </artifact>

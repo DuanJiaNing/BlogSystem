@@ -14,7 +14,7 @@
     <context:component-scan base-package="com.duan.blogos.service"/>
 
     <import resource="spring-dao.xml"/>
-    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
+    <bean  class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 

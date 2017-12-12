@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duan.blogos.dao.blog.BlogDao">
+
+    <sql id="allField">
+        SELECT
+            ${alias}.id,
+            ${alias}.blogger_id,
+            ${alias}.category_ids,
+            ${alias}.label_ids,
+            ${alias}.state,
+            ${alias}.title,
+            ${alias}.content,
+            ${alias}.summary,
+            ${alias}.release_date,
+            ${alias}.nearest_modify_date,
+            ${alias}.key_words,
+            ${alias}.comment_count,
+            ${alias}.view_count,
+            ${alias}.reply_comment_count,
+            ${alias}.collect_count,
+            ${alias}.complain_count,
+            ${alias}.share_count,
+            ${alias}.admire_count
+    </sql>
+
+    <select id="queryBlog" resultType="Blog">
+        <include refid="allField">
+            <property name="alias" value="b"/>
+        </include>
+        FROM blog b
+        WHERE state=#{status} AND b.id=#{bloggerId}
+    </select>
+
+    <select id="queryBlogWithLimit" resultType="Blog">
+        <include refid="allField">
+            <property name="alias" value="b"/>
+        </include>
+        FROM blog b
+        WHERE state=#{status} AND b.id = #{bloggerId}
+        LIMIT #{offset}, #{rows}
+    </select>
+
+    <select id="queryAll" resultType="com.duan.blogos.entity.blog.Blog">
+        SELECT *
+        FROM blog
+    </select>
+
+    <select id="query" resultType="Blog">
+        <include refid="allField">
+            <property name="alias" value="b"/>
+        </include>
+        FROM blog b
+        WHERE state!=-1 AND b.id=#{id}
+    </select>
+
+    <update id="update" parameterType="Blog">
+        UPDATE blog
+        <set>
+            <if test="bloggerId != null">
+                blogger_id=#{bloggerId},
+            </if>
+            <if test="categoryIds != null">
+                category_ids=#{categoryIds},
+            </if>
+            <if test="labelIds != null">
+                label_ids=#{labelIds},
+            </if>
+            <if test="state != null">
+                state=#{state},
+            </if>
+            <if test="title != null">
+                title=#{title},
+            </if>
+            <if test="content != null">
+                content=#{content},
+            </if>
+            <if test="summary != null">
+                summary=#{summary},
+            </if>
+            <if test="releaseDate != null">
+                release_date=#{releaseDate},
+            </if>
+
+            nearest_modify_date=NOW(),
+
+            <if test="keyWords != null">
+                key_words=#{keyWords},
+            </if>
+            <if test="commentCount != null">
+                comment_count=#{commentCount},
+            </if>
+            <if test="viewCount != null">
+                view_count=#{viewCount},
+            </if>
+            <if test="replyCommentCount != null">
+                reply_comment_count=#{replyCommentCount},
+            </if>
+            <if test="collectCount != null">
+                collect_count=#{collectCount},
+            </if>
+            <if test="complainCount != null">
+                complain_count=#{complainCount},
+            </if>
+            <if test="shareCount != null">
+                share_count=#{shareCount},
+            </if>
+            <if test="admireCount != null">
+                admire_count=#{admireCount},
+            </if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+
+    </update>
+
+    <delete id="delete">
+        DELETE FROM blog
+        WHERE id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="Blog">
+        INSERT INTO blog (
+            id,
+            blogger_id,
+            category_ids,
+            label_ids,
+            state,
+            title,
+            content,
+            summary,
+            release_date,
+            nearest_modify_date,
+            key_words,
+            comment_count,
+            view_count,
+            reply_comment_count,
+            collect_count,
+            complain_count,
+            share_count,
+            admire_count
+        ) VALUE (
+            NULL,
+            #{bloggerId},
+            #{categoryIds},
+            #{labelIds},
+            #{state},
+            #{title},
+            #{content},
+            #{summary},
+            NOW(),
+            NOW(),
+            #{keyWords},
+            #{commentCount},
+            #{viewCount},
+            #{replyCommentCount},
+            #{collectCount},
+            #{complainCount},
+            #{shareCount},
+            #{admireCount}
+        )
+    </insert>
+
+</mapper>
