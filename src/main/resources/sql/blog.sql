@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50716
 File Encoding         : 65001
 
-Date: 2017-12-12 20:02:32
+Date: 2017-12-14 10:33:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,7 +24,7 @@ CREATE TABLE `blog` (
   `blogger_id` int(11) unsigned DEFAULT NULL COMMENT '博文所属博主id',
   `category_ids` varchar(100) NOT NULL COMMENT '博文所属类别id（空格分隔）',
   `label_ids` varchar(100) NOT NULL COMMENT '博文包含的标签（空格分隔）',
-  `state` int(11) NOT NULL DEFAULT '1' COMMENT '文章状态（公开，私有，回收站...）',
+  `state` int(11) NOT NULL DEFAULT '1' COMMENT '文章状态（公开，私有，审核中，回收站...）',
   `title` varchar(30) NOT NULL COMMENT '博文标题',
   `content` longtext NOT NULL COMMENT '博文主体内容',
   `summary` varchar(400) NOT NULL COMMENT '博文摘要',
@@ -38,6 +38,8 @@ CREATE TABLE `blog` (
   `complain_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '博文举报次数',
   `share_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '博文被分享次数',
   `admire_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '赞赏次数',
+  `word_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '字数',
+  `like_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '被喜欢次数',
   PRIMARY KEY (`id`),
   KEY `blogger_blog_ibfk_1` (`blogger_id`),
   CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`blogger_id`) REFERENCES `blogger_account` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
@@ -46,8 +48,8 @@ CREATE TABLE `blog` (
 -- ----------------------------
 -- Records of blog
 -- ----------------------------
-INSERT INTO `blog` VALUES ('1', '2', '3 4', '4', '1', 'MySQL数据库删除后的恢复工作 - CSDN博客', '[原创]作者：rogerzhanglijie - 来源：csdn - 发表时间：2014年07月17日\r\n\r\n上午不小心把昨天刚刚建好的一个数据库删了个精光!幸好mysql中开启了日志功能。            下面总结一下数据库删除后的恢复方法:...\r\nblog.csdn.net/rogerzha...  - 百度快照', '相关搜索', '2017-12-12 19:29:19', '2017-12-12 19:54:28', '百度知道', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `blog` VALUES ('2', '1', '1 2', '1 2 3', '2', '性跟 dbcp 连接池的差不多', '建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。\r\ntimeBetweenEvictionRunsMillis	 	有两个含义：\r\n1) Destroy线程会检测连接的间隔时间 2) testWhileIdle的判断依据，详细看testWhileIdle属性的说明', ' testWhileIdle的判断依据，详细看testWhileIdle属性的说明', '2017-12-12 19:26:45', '2017-12-12 19:26:49', 'true time millis', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `blog` VALUES ('1', '2', '3 4', '4', '1', 'MySQL数据库删除后的恢复工作 - CSDN博客', '[原创]作者：rogerzhanglijie - 来源：csdn - 发表时间：2014年07月17日\r\n\r\n上午不小心把昨天刚刚建好的一个数据库删了个精光!幸好mysql中开启了日志功能。            下面总结一下数据库删除后的恢复方法:...\r\nblog.csdn.net/rogerzha...  - 百度快照', '相关搜索', '2017-12-12 19:29:19', '2017-12-12 19:54:28', '百度知道', '0', '0', '0', '0', '0', '0', '0', '1250', '0');
+INSERT INTO `blog` VALUES ('2', '1', '1 2', '1 2 3', '2', '性跟 dbcp 连接池的差不多', '建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。\r\ntimeBetweenEvictionRunsMillis	 	有两个含义：\r\n1) Destroy线程会检测连接的间隔时间 2) testWhileIdle的判断依据，详细看testWhileIdle属性的说明', ' testWhileIdle的判断依据，详细看testWhileIdle属性的说明', '2017-12-12 19:26:45', '2017-12-12 19:26:49', 'true time millis', '0', '0', '0', '0', '0', '0', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for `blogger_account`
@@ -155,7 +157,7 @@ CREATE TABLE `blog_admire` (
   KEY `earner_id` (`earner_id`),
   CONSTRAINT `blog_admire_ibfk_1` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `blog_admire_ibfk_2` FOREIGN KEY (`earner_id`) REFERENCES `blogger_account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of blog_admire
@@ -194,12 +196,15 @@ CREATE TABLE `blog_collect` (
   `blogger_id` int(10) unsigned NOT NULL COMMENT '收藏者id',
   `reason` text COMMENT '收藏的理由',
   `collect_date` datetime NOT NULL COMMENT '收藏时间',
+  `category_id` int(10) unsigned DEFAULT '0' COMMENT '收藏到自己的哪一个类别下',
   PRIMARY KEY (`id`),
   KEY `blog_id` (`blog_id`),
   KEY `blogger_id` (`blogger_id`),
+  KEY `category_id` (`category_id`),
   CONSTRAINT `blog_collect_ibfk_1` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `blog_collect_ibfk_2` FOREIGN KEY (`blogger_id`) REFERENCES `blogger_account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  CONSTRAINT `blog_collect_ibfk_2` FOREIGN KEY (`blogger_id`) REFERENCES `blogger_account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `blog_collect_ibfk_3` FOREIGN KEY (`category_id`) REFERENCES `blog_category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of blog_collect
@@ -224,7 +229,7 @@ CREATE TABLE `blog_comment` (
   CONSTRAINT `blog_comment_ibfk_1` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `blog_comment_ibfk_2` FOREIGN KEY (`spokesman_id`) REFERENCES `blogger_account` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `blog_comment_ibfk_3` FOREIGN KEY (`listener_id`) REFERENCES `blogger_account` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of blog_comment
@@ -252,3 +257,21 @@ INSERT INTO `blog_label` VALUES ('2', '1', 'android', '2017-12-12 18:42:03');
 INSERT INTO `blog_label` VALUES ('3', '1', 'TCP/IP', '2017-12-12 18:42:16');
 INSERT INTO `blog_label` VALUES ('4', '2', 'javaWeb', '2017-12-12 18:42:32');
 INSERT INTO `blog_label` VALUES ('5', '3', 'MPI', '2017-12-12 18:42:45');
+
+-- ----------------------------
+-- Table structure for `blog_like`
+-- ----------------------------
+DROP TABLE IF EXISTS `blog_like`;
+CREATE TABLE `blog_like` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '博文喜欢表id',
+  `blog_id` int(10) unsigned NOT NULL COMMENT '被喜欢的文章',
+  `admirer_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '仰慕者（给出like的人）id，未注册读者用0表示',
+  `like_date` datetime DEFAULT NULL COMMENT '时间',
+  PRIMARY KEY (`id`),
+  KEY `blog_id` (`blog_id`),
+  CONSTRAINT `blog_like_ibfk_1` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of blog_like
+-- ----------------------------

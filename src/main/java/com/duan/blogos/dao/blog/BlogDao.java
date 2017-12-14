@@ -1,10 +1,8 @@
 package com.duan.blogos.dao.blog;
 
 import com.duan.blogos.dao.BaseDao;
-import com.duan.blogos.entity.BlogStatus;
+import com.duan.blogos.entity.BlogStatusEnum;
 import com.duan.blogos.entity.blog.Blog;
-import com.sun.istack.internal.NotNull;
-import com.sun.xml.internal.rngom.parse.host.Base;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +10,7 @@ import java.util.List;
 
 /**
  * Created on 2017/12/12.
+ * 对博文的CRUD
  *
  * @author DuanJiaNing
  */
@@ -25,7 +24,7 @@ public interface BlogDao extends BaseDao<Blog> {
      * @param bloggerId 博主id
      * @param status    博文状态
      * @return 查询到的文章
-     * @see BlogStatus
+     * @see BlogStatusEnum
      */
     List<Blog> queryBlog(@Param("bloggerId") int bloggerId,
                          @Param("status") int status);
@@ -38,7 +37,7 @@ public interface BlogDao extends BaseDao<Blog> {
      * @param offset    偏移位置
      * @param rows      行数
      * @return
-     * @see BlogStatus
+     * @see BlogStatusEnum
      */
     List<Blog> queryBlogWithLimit(@Param("bloggerId") int bloggerId,
                                   @Param("status") int status,

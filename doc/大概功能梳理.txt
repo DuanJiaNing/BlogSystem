@@ -26,6 +26,9 @@
 举报
 私密
 
+博主
+博文数，总字数，收到的喜欢数，累计被收藏了n次
+
 文章信息
 许可协议：创意共享 https://creativecommons.org/licenses/by-nc-sa/3.0/deed.zh
 

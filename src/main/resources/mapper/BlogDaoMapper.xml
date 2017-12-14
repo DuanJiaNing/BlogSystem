@@ -23,7 +23,9 @@
             ${alias}.collect_count,
             ${alias}.complain_count,
             ${alias}.share_count,
-            ${alias}.admire_count
+            ${alias}.admire_count,
+            ${alias}.word_count,
+            ${alias}.like_count
     </sql>
 
     <select id="queryBlog" resultType="Blog">
@@ -110,6 +112,12 @@
             <if test="admireCount != null">
                 admire_count=#{admireCount},
             </if>
+            <if test="wordCount != null">
+                word_count=#{wordCount},
+            </if>
+            <if test="likeCount != null">
+                like_count=#{likeCount},
+            </if>
         </set>
         <where>
             id=#{id}
@@ -141,26 +149,30 @@
             collect_count,
             complain_count,
             share_count,
-            admire_count
+            admire_count,
+            word_count,
+            like_count
         ) VALUE (
             NULL,
             #{bloggerId},
-            #{categoryIds},
-            #{labelIds},
-            #{state},
+            ifnull(#{categoryIds}, ''),
+            ifnull(#{labelIds}, ''),
+            ifnull(#{state}, 0),
             #{title},
             #{content},
             #{summary},
             NOW(),
             NOW(),
             #{keyWords},
-            #{commentCount},
-            #{viewCount},
-            #{replyCommentCount},
-            #{collectCount},
-            #{complainCount},
-            #{shareCount},
-            #{admireCount}
+            ifnull(#{commentCount}, 0),
+            ifnull(#{viewCount}, 0),
+            ifnull(#{replyCommentCount}, 0),
+            ifnull(#{collectCount}, 0),
+            ifnull(#{complainCount}, 0),
+            ifnull(#{shareCount}, 0),
+            ifnull(#{admireCount}, 0),
+            ifnull(#{wordCount}, 0),
+            ifnull(#{likeCount}, 0)
         )
     </insert>
 
