@@ -2,6 +2,7 @@ package com.duan.blogos.entity.blogger;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
@@ -10,13 +11,23 @@ import java.sql.Timestamp;
  * @author DuanJiaNing
  */
 @Data
-public class BloggerAccount {
+public class BloggerAccount implements Serializable {
 
+    private static final long serialVersionUID = -1326020643799217215L;
+
+    //id
     private Integer id;
+
+    //个人资料
     private Integer profileId;
+
+    //用户名
     private String username;
+
+    //密码
     private String password;
-    private String intro;
+
+    //注册时间
     private Timestamp registerDate;
 
 }

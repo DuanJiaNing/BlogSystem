@@ -19,23 +19,23 @@ public class BlogDaoTest extends BaseTest {
 
     @Test
     public void queryBlog() {
-        P.out(blogDao.queryBlog(1, BlogStatusEnum.PRIVATE.getCode()));
+        P.out(blogDao.listBlog(1, BlogStatusEnum.PRIVATE.getCode()));
     }
 
     @Test
     public void queryBlogWithLimit() {
-        P.out(blogDao.queryBlogWithLimit(2, BlogStatusEnum.PUBLIC.getCode(), 0, 1000));
+        P.out(blogDao.listBlogWithLimit(2, BlogStatusEnum.PUBLIC.getCode(), 0, 1000));
     }
 
     @Test
     public void queryAll() {
-        P.out(blogDao.queryAll());
+        P.out(blogDao.listAll());
     }
 
 
     @Test
     public void query() {
-        P.out(blogDao.query(1));
+        P.out(blogDao.listQuery(1));
     }
 
     @Test

@@ -11,14 +11,6 @@ import java.util.List;
 public interface BaseDao<T> {
 
     /**
-     * 根据id查询数据
-     *
-     * @param id
-     * @return
-     */
-    List<T> query(int id);
-
-    /**
      * 更新数据
      *
      * @param t

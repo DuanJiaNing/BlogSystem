@@ -17,18 +17,10 @@
             ${alias}.release_date,
             ${alias}.nearest_modify_date,
             ${alias}.key_words,
-            ${alias}.comment_count,
-            ${alias}.view_count,
-            ${alias}.reply_comment_count,
-            ${alias}.collect_count,
-            ${alias}.complain_count,
-            ${alias}.share_count,
-            ${alias}.admire_count,
-            ${alias}.word_count,
-            ${alias}.like_count
+            ${alias}.word_count
     </sql>
 
-    <select id="queryBlog" resultType="Blog">
+    <select id="listBlog" resultType="Blog">
         <include refid="allField">
             <property name="alias" value="b"/>
         </include>
@@ -36,7 +28,7 @@
         WHERE state=#{status} AND b.id=#{bloggerId}
     </select>
 
-    <select id="queryBlogWithLimit" resultType="Blog">
+    <select id="listBlogWithLimit" resultType="Blog">
         <include refid="allField">
             <property name="alias" value="b"/>
         </include>
@@ -45,17 +37,9 @@
         LIMIT #{offset}, #{rows}
     </select>
 
-    <select id="queryAll" resultType="com.duan.blogos.entity.blog.Blog">
+    <select id="listAll" resultType="com.duan.blogos.entity.blog.Blog">
         SELECT *
         FROM blog
-    </select>
-
-    <select id="query" resultType="Blog">
-        <include refid="allField">
-            <property name="alias" value="b"/>
-        </include>
-        FROM blog b
-        WHERE state!=-1 AND b.id=#{id}
     </select>
 
     <update id="update" parameterType="Blog">
@@ -91,32 +75,8 @@
             <if test="keyWords != null">
                 key_words=#{keyWords},
             </if>
-            <if test="commentCount != null">
-                comment_count=#{commentCount},
-            </if>
-            <if test="viewCount != null">
-                view_count=#{viewCount},
-            </if>
-            <if test="replyCommentCount != null">
-                reply_comment_count=#{replyCommentCount},
-            </if>
-            <if test="collectCount != null">
-                collect_count=#{collectCount},
-            </if>
-            <if test="complainCount != null">
-                complain_count=#{complainCount},
-            </if>
-            <if test="shareCount != null">
-                share_count=#{shareCount},
-            </if>
-            <if test="admireCount != null">
-                admire_count=#{admireCount},
-            </if>
             <if test="wordCount != null">
                 word_count=#{wordCount},
-            </if>
-            <if test="likeCount != null">
-                like_count=#{likeCount},
             </if>
         </set>
         <where>
@@ -143,15 +103,7 @@
             release_date,
             nearest_modify_date,
             key_words,
-            comment_count,
-            view_count,
-            reply_comment_count,
-            collect_count,
-            complain_count,
-            share_count,
-            admire_count,
-            word_count,
-            like_count
+            word_count
         ) VALUE (
             NULL,
             #{bloggerId},
@@ -164,15 +116,7 @@
             NOW(),
             NOW(),
             #{keyWords},
-            ifnull(#{commentCount}, 0),
-            ifnull(#{viewCount}, 0),
-            ifnull(#{replyCommentCount}, 0),
-            ifnull(#{collectCount}, 0),
-            ifnull(#{complainCount}, 0),
-            ifnull(#{shareCount}, 0),
-            ifnull(#{admireCount}, 0),
-            ifnull(#{wordCount}, 0),
-            ifnull(#{likeCount}, 0)
+            ifnull(#{wordCount}, 0)
         )
     </insert>
 

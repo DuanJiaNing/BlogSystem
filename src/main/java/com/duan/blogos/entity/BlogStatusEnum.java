@@ -26,8 +26,12 @@ public enum BlogStatusEnum {
     /**
      * 正在审核
      */
-    VERIFY(0, "审核中");
+    VERIFY(0, "审核中"),
 
+    /**
+     * 显示在首页
+     */
+    HOMEPAGE(3, "首页");
 
     private final int code;
     private final String msg;

@@ -10,7 +10,7 @@
     http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-    <context:component-scan base-package="com.duan.blogos.controller"/>
+    <context:component-scan base-package="com.duan.blogos.web"/>
 
     <!--使用 spring 注解模式-->
     <mvc:annotation-driven/>

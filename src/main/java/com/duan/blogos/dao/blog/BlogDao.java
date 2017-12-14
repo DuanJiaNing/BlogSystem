@@ -17,7 +17,6 @@ import java.util.List;
 @Repository
 public interface BlogDao extends BaseDao<Blog> {
 
-
     /**
      * 根据博主id和文章状态查询其发布的文章
      *
@@ -26,8 +25,8 @@ public interface BlogDao extends BaseDao<Blog> {
      * @return 查询到的文章
      * @see BlogStatusEnum
      */
-    List<Blog> queryBlog(@Param("bloggerId") int bloggerId,
-                         @Param("status") int status);
+    List<Blog> listBlog(@Param("bloggerId") int bloggerId,
+                        @Param("status") int status);
 
     /**
      * 根据博主id和文章状态查询其发布的指定偏移位置和数量的博文
@@ -39,16 +38,16 @@ public interface BlogDao extends BaseDao<Blog> {
      * @return
      * @see BlogStatusEnum
      */
-    List<Blog> queryBlogWithLimit(@Param("bloggerId") int bloggerId,
-                                  @Param("status") int status,
-                                  @Param("offset") int offset,
-                                  @Param("rows") int rows);
+    List<Blog> listBlogWithLimit(@Param("bloggerId") int bloggerId,
+                                 @Param("status") int status,
+                                 @Param("offset") int offset,
+                                 @Param("rows") int rows);
 
     /**
      * 查询出所有的博文
      *
      * @return
      */
-    List<Blog> queryAll();
+    List<Blog> listAll();
 
 }
