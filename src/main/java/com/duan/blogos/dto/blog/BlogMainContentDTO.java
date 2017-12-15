@@ -14,7 +14,7 @@ import java.sql.Timestamp;
  * @author DuanJiaNing
  */
 @Data
-public class BlogMainContent implements Serializable {
+public class BlogMainContentDTO implements Serializable {
 
     private static final long serialVersionUID = -9215772012725472707L;
 

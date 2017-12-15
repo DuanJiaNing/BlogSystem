@@ -1,6 +1,6 @@
 package com.duan.blogos.dto.blog;
 
-import com.duan.blogos.dto.blogger.Blogger;
+import com.duan.blogos.dto.blogger.BloggerDTO;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -8,11 +8,12 @@ import java.sql.Timestamp;
 
 /**
  * Created on 2017/12/14.
+ * 博文评论
  *
  * @author DuanJiaNing
  */
 @Data
-public class BlogComment implements Serializable {
+public class BlogCommentDTO implements Serializable {
 
     private static final long serialVersionUID = 7217522025154588809L;
 
@@ -23,10 +24,10 @@ public class BlogComment implements Serializable {
     private int blogId;
 
     // 评论者
-    private Blogger spokesman;
+    private BloggerDTO spokesman;
 
     // 被评论者（博文作者）
-    private Blogger listener;
+    private BloggerDTO listener;
 
     // 评论内容
     private String content;

@@ -8,10 +8,11 @@ import java.sql.Timestamp;
 
 /**
  * Created on 2017/12/14.
+ * 博主资料
  *
  * @author DuanJiaNing
  */
-public class Blogger implements Serializable {
+public class BloggerDTO implements Serializable {
 
     private static final long serialVersionUID = 4552057430001933904L;
 

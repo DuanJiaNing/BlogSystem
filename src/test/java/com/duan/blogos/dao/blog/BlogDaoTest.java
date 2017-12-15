@@ -1,7 +1,7 @@
 package com.duan.blogos.dao.blog;
 
 import com.duan.blogos.BaseTest;
-import com.duan.blogos.entity.BlogStatusEnum;
+import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.utils.P;
 import org.junit.Test;

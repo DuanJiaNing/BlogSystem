@@ -24,6 +24,9 @@ public class BlogCollect implements Serializable {
     //收藏者id
     private Integer bloggerId;
 
+    //作者id
+    private Integer authorId;
+
     //收藏的理由
     private String reason;
 

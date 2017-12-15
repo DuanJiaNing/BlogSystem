@@ -1,7 +1,7 @@
 package com.duan.blogos.dao.blog;
 
 import com.duan.blogos.dao.BaseDao;
-import com.duan.blogos.entity.BlogStatusEnum;
+import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.entity.blog.Blog;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

@@ -1,32 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8ac934af-05bc-46b7-aaa8-6f8c621b9fd3" name="Default" comment="修改数据库，完成业务文档编写">
-      <change beforePath="" afterPath="$PROJECT_DIR$/doc/blog.uml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blog/BlogComment.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blog/BlogMainContent.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blogger/Blogger.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/BlogCommentStatusEnum.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogComplain.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogStatistics.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/audience/BlogBrowseService.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/audience/BlogRetrievalService.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/audience/BloggerInfoBrowsService.java" />
+    <list default="true" id="8ac934af-05bc-46b7-aaa8-6f8c621b9fd3" name="Default" comment="1 修改数据库，完成读者浏览博客业务接口定义&#10;2 增加dto类&#10;3 修改实体类">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blogger/BloggerCategoryDTO.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blogger/BloggerLinkDTO.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blogger/BloggerStatisticsDTO.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/enums/BloggerPictureCategoryEnum.java" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/ab54f8a3-67ef-4614-b72e-37754f00693a.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/ab54f8a3-67ef-4614-b72e-37754f00693a.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/doc/db_blog.uml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/dao/BaseDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/dao/BaseDao.java" />
+      <change beforePath="$PROJECT_DIR$/BlogSystem.iml" afterPath="$PROJECT_DIR$/BlogSystem.iml" />
+      <change beforePath="$PROJECT_DIR$/doc/blog.uml" afterPath="$PROJECT_DIR$/doc/blog.uml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/dao/blog/BlogDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/dao/blog/BlogDao.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/BlogStatusEnum.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/BlogStatusEnum.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/Blog.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/Blog.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blog/BlogComment.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blog/BlogCommentDTO.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blog/BlogMainContent.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blog/BlogMainContentDTO.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blogger/Blogger.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blogger/BloggerDTO.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/BlogCommentStatusEnum.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/enums/BlogCommentStatusEnum.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/BlogStatusEnum.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/enums/BlogStatusEnum.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogCategory.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogCategory.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogCollect.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogCollect.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blogger/BloggerAccount.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blogger/BloggerAccount.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blogger/BloggerLink.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blogger/BloggerLink.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blogger/BloggerPicture.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blogger/BloggerPicture.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blogger/BloggerProfile.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blogger/BloggerProfile.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/BlogDaoMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/BlogDaoMapper.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/spring/spring-controller.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring/spring-web.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/audience/BlogBrowseService.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/audience/BlogBrowseService.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/ProfileService.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/ProfileService.java" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/sql/blog.sql" afterPath="$PROJECT_DIR$/src/main/resources/sql/blog.sql" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/sql/statement.sql" afterPath="$PROJECT_DIR$/src/main/resources/sql/statement.sql" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/duan/blogos/dao/blog/BlogDaoTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/duan/blogos/dao/blog/BlogDaoTest.java" />
@@ -65,29 +59,11 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="blog: schema" type="c314c289:MysqlImplModel$Schema" />
       </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="blog@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="blog: schema" type="c314c289:MysqlImplModel$Schema" />
-        <item name="blog: table" type="98d5ac3d:MysqlImplModel$Table" />
-      </path>
     </expand>
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="statement.sql" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/sql/statement.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -130,26 +106,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/spring/spring-dao.xml" />
-        <option value="$PROJECT_DIR$/src/test/java/com/BlogDaoTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/duan/blogos/Test.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/duan/blogos/utils/P.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/util/P.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/main/resources/sql/blog.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/result/ResultBean.java" />
-        <option value="$PROJECT_DIR$/doc/tip.txt" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/BlogStatus.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/ab54f8a3-67ef-4614-b72e-37754f00693a/console.sql" />
         <option value="$PROJECT_DIR$/src/main/resources/sql/sql" />
         <option value="$PROJECT_DIR$/src/test/java/com/duan/blogos/dao/blog/BlogDaoTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/ProfileService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/BlogService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/StatisticsService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/AccountService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogLabel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogComment.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogCategory.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogAdmire.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/spring/spring-controller.xml" />
@@ -164,8 +129,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blog/Blogger.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blog/T.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blog/BlogMain.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogCollect.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/sql/statement.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogComplain.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blog/BlogStatistics.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/Blog.java" />
@@ -174,13 +137,26 @@
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/BlogCommentStatusEnum.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/BlogDaoMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/BlogStatusEnum.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/audience/BlogBrowseService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blogger/BloggerAccount.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blogger/BloggerProfile.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blogger/Blogger.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blogger/BloggerPicture.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blog/BlogComment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/enums/BlogStatusEnum.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/enums/BloggerPictureCategoryEnum.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/audience/BlogBrowseService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blogger/BloggerLink.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blogger/BloggerLink.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogCategory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blog/BlogCommentDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blogger/BloggerDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blogger/BloggerLinkDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blogger/BloggerCategoryDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blogger/BloggerStatistics.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogCollect.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blogger/BloggerStatisticsDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/ProfileService.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/sql/statement.sql" />
       </list>
     </option>
   </component>
@@ -209,8 +185,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="163" />
-    <option name="y" value="-14" />
+    <option name="x" value="423" />
+    <option name="y" value="50" />
     <option name="width" value="1485" />
     <option name="height" value="1080" />
   </component>
@@ -249,8 +225,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -288,6 +262,35 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="blogos" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="blogos" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="blogos" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="audience" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="blogos" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="blogger" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
@@ -378,6 +381,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="AndroidView" />
     </panes>
@@ -388,7 +393,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/doc" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Facets" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/src/test/java/com/duan/blogos/dao/blog/BlogDaoTest.java&#10;true" />
@@ -400,6 +405,14 @@
       <recent name="com.duan.blogos.dao.blog" />
       <recent name="com" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\JetBrains\IdeaProjects\BlogSystem\src\main\resources\sql" />
+      <recent name="D:\JetBrains\IdeaProjects\BlogSystem\src\main\webapp" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.duan.blogos.entity" />
+      <recent name="com.duan.blogos.service.blogger" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="com.duan.blogos.BaseTest" />
     </key>
@@ -409,14 +422,6 @@
       <recent name="D:\JetBrains\IdeaProjects\BlogSystem\src\main\webapp\static" />
       <recent name="D:\JetBrains\IdeaProjects\BlogSystem\src\main\resources\spring" />
       <recent name="D:\JetBrains\IdeaProjects\BlogSystem" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.duan.blogos.entity" />
-      <recent name="com.duan.blogos.service.blogger" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\JetBrains\IdeaProjects\BlogSystem\src\main\resources\sql" />
-      <recent name="D:\JetBrains\IdeaProjects\BlogSystem\src\main\webapp" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -725,7 +730,8 @@
       <workItem from="1513215509165" duration="332000" />
       <workItem from="1513218618739" duration="5990000" />
       <workItem from="1513225999613" duration="1311000" />
-      <workItem from="1513240072821" duration="14161000" />
+      <workItem from="1513240072821" duration="14281000" />
+      <workItem from="1513306418628" duration="6331000" />
     </task>
     <task id="LOCAL-00001" summary="完善结构">
       <created>1512991824012</created>
@@ -762,7 +768,14 @@
       <option name="project" value="LOCAL" />
       <updated>1513228169126</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="1 修改数据库，完成读者浏览博客业务接口定义&#10;2 增加dto类&#10;3 修改实体类">
+      <created>1513254676969</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1513254676969</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -798,7 +811,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59815000" />
+    <option name="totallyTimeSpent" value="66266000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-9" width="1864" height="1098" extended-state="6" />
@@ -813,12 +826,11 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.53555554" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55307263" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32852387" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33888888" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24860336" sideWeight="0.49330086" order="5" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2642458" sideWeight="0.49330086" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25422484" sideWeight="0.50669914" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16759777" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.58" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23407821" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15586592" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -836,6 +848,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Mybatis datasource" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.58" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -913,54 +926,15 @@
     <MESSAGE value="添加test方法到git" />
     <MESSAGE value="修改数据库" />
     <MESSAGE value="修改数据库，完成业务文档编写" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改数据库，完成业务文档编写" />
+    <MESSAGE value="1 修改数据库，完成读者浏览博客业务接口定义&#10;2 增加dto类&#10;3 修改实体类" />
+    <option name="LAST_COMMIT_MESSAGE" value="1 修改数据库，完成读者浏览博客业务接口定义&#10;2 增加dto类&#10;3 修改实体类" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/doc/tip.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/blog.png" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/ab54f8a3-67ef-4614-b72e-37754f00693a/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="51" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/duan/blogos/dao/blog/BlogDaoTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="64" column="34" lean-forward="false" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/StatisticsService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/BlogService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/ProfileService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -972,7 +946,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -980,15 +953,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1028,175 +992,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="8" column="16" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/audience/BloggerInfoBrowsService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="16" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/db_blog.uml">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>DATABASE</ID>
-          <OriginalElement>ab54f8a3-67ef-4614-b72e-37754f00693a.SCHEMA:blog</OriginalElement>
-          <nodes>
-            <node x="0.0" y="621.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_picture</node>
-            <node x="71.5" y="1058.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_link</node>
-            <node x="444.99999999999994" y="190.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account</node>
-            <node x="780.4999999999999" y="1097.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_like</node>
-            <node x="286.0" y="660.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_label</node>
-            <node x="468.4999999999999" y="1058.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_comment</node>
-            <node x="780.2499999999999" y="452.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog</node>
-            <node x="1340.5" y="1071.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_collect</node>
-            <node x="472.99999999999994" y="0.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_profile</node>
-            <node x="1461.5" y="647.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_category</node>
-            <node x="1065.5" y="1071.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_admire</node>
-          </nodes>
-          <notes />
-          <edges>
-            <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_admire" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog">
-              <point x="-63.75" y="-96.0" />
-              <point x="1129.25" y="1038.0" />
-              <point x="1001.4999999999999" y="1038.0" />
-              <point x="44.25" y="278.0" />
-            </edge>
-            <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_comment" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog">
-              <point x="97.33333333333337" y="-109.0" />
-              <point x="711.8333333333333" y="1038.0" />
-              <point x="824.4999999999999" y="1038.0" />
-              <point x="-132.75" y="278.0" />
-            </edge>
-            <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_link" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account">
-              <point x="66.25" y="-109.0" />
-              <point x="270.25" y="1038.0" />
-              <point x="275.5" y="1038.0" />
-              <point x="275.5" y="422.0" />
-              <point x="487.49999999999994" y="422.0" />
-              <point x="-85.0" y="96.0" />
-            </edge>
-            <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_like" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog">
-              <point x="0.0" y="-70.0" />
-              <point x="-44.25" y="278.0" />
-            </edge>
-            <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_collect" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account">
-              <point x="0.0" y="-96.0" />
-              <point x="1477.0" y="1038.0" />
-              <point x="1451.0" y="1038.0" />
-              <point x="1451.0" y="412.0" />
-              <point x="657.5" y="412.0" />
-              <point x="85.0" y="96.0" />
-            </edge>
-            <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_collect" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_category">
-              <point x="91.0" y="-96.0" />
-              <point x="1568.0" y="1038.0" />
-              <point x="1594.0" y="1038.0" />
-              <point x="0.0" y="83.0" />
-            </edge>
-            <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_picture" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account">
-              <point x="0.0" y="-109.0" />
-              <point x="132.5" y="412.0" />
-              <point x="459.16666666666663" y="412.0" />
-              <point x="-113.33333333333331" y="96.0" />
-            </edge>
-            <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_admire" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account">
-              <point x="63.75" y="-96.0" />
-              <point x="1256.75" y="422.0" />
-              <point x="629.1666666666665" y="422.0" />
-              <point x="56.66666666666663" y="96.0" />
-            </edge>
-            <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_comment" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account">
-              <point x="0.0" y="-109.0" />
-              <point x="614.4999999999999" y="1038.0" />
-              <point x="572.5" y="1038.0" />
-              <point x="0.0" y="96.0" />
-            </edge>
-            <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_collect" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog">
-              <point x="-91.0" y="-96.0" />
-              <point x="1386.0" y="1028.0" />
-              <point x="1090.0" y="1028.0" />
-              <point x="132.75" y="278.0" />
-            </edge>
-            <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account">
-              <point x="0.0" y="-278.0" />
-              <point x="957.2499999999999" y="432.0" />
-              <point x="600.8333333333333" y="432.0" />
-              <point x="28.333333333333258" y="96.0" />
-            </edge>
-            <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_link" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_picture">
-              <point x="-66.25" y="-109.0" />
-              <point x="137.75" y="1038.0" />
-              <point x="132.5" y="1038.0" />
-              <point x="0.0" y="109.0" />
-            </edge>
-            <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_category" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account">
-              <point x="0.0" y="-83.0" />
-              <point x="1594.0" y="402.0" />
-              <point x="685.8333333333333" y="402.0" />
-              <point x="113.33333333333326" y="96.0" />
-            </edge>
-            <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_label" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account">
-              <point x="0.0" y="-70.0" />
-              <point x="418.5" y="432.0" />
-              <point x="515.8333333333333" y="432.0" />
-              <point x="-56.666666666666686" y="96.0" />
-            </edge>
-            <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_profile">
-              <point x="0.0" y="-96.0" />
-              <point x="0.0" y="70.0" />
-            </edge>
-          </edges>
-          <settings layout="Hierarchic Group" zoom="0.8016027475672585" x="237.4001713796057" y="316.4001713796057" />
-          <SelectedNodes />
-          <Categories>
-            <Category>Columns</Category>
-            <Category>Key columns</Category>
-          </Categories>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/po/BloggerBO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/po/BlogCommentBO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="26" lean-forward="false" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/po/BlogCategoryBO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="26" lean-forward="true" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/po/BlogLabelBO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="24" lean-forward="false" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/db_blog.uml" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/po/BloggerBO.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/po/BlogCommentBO.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/po/BlogCategoryBO.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/po/BlogLabelBO.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_45/src.zip!/java/sql/Timestamp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="72" column="0" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1208,46 +1015,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/vo/BlogVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blog/Blogger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="35" lean-forward="false" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/T.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="27" lean-forward="false" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blog/BlogStatistics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/BlogCommentStatusEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="29" lean-forward="true" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/vo/BlogVO.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blog/Blogger.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/T.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blog/BlogStatistics.java" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/BlogDaoMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2552">
@@ -1278,71 +1049,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/BlogStatusEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="602">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding>
-            <element signature="e#637#638#0" expanded="true" />
-            <element signature="e#664#665#0" expanded="true" />
-            <element signature="e#694#695#0" expanded="true" />
-            <element signature="e#720#721#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blogger/Blogger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blog/BlogMainContent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blog/BlogComment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="14" column="49" lean-forward="true" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/Blog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="13" column="32" lean-forward="true" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/audience/BlogBrowseService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="19" column="15" lean-forward="true" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogStatistics.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1360,28 +1072,12 @@
         <state relative-caret-position="286">
           <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogComment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogCollect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogCategory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
@@ -1397,29 +1093,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blogger/BloggerProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blogger/BloggerPicture.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blogger/BloggerLink.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1431,29 +1109,204 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="519">
+          <caret line="28" column="46" lean-forward="true" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/enums/BloggerPictureCategoryEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <element signature="e#324#325#0" expanded="false" />
+            <element signature="e#356#357#0" expanded="false" />
+            <element signature="e#381#382#0" expanded="false" />
+            <element signature="e#408#409#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/enums/BlogStatusEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="12" lean-forward="false" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/enums/BlogCommentStatusEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="12" lean-forward="false" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blogger/BloggerProfile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blogger/BloggerLink.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blog/BlogCommentDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="10" column="7" lean-forward="false" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blog/BlogMainContentDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="23" column="12" lean-forward="true" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blogger/BloggerLinkDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogCategory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="13" column="51" lean-forward="false" selection-start-line="13" selection-start-column="51" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blogger/BloggerDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="10" column="7" lean-forward="false" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogCollect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/Blog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="13" column="32" lean-forward="true" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blogger/BloggerStatisticsDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/sql/statement.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/audience/BlogBrowseService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1114">
+          <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/audience/BloggerInfoBrowsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="16" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/ProfileService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="16" column="17" lean-forward="false" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blogger/BloggerCategoryDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/sql/blog.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="29" lean-forward="true" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="uml://DATABASE/ab54f8a3-67ef-4614-b72e-37754f00693a.SCHEMA:blog">
       <provider selected="true" editor-type-id="UmlEditorProvider">
         <state>
           <ID>DATABASE</ID>
           <OriginalElement>ab54f8a3-67ef-4614-b72e-37754f00693a.SCHEMA:blog</OriginalElement>
           <nodes>
+            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_statistics</node>
             <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_collect</node>
-            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_link</node>
+            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_picture</node>
             <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_comment</node>
             <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_like</node>
             <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_label</node>
             <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account</node>
-            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_admire</node>
+            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_link</node>
             <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog</node>
             <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_complain</node>
-            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_category</node>
             <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_profile</node>
-            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_statistics</node>
-            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_picture</node>
+            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_category</node>
+            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_admire</node>
           </nodes>
           <notes />
           <edges />
-          <settings layout="Hierarchic Group" zoom="0.8640319715808169" x="1025.8412992085518" y="843.3570767807587" />
+          <settings layout="Hierarchic Group" zoom="0.6843581445523192" x="952.2154791929383" y="701.0131274627375" />
           <SelectedNodes />
           <Categories>
             <Category>Key columns</Category>
@@ -1462,19 +1315,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/sql/blog.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="781">
-          <caret line="36" column="12" lean-forward="false" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/sql/statement.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
+    <entry file="file://$PROJECT_DIR$/doc/blog.uml">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>DATABASE</ID>
+          <OriginalElement>ab54f8a3-67ef-4614-b72e-37754f00693a.SCHEMA:blog</OriginalElement>
+          <nodes>
+            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_statistics</node>
+            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_collect</node>
+            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog</node>
+            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_link</node>
+            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_picture</node>
+            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_label</node>
+            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account</node>
+            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_like</node>
+            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_complain</node>
+            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_comment</node>
+            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_profile</node>
+            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_category</node>
+            <node x="" y="">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_admire</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.6843581445523192" x="952.2154791929383" y="740.5219104665827" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Columns</Category>
+            <Category>Key columns</Category>
+          </Categories>
         </state>
       </provider>
     </entry>
@@ -1508,7 +1376,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>Web</last-edited>
+          <last-edited>Spring (BlogSystem)|Spring</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

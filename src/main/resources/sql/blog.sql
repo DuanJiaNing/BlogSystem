@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50716
 File Encoding         : 65001
 
-Date: 2017-12-14 20:27:07
+Date: 2017-12-15 13:01:31
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -60,6 +60,7 @@ CREATE TABLE `blogger_account` (
   `password` varchar(100) NOT NULL COMMENT '博主密码',
   `register_date` datetime NOT NULL COMMENT '注册时间',
   PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
   KEY `profile_id` (`profile_id`),
   CONSTRAINT `blogger_account_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `blogger_profile` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
@@ -80,11 +81,11 @@ CREATE TABLE `blogger_link` (
   `blogger_id` int(10) unsigned NOT NULL COMMENT '链接所属博主id',
   `icon_id` int(10) unsigned DEFAULT NULL COMMENT '图标id',
   `title` varchar(50) NOT NULL COMMENT '链接标题',
-  `url` text NOT NULL COMMENT '链接url',
+  `url` varchar(200) NOT NULL COMMENT '链接url',
   `desc` varchar(100) DEFAULT NULL COMMENT '链接描述',
   `priority` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '链接优先级',
   PRIMARY KEY (`id`),
-  KEY `blogger_id` (`blogger_id`),
+  UNIQUE KEY `blogger_id` (`blogger_id`,`url`),
   KEY `icon_id` (`icon_id`),
   CONSTRAINT `blogger_link_ibfk_1` FOREIGN KEY (`blogger_id`) REFERENCES `blogger_account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `blogger_link_ibfk_2` FOREIGN KEY (`icon_id`) REFERENCES `blogger_picture` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
@@ -172,7 +173,7 @@ CREATE TABLE `blog_category` (
   `desc` text COMMENT '类别描述',
   `create_date` datetime NOT NULL COMMENT '类别创建时间',
   PRIMARY KEY (`id`),
-  KEY `blogger_blog_category_ibfk_1` (`blogger_id`),
+  UNIQUE KEY `blogger_id` (`blogger_id`,`title`),
   CONSTRAINT `blog_category_ibfk_1` FOREIGN KEY (`blogger_id`) REFERENCES `blogger_account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
@@ -193,6 +194,7 @@ CREATE TABLE `blog_collect` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '收藏博文表id',
   `blog_id` int(11) unsigned NOT NULL COMMENT '收藏的博文id',
   `blogger_id` int(10) unsigned NOT NULL COMMENT '收藏者id',
+  `author_id` int(10) unsigned DEFAULT NULL COMMENT '作者id',
   `reason` text COMMENT '收藏的理由',
   `collect_date` datetime NOT NULL COMMENT '收藏时间',
   `category_id` int(10) unsigned DEFAULT '0' COMMENT '收藏到自己的哪一个类别下',
@@ -200,9 +202,11 @@ CREATE TABLE `blog_collect` (
   UNIQUE KEY `blog_id` (`blog_id`,`blogger_id`),
   KEY `blogger_id` (`blogger_id`),
   KEY `category_id` (`category_id`),
+  KEY `author_id` (`author_id`),
   CONSTRAINT `blog_collect_ibfk_1` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `blog_collect_ibfk_2` FOREIGN KEY (`blogger_id`) REFERENCES `blogger_account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `blog_collect_ibfk_3` FOREIGN KEY (`category_id`) REFERENCES `blog_category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `blog_collect_ibfk_3` FOREIGN KEY (`category_id`) REFERENCES `blog_category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `blog_collect_ibfk_4` FOREIGN KEY (`author_id`) REFERENCES `blogger_account` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -265,6 +269,7 @@ CREATE TABLE `blog_label` (
   `title` varchar(20) NOT NULL COMMENT '标签名',
   `create_date` datetime NOT NULL COMMENT '标签创建时间',
   PRIMARY KEY (`id`),
+  UNIQUE KEY `blogger_id_2` (`blogger_id`,`title`),
   KEY `blogger_id` (`blogger_id`),
   CONSTRAINT `blog_label_ibfk_1` FOREIGN KEY (`blogger_id`) REFERENCES `blogger_account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
@@ -288,6 +293,7 @@ CREATE TABLE `blog_like` (
   `admirer_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '仰慕者（给出like的人）id，未注册读者用0表示',
   `like_date` datetime DEFAULT NULL COMMENT '时间',
   PRIMARY KEY (`id`),
+  UNIQUE KEY `admirer_id` (`admirer_id`,`blog_id`),
   KEY `blog_id` (`blog_id`),
   CONSTRAINT `blog_like_ibfk_1` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

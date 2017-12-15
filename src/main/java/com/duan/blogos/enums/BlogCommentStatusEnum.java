@@ -1,4 +1,4 @@
-package com.duan.blogos.entity;
+package com.duan.blogos.enums;
 
 /**
  * Created on 2017/12/14.

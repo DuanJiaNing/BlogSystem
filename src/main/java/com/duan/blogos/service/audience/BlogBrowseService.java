@@ -1,8 +1,7 @@
 package com.duan.blogos.service.audience;
 
-import com.duan.blogos.dto.blog.BlogComment;
-import com.duan.blogos.dto.blog.BlogMainContent;
-import com.duan.blogos.dto.blogger.Blogger;
+import com.duan.blogos.dto.blog.BlogCommentDTO;
+import com.duan.blogos.dto.blog.BlogMainContentDTO;
 import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.result.ResultBean;
 
@@ -22,7 +21,7 @@ public interface BlogBrowseService {
      * @param blogId 博文id
      * @return 查询结果
      */
-    ResultBean<BlogMainContent> getBlogMainContent(int blogId);
+    ResultBean<BlogMainContentDTO> getBlogMainContent(int blogId);
 
     /**
      * 获取博文统计信息
@@ -33,22 +32,15 @@ public interface BlogBrowseService {
     ResultBean<BlogStatistics> getBlogStatistics(int blogId);
 
     /**
-     * 获取博主信息
-     *
-     * @param blogId 博文id
-     * @return 查询结果
-     */
-    ResultBean<Blogger> getBlogger(int blogId);
-
-    /**
      * 获得博文评论列表
      *
      * @param blogId 博文id
      * @return 查询结果
      */
-    ResultBean<List<BlogComment>> listBlogComment(int blogId);
+    ResultBean<List<BlogCommentDTO>> listBlogComment(int blogId);
 
     /**
+     * 评论
      * 持久化评论记录，同时博文评论次数加一
      *
      * @param content     评论内容
@@ -60,6 +52,7 @@ public interface BlogBrowseService {
     ResultBean<Void> insertComment(String content, int spokesmanId, int listenerId, int blogId);
 
     /**
+     * 分享
      * 博文被分享，分享次数加一
      *
      * @param blogId 博文id
@@ -68,6 +61,7 @@ public interface BlogBrowseService {
     ResultBean<Void> insertShareCountIncrement(int blogId);
 
     /**
+     * 赞赏
      * 持久化赞赏记录，同时博文赞赏次数加一
      *
      * @param blogId   博文id
@@ -79,6 +73,7 @@ public interface BlogBrowseService {
     ResultBean<Void> insertAdmire(int blogId, int paierId, int earnerId, float money);
 
     /**
+     * 收藏
      * 持久化文章收藏记录，同时博文收藏次数加一
      *
      * @param blogId     博文id
@@ -90,6 +85,7 @@ public interface BlogBrowseService {
     ResultBean<Void> insertCollect(int blogId, int cllocterId, String reason, int categoryId);
 
     /**
+     * 举报
      * 投诉博文，同时投诉记录加一
      *
      * @param blogId       博文id

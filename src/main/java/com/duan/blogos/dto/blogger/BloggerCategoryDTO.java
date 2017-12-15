@@ -1,25 +1,27 @@
-package com.duan.blogos.entity.blog;
+package com.duan.blogos.dto.blogger;
 
-import lombok.*;
+import com.duan.blogos.entity.blogger.BloggerPicture;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
- * Created on 2017/12/12.
+ * Created on 2017/12/15.
+ * 博主创建的类别
  *
  * @author DuanJiaNing
  */
 @Data
-public class BlogCategory implements Serializable {
+public class BloggerCategoryDTO implements Serializable {
 
     private static final long serialVersionUID = -7413640669767387180L;
 
     //id
-    private Integer id;
+    private int id;
 
     //类别所属博主id
-    private Integer bloggerId;
+    private int bloggerId;
 
     //类别标题
     private String title;
@@ -29,5 +31,8 @@ public class BlogCategory implements Serializable {
 
     //类别创建时间
     private Timestamp createDate;
+
+    //类别对应图标
+    private BloggerPicture icon;
 
 }
