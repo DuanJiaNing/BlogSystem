@@ -11,23 +11,17 @@ public enum BlogCommentStatusEnum {
     /**
      * 正在审核
      */
-    VERIFY(0, "审核中");
+    VERIFY(0);
 
 
     private final int code;
-    private final String msg;
 
-    BlogCommentStatusEnum(int code, String msg) {
+    BlogCommentStatusEnum(int code) {
         this.code = code;
-        this.msg = msg;
     }
 
     public int getCode() {
         return code;
-    }
-
-    public String getMsg() {
-        return msg;
     }
 
 }

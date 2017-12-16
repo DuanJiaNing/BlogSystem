@@ -11,42 +11,37 @@ public enum BlogStatusEnum {
     /**
      * 博文是公开的，所以人都可以看到
      */
-    PUBLIC(1, "公开"),
+    PUBLIC(1),
 
     /**
      * 博文是私有的，只有博主才可以看到
      */
-    PRIVATE(2, "私有"),
+    PRIVATE(2),
 
     /**
      * 文章已经被删除了，根据回收策略进行删除
      */
-    DELETED(-1, "已删除"),
+    DELETED(-1),
 
     /**
      * 正在审核
      */
-    VERIFY(0, "审核中"),
+    VERIFY(0),
 
     /**
      * 显示在首页
      */
-    HOMEPAGE(3, "首页");
+    HOMEPAGE(3);
 
     private final int code;
-    private final String msg;
 
-    BlogStatusEnum(int code, String msg) {
+    BlogStatusEnum(int code) {
         this.code = code;
-        this.msg = msg;
     }
 
     public int getCode() {
         return code;
     }
 
-    public String getMsg() {
-        return msg;
-    }
 
 }

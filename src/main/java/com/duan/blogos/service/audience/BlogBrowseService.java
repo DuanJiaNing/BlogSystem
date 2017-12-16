@@ -9,7 +9,17 @@ import java.util.List;
 
 /**
  * Created on 2017/12/14.
- * 博文浏览服务
+ * 博文浏览服务，该接口定义主要服务于用户点击一篇博文并进入博文浏览页面时博文内容主体以及博文相关数据的获取，以及用户可
+ * 对该篇博文执行的操作
+ * <p>
+ * 1 获得博文主体信息
+ * 2 获取博文统计信息
+ * 3 获得博文评论列表
+ * 4 评论
+ * 5 分享
+ * 6 赞赏
+ * 7 收藏
+ * 8 举报
  *
  * @author DuanJiaNing
  */
@@ -35,9 +45,11 @@ public interface BlogBrowseService {
      * 获得博文评论列表
      *
      * @param blogId 博文id
+     * @param offset 结果集起始位置
+     * @param rows   行数
      * @return 查询结果
      */
-    ResultBean<List<BlogCommentDTO>> listBlogComment(int blogId);
+    ResultBean<List<BlogCommentDTO>> listBlogComment(int blogId, int offset, int rows);
 
     /**
      * 评论
