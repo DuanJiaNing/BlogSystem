@@ -17,6 +17,9 @@ public class BloggerProfile implements Serializable {
     //id
     private Integer id;
 
+    //博主id
+    private Integer bloggerId;
+
     //电话
     private String phone;
 

@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 /**
  * Created on 2017/12/13.
- * 返回结果统一定义
+ * 返回结果统一定义，该类包装的结果可向页面传递
  *
  * @author DuanJiaNing
  */

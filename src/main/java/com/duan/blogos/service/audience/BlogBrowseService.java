@@ -59,18 +59,18 @@ public interface BlogBrowseService {
      * @param spokesmanId 评论者id（只有已注册的博主才能发起评论）
      * @param listenerId  被评论者id
      * @param blogId      被评论文章id
-     * @return 操作结果
+     * @return 操作结果，新增记录id
      */
-    ResultBean<Void> insertComment(String content, int spokesmanId, int listenerId, int blogId);
+    ResultBean<Integer> insertComment(String content, int spokesmanId, int listenerId, int blogId);
 
     /**
      * 分享
      * 博文被分享，分享次数加一
      *
      * @param blogId 博文id
-     * @return 操作结果
+     * @return 操作结果，新增记录id
      */
-    ResultBean<Void> insertShareCountIncrement(int blogId);
+    ResultBean<Integer> insertShareCountIncrement(int blogId);
 
     /**
      * 赞赏
@@ -80,9 +80,9 @@ public interface BlogBrowseService {
      * @param paierId  支付者id（若已登录则为登陆者id，为null则为未注册未登录的读者/游客）
      * @param earnerId 博文作者（博主）id
      * @param money    金额
-     * @return 操作结果
+     * @return 操作结果，新增记录id
      */
-    ResultBean<Void> insertAdmire(int blogId, int paierId, int earnerId, float money);
+    ResultBean<Integer> insertAdmire(int blogId, int paierId, int earnerId, float money);
 
     /**
      * 收藏
@@ -92,9 +92,9 @@ public interface BlogBrowseService {
      * @param cllocterId 收藏者id
      * @param reason     收藏理由
      * @param categoryId 收藏到自己的哪一个类别之下
-     * @return 执行结果
+     * @return 执行结果，新增记录id
      */
-    ResultBean<Void> insertCollect(int blogId, int cllocterId, String reason, int categoryId);
+    ResultBean<Integer> insertCollect(int blogId, int cllocterId, String reason, int categoryId);
 
     /**
      * 举报
@@ -103,8 +103,8 @@ public interface BlogBrowseService {
      * @param blogId       博文id
      * @param complainerId 投诉者id
      * @param reason       投诉理由
-     * @return 执行结果
+     * @return 执行结果，新增记录id
      */
-    ResultBean<Void> insertComplain(int blogId, int complainerId, String reason);
+    ResultBean<Integer> insertComplain(int blogId, int complainerId, String reason);
 
 }

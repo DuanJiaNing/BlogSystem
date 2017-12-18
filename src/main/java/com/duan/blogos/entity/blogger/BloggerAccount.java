@@ -18,9 +18,6 @@ public class BloggerAccount implements Serializable {
     //id
     private Integer id;
 
-    //个人资料
-    private Integer profileId;
-
     //用户名
     private String username;
 
