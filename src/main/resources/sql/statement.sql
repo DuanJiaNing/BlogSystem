@@ -22,6 +22,8 @@ ALTER TABLE blogger_account ADD UNIQUE KEY (username);
 # 友情链接不能重复
 ALTER TABLE blogger_link ADD UNIQUE KEY (blogger_id,url);
 
+# 一个博主只能有一份资料
+ALTER TABLE blogger_profile ADD UNIQUE KEY (blogger_id);
 
   # ---------------------------------------------------------test
 SELECT * FROM blog;
@@ -30,3 +32,5 @@ SELECT * FROM blog_category;
 SELECT * from blog_label;
 DESC blog;
 SHOW CREATE TABLE blog;
+SELECT *
+FROM blogger_account;

@@ -35,7 +35,7 @@ public class BlogDaoTest extends BaseTest {
 
     @Test
     public void query() {
-        P.out(blogDao.listQuery(1));
+//        P.out(blogDao.listQuery(1));
     }
 
     @Test

@@ -4,15 +4,27 @@
          id="WebApp_ID" version="3.0">
     <display-name>Archetype Created Web Application</display-name>
 
+    <error-page>
+        <error-code>404</error-code>
+        <location>/views/404.jsp</location>
+    </error-page>
 
-    <!-- spring监听器 -->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/views/500.jsp</location>
+    </error-page>
+
+    <!--spring监听器-->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     <context-param>
         <!-- spring配置文件 -->
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:applicationContext.xml</param-value>
+        <param-value>
+            classpath:applicationContext.xml,
+            classpath:spring/spring-shiro.xml
+        </param-value>
     </context-param>
 
 
@@ -44,7 +56,7 @@
     </filter>
     <filter-mapping>
         <filter-name>shiroFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/blogger/*,/admin/*</url-pattern>
     </filter-mapping>
 
 

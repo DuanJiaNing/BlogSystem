@@ -17,21 +17,8 @@
     </facet>
     <facet type="Spring" name="Spring">
       <configuration>
-        <fileset id="fileset" name="Spring Dao" removed="false">
-          <file>file://$MODULE_DIR$/src/main/resources/spring/spring-dao.xml</file>
-        </fileset>
-        <fileset id="fileset2" name="Spring Service" removed="false">
-          <file>file://$MODULE_DIR$/src/main/resources/spring/spring-service.xml</file>
-        </fileset>
-        <fileset id="web spring-dispatcher servlet context" name="MVC spring-dispatcher servlet context" removed="true">
-          <dependency>web application context</dependency>
-          <file>file://$MODULE_DIR$/src/main/resources/spring/spring-controller.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/spring/spring-service.xml</file>
+        <fileset id="fileset" name="Spring Shiro" removed="false">
           <file>file://$MODULE_DIR$/src/main/resources/spring/spring-shiro.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/spring/spring-dao.xml</file>
-        </fileset>
-        <fileset id="fileset4" name="Spring Web" removed="false">
-          <file>file://$MODULE_DIR$/src/main/resources/spring/spring-web.xml</file>
         </fileset>
       </configuration>
     </facet>

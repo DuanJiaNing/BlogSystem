@@ -4,6 +4,7 @@ import com.duan.blogos.dto.blog.BlogCommentDTO;
 import com.duan.blogos.dto.blog.BlogMainContentDTO;
 import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.result.ResultBean;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 

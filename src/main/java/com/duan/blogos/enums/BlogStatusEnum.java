@@ -9,7 +9,7 @@ package com.duan.blogos.enums;
 public enum BlogStatusEnum {
 
     /**
-     * 博文是公开的，所以人都可以看到
+     * 博文是公开的，所有人都可以看到
      */
     PUBLIC(1),
 

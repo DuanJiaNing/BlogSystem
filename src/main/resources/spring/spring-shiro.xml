@@ -12,7 +12,7 @@
     </bean>
 
     <!-- Shiro过滤器 -->
-    <bean class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+    <bean class="org.apache.shiro.spring.web.ShiroFilterFactoryBean" id="shiroFilter">
         <!-- Shiro的核心安全接口,这个属性是必须的 -->
         <property name="securityManager" ref="securityManager"/>
         <!-- 身份认证失败，则跳转到登录页面的配置 -->

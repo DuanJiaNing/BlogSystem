@@ -44,6 +44,14 @@ public interface BloggerAccountService {
     BloggerAccount getAccount(int bloggerId);
 
     /**
+     * 根据博主名字获取博主账户
+     *
+     * @param bloggerName 博主名字
+     * @return 查询结果
+     */
+    BloggerAccount getAccount(String bloggerName);
+
+    /**
      * 更新账户信息
      *
      * @param bloggerId   博主id

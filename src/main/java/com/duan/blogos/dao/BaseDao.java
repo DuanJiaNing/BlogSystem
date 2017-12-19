@@ -1,7 +1,5 @@
 package com.duan.blogos.dao;
 
-import java.util.List;
-
 /**
  * Created on 2017/12/12.
  * Dao 层数据库操作的最上层约定

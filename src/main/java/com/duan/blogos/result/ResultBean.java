@@ -30,7 +30,6 @@ public class ResultBean<T> implements Serializable {
 
     private int code = SUCCESS;
     private String msg = "success";
-
     private T data;
 
     /**

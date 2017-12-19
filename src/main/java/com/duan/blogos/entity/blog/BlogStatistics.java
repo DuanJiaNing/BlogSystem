@@ -1,6 +1,8 @@
 package com.duan.blogos.entity.blog;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -10,6 +12,8 @@ import java.io.Serializable;
  * @author DuanJiaNing
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class BlogStatistics implements Serializable {
 
     private static final long serialVersionUID = 2806945822343341735L;
