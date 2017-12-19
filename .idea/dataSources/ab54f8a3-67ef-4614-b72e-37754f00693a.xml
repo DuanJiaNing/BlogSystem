@@ -1887,10 +1887,21 @@ url</ColNames>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="392" parent="247" name="PRIMARY">
+    <index id="392" parent="247" name="blogger_id">
+      <ColNames>blogger_id</ColNames>
+    </index>
+    <key id="393" parent="247" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
+    <foreign-key id="394" parent="247" name="blogger_profile_ibfk_1">
+      <ColNames>blogger_id</ColNames>
+      <RefSchemaName>blog</RefSchemaName>
+      <RefTableName>blogger_account</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
   </database-model>
 </dataSource>

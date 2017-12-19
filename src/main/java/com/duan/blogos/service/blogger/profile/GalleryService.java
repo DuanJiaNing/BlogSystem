@@ -36,8 +36,9 @@ public interface GalleryService {
      *
      * @param pictureId   图片id
      * @param newCategory 新的类别
+     * @return 更新失败为false
      */
-    void updatePictureCategory(int pictureId, BloggerPictureCategoryEnum newCategory);
+    boolean updatePictureCategory(int pictureId, BloggerPictureCategoryEnum newCategory);
 
     /**
      * 获得图片

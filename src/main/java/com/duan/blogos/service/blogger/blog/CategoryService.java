@@ -30,8 +30,9 @@ public interface CategoryService {
      * @param newBloggerId 新的类别所属博主，不修改传 -1
      * @param newTitle     新标题，不修改传 null
      * @param newDesc      新描述，不修改传 null
+     * @return 更新失败为false
      */
-    void updateBlogCategory(int categoryId, int newBloggerId, String newTitle, String newDesc);
+    boolean updateBlogCategory(int categoryId, int newBloggerId, String newTitle, String newDesc);
 
     /**
      * 新增博文类别

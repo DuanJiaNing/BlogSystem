@@ -49,8 +49,9 @@ public interface BloggerAccountService {
      * @param bloggerId   博主id
      * @param newUserName 新用户名
      * @param newPassword 新密码
+     * @return 更新失败为false
      */
-    void updateAccount(int bloggerId, String newUserName, String newPassword);
+    boolean updateAccount(int bloggerId, String newUserName, String newPassword);
 
     /**
      * 获取博主信息

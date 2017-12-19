@@ -26,8 +26,9 @@ public interface LabelService {
      * @param labelId      标签id
      * @param newBloggerId 新的标签所有者
      * @param newTitle     新标签名
+     * @return 更新失败为false
      */
-    void updateLabel(int labelId, int newBloggerId, String newTitle);
+    boolean updateLabel(int labelId, int newBloggerId, String newTitle);
 
     /**
      * 删除标签

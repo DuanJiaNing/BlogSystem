@@ -55,8 +55,9 @@ public interface LinkService {
      * @param newUrl       新的url，不改变传 null
      * @param newDesc      新的描述，不改变传 null
      * @param newPriority  新的优先级，不改变传 -1
+     * @return 更新失败为false
      */
-    void updateBloggerLink(int linkId, int newBloggerId, int newIconId, String newTitle,
+    boolean updateBloggerLink(int linkId, int newBloggerId, int newIconId, String newTitle,
                            String newUrl, String newDesc, int newPriority);
 
 }

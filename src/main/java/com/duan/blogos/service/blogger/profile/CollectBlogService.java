@@ -53,7 +53,8 @@ public interface CollectBlogService {
      *
      * @param blogId        收藏博文id
      * @param newCategoryId 新的类别
+     * @return 更新失败为false
      */
-    void updateCollectBlogCategory(int blogId, int newCategoryId);
+    boolean updateCollectBlogCategory(int blogId, int newCategoryId);
 
 }

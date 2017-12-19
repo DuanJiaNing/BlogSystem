@@ -24,8 +24,9 @@ public interface ProfileService {
      * 更新博主头像
      *
      * @param pictureId 图片id
+     * @return 更新失败为false
      */
-    void updateBloggerAvatar(int pictureId);
+    boolean updateBloggerAvatar(int pictureId);
 
     /**
      * 更新博主信息
@@ -35,7 +36,8 @@ public interface ProfileService {
      * @param newEmail   新的邮箱，不改变传 null
      * @param newAboutMe 新的“关于我”，不改变传 null
      * @param newIntro   新的一句话简介，不改变传 null
+     * @return 更新失败为false
      */
-    void updateBloggerProfile(int bloggerId, String newPhone, String newEmail, String newAboutMe, String newIntro);
+    boolean updateBloggerProfile(int bloggerId, String newPhone, String newEmail, String newAboutMe, String newIntro);
 
 }
