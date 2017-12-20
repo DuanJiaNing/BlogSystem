@@ -82,19 +82,4 @@ public class BlogServiceImpl implements BlogService {
     public ResultBean<List<BlogListItemDTO>> listFilterAll(int[] categoryIds, int[] labelIds, String keyWord, int bloggerId, int offset, int rows, BlogSortRule sortRule) {
         return null;
     }
-
-    @Override
-    public ResultBean<List<BlogListItemDTO>> listFilterByKeyWord(String keyWord, int bloggerId, int offset, int rows, BlogSortRule sortRule) {
-        return null;
-    }
-
-    @Override
-    public ResultBean<List<BlogListItemDTO>> listFilterByCategory(int[] categoryIds, int bloggerId, int offset, int rows, BlogSortRule sortRule) {
-        return null;
-    }
-
-    @Override
-    public ResultBean<List<BlogListItemDTO>> listFilterByLabel(int[] labelIds, int bloggerId, int offset, int rows, BlogSortRule sortRule) {
-        return null;
-    }
 }
