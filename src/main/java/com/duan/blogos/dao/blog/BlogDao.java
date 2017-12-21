@@ -72,4 +72,15 @@ public interface BlogDao extends BaseDao<Blog> {
                                  @Param("status") int status,
                                  @Param("offset") int offset,
                                  @Param("rows") int rows);
+
+    /**
+     * 查询博文id
+     *
+     * @param bloggerId 博主id
+     * @param title     博文标题（同一博主的标题不能重复）
+     * @return 查询结果
+     */
+    int getBlogId(@Param("bloggerId") int bloggerId,
+                  @Param("title") String title);
+
 }

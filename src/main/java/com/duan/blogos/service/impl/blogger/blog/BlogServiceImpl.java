@@ -1,12 +1,19 @@
 package com.duan.blogos.service.impl.blogger.blog;
 
+import com.duan.blogos.dao.blog.BlogDao;
+import com.duan.blogos.dao.blog.BlogStatisticsDao;
 import com.duan.blogos.dto.blogger.BlogListItemDTO;
 import com.duan.blogos.dto.blogger.BlogStatisticsDTO;
 import com.duan.blogos.entity.blog.Blog;
+import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.manager.BlogSortRule;
+import com.duan.blogos.manager.DbPropertiesManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.blog.BlogService;
+import com.duan.blogos.util.CollectionUtils;
+import com.duan.blogos.util.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,9 +25,45 @@ import java.util.List;
  */
 @Service
 public class BlogServiceImpl implements BlogService {
+
+    @Autowired
+    private BlogDao blogDao;
+
+    @Autowired
+    private BlogStatisticsDao statisticsDao;
+
+    @Autowired
+    private DbPropertiesManager dbPropertiesManager;
+
     @Override
-    public int insertBlog(int bloggerId, int[] categories, int[] labels, BlogStatusEnum status, String title, String content, String summary, String[] keyWords) {
-        return 0;
+    public int insertBlog(int bloggerId, int[] categories, int[] labels,
+                          BlogStatusEnum status, String title, String content,
+                          String summary, String[] keyWords) {
+
+        //插入数据到bolg表
+        String ch = dbPropertiesManager.getStringFiledSplitCharacter();
+        Blog blog = new Blog();
+        blog.setBloggerId(bloggerId);
+        blog.setCategoryIds(StringUtils.intArrayToString(categories, ch));
+        blog.setLabelIds(StringUtils.intArrayToString(labels, ch));
+        blog.setState(status.getCode());
+        blog.setTitle(title);
+        blog.setContent(content);
+        blog.setSummary(summary);
+        blog.setKeyWords(StringUtils.arrayToString(keyWords, ch));
+        blog.setWordCount(content.length());
+
+        blogDao.insert(blog);
+
+        //插入数据到blog_statistics表
+        int blogId = blogDao.getBlogId(bloggerId, title);
+        BlogStatistics statistics = new BlogStatistics();
+        statistics.setBlogId(blogId);
+        statisticsDao.insert(statistics);
+
+        //TODO 待测试
+
+        return blogId;
     }
 
     @Override

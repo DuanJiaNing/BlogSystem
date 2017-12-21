@@ -1,5 +1,6 @@
 package com.duan.blogos.dao.blog;
 
+import com.duan.blogos.dao.BaseDao;
 import com.duan.blogos.entity.blog.BlogStatistics;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Repository;
  * @author DuanJiaNing
  */
 @Repository
-public interface BlogStatisticsDao {
+public interface BlogStatisticsDao extends BaseDao<BlogStatistics> {
 
     /**
      * 查询博文的统计信息
@@ -18,4 +19,5 @@ public interface BlogStatisticsDao {
      * @return 查询结果
      */
     BlogStatistics getStatistics(int blogId);
+
 }

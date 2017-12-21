@@ -4,15 +4,17 @@ import com.duan.blogos.common.Order;
 import com.duan.blogos.common.Rule;
 import com.duan.blogos.dto.blog.BlogListItemDTO;
 import com.duan.blogos.entity.blogger.BloggerAccount;
+import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.exception.runtime.*;
 import com.duan.blogos.manager.AudiencePropertiesManager;
 import com.duan.blogos.manager.BlogSortRule;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.audience.BlogRetrievalService;
 import com.duan.blogos.service.blogger.BloggerAccountService;
+import com.duan.blogos.service.blogger.blog.BlogService;
+import com.duan.blogos.util.DataProvider;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,6 +37,13 @@ public class BlogController {
     @Autowired
     private BloggerAccountService bloggerAccountService;
 
+    @Autowired
+    private BlogService blogService;
+
+    /**
+     * 文档见 doc/wiki/博主博文检索.md
+     * 查询时博文状态调用者无法指定，只能查询 {@link BlogStatusEnum#PUBLIC}的
+     */
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     @ResponseBody
     public ResultBean<List<BlogListItemDTO>> bloggerBlogList(@RequestParam(value = "id", required = false) Integer id,
@@ -58,8 +67,8 @@ public class BlogController {
         //执行数据查询
         BlogSortRule rule = new BlogSortRule(Rule.valueOf(sor), Order.valueOf(ord));
 
-        int[] cids = StringUtils.intStringToArray(categoryIds, ch);
-        int[] lids = StringUtils.intStringToArray(labelIds, ch);
+        int[] cids = StringUtils.intStringDistinctToArray(categoryIds, ch);
+        int[] lids = StringUtils.intStringDistinctToArray(labelIds, ch);
 
         int os = offset == null || offset < 0 ? 0 : offset;
         int rs = rows == null || rows < 0 ? audiencePropertiesManager.getRequestBloggerBlogListCount() : rows;
@@ -106,5 +115,26 @@ public class BlogController {
     public ResultBean exceptionHandler(Throwable e) {
         return new ResultBean(e);
     }
+
+    // TODO 待测试
+    @RequestMapping("/test")
+    public void test() {
+
+        //插入随机数据
+        DataProvider provider = new DataProvider();
+        for (int i = 0; i < 10; i++) {
+
+            blogService.insertBlog(1,
+                    new int[]{1, 2}, // 1 2 5
+                    new int[]{2}, // 1 2 3 5
+                    BlogStatusEnum.PUBLIC,
+                    provider.title(),
+                    provider.content(),
+                    provider.summary(),
+                    provider.keyWords());
+
+        }
+    }
+
 
 }

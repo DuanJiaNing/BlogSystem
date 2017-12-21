@@ -148,11 +148,27 @@
         <!-- spring-web *************************************************************** v-->
 
 
+        <!-- spring-aop *************************************************************** v-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>4.1.7.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>4.3.5.RELEASE</version>
+        </dependency>
+        <!-- spring-aop *************************************************************** v-->
+
+
+        <!-- spring-test *************************************************************** v-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>4.1.7.RELEASE</version>
         </dependency>
+        <!-- spring-test *************************************************************** v-->
 
 
         <!-- commons *************************************************************** v-->
@@ -203,14 +219,6 @@
             <artifactId>lombok</artifactId>
             <version>1.16.6</version>
         </dependency>
-
-
-        <!--spring aop 的 java 实现-->
-        <!--<dependency>-->
-        <!--<groupId>org.aspectj</groupId>-->
-        <!--<artifactId>aspectjrt</artifactId>-->
-        <!--<version>1.8.8</version>-->
-        <!--</dependency>-->
 
     </dependencies>
     <build>

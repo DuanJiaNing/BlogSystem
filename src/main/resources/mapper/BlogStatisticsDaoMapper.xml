@@ -10,4 +10,68 @@
         WHERE s.blog_id = #{blogId};
     </select>
 
+    <insert id="insert" parameterType="BlogStatistics">
+        INSERT INTO blog_statistics (
+            id,
+            blog_id,
+            comment_count,
+            view_count,
+            reply_comment_count,
+            collect_count,
+            complain_count,
+            share_count,
+            admire_count,
+            like_count
+        ) VALUE (
+            NULL,
+            #{blogId},
+            ifnull(#{commentCount}, 0),
+            ifnull(#{viewCount}, 0),
+            ifnull(#{replyCommentCount}, 0),
+            ifnull(#{collectCount}, 0),
+            ifnull(#{complainCount}, 0),
+            ifnull(#{shareCount}, 0),
+            ifnull(#{admireCount}, 0),
+            ifnull(#{likeCount}, 0)
+        )
+    </insert>
+
+    <update id="update" parameterType="BlogStatistics">
+        UPDATE blog_statistics
+        <set>
+            <if test="commentCount != null">
+                comment_count=#{commentCount},
+            </if>
+            <if test="viewCount != null">
+                view_count=#{viewCount},
+            </if>
+            <if test="replyCommentCount != null">
+                reply_comment_count=#{replyCommentCount},
+            </if>
+            <if test="collectCount != null">
+                collect_count=#{collectCount},
+            </if>
+            <if test="complainCount != null">
+                complain_count=#{complainCount},
+            </if>
+            <if test="shareCount != null">
+                share_count=#{shareCount},
+            </if>
+            <if test="admireCount != null">
+                admire_count=#{admireCount},
+            </if>
+            <if test="likeCount != null">
+                like_count=#{likeCount}
+            </if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <delete id="delete" parameterType="integer">
+        DELETE FROM blog
+        WHERE id = #{id}
+    </delete>
+
 </mapper>

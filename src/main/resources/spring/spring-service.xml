@@ -2,60 +2,17 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd
-       http://www.springframework.org/schema/tx
-       http://www.springframework.org/schema/tx/spring-tx.xsd">
+       http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--扫描 service 包下所有被 @Service 注解的类-->
     <context:component-scan base-package="com.duan.blogos.service"/>
 
     <import resource="spring-dao.xml"/>
-    <bean  class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
+    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-
-    <tx:annotation-driven transaction-manager="transactionManager"/>
-
-    <!--&lt;!&ndash; 事务管理（transaction manager） &ndash;&gt;-->
-    <!--<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
-    <!--<property name="dataSource" ref="dataSource"/>-->
-    <!--</bean>-->
-
-    <!--&lt;!&ndash; 配置事务通知属性 &ndash;&gt;-->
-    <!--<tx:advice id="txAdvice" transaction-manager="transactionManager">-->
-    <!--&lt;!&ndash; 定义事务传播属性 &ndash;&gt;-->
-    <!--&lt;!&ndash;tx:method也规定了如果方法名匹配“add*”和“get*”...方法时使用事务，propagation是设定事务的传播级别。&ndash;&gt;-->
-    <!--&lt;!&ndash;read-only 为true表明事务是只读的，如果出现insert，update_，delete等时事务会失败&ndash;&gt;-->
-    <!--<tx:attributes>-->
-    <!--&lt;!&ndash;propagation 传播行为-->
-    <!--REQUIRED 如果当前没有事务，就创建一个新事务，如果当前存在事务，就加入该事务&ndash;&gt;-->
-    <!--<tx:method name="insert*" propagation="REQUIRED"/>-->
-    <!--<tx:method name="update*" propagation="REQUIRED"/>-->
-    <!--<tx:method name="edit*" propagation="REQUIRED"/>-->
-    <!--<tx:method name="save*" propagation="REQUIRED"/>-->
-    <!--<tx:method name="add*" propagation="REQUIRED"/>-->
-    <!--<tx:method name="new*" propagation="REQUIRED"/>-->
-    <!--<tx:method name="set*" propagation="REQUIRED"/>-->
-    <!--<tx:method name="remove*" propagation="REQUIRED"/>-->
-    <!--<tx:method name="delete*" propagation="REQUIRED"/>-->
-    <!--<tx:method name="change*" propagation="REQUIRED"/>-->
-    <!--<tx:method name="check*" propagation="REQUIRED"/>-->
-    <!--<tx:method name="get*" propagation="REQUIRED" read-only="true"/>-->
-    <!--<tx:method name="find*" propagation="REQUIRED" read-only="true"/>-->
-    <!--<tx:method name="load*" propagation="REQUIRED" read-only="true"/>-->
-    <!--<tx:method name="*" propagation="REQUIRED" read-only="true"/>-->
-    <!--</tx:attributes>-->
-    <!--</tx:advice>-->
-
-    <!--&lt;!&ndash; 配置事务切面 &ndash;&gt;-->
-    <!--<aop:config>-->
-    <!--&lt;!&ndash;只对业务层配置事务管理&ndash;&gt;-->
-    <!--<aop:pointcut id="pointCut" expression="execution(* ssm.blog.service.*.*(..))"/>-->
-    <!--<aop:advisor advice-ref="txAdvice" pointcut-ref="pointCut"/>-->
-    <!--</aop:config>-->
 
 </beans>

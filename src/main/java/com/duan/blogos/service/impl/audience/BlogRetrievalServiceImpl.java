@@ -69,47 +69,80 @@ public class BlogRetrievalServiceImpl implements BlogRetrievalService {
                                                                           int bloggerId, int offset, int rows,
                                                                           BlogSortRule sortRule) {
 
-        if (CollectionUtils.isEmpty(categoryIds)) categoryIds = new int[]{0};
 
         // 查询博主的所有标签和类别
         List<Blog> blogs = blogDao.listAllCategoryAndLabel(bloggerId, BlogStatusEnum.PUBLIC.getCode());
 
-        // 找出符合条件的博文的id
+        // 筛选符合条件的博文的id
         Map<Integer, int[]> map = new HashMap<>(); // 方便后面复用categories的id数组
-        boolean findInCategory;// 如果类别筛选已经符合，则无需继续检查标签
         String ch = dbPropertiesManager.getStringFiledSplitCharacter();
-        for (Blog blog : blogs) {
-            findInCategory = false;
 
-            int blogId = blog.getId();
-            int[] categoriesIds = StringUtils.intStringToArray(blog.getCategoryIds(), ch);
+        if (categoryIds == null && labelIds == null) { // 两者都没限定
+            for (Blog blog : blogs) {
+                int[] categoriesIds = StringUtils.intStringDistinctToArray(blog.getCategoryIds(), ch);
+                map.put(blog.getId(), categoriesIds);
+            }
+        } else if (categoryIds != null && labelIds != null) { // 两者都限定
+            for (Blog blog : blogs) {
+                int accordCount = 0;
 
-            for (int categoryId : categoriesIds) {
-                if (CollectionUtils.intArrayContain(categoryIds, categoryId)) {
-                    map.put(blogId, categoriesIds);
-                    findInCategory = true;
-                    break;
+                int[] categoriesIds = StringUtils.intStringDistinctToArray(blog.getCategoryIds(), ch);
+                int[] labels = StringUtils.intStringDistinctToArray(blog.getLabelIds(), ch);
+                if (categoriesIds == null || labels == null) continue;
+
+                for (int categoryId : categoriesIds) {
+                    if (CollectionUtils.intArrayContain(categoryIds, categoryId)) {
+                        accordCount++;
+                        break;
+                    }
+                }
+
+                for (int labelId : labels) {
+                    if (CollectionUtils.intArrayContain(labelIds, labelId)) {
+                        accordCount++;
+                        break;
+                    }
+                }
+
+                if (accordCount == 2) {
+                    map.put(blog.getId(), categoriesIds);
+                }
+
+            }
+        } else if (categoryIds != null) { // 只限定了categoryIds
+            for (Blog blog : blogs) {
+
+                int[] categoriesIds = StringUtils.intStringDistinctToArray(blog.getCategoryIds(), ch);
+                //博文没有分类，直接检查下一篇博文
+                if (categoriesIds == null) continue;
+                for (int categoryId : categoriesIds) {
+                    if (CollectionUtils.intArrayContain(categoryIds, categoryId)) {
+                        map.put(blog.getId(), categoriesIds);
+                        break;
+                    }
                 }
             }
+        } else {// 只限定了label
+            for (Blog blog : blogs) {
 
-            if (findInCategory) continue;
-            if (labelIds == null) break;
+                int[] categoriesIds = StringUtils.intStringDistinctToArray(blog.getCategoryIds(), ch);
+                int[] labels = StringUtils.intStringDistinctToArray(blog.getLabelIds(), ch);
 
-            int[] labels = StringUtils.intStringToArray(blog.getLabelIds(), ch);
-            if (labels == null) break;
-
-            for (int labelId : labels) {
-                if (CollectionUtils.intArrayContain(labelIds, labelId)) {
-                    map.put(blogId, categoriesIds);
-                    break;
+                //博文没有标签，直接检查下一篇
+                if (labels == null) continue;
+                for (int labelId : labels) {
+                    if (CollectionUtils.intArrayContain(labelIds, labelId)) {
+                        map.put(blog.getId(), categoriesIds);
+                        break;
+                    }
                 }
             }
         }
 
-        // 查询目标结果集
         Integer[] ids = map.keySet().toArray(new Integer[map.size()]);
         if (CollectionUtils.isEmpty(ids)) return new ResultBean<>(new BaseException("未获取到数据"));
 
+        // 封装返回结果
         List<Blog> resultBlogs = blogDao.listBlogByBlogIds(Arrays.asList(ids), BlogStatusEnum.PUBLIC.getCode(), offset, rows);
         List<BlogListItemDTO> result = new ArrayList<>();
         for (Blog blog : resultBlogs) {

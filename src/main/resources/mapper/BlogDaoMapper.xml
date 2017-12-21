@@ -109,9 +109,9 @@
         ) VALUE (
             NULL,
             #{bloggerId},
-            ifnull(#{categoryIds}, ''),
-            ifnull(#{labelIds}, ''),
-            ifnull(#{state}, 0),
+            #{categoryIds},
+            #{labelIds},
+            ifnull(#{state}, 0), # state 0 为正在审核
             #{title},
             #{content},
             #{summary},
@@ -144,6 +144,12 @@
             #{id}
         </foreach>
         AND b.state=#{status} LIMIT #{offset},#{rows}
+    </select>
+
+    <select id="getBlogId" resultType="integer">
+        SELECT b.id
+        FROM blog b
+        WHERE b.blogger_id = #{bloggerId} AND b.title = #{title}
     </select>
 
 </mapper>
