@@ -57,7 +57,20 @@ public class BlogController {
         return "/audience/blogger_home";
     }
 
-    @RequestMapping("/blog")
+    /**
+     * 检索博主的博文
+     *
+     * @param name
+     * @param categoryIds
+     * @param labelIds
+     * @param keyWord
+     * @param offset
+     * @param rows
+     * @param sort
+     * @param order
+     * @return
+     */
+    @RequestMapping(value = "/blog", method = RequestMethod.GET)
     @ResponseBody
     public ResultBean<List<BlogListItemDTO>> bloggerBlogList(@PathVariable("bloggerName") String name,
                                                              @RequestParam(value = "cids", required = false) String categoryIds,
