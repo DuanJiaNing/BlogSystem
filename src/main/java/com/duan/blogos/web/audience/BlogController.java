@@ -11,6 +11,7 @@ import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.audience.BlogBrowseService;
 import com.duan.blogos.service.audience.BlogRetrievalService;
 import com.duan.blogos.service.blogger.BloggerAccountService;
+import com.duan.blogos.util.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -64,25 +65,17 @@ public class BlogController {
                                                              @RequestParam(value = "kword", required = false) String keyWord,
                                                              @RequestParam(value = "offset", required = false) Integer offset,
                                                              @RequestParam(value = "rows", required = false) Integer rows,
-                                                             @RequestParam(value = "scode", required = false) String sort,
-                                                             @RequestParam(value = "ocode", required = false) String order) {
+                                                             @RequestParam(value = "sort", required = false) String sort,
+                                                             @RequestParam(value = "order", required = false) String order) {
         BloggerAccount account = checkAccount(name);
 
         int os = offset == null ? 0 : offset;
         int rs = rows == null ? audiencePropertiesManager.getDefaultRequestBloggerBlogListCount() : rows;
-        BlogSortRule rule = new BlogSortRule(Rule.valueOf(sort == null ? "view_count" : sort), Order.valueOf(order == null ? "asc" : order));
+        BlogSortRule rule = new BlogSortRule(sort == null ? Rule.VIEW_COUNT : Rule.valueOf(sort.toUpperCase()),
+                order == null ? Order.DESC : Order.valueOf(order.toUpperCase()));
 
-        int[] cids = categoryIds == null ? null :
-                Stream.of(categoryIds.split(","))
-                        .mapToInt(Integer::valueOf)
-                        .distinct()
-                        .toArray();
-
-        int[] lids = labelIds == null ? null :
-                Stream.of(labelIds.split(","))
-                        .mapToInt(Integer::valueOf)
-                        .distinct()
-                        .toArray();
+        int[] cids = StringUtils.intStringToArray(categoryIds, ",");
+        int[] lids = StringUtils.intStringToArray(labelIds, ",");
 
         return retrievalService.listFilterAll(cids, lids, keyWord, account.getId(), os, rs, rule);
     }

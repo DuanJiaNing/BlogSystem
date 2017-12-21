@@ -21,6 +21,9 @@ public class BlogStatistics implements Serializable {
     // 表id
     private Integer id;
 
+    //对应博文id
+    private Integer blogId;
+
     //评论次数
     private Integer commentCount;
 

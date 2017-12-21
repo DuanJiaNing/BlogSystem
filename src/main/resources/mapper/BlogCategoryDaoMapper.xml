@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duan.blogos.dao.blog.BlogCategoryDao">
+
+    <select id="listCategoryById" resultType="BlogCategory">
+        SELECT * FROM blog_category c WHERE c.id IN
+        <foreach collection="ids"
+                 item="item"
+                 open="("
+                 separator=","
+                 close=")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>

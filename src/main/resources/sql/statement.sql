@@ -25,6 +25,11 @@ ALTER TABLE blogger_link ADD UNIQUE KEY (blogger_id,url);
 # 一个博主只能有一份资料
 ALTER TABLE blogger_profile ADD UNIQUE KEY (blogger_id);
 
+# 一篇博文只有一份统计记录
+ALTER TABLE blog_statistics ADD UNIQUE KEY (blog_id);
+
+
+
   # ---------------------------------------------------------test
 SELECT * FROM blog;
 SELECT b.id FROM blogger_account b;

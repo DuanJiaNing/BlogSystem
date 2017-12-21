@@ -37,9 +37,11 @@
         LIMIT #{offset}, #{rows}
     </select>
 
-    <select id="listAll" resultType="com.duan.blogos.entity.blog.Blog">
-        SELECT *
-        FROM blog
+    <select id="listAll" resultType="Blog">
+        <include refid="allField">
+            <property name="alias" value="b"/>
+        </include>
+        FROM blog b
     </select>
 
     <update id="update" parameterType="Blog">
@@ -119,5 +121,29 @@
             ifnull(#{wordCount}, 0)
         )
     </insert>
+
+    <select id="listAllCategoryAndLabel" resultType="Blog">
+        SELECT
+            b.id,
+            b.category_ids,
+            b.label_ids
+        FROM blog b
+        WHERE b.blogger_id = #{bloggerId} AND b.state = #{status};
+    </select>
+
+    <select id="listBlogByBlogIds" resultType="Blog" parameterType="list">
+        <include refid="allField">
+            <property name="alias" value="b"/>
+        </include>
+        FROM blog b WHERE b.id IN
+        <foreach collection="ids"
+                 item="id"
+                 open="("
+                 separator=","
+                 close=")">
+            #{id}
+        </foreach>
+        AND b.state=#{status} LIMIT #{offset},#{rows}
+    </select>
 
 </mapper>

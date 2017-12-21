@@ -50,4 +50,26 @@ public interface BlogDao extends BaseDao<Blog> {
      */
     List<Blog> listAll();
 
+    /**
+     * 查询博主创建的所有类别和标签
+     *
+     * @param bloggerId 博主id
+     * @param status    博文状态
+     * @return 查询结果
+     */
+    List<Blog> listAllCategoryAndLabel(@Param("bloggerId") int bloggerId, @Param("status") int status);
+
+    /**
+     * 根据博文id查询博文
+     *
+     * @param ids    博文id
+     * @param status 博文状态
+     * @param offset 偏移位置
+     * @param rows   行数
+     * @return 查询结果
+     */
+    List<Blog> listBlogByBlogIds(@Param("ids") List<Integer> ids,
+                                 @Param("status") int status,
+                                 @Param("offset") int offset,
+                                 @Param("rows") int rows);
 }

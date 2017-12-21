@@ -12,57 +12,66 @@ public enum Rule {
     /**
      * 评论次数
      */
-    COMMENT_COUNT,
+    COMMENT_COUNT("comment_count"),
 
     /**
      * 博文浏览次数
      */
-    VIEW_COUNT,
+    VIEW_COUNT("view_count"),
 
     /**
      * 博主回复该博文次数
      */
-    REPLYCOMMENT_COUNT,
+    REPLY_COMMENT_COUNT("reply_comment_count"),
 
     /**
      * 博文被收藏次数
      */
-    COLLECT_COUNT,
+    COLLECT_COUNT("collect_count"),
 
     /**
      * 博文举报次数
      */
-    COMPLAIN_COUNT,
+    COMPLAIN_COUNT("complain_count"),
 
     /**
      * 博文被分享次数
      */
-    SHARE_COUNT,
+    SHARE_COUNT("share_count"),
 
     /**
      * 赞赏次数
      */
-    ADMIRE_COUNT,
+    ADMIRE_COUNT("admire_count"),
 
     /**
      * 喜欢次数
      */
-    LIKE_COUNT,
+    LIKE_COUNT("like_count"),
 
     /**
      * 字数
      */
-    WORD_COUNT,
+    WORD_COUNT("word_count"),
 
     /**
      * 最初发布日期
      */
-    RELEASE_DATE,
+    RELEASE_DATE("release_date"),
 
     /**
      * 最近修改日期
      */
-    NEAREST_MODIFY_DATE;
+    NEAREST_MODIFY_DATE("nearest_modify_date");
 
+    //与数据库对应字段名
+    private final String field;
 
+    Rule(String field) {
+        this.field = field;
+    }
+
+    public String getFieldName() {
+        return field;
+    }
 }

@@ -6,5 +6,5 @@ package com.duan.blogos.exception;
  *
  * @author DuanJiaNing
  */
-public class UnknownBloggerException extends RuntimeException {
+public class UnknownBloggerException extends BaseException {
 }

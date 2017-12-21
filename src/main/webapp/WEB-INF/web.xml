@@ -14,19 +14,9 @@
         <location>/views/500.jsp</location>
     </error-page>
 
-    <!--spring监听器-->
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-    <context-param>
-        <!-- spring配置文件 -->
-        <param-name>contextConfigLocation</param-name>
-        <param-value>
-            classpath:applicationContext.xml,
-            classpath:spring/spring-shiro.xml
-        </param-value>
-    </context-param>
-
+    <!--<context-param> 和 servlet的<init-param>只能二选一 见chrome的javaee-spring书签-->
+    <!--种方式的各自配置文件里的配置项在某种意义上并不是合并互补，而是各成一个体系（虽然普通的bean看似是都加载到全局上下文来了，但还是有一些特殊bean和配置项没有按预期的那样工作-->
+    <!--以上两处都设置了一个相同的bean配置文件路径，那么该文件内配置的bean会被初始化2次，所以一个配置文件只能选择一种配置位置-->
 
     <!--配置 spring-mvc 前端控制器-->
     <servlet>
@@ -34,7 +24,10 @@
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:spring/spring-*.xml</param-value>
+            <param-value>
+                classpath:applicationContext.xml,
+                classpath:spring/spring-*.xml
+            </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
