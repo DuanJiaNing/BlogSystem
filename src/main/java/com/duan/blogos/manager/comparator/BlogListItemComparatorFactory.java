@@ -4,16 +4,21 @@ import com.duan.blogos.common.Order;
 import com.duan.blogos.common.Rule;
 import com.duan.blogos.dto.blog.BlogListItemDTO;
 
+import java.util.Comparator;
+
 /**
  * Created on 2017/12/20.
+ * 获取博主博文列表时排序规则的比较器创建工厂
  *
  * @author DuanJiaNing
  */
 public class BlogListItemComparatorFactory extends BlogComparatorFactoryAbstract<BlogListItemDTO> {
 
+    @Override
     protected void initFactory() {
 
         // Comparator 前 < 后 return 正数 -> 升序
+
         add(Rule.COMMENT_COUNT, (o1, o2) -> {
             if (order == Order.ASC) {
                 return Integer.compare(o1.getCommentCount(), o2.getCommentCount());

@@ -19,5 +19,11 @@ public interface BloggerAccountDao {
      */
     BloggerAccount getAccountByName(String bloggerName);
 
-
+    /**
+     * 根据博主id查询账户
+     *
+     * @param bloggerId 博主id
+     * @return 查询结果
+     */
+    BloggerAccount getAccountById(int bloggerId);
 }

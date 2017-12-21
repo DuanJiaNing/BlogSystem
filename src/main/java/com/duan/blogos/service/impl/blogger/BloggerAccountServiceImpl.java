@@ -8,8 +8,6 @@ import com.duan.blogos.service.blogger.BloggerAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-
 /**
  * Created on 2017/12/19.
  *
@@ -33,7 +31,7 @@ public class BloggerAccountServiceImpl implements BloggerAccountService {
 
     @Override
     public BloggerAccount getAccount(int bloggerId) {
-        return null;
+        return accountDao.getAccountById(bloggerId);
     }
 
     @Override

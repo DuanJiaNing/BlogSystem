@@ -8,7 +8,12 @@
     <context:property-placeholder location="classpath:conf.properties"/>
 
     <bean class="com.duan.blogos.manager.AudiencePropertiesManager" name="audiencePropertiesManager">
-        <property name="defaultRequestBloggerBlogListCount" value="${audience.defaultRequestBloggerBlogListCount}"/>
+        <property name="requestBloggerBlogListCount" value="${audience.requestBloggerBlogListCount}"/>
+        <property name="urlConditionSplitCharacter" value="${audience.urlConditionSplitCharacter}"/>
+    </bean>
+
+    <bean class="com.duan.blogos.manager.DbPropertiesManager" name="dbPropertiesManager">
+        <property name="stringFiledSplitCharacter" value="${db.stringFiledSplitCharacter}"/>
     </bean>
 
 </beans>

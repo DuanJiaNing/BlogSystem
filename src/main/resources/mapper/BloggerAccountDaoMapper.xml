@@ -13,4 +13,14 @@
         FROM blogger_account a
         WHERE a.username = #{bloggerName}
     </select>
+
+    <select id="getAccountById" resultType="BloggerAccount">
+        SELECT
+            a.id,
+            a.username,
+            a.register_date,
+            a.password
+        FROM blogger_account a
+        WHERE a.id = #{bloggerId}
+    </select>
 </mapper>

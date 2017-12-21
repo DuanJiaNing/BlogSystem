@@ -74,4 +74,18 @@ public enum Rule {
     public String getFieldName() {
         return field;
     }
+
+    /**
+     * 检查是否存在与给定名字对应的枚举成员
+     *
+     * @param name 名字必须与某个枚举成员名完全相同
+     * @return 存在返回 true，否则false
+     */
+    public static boolean contains(String name) {
+        for (Rule rule : values()) {
+            if (rule.name().equals(name)) return true;
+        }
+
+        return false;
+    }
 }

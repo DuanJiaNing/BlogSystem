@@ -47,7 +47,7 @@ public class ResultBean<T> implements Serializable {
      * @param e
      */
     public ResultBean(Throwable e) {
-        this.msg = e.toString();
+        this.msg = e.getMessage();
         this.code = FAIL;
     }
 

@@ -8,7 +8,9 @@ import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogCategory;
 import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.enums.BlogStatusEnum;
+import com.duan.blogos.exception.BaseException;
 import com.duan.blogos.manager.BlogSortRule;
+import com.duan.blogos.manager.DbPropertiesManager;
 import com.duan.blogos.manager.comparator.BlogListItemComparatorFactory;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.audience.BlogRetrievalService;
@@ -36,6 +38,9 @@ public class BlogRetrievalServiceImpl implements BlogRetrievalService {
 
     @Autowired
     private BlogCategoryDao categoryDao;
+
+    @Autowired
+    private DbPropertiesManager dbPropertiesManager;
 
     @Override
     public ResultBean<List<BlogListItemDTO>> listFilterAll(int[] categoryIds, int[] labelIds, String keyWord, int bloggerId,
@@ -72,11 +77,12 @@ public class BlogRetrievalServiceImpl implements BlogRetrievalService {
         // 找出符合条件的博文的id
         Map<Integer, int[]> map = new HashMap<>(); // 方便后面复用categories的id数组
         boolean findInCategory;// 如果类别筛选已经符合，则无需继续检查标签
+        String ch = dbPropertiesManager.getStringFiledSplitCharacter();
         for (Blog blog : blogs) {
             findInCategory = false;
 
             int blogId = blog.getId();
-            int[] categoriesIds = StringUtils.intStringToArray(blog.getCategoryIds(), " ");
+            int[] categoriesIds = StringUtils.intStringToArray(blog.getCategoryIds(), ch);
 
             for (int categoryId : categoriesIds) {
                 if (CollectionUtils.intArrayContain(categoryIds, categoryId)) {
@@ -89,7 +95,7 @@ public class BlogRetrievalServiceImpl implements BlogRetrievalService {
             if (findInCategory) continue;
             if (labelIds == null) break;
 
-            int[] labels = StringUtils.intStringToArray(blog.getLabelIds(), " ");
+            int[] labels = StringUtils.intStringToArray(blog.getLabelIds(), ch);
             if (labels == null) break;
 
             for (int labelId : labels) {
@@ -102,7 +108,7 @@ public class BlogRetrievalServiceImpl implements BlogRetrievalService {
 
         // 查询目标结果集
         Integer[] ids = map.keySet().toArray(new Integer[map.size()]);
-        if (CollectionUtils.isEmpty(ids)) return new ResultBean<>(new Exception("未获取到数据"));
+        if (CollectionUtils.isEmpty(ids)) return new ResultBean<>(new BaseException("未获取到数据"));
 
         List<Blog> resultBlogs = blogDao.listBlogByBlogIds(Arrays.asList(ids), BlogStatusEnum.PUBLIC.getCode(), offset, rows);
         List<BlogListItemDTO> result = new ArrayList<>();

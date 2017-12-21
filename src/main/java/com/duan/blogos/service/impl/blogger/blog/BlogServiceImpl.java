@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author DuanJiaNing
  */
-@Service("blogService")
+@Service
 public class BlogServiceImpl implements BlogService {
     @Override
     public int insertBlog(int bloggerId, int[] categories, int[] labels, BlogStatusEnum status, String title, String content, String summary, String[] keyWords) {
