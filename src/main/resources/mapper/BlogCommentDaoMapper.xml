@@ -5,15 +5,61 @@
 <mapper namespace="com.duan.blogos.dao.blog.BlogCommentDao">
 
     <select id="listCommentByBlogId" resultType="BlogComment">
-
+        SELECT *
+        FROM blog_comment
+        WHERE blog_id = #{blogId} AND state = #{status}
+        LIMIT #{offset}, #{rows}
     </select>
 
-    <update id="update" parameterType="BlogLabel">
+    <update id="update" parameterType="BlogComment">
+        UPDATE blog_comment
+        <set>
+            <if test="blogId != null">
+                blog_id=#{blogId},
+            </if>
+            <if test="spokesmanId != null">
+                spokesman_id=#{spokesmanId},
+            </if>
+            <if test="listenerId != null">
+                listener_id=#{listenerId},
+            </if>
+            <if test="content != null">
+                content=#{content},
+            </if>
+            <if test="releaseDate != null">
+                release_date=#{releaseDate},
+            </if>
+            <if test="state != null">
+                state=#{state}
+            </if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
     </update>
 
-    <insert id="insert" parameterType="BlogLabel">
+    <insert id="insert" parameterType="BlogComment">
+        INSERT INTO blog_comment (
+            id,
+            blog_id,
+            spokesman_id,
+            listener_id,
+            content,
+            release_date,
+            state
+        ) VALUE (
+            NULL,
+            #{blogId},
+            #{spokesmanId},
+            #{listenerId},
+            #{content},
+            NOW(),
+            #{state}
+        )
     </insert>
 
     <delete id="delete">
+        DELETE FROM blog_comment
+        WHERE id = #{value}
     </delete>
 </mapper>

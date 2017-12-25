@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duan.blogos.dao.blogger.BloggerProfileDao">
+
+    <select id="getProfileByBloggerId" resultType="BloggerProfile">
+        SELECT *
+        FROM blogger_profile
+        WHERE blogger_id = #{value}
+    </select>
+
+    <update id="update" parameterType="BloggerProfile">
+        UPDATE blogger_profile
+        <set>
+            <if test="bloggerId != null">
+                blogger_id=#{bloggerId},
+            </if>
+            <if test="phone != null">
+                phone=#{phone},
+            </if>
+            <if test="email != null">
+                email=#{email},
+            </if>
+            <if test="aboutMe != null">
+                about_me=#{aboutMe},
+            </if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <delete id="delete">
+        DELETE FROM blogger_profile
+        WHERE id = #{value}
+    </delete>
+
+    <insert id="insert" parameterType="BloggerProfile">
+        INSERT INTO blogger_profile (
+            id,
+            blogger_id,
+            phone,
+            email,
+            about_me,
+            intro
+        ) VALUE (
+            NULL,
+            #{bloggerId},
+            #{phone},
+            #{email},
+            #{aboutMe},
+            #{introl}
+        )
+    </insert>
+
+</mapper>

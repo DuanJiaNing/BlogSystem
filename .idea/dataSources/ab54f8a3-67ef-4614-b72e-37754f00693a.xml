@@ -1803,7 +1803,7 @@ url</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="379" parent="246" name="desc">
+    <column id="379" parent="246" name="bewrite">
       <Position>3</Position>
       <Comment>照片描述</Comment>
       <DataType>text|0</DataType>

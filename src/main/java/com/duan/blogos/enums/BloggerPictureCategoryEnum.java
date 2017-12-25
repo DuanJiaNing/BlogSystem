@@ -9,6 +9,11 @@ package com.duan.blogos.enums;
 public enum BloggerPictureCategoryEnum {
 
     /**
+     * 默认图片类别
+     */
+    DEFAULT(0),
+
+    /**
      * 博主个人博文类别图标
      */
     BLOG_CATEGORY_ICON(1),
@@ -24,7 +29,7 @@ public enum BloggerPictureCategoryEnum {
         this.code = code;
     }
 
-    public int code() {
+    public int getCode() {
         return code;
     }
 }

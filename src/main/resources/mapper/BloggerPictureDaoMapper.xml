@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duan.blogos.dao.blogger.BloggerPictureDao">
+
+    <select id="getPictureByCategory" resultType="BloggerPicture">
+        SELECT *
+        FROM blogger_picture p
+        WHERE p.category = #{category} AND p.blogger_id = #{bloggerId}
+    </select>
+
+    <select id="getPictureById" resultType="BloggerPicture">
+        SELECT *
+        FROM blogger_picture
+        WHERE id = #{value}
+    </select>
+
+    <update id="update" parameterType="BloggerPicture">
+        UPDATE blogger_picture
+        <set>
+            <if test="bloggerId != null">
+                blogge_id=#{bloggerId},
+            </if>
+            <if test="desc != null">
+                bewrite=#{bewrite},
+            </if>
+            <if test="category != null">
+                category=#{category},
+            </if>
+            <if test="path != null">
+                path=#{path},
+            </if>
+            <if test="title != null">
+                title=#{title},
+            </if>
+            <if test="uploadDate != null">
+                upload_date=#{uploadDate},
+            </if>
+        </set>
+        <where>
+            id = #{value}
+        </where>
+    </update>
+
+    <delete id="delete">
+        DELETE FROM blogger_picture
+        WHERE id = #{value}
+    </delete>
+
+    <insert id="insert" parameterType="BloggerPicture">
+        INSERT INTO blogger_picture (
+            id,
+            blogger_id,
+            bewrite,
+            category,
+            path,
+            title,
+            upload_date) VALUE (
+            NULL,
+            #{blogger_id},
+            #{bewrite},
+            ifnull(#{category}, 0),
+            #{path},
+            #{title},
+            NOW())
+    </insert>
+
+</mapper>

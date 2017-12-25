@@ -184,7 +184,7 @@ public class BlogController {
         //检查博文是否存在
         checkBlog(blogId, context);
         int os = offset == null || offset < 0 ? 0 : offset;
-        int rs = rows == null || rows < 0 ? 0 : audiencePropertiesManager.getRequestBloggerBlogCommentCount();
+        int rs = rows == null || rows < 0 ? audiencePropertiesManager.getRequestBloggerBlogCommentCount() : rows;
         ResultBean<List<BlogCommentDTO>> resultBean = blogBrowseService.listBlogComment(blogId, os, rs);
         if (resultBean == null) handlerEmptyResult(context);
 

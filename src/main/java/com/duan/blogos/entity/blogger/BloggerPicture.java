@@ -22,7 +22,7 @@ public class BloggerPicture implements Serializable {
     private Integer bloggerId;
 
     //描述
-    private String desc;
+    private String bewrite;
 
     //类别
     private Integer category;
