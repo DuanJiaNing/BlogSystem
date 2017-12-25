@@ -5,6 +5,7 @@ import com.duan.blogos.common.Rule;
 import com.duan.blogos.dto.blog.BlogCommentDTO;
 import com.duan.blogos.dto.blog.BlogListItemDTO;
 import com.duan.blogos.dto.blog.BlogMainContentDTO;
+import com.duan.blogos.dto.blog.BlogStatisticsDTO;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.exception.*;
@@ -26,6 +27,7 @@ import java.util.List;
 
 /**
  * Created on 2017/12/19.
+ * 读者对博文数据的获取api
  * <p>
  * tip：RequestParam的required为true，而请求时没有该属性会返回404错误
  *
@@ -33,7 +35,7 @@ import java.util.List;
  */
 @ControllerAdvice
 @RequestMapping("/blog/get")
-public class BlogController {
+public class BlogDataRetrievalController {
 
     @Autowired
     private AudiencePropertiesManager audiencePropertiesManager;
@@ -93,15 +95,15 @@ public class BlogController {
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public ResultBean<List<BlogListItemDTO>> bloggerBlogList(HttpServletRequest request,
-                                                             @RequestParam("bloggerId") Integer bloggerId,
-                                                             @RequestParam(value = "cids", required = false) String categoryIds,
-                                                             @RequestParam(value = "lids", required = false) String labelIds,
-                                                             @RequestParam(value = "kword", required = false) String keyWord,
-                                                             @RequestParam(value = "offset", required = false) Integer offset,
-                                                             @RequestParam(value = "rows", required = false) Integer rows,
-                                                             @RequestParam(value = "sort", required = false) String sort,
-                                                             @RequestParam(value = "order", required = false) String order) {
+    public ResultBean<List<BlogListItemDTO>> blogList(HttpServletRequest request,
+                                                      @RequestParam("bloggerId") Integer bloggerId,
+                                                      @RequestParam(value = "cids", required = false) String categoryIds,
+                                                      @RequestParam(value = "lids", required = false) String labelIds,
+                                                      @RequestParam(value = "kword", required = false) String keyWord,
+                                                      @RequestParam(value = "offset", required = false) Integer offset,
+                                                      @RequestParam(value = "rows", required = false) Integer rows,
+                                                      @RequestParam(value = "sort", required = false) String sort,
+                                                      @RequestParam(value = "order", required = false) String order) {
         final RequestContext context = new RequestContext(request);
 
         //检查账户
@@ -157,8 +159,8 @@ public class BlogController {
      */
     @RequestMapping(value = "/content", method = RequestMethod.GET)
     @ResponseBody
-    public ResultBean<BlogMainContentDTO> bloggerBlogMainContent(HttpServletRequest request,
-                                                                 @Param("blogId") Integer blogId) {
+    public ResultBean<BlogMainContentDTO> blogMainContent(HttpServletRequest request,
+                                                          @Param("blogId") Integer blogId) {
         final RequestContext context = new RequestContext(request);
 
         //检查博文是否存在
@@ -175,10 +177,10 @@ public class BlogController {
      */
     @RequestMapping(value = "/comment", method = RequestMethod.GET)
     @ResponseBody
-    public ResultBean<List<BlogCommentDTO>> bloggerBlogComment(HttpServletRequest request,
-                                                               @Param("blogId") Integer blogId,
-                                                               @RequestParam(value = "offset", required = false) Integer offset,
-                                                               @RequestParam(value = "rows", required = false) Integer rows) {
+    public ResultBean<List<BlogCommentDTO>> blogComment(HttpServletRequest request,
+                                                        @Param("blogId") Integer blogId,
+                                                        @RequestParam(value = "offset", required = false) Integer offset,
+                                                        @RequestParam(value = "rows", required = false) Integer rows) {
         final RequestContext context = new RequestContext(request);
 
         //检查博文是否存在
@@ -189,6 +191,24 @@ public class BlogController {
         if (resultBean == null) handlerEmptyResult(context);
 
         return resultBean;
+    }
+
+    /**
+     * 获得博文统计信息
+     * 文档见 doc/wiki/博文统计信息.md
+     */
+    @RequestMapping(value = "/statistics", method = RequestMethod.GET)
+    @ResponseBody
+    public ResultBean<BlogStatisticsDTO> blogStatistics(HttpServletRequest request,
+                                                        @Param("blogId") Integer blogId) {
+        final RequestContext context = new RequestContext(request);
+
+        //检查博文是否存在
+        checkBlog(blogId, context);
+        ResultBean<BlogStatisticsDTO> statistics = blogBrowseService.getBlogStatistics(blogId);
+        if (statistics == null) handlerEmptyResult(context);
+
+        return statistics;
     }
 
 }

@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 
 /**
  * Created on 2017/12/19.
- * 博文详细信息（包括统计信息）
+ * 博文详细信息（包括统计信息），用于在单独的页面中查看博文的统计信息
  *
  * @author DuanJiaNing
  */

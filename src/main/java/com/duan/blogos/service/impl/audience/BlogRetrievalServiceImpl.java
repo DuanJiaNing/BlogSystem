@@ -9,6 +9,7 @@ import com.duan.blogos.entity.blog.BlogCategory;
 import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.manager.BlogSortRule;
+import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.manager.DbPropertiesManager;
 import com.duan.blogos.manager.comparator.BlogListItemComparatorFactory;
 import com.duan.blogos.result.ResultBean;
@@ -40,6 +41,9 @@ public class BlogRetrievalServiceImpl implements BlogRetrievalService {
 
     @Autowired
     private DbPropertiesManager dbPropertiesManager;
+
+    @Autowired
+    private DataFillingManager dataFillingManager;
 
     @Override
     public ResultBean<List<BlogListItemDTO>> listFilterAll(int[] categoryIds, int[] labelIds, String keyWord, int bloggerId,
@@ -148,19 +152,8 @@ public class BlogRetrievalServiceImpl implements BlogRetrievalService {
             int blogId = blog.getId();
             BlogStatistics statistics = statisticsDao.getStatistics(blogId);
             List<BlogCategory> categories = categoryDao.listCategoryById(map.get(blogId));
-
-            BlogListItemDTO item = new BlogListItemDTO();
-            item.setCategories(categories.toArray(new BlogCategory[categories.size()]));
-            item.setCollectCount(statistics.getCollectCount());
-            item.setCommentCount(statistics.getCommentCount());
-            item.setId(blog.getId());
-            item.setLikeCount(statistics.getLikeCount());
-            item.setReleaseDate(blog.getReleaseDate());
-            item.setSummary(blog.getSummary());
-            item.setTitle(blog.getTitle());
-            item.setViewCount(statistics.getViewCount());
-
-            result.add(item);
+            BlogListItemDTO dto = dataFillingManager.blogListItemToDTO(statistics, categories, blog);
+            result.add(dto);
         }
 
         // 排序
