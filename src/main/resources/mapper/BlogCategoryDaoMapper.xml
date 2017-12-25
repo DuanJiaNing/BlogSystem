@@ -14,4 +14,48 @@
             #{item}
         </foreach>
     </select>
+
+    <update id="update" parameterType="BlogCategory">
+        UPDATE blog_category
+        <set>
+            <if test="bloggerId != null">
+                bloggerId=#{bloggerId},
+            </if>
+            <if test="title != null">
+                title=#{title},
+            </if>
+            <if test="bewrite != null">
+                bewrite=#{bewrite},
+            </if>
+            <if test="createDate != null">
+                createDate=#{createDate}
+            </if>
+            <where>
+                id=#{id}
+            </where>
+
+        </set>
+    </update>
+
+    <delete id="delete">
+        DELETE FROM blog_category
+        WHERE id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="BlogCategory">
+        INSERT INTO blog_category (
+            id,
+            blogger_id,
+            title,
+            bewrite,
+            create_date
+        ) VALUE (
+            NULL,
+            #{blogger_id},
+            #{title},
+            #{bewrite},
+            NOW()
+        )
+    </insert>
+
 </mapper>

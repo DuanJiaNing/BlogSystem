@@ -1,5 +1,6 @@
 package com.duan.blogos.dao.blog;
 
+import com.duan.blogos.dao.BaseDao;
 import com.duan.blogos.entity.blog.BlogLabel;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -13,7 +14,7 @@ import java.util.List;
  * @author DuanJiaNing
  */
 @Repository
-public interface BlogLabelDao {
+public interface BlogLabelDao extends BaseDao<BlogLabel> {
 
     /**
      * 根据id查询标签

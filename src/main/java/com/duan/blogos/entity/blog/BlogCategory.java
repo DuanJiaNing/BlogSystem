@@ -25,7 +25,7 @@ public class BlogCategory implements Serializable {
     private String title;
 
     //类别描述
-    private String desc;
+    private String bewrite;
 
     //类别创建时间
     private Timestamp createDate;

@@ -982,13 +982,13 @@
     </column>
     <column id="250" parent="235" name="category_ids">
       <Position>3</Position>
-      <Comment>博文所属类别id（空格分隔）</Comment>
+      <Comment>博文所属类别id（用特定字符分隔）</Comment>
       <DataType>varchar(100)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="251" parent="235" name="label_ids">
       <Position>4</Position>
-      <Comment>博文包含的标签（空格分隔）</Comment>
+      <Comment>博文包含的标签（用特定字符分隔）</Comment>
       <DataType>varchar(100)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -1163,7 +1163,7 @@ title</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="278" parent="237" name="desc">
+    <column id="278" parent="237" name="bewrite">
       <Position>4</Position>
       <Comment>类别描述</Comment>
       <DataType>text|0</DataType>
@@ -1567,6 +1567,7 @@ blog_id</ColNames>
       <Comment>表id</Comment>
       <DataType>int(10) unsigned|0</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="344" parent="243" name="blog_id">

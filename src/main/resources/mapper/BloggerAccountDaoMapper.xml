@@ -23,4 +23,42 @@
         FROM blogger_account a
         WHERE a.id = #{bloggerId}
     </select>
+
+    <update id="update" parameterType="BloggerAccount">
+        UPDATE blogger_account
+        <set>
+            <if test="username != null">
+                username=#{username},
+            </if>
+            <if test="password != null">
+                password=#{password},
+            </if>
+            <if test="registerDate != null">
+                registerDate=#{registerDate},
+            </if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <insert id="insert" parameterType="BloggerAccount">
+        INSERT INTO blogger_account (
+            id,
+            username,
+            password,
+            register_date
+        ) VALUE (
+            NULL,
+            #{username},
+            #{password},
+            NOW()
+        )
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM blogger_account
+        WHERE id = #{value}
+    </delete>
+
 </mapper>

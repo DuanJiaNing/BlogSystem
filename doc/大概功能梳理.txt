@@ -1,35 +1,35 @@
-* Ö÷Ò³ home 
-* ¹ØÓÚÎÒ about
-  * ÁªÏµ·½Ê½
-* ËÑË÷ search
-* ¹éµµ archives
-* ·ÖÀà category
-* ±êÇ© tag
-* ÓÑÇéÁ´½Ó link
-¹«¸æ notice
-ÁôÑÔ£¨×îÐÂÁôÑÔ£©
-ÊÕ²Ø
-ÏµÁÐÎÄÕÂ
+ï»¿* ä¸»é¡µ home 
+* å…³äºŽæˆ‘ about
+  * è”ç³»æ–¹å¼
+* æœç´¢ search
+* å½’æ¡£ archives
+* åˆ†ç±» category
+* æ ‡ç­¾ tag
+* å‹æƒ…é“¾æŽ¥ link
+å…¬å‘Š notice
+ç•™è¨€ï¼ˆæœ€æ–°ç•™è¨€ï¼‰
+æ”¶è—
+ç³»åˆ—æ–‡ç« 
 
-ÎÄÕÂ
-·ÖÏí share
-ÆÀÂÛÏµÍ³ comment
-·¢±íÊ±¼ä
-ËùÊôÀà±ð
-±¾ÎÄ×÷Õß
-±¾ÎÄÁ´½Ó
-×ÖÊýÍ³¼Æ
-°æÈ¨ÉùÃ÷
-ÔÄ¶ÁÁ¿
-ÆÀÂÛÁ¿
-ÊÕ²ØÁ¿
-¾Ù±¨
-Ë½ÃÜ
+æ–‡ç« 
+åˆ†äº« share
+è¯„è®ºç³»ç»Ÿ comment
+å‘è¡¨æ—¶é—´
+æ‰€å±žç±»åˆ«
+æœ¬æ–‡ä½œè€…
+æœ¬æ–‡é“¾æŽ¥
+å­—æ•°ç»Ÿè®¡
+ç‰ˆæƒå£°æ˜Ž
+é˜…è¯»é‡
+è¯„è®ºé‡
+æ”¶è—é‡
+ä¸¾æŠ¥
+ç§å¯†
 
-²©Ö÷
-²©ÎÄÊý£¬×Ü×ÖÊý£¬ÊÕµ½µÄÏ²»¶Êý£¬ÀÛ¼Æ±»ÊÕ²ØÁËn´Î
+åšä¸»
+åšæ–‡æ•°ï¼Œæ€»å­—æ•°ï¼Œæ”¶åˆ°çš„å–œæ¬¢æ•°ï¼Œç´¯è®¡è¢«æ”¶è—äº†næ¬¡
 
-ÎÄÕÂÐÅÏ¢
-Ðí¿ÉÐ­Òé£º´´Òâ¹²Ïí https://creativecommons.org/licenses/by-nc-sa/3.0/deed.zh
+æ–‡ç« ä¿¡æ¯
+è®¸å¯åè®®ï¼šåˆ›æ„å…±äº« https://creativecommons.org/licenses/by-nc-sa/3.0/deed.zh
 
-¹ã¸æ
+å¹¿å‘Š

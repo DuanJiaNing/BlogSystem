@@ -14,6 +14,7 @@ import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.audience.BlogBrowseService;
 import com.duan.blogos.service.audience.BlogRetrievalService;
 import com.duan.blogos.service.blogger.BloggerAccountService;
+import com.duan.blogos.service.blogger.blog.BlogService;
 import com.duan.blogos.util.StringUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ import java.util.List;
 
 /**
  * Created on 2017/12/19.
+ * <p>
+ * tip：RequestParam的required为true，而请求时没有该属性会返回404错误
  *
  * @author DuanJiaNing
  */
@@ -44,11 +47,14 @@ public class BlogController {
     @Autowired
     private BlogBrowseService blogBrowseService;
 
+    @Autowired
+    private BlogService blogService;
+
     /*
      * 检查博文是否存在
      */
     private void checkBlog(Integer blogId, RequestContext context) {
-        if (blogId == null) {
+        if (blogId == null || !blogService.getBlogForCheckExist(blogId)) {
             throw new UnknownBlogException(context.getMessage("blog.unknownBlog"));
         }
     }
@@ -167,7 +173,7 @@ public class BlogController {
      * 获得博文评论列表
      * 文档见 doc/wiki/博文评论列表.md
      */
-    @RequestMapping("/comment")
+    @RequestMapping(value = "/comment", method = RequestMethod.GET)
     @ResponseBody
     public ResultBean<List<BlogCommentDTO>> bloggerBlogComment(HttpServletRequest request,
                                                                @Param("blogId") Integer blogId,

@@ -142,4 +142,12 @@ public interface BlogService extends BlogFilter<ResultBean<List<BlogListItemDTO>
      */
     ResultBean<List<BlogListItemDTO>> listFilterByStatus(int bloggerId, BlogStatusEnum status,
                                                          int offset, int rows, BlogSortRule sortRule);
+
+    /**
+     * 检查博文是否存在
+     *
+     * @param blogId 博文id
+     * @return 存在返回true，否则false
+     */
+    boolean getBlogForCheckExist(int blogId);
 }

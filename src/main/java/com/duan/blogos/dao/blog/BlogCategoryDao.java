@@ -1,5 +1,6 @@
 package com.duan.blogos.dao.blog;
 
+import com.duan.blogos.dao.BaseDao;
 import com.duan.blogos.entity.blog.BlogCategory;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -12,7 +13,7 @@ import java.util.List;
  * @author DuanJiaNing
  */
 @Repository
-public interface BlogCategoryDao {
+public interface BlogCategoryDao extends BaseDao<BlogCategory> {
 
     /**
      * 根据id查询类别

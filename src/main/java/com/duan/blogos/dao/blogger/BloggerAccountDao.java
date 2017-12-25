@@ -1,5 +1,7 @@
 package com.duan.blogos.dao.blogger;
 
+import com.duan.blogos.dao.BaseDao;
+import com.duan.blogos.dao.blog.BlogDao;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +11,7 @@ import org.springframework.stereotype.Repository;
  * @author DuanJiaNing
  */
 @Repository
-public interface BloggerAccountDao {
+public interface BloggerAccountDao extends BaseDao<BloggerAccount> {
 
     /**
      * 根据博主用户名查询账户

@@ -36,6 +36,6 @@ public class BlogCommentDTO implements Serializable {
     private Timestamp releaseDate;
 
     // 评论状态
-    private String state;
+    private int state;
 
 }

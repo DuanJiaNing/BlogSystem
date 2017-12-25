@@ -43,7 +43,7 @@ public interface BlogBrowseService {
     ResultBean<BlogStatistics> getBlogStatistics(int blogId);
 
     /**
-     * 获得博文评论列表
+     * 获得博文评论列表，这里获取的是审核通过的评论
      *
      * @param blogId 博文id
      * @param offset 结果集起始位置

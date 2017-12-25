@@ -11,8 +11,12 @@ public enum BlogCommentStatusEnum {
     /**
      * 正在审核
      */
-    VERIFY(0);
+    VERIFY(0),
 
+    /**
+     * 审核通过
+     */
+    RIGHTFUL(1);
 
     private final int code;
 

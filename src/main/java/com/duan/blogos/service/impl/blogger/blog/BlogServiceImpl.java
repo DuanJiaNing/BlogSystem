@@ -121,6 +121,11 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    public boolean getBlogForCheckExist(int blogId) {
+        return !(blogDao.getBlogIdById(blogId) == null);
+    }
+
+    @Override
     public ResultBean<List<BlogListItemDTO>> listFilterAll(int[] categoryIds, int[] labelIds, String keyWord, int bloggerId, int offset, int rows, BlogSortRule sortRule) {
         return null;
     }

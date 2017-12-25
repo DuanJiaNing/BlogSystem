@@ -134,4 +134,10 @@
         WHERE b.id = #{value}
     </select>
 
+    <select id="getBlogIdById" resultType="java.lang.Integer">
+        SELECT b.id
+        FROM blog b
+        WHERE b.id = #{value}
+    </select>
+
 </mapper>

@@ -90,4 +90,12 @@ public interface BlogDao extends BaseDao<Blog> {
      * @return 查询结果
      */
     Blog getBlogById(int blogId);
+
+    /**
+     * 通过博文id查询博文id，该方法只为检查博文是否存在
+     *
+     * @param blogId 博文id
+     * @return 查询结果
+     */
+    Integer getBlogIdById(int blogId);
 }
