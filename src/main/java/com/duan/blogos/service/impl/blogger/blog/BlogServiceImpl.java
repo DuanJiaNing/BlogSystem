@@ -7,6 +7,7 @@ import com.duan.blogos.dto.blogger.BlogStatisticsDTO;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.enums.BlogStatusEnum;
+import com.duan.blogos.exception.UnknownException;
 import com.duan.blogos.manager.BlogSortRule;
 import com.duan.blogos.manager.DbPropertiesManager;
 import com.duan.blogos.result.ResultBean;
@@ -41,7 +42,7 @@ public class BlogServiceImpl implements BlogService {
                           String summary, String[] keyWords) {
 
         //插入数据到bolg表
-        String ch = dbPropertiesManager.getStringFiledSplitCharacter();
+        String ch = dbPropertiesManager.getStringFiledSplitCharacterForNumber();
         Blog blog = new Blog();
         blog.setBloggerId(bloggerId);
         blog.setCategoryIds(StringUtils.intArrayToString(categories, ch));
@@ -55,13 +56,11 @@ public class BlogServiceImpl implements BlogService {
 
         blogDao.insert(blog);
 
-        //插入数据到blog_statistics表
-        int blogId = blogDao.getBlogId(bloggerId, title);
+        //插入数据到blog_statistics表（生成博文信息记录）
+        int blogId = blogDao.getBlogIdByUniqueKey(bloggerId, title);
         BlogStatistics statistics = new BlogStatistics();
         statistics.setBlogId(blogId);
         statisticsDao.insert(statistics);
-
-        //TODO 待测试
 
         return blogId;
     }

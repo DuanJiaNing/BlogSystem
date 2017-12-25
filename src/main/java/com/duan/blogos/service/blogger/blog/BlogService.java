@@ -20,6 +20,7 @@ public interface BlogService extends BlogFilter<ResultBean<List<BlogListItemDTO>
 
     /**
      * 新增博客
+     * 新增一篇博文后要为其生成一条对应的博文信息记录
      *
      * @param bloggerId  博主id
      * @param categories 类别

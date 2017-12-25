@@ -8,7 +8,6 @@ import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogCategory;
 import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.enums.BlogStatusEnum;
-import com.duan.blogos.exception.BaseException;
 import com.duan.blogos.manager.BlogSortRule;
 import com.duan.blogos.manager.DbPropertiesManager;
 import com.duan.blogos.manager.comparator.BlogListItemComparatorFactory;
@@ -75,7 +74,7 @@ public class BlogRetrievalServiceImpl implements BlogRetrievalService {
 
         // 筛选符合条件的博文的id
         Map<Integer, int[]> map = new HashMap<>(); // 方便后面复用categories的id数组
-        String ch = dbPropertiesManager.getStringFiledSplitCharacter();
+        String ch = dbPropertiesManager.getStringFiledSplitCharacterForNumber();
 
         if (categoryIds == null && labelIds == null) { // 两者都没限定
             for (Blog blog : blogs) {
@@ -140,7 +139,7 @@ public class BlogRetrievalServiceImpl implements BlogRetrievalService {
         }
 
         Integer[] ids = map.keySet().toArray(new Integer[map.size()]);
-        if (CollectionUtils.isEmpty(ids)) return new ResultBean<>(new BaseException("未获取到数据"));
+        if (CollectionUtils.isEmpty(ids)) return null;
 
         // 封装返回结果
         List<Blog> resultBlogs = blogDao.listBlogByBlogIds(Arrays.asList(ids), BlogStatusEnum.PUBLIC.getCode(), offset, rows);

@@ -1,8 +1,9 @@
 
 #.gitignore
-#.idea
-#src/test
 #/src/test
-#*.iml
 
+*.iml
+.idea
+test
 target
+out

@@ -11,7 +11,8 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!--引入 properties 文件 properties文件要在一个地方统一引入，context:property-placeholder 只能定义一次（见spring笔记）-->
-    <context:property-placeholder location="classpath:*.properties"/>
+    <context:property-placeholder location="classpath:config/*.properties"/>
+
 
     <!--视图解析器-->
     <!-- 3.配置jsp 显示ViewResolver -->
@@ -21,11 +22,30 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+
     <!--对于静态资源使用默认的拦截器-->
     <!--<mvc:default-servlet-handler/>-->
     <!--本项目把静态资源放在了statics目录下，资源映射如下-->
     <mvc:resources mapping="/css/**" location="/static/css"/>
     <mvc:resources mapping="/js/**" location="/static/js/"/>
     <mvc:resources mapping="/image/**" location="/static/image/"/>
+
+
+    <!--国际化-->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="messages"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="useCodeAsDefaultMessage" value="true"/>
+    </bean>
+    <!-- 配置基于Session的处理,将提交上来的locale参数进行处理 -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <!-- 该属性可以不用配置 -->
+        <property name="defaultLocale" value="zh"/>
+    </bean>
+    <!-- 国际化请求拦截器处理 -->
+    <mvc:interceptors>
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
+    </mvc:interceptors>
+
 
 </beans>

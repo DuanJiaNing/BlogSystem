@@ -2,21 +2,25 @@ package com.duan.blogos.web.api.audience;
 
 import com.duan.blogos.common.Order;
 import com.duan.blogos.common.Rule;
+import com.duan.blogos.dto.blog.BlogCommentDTO;
 import com.duan.blogos.dto.blog.BlogListItemDTO;
+import com.duan.blogos.dto.blog.BlogMainContentDTO;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.enums.BlogStatusEnum;
-import com.duan.blogos.exception.runtime.*;
+import com.duan.blogos.exception.*;
 import com.duan.blogos.manager.AudiencePropertiesManager;
 import com.duan.blogos.manager.BlogSortRule;
 import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.service.audience.BlogBrowseService;
 import com.duan.blogos.service.audience.BlogRetrievalService;
 import com.duan.blogos.service.blogger.BloggerAccountService;
-import com.duan.blogos.service.blogger.blog.BlogService;
-import com.duan.blogos.util.DataProvider;
 import com.duan.blogos.util.StringUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.RequestContext;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -25,7 +29,7 @@ import java.util.List;
  * @author DuanJiaNing
  */
 @ControllerAdvice
-@RequestMapping("/blog")
+@RequestMapping("/blog/get")
 public class BlogController {
 
     @Autowired
@@ -38,71 +42,24 @@ public class BlogController {
     private BloggerAccountService bloggerAccountService;
 
     @Autowired
-    private BlogService blogService;
-
-    /**
-     * 文档见 doc/wiki/博主博文检索.md
-     * 查询时博文状态调用者无法指定，只能查询 {@link BlogStatusEnum#PUBLIC}的
-     */
-    @RequestMapping(value = "/get", method = RequestMethod.GET)
-    @ResponseBody
-    public ResultBean<List<BlogListItemDTO>> bloggerBlogList(@RequestParam(value = "id", required = false) Integer id,
-                                                             @RequestParam(value = "cids", required = false) String categoryIds,
-                                                             @RequestParam(value = "lids", required = false) String labelIds,
-                                                             @RequestParam(value = "kword", required = false) String keyWord,
-                                                             @RequestParam(value = "offset", required = false) Integer offset,
-                                                             @RequestParam(value = "rows", required = false) Integer rows,
-                                                             @RequestParam(value = "sort", required = false) String sort,
-                                                             @RequestParam(value = "order", required = false) String order) {
-
-        //检查账户
-        BloggerAccount account = checkAccount(id);
-
-        //检查数据合法性
-        String sor = sort == null ? Rule.VIEW_COUNT.name() : sort.toUpperCase();
-        String ord = order == null ? Order.DESC.name() : order.toUpperCase();
-        String ch = audiencePropertiesManager.getUrlConditionSplitCharacter();
-        checkProperties(categoryIds, ch, labelIds, ch, sor, ord);
-
-        //执行数据查询
-        BlogSortRule rule = new BlogSortRule(Rule.valueOf(sor), Order.valueOf(ord));
-
-        int[] cids = StringUtils.intStringDistinctToArray(categoryIds, ch);
-        int[] lids = StringUtils.intStringDistinctToArray(labelIds, ch);
-
-        int os = offset == null || offset < 0 ? 0 : offset;
-        int rs = rows == null || rows < 0 ? audiencePropertiesManager.getRequestBloggerBlogListCount() : rows;
-        return retrievalService.listFilterAll(cids, lids, keyWord, account.getId(), os, rs, rule);
-    }
+    private BlogBrowseService blogBrowseService;
 
     /*
-     * 检查输入
+     * 检查博文是否存在
      */
-    private void checkProperties(String categoryIds, String cr, String labelIds, String lr, String sort, String order) {
-        if (categoryIds != null && !StringUtils.isIntStringSplitByChar(categoryIds, cr)) {
-            throw new StringSplitException("数字字符串未按指定字符间隔");
-        }
-
-        if (labelIds != null && !StringUtils.isIntStringSplitByChar(labelIds, lr)) {
-            throw new StringSplitException("数字字符串未按指定字符间隔");
-        }
-
-        if (sort != null && !Rule.contains(sort)) {
-            throw new BlogSortRuleUndefinedException("博文排序规则未定义");
-        }
-
-        if (order != null && !Order.contains(order)) {
-            throw new BlogSortOrderUndefinedException("排序顺序未定义");
+    private void checkBlog(Integer blogId, RequestContext context) {
+        if (blogId == null) {
+            throw new UnknownBlogException(context.getMessage("blog.unknownBlog"));
         }
     }
 
     /*
      * 检查博主是否存在
      */
-    private BloggerAccount checkAccount(Integer id) {
+    private BloggerAccount checkAccount(Integer id, RequestContext context) {
         BloggerAccount account;
         if (id == null || (account = bloggerAccountService.getAccount(id)) == null) {
-            throw new UnknownBloggerException("博主不存在");
+            throw new UnknownBloggerException(context.getMessage("blog.unknownBlogger"));
         }
         return account;
     }
@@ -116,25 +73,116 @@ public class BlogController {
         return new ResultBean(e);
     }
 
-    // TODO 待测试
-    @RequestMapping("/test")
-    public void test() {
+    /*
+     * 处理结果为空的情况
+     */
+    private void handlerEmptyResult(RequestContext context) {
+        throw new EmptyResultException(context.getMessage("blog.emptyResult"));
+    }
 
-        //插入随机数据
-        DataProvider provider = new DataProvider();
-        for (int i = 0; i < 10; i++) {
+    /**
+     * 检索博文
+     * 文档见 doc/wiki/博主博文检索.md
+     * 查询时博文状态调用者无法指定，只能查询 {@link BlogStatusEnum#PUBLIC}的
+     */
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @ResponseBody
+    public ResultBean<List<BlogListItemDTO>> bloggerBlogList(HttpServletRequest request,
+                                                             @RequestParam("bloggerId") Integer bloggerId,
+                                                             @RequestParam(value = "cids", required = false) String categoryIds,
+                                                             @RequestParam(value = "lids", required = false) String labelIds,
+                                                             @RequestParam(value = "kword", required = false) String keyWord,
+                                                             @RequestParam(value = "offset", required = false) Integer offset,
+                                                             @RequestParam(value = "rows", required = false) Integer rows,
+                                                             @RequestParam(value = "sort", required = false) String sort,
+                                                             @RequestParam(value = "order", required = false) String order) {
+        final RequestContext context = new RequestContext(request);
 
-            blogService.insertBlog(1,
-                    new int[]{1, 2}, // 1 2 5
-                    new int[]{2}, // 1 2 3 5
-                    BlogStatusEnum.PUBLIC,
-                    provider.title(),
-                    provider.content(),
-                    provider.summary(),
-                    provider.keyWords());
+        //检查账户
+        BloggerAccount account = checkAccount(bloggerId, context);
 
+        //检查数据合法性
+        String sor = sort == null ? Rule.VIEW_COUNT.name() : sort.toUpperCase();
+        String ord = order == null ? Order.DESC.name() : order.toUpperCase();
+        String ch = audiencePropertiesManager.getUrlConditionSplitCharacter();
+        checkProperties(categoryIds, ch, labelIds, ch, sor, ord, context);
+
+        //执行数据查询
+        BlogSortRule rule = new BlogSortRule(Rule.valueOf(sor), Order.valueOf(ord));
+
+        int[] cids = StringUtils.intStringDistinctToArray(categoryIds, ch);
+        int[] lids = StringUtils.intStringDistinctToArray(labelIds, ch);
+
+        int os = offset == null || offset < 0 ? 0 : offset;
+        int rs = rows == null || rows < 0 ? audiencePropertiesManager.getRequestBloggerBlogListCount() : rows;
+        ResultBean<List<BlogListItemDTO>> listResultBean = retrievalService.listFilterAll(cids, lids, keyWord, account.getId(), os, rs, rule);
+
+        if (listResultBean == null) handlerEmptyResult(context);
+
+        return listResultBean;
+    }
+
+    /*
+     * 检查输入
+     */
+    private void checkProperties(String categoryIds, String cr, String labelIds, String lr,
+                                 String sort, String order, RequestContext context) {
+
+        if (categoryIds != null && !StringUtils.isIntStringSplitByChar(categoryIds, cr)) {
+            throw new StringSplitException(context.getMessage("blog.stringSplitIllegal"));
+        }
+
+        if (labelIds != null && !StringUtils.isIntStringSplitByChar(labelIds, lr)) {
+            throw new StringSplitException(context.getMessage("blog.stringSplitIllegal"));
+        }
+
+        if (sort != null && !Rule.contains(sort)) {
+            throw new BlogSortRuleUndefinedException(context.getMessage("blog.blogSortRuleUndefined"));
+        }
+
+        if (order != null && !Order.contains(order)) {
+            throw new BlogSortOrderUndefinedException(context.getMessage("blog.blogSortOrderUndefined"));
         }
     }
 
+    /**
+     * 获得博文主体内容
+     * 文档见 doc/wiki/博文主体内容.md
+     */
+    @RequestMapping(value = "/content", method = RequestMethod.GET)
+    @ResponseBody
+    public ResultBean<BlogMainContentDTO> bloggerBlogMainContent(HttpServletRequest request,
+                                                                 @Param("blogId") Integer blogId) {
+        final RequestContext context = new RequestContext(request);
+
+        //检查博文是否存在
+        checkBlog(blogId, context);
+        ResultBean<BlogMainContentDTO> mainContent = blogBrowseService.getBlogMainContent(blogId);
+        if (mainContent == null) handlerEmptyResult(context);
+
+        return mainContent;
+    }
+
+    /**
+     * 获得博文评论列表
+     * 文档见 doc/wiki/博文评论列表.md
+     */
+    @RequestMapping("/comment")
+    @ResponseBody
+    public ResultBean<List<BlogCommentDTO>> bloggerBlogComment(HttpServletRequest request,
+                                                               @Param("blogId") Integer blogId,
+                                                               @RequestParam(value = "offset", required = false) Integer offset,
+                                                               @RequestParam(value = "rows", required = false) Integer rows) {
+        final RequestContext context = new RequestContext(request);
+
+        //检查博文是否存在
+        checkBlog(blogId, context);
+        int os = offset == null || offset < 0 ? 0 : offset;
+        int rs = rows == null || rows < 0 ? 0 : audiencePropertiesManager.getRequestBloggerBlogCommentCount();
+        ResultBean<List<BlogCommentDTO>> resultBean = blogBrowseService.listBlogComment(blogId, os, rs);
+        if (resultBean == null) handlerEmptyResult(context);
+
+        return resultBean;
+    }
 
 }

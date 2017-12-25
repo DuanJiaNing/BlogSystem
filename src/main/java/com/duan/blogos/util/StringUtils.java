@@ -43,6 +43,17 @@ public class StringUtils {
     }
 
     /**
+     * 字符串切分为字符串数组
+     */
+    public static String[] stringToStringArray(String sour, String regex) {
+        if (sour == null) {
+            return null;
+        }
+
+        return sour.split(regex);
+    }
+
+    /**
      * int数组拼接为字符串
      */
     public static String intArrayToString(int[] arr, String join) {

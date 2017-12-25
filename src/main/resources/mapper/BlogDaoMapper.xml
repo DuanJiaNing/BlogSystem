@@ -4,44 +4,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.duan.blogos.dao.blog.BlogDao">
 
-    <sql id="allField">
-        SELECT
-            ${alias}.id,
-            ${alias}.blogger_id,
-            ${alias}.category_ids,
-            ${alias}.label_ids,
-            ${alias}.state,
-            ${alias}.title,
-            ${alias}.content,
-            ${alias}.summary,
-            ${alias}.release_date,
-            ${alias}.nearest_modify_date,
-            ${alias}.key_words,
-            ${alias}.word_count
-    </sql>
-
     <select id="listBlog" resultType="Blog">
-        <include refid="allField">
-            <property name="alias" value="b"/>
-        </include>
+        SELECT *
         FROM blog b
-        WHERE state=#{status} AND b.id=#{bloggerId}
+        WHERE state = #{status} AND b.id = #{bloggerId}
     </select>
 
     <select id="listBlogWithLimit" resultType="Blog">
-        <include refid="allField">
-            <property name="alias" value="b"/>
-        </include>
+        SELECT *
         FROM blog b
-        WHERE state=#{status} AND b.id = #{bloggerId}
+        WHERE state = #{status} AND b.id = #{bloggerId}
         LIMIT #{offset}, #{rows}
     </select>
 
     <select id="listAll" resultType="Blog">
-        <include refid="allField">
-            <property name="alias" value="b"/>
-        </include>
-        FROM blog b
+        SELECT *
+        FROM blog
     </select>
 
     <update id="update" parameterType="Blog">
@@ -132,9 +110,7 @@
     </select>
 
     <select id="listBlogByBlogIds" resultType="Blog" parameterType="list">
-        <include refid="allField">
-            <property name="alias" value="b"/>
-        </include>
+        SELECT *
         FROM blog b WHERE b.id IN
         <foreach collection="ids"
                  item="id"
@@ -146,10 +122,16 @@
         AND b.state=#{status} LIMIT #{offset},#{rows}
     </select>
 
-    <select id="getBlogId" resultType="integer">
+    <select id="getBlogIdByUniqueKey" resultType="java.lang.Integer">
         SELECT b.id
         FROM blog b
         WHERE b.blogger_id = #{bloggerId} AND b.title = #{title}
+    </select>
+
+    <select id="getBlogById" resultType="Blog">
+        SELECT *
+        FROM blog b
+        WHERE b.id = #{value}
     </select>
 
 </mapper>

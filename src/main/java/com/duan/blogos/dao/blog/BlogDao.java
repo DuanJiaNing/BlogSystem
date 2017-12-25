@@ -80,7 +80,14 @@ public interface BlogDao extends BaseDao<Blog> {
      * @param title     博文标题（同一博主的标题不能重复）
      * @return 查询结果
      */
-    int getBlogId(@Param("bloggerId") int bloggerId,
-                  @Param("title") String title);
+    Integer getBlogIdByUniqueKey(@Param("bloggerId") int bloggerId,
+                                 @Param("title") String title);
 
+    /**
+     * 通过博文id查询博文
+     *
+     * @param blogId 博文id
+     * @return 查询结果
+     */
+    Blog getBlogById(int blogId);
 }

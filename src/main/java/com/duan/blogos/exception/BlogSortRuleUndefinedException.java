@@ -1,4 +1,4 @@
-package com.duan.blogos.exception.runtime;
+package com.duan.blogos.exception;
 
 /**
  * Created on 2017/12/20.

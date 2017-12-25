@@ -46,7 +46,7 @@ public class BlogMainContentDTO implements Serializable {
     private Timestamp nearestModifyDate;
 
     //文章状态
-    private String state;
+    private int status;
 
     //总字数
     private int wordCount;

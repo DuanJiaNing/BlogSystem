@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * Created on 2017/12/20.
- * 默认资源绑定
+ * 读者访问时使用的默认资源
  *
  * @author DuanJiaNing
  */
@@ -12,7 +12,7 @@ import lombok.Data;
 public class AudiencePropertiesManager {
 
     /**
-     * 默认的博主博文列表请求数量
+     * 默认返回的博主博文列表数量
      */
     private Integer requestBloggerBlogListCount;
 
@@ -21,5 +21,10 @@ public class AudiencePropertiesManager {
      * 如url中传递多个博文类别id时：1,2,3,8 这里间隔字符为","
      */
     private String urlConditionSplitCharacter;
+
+    /**
+     * 默认返回的博主博文评论数量
+     */
+    private Integer requestBloggerBlogCommentCount;
 
 }

@@ -26,12 +26,7 @@ public enum BlogStatusEnum {
     /**
      * 正在审核
      */
-    VERIFY(0),
-
-    /**
-     * 显示在首页
-     */
-    HOMEPAGE(3);
+    VERIFY(0);
 
     private final int code;
 
