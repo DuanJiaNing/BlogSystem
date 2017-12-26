@@ -31,6 +31,14 @@ import java.util.List;
  * 读者对博文数据的获取api
  * <p>
  * tip：RequestParam的required为true，而请求时没有该属性会返回404错误
+ * <p>
+ * api列表：
+ * <ol>
+ * <li>检索博文：/blog/get/list</li>
+ * <li>获得博文主体内容：/blog/get/content</li>
+ * <li>获得博文评论列表：/blog/get/comment</li>
+ * <li>获得博文统计信息：/blog/get/statistics</li>
+ * </ol>
  *
  * @author DuanJiaNing
  */

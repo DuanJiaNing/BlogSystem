@@ -15,6 +15,18 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Created on 2017/12/25.
  * 读者对博文可以进行的操作
+ * <p>
+ * api列表
+ * <ol>
+ * <li>评论博文：/blog/operate/comment</li>
+ * <li>分享博文：/blog/operate/share</li>
+ * <li>赞赏博文：/blog/operate/admire</li>
+ * <li>收藏博文：/blog/operate/collect</li>
+ * <li>投诉博文：/blog/operate/complain</li>
+ * <li>喜欢博文：/blog/operate/like</li>
+ * <li>取消收藏：/blog/operate/collect/remove</li>
+ * <li>取消喜欢：/blog/operate/like/remove</li>
+ * </ol>
  *
  * @author DuanJiaNing
  */
@@ -134,6 +146,25 @@ public class BlogOperateController extends BaseBlogController {
         if (id <= 0) throw exceptionManager.getOperateFailException(context);
 
         return new ResultBean<>(id);
+    }
+
+    /**
+     * 喜欢博文
+     */
+    @RequestMapping("/like")
+    public ResultBean likeBlog(HttpServletRequest request,
+                               @RequestParam("blogId") int blogId,
+                               @RequestParam("likerId") int likerId) {
+        RequestContext context = new RequestContext(request);
+
+        //检查
+        BaseRuntimeException exception = check(context, blogId, likerId);
+        if (exception != null) throw exception;
+
+        //执行
+        int count = operateService.insertLike(blogId, likerId);
+
+        return new ResultBean<>(count);
     }
 
     /**

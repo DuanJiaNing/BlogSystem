@@ -3,146 +3,136 @@
   <ID>DATABASE</ID>
   <OriginalElement>ab54f8a3-67ef-4614-b72e-37754f00693a.SCHEMA:blog</OriginalElement>
   <nodes>
-    <node x="1496.625" y="644.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_picture</node>
-    <node x="496.6559848484851" y="566.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog</node>
-    <node x="999.1666666666666" y="268.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account</node>
-    <node x="311.0" y="1039.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_like</node>
-    <node x="840.1666666666666" y="683.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_label</node>
-    <node x="932.1239962121211" y="1000.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_comment</node>
-    <node x="1568.125" y="1000.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_link</node>
-    <node x="0.0" y="1026.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_complain</node>
-    <node x="1244.1239962121213" y="1000.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_collect</node>
-    <node x="1199.625" y="670.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_category</node>
-    <node x="1303.3378520386716" y="-5.844892812105925">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_profile</node>
-    <node x="313.72399621212116" y="216.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_statistics</node>
-    <node x="596.0" y="1013.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_admire</node>
+    <node x="1262.0" y="628.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_statistics</node>
+    <node x="969.0" y="680.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_collect</node>
+    <node x="214.5" y="667.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_link</node>
+    <node x="944.5" y="0.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account</node>
+    <node x="1636.0" y="706.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_like</node>
+    <node x="571.0" y="324.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_label</node>
+    <node x="2528.0" y="667.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_comment</node>
+    <node x="1921.0" y="693.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_admire</node>
+    <node x="2217.0" y="693.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_complain</node>
+    <node x="856.0" y="311.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_category</node>
+    <node x="0.0" y="298.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_profile</node>
+    <node x="1731.7379629629627" y="220.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog</node>
+    <node x="286.0" y="285.0">ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_picture</node>
   </nodes>
   <notes />
   <edges>
     <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_admire" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog">
-      <point x="-69.0" y="-96.0" />
-      <point x="665.0" y="980.0" />
-      <point x="642.1559848484851" y="980.0" />
-      <point x="0.0" y="187.0" />
+      <point x="0.0" y="-83.0" />
+      <point x="2059.0" y="608.0" />
+      <point x="1901.4879629629627" y="608.0" />
+      <point x="24.25" y="174.0" />
     </edge>
     <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_comment" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog">
-      <point x="-97.33333333333331" y="-109.0" />
-      <point x="980.7906628787878" y="970.0" />
-      <point x="700.355984848485" y="970.0" />
-      <point x="58.19999999999993" y="187.0" />
+      <point x="-97.33333333333326" y="-109.0" />
+      <point x="2576.666666666667" y="588.0" />
+      <point x="1998.4879629629627" y="588.0" />
+      <point x="121.25" y="174.0" />
     </edge>
     <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_link" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account">
-      <point x="66.25" y="-109.0" />
-      <point x="1766.875" y="980.0" />
-      <point x="1772.125" y="980.0" />
-      <point x="1772.125" y="506.0" />
-      <point x="1242.5757575757575" y="506.0" />
-      <point x="115.90909090909099" y="83.0" />
-    </edge>
-    <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_collect" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account">
-      <point x="34.125" y="-109.0" />
-      <point x="1414.7489962121213" y="980.0" />
-      <point x="1475.125" y="980.0" />
-      <point x="1475.125" y="536.0" />
-      <point x="1173.030303030303" y="536.0" />
-      <point x="46.36363636363649" y="83.0" />
+      <point x="-66.25" y="-109.0" />
+      <point x="280.75" y="608.0" />
+      <point x="275.5" y="608.0" />
+      <point x="275.5" y="170.0" />
+      <point x="979.1500000000001" y="170.0" />
+      <point x="-80.84999999999991" y="70.0" />
     </edge>
     <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_like" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog">
       <point x="0.0" y="-70.0" />
-      <point x="443.5" y="980.0" />
-      <point x="583.9559848484851" y="980.0" />
-      <point x="-58.200000000000045" y="187.0" />
+      <point x="1768.5" y="608.0" />
+      <point x="1852.9879629629627" y="608.0" />
+      <point x="-24.25" y="174.0" />
+    </edge>
+    <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_collect" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account">
+      <point x="0.0" y="-96.0" />
+      <point x="1105.5" y="608.0" />
+      <point x="1131.5" y="608.0" />
+      <point x="1131.5" y="200.0" />
+      <point x="1071.55" y="200.0" />
+      <point x="11.549999999999955" y="70.0" />
     </edge>
     <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_collect" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_category">
-      <point x="-34.125" y="-109.0" />
-      <point x="1346.4989962121213" y="980.0" />
-      <point x="1332.125" y="980.0" />
+      <point x="-91.0" y="-96.0" />
+      <point x="1014.5" y="608.0" />
+      <point x="988.5" y="608.0" />
       <point x="0.0" y="83.0" />
     </edge>
     <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_profile" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account">
       <point x="0.0" y="-96.0" />
-      <point x="540.1249999999999" y="200.0" />
-      <point x="1026.5416666666665" y="200.0" />
-      <point x="-28.875" y="70.0" />
+      <point x="132.5" y="160.0" />
+      <point x="956.05" y="160.0" />
+      <point x="-103.95000000000005" y="70.0" />
     </edge>
     <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_picture" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account">
       <point x="0.0" y="-109.0" />
-      <point x="1629.125" y="516.0" />
-      <point x="1219.3939393939395" y="516.0" />
-      <point x="92.72727272727275" y="83.0" />
+      <point x="418.5" y="180.0" />
+      <point x="1002.25" y="180.0" />
+      <point x="-57.75" y="70.0" />
     </edge>
     <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_statistics" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog">
       <point x="0.0" y="-148.0" />
-      <point x="1104.7916666666665" y="618.0" />
-      <point x="1229.6760416666666" y="618.0" />
-      <point x="-24.25" y="174.0" />
+      <point x="1439.0" y="598.0" />
+      <point x="1804.4879629629627" y="598.0" />
+      <point x="-72.75" y="174.0" />
     </edge>
     <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_complain" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog">
-      <point x="72.75" y="-83.0" />
-      <point x="218.25" y="970.0" />
-      <point x="525.7559848484851" y="970.0" />
-      <point x="-116.39999999999998" y="187.0" />
-    </edge>
-    <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_admire" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account">
-      <point x="69.0" y="-96.0" />
-      <point x="803.0" y="980.0" />
-      <point x="812.0" y="980.0" />
-      <point x="812.0" y="536.0" />
-      <point x="1057.121212121212" y="536.0" />
-      <point x="-69.5454545454545" y="83.0" />
+      <point x="-72.75" y="-83.0" />
+      <point x="2289.75" y="598.0" />
+      <point x="1949.9879629629627" y="598.0" />
+      <point x="72.75" y="174.0" />
     </edge>
     <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_comment" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account">
-      <point x="97.33333333333331" y="-109.0" />
-      <point x="1175.4573295454545" y="980.0" />
-      <point x="1132.948996212121" y="980.0" />
-      <point x="1132.948996212121" y="546.0" />
-      <point x="1126.6666666666665" y="546.0" />
-      <point x="0.0" y="83.0" />
+      <point x="0.0" y="-109.0" />
+      <point x="2674.0" y="608.0" />
+      <point x="2717.166666666667" y="608.0" />
+      <point x="2717.166666666667" y="170.0" />
+      <point x="1140.85" y="170.0" />
+      <point x="80.84999999999991" y="70.0" />
     </edge>
     <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_collect" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog">
-      <point x="-102.375" y="-109.0" />
-      <point x="1278.2489962121213" y="960.0" />
-      <point x="758.5559848484851" y="960.0" />
-      <point x="116.39999999999998" y="187.0" />
-    </edge>
-    <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_link" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_picture">
-      <point x="-66.25" y="-109.0" />
-      <point x="1634.375" y="980.0" />
-      <point x="1629.125" y="980.0" />
-      <point x="0.0" y="109.0" />
+      <point x="91.0" y="-96.0" />
+      <point x="1196.5" y="588.0" />
+      <point x="1755.9879629629627" y="588.0" />
+      <point x="-121.25" y="174.0" />
     </edge>
     <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account">
-      <point x="72.75" y="-187.0" />
-      <point x="714.9059848484851" y="526.0" />
-      <point x="1033.939393939394" y="526.0" />
-      <point x="-92.72727272727275" y="83.0" />
+      <point x="0.0" y="-174.0" />
+      <point x="1877.2379629629627" y="190.0" />
+      <point x="1094.65" y="190.0" />
+      <point x="34.65000000000009" y="70.0" />
+    </edge>
+    <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_link" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_picture">
+      <point x="66.25" y="-109.0" />
+      <point x="413.25" y="608.0" />
+      <point x="418.5" y="608.0" />
+      <point x="0.0" y="109.0" />
     </edge>
     <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_category" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account">
       <point x="0.0" y="-83.0" />
-      <point x="1332.125" y="546.0" />
-      <point x="1149.848484848485" y="546.0" />
-      <point x="23.181818181818244" y="83.0" />
+      <point x="988.5" y="200.0" />
+      <point x="1048.45" y="200.0" />
+      <point x="-11.549999999999955" y="70.0" />
     </edge>
     <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_label" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account">
       <point x="0.0" y="-70.0" />
-      <point x="972.6666666666666" y="546.0" />
-      <point x="1080.3030303030305" y="546.0" />
-      <point x="-46.36363636363626" y="83.0" />
+      <point x="703.5" y="190.0" />
+      <point x="1025.35" y="190.0" />
+      <point x="-34.65000000000009" y="70.0" />
     </edge>
     <edge source="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blog_complain" target="ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_account">
-      <point x="-72.75" y="-83.0" />
-      <point x="72.75" y="516.0" />
-      <point x="1010.7575757575756" y="516.0" />
-      <point x="-115.90909090909099" y="83.0" />
+      <point x="72.75" y="-83.0" />
+      <point x="2435.25" y="180.0" />
+      <point x="1117.75" y="180.0" />
+      <point x="57.75" y="70.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.6843581445523192" x="1196.219577553594" y="548.5219104665827" />
-  <SelectedNodes>
-    <node>ab54f8a3-67ef-4614-b72e-37754f00693a.TABLE:blog.blogger_profile</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic Group" zoom="0.46267605633802816" x="1410.0" y="462.0" />
+  <SelectedNodes />
   <Categories>
-    <Category>Columns</Category>
     <Category>Key columns</Category>
+    <Category>Columns</Category>
   </Categories>
 </Diagram>
 
