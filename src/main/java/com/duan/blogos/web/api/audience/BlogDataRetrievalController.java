@@ -11,11 +11,11 @@ import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.exception.*;
 import com.duan.blogos.manager.AudiencePropertiesManager;
 import com.duan.blogos.manager.BlogSortRule;
+import com.duan.blogos.manager.validate.BlogValidateManager;
+import com.duan.blogos.manager.validate.BloggerAccountValidateManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.audience.BlogBrowseService;
 import com.duan.blogos.service.audience.BlogRetrievalService;
-import com.duan.blogos.service.blogger.BloggerAccountService;
-import com.duan.blogos.service.blogger.blog.BlogService;
 import com.duan.blogos.util.StringUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,39 +38,19 @@ import java.util.List;
 public class BlogDataRetrievalController {
 
     @Autowired
-    private AudiencePropertiesManager audiencePropertiesManager;
-
-    @Autowired
     private BlogRetrievalService retrievalService;
-
-    @Autowired
-    private BloggerAccountService bloggerAccountService;
 
     @Autowired
     private BlogBrowseService blogBrowseService;
 
     @Autowired
-    private BlogService blogService;
+    private AudiencePropertiesManager audiencePropertiesManager;
 
-    /*
-     * 检查博文是否存在
-     */
-    private void checkBlog(Integer blogId, RequestContext context) {
-        if (blogId == null || !blogService.getBlogForCheckExist(blogId)) {
-            throw new UnknownBlogException(context.getMessage("blog.unknownBlog"));
-        }
-    }
+    @Autowired
+    private BloggerAccountValidateManager accountValidateManager;
 
-    /*
-     * 检查博主是否存在
-     */
-    private BloggerAccount checkAccount(Integer id, RequestContext context) {
-        BloggerAccount account;
-        if (id == null || (account = bloggerAccountService.getAccount(id)) == null) {
-            throw new UnknownBloggerException(context.getMessage("blog.unknownBlogger"));
-        }
-        return account;
-    }
+    @Autowired
+    private BlogValidateManager blogValidateManager;
 
     /*
      * 统一处理异常
@@ -107,7 +87,8 @@ public class BlogDataRetrievalController {
         final RequestContext context = new RequestContext(request);
 
         //检查账户
-        BloggerAccount account = checkAccount(bloggerId, context);
+        BloggerAccount account = accountValidateManager.checkAccount(bloggerId);
+        if (account == null) throw new UnknownBloggerException(context.getMessage("blog.unknownBlogger"));
 
         //检查数据合法性
         String sor = sort == null ? Rule.VIEW_COUNT.name() : sort.toUpperCase();
@@ -164,7 +145,9 @@ public class BlogDataRetrievalController {
         final RequestContext context = new RequestContext(request);
 
         //检查博文是否存在
-        checkBlog(blogId, context);
+        if (!blogValidateManager.checkBlogExist(blogId)) {
+            throw new UnknownBlogException(context.getMessage("blog.unknownBlog"));
+        }
         ResultBean<BlogMainContentDTO> mainContent = blogBrowseService.getBlogMainContent(blogId);
         if (mainContent == null) handlerEmptyResult(context);
 
@@ -184,7 +167,10 @@ public class BlogDataRetrievalController {
         final RequestContext context = new RequestContext(request);
 
         //检查博文是否存在
-        checkBlog(blogId, context);
+        if (!blogValidateManager.checkBlogExist(blogId)) {
+            throw new UnknownBlogException(context.getMessage("blog.unknownBlog"));
+        }
+
         int os = offset == null || offset < 0 ? 0 : offset;
         int rs = rows == null || rows < 0 ? audiencePropertiesManager.getRequestBloggerBlogCommentCount() : rows;
         ResultBean<List<BlogCommentDTO>> resultBean = blogBrowseService.listBlogComment(blogId, os, rs);
@@ -204,7 +190,10 @@ public class BlogDataRetrievalController {
         final RequestContext context = new RequestContext(request);
 
         //检查博文是否存在
-        checkBlog(blogId, context);
+        if (!blogValidateManager.checkBlogExist(blogId)) {
+            throw new UnknownBlogException(context.getMessage("blog.unknownBlog"));
+        }
+
         ResultBean<BlogStatisticsDTO> statistics = blogBrowseService.getBlogStatistics(blogId);
         if (statistics == null) handlerEmptyResult(context);
 

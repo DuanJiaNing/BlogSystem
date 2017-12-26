@@ -17,7 +17,6 @@ public class BlogAdmire implements Serializable {
     private Integer id;
     private Integer blogId;
     private Integer paierId;
-    private Integer earnerId;
     private Double money;
     private Timestamp tranDate;
 
