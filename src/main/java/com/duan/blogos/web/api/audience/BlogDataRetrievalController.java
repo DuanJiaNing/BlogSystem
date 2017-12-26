@@ -49,7 +49,7 @@ public class BlogDataRetrievalController extends BaseBlogController {
 
     /**
      * 检索博文
-     * 文档见 doc/wiki/博主博文检索.md
+     * 文档见 doc/wiki/audience/博主博文检索.md
      * 查询时博文状态调用者无法指定，只能查询 {@link BlogStatusEnum#PUBLIC}的
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -114,7 +114,7 @@ public class BlogDataRetrievalController extends BaseBlogController {
 
     /**
      * 获得博文主体内容
-     * 文档见 doc/wiki/博文主体内容.md
+     * 文档见 doc/wiki/audience/博文主体内容.md
      */
     @RequestMapping(value = "/content", method = RequestMethod.GET)
     public ResultBean<BlogMainContentDTO> blogMainContent(HttpServletRequest request,
@@ -133,7 +133,7 @@ public class BlogDataRetrievalController extends BaseBlogController {
 
     /**
      * 获得博文评论列表
-     * 文档见 doc/wiki/博文评论列表.md
+     * 文档见 doc/wiki/audience/博文评论列表.md
      */
     @RequestMapping(value = "/comment", method = RequestMethod.GET)
     public ResultBean<List<BlogCommentDTO>> blogComment(HttpServletRequest request,
@@ -156,7 +156,7 @@ public class BlogDataRetrievalController extends BaseBlogController {
 
     /**
      * 获得博文统计信息
-     * 文档见 doc/wiki/博文统计信息.md
+     * 文档见 doc/wiki/audience/博文统计信息.md
      */
     @RequestMapping(value = "/statistics", method = RequestMethod.GET)
     public ResultBean<BlogStatisticsDTO> blogStatistics(HttpServletRequest request,

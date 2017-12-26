@@ -15,6 +15,12 @@
         </foreach>
     </select>
 
+    <select id="countCategoryByBloggerIdAndCategoryId" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM blog_category
+        WHERE blogger_id = #{bloggerId} AND id = #{categoryId};
+    </select>
+
     <update id="update" parameterType="BlogCategory">
         UPDATE blog_category
         <set>

@@ -2,6 +2,7 @@ package com.duan.blogos.manager.validate;
 
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.service.blogger.BloggerAccountService;
+import com.duan.blogos.service.blogger.blog.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,9 @@ public class BloggerValidateManager {
 
     @Autowired
     private BloggerAccountService bloggerAccountService;
+
+    @Autowired
+    private CategoryService categoryService;
 
     /**
      * 检查博主是否存在
@@ -39,6 +43,11 @@ public class BloggerValidateManager {
      * @return 有返回true
      */
     public boolean checkBloggerCategoryExist(Integer bloggerId, Integer categoryId) {
-        return false;
+        if (bloggerId == null || bloggerId <= 0 || categoryId == null || categoryId <= 0) {
+            return false;
+        }
+
+        int count = categoryService.countCategoryForExistCheck(bloggerId, categoryId);
+        return count >= 1;
     }
 }

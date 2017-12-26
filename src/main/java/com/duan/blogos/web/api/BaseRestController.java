@@ -4,6 +4,7 @@ import com.duan.blogos.exception.BaseRuntimeException;
 import com.duan.blogos.manager.ExceptionManager;
 import com.duan.blogos.result.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.support.RequestContext;
@@ -31,7 +32,7 @@ public class BaseRestController {
      * 统一处理异常
      */
     @ExceptionHandler(BaseRuntimeException.class)
-    public ResultBean exceptionHandler(BaseRuntimeException e) {
+    public ResultBean handlerException(BaseRuntimeException e) {
         return new ResultBean(e);
     }
 
@@ -39,8 +40,16 @@ public class BaseRestController {
      * 统一处理异常
      */
     @ExceptionHandler(Exception.class)
-    public ResultBean exceptionHandler(HttpServletRequest request, Throwable e) {
+    public ResultBean handlerException(HttpServletRequest request, Throwable e) {
         return new ResultBean(exceptionManager.getUnknownException(new RequestContext(request), e));
+    }
+
+    /**
+     * 统一处理“请求参数缺失”错误
+     */
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ResultBean handlerException(HttpServletRequest request,MissingServletRequestParameterException e) {
+        return new ResultBean(exceptionManager.getMissingRequestParameterException(new RequestContext(request),e));
     }
 
     /**

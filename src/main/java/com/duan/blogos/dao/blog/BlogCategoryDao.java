@@ -22,4 +22,14 @@ public interface BlogCategoryDao extends BaseDao<BlogCategory> {
      * @return 查询结果
      */
     List<BlogCategory> listCategoryById(@Param("ids") int[] ids);
+
+    /**
+     * 通过博主id和类别id计算类别个数，该方法主要为检查指定博主是否创建过指定类别
+     *
+     * @param bloggerId  博主id
+     * @param categoryId 类别id
+     * @return 数量，0或1
+     */
+    int countCategoryByBloggerIdAndCategoryId(@Param("bloggerId") int bloggerId,
+                                              @Param("categoryId") int categoryId);
 }

@@ -61,4 +61,13 @@ public interface CategoryService {
      * @param newCategoryId 新的类别（新类别创建者创建的类别）
      */
     void deleteCategoryAndMoveBlogsTo(int bloggerId, int categoryId, int newBloggerId, int newCategoryId);
+
+    /**
+     * 计算类别数量，该方法目的为检查指定博主是否创建过指定类别
+     *
+     * @param bloggerId  博主id
+     * @param categoryId 类别id
+     * @return 创建过则结果不小于1，否则为0
+     */
+    int countCategoryForExistCheck(int bloggerId, int categoryId);
 }

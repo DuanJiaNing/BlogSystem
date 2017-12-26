@@ -62,5 +62,4 @@ public class BaseBlogController extends BaseRestController {
         return null;
     }
 
-
 }

@@ -1,8 +1,10 @@
 package com.duan.blogos.service.impl.blogger.blog;
 
+import com.duan.blogos.dao.blog.BlogCategoryDao;
 import com.duan.blogos.dto.blogger.BloggerCategoryDTO;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.blog.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +16,10 @@ import java.util.List;
  */
 @Service("categoryService")
 public class CategoryServiceImpl implements CategoryService {
+
+    @Autowired
+    private BlogCategoryDao categoryDao;
+
     @Override
     public ResultBean<List<BloggerCategoryDTO>> listBlogCategory(int bloggerId, int offset, int rows) {
         return null;
@@ -37,5 +43,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void deleteCategoryAndMoveBlogsTo(int bloggerId, int categoryId, int newBloggerId, int newCategoryId) {
 
+    }
+
+    @Override
+    public int countCategoryForExistCheck(int bloggerId, int categoryId) {
+        return categoryDao.countCategoryByBloggerIdAndCategoryId(bloggerId, categoryId);
     }
 }

@@ -1,18 +1,15 @@
 package com.duan.blogos.web.api.audience;
 
 import com.duan.blogos.exception.BaseRuntimeException;
-import com.duan.blogos.manager.ExceptionManager;
-import com.duan.blogos.manager.validate.BlogValidateManager;
-import com.duan.blogos.manager.validate.BloggerValidateManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.audience.BlogOperateService;
 import com.duan.blogos.util.StringUtils;
-import com.duan.blogos.web.api.BaseRestController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.RequestContext;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -83,7 +80,7 @@ public class BlogOperateController extends BaseBlogController {
         //检查
         BaseRuntimeException exception = check(context, blogId, paierId);
         if (exception != null) throw exception;
-        if (Math.min(money, 0f) == money) throw exceptionManager.getParameterIllegalException(context);
+        if (money == null || Math.min(money, 0f) == money) throw exceptionManager.getParameterIllegalException(context);
 
         //执行
         int id = operateService.insertAdmire(blogId, paierId, money);
@@ -152,28 +149,31 @@ public class BlogOperateController extends BaseBlogController {
         BaseRuntimeException exception = check(context, blogId, bloggerId);
         if (exception != null) throw exception;
 
-        //执行
+        //执行，若操作失败，则将由顶层父类（BaseRestController）
+        // 的handlerException(HttpServletRequest request, Throwable e) {方法处理
         operateService.deleteCollect(bloggerId, blogId);
 
-
-        return null;
+        return new ResultBean<>("");
     }
 
-
+    /**
+     * 取消喜欢
+     */
+    @RequestMapping("/like/remove")
     public ResultBean removeLike(HttpServletRequest request,
                                  @RequestParam("bloggerId") Integer bloggerId,
                                  @RequestParam("blogId") Integer blogId) {
-
         RequestContext context = new RequestContext(request);
-        return null;
+
+        //检查
+        BaseRuntimeException exception = check(context, blogId, bloggerId);
+        if (exception != null) throw exception;
+
+        //执行，若操作失败，则将由顶层父类（BaseRestController）
+        //的handlerException(HttpServletRequest request, Throwable e) {方法处理
+        operateService.deleteLike(bloggerId, blogId);
+
+        return new ResultBean<>("");
     }
-
-
-    @ExceptionHandler
-    public ResultBean handlerException(RuntimeException e) {
-
-        return null;
-    }
-
 
 }

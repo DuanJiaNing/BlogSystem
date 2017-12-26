@@ -2,7 +2,9 @@ package com.duan.blogos.manager;
 
 import com.duan.blogos.exception.*;
 import com.duan.blogos.exception.UnspecifiedOperationException;
+import com.duan.blogos.result.ResultBean;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.servlet.support.RequestContext;
 
 /**
@@ -50,7 +52,10 @@ public class ExceptionManager {
     }
 
     public UnknownException getUnknownException(RequestContext context, Throwable e) {
-        return new UnknownException(context.getMessage("common.UnknownError"),e);
+        return new UnknownException(context.getMessage("common.UnknownError"), e);
     }
 
+    public MissingRequestParameterException getMissingRequestParameterException(RequestContext context, Throwable e) {
+        return new MissingRequestParameterException(context.getMessage("common.missingRequestParameter"), e);
+    }
 }
