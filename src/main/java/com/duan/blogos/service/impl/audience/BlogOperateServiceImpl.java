@@ -13,6 +13,7 @@ public class BlogOperateServiceImpl implements BlogOperateService {
 
     @Override
     public int insertComment(int blogId, int spokesmanId, int listenerId, String content) {
+
         return 0;
     }
 

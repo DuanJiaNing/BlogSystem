@@ -86,4 +86,13 @@ public class StringUtils {
         }
     }
 
+    /**
+     * 检查字符串是否为 null
+     *
+     * @param str 字符串
+     * @return 是返回true
+     */
+    public static boolean isEmpty(String str) {
+        return str == null || str.length() == 0 || "null".equals(str);
+    }
 }

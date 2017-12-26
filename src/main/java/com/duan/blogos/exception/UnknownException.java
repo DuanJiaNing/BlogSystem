@@ -14,4 +14,8 @@ public class UnknownException extends BaseRuntimeException {
 
     public UnknownException() {
     }
+
+    public UnknownException(String message, Throwable e) {
+        super(message, e);
+    }
 }

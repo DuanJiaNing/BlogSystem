@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @author DuanJiaNing
  */
 @Component
-public class BloggerAccountValidateManager {
+public class BloggerValidateManager {
 
     @Autowired
     private BloggerAccountService bloggerAccountService;
@@ -25,10 +25,20 @@ public class BloggerAccountValidateManager {
      */
     public BloggerAccount checkAccount(Integer id) {
         BloggerAccount account;
-        if (id == null || (account = bloggerAccountService.getAccount(id)) == null) {
+        if (id == null || id <= 0 || (account = bloggerAccountService.getAccount(id)) == null) {
             return null;
         }
         return account;
     }
 
+    /**
+     * 检查博主是否有对应的博文类别
+     *
+     * @param bloggerId  博主id
+     * @param categoryId 类别id
+     * @return 有返回true
+     */
+    public boolean checkBloggerCategoryExist(Integer bloggerId, Integer categoryId) {
+        return false;
+    }
 }

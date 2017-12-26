@@ -23,7 +23,7 @@ public class BlogValidateManager {
      * @return 博文存在返回true
      */
     public boolean checkBlogExist(Integer blogId) {
-        return blogId != null && blogService.getBlogForCheckExist(blogId);
+        return blogId != null && blogId > 0 && blogService.getBlogForCheckExist(blogId);
     }
 
 }
