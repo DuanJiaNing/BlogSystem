@@ -3,6 +3,7 @@ package com.duan.blogos.dao.blog;
 import com.duan.blogos.dao.BaseDao;
 import com.duan.blogos.entity.blog.BlogComment;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  *
  * @author DuanJiaNing
  */
+@Repository
 public interface BlogCommentDao extends BaseDao<BlogComment> {
 
     /**

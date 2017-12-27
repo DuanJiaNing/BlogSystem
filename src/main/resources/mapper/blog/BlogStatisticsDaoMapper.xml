@@ -10,9 +10,11 @@
         WHERE s.blog_id = #{blogId};
     </select>
 
-    <insert id="insert" parameterType="BlogStatistics">
+    <insert id="insert" parameterType="BlogStatistics" useGeneratedKeys="true" keyProperty="id">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
         INSERT INTO blog_statistics (
-            id,
             blog_id,
             comment_count,
             view_count,
@@ -23,7 +25,6 @@
             admire_count,
             like_count
         ) VALUE (
-            NULL,
             #{blogId},
             ifnull(#{commentCount}, 0),
             ifnull(#{viewCount}, 0),

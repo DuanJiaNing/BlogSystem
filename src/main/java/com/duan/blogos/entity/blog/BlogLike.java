@@ -23,7 +23,7 @@ public class BlogLike implements Serializable {
     private Integer blogId;
 
     //给出喜欢的人的id
-    private Integer admireId;
+    private Integer likerId;
 
     //喜欢时间
     private Timestamp likeDate;

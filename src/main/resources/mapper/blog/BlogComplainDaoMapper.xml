@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duan.blogos.dao.blog.BlogComplainDao">
+
+    <update id="update" parameterType="BlogComplain">
+        UPDATE blog_complain
+        <set>
+            <if test="blogId != null">
+                blog_id=#{blogId},
+            </if>
+            <if test="complainerId != null">
+                complainer_id=#{complainerId},
+            </if>
+            <if test="content != null">
+                content=#{content},
+            </if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <delete id="delete">
+        DELETE FROM blog_complain
+        WHERE id = #{value}
+    </delete>
+
+    <insert id="insert" parameterType="BlogComplain" useGeneratedKeys="true" keyProperty="id">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+        INSERT INTO blog_complain (
+            complainer_id,
+            blog_id,
+            content,
+            time
+        ) VALUE (
+            #{complainerId},
+            #{blogId},
+            #{content},
+            NOW()
+        )
+    </insert>
+
+</mapper>

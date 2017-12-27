@@ -70,9 +70,11 @@
         WHERE id = #{id}
     </delete>
 
-    <insert id="insert" parameterType="Blog">
+    <insert id="insert" parameterType="Blog" useGeneratedKeys="true" keyProperty="id">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
         INSERT INTO blog (
-            id,
             blogger_id,
             category_ids,
             label_ids,
@@ -85,7 +87,6 @@
             key_words,
             word_count
         ) VALUE (
-            NULL,
             #{bloggerId},
             #{categoryIds},
             #{labelIds},

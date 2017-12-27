@@ -38,9 +38,11 @@
         </where>
     </update>
 
-    <insert id="insert" parameterType="BlogComment">
+    <insert id="insert" parameterType="BlogComment" useGeneratedKeys="true" keyProperty="id">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
         INSERT INTO blog_comment (
-            id,
             blog_id,
             spokesman_id,
             listener_id,
@@ -48,7 +50,6 @@
             release_date,
             state
         ) VALUE (
-            NULL,
             #{blogId},
             #{spokesmanId},
             #{listenerId},

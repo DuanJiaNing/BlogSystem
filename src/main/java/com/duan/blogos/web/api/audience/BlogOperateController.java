@@ -6,6 +6,7 @@ import com.duan.blogos.service.audience.BlogOperateService;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.RequestContext;
@@ -42,7 +43,7 @@ public class BlogOperateController extends BaseBlogController {
     /**
      * 评论博文
      */
-    @RequestMapping("/comment")
+    @RequestMapping(value = "/comment", method = RequestMethod.POST)
     public ResultBean commentBlog(HttpServletRequest request,
                                   @RequestParam("blogId") Integer blogId,
                                   @RequestParam("spokesmanId") Integer spokesmanId,
@@ -65,7 +66,7 @@ public class BlogOperateController extends BaseBlogController {
     /**
      * 分享博文
      */
-    @RequestMapping("/share")
+    @RequestMapping(value = "/share", method = RequestMethod.GET)
     public ResultBean shareBlog(HttpServletRequest request,
                                 @RequestParam("blogId") Integer blogId,
                                 @RequestParam("sharerId") Integer sharerId) {
@@ -84,7 +85,7 @@ public class BlogOperateController extends BaseBlogController {
     /**
      * 赞赏博文
      */
-    @RequestMapping("/admire")
+    @RequestMapping(value = "/admire", method = RequestMethod.POST)
     public ResultBean admireBlog(HttpServletRequest request,
                                  @RequestParam("blogId") Integer blogId,
                                  @RequestParam("paierId") Integer paierId,
@@ -106,23 +107,25 @@ public class BlogOperateController extends BaseBlogController {
     /**
      * 收藏博文
      */
-    @RequestMapping("/collect")
+    @RequestMapping(value = "/collect", method = RequestMethod.GET)
     public ResultBean collectBlog(HttpServletRequest request,
                                   @RequestParam("blogId") Integer blogId,
                                   @RequestParam("collectorId") Integer collectorId,
-                                  @RequestParam("reason") String reason,
-                                  @RequestParam("categoryId") Integer categoryId) {
+                                  @RequestParam(value = "reason", required = false) String reason,
+                                  @RequestParam(value = "categoryId", required = false) Integer categoryId) {
         RequestContext context = new RequestContext(request);
 
         // 检查
         BaseRuntimeException exception = check(context, blogId, collectorId);
         if (exception != null) throw exception;
-        if (StringUtils.isEmpty(reason) || !bloggerValidateManager.checkBloggerCategoryExist(collectorId, categoryId)) {
+
+        //检查博主是否有指定类别
+        if (categoryId != null && !bloggerValidateManager.checkBloggerCategoryExist(collectorId, categoryId)) {
             throw exceptionManager.getParameterIllegalException(context);
         }
 
         //执行
-        int id = operateService.insertCollect(blogId, collectorId, reason, categoryId);
+        int id = operateService.insertCollect(blogId, collectorId, reason, categoryId == null ? -1 : categoryId);
         if (id <= 0) throw exceptionManager.getOperateFailException(context);
 
         return new ResultBean<>(id);
@@ -131,7 +134,7 @@ public class BlogOperateController extends BaseBlogController {
     /**
      * 投诉博文
      */
-    @RequestMapping("/complain")
+    @RequestMapping(value = "/complain", method = RequestMethod.GET)
     public ResultBean complainBlog(HttpServletRequest request,
                                    @RequestParam("blogId") Integer blogId,
                                    @RequestParam("complainId") Integer complainId,
@@ -153,7 +156,7 @@ public class BlogOperateController extends BaseBlogController {
     /**
      * 喜欢博文
      */
-    @RequestMapping("/like")
+    @RequestMapping(value = "/like", method = RequestMethod.GET)
     public ResultBean likeBlog(HttpServletRequest request,
                                @RequestParam("blogId") int blogId,
                                @RequestParam("likerId") int likerId) {
@@ -172,7 +175,7 @@ public class BlogOperateController extends BaseBlogController {
     /**
      * 取消收藏
      */
-    @RequestMapping("/collect/remove")
+    @RequestMapping(value = "/collect/remove", method = RequestMethod.GET)
     public ResultBean removeCollect(HttpServletRequest request,
                                     @RequestParam("bloggerId") Integer bloggerId,
                                     @RequestParam("blogId") Integer blogId) {
@@ -182,17 +185,16 @@ public class BlogOperateController extends BaseBlogController {
         BaseRuntimeException exception = check(context, blogId, bloggerId);
         if (exception != null) throw exception;
 
-        //执行，若操作失败，则将由顶层父类（BaseRestController）
-        // 的handlerException(HttpServletRequest request, Throwable e)方法处理
-        operateService.deleteCollect(bloggerId, blogId);
+        //执行
+        boolean result = operateService.deleteCollect(bloggerId, blogId);
+        return result ? new ResultBean<>("") : new ResultBean(exceptionManager.getOperateFailException(context));
 
-        return new ResultBean<>("");
     }
 
     /**
      * 取消喜欢
      */
-    @RequestMapping("/like/remove")
+    @RequestMapping(value = "/like/remove", method = RequestMethod.GET)
     public ResultBean removeLike(HttpServletRequest request,
                                  @RequestParam("bloggerId") Integer bloggerId,
                                  @RequestParam("blogId") Integer blogId) {
@@ -202,11 +204,9 @@ public class BlogOperateController extends BaseBlogController {
         BaseRuntimeException exception = check(context, blogId, bloggerId);
         if (exception != null) throw exception;
 
-        //执行，若操作失败，则将由顶层父类（BaseRestController）
-        //的handlerException(HttpServletRequest request, Throwable e)方法处理
-        operateService.deleteLike(bloggerId, blogId);
-
-        return new ResultBean<>("");
+        //执行
+        boolean result = operateService.deleteLike(bloggerId, blogId);
+        return result ? new ResultBean<>("") : new ResultBean(exceptionManager.getOperateFailException(context));
     }
 
 }

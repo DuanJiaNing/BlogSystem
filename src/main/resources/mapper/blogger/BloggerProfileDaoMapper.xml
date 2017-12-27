@@ -36,16 +36,17 @@
         WHERE id = #{value}
     </delete>
 
-    <insert id="insert" parameterType="BloggerProfile">
+    <insert id="insert" parameterType="BloggerProfile" useGeneratedKeys="true" keyProperty="id">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
         INSERT INTO blogger_profile (
-            id,
             blogger_id,
             phone,
             email,
             about_me,
             intro
         ) VALUE (
-            NULL,
             #{bloggerId},
             #{phone},
             #{email},

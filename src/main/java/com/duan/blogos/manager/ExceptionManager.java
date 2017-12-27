@@ -40,7 +40,7 @@ public class ExceptionManager {
     }
 
     public ParameterIllegalException getParameterIllegalException(RequestContext context) {
-        return new ParameterIllegalException(context.getMessage("common.emptyParameter"));
+        return new ParameterIllegalException(context.getMessage("common.parameterIllegal"));
     }
 
     public OperateFailException getOperateFailException(RequestContext context) {

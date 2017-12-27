@@ -70,8 +70,9 @@ public interface BlogOperateService {
      *
      * @param bloggerId 收藏者id
      * @param blogId    收藏的博文id
+     * @return 删除成功返回true
      */
-    void deleteCollect(int bloggerId, int blogId);
+    boolean deleteCollect(int bloggerId, int blogId);
 
     /**
      * 新增喜欢记录，同时文章喜欢数加一
@@ -87,7 +88,8 @@ public interface BlogOperateService {
      *
      * @param likerId 喜欢者id
      * @param blogId  博文id
+     * @return 删除成功返回true
      */
-    void deleteLike(int likerId, int blogId);
+    boolean deleteLike(int likerId, int blogId);
 
 }

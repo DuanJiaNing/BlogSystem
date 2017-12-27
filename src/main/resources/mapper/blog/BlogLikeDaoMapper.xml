@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duan.blogos.dao.blog.BlogLikeDao">
+
+    <update id="update" parameterType="BlogLike">
+        UPDATE blog_like
+        <set>
+            <if test="blogId != null">
+                blog_id=#{blogId},
+            </if>
+            liker_id=#{likerId}
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <delete id="delete">
+        DELETE FROM blog_like
+        WHERE id = #{value}
+    </delete>
+
+    <delete id="deleteLikeByBloggerId">
+        DELETE FROM blog_like
+        WHERE blog_id = #{blogId} AND liker_id = #{bloggerId}
+    </delete>
+
+    <insert id="insert" parameterType="BlogLike" useGeneratedKeys="true" keyProperty="id">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+        INSERT INTO blog_like (
+        blog_id,
+        liker_id,
+        like_date
+        ) VALUE (
+        #{blogId},
+        #{likerId},
+        NOW()
+        )
+    </insert>
+
+</mapper>

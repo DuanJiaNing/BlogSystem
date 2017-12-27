@@ -33,14 +33,15 @@
         </where>
     </update>
 
-    <insert id="insert" parameterType="BlogLabel">
+    <insert id="insert" parameterType="BlogLabel" useGeneratedKeys="true" keyProperty="id">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
         INSERT INTO blog_label (
-            id,
             blogger_id,
             title,
             create_date
         ) VALUE (
-            NULL,
             #{blogerId},
             #{title},
             NOW()

@@ -1,11 +1,12 @@
 package com.duan.blogos.service.impl.audience;
 
-import com.duan.blogos.dao.blog.BlogCommentDao;
-import com.duan.blogos.dao.blog.BlogStatisticsDao;
-import com.duan.blogos.entity.blog.BlogComment;
+import com.duan.blogos.dao.blog.*;
+import com.duan.blogos.entity.blog.*;
 import com.duan.blogos.enums.BlogCommentStatusEnum;
 import com.duan.blogos.manager.validate.BlogCommentValidateManager;
 import com.duan.blogos.service.audience.BlogOperateService;
+import com.duan.blogos.util.CollectionUtils;
+import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,18 @@ public class BlogOperateServiceImpl implements BlogOperateService {
 
     @Autowired
     private BlogStatisticsDao statisticsDao;
+
+    @Autowired
+    private BlogAdmireDao admireDao;
+
+    @Autowired
+    private BlogCollectDao collectDao;
+
+    @Autowired
+    private BlogLikeDao likeDao;
+
+    @Autowired
+    private BlogComplainDao complainDao;
 
     @Autowired
     private BlogCommentValidateManager commentValidateManager;
@@ -42,16 +55,15 @@ public class BlogOperateServiceImpl implements BlogOperateService {
 
         //博文评论次数加一
         statisticsDao.updateCommentCountPlus(blogId);
+        Integer id = comment.getId();
 
-        //新纪录的id没有用到的场景，不予查询返回
-        return 1;
+        return id == null ? -1 : id;
     }
 
     @Override
     public int insertShare(int blogId, int sharerId) {
 
         // UPDATE: 2017/12/27 对分享者的操作做记录以保留其账户活跃度 etc
-
         statisticsDao.updateShareCountPlus(blogId);
         Integer count = statisticsDao.getShareCount(blogId);
 
@@ -60,32 +72,89 @@ public class BlogOperateServiceImpl implements BlogOperateService {
 
     @Override
     public int insertAdmire(int blogId, int paierId, float money) {
-        return 0;
+
+        BlogAdmire admire = new BlogAdmire();
+        admire.setBlogId(blogId);
+        admire.setMoney(money);
+        admire.setPaierId(paierId);
+        admireDao.insert(admire);
+
+        //博文赞赏次数加一
+        statisticsDao.updateAdmireCountPlus(blogId);
+
+        Integer id = admire.getId();
+        return id == null ? -1 : id;
     }
 
     @Override
     public int insertCollect(int blogId, int collectorId, String reason, int categoryId) {
-        return 0;
-    }
 
-    @Override
-    public void deleteCollect(int bloggerId, int blogId) {
+        BlogCollect collect = new BlogCollect();
+        collect.setBlogId(blogId);
+        collect.setCategoryId(categoryId < 0 ? null : categoryId);
+        collect.setCollectorId(collectorId);
+        collect.setReason(StringUtils.isEmpty(reason) ? null : reason);
+        collectDao.insert(collect);
 
+        //博文收藏次数加一
+        statisticsDao.updateCollectCountPlus(blogId);
+
+        Integer id = collect.getId();
+        return id == null ? -1 : id;
     }
 
     @Override
     public int insertLike(int blogId, int likerId) {
-        return 0;
-    }
 
-    @Override
-    public void deleteLike(int likerId, int blogId) {
+        BlogLike like = new BlogLike();
+        like.setBlogId(blogId);
+        like.setLikerId(likerId);
+        likeDao.insert(like);
 
+        //博文喜欢次数加一
+        statisticsDao.updateLikeCountPlus(blogId);
+
+        Integer count = statisticsDao.getLikeCount(blogId);
+        return count == null ? -1 : count;
     }
 
     @Override
     public int insertComplain(int blogId, int complainId, String content) {
-        return 0;
+
+        BlogComplain complain = new BlogComplain();
+        complain.setBlogId(blogId);
+        complain.setComplainerId(complainId);
+        complain.setContent(content);
+        complainDao.insert(complain);
+
+        //博文投诉次数加一
+        statisticsDao.updateComplainCountPlus(blogId);
+
+        Integer id = complain.getId();
+        return id == null ? -1 : id;
     }
+
+    @Override
+    public boolean deleteCollect(int bloggerId, int blogId) {
+        int effect = collectDao.deleteCollectByBloggerId(bloggerId, blogId);
+        if (effect <= 0) return false;
+
+        //博文收藏数减一
+        statisticsDao.updateCollectCountMinus(blogId);
+
+        return true;
+    }
+
+    @Override
+    public boolean deleteLike(int likerId, int blogId) {
+        int effect = likeDao.deleteLikeByBloggerId(likerId, blogId);
+        if (effect <= 0) return false;
+
+        //博文喜欢数减一
+        statisticsDao.updateLikeCountMinus(blogId);
+
+        return true;
+    }
+
 
 }

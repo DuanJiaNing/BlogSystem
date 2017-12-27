@@ -1096,7 +1096,7 @@ title</ColNames>
     <column id="267" parent="236" name="money">
       <Position>4</Position>
       <Comment>金额</Comment>
-      <DataType>decimal(10) unsigned|0</DataType>
+      <DataType>float(10) unsigned|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
@@ -1487,7 +1487,7 @@ title</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="330" parent="242" name="admirer_id">
+    <column id="330" parent="242" name="liker_id">
       <Position>3</Position>
       <Comment>仰慕者（给出like的人）id，未注册读者用0表示</Comment>
       <DataType>int(10) unsigned|0</DataType>
@@ -1501,7 +1501,7 @@ title</ColNames>
       <ColumnKind>normal</ColumnKind>
     </column>
     <index id="332" parent="242" name="admirer_id">
-      <ColNames>admirer_id
+      <ColNames>liker_id
 blog_id</ColNames>
       <Unique>1</Unique>
     </index>
@@ -1514,7 +1514,7 @@ blog_id</ColNames>
       <Primary>1</Primary>
     </key>
     <key id="335" parent="242" name="admirer_id">
-      <ColNames>admirer_id
+      <ColNames>liker_id
 blog_id</ColNames>
       <UnderlyingIndexName>admirer_id</UnderlyingIndexName>
     </key>
