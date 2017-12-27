@@ -1491,7 +1491,6 @@ title</ColNames>
       <Position>3</Position>
       <Comment>仰慕者（给出like的人）id，未注册读者用0表示</Comment>
       <DataType>int(10) unsigned|0</DataType>
-      <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
@@ -1506,7 +1505,7 @@ title</ColNames>
 blog_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="333" parent="242" name="blog_id">
+    <index id="333" parent="242" name="blog_like_ibfk_1">
       <ColNames>blog_id</ColNames>
     </index>
     <key id="334" parent="242" name="PRIMARY">

@@ -74,4 +74,150 @@
         WHERE id = #{id}
     </delete>
 
+    <update id="updateCommentCountPlus">
+        UPDATE blog_statistics
+        SET comment_count = comment_count + 1
+        WHERE blog_id = #{value}
+    </update>
+
+    <update id="updateViewCountPlus">
+        UPDATE blog_statistics
+        SET view_count = view_count + 1
+        WHERE blog_id = #{value}
+    </update>
+
+    <update id="updateReplyCommentCountPlus">
+        UPDATE blog_statistics
+        SET reply_comment_count = reply_comment_count + 1
+        WHERE blog_id = #{value}
+    </update>
+
+    <update id="updateCollectCountPlus">
+        UPDATE blog_statistics
+        SET collect_count = collect_count + 1
+        WHERE blog_id = #{value}
+    </update>
+
+    <update id="updateComplainCountPlus">
+        UPDATE blog_statistics
+        SET complain_count = complain_count + 1
+        WHERE blog_id = #{value}
+    </update>
+
+    <update id="updateShareCountPlus">
+        UPDATE blog_statistics
+        SET share_count = share_count + 1
+        WHERE blog_id = #{value}
+    </update>
+
+    <update id="updateAdmireCountPlus">
+        UPDATE blog_statistics
+        SET admire_count = admire_count + 1
+        WHERE blog_id = #{value}
+    </update>
+
+    <update id="updateLikeCountPlus">
+        UPDATE blog_statistics
+        SET like_count = like_count + 1
+        WHERE blog_id = #{value}
+    </update>
+
+    <update id="updateCommentCountMinus">
+        UPDATE blog_statistics
+        SET comment_count = comment_count - 1
+        WHERE blog_id = #{value}
+    </update>
+
+    <update id="updateViewCountMinus">
+        UPDATE blog_statistics
+        SET view_count = view_count - 1
+        WHERE blog_id = #{value}
+    </update>
+
+    <update id="updateReplyCommentCountMinus">
+        UPDATE blog_statistics
+        SET reply_comment_count = reply_comment_count - 1
+        WHERE blog_id = #{value}
+    </update>
+
+    <update id="updateCollectCountMinus">
+        UPDATE blog_statistics
+        SET collect_count = collect_count - 1
+        WHERE blog_id = #{value}
+    </update>
+
+    <update id="updateComplainCountMinus">
+        UPDATE blog_statistics
+        SET complain_count = complain_count - 1
+        WHERE blog_id = #{value}
+    </update>
+
+    <update id="updateShareCountMinus">
+        UPDATE blog_statistics
+        SET share_count = share_count - 1
+        WHERE blog_id = #{value}
+    </update>
+
+    <update id="updateAdmireCountMinus">
+        UPDATE blog_statistics
+        SET admire_count = admire_count - 1
+        WHERE blog_id = #{value}
+    </update>
+
+    <update id="updateLikeCountMinus">
+        UPDATE blog_statistics
+        SET like_count = like_count - 1
+        WHERE blog_id = #{value}
+    </update>
+
+
+    <select id="getCommentCount" resultType="java.lang.Integer">
+        SELECT comment_count
+        FROM blog_statistics
+        WHERE blog_id = #{value}
+    </select>
+
+    <select id="getViewCount" resultType="java.lang.Integer">
+        SELECT view_count
+        FROM blog_statistics
+        WHERE blog_id = #{value}
+    </select>
+
+    <select id="getReplyCommentCount" resultType="java.lang.Integer">
+        SELECT reply_comment_count
+        FROM blog_statistics
+        WHERE blog_id = #{value}
+    </select>
+
+    <select id="getCollectCount" resultType="java.lang.Integer">
+        SELECT collect_count
+        FROM blog_statistics
+        WHERE blog_id = #{value}
+    </select>
+
+    <select id="getComplainCount" resultType="java.lang.Integer">
+        SELECT complain_count
+        FROM blog_statistics
+        WHERE blog_id = #{value}
+    </select>
+
+    <select id="getShareCount" resultType="java.lang.Integer">
+        SELECT share_count
+        FROM blog_statistics
+        WHERE blog_id = #{value}
+    </select>
+
+    <select id="getAdmireCount" resultType="java.lang.Integer">
+        SELECT admire_count
+        FROM blog_statistics
+        WHERE blog_id = #{value}
+    </select>
+
+    <select id="getLikeCount" resultType="java.lang.Integer">
+        SELECT like_count
+        FROM blog_statistics
+        WHERE blog_id = #{value}
+    </select>
+
+
 </mapper>

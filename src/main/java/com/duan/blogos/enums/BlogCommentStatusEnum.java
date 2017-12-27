@@ -11,7 +11,7 @@ public enum BlogCommentStatusEnum {
     /**
      * 正在审核
      */
-    VERIFY(0),
+    BEING_AUDITED(0),
 
     /**
      * 审核通过

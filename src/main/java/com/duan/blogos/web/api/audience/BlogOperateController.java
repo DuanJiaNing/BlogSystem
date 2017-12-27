@@ -27,6 +27,8 @@ import javax.servlet.http.HttpServletRequest;
  * <li>取消收藏：/blog/operate/collect/remove</li>
  * <li>取消喜欢：/blog/operate/like/remove</li>
  * </ol>
+ * <p>
+ * 博文参加 doc/wiki/audience/博文操作.md
  *
  * @author DuanJiaNing
  */
@@ -181,7 +183,7 @@ public class BlogOperateController extends BaseBlogController {
         if (exception != null) throw exception;
 
         //执行，若操作失败，则将由顶层父类（BaseRestController）
-        // 的handlerException(HttpServletRequest request, Throwable e) {方法处理
+        // 的handlerException(HttpServletRequest request, Throwable e)方法处理
         operateService.deleteCollect(bloggerId, blogId);
 
         return new ResultBean<>("");
@@ -201,7 +203,7 @@ public class BlogOperateController extends BaseBlogController {
         if (exception != null) throw exception;
 
         //执行，若操作失败，则将由顶层父类（BaseRestController）
-        //的handlerException(HttpServletRequest request, Throwable e) {方法处理
+        //的handlerException(HttpServletRequest request, Throwable e)方法处理
         operateService.deleteLike(bloggerId, blogId);
 
         return new ResultBean<>("");
