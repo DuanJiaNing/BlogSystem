@@ -30,10 +30,6 @@ public class BloggerLink implements Serializable {
     private String url;
 
     //描述
-    private String desc;
-
-    //优先级
-    private Integer priority;
-
+    private String bewrite;
 
 }

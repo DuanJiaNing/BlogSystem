@@ -21,7 +21,17 @@ public enum BloggerPictureCategoryEnum {
     /**
      * 博主头像
      */
-    BLOGGER_AVATAR(2);
+    BLOGGER_AVATAR(2),
+
+    /**
+     * 博主友情链接默认图片
+     */
+    BLOGGER_DEFAULT_LINK_ICON(3),
+
+    /**
+     * 博主友情链接图标
+     */
+    BLOGGER_LINK_ICON(4);
 
     private int code;
 

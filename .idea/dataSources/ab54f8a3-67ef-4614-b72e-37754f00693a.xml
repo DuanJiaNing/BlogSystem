@@ -1498,6 +1498,7 @@ title</ColNames>
       <Position>4</Position>
       <Comment>时间</Comment>
       <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <index id="332" parent="242" name="admirer_id">
@@ -1704,7 +1705,7 @@ blog_id</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="363" parent="245" name="desc">
+    <column id="363" parent="245" name="bewrite">
       <Position>6</Position>
       <Comment>链接描述</Comment>
       <DataType>varchar(100)|0</DataType>

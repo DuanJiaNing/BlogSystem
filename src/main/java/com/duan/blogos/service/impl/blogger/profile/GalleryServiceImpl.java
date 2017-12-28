@@ -31,4 +31,10 @@ public class GalleryServiceImpl implements GalleryService {
     public BloggerPicture getPicture(int pictureId) {
         return null;
     }
+
+    @Override
+    public boolean getPictureForCheckExist(int pictureId, int category) {
+        return false;
+    }
+
 }

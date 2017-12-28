@@ -58,4 +58,8 @@ public class ExceptionManager {
     public MissingRequestParameterException getMissingRequestParameterException(RequestContext context, Throwable e) {
         return new MissingRequestParameterException(context.getMessage("common.missingRequestParameter"), e);
     }
+
+    public UnknownPictureException getUnknownPictureException(RequestContext context) {
+        return new UnknownPictureException(context.getMessage("common.unknownPicture"));
+    }
 }

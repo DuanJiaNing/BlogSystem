@@ -41,7 +41,7 @@ public class BlogOperateController extends BaseBlogController {
 
         //执行操作
         int id = operateService.insertComment(blogId, spokesmanId, listenerId, content);
-        if (id <= 0) throw exceptionManager.getOperateFailException(context);
+        if (id <= 0) handlerOperateFail(request);
 
         return new ResultBean<>(id);
     }
@@ -82,7 +82,7 @@ public class BlogOperateController extends BaseBlogController {
 
         //执行
         int id = operateService.insertAdmire(blogId, paierId, money);
-        if (id <= 0) throw exceptionManager.getOperateFailException(context);
+        if (id <= 0) handlerOperateFail(request);
 
         return new ResultBean<>(id);
     }
@@ -109,7 +109,7 @@ public class BlogOperateController extends BaseBlogController {
 
         //执行
         int id = operateService.insertCollect(blogId, collectorId, reason, categoryId == null ? -1 : categoryId);
-        if (id <= 0) throw exceptionManager.getOperateFailException(context);
+        if (id <= 0) handlerOperateFail(request);
 
         return new ResultBean<>(id);
     }
@@ -131,7 +131,7 @@ public class BlogOperateController extends BaseBlogController {
 
         //执行
         int id = operateService.insertComplain(blogId, complainId, content);
-        if (id <= 0) throw exceptionManager.getOperateFailException(context);
+        if (id <= 0) handlerOperateFail(request);
 
         return new ResultBean<>(id);
     }
@@ -170,7 +170,9 @@ public class BlogOperateController extends BaseBlogController {
 
         //执行
         boolean result = operateService.deleteCollect(bloggerId, blogId);
-        return result ? new ResultBean<>("") : new ResultBean(exceptionManager.getOperateFailException(context));
+        if (!result) handlerOperateFail(request);
+
+        return new ResultBean<>("");
 
     }
 
@@ -189,7 +191,9 @@ public class BlogOperateController extends BaseBlogController {
 
         //执行
         boolean result = operateService.deleteLike(bloggerId, blogId);
-        return result ? new ResultBean<>("") : new ResultBean(exceptionManager.getOperateFailException(context));
+        if (!result) handlerOperateFail(request);
+
+        return new ResultBean<>("");
     }
 
 }

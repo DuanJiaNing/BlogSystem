@@ -32,10 +32,6 @@ public class BloggerLinkDTO implements Serializable {
     private String url;
 
     //描述
-    private String desc;
-
-    //优先级
-    private int priority;
-
+    private String bewrite;
 
 }

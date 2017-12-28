@@ -3,6 +3,7 @@ package com.duan.blogos.web.api.audience;
 import com.duan.blogos.exception.BaseRuntimeException;
 import com.duan.blogos.exception.UnknownBlogException;
 import com.duan.blogos.exception.UnknownBloggerException;
+import com.duan.blogos.manager.AudiencePropertiesManager;
 import com.duan.blogos.manager.validate.BlogValidateManager;
 import com.duan.blogos.manager.validate.BloggerValidateManager;
 import com.duan.blogos.web.api.BaseRestController;
@@ -17,10 +18,7 @@ import org.springframework.web.servlet.support.RequestContext;
 public class BaseBlogController extends BaseRestController {
 
     @Autowired
-    protected BlogValidateManager blogValidateManager;
-
-    @Autowired
-    protected BloggerValidateManager bloggerValidateManager;
+    protected AudiencePropertiesManager audiencePropertiesManager;
 
     /**
      * 检查博文和博主是否存在，检查通过应该返回null
@@ -38,28 +36,4 @@ public class BaseBlogController extends BaseRestController {
 
         return null;
     }
-
-    /**
-     * 检查博主账户是否存在，存在返回null
-     */
-    protected UnknownBloggerException checkAccount(RequestContext context, Integer bloggerId) {
-        if (bloggerId == null || bloggerId <= 0 || bloggerValidateManager.checkAccount(bloggerId) == null) {
-            return exceptionManager.getUnknownBloggerException(context);
-        }
-
-        return null;
-    }
-
-
-    /**
-     * 检查博文是否存在，存在返回null
-     */
-    protected UnknownBlogException checkBlogExist(RequestContext context, Integer blogId) {
-        if (blogId == null || blogId <= 0 || !blogValidateManager.checkBlogExist(blogId)) {
-            return exceptionManager.getUnknownBlogException(context);
-        }
-
-        return null;
-    }
-
 }

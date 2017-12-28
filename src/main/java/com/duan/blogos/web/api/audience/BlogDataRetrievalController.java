@@ -39,9 +39,6 @@ public class BlogDataRetrievalController extends BaseBlogController {
     @Autowired
     private BlogBrowseService blogBrowseService;
 
-    @Autowired
-    private AudiencePropertiesManager audiencePropertiesManager;
-
     /**
      * 检索指定博主的博文列表
      * 文档见 doc/wiki/audience/博文检索.md

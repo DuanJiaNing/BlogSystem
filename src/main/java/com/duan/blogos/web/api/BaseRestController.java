@@ -1,7 +1,11 @@
 package com.duan.blogos.web.api;
 
 import com.duan.blogos.exception.BaseRuntimeException;
+import com.duan.blogos.exception.UnknownBlogException;
+import com.duan.blogos.exception.UnknownBloggerException;
 import com.duan.blogos.manager.ExceptionManager;
+import com.duan.blogos.manager.validate.BlogValidateManager;
+import com.duan.blogos.manager.validate.BloggerValidateManager;
 import com.duan.blogos.result.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -21,11 +25,24 @@ public class BaseRestController {
     @Autowired
     protected ExceptionManager exceptionManager;
 
+    @Autowired
+    protected BlogValidateManager blogValidateManager;
+
+    @Autowired
+    protected BloggerValidateManager bloggerValidateManager;
+
     /**
      * 处理结果为空的情况
      */
     protected void handlerEmptyResult(RequestContext context) {
         throw exceptionManager.getEmptyResultException(context);
+    }
+
+    /**
+     * 处理操作失败的情况
+     */
+    protected void handlerOperateFail(HttpServletRequest request) {
+        throw exceptionManager.getOperateFailException(new RequestContext(request));
     }
 
     /**
@@ -58,6 +75,28 @@ public class BaseRestController {
     @RequestMapping("")
     public void defaultOperation(HttpServletRequest request) {
         throw exceptionManager.getUnspecifiedOperationException(new RequestContext(request));
+    }
+
+    /**
+     * 检查博主账户是否存在，存在返回null
+     */
+    protected UnknownBloggerException checkAccount(RequestContext context, Integer bloggerId) {
+        if (bloggerId == null || bloggerId <= 0 || bloggerValidateManager.checkAccount(bloggerId) == null) {
+            return exceptionManager.getUnknownBloggerException(context);
+        }
+
+        return null;
+    }
+
+    /**
+     * 检查博文是否存在，存在返回null
+     */
+    protected UnknownBlogException checkBlogExist(RequestContext context, Integer blogId) {
+        if (blogId == null || blogId <= 0 || !blogValidateManager.checkBlogExist(blogId)) {
+            return exceptionManager.getUnknownBlogException(context);
+        }
+
+        return null;
     }
 
 }

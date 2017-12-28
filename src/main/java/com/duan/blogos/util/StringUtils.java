@@ -95,4 +95,14 @@ public class StringUtils {
     public static boolean isEmpty(String str) {
         return str == null || str.length() == 0 || "null".equals(str);
     }
+
+    /**
+     * 检查字符串是否为url
+     *
+     * @param url 字符串
+     * @return 是返回true
+     */
+    public static boolean isURL(String url) {
+        return !isEmpty(url) && url.matches("(^http|https)://.*");
+    }
 }

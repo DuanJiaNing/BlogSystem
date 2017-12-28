@@ -31,19 +31,18 @@ public interface LinkService {
      * @param iconId    图标id
      * @param title     名字
      * @param url       url
-     * @param desc      描述
-     * @param priority  优先级
+     * @param bewrite   描述
      * @return 新纪录id
      */
-    int insertBloggerLink(int bloggerId, int iconId, String title, String url, String desc, int priority);
+    int insertBloggerLink(int bloggerId, int iconId, String title, String url, String bewrite);
 
     /**
      * 删除链接
      *
      * @param linkId 链接id
-     * @return 删除的记录
+     * @return 删除成功为true
      */
-    BloggerLink deleteBloggerLink(int linkId);
+    boolean deleteBloggerLink(int linkId);
 
     /**
      * 更新链接
@@ -53,11 +52,18 @@ public interface LinkService {
      * @param newIconId    新的图片id，不改变传 -1
      * @param newTitle     新的标题，不改变传 null
      * @param newUrl       新的url，不改变传 null
-     * @param newDesc      新的描述，不改变传 null
-     * @param newPriority  新的优先级，不改变传 -1
+     * @param newBewrite   新的描述，不改变传 null
      * @return 更新失败为false
      */
     boolean updateBloggerLink(int linkId, int newBloggerId, int newIconId, String newTitle,
-                           String newUrl, String newDesc, int newPriority);
+                              String newUrl, String newBewrite);
 
+    /**
+     * 检查链接是否存在
+     *
+     * @param linkId   链接id
+     * @param category 链接类别
+     * @return 存在为true
+     */
+    boolean getLinkForCheckExist(int linkId, int category);
 }

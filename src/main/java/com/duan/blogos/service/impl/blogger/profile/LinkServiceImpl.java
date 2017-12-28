@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author DuanJiaNing
  */
-@Service("linkService")
+@Service
 public class LinkServiceImpl implements LinkService {
     @Override
     public ResultBean<List<BloggerLinkDTO>> listBloggerLink(int bloggerId, int offset, int rows) {
@@ -21,17 +21,22 @@ public class LinkServiceImpl implements LinkService {
     }
 
     @Override
-    public int insertBloggerLink(int bloggerId, int iconId, String title, String url, String desc, int priority) {
+    public int insertBloggerLink(int bloggerId, int iconId, String title, String url, String bewrite) {
         return 0;
     }
 
     @Override
-    public BloggerLink deleteBloggerLink(int linkId) {
-        return null;
+    public boolean deleteBloggerLink(int linkId) {
+        return false;
     }
 
     @Override
-    public boolean updateBloggerLink(int linkId, int newBloggerId, int newIconId, String newTitle, String newUrl, String newDesc, int newPriority) {
+    public boolean updateBloggerLink(int linkId, int newBloggerId, int newIconId, String newTitle, String newUrl, String newBewrite) {
+        return false;
+    }
+
+    @Override
+    public boolean getLinkForCheckExist(int linkId, int category) {
         return false;
     }
 }
