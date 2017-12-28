@@ -17,10 +17,7 @@ import com.duan.blogos.service.audience.BlogRetrievalService;
 import com.duan.blogos.util.StringUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.RequestContext;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,21 +26,11 @@ import java.util.List;
 /**
  * Created on 2017/12/19.
  * 读者对博文数据的获取api
- * <p>
- * tip：RequestParam的required为true，而请求时没有该属性会返回404错误
- * <p>
- * api列表：
- * <ol>
- * <li>检索博文：/blog/get/list</li>
- * <li>获得博文主体内容：/blog/get/content</li>
- * <li>获得博文评论列表：/blog/get/comment</li>
- * <li>获得博文统计信息：/blog/get/statistics</li>
- * </ol>
  *
  * @author DuanJiaNing
  */
 @RestController
-@RequestMapping("/blog/get")
+@RequestMapping("/blog")
 public class BlogDataRetrievalController extends BaseBlogController {
 
     @Autowired
@@ -56,13 +43,12 @@ public class BlogDataRetrievalController extends BaseBlogController {
     private AudiencePropertiesManager audiencePropertiesManager;
 
     /**
-     * 检索博文
-     * 文档见 doc/wiki/audience/博主博文检索.md
-     * 查询时博文状态调用者无法指定，只能查询 {@link BlogStatusEnum#PUBLIC}的
+     * 检索指定博主的博文列表
+     * 文档见 doc/wiki/audience/博文检索.md
      */
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/{bloggerId}", method = RequestMethod.GET)
     public ResultBean<List<BlogListItemDTO>> blogList(HttpServletRequest request,
-                                                      @RequestParam("bloggerId") Integer bloggerId,
+                                                      @PathVariable Integer bloggerId,
                                                       @RequestParam(value = "cids", required = false) String categoryIds,
                                                       @RequestParam(value = "lids", required = false) String labelIds,
                                                       @RequestParam(value = "kword", required = false) String keyWord,
@@ -124,9 +110,9 @@ public class BlogDataRetrievalController extends BaseBlogController {
      * 获得博文主体内容
      * 文档见 doc/wiki/audience/博文主体内容.md
      */
-    @RequestMapping(value = "/content", method = RequestMethod.GET)
+    @RequestMapping(value = "/{blogId}/content", method = RequestMethod.GET)
     public ResultBean<BlogMainContentDTO> blogMainContent(HttpServletRequest request,
-                                                          @Param("blogId") Integer blogId) {
+                                                          @PathVariable Integer blogId) {
         final RequestContext context = new RequestContext(request);
 
         //检查博文是否存在
@@ -143,9 +129,9 @@ public class BlogDataRetrievalController extends BaseBlogController {
      * 获得博文评论列表
      * 文档见 doc/wiki/audience/博文评论列表.md
      */
-    @RequestMapping(value = "/comment", method = RequestMethod.GET)
+    @RequestMapping(value = "/{blogId}/comment", method = RequestMethod.GET)
     public ResultBean<List<BlogCommentDTO>> blogComment(HttpServletRequest request,
-                                                        @Param("blogId") Integer blogId,
+                                                        @PathVariable Integer blogId,
                                                         @RequestParam(value = "offset", required = false) Integer offset,
                                                         @RequestParam(value = "rows", required = false) Integer rows) {
         final RequestContext context = new RequestContext(request);
@@ -166,9 +152,8 @@ public class BlogDataRetrievalController extends BaseBlogController {
      * 获得博文统计信息
      * 文档见 doc/wiki/audience/博文统计信息.md
      */
-    @RequestMapping(value = "/statistics", method = RequestMethod.GET)
-    public ResultBean<BlogStatisticsDTO> blogStatistics(HttpServletRequest request,
-                                                        @Param("blogId") Integer blogId) {
+    @RequestMapping(value = "/{blogId}/statistics", method = RequestMethod.GET)
+    public ResultBean<BlogStatisticsDTO> blogStatistics(HttpServletRequest request, @PathVariable Integer blogId) {
         final RequestContext context = new RequestContext(request);
 
         //检查博文是否存在

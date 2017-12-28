@@ -5,10 +5,7 @@ import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.audience.BlogOperateService;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.RequestContext;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,25 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Created on 2017/12/25.
  * 读者对博文可以进行的操作
- * <p>
- * api列表
- * <ol>
- * <li>评论博文：/blog/operate/comment</li>
- * <li>分享博文：/blog/operate/share</li>
- * <li>赞赏博文：/blog/operate/admire</li>
- * <li>收藏博文：/blog/operate/collect</li>
- * <li>投诉博文：/blog/operate/complain</li>
- * <li>喜欢博文：/blog/operate/like</li>
- * <li>取消收藏：/blog/operate/collect/remove</li>
- * <li>取消喜欢：/blog/operate/like/remove</li>
- * </ol>
- * <p>
- * 博文参加 doc/wiki/audience/博文操作.md
  *
  * @author DuanJiaNing
  */
 @RestController
-@RequestMapping("/blog/operate")
+@RequestMapping("/blog/{blogId}")
 public class BlogOperateController extends BaseBlogController {
 
     @Autowired
@@ -45,7 +28,7 @@ public class BlogOperateController extends BaseBlogController {
      */
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
     public ResultBean commentBlog(HttpServletRequest request,
-                                  @RequestParam("blogId") Integer blogId,
+                                  @PathVariable Integer blogId,
                                   @RequestParam("spokesmanId") Integer spokesmanId,
                                   @RequestParam("listenerId") Integer listenerId,
                                   @RequestParam("content") String content) {
@@ -66,9 +49,9 @@ public class BlogOperateController extends BaseBlogController {
     /**
      * 分享博文
      */
-    @RequestMapping(value = "/share", method = RequestMethod.GET)
+    @RequestMapping(value = "/share", method = RequestMethod.POST)
     public ResultBean shareBlog(HttpServletRequest request,
-                                @RequestParam("blogId") Integer blogId,
+                                @PathVariable Integer blogId,
                                 @RequestParam("sharerId") Integer sharerId) {
         RequestContext context = new RequestContext(request);
 
@@ -87,7 +70,7 @@ public class BlogOperateController extends BaseBlogController {
      */
     @RequestMapping(value = "/admire", method = RequestMethod.POST)
     public ResultBean admireBlog(HttpServletRequest request,
-                                 @RequestParam("blogId") Integer blogId,
+                                 @PathVariable Integer blogId,
                                  @RequestParam("paierId") Integer paierId,
                                  @RequestParam("money") Float money) {
         RequestContext context = new RequestContext(request);
@@ -107,9 +90,9 @@ public class BlogOperateController extends BaseBlogController {
     /**
      * 收藏博文
      */
-    @RequestMapping(value = "/collect", method = RequestMethod.GET)
+    @RequestMapping(value = "/collect", method = RequestMethod.POST)
     public ResultBean collectBlog(HttpServletRequest request,
-                                  @RequestParam("blogId") Integer blogId,
+                                  @PathVariable Integer blogId,
                                   @RequestParam("collectorId") Integer collectorId,
                                   @RequestParam(value = "reason", required = false) String reason,
                                   @RequestParam(value = "categoryId", required = false) Integer categoryId) {
@@ -134,9 +117,9 @@ public class BlogOperateController extends BaseBlogController {
     /**
      * 投诉博文
      */
-    @RequestMapping(value = "/complain", method = RequestMethod.GET)
+    @RequestMapping(value = "/complain", method = RequestMethod.POST)
     public ResultBean complainBlog(HttpServletRequest request,
-                                   @RequestParam("blogId") Integer blogId,
+                                   @PathVariable Integer blogId,
                                    @RequestParam("complainId") Integer complainId,
                                    @RequestParam("content") String content) {
         RequestContext context = new RequestContext(request);
@@ -156,10 +139,10 @@ public class BlogOperateController extends BaseBlogController {
     /**
      * 喜欢博文
      */
-    @RequestMapping(value = "/like", method = RequestMethod.GET)
+    @RequestMapping(value = "/like", method = RequestMethod.POST)
     public ResultBean likeBlog(HttpServletRequest request,
-                               @RequestParam("blogId") int blogId,
-                               @RequestParam("likerId") int likerId) {
+                               @PathVariable Integer blogId,
+                               @RequestParam("likerId") Integer likerId) {
         RequestContext context = new RequestContext(request);
 
         //检查
@@ -175,10 +158,10 @@ public class BlogOperateController extends BaseBlogController {
     /**
      * 取消收藏
      */
-    @RequestMapping(value = "/collect/remove", method = RequestMethod.GET)
+    @RequestMapping(value = "/collect", method = RequestMethod.DELETE)
     public ResultBean removeCollect(HttpServletRequest request,
-                                    @RequestParam("bloggerId") Integer bloggerId,
-                                    @RequestParam("blogId") Integer blogId) {
+                                    @PathVariable Integer blogId,
+                                    @RequestParam("bloggerId") Integer bloggerId) {
         RequestContext context = new RequestContext(request);
 
         //检查
@@ -194,10 +177,10 @@ public class BlogOperateController extends BaseBlogController {
     /**
      * 取消喜欢
      */
-    @RequestMapping(value = "/like/remove", method = RequestMethod.GET)
+    @RequestMapping(value = "/like", method = RequestMethod.DELETE)
     public ResultBean removeLike(HttpServletRequest request,
-                                 @RequestParam("bloggerId") Integer bloggerId,
-                                 @RequestParam("blogId") Integer blogId) {
+                                 @PathVariable Integer blogId,
+                                 @RequestParam("bloggerId") Integer bloggerId) {
         RequestContext context = new RequestContext(request);
 
         //检查
