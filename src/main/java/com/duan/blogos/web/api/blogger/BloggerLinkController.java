@@ -85,7 +85,7 @@ public class BloggerLinkController extends BaseBloggerController {
     /**
      * 更新链接
      */
-    @RequestMapping(value = "/{linkId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{linkId}", method = RequestMethod.PUT)
     public ResultBean update(HttpServletRequest request,
                              @PathVariable Integer bloggerId,
                              @PathVariable Integer linkId,

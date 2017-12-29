@@ -1,5 +1,7 @@
 package com.duan.blogos.service.blogger.profile;
 
+import com.duan.blogos.entity.blogger.BloggerProfile;
+
 /**
  * Created on 2017/12/14.
  * 博主个人资料服务
@@ -21,14 +23,6 @@ public interface ProfileService {
     int insertBloggerProfile(int bloggerId, String phone, String email, String aboutMe, String intro);
 
     /**
-     * 更新博主头像
-     *
-     * @param pictureId 图片id
-     * @return 更新失败为false
-     */
-    boolean updateBloggerAvatar(int pictureId);
-
-    /**
      * 更新博主信息
      *
      * @param bloggerId  博主id
@@ -39,5 +33,21 @@ public interface ProfileService {
      * @return 更新失败为false
      */
     boolean updateBloggerProfile(int bloggerId, String newPhone, String newEmail, String newAboutMe, String newIntro);
+
+    /**
+     * 删除博主信息
+     *
+     * @param bloggerId 博主id
+     * @return 删除成功为true
+     */
+    boolean deleteBloggerProfile(int bloggerId);
+
+    /**
+     * 查询博主信息
+     *
+     * @param bloggerId 博主id
+     * @return 查询结果
+     */
+    BloggerProfile getBloggerProfile(int bloggerId);
 
 }

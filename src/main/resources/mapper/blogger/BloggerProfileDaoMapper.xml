@@ -13,9 +13,6 @@
     <update id="update" parameterType="BloggerProfile">
         UPDATE blogger_profile
         <set>
-            <if test="bloggerId != null">
-                blogger_id=#{bloggerId},
-            </if>
             <if test="phone != null">
                 phone=#{phone},
             </if>
@@ -25,15 +22,18 @@
             <if test="aboutMe != null">
                 about_me=#{aboutMe},
             </if>
+            <if test="intro != null">
+                intro=#{intro}
+            </if>
         </set>
         <where>
-            id=#{id}
+            blogger_id=#{bloggerId}
         </where>
     </update>
 
     <delete id="delete">
         DELETE FROM blogger_profile
-        WHERE id = #{value}
+        WHERE blogger_id = #{value}
     </delete>
 
     <insert id="insert" parameterType="BloggerProfile" useGeneratedKeys="true" keyProperty="id">
@@ -41,17 +41,17 @@
             SELECT LAST_INSERT_ID() AS id
         </selectKey>
         INSERT INTO blogger_profile (
-            blogger_id,
-            phone,
-            email,
-            about_me,
-            intro
+        blogger_id,
+        phone,
+        email,
+        about_me,
+        intro
         ) VALUE (
-            #{bloggerId},
-            #{phone},
-            #{email},
-            #{aboutMe},
-            #{introl}
+        #{bloggerId},
+        #{phone},
+        #{email},
+        #{aboutMe},
+        #{intro}
         )
     </insert>
 

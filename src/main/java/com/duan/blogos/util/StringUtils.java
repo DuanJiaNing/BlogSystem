@@ -1,5 +1,7 @@
 package com.duan.blogos.util;
 
+import javafx.scene.control.Cell;
+
 import java.util.stream.Stream;
 
 /**
@@ -104,5 +106,26 @@ public class StringUtils {
      */
     public static boolean isURL(String url) {
         return !isEmpty(url) && url.matches("(^http|https)://.*");
+    }
+
+    /**
+     * 检查字符串是否为电话号码
+     * http://www.jb51.net/article/96201.htm
+     *
+     * @return 是为true
+     */
+    public static boolean isPhone(String phone) {
+        String cellPhone = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0-9]))\\d{8}$";
+        String telephone = "^(0\\d{2}-\\d{8}(-\\d{1,4})?)|(0\\d{3}-\\d{7,8}(-\\d{1,4})?)$";
+        return !isEmpty(phone) && (phone.matches(cellPhone) || phone.matches(telephone));
+    }
+
+    /**
+     * 检查字符串是否为邮箱
+     *
+     * @return 是否true
+     */
+    public static boolean isEmail(String email) {
+        return !isEmpty(email) && email.matches("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
     }
 }
