@@ -62,8 +62,7 @@ public interface LinkService {
      * 检查链接是否存在
      *
      * @param linkId   链接id
-     * @param category 链接类别
      * @return 存在为true
      */
-    boolean getLinkForCheckExist(int linkId, int category);
+    boolean getLinkForCheckExist(int linkId);
 }

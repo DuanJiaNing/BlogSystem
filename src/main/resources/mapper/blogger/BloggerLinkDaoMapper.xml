@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duan.blogos.dao.blogger.BloggerLinkDao">
+
+    <update id="update" parameterType="BloggerLink">
+        UPDATE blogger_link
+        <set>
+            <if test="bloggerId != null">
+                blogger_id=#{bloggerId},
+            </if>
+            <if test="iconId != null">
+                icon_id=#{iconId},
+            </if>
+            <if test="title != null">
+                title=#{title},
+            </if>
+            <if test="url != null">
+                url=#{url},
+            </if>
+            <if test="bewrite != null">
+                bewrite=#{bewrite}
+            </if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <delete id="delete">
+        DELETE FROM blogger_link
+        WHERE id = #{value}
+    </delete>
+
+    <select id="listBlogLinkByBloggerId" resultType="BloggerLink">
+        SELECT *
+        FROM blogger_link
+        WHERE blogger_id = #{bloggerId}
+        LIMIT #{offset}, #{rows}
+    </select>
+
+    <select id="getLinkForCheckExist" resultType="java.lang.Integer">
+        SELECT id
+        FROM blogger_link
+        WHERE id = #{value}
+    </select>
+
+    <insert id="insert" parameterType="BloggerLink" useGeneratedKeys="true" keyProperty="id">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+        INSERT INTO blogger_link (
+        blogger_id,
+        icon_id,
+        title,
+        url,
+        bewrite) VALUE (
+        #{bloggerId},
+        #{iconId},
+        #{title},
+        #{url},
+        #{bewrite}
+        )
+    </insert>
+
+</mapper>

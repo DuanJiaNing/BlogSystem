@@ -1711,33 +1711,25 @@ blog_id</ColNames>
       <DataType>varchar(100)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="364" parent="245" name="priority">
-      <Position>7</Position>
-      <Comment>链接优先级</Comment>
-      <DataType>int(10) unsigned|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="365" parent="245" name="blogger_id">
+    <index id="364" parent="245" name="blogger_id">
       <ColNames>blogger_id
 url</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="366" parent="245" name="icon_id">
+    <index id="365" parent="245" name="icon_id">
       <ColNames>icon_id</ColNames>
     </index>
-    <key id="367" parent="245" name="PRIMARY">
+    <key id="366" parent="245" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="368" parent="245" name="blogger_id">
+    <key id="367" parent="245" name="blogger_id">
       <ColNames>blogger_id
 url</ColNames>
       <UnderlyingIndexName>blogger_id</UnderlyingIndexName>
     </key>
-    <foreign-key id="369" parent="245" name="blogger_link_ibfk_1">
+    <foreign-key id="368" parent="245" name="blogger_link_ibfk_1">
       <ColNames>blogger_id</ColNames>
       <RefSchemaName>blog</RefSchemaName>
       <RefTableName>blogger_account</RefTableName>
@@ -1745,7 +1737,7 @@ url</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="370" parent="245" name="blogger_link_ibfk_2">
+    <foreign-key id="369" parent="245" name="blogger_link_ibfk_2">
       <ColNames>icon_id</ColNames>
       <RefSchemaName>blog</RefSchemaName>
       <RefTableName>blogger_picture</RefTableName>
@@ -1753,7 +1745,7 @@ url</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>set-null</OnDelete>
     </foreign-key>
-    <column id="371" parent="246" name="id">
+    <column id="370" parent="246" name="id">
       <Position>1</Position>
       <Comment>照片id</Comment>
       <DataType>int(10) unsigned|0</DataType>
@@ -1761,20 +1753,20 @@ url</ColNames>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="372" parent="246" name="blogger_id">
+    <column id="371" parent="246" name="blogger_id">
       <Position>2</Position>
       <Comment>照片所属博主id</Comment>
       <DataType>int(11) unsigned|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="373" parent="246" name="bewrite">
+    <column id="372" parent="246" name="bewrite">
       <Position>3</Position>
       <Comment>照片描述</Comment>
       <DataType>text|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="374" parent="246" name="category">
+    <column id="373" parent="246" name="category">
       <Position>4</Position>
       <Comment>照片所属类别（头像，图标，...）</Comment>
       <DataType>int(11)|0</DataType>
@@ -1782,36 +1774,36 @@ url</ColNames>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="375" parent="246" name="path">
+    <column id="374" parent="246" name="path">
       <Position>5</Position>
       <Comment>照片保存位置</Comment>
       <DataType>varchar(100)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="376" parent="246" name="title">
+    <column id="375" parent="246" name="title">
       <Position>6</Position>
       <Comment>照片标题</Comment>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="377" parent="246" name="upload_date">
+    <column id="376" parent="246" name="upload_date">
       <Position>7</Position>
       <Comment>照片上传日期</Comment>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="378" parent="246" name="blogger_id">
+    <index id="377" parent="246" name="blogger_id">
       <ColNames>blogger_id</ColNames>
     </index>
-    <key id="379" parent="246" name="PRIMARY">
+    <key id="378" parent="246" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="380" parent="246" name="blogger_picture_ibfk_1">
+    <foreign-key id="379" parent="246" name="blogger_picture_ibfk_1">
       <ColNames>blogger_id</ColNames>
       <RefSchemaName>blog</RefSchemaName>
       <RefTableName>blogger_account</RefTableName>
@@ -1819,7 +1811,7 @@ url</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="381" parent="247" name="id">
+    <column id="380" parent="247" name="id">
       <Position>1</Position>
       <Comment>博主资料id</Comment>
       <DataType>int(11) unsigned|0</DataType>
@@ -1827,51 +1819,51 @@ url</ColNames>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="382" parent="247" name="blogger_id">
+    <column id="381" parent="247" name="blogger_id">
       <Position>2</Position>
       <Comment>博主id</Comment>
       <DataType>int(11) unsigned|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="383" parent="247" name="phone">
+    <column id="382" parent="247" name="phone">
       <Position>3</Position>
       <Comment>电话</Comment>
       <DataType>varchar(20)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="384" parent="247" name="email">
+    <column id="383" parent="247" name="email">
       <Position>4</Position>
       <Comment>邮箱</Comment>
       <DataType>varchar(50)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="385" parent="247" name="about_me">
+    <column id="384" parent="247" name="about_me">
       <Position>5</Position>
       <Comment>关于我</Comment>
       <DataType>text|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="386" parent="247" name="intro">
+    <column id="385" parent="247" name="intro">
       <Position>6</Position>
       <Comment>一句话简介</Comment>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="387" parent="247" name="blogger_id">
+    <index id="386" parent="247" name="blogger_id">
       <ColNames>blogger_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="388" parent="247" name="PRIMARY">
+    <key id="387" parent="247" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="389" parent="247" name="blogger_id">
+    <key id="388" parent="247" name="blogger_id">
       <ColNames>blogger_id</ColNames>
       <UnderlyingIndexName>blogger_id</UnderlyingIndexName>
     </key>
-    <foreign-key id="390" parent="247" name="blogger_profile_ibfk_1">
+    <foreign-key id="389" parent="247" name="blogger_profile_ibfk_1">
       <ColNames>blogger_id</ColNames>
       <RefSchemaName>blog</RefSchemaName>
       <RefTableName>blogger_account</RefTableName>

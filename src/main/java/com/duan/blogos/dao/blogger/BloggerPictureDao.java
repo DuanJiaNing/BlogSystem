@@ -29,4 +29,13 @@ public interface BloggerPictureDao extends BaseDao<BloggerPicture> {
      * @return 查询结果
      */
     BloggerPicture getPictureByCategory(@Param("bloggerId") int bloggerId, @Param("category") int category);
+
+    /**
+     * 根据类别获得图片，这些图片是应用默认的图片，一个类别只应该有一张默认图片
+     *
+     * @param category 类别
+     * @return 查询结果
+     */
+    BloggerPicture getPictureByPropertiesCategory(int category);
+
 }

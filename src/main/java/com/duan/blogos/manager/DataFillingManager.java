@@ -4,11 +4,13 @@ import com.duan.blogos.dto.blog.BlogCommentDTO;
 import com.duan.blogos.dto.blog.BlogListItemDTO;
 import com.duan.blogos.dto.blog.BlogStatisticsDTO;
 import com.duan.blogos.dto.blogger.BloggerDTO;
+import com.duan.blogos.dto.blogger.BloggerLinkDTO;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogCategory;
 import com.duan.blogos.entity.blog.BlogComment;
 import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.entity.blogger.BloggerAccount;
+import com.duan.blogos.entity.blogger.BloggerLink;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.entity.blogger.BloggerProfile;
 
@@ -60,7 +62,6 @@ public class DataFillingManager {
         return dto;
     }
 
-
     public BlogListItemDTO blogListItemToDTO(BlogStatistics statistics, List<BlogCategory> categories, Blog blog) {
         BlogListItemDTO dto = new BlogListItemDTO();
         dto.setCategories(categories.toArray(new BlogCategory[categories.size()]));
@@ -74,6 +75,17 @@ public class DataFillingManager {
         dto.setViewCount(statistics.getViewCount());
         return dto;
 
+    }
+
+    public BloggerLinkDTO bloggerLinkToDTO(BloggerLink link, BloggerPicture icon) {
+        BloggerLinkDTO dto = new BloggerLinkDTO();
+        dto.setBewrite(link.getBewrite());
+        dto.setBloggerId(link.getBloggerId());
+        dto.setIcon(icon);
+        dto.setId(link.getId());
+        dto.setTitle(link.getTitle());
+        dto.setUrl(link.getUrl());
+        return dto;
     }
 
 }

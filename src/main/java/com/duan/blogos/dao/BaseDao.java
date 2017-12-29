@@ -28,7 +28,7 @@ public interface BaseDao<T> {
      * 新增数据
      *
      * @param t 数据
-     * @return 新纪录的id
+     * @return 操作影响的行数
      */
     int insert(T t);
 

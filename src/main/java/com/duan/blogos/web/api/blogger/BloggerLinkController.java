@@ -1,7 +1,6 @@
 package com.duan.blogos.web.api.blogger;
 
 import com.duan.blogos.dto.blogger.BloggerLinkDTO;
-import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.profile.GalleryService;
 import com.duan.blogos.service.blogger.profile.LinkService;
@@ -35,13 +34,13 @@ public class BloggerLinkController extends BaseBloggerController {
     @RequestMapping(method = RequestMethod.GET)
     public ResultBean<List<BloggerLinkDTO>> get(HttpServletRequest request,
                                                 @PathVariable Integer bloggerId,
-                                                @RequestParam("offset") Integer offset,
-                                                @RequestParam("rows") Integer rows) {
+                                                @RequestParam(value = "offset", required = false) Integer offset,
+                                                @RequestParam(value = "rows", required = false) Integer rows) {
 
         checkAccount(request, bloggerId);
 
         int os = offset == null || offset < 0 ? 0 : offset;
-        int rs = rows == null || rows < 0 ? 0 : bloggerPropertiesManager.getRequestBloggerLinkCount();
+        int rs = rows == null || rows < 0 ? bloggerPropertiesManager.getRequestBloggerLinkCount() : rows;
         ResultBean<List<BloggerLinkDTO>> result = linkService.listBloggerLink(bloggerId, os, rs);
         if (result == null) handlerEmptyResult(new RequestContext(request));
 
@@ -62,8 +61,7 @@ public class BloggerLinkController extends BaseBloggerController {
         RequestContext context = new RequestContext(request);
 
         //检查图片是否存在
-        if (iconId != null && iconId > 0 && !galleryService.getPictureForCheckExist(iconId,
-                BloggerPictureCategoryEnum.BLOGGER_LINK_ICON.getCode())) {
+        if (iconId != null && iconId > 0 && !galleryService.getPictureForCheckExist(iconId)) {
             throw exceptionManager.getUnknownPictureException(context);
         }
 
@@ -79,9 +77,8 @@ public class BloggerLinkController extends BaseBloggerController {
 
     //检查链接是否存在
     private void checkLink(Integer linkId, RequestContext context) {
-        if (linkId == null || linkId <= 0 || !linkService.getLinkForCheckExist(linkId,
-                BloggerPictureCategoryEnum.BLOGGER_LINK_ICON.getCode())) {
-            throw exceptionManager.getParameterIllegalException(context);
+        if (linkId == null || linkId <= 0 || !linkService.getLinkForCheckExist(linkId)) {
+            throw exceptionManager.getUnknownLinkException(context);
         }
     }
 
@@ -92,23 +89,28 @@ public class BloggerLinkController extends BaseBloggerController {
     public ResultBean update(HttpServletRequest request,
                              @PathVariable Integer bloggerId,
                              @PathVariable Integer linkId,
-                             @RequestParam("iconId") Integer newIconId,
-                             @RequestParam("title") String newTitle,
-                             @RequestParam("url") String newUrl,
-                             @RequestParam("bewrite") String newBewrite) {
+                             @RequestParam(value = "iconId", required = false) Integer newIconId,
+                             @RequestParam(value = "title", required = false) String newTitle,
+                             @RequestParam(value = "url", required = false) String newUrl,
+                             @RequestParam(value = "bewrite", required = false) String newBewrite) {
         checkAccount(request, bloggerId);
         RequestContext context = new RequestContext(request);
         checkLink(linkId, context);
 
+        //都为null则无需更新
+        if (newIconId == null && newTitle == null && newUrl == null && newBewrite == null) {
+            throw exceptionManager.getParameterIllegalException(context);
+        }
+
         //检查图片是否存在
-        if (newIconId != null && newIconId > 0 && !galleryService.getPictureForCheckExist(newIconId,
-                BloggerPictureCategoryEnum.BLOGGER_LINK_ICON.getCode())) {
+        if (newIconId != null && newIconId > 0 && !galleryService.getPictureForCheckExist(newIconId)) {
             throw exceptionManager.getUnknownPictureException(context);
         }
 
         //检查url规范
-        if (!StringUtils.isURL(newUrl))
+        if (newUrl != null && !StringUtils.isURL(newUrl)) {
             throw exceptionManager.getParameterIllegalException(context);
+        }
 
         boolean result = linkService.updateBloggerLink(linkId, -1, newIconId == null ? -1 : newIconId, newTitle, newUrl, newBewrite);
         if (!result) handlerOperateFail(request);

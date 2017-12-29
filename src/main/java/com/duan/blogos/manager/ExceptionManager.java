@@ -62,4 +62,8 @@ public class ExceptionManager {
     public UnknownPictureException getUnknownPictureException(RequestContext context) {
         return new UnknownPictureException(context.getMessage("common.unknownPicture"));
     }
+
+    public UnknownLinkException getUnknownLinkException(RequestContext context) {
+        return new UnknownLinkException(context.getMessage("common.unknownLink"));
+    }
 }

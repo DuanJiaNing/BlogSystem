@@ -16,6 +16,12 @@
         WHERE id = #{value}
     </select>
 
+    <select id="getPictureByPropertiesCategory" resultType="BloggerPicture">
+        SELECT *
+        FROM blogger_picture
+        WHERE category = #{value}
+    </select>
+
     <update id="update" parameterType="BloggerPicture">
         UPDATE blogger_picture
         <set>
@@ -53,18 +59,18 @@
             SELECT LAST_INSERT_ID() AS id
         </selectKey>
         INSERT INTO blogger_picture (
-            blogger_id,
-            bewrite,
-            category,
-            path,
-            title,
-            upload_date) VALUE (
-            #{blogger_id},
-            #{bewrite},
-            ifnull(#{category}, 0),
-            #{path},
-            #{title},
-            NOW())
+        blogger_id,
+        bewrite,
+        category,
+        path,
+        title,
+        upload_date) VALUE (
+        #{blogger_id},
+        #{bewrite},
+        ifnull(#{category}, 0),
+        #{path},
+        #{title},
+        NOW())
     </insert>
 
 </mapper>

@@ -52,8 +52,7 @@ public interface GalleryService {
      * 检查图片是否存在
      *
      * @param pictureId 图片id
-     * @param category  图片类别
      * @return 存在返回true
      */
-    boolean getPictureForCheckExist(int pictureId, int category);
+    boolean getPictureForCheckExist(int pictureId);
 }

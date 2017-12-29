@@ -19,11 +19,9 @@ public class BaseBloggerController extends BaseRestController {
     BloggerPropertiesManager bloggerPropertiesManager;
 
     protected void checkAccount(HttpServletRequest request, Integer bloggerId) {
-
         RequestContext context = new RequestContext(request);
         UnknownBloggerException exception = checkAccount(context, bloggerId);
         if (exception != null) throw exception;
-
     }
 
 }

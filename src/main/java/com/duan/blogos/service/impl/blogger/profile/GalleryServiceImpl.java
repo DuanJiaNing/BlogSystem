@@ -33,8 +33,8 @@ public class GalleryServiceImpl implements GalleryService {
     }
 
     @Override
-    public boolean getPictureForCheckExist(int pictureId, int category) {
-        return false;
+    public boolean getPictureForCheckExist(int pictureId) {
+        return true;
     }
 
 }
