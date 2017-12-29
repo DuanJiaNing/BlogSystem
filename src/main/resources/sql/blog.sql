@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50716
 File Encoding         : 65001
 
-Date: 2017-12-26 18:41:58
+Date: 2017-12-29 16:15:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -89,21 +89,19 @@ CREATE TABLE `blogger_link` (
   `icon_id` int(10) unsigned DEFAULT NULL COMMENT '图标id',
   `title` varchar(50) NOT NULL COMMENT '链接标题',
   `url` varchar(200) NOT NULL COMMENT '链接url',
-  `desc` varchar(100) DEFAULT NULL COMMENT '链接描述',
-  `priority` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '链接优先级',
+  `bewrite` varchar(100) DEFAULT NULL COMMENT '链接描述',
   PRIMARY KEY (`id`),
   UNIQUE KEY `blogger_id` (`blogger_id`,`url`),
   KEY `icon_id` (`icon_id`),
   CONSTRAINT `blogger_link_ibfk_1` FOREIGN KEY (`blogger_id`) REFERENCES `blogger_account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `blogger_link_ibfk_2` FOREIGN KEY (`icon_id`) REFERENCES `blogger_picture` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of blogger_link
 -- ----------------------------
-INSERT INTO `blogger_link` VALUES ('1', '1', '1', 'GitHub', 'https://github.com/DuanJiaNing', 'DuanJiaNing', '1');
-INSERT INTO `blogger_link` VALUES ('2', '1', '3', 'CSDN', 'http://write.blog.csdn.net/postlist', 'jack 的CSDN', '2');
-INSERT INTO `blogger_link` VALUES ('4', '4', '1', 'baidu', 'https://www.baidu.com/', 'BaiDU', '0');
+INSERT INTO `blogger_link` VALUES ('1', '1', '1', 'GitHub', 'https://github.com/DuanJiaNing', 'DuanJiaNing');
+INSERT INTO `blogger_link` VALUES ('4', '4', '1', 'baidu', 'https://www.baidu.com/', 'BaiDU');
 
 -- ----------------------------
 -- Table structure for `blogger_picture`
@@ -125,11 +123,11 @@ CREATE TABLE `blogger_picture` (
 -- ----------------------------
 -- Records of blogger_picture
 -- ----------------------------
-INSERT INTO `blogger_picture` VALUES ('1', '1', '我的头像', '2', 'D:\\blog\\picture\\duan\\avatar.jpg', 'RWB', '2017-12-12 18:34:11');
-INSERT INTO `blogger_picture` VALUES ('2', '2', '我的头像', '2', 'D:\\blog\\picture\\jack\\avatar.jpg', 'Github图标', '2017-12-12 18:36:54');
-INSERT INTO `blogger_picture` VALUES ('3', '3', '我的头像', '2', 'D:\\blog\\picture\\张三\\avatar.jpg', 'CSDN图标', '2017-12-12 18:39:19');
-INSERT INTO `blogger_picture` VALUES ('4', '4', '我的头像', '2', 'D:\\blog\\picture\\rose\\avatar.jpg', '头像', '2017-12-19 20:04:00');
-INSERT INTO `blogger_picture` VALUES ('5', '1', 'github图标', '0', 'D:\\blog\\picture\\duan\\github.jpg', '图标', '2017-12-19 20:10:31');
+INSERT INTO `blogger_picture` VALUES ('1', '1', '我的头像', '4', 'D:\\blog\\picture\\duan\\avatar.jpg', 'RWB', '2017-12-12 18:34:11');
+INSERT INTO `blogger_picture` VALUES ('2', '2', '我的头像', '4', 'D:\\blog\\picture\\jack\\avatar.jpg', 'Github图标', '2017-12-12 18:36:54');
+INSERT INTO `blogger_picture` VALUES ('3', '3', '我的头像', '4', 'D:\\blog\\picture\\张三\\avatar.jpg', 'CSDN图标', '2017-12-12 18:39:19');
+INSERT INTO `blogger_picture` VALUES ('4', '4', '我的头像', '4', 'D:\\blog\\picture\\rose\\avatar.jpg', '头像', '2017-12-19 20:04:00');
+INSERT INTO `blogger_picture` VALUES ('5', '1', 'github图标', '4', 'D:\\blog\\picture\\duan\\github.jpg', '图标', '2017-12-19 20:10:31');
 
 -- ----------------------------
 -- Table structure for `blogger_profile`
@@ -145,7 +143,7 @@ CREATE TABLE `blogger_profile` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `blogger_id` (`blogger_id`),
   CONSTRAINT `blogger_profile_ibfk_1` FOREIGN KEY (`blogger_id`) REFERENCES `blogger_account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of blogger_profile
@@ -153,7 +151,6 @@ CREATE TABLE `blogger_profile` (
 INSERT INTO `blogger_profile` VALUES ('1', '1', '15865656589', '2222@qq.com', '这是我的资料profile', '放松自己');
 INSERT INTO `blogger_profile` VALUES ('2', '2', '18565896523', 'aimimijhd#gmail.com', '我的邮箱和电话号码', '提高自己');
 INSERT INTO `blogger_profile` VALUES ('3', '3', '12587878787', '44444@gmail.com', '我的资料 哈哈哈', '相信自己');
-INSERT INTO `blogger_profile` VALUES ('4', '4', '18787454585', '4451@163.com', '资料，^_^O(∩_∩)O哈哈~', 'no words');
 
 -- ----------------------------
 -- Table structure for `blog_admire`
@@ -163,16 +160,20 @@ CREATE TABLE `blog_admire` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '赞赏记录表id',
   `blog_id` int(10) unsigned NOT NULL COMMENT '交易针对的博文id',
   `paier_id` int(11) DEFAULT NULL COMMENT '付钱者id',
-  `money` decimal(10,0) unsigned NOT NULL DEFAULT '0' COMMENT '金额',
+  `money` float(10,0) unsigned NOT NULL DEFAULT '0' COMMENT '金额',
   `tran_date` datetime NOT NULL COMMENT '交易时间',
   PRIMARY KEY (`id`),
   KEY `blog_id` (`blog_id`),
   CONSTRAINT `blog_admire_ibfk_1` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of blog_admire
 -- ----------------------------
+INSERT INTO `blog_admire` VALUES ('1', '1', '2', '11', '2017-12-27 15:42:49');
+INSERT INTO `blog_admire` VALUES ('3', '1', '2', '100', '2017-12-27 16:49:33');
+INSERT INTO `blog_admire` VALUES ('4', '3', '1', '12', '2017-12-27 17:28:11');
+INSERT INTO `blog_admire` VALUES ('5', '2', '1', '13', '2017-12-28 15:14:54');
 
 -- ----------------------------
 -- Table structure for `blog_category`
@@ -216,11 +217,12 @@ CREATE TABLE `blog_collect` (
   CONSTRAINT `blog_collect_ibfk_1` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `blog_collect_ibfk_2` FOREIGN KEY (`collector_id`) REFERENCES `blogger_account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `blog_collect_ibfk_3` FOREIGN KEY (`category_id`) REFERENCES `blog_category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of blog_collect
 -- ----------------------------
+INSERT INTO `blog_collect` VALUES ('5', '1', '1', null, '2017-12-27 17:56:56', null);
 
 -- ----------------------------
 -- Table structure for `blog_comment`
@@ -241,7 +243,7 @@ CREATE TABLE `blog_comment` (
   CONSTRAINT `blog_comment_ibfk_1` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `blog_comment_ibfk_2` FOREIGN KEY (`spokesman_id`) REFERENCES `blogger_account` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `blog_comment_ibfk_3` FOREIGN KEY (`listener_id`) REFERENCES `blogger_account` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of blog_comment
@@ -249,6 +251,10 @@ CREATE TABLE `blog_comment` (
 INSERT INTO `blog_comment` VALUES ('1', '2', '2', '1', '文章写得不错', '2017-12-25 13:48:13', '1');
 INSERT INTO `blog_comment` VALUES ('2', '2', '3', '1', '真的不错', '2017-12-25 13:49:18', '1');
 INSERT INTO `blog_comment` VALUES ('3', '10', '1', '1', '内容', '2017-12-25 14:44:40', '1');
+INSERT INTO `blog_comment` VALUES ('4', '3', '3', '2', '博主3评论博主2对博主1写的id为3的博文', '2017-12-27 11:09:08', '0');
+INSERT INTO `blog_comment` VALUES ('5', '3', '2', '1', '又一次评论', '2017-12-27 11:12:20', '0');
+INSERT INTO `blog_comment` VALUES ('6', '2', '1', '3', '评论', '2017-12-27 17:19:07', '1');
+INSERT INTO `blog_comment` VALUES ('7', '2', '1', '2', 'nullddsaa', '2017-12-28 15:10:25', '1');
 
 -- ----------------------------
 -- Table structure for `blog_complain`
@@ -265,11 +271,13 @@ CREATE TABLE `blog_complain` (
   KEY `complainer_id` (`complainer_id`),
   CONSTRAINT `blog_complain_ibfk_1` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `blog_complain_ibfk_2` FOREIGN KEY (`complainer_id`) REFERENCES `blogger_account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of blog_complain
 -- ----------------------------
+INSERT INTO `blog_complain` VALUES ('1', '1', '4', '投诉内容', '2017-12-27 17:39:10');
+INSERT INTO `blog_complain` VALUES ('2', '1', '2', 'aaaaa', '2017-12-28 15:19:51');
 
 -- ----------------------------
 -- Table structure for `blog_label`
@@ -302,10 +310,10 @@ DROP TABLE IF EXISTS `blog_like`;
 CREATE TABLE `blog_like` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '博文喜欢表id',
   `blog_id` int(10) unsigned NOT NULL COMMENT '被喜欢的文章',
-  `admirer_id` int(10) unsigned DEFAULT '0' COMMENT '仰慕者（给出like的人）id，未注册读者用0表示',
-  `like_date` datetime DEFAULT NULL COMMENT '时间',
+  `liker_id` int(10) unsigned DEFAULT '0' COMMENT '仰慕者（给出like的人）id，未注册读者用0表示',
+  `like_date` datetime NOT NULL COMMENT '时间',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `admirer_id` (`admirer_id`,`blog_id`),
+  UNIQUE KEY `admirer_id` (`liker_id`,`blog_id`),
   KEY `blog_like_ibfk_1` (`blog_id`),
   CONSTRAINT `blog_like_ibfk_1` FOREIGN KEY (`blog_id`) REFERENCES `blog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -337,10 +345,10 @@ CREATE TABLE `blog_statistics` (
 -- ----------------------------
 -- Records of blog_statistics
 -- ----------------------------
-INSERT INTO `blog_statistics` VALUES ('1', '1', '0', '0', '0', '0', '0', '0', '0', '0');
-INSERT INTO `blog_statistics` VALUES ('2', '2', '0', '10', '0', '101', '0', '0', '0', '0');
-INSERT INTO `blog_statistics` VALUES ('3', '3', '0', '23', '0', '73', '0', '0', '0', '0');
-INSERT INTO `blog_statistics` VALUES ('4', '4', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `blog_statistics` VALUES ('1', '1', '0', '1', '0', '1', '0', '0', '2', '0');
+INSERT INTO `blog_statistics` VALUES ('2', '2', '2', '10', '0', '101', '1', '1', '1', '0');
+INSERT INTO `blog_statistics` VALUES ('3', '3', '2', '23', '0', '73', '0', '2', '1', '0');
+INSERT INTO `blog_statistics` VALUES ('4', '4', '0', '0', '0', '1', '1', '0', '0', '0');
 INSERT INTO `blog_statistics` VALUES ('5', '6', '0', '0', '0', '0', '0', '0', '0', '0');
 INSERT INTO `blog_statistics` VALUES ('6', '9', '0', '0', '0', '0', '0', '0', '0', '0');
 INSERT INTO `blog_statistics` VALUES ('7', '10', '0', '0', '0', '0', '0', '0', '0', '0');

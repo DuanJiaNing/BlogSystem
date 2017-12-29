@@ -8,15 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ac934af-05bc-46b7-aaa8-6f8c621b9fd3" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/doc/wiki/blogger/博主资料.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerProfileController.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/doc/wiki/blogger/友情链接.md" afterPath="$PROJECT_DIR$/doc/wiki/blogger/友情链接.md" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/profile/ProfileService.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/profile/ProfileService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/impl/blogger/profile/ProfileServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/impl/blogger/profile/ProfileServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/util/StringUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/util/StringUtils.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerLinkController.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerLinkController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/blogger/BloggerProfileDaoMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/blogger/BloggerProfileDaoMapper.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -67,7 +59,7 @@
       <file leaf-file-name="BloggerProfileController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerProfileController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="902">
+            <state relative-caret-position="-626">
               <caret line="41" column="7" lean-forward="true" selection-start-line="41" selection-start-column="7" selection-end-line="41" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -232,9 +224,9 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="104" />
-    <option name="y" value="108" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="211" />
+    <option name="y" value="116" />
     <option name="width" value="1303" />
     <option name="height" value="888" />
   </component>
@@ -889,7 +881,7 @@
       <workItem from="1514441238317" duration="12758000" />
       <workItem from="1514514610283" duration="5422000" />
       <workItem from="1514521929291" duration="172000" />
-      <workItem from="1514527379663" duration="7800000" />
+      <workItem from="1514527379663" duration="7858000" />
     </task>
     <task id="LOCAL-00001" summary="完善结构">
       <created>1512991824012</created>
@@ -1136,7 +1128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1514529517924</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="完成博主资料api及文档">
+      <created>1514535244901</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1514535244901</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1172,7 +1171,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="273380000" />
+    <option name="totallyTimeSpent" value="273438000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1184,8 +1183,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-9" width="1864" height="1098" extended-state="6" />
-    <editor active="true" />
+    <frame x="211" y="116" width="1303" height="888" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288889" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1200,7 +1198,7 @@
       <window_info id="Spring" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55307263" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32852387" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29608938" sideWeight="0.49222222" order="5" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4312449" sideWeight="0.49222222" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.95444447" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26256984" sideWeight="0.50777775" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2586592" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1293,7 +1291,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加博文检索业务定义" />
     <MESSAGE value="添加图片管理、友情链接、博文收藏业务" />
     <MESSAGE value="完成博主个人博文管理业务层代码编写" />
     <MESSAGE value="修复配置文件错误，增加jsp页面" />
@@ -1318,7 +1315,8 @@
     <MESSAGE value="添加博主友情链接controller层代码" />
     <MESSAGE value="实现博主友情链接api" />
     <MESSAGE value="完善博主友情链接api文档" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善博主友情链接api文档" />
+    <MESSAGE value="完成博主资料api及文档" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成博主资料api及文档" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1768,7 +1766,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerProfileController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="902">
+        <state relative-caret-position="-626">
           <caret line="41" column="7" lean-forward="true" selection-start-line="41" selection-start-column="7" selection-end-line="41" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
