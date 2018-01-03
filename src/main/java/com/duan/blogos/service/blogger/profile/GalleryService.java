@@ -15,12 +15,13 @@ public interface GalleryService {
      * 新增图片
      *
      * @param bloggerId 博主id
-     * @param desc      图片描述
+     * @param path      保存路径
+     * @param bewrite   图片描述
      * @param category  图片所属类别
      * @param title     名字
      * @return 新纪录id
      */
-    int insertPicture(int bloggerId, String desc, BloggerPictureCategoryEnum category, String title);
+    int insertPicture(int bloggerId, String path, String bewrite, BloggerPictureCategoryEnum category, String title);
 
     /**
      * 删除图片记录

@@ -66,4 +66,8 @@ public class ExceptionManager {
     public UnknownLinkException getUnknownLinkException(RequestContext context) {
         return new UnknownLinkException(context.getMessage("common.unknownLink"));
     }
+
+    public OperateFailException getOperateFailException(RequestContext context, Throwable e) {
+        return new OperateFailException(context.getMessage("common.operateFail"), e);
+    }
 }

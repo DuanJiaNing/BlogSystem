@@ -48,7 +48,6 @@ public class BlogDaoTest extends BaseTest {
         Blog blog = new Blog();
         blog.setId(1);
         blog.setSummary("相关搜索");
-//        P.out(blogDao.update(blog));
     }
 
     @Test

@@ -1,5 +1,7 @@
 package com.duan.blogos.util;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /**
  * Created on 2018/1/3.
  *
@@ -7,17 +9,53 @@ package com.duan.blogos.util;
  */
 public class ImageUtils {
 
+    private static final String[] IMAGE_TYPE = {"png", "tif", "jpg", "jpeg", "bmp"};
 
     /**
-     * 根据图片文件名获得图片类型
+     * 获取文件的图片类型
      *
-     * @param imagePath 全路径
+     * @param name 文件名
      * @return 类型
      */
-    public static String getType(String imagePath) {
-        if (imagePath.endsWith(".jpg") || imagePath.endsWith(".jpeg")) return "jpeg";
-        if (imagePath.endsWith(".png")) return "png";
-        if (imagePath.endsWith(".gif")) return "gif";
-        else return "png";
+    public static String getImageMimeType(String name) {
+        if (StringUtils.isEmpty(name)) return null;
+
+        String[] ts = name.split("\\.");
+        if (ts.length != 2) return null;
+
+        String type = ts[1];
+        for (String s : IMAGE_TYPE) {
+            if (type.equalsIgnoreCase(s)) return s;
+        }
+
+        return null;
     }
+
+    /**
+     * 判断上传文件是否为图片类型
+     *
+     * @param file 上传文件
+     * @return 是为true
+     */
+    public static boolean isImageFile(MultipartFile file) {
+        if (file == null) return false;
+
+        String mimetype = file.getContentType();
+        String type = mimetype.split("/")[0];
+        return type.equals("image");
+    }
+
+    /**
+     * 获得图片文件类型
+     *
+     * @param file 上传文件
+     * @return 类型
+     */
+    public static String getImageType(MultipartFile file) {
+        if (isImageFile(file)) {
+            String ct = file.getContentType();
+            return ct.split("/")[1];
+        } else return null;
+    }
+
 }

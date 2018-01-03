@@ -24,12 +24,12 @@ public enum BloggerPictureCategoryEnum {
     BLOGGER_AVATAR(2),
 
     /**
-     * 博主友情链接默认图片
+     * 博主友情链接默认图片（唯一）
      */
     BLOGGER_DEFAULT_LINK_ICON(3),
 
     /**
-     * 博主默认图片（请求指定图片而指定图片不存在时返回）
+     * 博主默认图片（请求指定图片而指定图片不存在时返回）（唯一）
      */
     BLOGGER_DEFAULT_PICTURE(4);
 
@@ -41,5 +41,13 @@ public enum BloggerPictureCategoryEnum {
 
     public int getCode() {
         return code;
+    }
+
+    public static BloggerPictureCategoryEnum valueOf(int code) {
+        for (BloggerPictureCategoryEnum enuz : values()) {
+            if (enuz.getCode() == code) return enuz;
+        }
+
+        return null;
     }
 }

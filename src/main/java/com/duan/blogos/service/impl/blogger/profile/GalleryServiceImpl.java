@@ -19,7 +19,7 @@ public class GalleryServiceImpl implements GalleryService {
     private BloggerPictureDao pictureDao;
 
     @Override
-    public int insertPicture(int bloggerId, String desc, BloggerPictureCategoryEnum category, String title) {
+    public int insertPicture(int bloggerId, String path, String bewrite, BloggerPictureCategoryEnum category, String title) {
         return 0;
     }
 

@@ -17,9 +17,14 @@
 
     <bean class="com.duan.blogos.manager.BloggerPropertiesManager" name="bloggerPropertiesManager">
         <property name="requestBloggerLinkCount" value="${blogger.requestBloggerLinkCount}"/>
+        <property name="bloggerImageRootPath" value="${blogger.bloggerImageRootPath}"/>
     </bean>
 
     <bean class="com.duan.blogos.manager.DataFillingManager" name="dataFillingManager"/>
+
+    <bean class="com.duan.blogos.manager.WebsitePropertiesManager" name="websitePropertiesManager">
+        <property name="addr" value="${website.addr}"/>
+    </bean>
 
     <!--验证管理者-->
     <context:component-scan base-package="com.duan.blogos.manager"/>

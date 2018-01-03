@@ -14,4 +14,8 @@ public class OperateFailException extends BaseRuntimeException {
     public OperateFailException(String message) {
         super(message);
     }
+
+    public OperateFailException(String message, Throwable e) {
+        super(message, e);
+    }
 }

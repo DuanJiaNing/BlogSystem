@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.support.RequestContext;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,10 +51,19 @@ public class BaseRestController {
     }
 
     /**
+     * 处理操作失败的情况
+     */
+    protected void handlerOperateFail(HttpServletRequest request, Throwable e) {
+        throw exceptionManager.getOperateFailException(new RequestContext(request), e);
+    }
+
+    /**
      * 统一处理异常
      */
     @ExceptionHandler(BaseRuntimeException.class)
-    public ResultBean handlerException(BaseRuntimeException e) {
+    @ResponseBody
+    // 注解无法继承，所以子类不允许覆盖这些方法
+    protected final ResultBean handlerException(BaseRuntimeException e) {
         return new ResultBean(e);
     }
 
@@ -61,7 +71,8 @@ public class BaseRestController {
      * 统一处理异常
      */
     @ExceptionHandler(Exception.class)
-    public ResultBean handlerException(HttpServletRequest request, Throwable e) {
+    @ResponseBody
+    protected final ResultBean handlerException(HttpServletRequest request, Throwable e) {
         return new ResultBean(exceptionManager.getUnknownException(new RequestContext(request), e));
     }
 
@@ -69,15 +80,16 @@ public class BaseRestController {
      * 统一处理“请求参数缺失”错误
      */
     @ExceptionHandler(MissingServletRequestParameterException.class)
-    public ResultBean handlerException(HttpServletRequest request,MissingServletRequestParameterException e) {
-        return new ResultBean(exceptionManager.getMissingRequestParameterException(new RequestContext(request),e));
+    @ResponseBody
+    protected final ResultBean handlerException(HttpServletRequest request, MissingServletRequestParameterException e) {
+        return new ResultBean(exceptionManager.getMissingRequestParameterException(new RequestContext(request), e));
     }
 
     /**
      * 未指明操作
      */
     @RequestMapping("")
-    public void defaultOperation(HttpServletRequest request) {
+    protected void defaultOperation(HttpServletRequest request) {
         throw exceptionManager.getUnspecifiedOperationException(new RequestContext(request));
     }
 

@@ -41,7 +41,7 @@ public class BloggerGalleryController extends BaseBloggerController {
         BloggerPicture picture = galleryService.getPicture(pictureId, bloggerId);
         if (picture == null) handlerEmptyResult(context);
 
-        String url = urlConstructorManager.constructPictureUrl(picture, request);
+        String url = urlConstructorManager.constructPictureUrl(picture);
         picture.setPath(url);
 
         return new ResultBean<>(picture);
