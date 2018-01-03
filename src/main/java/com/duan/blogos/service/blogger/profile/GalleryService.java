@@ -49,10 +49,27 @@ public interface GalleryService {
     BloggerPicture getPicture(int pictureId);
 
     /**
+     * 获得图片
+     *
+     * @param pictureId 图片id
+     * @param bloggerId 博主id
+     * @return 查询结果
+     */
+    BloggerPicture getPicture(int pictureId, int bloggerId);
+
+    /**
      * 检查图片是否存在
      *
      * @param pictureId 图片id
      * @return 存在返回true
      */
     boolean getPictureForCheckExist(int pictureId);
+
+    /**
+     * 根据类别获得图片，这些图片是应用默认的图片，一个类别只应该有一张默认图片
+     *
+     * @param category 类别
+     * @return 查询结果
+     */
+    BloggerPicture getPictureByPropertiesCategory(int category);
 }
