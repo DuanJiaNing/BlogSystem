@@ -42,7 +42,7 @@ public class LinkServiceImpl implements LinkService {
         for (BloggerLink link : list) {
             Integer iconId = link.getIconId();
             BloggerPicture icon = iconId == null ?
-                    pictureDao.getPictureByPropertiesCategory(BloggerPictureCategoryEnum.BLOGGER_DEFAULT_LINK_ICON.getCode()) :
+                    pictureDao.getPictureByPropertiesCategory(BloggerPictureCategoryEnum.BLOGGER_DEFAULT_UNIQUE_LINK_ICON.getCode()) :
                     pictureDao.getPictureById(iconId);
             BloggerLinkDTO dto = fillingManager.bloggerLinkToDTO(link, icon);
             result.add(dto);

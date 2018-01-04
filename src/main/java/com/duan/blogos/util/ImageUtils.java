@@ -2,6 +2,8 @@ package com.duan.blogos.util;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+
 /**
  * Created on 2018/1/3.
  *
@@ -58,4 +60,17 @@ public class ImageUtils {
         } else return null;
     }
 
+    /**
+     * 从图片路径中获取文件名
+     *
+     * @param path 路径
+     * @return 文件名
+     */
+    public static String getImageName(String path) {
+        if (StringUtils.isEmpty(path)) return "";
+
+        int li = path.lastIndexOf(File.separator);
+        int li1 = path.lastIndexOf(".");
+        return path.substring(li + 1, li1);
+    }
 }

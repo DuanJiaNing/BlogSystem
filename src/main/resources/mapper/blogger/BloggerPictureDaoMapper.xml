@@ -22,13 +22,17 @@
         WHERE category = #{value}
     </select>
 
+    <select id="getPictureIdByUniqueCategory" resultType="java.lang.Integer">
+        SELECT id FROM blogger_picture WHERE category=#{value}
+    </select>
+
     <update id="update" parameterType="BloggerPicture">
         UPDATE blogger_picture
         <set>
             <if test="bloggerId != null">
-                blogge_id=#{bloggerId},
+                blogger_id=#{bloggerId},
             </if>
-            <if test="desc != null">
+            <if test="bewrite != null">
                 bewrite=#{bewrite},
             </if>
             <if test="category != null">
@@ -45,7 +49,7 @@
             </if>
         </set>
         <where>
-            id = #{value}
+            id = #{id}
         </where>
     </update>
 
@@ -65,7 +69,7 @@
         path,
         title,
         upload_date) VALUE (
-        #{blogger_id},
+        #{bloggerId},
         #{bewrite},
         ifnull(#{category}, 0),
         #{path},

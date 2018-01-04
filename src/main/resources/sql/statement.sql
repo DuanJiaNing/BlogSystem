@@ -28,6 +28,8 @@ ALTER TABLE blogger_profile ADD UNIQUE KEY (blogger_id);
 # 一篇博文只有一份统计记录
 ALTER TABLE blog_statistics ADD UNIQUE KEY (blog_id);
 
+# 一个博主只能拥有一张同名的照片
+ALTER TABLE blogger_picture ADD UNIQUE KEY (blogger_id,title);
 
 
   # ---------------------------------------------------------test

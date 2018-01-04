@@ -2,6 +2,7 @@ package com.duan.blogos.dao.blogger;
 
 import com.duan.blogos.dao.BaseDao;
 import com.duan.blogos.entity.blogger.BloggerPicture;
+import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -38,4 +39,11 @@ public interface BloggerPictureDao extends BaseDao<BloggerPicture> {
      */
     BloggerPicture getPictureByPropertiesCategory(int category);
 
+    /**
+     * 根据唯一图片对应的类别来获取图片id
+     *
+     * @param uniqueCategory 唯一的类别，见{@link BloggerPictureCategoryEnum#uniqueCate}
+     * @return id
+     */
+    int getPictureIdByUniqueCategory(int uniqueCategory);
 }

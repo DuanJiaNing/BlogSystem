@@ -3,14 +3,17 @@ package com.duan.blogos.web.api.blogger;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.manager.ImageUploadManager;
+import com.duan.blogos.manager.validate.BloggerValidateManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.profile.GalleryService;
 import com.duan.blogos.util.ImageUtils;
+import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.support.RequestContext;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
@@ -36,6 +39,9 @@ public class ImageController extends BaseBloggerController {
     @Autowired
     private ImageUploadManager imageUploadManager;
 
+    @Autowired
+    private BloggerValidateManager validateManager;
+
     /**
      * 输出图片
      */
@@ -48,7 +54,7 @@ public class ImageController extends BaseBloggerController {
         BloggerPicture picture = galleryService.getPicture(imageId, bloggerId);
         if (picture == null) {
             picture = galleryService.getPictureByPropertiesCategory(
-                    BloggerPictureCategoryEnum.BLOGGER_DEFAULT_PICTURE.getCode());
+                    BloggerPictureCategoryEnum.BLOGGER_DEFAULT_UNIQUE_PICTURE.getCode());
         }
 
         try (ServletOutputStream os = response.getOutputStream()) {
@@ -84,6 +90,12 @@ public class ImageController extends BaseBloggerController {
         MultipartFile file = request.getFile("image");// 与页面input的name相同
         int id = 0;
         if (ImageUtils.isImageFile(file)) {
+
+            //检查博主权限
+            if (!validateManager.checkBloggerPictureLegal(bloggerId, category)) {
+                throw exceptionManager.getUnauthorizedException(new RequestContext(request));
+            }
+
             //保存到磁盘
             String path = null;
             try {
@@ -95,9 +107,15 @@ public class ImageController extends BaseBloggerController {
             if (path == null) handlerOperateFail(request);
 
             //数据库新增记录
-            //TODO
-            id = galleryService.insertPicture(bloggerId, bewrite, path,
-                    BloggerPictureCategoryEnum.valueOf(category), title);
+            BloggerPictureCategoryEnum cate = BloggerPictureCategoryEnum.valueOf(category);
+            String ti = StringUtils.isEmpty(title) ? ImageUtils.getImageName(path) : title;
+            if (BloggerPictureCategoryEnum.isUniqueCategory(category)) { //唯一类别
+                id = galleryService.updateUniquePicture(bloggerId, bewrite, path, cate, ti);
+            } else {
+                id = galleryService.insertPicture(bloggerId, path, bewrite,
+                        BloggerPictureCategoryEnum.valueOf(category), ti);
+            }
+
         }
         if (id <= 0) handlerOperateFail(request);
 

@@ -70,4 +70,8 @@ public class ExceptionManager {
     public OperateFailException getOperateFailException(RequestContext context, Throwable e) {
         return new OperateFailException(context.getMessage("common.operateFail"), e);
     }
+
+    public UnauthorizedException getUnauthorizedException(RequestContext context) {
+        return new UnauthorizedException(context.getMessage("common.unauthorized"));
+    }
 }

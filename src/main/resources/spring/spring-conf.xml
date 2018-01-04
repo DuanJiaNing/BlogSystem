@@ -18,6 +18,7 @@
     <bean class="com.duan.blogos.manager.BloggerPropertiesManager" name="bloggerPropertiesManager">
         <property name="requestBloggerLinkCount" value="${blogger.requestBloggerLinkCount}"/>
         <property name="bloggerImageRootPath" value="${blogger.bloggerImageRootPath}"/>
+        <property name="pictureManagerBloggerId" value="${blogger.pictureManagerBloggerId}"/>
     </bean>
 
     <bean class="com.duan.blogos.manager.DataFillingManager" name="dataFillingManager"/>

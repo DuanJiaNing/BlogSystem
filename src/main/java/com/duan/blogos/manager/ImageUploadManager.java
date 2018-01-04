@@ -46,8 +46,8 @@ public class ImageUploadManager {
         File specDir = new File(rootDirPath + File.separator + username + File.separator + categoryName + File.separator);
         if (!specDir.exists() || !specDir.isDirectory()) specDir.mkdirs();
 
-        //FIXME 文件名中文编码乱码
-        String name = handleImageName(new String(file.getOriginalFilename().getBytes("ISO-8859-1"), "UTF-8"), type);
+        //页面使用 <%@ page pageEncoding="utf-8" %> 指令，否则会出现文件名中文乱码
+        String name = handleImageName(file.getOriginalFilename(), type);
         File image = new File(specDir.getAbsolutePath() + File.separator + name);
         if (!image.exists() || image.isDirectory()) file.transferTo(image);
 

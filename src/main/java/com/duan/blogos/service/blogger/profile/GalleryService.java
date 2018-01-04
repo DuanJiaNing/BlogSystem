@@ -73,4 +73,17 @@ public interface GalleryService {
      * @return 查询结果
      */
     BloggerPicture getPictureByPropertiesCategory(int category);
+
+    /**
+     * 更新唯一的图片（存在则更新，否则插入）
+     *
+     * @param bloggerId 博主id
+     * @param bewrite   描述
+     * @param path      保存路径
+     * @param cate      类别
+     * @param title     标题
+     * @return 记录id
+     */
+    int updateUniquePicture(int bloggerId, String bewrite, String path, BloggerPictureCategoryEnum cate, String title);
+
 }

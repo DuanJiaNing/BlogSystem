@@ -1,6 +1,8 @@
 package com.duan.blogos.manager.validate;
 
 import com.duan.blogos.entity.blogger.BloggerAccount;
+import com.duan.blogos.enums.BloggerPictureCategoryEnum;
+import com.duan.blogos.manager.BloggerPropertiesManager;
 import com.duan.blogos.service.blogger.BloggerAccountService;
 import com.duan.blogos.service.blogger.blog.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class BloggerValidateManager {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private BloggerPropertiesManager propertiesManager;
 
     /**
      * 检查博主是否存在
@@ -50,4 +55,23 @@ public class BloggerValidateManager {
         int count = categoryService.countCategoryForExistCheck(bloggerId, categoryId);
         return count >= 1;
     }
+
+    /**
+     * 检查博主是否能够上传图片到指定类别下
+     *
+     * @param bloggerId 博主id
+     * @param category  图片类别
+     * @return 可以上传返回true
+     */
+    public boolean checkBloggerPictureLegal(int bloggerId, int category) {
+        int pictureManagerId = propertiesManager.getPictureManagerBloggerId();
+
+        //图片管理者可以上传任何类别图片
+        if (bloggerId == pictureManagerId) return true;
+        else { //非图片管理者只能上传部分类别图片
+            if (BloggerPictureCategoryEnum.isUniqueCategory(category)) return false;
+            else return true;
+        }
+    }
+
 }

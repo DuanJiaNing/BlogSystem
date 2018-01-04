@@ -20,4 +20,8 @@ public class BloggerPropertiesManager {
      */
     private String bloggerImageRootPath;
 
+    /**
+     * 拥有唯一图片管理权限的博主的id
+     */
+    private Integer pictureManagerBloggerId;
 }
