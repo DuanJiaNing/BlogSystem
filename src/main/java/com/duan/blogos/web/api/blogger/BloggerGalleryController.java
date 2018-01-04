@@ -39,7 +39,7 @@ public class BloggerGalleryController extends BaseBloggerController {
         if (pictureId <= 0) throw exceptionManager.getParameterIllegalException(context);
 
         BloggerPicture picture = galleryService.getPicture(pictureId, bloggerId);
-        if (picture == null) handlerEmptyResult(context);
+        if (picture == null) handlerEmptyResult(request);
 
         String url = urlConstructorManager.constructPictureUrl(picture);
         picture.setPath(url);

@@ -4,6 +4,7 @@ import com.duan.blogos.dao.blogger.BloggerAccountDao;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.util.ImageUtils;
+import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,7 +18,7 @@ import java.io.IOException;
  * @author DuanJiaNing
  */
 @Component
-public class ImageUploadManager {
+public class ImageManager {
 
     @Autowired
     private BloggerPropertiesManager propertiesManager;
@@ -69,5 +70,23 @@ public class ImageUploadManager {
         }
     }
 
+    /**
+     * 从磁盘中删除一个图片文件
+     *
+     * @param path 图片路径
+     * @return 成功删除为true，否则失败
+     */
+    public boolean deleteImageFromDisk(String path) {
+        if (StringUtils.isEmpty(path)) return false;
 
+        File image = new File(path);
+        if (image.exists() && image.isFile()) {
+            boolean deleted = image.delete();
+            if (!deleted) {
+                return false;
+            } else return true;
+        }
+
+        return false;
+    }
 }

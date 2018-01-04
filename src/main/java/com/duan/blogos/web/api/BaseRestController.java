@@ -38,9 +38,10 @@ public class BaseRestController {
 
     /**
      * 处理结果为空的情况
+     * @param request
      */
-    protected void handlerEmptyResult(RequestContext context) {
-        throw exceptionManager.getEmptyResultException(context);
+    protected void handlerEmptyResult(HttpServletRequest request) {
+        throw exceptionManager.getEmptyResultException(new RequestContext(request));
     }
 
     /**

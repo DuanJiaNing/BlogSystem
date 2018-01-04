@@ -2,6 +2,7 @@ package com.duan.blogos.service.blogger.profile;
 
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Created on 2017/12/18.
@@ -12,7 +13,7 @@ import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 public interface GalleryService {
 
     /**
-     * 新增图片
+     * 数据库中新增图片记录
      *
      * @param bloggerId 博主id
      * @param path      保存路径
@@ -24,13 +25,25 @@ public interface GalleryService {
     int insertPicture(int bloggerId, String path, String bewrite, BloggerPictureCategoryEnum category, String title);
 
     /**
+     * 向数据库中新增图片记录，同时将图片保存到设备
+     *
+     * @param file      文件
+     * @param bloggerId 博主id
+     * @param bewrite   描述
+     * @param category  类别
+     * @param title     标题
+     * @return 新纪录id
+     */
+    int insertPicture(MultipartFile file, int bloggerId, String bewrite, BloggerPictureCategoryEnum category, String title);
+
+    /**
      * 删除图片记录
      *
      * @param pictureId    图片id
      * @param deleteOnDisk 是否同时从存储设备中删除
-     * @return 被删除的图片记录
+     * @return 删除成功返回true
      */
-    BloggerPicture deletePicture(int pictureId, boolean deleteOnDisk);
+    boolean deletePicture(int pictureId, boolean deleteOnDisk);
 
     /**
      * 更新图片种类

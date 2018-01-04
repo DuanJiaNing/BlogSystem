@@ -36,7 +36,7 @@ public class BloggerProfileController extends BaseBloggerController {
         checkAccount(request, bloggerId);
 
         BloggerProfile profile = profileService.getBloggerProfile(bloggerId);
-        if (profile == null) handlerEmptyResult(new RequestContext(request));
+        if (profile == null) handlerEmptyResult(request);
 
         return new ResultBean<>(profile);
     }

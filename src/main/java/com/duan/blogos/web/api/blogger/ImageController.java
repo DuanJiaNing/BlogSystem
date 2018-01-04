@@ -2,12 +2,10 @@ package com.duan.blogos.web.api.blogger;
 
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
-import com.duan.blogos.manager.ImageUploadManager;
 import com.duan.blogos.manager.validate.BloggerValidateManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.profile.GalleryService;
 import com.duan.blogos.util.ImageUtils;
-import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +23,8 @@ import java.io.IOException;
 
 /**
  * Created on 2018/1/2.
- * 图片上传，下载
+ * 图片上传、下载、删除，区别于BloggerGalleryController，该控制类处理修改数据库中的数据外还操纵磁盘上的数据，而BloggerG-
+ * alleryController只操纵数据库中的数据。
  *
  * @author DuanJiaNing
  */
@@ -37,13 +36,10 @@ public class ImageController extends BaseBloggerController {
     private GalleryService galleryService;
 
     @Autowired
-    private ImageUploadManager imageUploadManager;
-
-    @Autowired
     private BloggerValidateManager validateManager;
 
     /**
-     * 输出图片
+     * 输出图片，如果数据库不存在指定图片，则返回默认图片
      */
     @RequestMapping(value = "/{imageId}", method = RequestMethod.GET)
     public void get(HttpServletRequest request, HttpServletResponse response,
@@ -52,13 +48,11 @@ public class ImageController extends BaseBloggerController {
         checkAccount(request, bloggerId);
 
         BloggerPicture picture = galleryService.getPicture(imageId, bloggerId);
-        if (picture == null) {
-            picture = galleryService.getPictureByPropertiesCategory(
-                    BloggerPictureCategoryEnum.BLOGGER_DEFAULT_UNIQUE_PICTURE.getCode());
-        }
+        BloggerPicture backupPicture = galleryService.getPictureByPropertiesCategory(
+                BloggerPictureCategoryEnum.BLOGGER_DEFAULT_UNIQUE_PICTURE.getCode());
 
         try (ServletOutputStream os = response.getOutputStream()) {
-            String path = picture.getPath();
+            String path = picture == null ? backupPicture.getPath() : picture.getPath();
             File image = new File(path);
             if (!image.exists()) handlerOperateFail(request);
 
@@ -77,48 +71,62 @@ public class ImageController extends BaseBloggerController {
 
     /**
      * 上传图片
+     * 根据上传的图片类别判断对应博主是否有相应权限，如果为普通类别，任何博主都可以上传，如果为系统的图片（
+     * 或唯一的图片）则只能由具有相应权限的人上传。
+     * <p>
+     * 磁盘保存：
+     * 根目录由conf.properties的blogger.bloggerImageRootPath属性指定，每个博主有自己的独立文件夹，文件夹下按类别存放图片
+     * <p>
+     * 数据库：
+     * 普通类别直接插入新纪录，唯一类别由于图片唯一，因而数据库记录也应唯一，所以上传唯一图片时如果数据库有对应类别记录
+     * 则更新，否则插入
      */
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     public ResultBean upload(MultipartHttpServletRequest request,
                              @PathVariable("bloggerId") Integer bloggerId,
-                             @RequestParam("category") Integer category,
+                             @RequestParam(value = "category", required = false) Integer category,
                              @RequestParam(value = "bewrite", required = false) String bewrite,
                              @RequestParam(value = "title", required = false) String title) {
         checkAccount(request, bloggerId);
 
         MultipartFile file = request.getFile("image");// 与页面input的name相同
-        int id = 0;
+        int id = -1;
         if (ImageUtils.isImageFile(file)) {
 
+            int cate = category == null ? BloggerPictureCategoryEnum.DEFAULT.getCode() : category;
+
             //检查博主权限
-            if (!validateManager.checkBloggerPictureLegal(bloggerId, category)) {
+            if (!validateManager.checkBloggerPictureLegal(bloggerId, cate)) {
                 throw exceptionManager.getUnauthorizedException(new RequestContext(request));
             }
 
-            //保存到磁盘
-            String path = null;
-            try {
-                path = imageUploadManager.saveImageToDisk(file, bloggerId, category);
-            } catch (IOException e) {
-                e.printStackTrace();
-                handlerOperateFail(request);
-            }
-            if (path == null) handlerOperateFail(request);
-
-            //数据库新增记录
-            BloggerPictureCategoryEnum cate = BloggerPictureCategoryEnum.valueOf(category);
-            String ti = StringUtils.isEmpty(title) ? ImageUtils.getImageName(path) : title;
-            if (BloggerPictureCategoryEnum.isUniqueCategory(category)) { //唯一类别
-                id = galleryService.updateUniquePicture(bloggerId, bewrite, path, cate, ti);
-            } else {
-                id = galleryService.insertPicture(bloggerId, path, bewrite,
-                        BloggerPictureCategoryEnum.valueOf(category), ti);
-            }
-
+            id = galleryService.insertPicture(file, bloggerId, bewrite, BloggerPictureCategoryEnum.valueOf(cate),
+                    title);
+            if (id <= 0) handlerOperateFail(request);
         }
-        if (id <= 0) handlerOperateFail(request);
 
         return new ResultBean<>(id);
     }
+
+    /**
+     * 从设备和数据库中删除图片
+     */
+    @RequestMapping(value = "/{imageId}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public ResultBean delete(HttpServletRequest request,
+                             @PathVariable("bloggerId") Integer bloggerId,
+                             @PathVariable("imageId") Integer imageId) {
+        checkAccount(request, bloggerId);
+
+        BloggerPicture picture = galleryService.getPicture(imageId, bloggerId);
+        if (picture == null) {
+            throw exceptionManager.getUnauthorizedException(new RequestContext(request));
+        }
+        boolean succ = galleryService.deletePicture(picture.getId(), true);
+        if (!succ) handlerOperateFail(request);
+
+        return new ResultBean<>("");
+    }
+
 }

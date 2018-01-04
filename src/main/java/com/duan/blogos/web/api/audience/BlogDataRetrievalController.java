@@ -75,7 +75,7 @@ public class BlogDataRetrievalController extends BaseBlogController {
         int rs = rows == null || rows < 0 ? audiencePropertiesManager.getRequestBloggerBlogListCount() : rows;
         ResultBean<List<BlogListItemDTO>> listResultBean = retrievalService.listFilterAll(cids, lids, keyWord, bloggerId, os, rs, rule);
 
-        if (listResultBean == null) handlerEmptyResult(context);
+        if (listResultBean == null) handlerEmptyResult(request);
 
         return listResultBean;
     }
@@ -117,7 +117,7 @@ public class BlogDataRetrievalController extends BaseBlogController {
         if (exception != null) throw exception;
 
         ResultBean<BlogMainContentDTO> mainContent = blogBrowseService.getBlogMainContent(blogId);
-        if (mainContent == null) handlerEmptyResult(context);
+        if (mainContent == null) handlerEmptyResult(request);
 
         return mainContent;
     }
@@ -140,7 +140,7 @@ public class BlogDataRetrievalController extends BaseBlogController {
         int os = offset == null || offset < 0 ? 0 : offset;
         int rs = rows == null || rows < 0 ? audiencePropertiesManager.getRequestBloggerBlogCommentCount() : rows;
         ResultBean<List<BlogCommentDTO>> resultBean = blogBrowseService.listBlogComment(blogId, os, rs);
-        if (resultBean == null) handlerEmptyResult(context);
+        if (resultBean == null) handlerEmptyResult(request);
 
         return resultBean;
     }
@@ -158,7 +158,7 @@ public class BlogDataRetrievalController extends BaseBlogController {
         if (exception != null) throw exception;
 
         ResultBean<BlogStatisticsDTO> statistics = blogBrowseService.getBlogStatistics(blogId);
-        if (statistics == null) handlerEmptyResult(context);
+        if (statistics == null) handlerEmptyResult(request);
 
         return statistics;
     }

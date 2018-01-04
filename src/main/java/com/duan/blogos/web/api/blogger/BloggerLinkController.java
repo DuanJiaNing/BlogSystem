@@ -46,7 +46,7 @@ public class BloggerLinkController extends BaseBloggerController {
         int os = offset == null || offset < 0 ? 0 : offset;
         int rs = rows == null || rows < 0 ? bloggerPropertiesManager.getRequestBloggerLinkCount() : rows;
         ResultBean<List<BloggerLinkDTO>> result = linkService.listBloggerLink(bloggerId, os, rs);
-        if (result == null) handlerEmptyResult(new RequestContext(request));
+        if (result == null) handlerEmptyResult(request);
 
         return result;
     }
