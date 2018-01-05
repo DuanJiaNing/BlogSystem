@@ -2,6 +2,7 @@ package com.duan.blogos.manager;
 
 import com.duan.blogos.dao.blogger.BloggerAccountDao;
 import com.duan.blogos.entity.blogger.BloggerAccount;
+import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.util.ImageUtils;
 import com.duan.blogos.util.StringUtils;
@@ -88,5 +89,18 @@ public class ImageManager {
         }
 
         return false;
+    }
+
+    /**
+     * 移动设备上的图片
+     *
+     * @param picture   要移动的图片
+     * @param bloggerId 移动到的目标博主
+     * @param category  目标博主的类别
+     * @return 新的图片保存路径
+     */
+    public String moveImage(BloggerPicture picture, int bloggerId, BloggerPictureCategoryEnum category) {
+        //TODO
+        return null;
     }
 }

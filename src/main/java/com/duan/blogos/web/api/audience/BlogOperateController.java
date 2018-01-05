@@ -103,7 +103,7 @@ public class BlogOperateController extends BaseBlogController {
         if (exception != null) throw exception;
 
         //检查博主是否有指定类别
-        if (categoryId != null && !bloggerValidateManager.checkBloggerCategoryExist(collectorId, categoryId)) {
+        if (categoryId != null && !bloggerValidateManager.checkBloggerBlogCategoryExist(collectorId, categoryId)) {
             throw exceptionManager.getParameterIllegalException(context);
         }
 

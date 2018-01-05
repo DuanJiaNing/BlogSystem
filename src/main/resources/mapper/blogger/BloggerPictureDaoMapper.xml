@@ -23,7 +23,23 @@
     </select>
 
     <select id="getPictureIdByUniqueCategory" resultType="java.lang.Integer">
-        SELECT id FROM blogger_picture WHERE category=#{value}
+        SELECT id
+        FROM blogger_picture
+        WHERE category=#{value}
+    </select>
+
+    <select id="listPictureByBloggerId" resultType="BloggerPicture">
+        SELECT *
+        FROM blogger_picture
+        WHERE blogger_id=#{bloggerId}
+        LIMIT #{offset}, #{rows}
+    </select>
+
+    <select id="listPictureByBloggerAndCategory" resultType="BloggerPicture">
+        SELECT *
+        FROM blogger_picture
+        WHERE blogger_id=#{bloggerId} AND category=#{category}
+        LIMIT #{offset}, #{rows}
     </select>
 
     <update id="update" parameterType="BloggerPicture">

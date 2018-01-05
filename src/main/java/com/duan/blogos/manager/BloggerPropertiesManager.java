@@ -16,6 +16,11 @@ public class BloggerPropertiesManager {
     private Integer requestBloggerLinkCount;
 
     /**
+     * 博主相册图片默认请求数量
+     */
+    private Integer requestBloggerPictureCount;
+
+    /**
      * 博主图片保存根路径
      */
     private String bloggerImageRootPath;

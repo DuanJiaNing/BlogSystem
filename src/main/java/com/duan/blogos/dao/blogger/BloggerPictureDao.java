@@ -6,6 +6,8 @@ import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created on 2017/12/25.
  *
@@ -32,7 +34,7 @@ public interface BloggerPictureDao extends BaseDao<BloggerPicture> {
     BloggerPicture getPictureByCategory(@Param("bloggerId") int bloggerId, @Param("category") int category);
 
     /**
-     * 根据类别获得图片，这些图片是应用默认的图片，一个类别只应该有一张默认图片
+     * 根据类别获得图片，这些图片一个类别只应该有一张图片
      *
      * @param category 类别
      * @return 查询结果
@@ -46,4 +48,30 @@ public interface BloggerPictureDao extends BaseDao<BloggerPicture> {
      * @return id
      */
     int getPictureIdByUniqueCategory(int uniqueCategory);
+
+    /**
+     * 查询博主的所有图片
+     *
+     * @param bloggerId 博主id
+     * @param offset    偏移位置
+     * @param rows      行数
+     * @return 查询结果
+     */
+    List<BloggerPicture> listPictureByBloggerId(@Param("bloggerId") int bloggerId,
+                                                @Param("offset") int offset,
+                                                @Param("rows") int rows);
+
+    /**
+     * 查询博主的指定类别图片
+     *
+     * @param bloggerId 博主id
+     * @param category  类别id
+     * @param offset    偏移位置
+     * @param rows      行数
+     * @return 查询结果
+     */
+    List<BloggerPicture> listPictureByBloggerAndCategory(@Param("bloggerId") int bloggerId,
+                                                         @Param("category") int category,
+                                                         @Param("offset") int offset,
+                                                         @Param("rows") int rows);
 }

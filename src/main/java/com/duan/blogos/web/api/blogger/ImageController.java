@@ -49,7 +49,7 @@ public class ImageController extends BaseBloggerController {
 
         BloggerPicture picture = galleryService.getPicture(imageId, bloggerId);
         BloggerPicture backupPicture = galleryService.getPictureByPropertiesCategory(
-                BloggerPictureCategoryEnum.BLOGGER_DEFAULT_UNIQUE_PICTURE.getCode());
+                BloggerPictureCategoryEnum.BLOGGER_DEFAULT_UNIQUE_PICTURE);
 
         try (ServletOutputStream os = response.getOutputStream()) {
             String path = picture == null ? backupPicture.getPath() : picture.getPath();

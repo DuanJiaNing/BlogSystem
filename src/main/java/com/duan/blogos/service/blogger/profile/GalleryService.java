@@ -2,7 +2,10 @@ package com.duan.blogos.service.blogger.profile;
 
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
+import com.duan.blogos.result.ResultBean;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * Created on 2017/12/18.
@@ -46,15 +49,6 @@ public interface GalleryService {
     boolean deletePicture(int pictureId, boolean deleteOnDisk);
 
     /**
-     * 更新图片种类
-     *
-     * @param pictureId   图片id
-     * @param newCategory 新的类别
-     * @return 更新失败为false
-     */
-    boolean updatePictureCategory(int pictureId, BloggerPictureCategoryEnum newCategory);
-
-    /**
      * 获得图片
      *
      * @param pictureId 图片id
@@ -85,7 +79,7 @@ public interface GalleryService {
      * @param category 类别
      * @return 查询结果
      */
-    BloggerPicture getPictureByPropertiesCategory(int category);
+    BloggerPicture getPictureByPropertiesCategory(BloggerPictureCategoryEnum category);
 
     /**
      * 更新唯一的图片（存在则更新，否则插入）
@@ -99,4 +93,24 @@ public interface GalleryService {
      */
     int updateUniquePicture(int bloggerId, String bewrite, String path, BloggerPictureCategoryEnum cate, String title);
 
+    /**
+     * 获得博主的多张图片
+     *
+     * @param bloggerId 博主id
+     * @param category  类别id，不限制类别时传递-1
+     * @param offset    结果集偏移量
+     * @param rows      结果集行数
+     * @return 查询结果
+     */
+    ResultBean<List<BloggerPicture>> listBloggerPicture(int bloggerId, BloggerPictureCategoryEnum category, int offset, int rows);
+
+    /**
+     * 更新图片信息，当修改了图片类别时需要同步更新设备上的图片保存位置
+     * @param pictureId 图片id
+     * @param category 类别id
+     * @param bewrite 描述
+     * @param title 标题
+     * @return
+     */
+    boolean updatePicture(int pictureId, BloggerPictureCategoryEnum category, String bewrite, String title);
 }

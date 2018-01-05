@@ -47,7 +47,7 @@ public class BloggerValidateManager {
      * @param categoryId 类别id
      * @return 有返回true
      */
-    public boolean checkBloggerCategoryExist(Integer bloggerId, Integer categoryId) {
+    public boolean checkBloggerBlogCategoryExist(Integer bloggerId, Integer categoryId) {
         if (bloggerId == null || bloggerId <= 0 || categoryId == null || categoryId <= 0) {
             return false;
         }
@@ -57,11 +57,11 @@ public class BloggerValidateManager {
     }
 
     /**
-     * 检查博主是否能够上传图片到指定类别下
+     * 检查博主是否有权限操纵某些类别图片
      *
      * @param bloggerId 博主id
      * @param category  图片类别
-     * @return 可以上传返回true
+     * @return 可以操纵返回true
      */
     public boolean checkBloggerPictureLegal(int bloggerId, int category) {
         int pictureManagerId = propertiesManager.getPictureManagerBloggerId();

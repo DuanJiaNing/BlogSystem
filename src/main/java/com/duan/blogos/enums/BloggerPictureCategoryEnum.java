@@ -21,7 +21,7 @@ public enum BloggerPictureCategoryEnum {
     BLOG_CATEGORY_ICON(1),
 
     /**
-     * 博主头像
+     * 博主头像，一个博主只能有一个头像
      */
     BLOGGER_AVATAR(2),
 

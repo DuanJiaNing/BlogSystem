@@ -5,7 +5,9 @@ import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.exception.BaseRuntimeException;
 import com.duan.blogos.manager.ImageManager;
+import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.profile.GalleryService;
+import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.ImageUtils;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.BeanWrapper;
@@ -16,6 +18,8 @@ import org.springframework.web.servlet.support.RequestContext;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created on 2017/12/19.
@@ -114,11 +118,6 @@ public class GalleryServiceImpl implements GalleryService {
     }
 
     @Override
-    public boolean updatePictureCategory(int pictureId, BloggerPictureCategoryEnum newCategory) {
-        return false;
-    }
-
-    @Override
     public BloggerPicture getPicture(int pictureId) {
         return pictureDao.getPictureById(pictureId);
     }
@@ -137,8 +136,58 @@ public class GalleryServiceImpl implements GalleryService {
     }
 
     @Override
-    public BloggerPicture getPictureByPropertiesCategory(int category) {
-        return pictureDao.getPictureByPropertiesCategory(category);
+    public BloggerPicture getPictureByPropertiesCategory(BloggerPictureCategoryEnum category) {
+        return pictureDao.getPictureByPropertiesCategory(category.getCode());
+    }
+
+    @Override
+    public ResultBean<List<BloggerPicture>> listBloggerPicture(int bloggerId, BloggerPictureCategoryEnum category, int offset, int rows) {
+
+        List<BloggerPicture> result;
+        if (category == null) {
+            result = pictureDao.listPictureByBloggerId(bloggerId, offset, rows);
+        } else {
+            result = pictureDao.listPictureByBloggerAndCategory(bloggerId, category.getCode(), offset, rows);
+        }
+
+        if (CollectionUtils.isEmpty(result)) return null;
+
+        return new ResultBean<>(result);
+    }
+
+    @Override
+    public boolean updatePicture(int pictureId, BloggerPictureCategoryEnum category, String bewrite, String title) {
+
+        BloggerPicture oldPicture = pictureDao.getPictureById(pictureId);
+
+        BloggerPicture newPicture = new BloggerPicture();
+        newPicture.setBewrite(bewrite);
+        newPicture.setBloggerId(oldPicture.getBloggerId());
+        newPicture.setCategory(category == null ? oldPicture.getCategory() : category.getCode());
+        newPicture.setId(oldPicture.getId());
+        newPicture.setTitle(title);
+
+        // 修改设备上图片路径，如果需要的话
+        String newPath = null;
+        if (category != null && category.getCode() != oldPicture.getCategory()) { // 修改了类别
+            int bloggerId = oldPicture.getBloggerId();
+            if (category == BloggerPictureCategoryEnum.BLOGGER_AVATAR) { // 修改为博主头像（唯一）
+                //取消旧的头像
+                BloggerPicture avatar = pictureDao.getPictureByPropertiesCategory(BloggerPictureCategoryEnum.BLOGGER_AVATAR.getCode());
+                avatar.setCategory(BloggerPictureCategoryEnum.DEFAULT.getCode());
+                pictureDao.update(avatar);
+
+                newPath = imageManager.moveImage(avatar, bloggerId, BloggerPictureCategoryEnum.DEFAULT);
+            } else {
+                newPath = imageManager.moveImage(oldPicture, bloggerId, category);
+            }
+        }
+
+        newPicture.setPath(newPath == null ? oldPicture.getPath() : newPath);
+        int effect = pictureDao.update(newPicture);
+        if (effect <= 0) return false;
+
+        return true;
     }
 
 }
