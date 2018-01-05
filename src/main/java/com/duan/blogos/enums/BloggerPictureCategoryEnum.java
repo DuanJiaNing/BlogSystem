@@ -5,6 +5,9 @@ import java.util.EnumSet;
 /**
  * Created on 2017/12/15.
  * 伯乐相册图片种类
+ * <p>
+ * 注意注释有“唯一”的图片类别，“唯一”指数据库中只会有一条该类别的记录，文件系统中对应的文件夹中只会有一张该类图片，这使
+ * 修改图片类别时变得有些复杂。
  *
  * @author DuanJiaNing
  */
@@ -21,7 +24,7 @@ public enum BloggerPictureCategoryEnum {
     BLOG_CATEGORY_ICON(1),
 
     /**
-     * 博主头像，一个博主只能有一个头像
+     * 博主头像，一个博主只能有一个头像（非默认，但唯一）
      */
     BLOGGER_AVATAR(2),
 

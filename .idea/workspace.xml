@@ -9,16 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8ac934af-05bc-46b7-aaa8-6f8c621b9fd3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/doc/notice.md" afterPath="$PROJECT_DIR$/doc/notice.md" />
-      <change beforePath="$PROJECT_DIR$/doc/wiki/blogger/博主相册.md" afterPath="$PROJECT_DIR$/doc/wiki/blogger/博主相册.md" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/manager/ImageManager.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/manager/ImageManager.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/manager/UrlConstructorManager.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/manager/StringConstructorManager.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/profile/GalleryService.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/profile/GalleryService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/impl/blogger/profile/GalleryServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/impl/blogger/profile/GalleryServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/BaseRestController.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/BaseRestController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerGalleryController.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerGalleryController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/ImageController.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/ImageController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/enums/BloggerPictureCategoryEnum.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/enums/BloggerPictureCategoryEnum.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -65,7 +56,21 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="BloggerPictureCategoryEnum.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/enums/BloggerPictureCategoryEnum.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+              <folding>
+                <element signature="e#1699#1700#0" expanded="true" />
+                <element signature="e#1764#1765#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -185,10 +190,10 @@
         <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/impl/blogger/profile/GalleryServiceImpl.java" />
         <option value="$PROJECT_DIR$/doc/wiki/blogger/博主相册.md" />
-        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/enums/BloggerPictureCategoryEnum.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerGalleryController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/ImageController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/profile/GalleryService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/enums/BloggerPictureCategoryEnum.java" />
       </list>
     </option>
   </component>
@@ -994,7 +999,7 @@
       <workItem from="1515119844104" duration="6599000" />
       <workItem from="1515137799292" duration="3067000" />
       <workItem from="1515141291708" duration="122000" />
-      <workItem from="1515142412531" duration="9491000" />
+      <workItem from="1515142412531" duration="9731000" />
     </task>
     <task id="LOCAL-00001" summary="完善结构">
       <created>1512991824012</created>
@@ -1290,7 +1295,14 @@
       <option name="project" value="LOCAL" />
       <updated>1515126437814</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="1 完成图片信息修改（博主头像修改等及对应磁盘上文件的位置的变换）&#10;2 完成多张图片获取">
+      <created>1515152001898</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1515152001898</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1326,7 +1338,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="334859000" />
+    <option name="totallyTimeSpent" value="335099000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1339,6 +1351,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="70" y="-9" width="1859" height="1098" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4933185" sideWeight="0.50214595" order="2" side_tool="true" content_ui="tabs" />
@@ -1363,7 +1376,7 @@
       <window_info id="Version Control" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.70837986" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55307263" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32852387" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24817927" sideWeight="0.49222222" order="5" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24817927" sideWeight="0.49222222" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26256984" sideWeight="0.50777775" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25374448" sideWeight="0.50669914" order="4" side_tool="true" content_ui="tabs" />
@@ -1449,7 +1462,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加wiki文件夹" />
     <MESSAGE value="将控制层api抽离&#10;异常基类中添加日志输出" />
     <MESSAGE value="完善博文检索api接口" />
     <MESSAGE value="完成博文主体内容获取接口" />
@@ -1474,7 +1486,8 @@
     <MESSAGE value="完成图片上传" />
     <MESSAGE value="完成图片上传，下载和删除" />
     <MESSAGE value="1 完成图片获取API对应文档&#10;2 编写图片资料修改代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="1 完成图片获取API对应文档&#10;2 编写图片资料修改代码" />
+    <MESSAGE value="1 完成图片信息修改（博主头像修改等及对应磁盘上文件的位置的变换）&#10;2 完成多张图片获取" />
+    <option name="LAST_COMMIT_MESSAGE" value="1 完成图片信息修改（博主头像修改等及对应磁盘上文件的位置的变换）&#10;2 完成多张图片获取" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1904,17 +1917,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/enums/BloggerPictureCategoryEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="85" column="0" lean-forward="false" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
-          <folding>
-            <element signature="e#1601#1602#0" expanded="true" />
-            <element signature="e#1666#1667#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/profile/GalleryService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -1949,6 +1951,17 @@
         <state relative-caret-position="618">
           <caret line="128" column="47" lean-forward="true" selection-start-line="128" selection-start-column="47" selection-end-line="128" selection-end-column="47" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/enums/BloggerPictureCategoryEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding>
+            <element signature="e#1699#1700#0" expanded="true" />
+            <element signature="e#1764#1765#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
