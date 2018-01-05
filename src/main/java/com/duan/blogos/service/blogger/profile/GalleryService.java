@@ -9,7 +9,15 @@ import java.util.List;
 
 /**
  * Created on 2017/12/18.
- * 博主图片服务
+ * 博主图片服务。
+ * <p>
+ * 图片在设备上的保存结构：
+ * 1 所有图片保存在应用指定的根目录下，每一个博主都有自己的文件夹，每个类别拥有一个单独的文件夹，图片存放在各自目录下对应
+ * 的类别文件夹下。
+ * 2 唯一类别对应的文件夹下只能存放全局唯一的一张图片，如应用默认的博主友情链接图标，博主头像等，见{@link BloggerPictureCategoryEnum}
+ * 在对这些图片进行修改时（主要集中在类别修改），需要将对应目录下的文件进行相应移动。如：设置某图片为头像，则若原来设置
+ * 了头像，那么对应头像目录下也就有图片，此时需要将原来的头像文件移动到默认图片文件夹下并修改数据库记录（类别和保存路径），
+ * 再将新的头像移动到头像文件夹下，后修改对应图片的数据库信息（类别和保存路径）。
  *
  * @author DuanJiaNing
  */
@@ -82,18 +90,6 @@ public interface GalleryService {
     BloggerPicture getPictureByPropertiesCategory(BloggerPictureCategoryEnum category);
 
     /**
-     * 更新唯一的图片（存在则更新，否则插入）
-     *
-     * @param bloggerId 博主id
-     * @param bewrite   描述
-     * @param path      保存路径
-     * @param cate      类别
-     * @param title     标题
-     * @return 记录id
-     */
-    int updateUniquePicture(int bloggerId, String bewrite, String path, BloggerPictureCategoryEnum cate, String title);
-
-    /**
      * 获得博主的多张图片
      *
      * @param bloggerId 博主id
@@ -106,10 +102,11 @@ public interface GalleryService {
 
     /**
      * 更新图片信息，当修改了图片类别时需要同步更新设备上的图片保存位置
+     *
      * @param pictureId 图片id
-     * @param category 类别id
-     * @param bewrite 描述
-     * @param title 标题
+     * @param category  类别id
+     * @param bewrite   描述
+     * @param title     标题
      * @return
      */
     boolean updatePicture(int pictureId, BloggerPictureCategoryEnum category, String bewrite, String title);

@@ -23,8 +23,7 @@ import java.io.IOException;
 
 /**
  * Created on 2018/1/2.
- * 图片上传、下载、删除，区别于BloggerGalleryController，该控制类处理修改数据库中的数据外还操纵磁盘上的数据，而BloggerG-
- * alleryController只操纵数据库中的数据。
+ * 图片上传、下载、删除
  *
  * @author DuanJiaNing
  */

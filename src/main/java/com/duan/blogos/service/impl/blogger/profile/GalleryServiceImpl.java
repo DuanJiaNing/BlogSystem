@@ -10,15 +10,12 @@ import com.duan.blogos.service.blogger.profile.GalleryService;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.ImageUtils;
 import com.duan.blogos.util.StringUtils;
-import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.RequestContext;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -50,33 +47,11 @@ public class GalleryServiceImpl implements GalleryService {
     }
 
     @Override
-    public int updateUniquePicture(int bloggerId, String bewrite, String path, BloggerPictureCategoryEnum cate, String title) {
-
-        int uniqueCate = cate.getCode();
-        BloggerPicture picture = pictureDao.getPictureByCategory(bloggerId, uniqueCate);
-        if (picture == null) {
-            return insertPicture(bloggerId, path, bewrite, cate, title);
-        } else {
-            picture.setBewrite(bewrite);
-            picture.setBloggerId(bloggerId);
-            picture.setCategory(uniqueCate);
-            picture.setPath(path);
-            picture.setTitle(title);
-            picture.setUploadDate(new Timestamp(System.currentTimeMillis()));
-
-            pictureDao.update(picture);
-        }
-
-        return pictureDao.getPictureIdByUniqueCategory(uniqueCate);
-    }
-
-    @Override
     public int insertPicture(MultipartFile file, int bloggerId, String bewrite, BloggerPictureCategoryEnum category,
                              String title) {
 
         int cate = category.getCode();
         String path;
-        int id;
 
         //保存到磁盘
         try {
@@ -88,14 +63,47 @@ public class GalleryServiceImpl implements GalleryService {
         if (path == null) return -1;
 
         //数据库新增记录
-        String ti = StringUtils.isEmpty(title) ? ImageUtils.getImageName(path) : title;
+        String ti = StringUtils.isEmpty(title) ? ImageUtils.getImageName(file.getOriginalFilename()) : title;
         if (BloggerPictureCategoryEnum.isUniqueCategory(cate)) { //唯一类别
-            id = updateUniquePicture(bloggerId, bewrite, path, category, ti);
-        } else {
-            id = insertPicture(bloggerId, path, bewrite, category, ti);
+            // 如果设备上已经有该唯一图片，将原来的图片移到默认文件夹，同时修改数据库
+            removeBloggerUniquePicture(bloggerId, category);
+        } else if (category == BloggerPictureCategoryEnum.BLOGGER_AVATAR) {//保证头像唯一
+            //腾位置，如果需要的话
+            // MAYBUG 当图片一样，同为头像时，旧的头像将移动到默认文件夹，实际上这两张图片有可能是完全一样的
+            removeBloggerUniquePicture(bloggerId, BloggerPictureCategoryEnum.BLOGGER_AVATAR);
         }
 
-        return id;
+        //插入新纪录
+        return insertPicture(bloggerId, path, bewrite, category, ti);
+
+    }
+
+    /*
+     * 腾地方
+     * 移到唯一类图片到默认图片文件夹，同时修改数据库记录
+     * @param bloggerId 博主id
+     */
+    private void removeBloggerUniquePicture(int bloggerId, BloggerPictureCategoryEnum uniqueCate) {
+        BloggerPicture avatar = pictureDao.getPictureByPropertiesCategory(uniqueCate.getCode());
+
+        if (avatar != null) {
+            try {
+                //移动原来的头像到默认类别图片所在文件夹
+                String newPath = imageManager.moveImage(avatar, bloggerId, BloggerPictureCategoryEnum.DEFAULT);
+
+                //更新数据库记录
+                avatar.setCategory(BloggerPictureCategoryEnum.DEFAULT.getCode());
+                avatar.setPath(newPath);
+                pictureDao.update(avatar);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                // 移动文件出错，文件移动情况未知，麻烦大了
+                // MAYBUG 回滚数据库操作，但磁盘操作无法预料，也无法处理
+                throw new BaseRuntimeException("move image fail when replace avatar");
+            }
+        }
+
     }
 
     @Override
@@ -110,7 +118,7 @@ public class GalleryServiceImpl implements GalleryService {
         if (deleteOnDisk) {
             //删除磁盘文件
             boolean succ = imageManager.deleteImageFromDisk(path);
-            // 删除失败时抛出异常，主要目的为使数据库事务回滚
+            // 删除失败时抛出异常，使数据库事务回滚
             if (!succ) throw new BaseRuntimeException("delete image fail");
         }
 
@@ -132,7 +140,7 @@ public class GalleryServiceImpl implements GalleryService {
 
     @Override
     public boolean getPictureForCheckExist(int pictureId) {
-        return true;
+        return pictureDao.getPictureById(pictureId) != null;
     }
 
     @Override
@@ -171,15 +179,27 @@ public class GalleryServiceImpl implements GalleryService {
         String newPath = null;
         if (category != null && category.getCode() != oldPicture.getCategory()) { // 修改了类别
             int bloggerId = oldPicture.getBloggerId();
-            if (category == BloggerPictureCategoryEnum.BLOGGER_AVATAR) { // 修改为博主头像（唯一）
-                //取消旧的头像
-                BloggerPicture avatar = pictureDao.getPictureByPropertiesCategory(BloggerPictureCategoryEnum.BLOGGER_AVATAR.getCode());
-                avatar.setCategory(BloggerPictureCategoryEnum.DEFAULT.getCode());
-                pictureDao.update(avatar);
+            try {
 
-                newPath = imageManager.moveImage(avatar, bloggerId, BloggerPictureCategoryEnum.DEFAULT);
-            } else {
-                newPath = imageManager.moveImage(oldPicture, bloggerId, category);
+                if (category == BloggerPictureCategoryEnum.BLOGGER_AVATAR) { // 修改为博主头像（唯一）
+                    //腾位置，如果需要的话
+                    removeBloggerUniquePicture(bloggerId, BloggerPictureCategoryEnum.BLOGGER_AVATAR);
+
+                    //移动到头像目录
+                    newPath = imageManager.moveImage(oldPicture, bloggerId, BloggerPictureCategoryEnum.BLOGGER_AVATAR);
+
+                } else if (BloggerPictureCategoryEnum.isUniqueCategory(category.getCode())) {// 唯一类别
+                    //腾位置，如果需要的话
+                    removeBloggerUniquePicture(bloggerId, category);
+
+                    //移动到目标目录
+                    newPath = imageManager.moveImage(oldPicture, bloggerId, category);
+                } else { // 普通目录
+                    newPath = imageManager.moveImage(oldPicture, bloggerId, category);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new BaseRuntimeException("move image fail when change image category");
             }
         }
 

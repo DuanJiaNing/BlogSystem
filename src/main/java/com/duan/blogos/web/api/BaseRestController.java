@@ -4,7 +4,7 @@ import com.duan.blogos.exception.BaseRuntimeException;
 import com.duan.blogos.exception.UnknownBlogException;
 import com.duan.blogos.exception.UnknownBloggerException;
 import com.duan.blogos.manager.ExceptionManager;
-import com.duan.blogos.manager.UrlConstructorManager;
+import com.duan.blogos.manager.StringConstructorManager;
 import com.duan.blogos.manager.validate.BlogValidateManager;
 import com.duan.blogos.manager.validate.BloggerValidateManager;
 import com.duan.blogos.result.ResultBean;
@@ -34,7 +34,7 @@ public class BaseRestController {
     protected BloggerValidateManager bloggerValidateManager;
 
     @Autowired
-    protected UrlConstructorManager urlConstructorManager;
+    protected StringConstructorManager stringConstructorManager;
 
     /**
      * 处理结果为空的情况

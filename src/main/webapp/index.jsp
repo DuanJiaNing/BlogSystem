@@ -8,9 +8,10 @@
 <h2>Hello World!</h2>
 
 <form enctype="multipart/form-data" action="${pageContext.request.contextPath}/image/1" method="post">
-    <input type="file" name="image">
-    <input type="number" name="category" value="1">
-    <input type="text" name="bewrite">
+    <input type="file" name="image"><br>
+    category:<input type="number" name="category" value="1"><br>
+    bewrite:<input type="text" name="bewrite"><br>
+    title:<input type="text" name="title"><br>
     <input type="submit">
 </form>
 

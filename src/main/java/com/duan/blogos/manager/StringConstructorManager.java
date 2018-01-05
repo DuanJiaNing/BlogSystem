@@ -4,17 +4,22 @@ import com.duan.blogos.entity.blogger.BloggerPicture;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
+
 /**
  * Created on 2018/1/2.
- * url构造管理者
+ * 字符拼接管理者
  *
  * @author DuanJiaNing
  */
 @Component
-public class UrlConstructorManager {
+public class StringConstructorManager {
 
     @Autowired
     private WebsitePropertiesManager websitePropertiesManager;
+
+    @Autowired
+    private BloggerPropertiesManager propertiesManager;
 
     /**
      * 构造图片的url
@@ -35,5 +40,17 @@ public class UrlConstructorManager {
                 .append(picture.getId());
 
         return buffer.toString();
+    }
+
+    /**
+     * 拼接图片保存位置所在文件夹路径
+     *
+     * @param bloggerName     博主名
+     * @param categoryName 图片所属类别名
+     * @return 文件夹路径
+     */
+    public String constructImageDirPath(String bloggerName, String categoryName) {
+        String rootDirPath = propertiesManager.getBloggerImageRootPath();
+        return rootDirPath + File.separator + bloggerName + File.separator + categoryName;
     }
 }

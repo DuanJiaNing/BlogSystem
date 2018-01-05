@@ -6,6 +6,7 @@ import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.util.ImageUtils;
 import com.duan.blogos.util.StringUtils;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,7 +23,7 @@ import java.io.IOException;
 public class ImageManager {
 
     @Autowired
-    private BloggerPropertiesManager propertiesManager;
+    private StringConstructorManager constructorManager;
 
     @Autowired
     private BloggerAccountDao accountDao;
@@ -40,16 +41,16 @@ public class ImageManager {
         String type = ImageUtils.getImageType(file);
         if (type == null) return null;
 
-        String rootDirPath = propertiesManager.getBloggerImageRootPath();
-        String categoryName = BloggerPictureCategoryEnum.valueOf(category).name();
-
         BloggerAccount account = accountDao.getAccountById(bloggerId);
-        String username = account.getUsername();
-        File specDir = new File(rootDirPath + File.separator + username + File.separator + categoryName + File.separator);
+        String dirPath = constructorManager.constructImageDirPath(account.getUsername(),
+                BloggerPictureCategoryEnum.valueOf(category).name());
+        File specDir = new File(dirPath);
         if (!specDir.exists() || !specDir.isDirectory()) specDir.mkdirs();
 
         //页面使用 <%@ page pageEncoding="utf-8" %> 指令，否则会出现文件名中文乱码
-        String name = handleImageName(file.getOriginalFilename(), type);
+        //文件名统一添加前缀 "时间-" 以避免覆盖
+        String name = System.currentTimeMillis() + "-" + handleImageName(file.getOriginalFilename(), type);
+
         File image = new File(specDir.getAbsolutePath() + File.separator + name);
         if (!image.exists() || image.isDirectory()) file.transferTo(image);
 
@@ -99,8 +100,17 @@ public class ImageManager {
      * @param category  目标博主的类别
      * @return 新的图片保存路径
      */
-    public String moveImage(BloggerPicture picture, int bloggerId, BloggerPictureCategoryEnum category) {
-        //TODO
-        return null;
+    public String moveImage(BloggerPicture picture, int bloggerId, BloggerPictureCategoryEnum category) throws IOException {
+
+        BloggerAccount account = accountDao.getAccountById(bloggerId);
+        String dirPath = constructorManager.constructImageDirPath(account.getUsername(), category.name());
+        File newDir = new File(dirPath);
+        if (!newDir.exists() || !newDir.isDirectory()) newDir.mkdirs();
+
+        File oldPicture = new File(picture.getPath());
+        File newPicture = new File(newDir.getAbsolutePath() + File.separator + oldPicture.getName());
+        FileUtils.moveFile(oldPicture, newPicture);
+
+        return newPicture.getAbsolutePath();
     }
 }

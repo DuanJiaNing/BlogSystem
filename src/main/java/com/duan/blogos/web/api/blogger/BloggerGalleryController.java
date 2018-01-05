@@ -8,7 +8,6 @@ import com.duan.blogos.service.blogger.profile.GalleryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.RequestContext;
-import sun.awt.image.OffScreenImageSource;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -45,7 +44,7 @@ public class BloggerGalleryController extends BaseBloggerController {
         BloggerPicture picture = galleryService.getPicture(pictureId, bloggerId);
         if (picture == null) handlerEmptyResult(request);
 
-        String url = urlConstructorManager.constructPictureUrl(picture);
+        String url = stringConstructorManager.constructPictureUrl(picture);
         picture.setPath(url);
 
         return new ResultBean<>(picture);
@@ -57,15 +56,23 @@ public class BloggerGalleryController extends BaseBloggerController {
     @RequestMapping(method = RequestMethod.GET)
     public ResultBean<List<BloggerPicture>> list(HttpServletRequest request,
                                                  @PathVariable("bloggerId") Integer bloggerId,
-                                                 @RequestParam(value = "categoryId", required = false) Integer categoryId,
+                                                 @RequestParam(value = "category", required = false) Integer category,
                                                  @RequestParam(value = "offset", required = false) Integer offset,
                                                  @RequestParam(value = "rows", required = false) Integer rows) {
         checkAccount(request, bloggerId);
+        RequestContext context = new RequestContext(request);
 
         int cate;
-        if (categoryId != null) {
-            if (validateManager.checkBloggerPictureLegal(bloggerId, categoryId)) cate = categoryId;
-            else throw exceptionManager.getUnauthorizedException(new RequestContext(request));
+        if (category != null) {
+
+            //检查类别是否存在
+            if (BloggerPictureCategoryEnum.valueOf(category) == null) {
+                throw exceptionManager.getParameterIllegalException(context);
+            }
+
+            //检查权限
+            if (validateManager.checkBloggerPictureLegal(bloggerId, category)) cate = category;
+            else throw exceptionManager.getUnauthorizedException(context);
         } else cate = -1;
 
         int os = offset == null || offset < 0 ? 0 : offset;
@@ -76,7 +83,7 @@ public class BloggerGalleryController extends BaseBloggerController {
         if (result == null) handlerEmptyResult(request);
 
         for (BloggerPicture picture : result.getData()) {
-            String url = urlConstructorManager.constructPictureUrl(picture);
+            String url = stringConstructorManager.constructPictureUrl(picture);
             picture.setPath(url);
         }
 
@@ -90,28 +97,37 @@ public class BloggerGalleryController extends BaseBloggerController {
     public ResultBean update(HttpServletRequest request,
                              @PathVariable("bloggerId") Integer bloggerId,
                              @PathVariable("pictureId") Integer pictureId,
-                             @RequestParam(value = "categoryId", required = false) Integer newCategoryId,
+                             @RequestParam(value = "category", required = false) Integer newCategory,
                              @RequestParam(value = "bewrite", required = false) String newBeWrite,
                              @RequestParam(value = "title", required = false) String newTitle) {
 
         checkAccount(request, bloggerId);
+        RequestContext context = new RequestContext(request);
 
         // 检查博主是否有指定图片
         BloggerPicture picture = galleryService.getPicture(pictureId);
         if (picture == null || !bloggerId.equals(picture.getBloggerId())) {
-            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
+            throw exceptionManager.getParameterIllegalException(context);
         }
 
-        if (newCategoryId == null && newBeWrite == null && newTitle == null) {
-            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
+        if (newCategory == null && newBeWrite == null && newTitle == null) {
+            throw exceptionManager.getParameterIllegalException(context);
         }
 
-        if (newCategoryId != null)
-            if (!validateManager.checkBloggerPictureLegal(bloggerId, newCategoryId))
-                throw exceptionManager.getUnauthorizedException(new RequestContext(request));
+        if (newCategory != null) {
+
+            //检查类别是否存在
+            if (BloggerPictureCategoryEnum.valueOf(newCategory) == null) {
+                throw exceptionManager.getParameterIllegalException(context);
+            }
+
+            //检查权限
+            if (!validateManager.checkBloggerPictureLegal(bloggerId, newCategory))
+                throw exceptionManager.getUnauthorizedException(context);
+        }
 
         boolean result = galleryService.updatePicture(pictureId,
-                newCategoryId == null ? null : BloggerPictureCategoryEnum.valueOf(newCategoryId), newBeWrite, newTitle);
+                newCategory == null ? null : BloggerPictureCategoryEnum.valueOf(newCategory), newBeWrite, newTitle);
         if (!result) handlerOperateFail(request);
 
         return new ResultBean<>("");
