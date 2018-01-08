@@ -47,13 +47,15 @@ public class BloggerProfileController extends BaseBloggerController {
     @RequestMapping(method = RequestMethod.POST)
     public ResultBean newProfile(HttpServletRequest request,
                                  @PathVariable Integer bloggerId,
+                                 @RequestParam(value = "avatarId", required = false) Integer avatarId,
                                  @RequestParam(value = "phone", required = false) String phone,
                                  @RequestParam(value = "email", required = false) String email,
                                  @RequestParam(value = "aboutMe", required = false) String aboutMe,
                                  @RequestParam(value = "intro", required = false) String intro) {
         checkAccount(request, bloggerId);
         checkParams(phone, email, request);
-        int id = profileService.insertBloggerProfile(bloggerId, phone, email, aboutMe, intro);
+        int av = avatarId == null || avatarId <= 0 ? -1 : avatarId;
+        int id = profileService.insertBloggerProfile(bloggerId, av, phone, email, aboutMe, intro);
         if (id <= 0) handlerOperateFail(request);
 
         return new ResultBean<>(id);
@@ -71,6 +73,7 @@ public class BloggerProfileController extends BaseBloggerController {
     @RequestMapping(method = RequestMethod.PUT)
     public ResultBean update(HttpServletRequest request,
                              @PathVariable Integer bloggerId,
+                             @RequestParam(value = "avatarId", required = false) Integer avatarId,
                              @RequestParam(value = "phone", required = false) String phone,
                              @RequestParam(value = "email", required = false) String email,
                              @RequestParam(value = "aboutMe", required = false) String aboutMe,
@@ -82,7 +85,8 @@ public class BloggerProfileController extends BaseBloggerController {
 
         checkAccount(request, bloggerId);
         checkParams(phone, email, request);
-        boolean result = profileService.updateBloggerProfile(bloggerId, phone, email, aboutMe, intro);
+        int av = avatarId == null || avatarId <= 0 ? -1 : avatarId;
+        boolean result = profileService.updateBloggerProfile(bloggerId, av, phone, email, aboutMe, intro);
         if (!result) handlerOperateFail(request);
 
         return new ResultBean<>("");

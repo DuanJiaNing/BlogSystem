@@ -67,10 +67,6 @@ public class GalleryServiceImpl implements GalleryService {
         if (BloggerPictureCategoryEnum.isUniqueCategory(cate)) { //唯一类别
             // 如果设备上已经有该唯一图片，将原来的图片移到默认文件夹，同时修改数据库
             removeBloggerUniquePicture(bloggerId, category);
-        } else if (category == BloggerPictureCategoryEnum.BLOGGER_AVATAR) {//保证头像唯一
-            //腾位置，如果需要的话
-            // MAYBUG 当图片一样，同为头像时，旧的头像将移动到默认文件夹，实际上这两张图片有可能是完全一样的
-            removeBloggerUniquePicture(bloggerId, BloggerPictureCategoryEnum.BLOGGER_AVATAR);
         }
 
         //插入新纪录
@@ -88,7 +84,7 @@ public class GalleryServiceImpl implements GalleryService {
 
         if (avatar != null) {
             try {
-                //移动原来的头像到默认类别图片所在文件夹
+                //移动原来的唯一图片到默认类别图片所在文件夹
                 String newPath = imageManager.moveImage(avatar, bloggerId, BloggerPictureCategoryEnum.DEFAULT);
 
                 //更新数据库记录
@@ -181,14 +177,7 @@ public class GalleryServiceImpl implements GalleryService {
             int bloggerId = oldPicture.getBloggerId();
             try {
 
-                if (category == BloggerPictureCategoryEnum.BLOGGER_AVATAR) { // 修改为博主头像（唯一）
-                    //腾位置，如果需要的话
-                    removeBloggerUniquePicture(bloggerId, BloggerPictureCategoryEnum.BLOGGER_AVATAR);
-
-                    //移动到头像目录
-                    newPath = imageManager.moveImage(oldPicture, bloggerId, BloggerPictureCategoryEnum.BLOGGER_AVATAR);
-
-                } else if (BloggerPictureCategoryEnum.isUniqueCategory(category.getCode())) {// 唯一类别
+                if (BloggerPictureCategoryEnum.isUniqueCategory(category.getCode())) {// 唯一类别
                     //腾位置，如果需要的话
                     removeBloggerUniquePicture(bloggerId, category);
 

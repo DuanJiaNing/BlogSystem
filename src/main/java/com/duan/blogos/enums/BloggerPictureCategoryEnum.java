@@ -18,16 +18,6 @@ public enum BloggerPictureCategoryEnum {
      */
     DEFAULT(0),
 
-    /**
-     * 博主个人博文类别图标
-     */
-    BLOG_CATEGORY_ICON(1),
-
-    /**
-     * 博主头像，一个博主只能有一个头像（非默认，但唯一）
-     */
-    BLOGGER_AVATAR(2),
-
     /*--------------------------------------------------*/
 
     /**

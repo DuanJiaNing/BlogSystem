@@ -25,7 +25,10 @@
         UPDATE blog_category
         <set>
             <if test="bloggerId != null">
-                bloggerId=#{bloggerId},
+                blogger_id=#{bloggerId},
+            </if>
+            <if test="iconId != null">
+                icon_id=#{iconId},
             </if>
             <if test="title != null">
                 title=#{title},
@@ -34,7 +37,7 @@
                 bewrite=#{bewrite},
             </if>
             <if test="createDate != null">
-                createDate=#{createDate}
+                create_date=#{createDate}
             </if>
             <where>
                 id=#{id}
@@ -54,11 +57,13 @@
         </selectKey>
         INSERT INTO blog_category (
         blogger_id,
+        icon_id,
         title,
         bewrite,
         create_date
         ) VALUE (
         #{blogger_id},
+        #{iconId},
         #{title},
         #{bewrite},
         NOW()

@@ -41,7 +41,6 @@ public class BlogDataRetrievalController extends BaseBlogController {
 
     /**
      * 检索指定博主的博文列表
-     * 文档见 doc/wiki/audience/博文检索.md
      */
     @RequestMapping(value = "/{bloggerId}", method = RequestMethod.GET)
     public ResultBean<List<BlogListItemDTO>> blogList(HttpServletRequest request,
@@ -105,7 +104,6 @@ public class BlogDataRetrievalController extends BaseBlogController {
 
     /**
      * 获得博文主体内容
-     * 文档见 doc/wiki/audience/博文主体内容.md
      */
     @RequestMapping(value = "/{blogId}/content", method = RequestMethod.GET)
     public ResultBean<BlogMainContentDTO> blogMainContent(HttpServletRequest request,
@@ -124,7 +122,6 @@ public class BlogDataRetrievalController extends BaseBlogController {
 
     /**
      * 获得博文评论列表
-     * 文档见 doc/wiki/audience/博文评论列表.md
      */
     @RequestMapping(value = "/{blogId}/comment", method = RequestMethod.GET)
     public ResultBean<List<BlogCommentDTO>> blogComment(HttpServletRequest request,
@@ -147,7 +144,6 @@ public class BlogDataRetrievalController extends BaseBlogController {
 
     /**
      * 获得博文统计信息
-     * 文档见 doc/wiki/audience/博文统计信息.md
      */
     @RequestMapping(value = "/{blogId}/statistics", method = RequestMethod.GET)
     public ResultBean<BlogStatisticsDTO> blogStatistics(HttpServletRequest request, @PathVariable Integer blogId) {

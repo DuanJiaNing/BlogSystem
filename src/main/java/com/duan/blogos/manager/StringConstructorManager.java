@@ -28,6 +28,7 @@ public class StringConstructorManager {
      * @return 获取图片的url
      */
     public String constructPictureUrl(BloggerPicture picture) {
+        if (picture == null) return null;
         //http://tnfs.tngou.net/image/lore/151107/fc2b0b50e9ed622a1e5385a15f0a33d2.png
 
         //http://localhost:8080/image/{bloggerId}/{pictureId}
@@ -45,7 +46,7 @@ public class StringConstructorManager {
     /**
      * 拼接图片保存位置所在文件夹路径
      *
-     * @param bloggerName     博主名
+     * @param bloggerName  博主名
      * @param categoryName 图片所属类别名
      * @return 文件夹路径
      */

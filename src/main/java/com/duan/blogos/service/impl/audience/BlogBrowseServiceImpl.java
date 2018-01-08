@@ -16,6 +16,7 @@ import com.duan.blogos.enums.BlogCommentStatusEnum;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.manager.DbPropertiesManager;
+import com.duan.blogos.manager.StringConstructorManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.audience.BlogBrowseService;
 import com.duan.blogos.util.CollectionUtils;
@@ -50,6 +51,9 @@ public class BlogBrowseServiceImpl implements BlogBrowseService {
     private DataFillingManager dataFillingManager;
 
     @Autowired
+    private StringConstructorManager constructorManager;
+
+    @Autowired
     private BlogCommentDao commentDao;
 
     @Autowired
@@ -77,19 +81,8 @@ public class BlogBrowseServiceImpl implements BlogBrowseService {
         List<BlogLabel> labels = lids == null ? null : labelDao.listLabelById(lids);
 
         //填充数据
-        BlogMainContentDTO dto = new BlogMainContentDTO();
-        dto.setCategories(categories == null ? null : categories.toArray(new BlogCategory[categories.size()]));
-        dto.setLabels(labels == null ? null : labels.toArray(new BlogLabel[labels.size()]));
-        dto.setId(blog.getId());
-        dto.setKeyWords(StringUtils.stringToStringArray(blog.getKeyWords(),
-                dbPropertiesManager.getStringFiledSplitCharacterForString()));
-        dto.setNearestModifyDate(blog.getNearestModifyDate());
-        dto.setReleaseDate(blog.getReleaseDate());
-        dto.setStatus(blog.getState());
-        dto.setSummary(blog.getSummary());
-        dto.setTitle(blog.getTitle());
-        dto.setWordCount(blog.getWordCount());
-        dto.setContent(blog.getContent());
+        String sc = dbPropertiesManager.getStringFiledSplitCharacterForString();
+        BlogMainContentDTO dto = dataFillingManager.blogMainContentToDTO(blog, categories, labels, sc);
 
         return new ResultBean<>(dto);
     }
@@ -107,22 +100,23 @@ public class BlogBrowseServiceImpl implements BlogBrowseService {
 
         List<BlogCommentDTO> result = new ArrayList<>();
 
-        List<BlogComment> comments = commentDao.listCommentByBlogId(blogId, offset, rows, BlogCommentStatusEnum.RIGHTFUL.getCode());
+        List<BlogComment> comments = commentDao.listCommentByBlogId(blogId, offset, rows,
+                BlogCommentStatusEnum.RIGHTFUL.getCode());
         for (BlogComment comment : comments) {
 
             //评论者数据
             int sid = comment.getSpokesmanId();
             BloggerAccount smAccount = accountDao.getAccountById(sid);
             BloggerProfile smProfile = getProfile(sid);
-            BloggerPicture smAvatar = getAvatar(sid);
-            BloggerDTO smDTO = dataFillingManager.bloggerAccountToDTO(smAccount, smProfile, smAvatar);
+            BloggerDTO smDTO = dataFillingManager.bloggerAccountToDTO(smAccount, smProfile,
+                    getAvatar(smProfile.getAvatarId()));
 
             //作者数据
             int lid = comment.getListenerId();
             BloggerAccount lAccount = accountDao.getAccountById(lid);
             BloggerProfile lProfile = getProfile(lid);
-            BloggerPicture lAvatar = getAvatar(lid);
-            BloggerDTO lDTO = dataFillingManager.bloggerAccountToDTO(lAccount, lProfile, lAvatar);
+            BloggerDTO lDTO = dataFillingManager.bloggerAccountToDTO(lAccount, lProfile,
+                    getAvatar(lProfile.getAvatarId()));
 
             BlogCommentDTO dto = dataFillingManager.blogCommentToDTO(comment, smDTO, lDTO);
             result.add(dto);
@@ -131,17 +125,24 @@ public class BlogBrowseServiceImpl implements BlogBrowseService {
         return CollectionUtils.isEmpty(result) ? null : new ResultBean<>(result);
     }
 
+    private BloggerPicture getAvatar(Integer id) {
+        if (id != null) {
+            BloggerPicture avatar = pictureDao.getPictureById(id);
+            if (avatar != null) {
+                avatar.setPath(constructorManager.constructPictureUrl(avatar));
+            }
+
+            return avatar;
+        }
+
+        return null;
+    }
+
 
     //获得博主资料
     private BloggerProfile getProfile(Integer bloggerId) {
         if (bloggerId == null) return null;
         return profileDao.getProfileByBloggerId(bloggerId);
-    }
-
-    //获得博主图片
-    private BloggerPicture getAvatar(Integer bloggerId) {
-        if (bloggerId == null) return null;
-        return pictureDao.getPictureByCategory(bloggerId, BloggerPictureCategoryEnum.BLOGGER_AVATAR.getCode());
     }
 
     @Override

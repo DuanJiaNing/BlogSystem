@@ -20,6 +20,9 @@ public class BloggerProfile implements Serializable {
     //博主id
     private Integer bloggerId;
 
+    //博主头像
+    private Integer avatarId;
+
     //电话
     private String phone;
 

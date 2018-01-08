@@ -21,6 +21,9 @@ public class BlogCategory implements Serializable {
     //类别所属博主id
     private Integer bloggerId;
 
+    //类别图标
+    private Integer iconId;
+
     //类别标题
     private String title;
 

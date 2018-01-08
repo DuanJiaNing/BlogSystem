@@ -18,11 +18,12 @@ public class ProfileServiceImpl implements ProfileService {
     private BloggerProfileDao profileDao;
 
     @Override
-    public int insertBloggerProfile(int bloggerId, String phone, String email, String aboutMe, String intro) {
+    public int insertBloggerProfile(int bloggerId, int avatarId, String phone, String email, String aboutMe, String intro) {
 
         BloggerProfile profile = new BloggerProfile();
         profile.setAboutMe(aboutMe);
         profile.setBloggerId(bloggerId);
+        profile.setAvatarId(avatarId);
         profile.setEmail(email);
         profile.setIntro(intro);
         profile.setPhone(phone);
@@ -33,11 +34,12 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public boolean updateBloggerProfile(int bloggerId, String newPhone, String newEmail, String newAboutMe, String newIntro) {
+    public boolean updateBloggerProfile(int bloggerId, int avatarId, String newPhone, String newEmail, String newAboutMe, String newIntro) {
 
         BloggerProfile profile = new BloggerProfile();
         profile.setAboutMe(newAboutMe);
         profile.setBloggerId(bloggerId);
+        profile.setAvatarId(avatarId == -1 ? null : avatarId);
         profile.setEmail(newEmail);
         profile.setIntro(newIntro);
         profile.setPhone(newPhone);

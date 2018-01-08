@@ -2,17 +2,16 @@ package com.duan.blogos.manager;
 
 import com.duan.blogos.dto.blog.BlogCommentDTO;
 import com.duan.blogos.dto.blog.BlogListItemDTO;
+import com.duan.blogos.dto.blog.BlogMainContentDTO;
 import com.duan.blogos.dto.blog.BlogStatisticsDTO;
 import com.duan.blogos.dto.blogger.BloggerDTO;
 import com.duan.blogos.dto.blogger.BloggerLinkDTO;
-import com.duan.blogos.entity.blog.Blog;
-import com.duan.blogos.entity.blog.BlogCategory;
-import com.duan.blogos.entity.blog.BlogComment;
-import com.duan.blogos.entity.blog.BlogStatistics;
+import com.duan.blogos.entity.blog.*;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerLink;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.entity.blogger.BloggerProfile;
+import com.duan.blogos.util.StringUtils;
 
 import java.util.List;
 
@@ -88,4 +87,20 @@ public class DataFillingManager {
         return dto;
     }
 
+    public BlogMainContentDTO blogMainContentToDTO(Blog blog, List<BlogCategory> categories, List<BlogLabel> labels, String splitChar) {
+        BlogMainContentDTO dto = new BlogMainContentDTO();
+        dto.setCategories(categories == null ? null : categories.toArray(new BlogCategory[categories.size()]));
+        dto.setLabels(labels == null ? null : labels.toArray(new BlogLabel[labels.size()]));
+        dto.setId(blog.getId());
+        dto.setKeyWords(StringUtils.stringToStringArray(blog.getKeyWords(), splitChar));
+        dto.setNearestModifyDate(blog.getNearestModifyDate());
+        dto.setReleaseDate(blog.getReleaseDate());
+        dto.setStatus(blog.getState());
+        dto.setSummary(blog.getSummary());
+        dto.setTitle(blog.getTitle());
+        dto.setWordCount(blog.getWordCount());
+        dto.setContent(blog.getContent());
+
+        return dto;
+    }
 }
