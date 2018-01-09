@@ -6,6 +6,7 @@ import com.duan.blogos.dto.blog.BlogMainContentDTO;
 import com.duan.blogos.dto.blog.BlogStatisticsDTO;
 import com.duan.blogos.dto.blogger.BloggerDTO;
 import com.duan.blogos.dto.blogger.BloggerLinkDTO;
+import com.duan.blogos.dto.blogger.CollectBlogListItemDTO;
 import com.duan.blogos.entity.blog.*;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerLink;
@@ -101,6 +102,18 @@ public class DataFillingManager {
         dto.setWordCount(blog.getWordCount());
         dto.setContent(blog.getContent());
 
+        return dto;
+    }
+
+    public CollectBlogListItemDTO collectBlogListItemToDTO(int bloggerId, BlogCollect collect, BlogListItemDTO blog, BloggerDTO author) {
+        CollectBlogListItemDTO dto = new CollectBlogListItemDTO();
+        dto.setAuthor(author);
+        dto.setBlog(blog);
+        dto.setBloggerId(bloggerId);
+        dto.setCategoryId(collect.getCategoryId());
+        dto.setCollectDate(collect.getCollectDate());
+        dto.setId(collect.getId());
+        dto.setReason(collect.getReason());
         return dto;
     }
 }

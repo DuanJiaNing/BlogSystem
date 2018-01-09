@@ -3,6 +3,7 @@ package com.duan.blogos.manager.comparator;
 import com.duan.blogos.common.Order;
 import com.duan.blogos.common.Rule;
 import com.duan.blogos.dto.blog.BlogListItemDTO;
+import com.duan.blogos.entity.blog.BlogStatistics;
 
 import java.util.Comparator;
 
@@ -12,7 +13,7 @@ import java.util.Comparator;
  *
  * @author DuanJiaNing
  */
-public class BlogListItemComparatorFactory extends BlogComparatorFactoryAbstract<BlogListItemDTO> {
+public class BlogListItemComparatorFactory extends BlogComparatorFactoryAbstract<BlogStatistics> {
 
     @Override
     protected void initFactory() {

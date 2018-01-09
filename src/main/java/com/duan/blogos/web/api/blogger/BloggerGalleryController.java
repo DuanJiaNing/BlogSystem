@@ -15,7 +15,10 @@ import java.util.List;
 /**
  * Created on 2018/1/2.
  * 相册
- * 获取照片
+ * <p>
+ * 1 根据id获取图片
+ * 2 获得多张图片
+ * 3 更新图片信息
  *
  * @author DuanJiaNing
  */

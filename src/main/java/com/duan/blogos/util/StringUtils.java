@@ -80,7 +80,7 @@ public class StringUtils {
         try {
             String[] strings = str.split(regex);
             for (String s : strings) {
-                int i = Integer.valueOf(s);
+                int i = Integer.parseInt(s);
             }
             return true;
         } catch (IllegalArgumentException e) {

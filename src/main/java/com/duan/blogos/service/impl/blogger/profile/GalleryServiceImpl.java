@@ -80,23 +80,23 @@ public class GalleryServiceImpl implements GalleryService {
      * @param bloggerId 博主id
      */
     private void removeBloggerUniquePicture(int bloggerId, BloggerPictureCategoryEnum uniqueCate) {
-        BloggerPicture avatar = pictureDao.getPictureByPropertiesCategory(uniqueCate.getCode());
+        BloggerPicture unique = pictureDao.getPictureByPropertiesCategory(uniqueCate.getCode());
 
-        if (avatar != null) {
+        if (unique != null) {
             try {
                 //移动原来的唯一图片到默认类别图片所在文件夹
-                String newPath = imageManager.moveImage(avatar, bloggerId, BloggerPictureCategoryEnum.DEFAULT);
+                String newPath = imageManager.moveImage(unique, bloggerId, BloggerPictureCategoryEnum.DEFAULT);
 
                 //更新数据库记录
-                avatar.setCategory(BloggerPictureCategoryEnum.DEFAULT.getCode());
-                avatar.setPath(newPath);
-                pictureDao.update(avatar);
+                unique.setCategory(BloggerPictureCategoryEnum.DEFAULT.getCode());
+                unique.setPath(newPath);
+                pictureDao.update(unique);
 
             } catch (IOException e) {
                 e.printStackTrace();
                 // 移动文件出错，文件移动情况未知，麻烦大了
                 // MAYBUG 回滚数据库操作，但磁盘操作无法预料，也无法处理
-                throw new BaseRuntimeException("move image fail when replace avatar");
+                throw new BaseRuntimeException("move image fail when replace unique");
             }
         }
 

@@ -26,6 +26,11 @@ import java.util.List;
 /**
  * Created on 2017/12/19.
  * 读者对博文数据的获取api
+ * <p>
+ * 1 检索指定博主的博文列表
+ * 2 获得博文主体内容
+ * 3 获得博文评论列表
+ * 4 获得博文统计信息
  *
  * @author DuanJiaNing
  */

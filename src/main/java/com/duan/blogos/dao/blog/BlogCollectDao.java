@@ -5,6 +5,8 @@ import com.duan.blogos.entity.blog.BlogCollect;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created on 2017/12/27.
  *
@@ -21,5 +23,19 @@ public interface BlogCollectDao extends BaseDao<BlogCollect> {
      * @return 执行结果
      */
     int deleteCollectByBloggerId(@Param("bloggerId") int bloggerId, @Param("blogId") int blogId);
+
+    /**
+     * 获取指定博主指定类别的收藏博文
+     *
+     * @param bloggerId 博主id
+     * @param category  类别id
+     * @param offset    结果集偏移量
+     * @param rows      结果集数量
+     * @return 查询结果
+     */
+    List<BlogCollect> listCollectBlog(@Param("bloggerId") int bloggerId,
+                                      @Param("category") int category,
+                                      @Param("offset") int offset,
+                                      @Param("rows") int rows);
 
 }

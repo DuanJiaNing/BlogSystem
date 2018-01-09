@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 /**
  * Created on 2017/12/14.
@@ -47,5 +48,8 @@ public class BlogStatistics implements Serializable {
 
     //喜欢次数
     private Integer likeCount;
+
+    //发布日期
+    private Timestamp releaseDate;
 
 }

@@ -34,4 +34,10 @@ public class BlogSortRule {
         return order;
     }
 
+    public static BlogSortRule valueOf(String ruleName, String orderName) {
+        Rule rule = Rule.valueOf(ruleName);
+        Order order = Order.valueOf(orderName);
+        return new BlogSortRule(rule, order);
+    }
+
 }

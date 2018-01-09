@@ -20,6 +20,8 @@
         <property name="bloggerImageRootPath" value="${blogger.bloggerImageRootPath}"/>
         <property name="pictureManagerBloggerId" value="${blogger.pictureManagerBloggerId}"/>
         <property name="requestBloggerPictureCount" value="${blogger.requestBloggerPictureCount}"/>
+        <property name="requestBloggerCollectCount" value="${blogger.requestBloggerCollectCount}"/>
+        <property name="defaultBlogCollectCategory" value="${blogger.defaultBlogCollectCategory}"/>
     </bean>
 
     <bean class="com.duan.blogos.manager.DataFillingManager" name="dataFillingManager"/>

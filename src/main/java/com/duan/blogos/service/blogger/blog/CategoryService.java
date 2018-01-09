@@ -63,7 +63,7 @@ public interface CategoryService {
     void deleteCategoryAndMoveBlogsTo(int bloggerId, int categoryId, int newBloggerId, int newCategoryId);
 
     /**
-     * 计算类别数量，该方法目的为检查指定博主是否创建过指定类别
+     * 通过计算类别数量，来检查指定博主是否创建过指定类别
      *
      * @param bloggerId  博主id
      * @param categoryId 类别id

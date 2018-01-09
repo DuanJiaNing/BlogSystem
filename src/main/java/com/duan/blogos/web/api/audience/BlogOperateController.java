@@ -13,6 +13,15 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Created on 2017/12/25.
  * 读者对博文可以进行的操作
+ * <p>
+ * 1 评论博文
+ * 2 分享博文
+ * 3 赞赏博文
+ * 4 收藏博文
+ * 5 投诉博文
+ * 6 喜欢博文
+ * 7 取消收藏
+ * 8 取消喜欢
  *
  * @author DuanJiaNing
  */

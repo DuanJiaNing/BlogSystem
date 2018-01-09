@@ -5,6 +5,7 @@ import com.duan.blogos.exception.UnspecifiedOperationException;
 import com.duan.blogos.result.ResultBean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.MissingServletRequestParameterException;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.support.RequestContext;
 
 /**
@@ -74,4 +75,9 @@ public class ExceptionManager {
     public UnauthorizedException getUnauthorizedException(RequestContext context) {
         return new UnauthorizedException(context.getMessage("common.unauthorized"));
     }
+
+    public UnknownCategoryException getUnknownCategoryException(RequestContext context) {
+        return new UnknownCategoryException(context.getMessage("common.unknownCategory"));
+    }
+
 }

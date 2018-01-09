@@ -1,24 +1,119 @@
 package com.duan.blogos.service.impl.blogger.profile;
 
+import com.duan.blogos.dao.blog.BlogCategoryDao;
+import com.duan.blogos.dao.blog.BlogCollectDao;
+import com.duan.blogos.dao.blog.BlogDao;
+import com.duan.blogos.dao.blog.BlogStatisticsDao;
+import com.duan.blogos.dao.blogger.BloggerAccountDao;
+import com.duan.blogos.dao.blogger.BloggerPictureDao;
+import com.duan.blogos.dao.blogger.BloggerProfileDao;
+import com.duan.blogos.dto.blog.BlogListItemDTO;
+import com.duan.blogos.dto.blogger.BloggerDTO;
 import com.duan.blogos.dto.blogger.CollectBlogListItemDTO;
+import com.duan.blogos.entity.blog.Blog;
+import com.duan.blogos.entity.blog.BlogCategory;
 import com.duan.blogos.entity.blog.BlogCollect;
+import com.duan.blogos.entity.blog.BlogStatistics;
+import com.duan.blogos.entity.blogger.BloggerAccount;
+import com.duan.blogos.entity.blogger.BloggerPicture;
+import com.duan.blogos.entity.blogger.BloggerProfile;
 import com.duan.blogos.manager.BlogSortRule;
+import com.duan.blogos.manager.DataFillingManager;
+import com.duan.blogos.manager.DbPropertiesManager;
+import com.duan.blogos.manager.comparator.BlogListItemComparatorFactory;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.profile.CollectBlogService;
+import com.duan.blogos.util.CollectionUtils;
+import com.duan.blogos.util.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created on 2017/12/19.
  *
  * @author DuanJiaNing
  */
-@Service("collectBlogService")
+@Service
 public class CollectBlogServiceImpl implements CollectBlogService {
+
+    @Autowired
+    private BlogCollectDao collectDao;
+
+    @Autowired
+    private BlogStatisticsDao statisticsDao;
+
+    @Autowired
+    private BlogCategoryDao categoryDao;
+
+    @Autowired
+    private BlogDao blogDao;
+
+    @Autowired
+    private BloggerAccountDao accountDao;
+
+    @Autowired
+    private BloggerProfileDao profileDao;
+
+    @Autowired
+    private BloggerPictureDao pictureDao;
+
+    @Autowired
+    private DataFillingManager fillingManager;
+
+    @Autowired
+    private DbPropertiesManager dbPropertiesManager;
+
     @Override
-    public ResultBean<List<CollectBlogListItemDTO>> listCollectBlog(int bloggerId, int categoryId, int offset, int rows, BlogSortRule sortRule) {
-        return null;
+    public ResultBean<List<CollectBlogListItemDTO>> listCollectBlog(int bloggerId, int categoryId, int offset, int rows,
+                                                                    BlogSortRule sortRule) {
+
+        List<BlogCollect> collects = collectDao.listCollectBlog(bloggerId, categoryId, offset, rows);
+        if (CollectionUtils.isEmpty(collects)) return null;
+
+        //排序
+        List<BlogStatistics> temp = new ArrayList<>();
+        //方便排序后的重组
+        Map<Integer, BlogCollect> blogCollectMap = new HashMap<>();
+        for (BlogCollect collect : collects) {
+            int blogId = collect.getBlogId();
+            BlogStatistics statistics = statisticsDao.getStatistics(blogId);
+            temp.add(statistics);
+            blogCollectMap.put(blogId, collect);
+        }
+        BlogListItemComparatorFactory factory = new BlogListItemComparatorFactory();
+        temp.sort(factory.get(sortRule.getRule(), sortRule.getOrder()));
+
+        //构造结果
+        List<CollectBlogListItemDTO> result = new ArrayList<>();
+        for (BlogStatistics statistics : temp) {
+            int blogId = statistics.getBlogId();
+
+            // BlogListItemDTO
+            Blog blog = blogDao.getBlogById(blogId);
+            int[] ids = StringUtils.intStringDistinctToArray(blog.getCategoryIds(),
+                    dbPropertiesManager.getStringFiledSplitCharacterForNumber());
+            List<BlogCategory> categories = categoryDao.listCategoryById(ids);
+            BlogListItemDTO listItemDTO = fillingManager.blogListItemToDTO(statistics, categories, blog);
+
+            // BloggerDTO
+            BloggerAccount account = accountDao.getAccountById(bloggerId);
+            BloggerProfile profile = profileDao.getProfileByBloggerId(bloggerId);
+            BloggerPicture avatar = profile.getAvatarId() == null ? null :
+                    pictureDao.getPictureById(profile.getAvatarId());
+            BloggerDTO bloggerDTO = fillingManager.bloggerAccountToDTO(account, profile, avatar);
+
+            // 结果
+            BlogCollect collect = blogCollectMap.get(blogId);
+            CollectBlogListItemDTO dto = fillingManager.collectBlogListItemToDTO(bloggerId, collect, listItemDTO, bloggerDTO);
+            result.add(dto);
+        }
+
+        return new ResultBean<>(result);
     }
 
     @Override

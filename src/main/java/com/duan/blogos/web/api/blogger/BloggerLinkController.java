@@ -15,10 +15,11 @@ import java.util.List;
 /**
  * Created on 2017/12/28.
  * 博主友情链接api
- * 获取链接
- * 新增链接
- * 更新链接
- * 删除链接
+ * <p>
+ * 1 获取链接
+ * 2 新增链接
+ * 3 更新链接
+ * 4 删除链接
  *
  * @author DuanJiaNing
  */

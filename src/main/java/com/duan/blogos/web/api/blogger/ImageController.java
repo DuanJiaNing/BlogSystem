@@ -24,6 +24,10 @@ import java.io.IOException;
 /**
  * Created on 2018/1/2.
  * 图片上传、下载、删除
+ * <p>
+ * 1 输出图片
+ * 2 上传图片
+ * 3 从设备和数据库中删除图片
  *
  * @author DuanJiaNing
  */

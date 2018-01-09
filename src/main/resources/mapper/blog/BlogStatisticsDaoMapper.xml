@@ -15,25 +15,27 @@
             SELECT LAST_INSERT_ID() AS id
         </selectKey>
         INSERT INTO blog_statistics (
-            blog_id,
-            comment_count,
-            view_count,
-            reply_comment_count,
-            collect_count,
-            complain_count,
-            share_count,
-            admire_count,
-            like_count
+        blog_id,
+        comment_count,
+        view_count,
+        reply_comment_count,
+        collect_count,
+        complain_count,
+        share_count,
+        admire_count,
+        like_count,
+        release_date
         ) VALUE (
-            #{blogId},
-            ifnull(#{commentCount}, 0),
-            ifnull(#{viewCount}, 0),
-            ifnull(#{replyCommentCount}, 0),
-            ifnull(#{collectCount}, 0),
-            ifnull(#{complainCount}, 0),
-            ifnull(#{shareCount}, 0),
-            ifnull(#{admireCount}, 0),
-            ifnull(#{likeCount}, 0)
+        #{blogId},
+        ifnull(#{commentCount}, 0),
+        ifnull(#{viewCount}, 0),
+        ifnull(#{replyCommentCount}, 0),
+        ifnull(#{collectCount}, 0),
+        ifnull(#{complainCount}, 0),
+        ifnull(#{shareCount}, 0),
+        ifnull(#{admireCount}, 0),
+        ifnull(#{likeCount}, 0),
+        NOW()
         )
     </insert>
 

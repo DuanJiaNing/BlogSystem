@@ -16,6 +16,11 @@ public class BloggerPropertiesManager {
     private Integer requestBloggerLinkCount;
 
     /**
+     * 博主收藏博文默认请求条数
+     */
+    private Integer requestBloggerCollectCount;
+
+    /**
      * 博主相册图片默认请求数量
      */
     private Integer requestBloggerPictureCount;
@@ -29,4 +34,9 @@ public class BloggerPropertiesManager {
      * 拥有唯一图片管理权限的博主的id
      */
     private Integer pictureManagerBloggerId;
+
+    /**
+     * 默认的博文收藏类别
+     */
+    private Integer defaultBlogCollectCategory;
 }

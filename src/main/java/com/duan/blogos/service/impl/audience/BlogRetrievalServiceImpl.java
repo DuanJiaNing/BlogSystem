@@ -145,20 +145,31 @@ public class BlogRetrievalServiceImpl implements BlogRetrievalService {
         Integer[] ids = map.keySet().toArray(new Integer[map.size()]);
         if (CollectionUtils.isEmpty(ids)) return null;
 
-        // 封装返回结果
+        // 排序
         List<Blog> resultBlogs = blogDao.listBlogByBlogIds(Arrays.asList(ids), BlogStatusEnum.PUBLIC.getCode(), offset, rows);
-        List<BlogListItemDTO> result = new ArrayList<>();
+        //用于排序
+        List<BlogStatistics> temp = new ArrayList<>();
+        //方便排序后的重组
+        Map<Integer, Blog> blogHashMap = new HashMap<>();
         for (Blog blog : resultBlogs) {
             int blogId = blog.getId();
             BlogStatistics statistics = statisticsDao.getStatistics(blogId);
+            temp.add(statistics);
+            blogHashMap.put(blogId, blog);
+        }
+        BlogListItemComparatorFactory factory = new BlogListItemComparatorFactory();
+        temp.sort(factory.get(sortRule.getRule(), sortRule.getOrder()));
+
+        // 封装返回结果
+        List<BlogListItemDTO> result = new ArrayList<>();
+        for (BlogStatistics statistics : temp) {
+            Integer blogId = statistics.getBlogId();
             List<BlogCategory> categories = categoryDao.listCategoryById(map.get(blogId));
+            Blog blog = blogHashMap.get(blogId);
             BlogListItemDTO dto = dataFillingManager.blogListItemToDTO(statistics, categories, blog);
             result.add(dto);
-        }
 
-        // 排序
-        BlogListItemComparatorFactory factory = new BlogListItemComparatorFactory();
-        result.sort(factory.get(sortRule.getRule(), sortRule.getOrder()));
+        }
 
         return new ResultBean<>(result);
     }

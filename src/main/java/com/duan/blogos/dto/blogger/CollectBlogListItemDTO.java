@@ -1,5 +1,6 @@
 package com.duan.blogos.dto.blogger;
 
+import com.duan.blogos.dto.blog.BlogListItemDTO;
 import com.duan.blogos.dto.blog.BlogMainContentDTO;
 import lombok.Data;
 
@@ -20,14 +21,14 @@ public class CollectBlogListItemDTO implements Serializable {
     // 记录id
     private int id;
 
-    // 博文主体内容
-    private BlogMainContentDTO blog;
+    //博主id
+    private int bloggerId;
 
-    //收藏者id
-    private BloggerDTO blogger;
+    // 博文内容
+    private BlogListItemDTO blog;
 
     //作者id
-    private BloggerDTO authorId;
+    private BloggerDTO author;
 
     //收藏的理由
     private String reason;

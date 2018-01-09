@@ -13,10 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Created on 2017/12/29.
  * 博主个人资料api
- * 获取资料
- * 新增资料
- * 更新资料
- * 删除资料
+ * <p>
+ * 1 获取资料
+ * 2 新增资料
+ * 3 更新资料
+ * 4 删除资料
  *
  * @author DuanJiaNing
  */
