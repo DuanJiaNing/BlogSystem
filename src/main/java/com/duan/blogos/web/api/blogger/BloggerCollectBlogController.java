@@ -7,6 +7,7 @@ import com.duan.blogos.manager.BlogSortRule;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.blog.CategoryService;
 import com.duan.blogos.service.blogger.profile.CollectBlogService;
+import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.RequestContext;
@@ -49,7 +50,8 @@ public class BloggerCollectBlogController extends BaseBloggerController {
         checkAccount(request, bloggerId);
 
         // 检查类别存在否
-        if (category != null && categoryService.countCategoryForExistCheck(bloggerId, category) <= 0)
+        if (category != null && !category.equals(bloggerPropertiesManager.getDefaultBlogCollectCategory()) &&
+                categoryService.countCategoryForExistCheck(bloggerId, category) <= 0)
             throw exceptionManager.getUnknownCategoryException(context);
 
         //检查数据合法性
@@ -73,19 +75,44 @@ public class BloggerCollectBlogController extends BaseBloggerController {
     /**
      * 取消博文收藏
      */
-    @RequestMapping(method = RequestMethod.DELETE)
-    public ResultBean cancel(HttpServletRequest request) {
+    @RequestMapping(value = "/{blogId}", method = RequestMethod.DELETE)
+    public ResultBean cancel(HttpServletRequest request,
+                             @PathVariable("bloggerId") Integer bloggerId,
+                             @PathVariable("blogId") Integer blogId) {
+        checkAccount(request, bloggerId);
 
-        return null;
+        boolean result = collectBlogService.deleteCollectBlog(bloggerId, blogId);
+        if (!result) handlerOperateFail(request);
+
+        return new ResultBean<>("");
     }
 
     /**
      * 修改博文收藏
      */
-    @RequestMapping(method = RequestMethod.PUT)
-    public ResultBean update(HttpServletRequest request) {
+    @RequestMapping(value = "/{blogId}", method = RequestMethod.PUT)
+    public ResultBean update(HttpServletRequest request,
+                             @PathVariable("blogId") Integer blogId,
+                             @PathVariable("bloggerId") Integer bloggerId,
+                             @RequestParam(value = "reason", required = false) String newReason,
+                             @RequestParam(value = "category", required = false) Integer newCategory) {
+        final RequestContext context = new RequestContext(request);
 
-        return null;
+        if (StringUtils.isEmpty(newReason) && newCategory == null) {
+            throw exceptionManager.getParameterIllegalException(context);
+        }
+
+        checkAccount(request, bloggerId);
+
+        // 检查类别存在否
+        if (newCategory != null && !newCategory.equals(bloggerPropertiesManager.getDefaultBlogCollectCategory()) &&
+                categoryService.countCategoryForExistCheck(bloggerId, newCategory) <= 0)
+            throw exceptionManager.getUnknownCategoryException(context);
+
+        boolean result = collectBlogService.updateCollect(bloggerId, blogId, newReason, newCategory);
+        if (!result) handlerOperateFail(request);
+
+        return new ResultBean<>("");
     }
 
 }

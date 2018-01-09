@@ -21,6 +21,21 @@
         </where>
     </update>
 
+    <update id="updateByUnique">
+        UPDATE blog_collect
+        <set>
+            <if test="category != null">
+                category_id=#{category},
+            </if>
+            <if test="reason != null">
+                reason=#{reason},
+            </if>
+        </set>
+        <where>
+            collector_id=#{bloggerId} AND blog_id=#{blogId}
+        </where>
+    </update>
+
     <delete id="delete">
         DELETE FROM blog_collect
         WHERE id = #{value}

@@ -1,6 +1,7 @@
 package com.duan.blogos.web.api.audience;
 
 import com.duan.blogos.exception.BaseRuntimeException;
+import com.duan.blogos.manager.BloggerPropertiesManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.audience.BlogOperateService;
 import com.duan.blogos.util.StringUtils;
@@ -31,6 +32,9 @@ public class BlogOperateController extends BaseBlogController {
 
     @Autowired
     private BlogOperateService operateService;
+
+    @Autowired
+    private BloggerPropertiesManager propertiesManager;
 
     /**
      * 评论博文
@@ -116,8 +120,14 @@ public class BlogOperateController extends BaseBlogController {
             throw exceptionManager.getParameterIllegalException(context);
         }
 
+        // 如果博文属于当前博主，收藏失败d
+        if (blogValidateManager.isCreatorOfBlog(collectorId, blogId)) {
+            handlerOperateFail(request);
+        }
+
         //执行
-        int id = operateService.insertCollect(blogId, collectorId, reason, categoryId == null ? -1 : categoryId);
+        int id = operateService.insertCollect(blogId, collectorId, reason,
+                categoryId == null ? propertiesManager.getDefaultBlogCollectCategory() : categoryId);
         if (id <= 0) handlerOperateFail(request);
 
         return new ResultBean<>(id);

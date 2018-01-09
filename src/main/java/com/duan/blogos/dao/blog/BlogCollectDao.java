@@ -38,4 +38,17 @@ public interface BlogCollectDao extends BaseDao<BlogCollect> {
                                       @Param("offset") int offset,
                                       @Param("rows") int rows);
 
+    /**
+     * 根据博文id和博主id更新收藏
+     *
+     * @param bloggerId 博主id（收藏者）
+     * @param blogId    博文id
+     * @param reason    收藏理由
+     * @param category  收藏到类别
+     * @return 影响行数
+     */
+    int updateByUnique(@Param("bloggerId") int bloggerId,
+                       @Param("blogId") int blogId,
+                       @Param("reason") String reason,
+                       @Param("category") Integer category);
 }

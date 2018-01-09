@@ -43,10 +43,11 @@ public interface CollectBlogService {
     /**
      * 取消收藏
      *
-     * @param blogId 博文id
-     * @return 收藏记录
+     * @param bloggerId 博主id
+     * @param blogId    博文id
+     * @return 取消成功返回true
      */
-    BlogCollect deleteCollectBlog(int blogId);
+    boolean deleteCollectBlog(int bloggerId, int blogId);
 
     /**
      * 更新收藏博文所在类别
@@ -57,4 +58,14 @@ public interface CollectBlogService {
      */
     boolean updateCollectBlogCategory(int blogId, int newCategoryId);
 
+    /**
+     * 更新收藏信息
+     *
+     * @param bloggerId   博主id
+     * @param blogId      博文id
+     * @param newReason   新的收藏理由
+     * @param newCategory 新的收藏到类别
+     * @return 更新成功返回true
+     */
+    boolean updateCollect(int bloggerId, int blogId, String newReason, Integer newCategory);
 }

@@ -1,5 +1,7 @@
 package com.duan.blogos.manager.validate;
 
+import com.duan.blogos.dao.blog.BlogDao;
+import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.service.blogger.blog.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,6 +18,9 @@ public class BlogValidateManager {
     @Autowired
     private BlogService blogService;
 
+    @Autowired
+    private BlogDao blogDao;
+
     /**
      * 检查博文是否存在
      *
@@ -26,4 +31,15 @@ public class BlogValidateManager {
         return blogId != null && blogId > 0 && blogService.getBlogForCheckExist(blogId);
     }
 
+    /**
+     * 检查博主是否为当前博文的创作者
+     *
+     * @param bloggerId 博主id
+     * @param blogId    博文id
+     * @return 是返回true
+     */
+    public boolean isCreatorOfBlog(int bloggerId, int blogId) {
+        Blog blog = blogDao.getBlogById(blogId);
+        return blog != null && blog.getBloggerId() == bloggerId;
+    }
 }
