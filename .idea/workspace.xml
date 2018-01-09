@@ -8,15 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ac934af-05bc-46b7-aaa8-6f8c621b9fd3" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/doc/wiki/blogger/收藏博文.md" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/dao/blog/BlogCollectDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/dao/blog/BlogCollectDao.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/manager/validate/BlogValidateManager.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/manager/validate/BlogValidateManager.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/profile/CollectBlogService.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/profile/CollectBlogService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/impl/blogger/profile/CollectBlogServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/impl/blogger/profile/CollectBlogServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/audience/BlogOperateController.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/audience/BlogOperateController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerCollectBlogController.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerCollectBlogController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/blog/BlogCollectDaoMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/blog/BlogCollectDaoMapper.xml" />
+      <change beforePath="$PROJECT_DIR$/doc/blog.uml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/blog.sql" afterPath="$PROJECT_DIR$/src/main/resources/sql/blog.sql" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -67,8 +61,8 @@
       <file leaf-file-name="BloggerCollectBlogController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerCollectBlogController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="25" column="22" lean-forward="true" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+            <state relative-caret-position="378">
+              <caret line="18" column="23" lean-forward="false" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -245,8 +239,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="211" />
-    <option name="y" value="116" />
+    <option name="x" value="364" />
+    <option name="y" value="97" />
     <option name="width" value="1303" />
     <option name="height" value="888" />
   </component>
@@ -298,26 +292,6 @@
               <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
               <item name="doc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
-              <item name="wiki" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
-              <item name="wiki" type="462c0819:PsiDirectoryNode" />
-              <item name="audience" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
-              <item name="wiki" type="462c0819:PsiDirectoryNode" />
-              <item name="blogger" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
@@ -391,6 +365,14 @@
             </path>
             <path>
               <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="sql" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -434,11 +416,11 @@
       <recent name="com" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\src\main\resources\sql" />
       <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\doc\wiki\blogger" />
       <recent name="D:\JetBrains\IdeaProjects\BlogSystem\src\main\resources\mapper\blog" />
       <recent name="D:\JetBrains\IdeaProjects\BlogSystem\src\main\resources\mapper\blogger" />
       <recent name="D:\JetBrains\IdeaProjects\BlogSystem\src\main\resources\sql" />
-      <recent name="D:\JetBrains\IdeaProjects\BlogSystem\doc\wiki\audience" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.duan.blogos.exception" />
@@ -902,7 +884,7 @@
       <workItem from="1515379591986" duration="5908000" />
       <workItem from="1515394793866" duration="868000" />
       <workItem from="1515465246296" duration="7080000" />
-      <workItem from="1515478038071" duration="6517000" />
+      <workItem from="1515478038071" duration="6742000" />
     </task>
     <task id="LOCAL-00001" summary="完善结构">
       <created>1512991824012</created>
@@ -1233,7 +1215,14 @@
       <option name="project" value="LOCAL" />
       <updated>1515472285890</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="完成博文收藏api，及文档">
+      <created>1515486084440</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1515486084440</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1269,7 +1258,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="355527000" />
+    <option name="totallyTimeSpent" value="355752000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1282,6 +1271,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="70" y="-9" width="1859" height="1098" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6710963" sideWeight="0.50214595" order="2" side_tool="true" content_ui="tabs" />
@@ -1307,7 +1297,7 @@
       <window_info id="Spring" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55307263" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32852387" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.786268" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26330534" sideWeight="0.49222222" order="5" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26330534" sideWeight="0.49222222" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26256984" sideWeight="0.50777775" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25374448" sideWeight="0.50669914" order="4" side_tool="true" content_ui="tabs" />
@@ -1392,7 +1382,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="编写博文评论获取接口" />
     <MESSAGE value="完善文档" />
     <MESSAGE value="添加读者对博文的操作入口controller" />
     <MESSAGE value="提取可复用的检查操作" />
@@ -1417,7 +1406,8 @@
     <MESSAGE value="1 完成图片信息修改（博主头像修改等及对应磁盘上文件的位置的变换）&#10;2 完成多张图片获取&#10;3 完善文档和注释" />
     <MESSAGE value="1 修改数据库结构，将图片表的类别字段简化&#10;3 完善文档和注释" />
     <MESSAGE value="修改数据库结构，将博文发布日期添加到博文统计信息表以方便博文排序" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改数据库结构，将博文发布日期添加到博文统计信息表以方便博文排序" />
+    <MESSAGE value="完成博文收藏api，及文档" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成博文收藏api，及文档" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1463,37 +1453,11 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/ImageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogCollect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="33" column="31" lean-forward="true" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/blog/BlogCategoryDaoMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="31" column="17" lean-forward="true" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
-          <folding>
-            <marker date="1515382413964" expanded="true" signature="637:742" ph="SELECT count... blog_category" />
-            <marker date="1515382413964" expanded="true" signature="1464:1514" ph="DELETE FROM blog_category... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dao/blog/BlogCategoryDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="27" column="6" lean-forward="true" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1501,6 +1465,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="686">
           <caret line="49" column="37" lean-forward="true" selection-start-line="49" selection-start-column="37" selection-end-line="49" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1508,6 +1473,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="672">
           <caret line="69" column="21" lean-forward="true" selection-start-line="69" selection-start-column="21" selection-end-line="69" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1526,6 +1492,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
           <caret line="14" column="32" lean-forward="false" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1536,6 +1503,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
           <caret line="14" column="27" lean-forward="false" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1614,6 +1582,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="497">
           <caret line="30" column="23" lean-forward="true" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1953,10 +1922,167 @@
         </state>
       </provider>
     </entry>
+    <entry file="uml://DATABASE/d798bc2a-b734-4f75-8b3e-4b207994fa0c.SCHEMA:blog">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>DATABASE</ID>
+          <OriginalElement>d798bc2a-b734-4f75-8b3e-4b207994fa0c.SCHEMA:blog</OriginalElement>
+          <nodes>
+            <node x="" y="">d798bc2a-b734-4f75-8b3e-4b207994fa0c.TABLE:blog.blog_comment</node>
+            <node x="" y="">d798bc2a-b734-4f75-8b3e-4b207994fa0c.TABLE:blog.blog_label</node>
+            <node x="" y="">d798bc2a-b734-4f75-8b3e-4b207994fa0c.TABLE:blog.blog_complain</node>
+            <node x="" y="">d798bc2a-b734-4f75-8b3e-4b207994fa0c.TABLE:blog.blog_collect</node>
+            <node x="" y="">d798bc2a-b734-4f75-8b3e-4b207994fa0c.TABLE:blog.blogger_link</node>
+            <node x="" y="">d798bc2a-b734-4f75-8b3e-4b207994fa0c.TABLE:blog.blogger_picture</node>
+            <node x="" y="">d798bc2a-b734-4f75-8b3e-4b207994fa0c.TABLE:blog.blog_category</node>
+            <node x="" y="">d798bc2a-b734-4f75-8b3e-4b207994fa0c.TABLE:blog.blogger_account</node>
+            <node x="" y="">d798bc2a-b734-4f75-8b3e-4b207994fa0c.TABLE:blog.blog</node>
+            <node x="" y="">d798bc2a-b734-4f75-8b3e-4b207994fa0c.TABLE:blog.blog_admire</node>
+            <node x="" y="">d798bc2a-b734-4f75-8b3e-4b207994fa0c.TABLE:blog.blog_like</node>
+            <node x="" y="">d798bc2a-b734-4f75-8b3e-4b207994fa0c.TABLE:blog.blogger_profile</node>
+            <node x="" y="">d798bc2a-b734-4f75-8b3e-4b207994fa0c.TABLE:blog.blog_statistics</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.7515198752922837" x="1177.5933416303671" y="475.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Key columns</Category>
+            <Category>Columns</Category>
+          </Categories>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/notice.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="231">
+            <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/sql/blog.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1515486149744" expanded="true" signature="0:285" ph="/* Navicat M... " />
+            <marker date="1515486149744" expanded="true" signature="408:435" ph="DROP TABLE I... " />
+            <marker date="1515486149744" expanded="true" signature="437:1444" ph="CREATE TABLE... blog" />
+            <marker date="1515486149744" expanded="true" signature="1530:1855" ph="INSERT INTO `blog`... " />
+            <marker date="1515486149744" expanded="true" signature="1857:2263" ph="INSERT INTO `blog`... " />
+            <marker date="1515486149744" expanded="true" signature="2265:2408" ph="INSERT INTO `blog`... " />
+            <marker date="1515486149744" expanded="true" signature="2410:3264" ph="INSERT INTO `blog`... " />
+            <marker date="1515486149744" expanded="true" signature="3266:4122" ph="INSERT INTO `blog`... " />
+            <marker date="1515486149744" expanded="true" signature="4124:4431" ph="INSERT INTO `blog`... " />
+            <marker date="1515486149744" expanded="true" signature="4433:4739" ph="INSERT INTO `blog`... " />
+            <marker date="1515486149744" expanded="true" signature="4741:5033" ph="INSERT INTO `blog`... " />
+            <marker date="1515486149744" expanded="true" signature="5035:5329" ph="INSERT INTO `blog`... " />
+            <marker date="1515486149744" expanded="true" signature="5331:5619" ph="INSERT INTO `blog`... " />
+            <marker date="1515486149744" expanded="true" signature="5621:5933" ph="INSERT INTO `blog`... " />
+            <marker date="1515486149744" expanded="true" signature="5935:6242" ph="INSERT INTO `blog`... " />
+            <marker date="1515486149744" expanded="true" signature="6244:6546" ph="INSERT INTO `blog`... " />
+            <marker date="1515486149744" expanded="true" signature="6548:6851" ph="INSERT INTO `blog`... " />
+            <marker date="1515486149744" expanded="true" signature="6853:7133" ph="INSERT INTO `blog`... " />
+            <marker date="1515486149744" expanded="true" signature="7135:7421" ph="INSERT INTO `blog`... " />
+            <marker date="1515486149744" expanded="true" signature="7423:7705" ph="INSERT INTO `blog`... " />
+            <marker date="1515486149744" expanded="true" signature="7813:7851" ph="DROP TABLE I... " />
+            <marker date="1515486149744" expanded="true" signature="7853:8216" ph="CREATE TABLE... blogger_account" />
+            <marker date="1515486149744" expanded="true" signature="8313:8400" ph="INSERT INTO `blogger_account`... " />
+            <marker date="1515486149744" expanded="true" signature="8402:8489" ph="INSERT INTO `blogger_account`... " />
+            <marker date="1515486149744" expanded="true" signature="8491:8579" ph="INSERT INTO `blogger_account`... " />
+            <marker date="1515486149744" expanded="true" signature="8581:8670" ph="INSERT INTO `blogger_account`... " />
+            <marker date="1515486149744" expanded="true" signature="8775:8810" ph="DROP TABLE I... " />
+            <marker date="1515486149744" expanded="true" signature="8812:9596" ph="CREATE TABLE... blogger_link" />
+            <marker date="1515486149744" expanded="true" signature="9690:9799" ph="INSERT INTO `blogger_link`... " />
+            <marker date="1515486149744" expanded="true" signature="9801:9895" ph="INSERT INTO `blogger_link`... " />
+            <marker date="1515486149744" expanded="true" signature="10003:10041" ph="DROP TABLE I... " />
+            <marker date="1515486149744" expanded="true" signature="10043:10689" ph="CREATE TABLE... blogger_picture" />
+            <marker date="1515486149744" expanded="true" signature="10786:10970" ph="INSERT INTO `blogger_picture`... " />
+            <marker date="1515486149744" expanded="true" signature="10972:11143" ph="INSERT INTO `blogger_picture`... " />
+            <marker date="1515486149744" expanded="true" signature="11145:11291" ph="INSERT INTO `blogger_picture`... " />
+            <marker date="1515486149744" expanded="true" signature="11399:11437" ph="DROP TABLE I... " />
+            <marker date="1515486149744" expanded="true" signature="11439:12264" ph="CREATE TABLE... blogger_profile" />
+            <marker date="1515486149744" expanded="true" signature="12361:12469" ph="INSERT INTO `blogger_profile`... " />
+            <marker date="1515486149744" expanded="true" signature="12471:12583" ph="INSERT INTO `blogger_profile`... " />
+            <marker date="1515486149744" expanded="true" signature="12585:12692" ph="INSERT INTO `blogger_profile`... " />
+            <marker date="1515486149744" expanded="true" signature="12796:12830" ph="DROP TABLE I... " />
+            <marker date="1515486149744" expanded="true" signature="12832:13288" ph="CREATE TABLE... blog_admire" />
+            <marker date="1515486149744" expanded="true" signature="13468:13545" ph="INSERT INTO `blog_admire`... " />
+            <marker date="1515486149744" expanded="true" signature="13547:13625" ph="INSERT INTO `blog_admire`... " />
+            <marker date="1515486149744" expanded="true" signature="13627:13704" ph="INSERT INTO `blog_admire`... " />
+            <marker date="1515486149744" expanded="true" signature="13706:13783" ph="INSERT INTO `blog_admire`... " />
+            <marker date="1515486149744" expanded="true" signature="13889:13925" ph="DROP TABLE I... " />
+            <marker date="1515486149744" expanded="true" signature="13927:14701" ph="CREATE TABLE... blog_category" />
+            <marker date="1515486149744" expanded="true" signature="14796:14893" ph="INSERT INTO `blog_category`... " />
+            <marker date="1515486149744" expanded="true" signature="14895:14993" ph="INSERT INTO `blog_category`... " />
+            <marker date="1515486149744" expanded="true" signature="14995:15085" ph="INSERT INTO `blog_category`... " />
+            <marker date="1515486149744" expanded="true" signature="15087:15179" ph="INSERT INTO `blog_category`... " />
+            <marker date="1515486149744" expanded="true" signature="15181:15272" ph="INSERT INTO `blog_category`... " />
+            <marker date="1515486149744" expanded="true" signature="15377:15412" ph="DROP TABLE I... " />
+            <marker date="1515486149744" expanded="true" signature="15414:16239" ph="CREATE TABLE... blog_collect" />
+            <marker date="1515486149744" expanded="true" signature="16333:16416" ph="INSERT INTO `blog_collect`... " />
+            <marker date="1515486149744" expanded="true" signature="16418:16506" ph="INSERT INTO `blog_collect`... " />
+            <marker date="1515486149744" expanded="true" signature="16508:16592" ph="INSERT INTO `blog_collect`... " />
+            <marker date="1515486149744" expanded="true" signature="16594:16678" ph="INSERT INTO `blog_collect`... " />
+            <marker date="1515486149744" expanded="true" signature="16680:16764" ph="INSERT INTO `blog_collect`... " />
+            <marker date="1515486149744" expanded="true" signature="16766:16850" ph="INSERT INTO `blog_collect`... " />
+            <marker date="1515486149744" expanded="true" signature="16852:16936" ph="INSERT INTO `blog_collect`... " />
+            <marker date="1515486149744" expanded="true" signature="16938:17023" ph="INSERT INTO `blog_collect`... " />
+            <marker date="1515486149744" expanded="true" signature="17025:17110" ph="INSERT INTO `blog_collect`... " />
+            <marker date="1515486149744" expanded="true" signature="17112:17197" ph="INSERT INTO `blog_collect`... " />
+            <marker date="1515486149744" expanded="true" signature="17302:17337" ph="DROP TABLE I... " />
+            <marker date="1515486149744" expanded="true" signature="17339:18349" ph="CREATE TABLE... blog_comment" />
+            <marker date="1515486149744" expanded="true" signature="18443:18535" ph="INSERT INTO `blog_comment`... " />
+            <marker date="1515486149744" expanded="true" signature="18537:18627" ph="INSERT INTO `blog_comment`... " />
+            <marker date="1515486149744" expanded="true" signature="18629:18718" ph="INSERT INTO `blog_comment`... " />
+            <marker date="1515486149744" expanded="true" signature="18720:18827" ph="INSERT INTO `blog_comment`... " />
+            <marker date="1515486149744" expanded="true" signature="18829:18920" ph="INSERT INTO `blog_comment`... " />
+            <marker date="1515486149744" expanded="true" signature="18922:19010" ph="INSERT INTO `blog_comment`... " />
+            <marker date="1515486149744" expanded="true" signature="19012:19107" ph="INSERT INTO `blog_comment`... " />
+            <marker date="1515486149744" expanded="true" signature="19213:19249" ph="DROP TABLE I... " />
+            <marker date="1515486149744" expanded="true" signature="19251:19959" ph="CREATE TABLE... blog_complain" />
+            <marker date="1515486149744" expanded="true" signature="20054:20135" ph="INSERT INTO `blog_complain`... " />
+            <marker date="1515486149744" expanded="true" signature="20137:20219" ph="INSERT INTO `blog_complain`... " />
+            <marker date="1515486149744" expanded="true" signature="20322:20355" ph="DROP TABLE I... " />
+            <marker date="1515486149744" expanded="true" signature="20357:20906" ph="CREATE TABLE... blog_label" />
+            <marker date="1515486149744" expanded="true" signature="20998:21071" ph="INSERT INTO `blog_label`... " />
+            <marker date="1515486149744" expanded="true" signature="21073:21149" ph="INSERT INTO `blog_label`... " />
+            <marker date="1515486149744" expanded="true" signature="21151:21226" ph="INSERT INTO `blog_label`... " />
+            <marker date="1515486149744" expanded="true" signature="21228:21304" ph="INSERT INTO `blog_label`... " />
+            <marker date="1515486149744" expanded="true" signature="21306:21378" ph="INSERT INTO `blog_label`... " />
+            <marker date="1515486149744" expanded="true" signature="21480:21512" ph="DROP TABLE I... " />
+            <marker date="1515486149744" expanded="true" signature="21514:22052" ph="CREATE TABLE... blog_like" />
+            <marker date="1515486149744" expanded="true" signature="22249:22287" ph="DROP TABLE I... " />
+            <marker date="1515486149744" expanded="true" signature="22289:23319" ph="CREATE TABLE... blog_statistics" />
+            <marker date="1515486149744" expanded="true" signature="23416:23517" ph="INSERT INTO `blog_statistics`... " />
+            <marker date="1515486149744" expanded="true" signature="23519:23623" ph="INSERT INTO `blog_statistics`... " />
+            <marker date="1515486149744" expanded="true" signature="23625:23728" ph="INSERT INTO `blog_statistics`... " />
+            <marker date="1515486149744" expanded="true" signature="23730:23831" ph="INSERT INTO `blog_statistics`... " />
+            <marker date="1515486149744" expanded="true" signature="23833:23934" ph="INSERT INTO `blog_statistics`... " />
+            <marker date="1515486149744" expanded="true" signature="23936:24037" ph="INSERT INTO `blog_statistics`... " />
+            <marker date="1515486149744" expanded="true" signature="24039:24141" ph="INSERT INTO `blog_statistics`... " />
+            <marker date="1515486149744" expanded="true" signature="24143:24245" ph="INSERT INTO `blog_statistics`... " />
+            <marker date="1515486149744" expanded="true" signature="24247:24349" ph="INSERT INTO `blog_statistics`... " />
+            <marker date="1515486149744" expanded="true" signature="24351:24454" ph="INSERT INTO `blog_statistics`... " />
+            <marker date="1515486149744" expanded="true" signature="24456:24559" ph="INSERT INTO `blog_statistics`... " />
+            <marker date="1515486149744" expanded="true" signature="24561:24664" ph="INSERT INTO `blog_statistics`... " />
+            <marker date="1515486149744" expanded="true" signature="24666:24769" ph="INSERT INTO `blog_statistics`... " />
+            <marker date="1515486149744" expanded="true" signature="24771:24874" ph="INSERT INTO `blog_statistics`... " />
+            <marker date="1515486149744" expanded="true" signature="24876:24979" ph="INSERT INTO `blog_statistics`... " />
+            <marker date="1515486149744" expanded="true" signature="24981:25084" ph="INSERT INTO `blog_statistics`... " />
+            <marker date="1515486149744" expanded="true" signature="25086:25189" ph="INSERT INTO `blog_statistics`... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerCollectBlogController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="25" column="22" lean-forward="true" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+        <state relative-caret-position="378">
+          <caret line="18" column="23" lean-forward="false" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
