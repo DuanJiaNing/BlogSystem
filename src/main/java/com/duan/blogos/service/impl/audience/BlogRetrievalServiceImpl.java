@@ -62,6 +62,7 @@ public class BlogRetrievalServiceImpl implements BlogRetrievalService {
             return listFilterByLabelAndCategory(categoryIds, labelIds, bloggerId, offset, rows, sortRule, status);
         } else {
             // 有关键字时需要依赖lucene进行检索
+            // UPDATE: 2018/1/10 搜索准确度比较低
             return filterByLucene(keyWord, categoryIds, labelIds, bloggerId, offset, rows, sortRule, status);
         }
 
@@ -76,7 +77,7 @@ public class BlogRetrievalServiceImpl implements BlogRetrievalService {
         int[] ids = null;
         try {
             // 搜索结果无法使用类似于sql limit的方式分页，这里一次性将所有结果查询出，后续考虑使用缓存实现分页
-            ids = luceneIndexManager.search(keyWord, Integer.MAX_VALUE);
+            ids = luceneIndexManager.search(keyWord, 10000);
         } catch (IOException | ParseException e) {
             e.printStackTrace();
             throw new UnknownException("lucene parse exception", e);
@@ -87,7 +88,8 @@ public class BlogRetrievalServiceImpl implements BlogRetrievalService {
         // 关键字检索得到的博文集合
         List<Integer> filterByLuceneIds = new ArrayList<>();
         //取最前面的rows条结果
-        for (int i = 0; i < rows; i++) filterByLuceneIds.add(ids[i]);
+        int row = Math.min(rows, ids.length);
+        for (int i = 0; i < row; i++) filterByLuceneIds.add(ids[i]);
 
         // ----------------------类别、标签筛选
         Map<Integer, int[]> map = getMapFilterByLabelAndCategory(bloggerId, categoryIds, labelIds, status);
@@ -97,6 +99,7 @@ public class BlogRetrievalServiceImpl implements BlogRetrievalService {
 
         //求两者交集得到最终结果集
         List<Integer> resultIds = filterByLuceneIds.stream().filter(filterByOtherIds::contains).collect(Collectors.toList());
+        if (CollectionUtils.isEmpty(resultIds)) return null;
 
         //构造结果
         List<Blog> blogs = blogDao.listBlogByBlogIds(resultIds, status.getCode(), 0, resultIds.size());

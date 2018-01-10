@@ -27,7 +27,7 @@ public class TestController {
     @RequestMapping("/index/create")
     public void createIndex() throws IOException {
         for (Blog blog : blogDao.listAll()) {
-            manager.add(blog);
+            manager.update(blog);
         }
     }
 

@@ -16,7 +16,6 @@ import org.apache.lucene.store.FSDirectory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 
@@ -162,8 +161,8 @@ public class BlogLuceneIndexManager {
 
         // 或 查询
         booleanQuery.add((new QueryParser(INDEX_BLOG_TITLE, analyzer)).parse(word), BooleanClause.Occur.SHOULD);
-        booleanQuery.add((new QueryParser(INDEX_BLOG_SUMMARY, analyzer)).parse(word), BooleanClause.Occur.SHOULD);
         booleanQuery.add((new QueryParser(INDEX_BLOG_KEY_WORDS, analyzer)).parse(word), BooleanClause.Occur.SHOULD);
+        booleanQuery.add((new QueryParser(INDEX_BLOG_SUMMARY, analyzer)).parse(word), BooleanClause.Occur.SHOULD);
         booleanQuery.add((new QueryParser(INDEX_BLOG_CONTENT, analyzer)).parse(word), BooleanClause.Occur.SHOULD);
 
         //检索
@@ -181,6 +180,10 @@ public class BlogLuceneIndexManager {
         for (int i = 0; i < sum; i++) {
             rs[i] = result[i];
         }
+
+        dir.close();
+        analyzer.close();
+        reader.close();
 
         return rs;
     }
