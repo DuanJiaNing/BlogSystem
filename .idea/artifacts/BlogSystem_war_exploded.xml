@@ -42,6 +42,15 @@
           <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.8.3" />
           <element id="library" level="project" name="Maven: org.apache.shiro:shiro-web:1.2.5" />
           <element id="library" level="project" name="Maven: org.apache.shiro:shiro-spring:1.2.5" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-core:7.1.0" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-queryparser:7.1.0" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-queries:7.1.0" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-sandbox:7.1.0" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-analyzers-common:7.1.0" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-analyzers-smartcn:7.1.0" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-highlighter:7.1.0" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-join:7.1.0" />
+          <element id="library" level="project" name="Maven: org.apache.lucene:lucene-memory:7.1.0" />
           <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.16.6" />
         </element>
       </element>

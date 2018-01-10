@@ -1,5 +1,6 @@
 package com.duan.blogos.service;
 
+import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.manager.BlogSortRule;
 
 /**
@@ -19,11 +20,11 @@ public interface BlogFilter<T> {
      * @param offset      结果集起始位置
      * @param rows        行数
      * @param sortRule    排序规则，为null则不做约束
+     * @param status      博文状态
      * @return 查询结果
      */
-    T listFilterAll(int[] categoryIds, int[] labelIds,
-                    String keyWord, int bloggerId, int offset,
-                    int rows, BlogSortRule sortRule);
+    T listFilterAll(int[] categoryIds, int[] labelIds, String keyWord, int bloggerId, int offset, int rows,
+                    BlogSortRule sortRule, BlogStatusEnum status);
 
     /**
      * 标签&类别检索
@@ -34,9 +35,10 @@ public interface BlogFilter<T> {
      * @param offset      结果集起始位置
      * @param rows        行数
      * @param sortRule    排序规则，为null则不做约束
+     * @param status      博文状态
      * @return 查询结果
      */
-    T listFilterByLabelAndCategory(int[] categoryIds, int[] labelIds, int bloggerId, int offset,
-                                   int rows, BlogSortRule sortRule);
+    T listFilterByLabelAndCategory(int[] categoryIds, int[] labelIds, int bloggerId, int offset, int rows,
+                                   BlogSortRule sortRule, BlogStatusEnum status);
 
 }

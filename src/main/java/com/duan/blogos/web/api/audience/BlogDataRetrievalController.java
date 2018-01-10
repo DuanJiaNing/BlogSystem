@@ -77,7 +77,8 @@ public class BlogDataRetrievalController extends BaseBlogController {
 
         int os = offset == null || offset < 0 ? 0 : offset;
         int rs = rows == null || rows < 0 ? audiencePropertiesManager.getRequestBloggerBlogListCount() : rows;
-        ResultBean<List<BlogListItemDTO>> listResultBean = retrievalService.listFilterAll(cids, lids, keyWord, bloggerId, os, rs, rule);
+        ResultBean<List<BlogListItemDTO>> listResultBean = retrievalService.listFilterAll(cids, lids, keyWord, bloggerId,
+                os, rs, rule, BlogStatusEnum.PUBLIC);
 
         if (listResultBean == null) handlerEmptyResult(request);
 

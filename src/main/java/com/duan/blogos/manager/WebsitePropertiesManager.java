@@ -16,4 +16,9 @@ public class WebsitePropertiesManager {
      */
     private String addr;
 
+    /**
+     * lucene生成的索引保存路径
+     */
+    private String luceneIndexDir;
+
 }

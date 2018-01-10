@@ -28,6 +28,7 @@
 
     <bean class="com.duan.blogos.manager.WebsitePropertiesManager" name="websitePropertiesManager">
         <property name="addr" value="${website.addr}"/>
+        <property name="luceneIndexDir" value="${website.luceneIndexDir}"/>
     </bean>
 
     <!--验证管理者-->
