@@ -27,7 +27,7 @@ public class BloggerPicture implements Serializable {
     //类别
     private Integer category;
 
-    //保存路径
+    //保存路径/url
     private String path;
 
     //名字

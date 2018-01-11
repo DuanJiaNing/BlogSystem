@@ -38,6 +38,7 @@ public class BaseRestController {
 
     /**
      * 处理结果为空的情况
+     *
      * @param request
      */
     protected void handlerEmptyResult(HttpServletRequest request) {

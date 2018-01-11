@@ -6,6 +6,9 @@
 - 各种检查在Controller层，业务由Service层实现
 - 文件名统一添加前缀 "时间-" 以避免覆盖。ImageManager#saveImageToDisk
 
+## 待办
+- controller层的一些操作在获取数据时不必检查博主是否登录，而在修改、删除操作时需要验证博主是否登录
+
 ## 难点<br>
 - 数据库操作可以自动回滚，但磁盘操作无法自动回滚
 com.duan.blogos.service.impl.blogger.profile.GalleryServiceImpl#insertPicture
