@@ -65,7 +65,7 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
     /**
      * 修改类别
      */
-    @RequestMapping(value = "/{categoryId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{categoryId}", method = RequestMethod.PUT)
     public ResultBean update(HttpServletRequest request,
                              @PathVariable("bloggerId") Integer bloggerId,
                              @PathVariable("categoryId") Integer categoryId,
