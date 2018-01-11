@@ -33,7 +33,6 @@
 
     <!--博文配置-->
     <bean class="com.duan.blogos.manager.BlogPropertiesManager" name="blogPropertiesManager">
-        <property name="defaultBlogCategory" value="${blog.defaultBlogCategory}"/>
     </bean>
 
     <!--数据填充配置，e.g. pojo对象转为dto对象-->

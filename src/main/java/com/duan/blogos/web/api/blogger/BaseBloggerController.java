@@ -22,9 +22,6 @@ public class BaseBloggerController extends BaseRestController {
     @Autowired
     BloggerPropertiesManager bloggerPropertiesManager;
 
-    @Autowired
-    BlogPropertiesManager blogPropertiesManager;
-
     protected void handleAccountCheck(HttpServletRequest request, Integer bloggerId) {
         RequestContext context = new RequestContext(request);
         BaseRuntimeException exception = checkAccount(context, bloggerId);

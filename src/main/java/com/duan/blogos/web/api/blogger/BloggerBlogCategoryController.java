@@ -77,10 +77,7 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
 
         // 检查博主是否登录
         handleBloggerSignInCheck(request, bloggerId);
-
-        // 检查图片存在
-        if (iconId != null && !bloggerValidateManager.checkBloggerPictureExist(bloggerId, iconId))
-            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
+        handlePictureExistCHeck(request, bloggerId, iconId);
 
         int id = categoryService.insertBlogCategory(bloggerId, iconId == null ? -1 : iconId, title, bewrite);
         if (id < 0) handlerOperateFail(request);
@@ -102,6 +99,7 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
         handleParamAllNullForUpdate(request, newIconId, newTitle, newBewrite);
         handleBloggerSignInCheck(request, bloggerId);
         handleCategoryExistCheck(request, bloggerId, categoryId);
+        if (newIconId != null) handlePictureExistCHeck(request, bloggerId, newIconId);
 
         if (!categoryService.updateBlogCategory(categoryId, newIconId, newTitle, newBewrite))
             handlerOperateFail(request);
@@ -111,10 +109,14 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
 
     // 检查指定博主是否有指定的博文类别
     private void handleCategoryExistCheck(HttpServletRequest request, Integer bloggerId, Integer categoryId) {
-
         if (!bloggerValidateManager.checkBloggerBlogCategoryExist(bloggerId, categoryId))
             throw exceptionManager.getUnknownCategoryException(new RequestContext(request));
+    }
 
+    // 检查图片存在
+    private void handlePictureExistCHeck(HttpServletRequest request, Integer bloggerId, Integer iconId) {
+        if (iconId != null && !bloggerValidateManager.checkBloggerPictureExist(bloggerId, iconId))
+            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
     }
 
     /**
@@ -127,14 +129,10 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
                              @PathVariable("categoryId") Integer categoryId,
                              @RequestParam(value = "newCategoryId", required = false) Integer newCategoryId) {
 
-        // 默认类别不允许删除
-        if (categoryId.equals(blogPropertiesManager.getDefaultBlogCategory()))
-            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
-
         handleBloggerSignInCheck(request, bloggerId);
         handleCategoryExistCheck(request, bloggerId, categoryId);
 
-        int cate;
+        Integer cate = null;
         if (newCategoryId != null) {
 
             //检查删除类别和原博文移动到类别是否相同
@@ -145,7 +143,7 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
             handleCategoryExistCheck(request, bloggerId, newCategoryId);
 
             cate = newCategoryId;
-        } else cate = blogPropertiesManager.getDefaultBlogCategory();
+        }
 
         if (!categoryService.deleteCategoryAndMoveBlogsTo(bloggerId, categoryId, cate))
             handlerOperateFail(request);

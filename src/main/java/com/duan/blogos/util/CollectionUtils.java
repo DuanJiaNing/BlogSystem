@@ -14,7 +14,7 @@ public class CollectionUtils {
      * 判断数组中是否包含某一元素
      */
     public static boolean intArrayContain(int[] sour, int find) {
-        if (sour == null) {
+        if (isEmpty(sour)) {
             return false;
         }
 

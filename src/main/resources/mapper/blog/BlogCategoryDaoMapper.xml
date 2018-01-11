@@ -52,11 +52,12 @@
             <if test="createDate != null">
                 create_date=#{createDate}
             </if>
-            <where>
-                id=#{id}
-            </where>
-
         </set>
+
+        <where>
+            id=#{id}
+        </where>
+
     </update>
 
     <delete id="delete">
@@ -75,7 +76,7 @@
         bewrite,
         create_date
         ) VALUE (
-        #{blogger_id},
+        #{bloggerId},
         #{iconId},
         #{title},
         #{bewrite},

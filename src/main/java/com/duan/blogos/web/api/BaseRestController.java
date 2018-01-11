@@ -88,7 +88,7 @@ public class BaseRestController {
     /**
      * 未指明操作
      */
-    @RequestMapping("")
+    @RequestMapping
     protected void defaultOperation(HttpServletRequest request) {
         throw exceptionManager.getUnspecifiedOperationException(new RequestContext(request));
     }

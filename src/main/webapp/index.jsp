@@ -7,7 +7,7 @@
 <body>
 <h2>Hello World!</h2>
 
-<form enctype="multipart/form-data" action="${pageContext.request.contextPath}/image/1" method="post">
+<form enctype="multipart/form-data" action="${pageContext.request.contextPath}/image/2" method="post">
     <input type="file" name="image"><br>
     category:<input type="number" name="category" value="1"><br>
     bewrite:<input type="text" name="bewrite"><br>

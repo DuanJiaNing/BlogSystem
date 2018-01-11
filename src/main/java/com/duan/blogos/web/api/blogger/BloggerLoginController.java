@@ -2,9 +2,6 @@ package com.duan.blogos.web.api.blogger;
 
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.service.blogger.BloggerAccountService;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,13 +18,13 @@ import javax.servlet.http.HttpSession;
  * @author DuanJiaNing
  */
 @Controller
-@RequestMapping("/blogger/login")
+@RequestMapping("/blogger")
 public class BloggerLoginController extends BaseBloggerController {
 
     @Autowired
     private BloggerAccountService accountService;
 
-    @RequestMapping(value = "/name", method = RequestMethod.POST)
+    @RequestMapping(value = "/login/name", method = RequestMethod.POST)
     public String loginWithUserName(HttpServletRequest request,
                                     @RequestParam("username") String userName,
                                     @RequestParam("password") String password) {
@@ -49,14 +46,14 @@ public class BloggerLoginController extends BaseBloggerController {
         }
     }
 
-    @RequestMapping(value = "/phone", method = RequestMethod.POST)
+    @RequestMapping(value = "/login/phone", method = RequestMethod.POST)
     public void loginWithPhoneNumber(HttpServletRequest request,
                                      @RequestParam("phone") String phone,
                                      @RequestParam("password") String password) {
 
     }
 
-    @RequestMapping
+    @RequestMapping("/login")
     public String main() {
         return "login";
     }

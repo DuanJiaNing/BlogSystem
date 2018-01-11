@@ -15,7 +15,7 @@ public class StringUtils {
      */
     public static int[] intStringDistinctToArray(String sour, String regex) {
 
-        return sour == null ? null :
+        return StringUtils.isEmpty(sour) ? null :
                 Stream.of(sour.split(regex))
                         .mapToInt(Integer::valueOf)
                         .distinct()

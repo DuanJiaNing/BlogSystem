@@ -60,7 +60,7 @@ public interface CategoryService {
      * @param categoryId    要删除的类别
      * @param newCategoryId 新的类别（新类别创建者创建的类别）
      */
-    boolean deleteCategoryAndMoveBlogsTo(int bloggerId, int categoryId, int newCategoryId);
+    boolean deleteCategoryAndMoveBlogsTo(int bloggerId, int categoryId, Integer newCategoryId);
 
     /**
      * 通过计算类别数量，来检查指定博主是否创建过指定类别

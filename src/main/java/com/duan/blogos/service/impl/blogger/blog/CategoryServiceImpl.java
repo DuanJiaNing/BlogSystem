@@ -7,9 +7,11 @@ import com.duan.blogos.dto.blogger.BloggerCategoryDTO;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogCategory;
 import com.duan.blogos.entity.blogger.BloggerPicture;
+import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.exception.BaseRuntimeException;
 import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.manager.DbPropertiesManager;
+import com.duan.blogos.manager.StringConstructorManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.blog.CategoryService;
 import com.duan.blogos.util.ArrayUtils;
@@ -18,6 +20,7 @@ import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.CipherOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +42,9 @@ public class CategoryServiceImpl implements CategoryService {
     private DbPropertiesManager dbPropertiesManager;
 
     @Autowired
+    private StringConstructorManager constructorManager;
+
+    @Autowired
     private BloggerPictureDao pictureDao;
 
     @Autowired
@@ -52,10 +58,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         List<BloggerCategoryDTO> result = new ArrayList<>();
         for (BlogCategory category : categories) {
-            Integer iconId = category.getIconId();
-            BloggerPicture icon = iconId == null ? null : pictureDao.getPictureById(iconId);
-            BloggerCategoryDTO dto = fillingManager.blogCategoryToDTO(category, icon);
-            result.add(dto);
+            result.add(getBloggerCategoryDTO(category));
         }
 
         return new ResultBean<>(result);
@@ -81,7 +84,15 @@ public class CategoryServiceImpl implements CategoryService {
 
         BlogCategory category = new BlogCategory();
         category.setBewrite(bewrite);
+
         if (iconId > 0) category.setIconId(iconId);
+        else {
+            // 默认图片
+            int defaultIconId = pictureDao.getPictureIdByUniqueCategory(
+                    BloggerPictureCategoryEnum.BLOG_DEFAULT_UNIQUE_CATEGORY_ICON.getCode());
+            category.setIconId(defaultIconId);
+        }
+
         category.setBloggerId(bloggerId);
         category.setTitle(title);
         int effect = categoryDao.insert(category);
@@ -97,7 +108,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public boolean deleteCategoryAndMoveBlogsTo(int bloggerId, int categoryId, int newCategoryId) {
+    public boolean deleteCategoryAndMoveBlogsTo(int bloggerId, int categoryId, Integer newCategoryId) {
 
         // 删除数据库类别记录
         int effectDelete = categoryDao.delete(categoryId);
@@ -106,13 +117,32 @@ public class CategoryServiceImpl implements CategoryService {
         // 修改博文类别
         List<Blog> blogs = blogDao.listAllCategoryByBloggerId(bloggerId);
         String sp = dbPropertiesManager.getStringFiledSplitCharacterForNumber();
-        for (Blog blog : blogs) {
 
-            int[] cids = StringUtils.intStringDistinctToArray(blog.getCategoryIds(), sp);
-            ArrayUtils.replace(cids, categoryId, newCategoryId);
-            blog.setCategoryIds(StringUtils.intArrayToString(cids, sp));
-            int effectUpdate = blogDao.update(blog);
-            if (effectUpdate <= 0) throw new BaseRuntimeException("update blog category fail");
+        // 移除类别即可
+        if (newCategoryId == null) {
+            blogs.forEach(blog -> {
+
+                int[] cids = StringUtils.intStringDistinctToArray(blog.getCategoryIds(), sp);
+                if (CollectionUtils.intArrayContain(cids, categoryId)) {
+                    int[] ar = ArrayUtils.removeFromArray(cids, categoryId);
+                    blog.setCategoryIds(StringUtils.intArrayToString(ar, sp));
+                    int effectUpdate = blogDao.update(blog);
+                    if (effectUpdate <= 0) throw new BaseRuntimeException("update blog category fail");
+                }
+
+            });
+
+        } else { // 替换类别
+            blogs.forEach(blog -> {
+
+                int[] cids = StringUtils.intStringDistinctToArray(blog.getCategoryIds(), sp);
+                if (CollectionUtils.intArrayContain(cids, categoryId)) {
+                    ArrayUtils.replace(cids, categoryId, newCategoryId);
+                    blog.setCategoryIds(StringUtils.intArrayToString(cids, sp));
+                    int effectUpdate = blogDao.update(blog);
+                    if (effectUpdate <= 0) throw new BaseRuntimeException("update blog category fail");
+                }
+            });
 
         }
 
@@ -126,11 +156,28 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public BloggerCategoryDTO getCategory(int bloggerId, int categoryId) {
-
-        BlogCategory category = categoryDao.getCategory(bloggerId, categoryId);
-        Integer iconId = category.getIconId();
-        BloggerPicture icon = iconId == null ? null : pictureDao.getPictureById(iconId);
-        return fillingManager.blogCategoryToDTO(category, icon);
-
+        return getBloggerCategoryDTO(categoryDao.getCategory(bloggerId, categoryId));
     }
+
+    // 获得单个类别
+    private BloggerCategoryDTO getBloggerCategoryDTO(BlogCategory category) {
+
+        Integer iconId = category.getIconId();
+
+        BloggerPicture icon;
+        if (iconId == null) {
+            // 默认图片
+            int defaultIconId = pictureDao.getPictureIdByUniqueCategory(
+                    BloggerPictureCategoryEnum.BLOG_DEFAULT_UNIQUE_CATEGORY_ICON.getCode());
+            icon = pictureDao.getPictureById(defaultIconId);
+        } else {
+            icon = pictureDao.getPictureById(iconId);
+        }
+
+        if (icon != null) icon.setPath(constructorManager.constructPictureUrl(icon));
+        BloggerCategoryDTO dto = fillingManager.blogCategoryToDTO(category, icon);
+
+        return dto;
+    }
+
 }
