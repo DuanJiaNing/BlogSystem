@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 @RequestMapping("/blogger/login")
-public class BloggerLoginController {
+public class BloggerLoginController extends BaseBloggerController {
 
     @Autowired
     private BloggerAccountService accountService;
@@ -37,13 +37,13 @@ public class BloggerLoginController {
         if (account.getUsername().equalsIgnoreCase(userName) && account.getPassword().equalsIgnoreCase(password)) {
 
             HttpSession session = request.getSession();
-            session.setAttribute("bloggerId", account.getId());
-            session.setAttribute("bloggerName", account.getUsername());
+            session.setAttribute(bloggerPropertiesManager.getSessionNameOfBloggerId(), account.getId());
+            session.setAttribute(bloggerPropertiesManager.getSessionNameOfBloggerName(), account.getUsername());
 
             return "blogger/main";
         } else {
 
-            request.getServletContext().setAttribute("errorMsg", "登陆失败");
+            request.getServletContext().setAttribute(bloggerPropertiesManager.getSessionNameOfErrorMsg(), "登陆失败");
             return "login";
 
         }

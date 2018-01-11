@@ -1,12 +1,17 @@
 package com.duan.blogos.manager.validate;
 
 import com.duan.blogos.entity.blogger.BloggerAccount;
+import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.manager.BloggerPropertiesManager;
 import com.duan.blogos.service.blogger.BloggerAccountService;
 import com.duan.blogos.service.blogger.blog.CategoryService;
+import com.duan.blogos.service.blogger.profile.GalleryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created on 2017/12/26.
@@ -19,6 +24,9 @@ public class BloggerValidateManager {
 
     @Autowired
     private BloggerAccountService bloggerAccountService;
+
+    @Autowired
+    private GalleryService galleryService;
 
     @Autowired
     private CategoryService categoryService;
@@ -74,4 +82,30 @@ public class BloggerValidateManager {
         }
     }
 
+    /**
+     * 检查当前博主是否登录
+     *
+     * @param bloggerId 博主id
+     * @return 登录返回true
+     */
+    public boolean checkBloggerSignIn(HttpServletRequest request, Integer bloggerId) {
+
+        // 检查当前登录否
+        HttpSession session = request.getSession();
+        Object obj = session.getAttribute(propertiesManager.getSessionNameOfBloggerId());
+
+        return obj != null && bloggerId.equals(obj);
+
+    }
+
+    /**
+     * 检查博主是否有指定图片
+     *
+     * @param bloggerId 博主id
+     * @param pictureId 图片id
+     * @return 有返回true
+     */
+    public boolean checkBloggerPictureExist(int bloggerId, int pictureId) {
+        return galleryService.getPicture(pictureId, bloggerId) != null;
+    }
 }

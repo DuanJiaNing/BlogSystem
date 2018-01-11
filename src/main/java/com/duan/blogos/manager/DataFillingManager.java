@@ -4,6 +4,7 @@ import com.duan.blogos.dto.blog.BlogCommentDTO;
 import com.duan.blogos.dto.blog.BlogListItemDTO;
 import com.duan.blogos.dto.blog.BlogMainContentDTO;
 import com.duan.blogos.dto.blog.BlogStatisticsDTO;
+import com.duan.blogos.dto.blogger.BloggerCategoryDTO;
 import com.duan.blogos.dto.blogger.BloggerDTO;
 import com.duan.blogos.dto.blogger.BloggerLinkDTO;
 import com.duan.blogos.dto.blogger.CollectBlogListItemDTO;
@@ -116,4 +117,16 @@ public class DataFillingManager {
         dto.setReason(collect.getReason());
         return dto;
     }
+
+    public BloggerCategoryDTO blogCategoryToDTO(BlogCategory category, BloggerPicture icon) {
+        BloggerCategoryDTO dto = new BloggerCategoryDTO();
+        dto.setBloggerId(category.getBloggerId());
+        dto.setCreateDate(category.getCreateDate());
+        dto.setBewrite(category.getBewrite());
+        dto.setIcon(icon);
+        dto.setId(category.getId());
+        dto.setTitle(category.getTitle());
+        return dto;
+    }
+
 }

@@ -60,7 +60,7 @@ public class BlogDataRetrievalController extends BaseBlogController {
         final RequestContext context = new RequestContext(request);
 
         //检查账户
-        UnknownBloggerException exception = checkAccount(context, bloggerId);
+        BaseRuntimeException exception = checkAccount(context, bloggerId);
         if (exception != null) throw exception;
 
         //检查数据合法性

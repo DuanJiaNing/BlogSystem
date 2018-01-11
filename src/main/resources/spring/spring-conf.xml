@@ -4,17 +4,20 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!--读者配置-->
     <bean class="com.duan.blogos.manager.AudiencePropertiesManager" name="audiencePropertiesManager">
         <property name="requestBloggerBlogListCount" value="${audience.requestBloggerBlogListCount}"/>
         <property name="urlConditionSplitCharacter" value="${audience.urlConditionSplitCharacter}"/>
         <property name="requestBloggerBlogCommentCount" value="${audience.requestBloggerBlogCommentCount}"/>
     </bean>
 
+    <!--数据库配置-->
     <bean class="com.duan.blogos.manager.DbPropertiesManager" name="dbPropertiesManager">
         <property name="stringFiledSplitCharacterForNumber" value="${db.stringFiledSplitCharacterForNumber}"/>
         <property name="stringFiledSplitCharacterForString" value="${db.stringFiledSplitCharacterForString}"/>
     </bean>
 
+    <!--博主配置-->
     <bean class="com.duan.blogos.manager.BloggerPropertiesManager" name="bloggerPropertiesManager">
         <property name="requestBloggerLinkCount" value="${blogger.requestBloggerLinkCount}"/>
         <property name="bloggerImageRootPath" value="${blogger.bloggerImageRootPath}"/>
@@ -22,10 +25,21 @@
         <property name="requestBloggerPictureCount" value="${blogger.requestBloggerPictureCount}"/>
         <property name="requestBloggerCollectCount" value="${blogger.requestBloggerCollectCount}"/>
         <property name="defaultBlogCollectCategory" value="${blogger.defaultBlogCollectCategory}"/>
+        <property name="requestBloggerBlogCategoryCount" value="${blogger.requestBloggerBlogCategoryCount}"/>
+        <property name="sessionNameOfBloggerId" value="${blogger.session.bloggerId}"/>
+        <property name="sessionNameOfBloggerName" value="${blogger.session.bloggerName}"/>
+        <property name="sessionNameOfErrorMsg" value="${blogger.session.errorMsg}"/>
     </bean>
 
+    <!--博文配置-->
+    <bean class="com.duan.blogos.manager.BlogPropertiesManager" name="blogPropertiesManager">
+        <property name="defaultBlogCategory" value="${blog.defaultBlogCategory}"/>
+    </bean>
+
+    <!--数据填充配置，e.g. pojo对象转为dto对象-->
     <bean class="com.duan.blogos.manager.DataFillingManager" name="dataFillingManager"/>
 
+    <!--站点配置-->
     <bean class="com.duan.blogos.manager.WebsitePropertiesManager" name="websitePropertiesManager">
         <property name="addr" value="${website.addr}"/>
         <property name="luceneIndexDir" value="${website.luceneIndexDir}"/>

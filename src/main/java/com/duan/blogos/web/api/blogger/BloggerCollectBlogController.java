@@ -47,7 +47,7 @@ public class BloggerCollectBlogController extends BaseBloggerController {
                                                         @RequestParam(value = "sort", required = false) String sort,
                                                         @RequestParam(value = "order", required = false) String order) {
         final RequestContext context = new RequestContext(request);
-        checkAccount(request, bloggerId);
+        handleAccountCheck(request, bloggerId);
 
         // 检查类别存在否
         if (category != null && !category.equals(bloggerPropertiesManager.getDefaultBlogCollectCategory()) &&
@@ -79,7 +79,7 @@ public class BloggerCollectBlogController extends BaseBloggerController {
     public ResultBean cancel(HttpServletRequest request,
                              @PathVariable("bloggerId") Integer bloggerId,
                              @PathVariable("blogId") Integer blogId) {
-        checkAccount(request, bloggerId);
+        handleAccountCheck(request, bloggerId);
 
         boolean result = collectBlogService.deleteCollectBlog(bloggerId, blogId);
         if (!result) handlerOperateFail(request);
@@ -102,7 +102,7 @@ public class BloggerCollectBlogController extends BaseBloggerController {
             throw exceptionManager.getParameterIllegalException(context);
         }
 
-        checkAccount(request, bloggerId);
+        handleAccountCheck(request, bloggerId);
 
         // 检查类别存在否
         if (newCategory != null && !newCategory.equals(bloggerPropertiesManager.getDefaultBlogCollectCategory()) &&

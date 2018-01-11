@@ -39,7 +39,7 @@ public class BloggerGalleryController extends BaseBloggerController {
     public ResultBean<BloggerPicture> get(HttpServletRequest request,
                                           @PathVariable("bloggerId") Integer bloggerId,
                                           @PathVariable("pictureId") Integer pictureId) {
-        checkAccount(request, bloggerId);
+        handleAccountCheck(request, bloggerId);
 
         RequestContext context = new RequestContext(request);
         if (pictureId <= 0) throw exceptionManager.getParameterIllegalException(context);
@@ -62,7 +62,7 @@ public class BloggerGalleryController extends BaseBloggerController {
                                                  @RequestParam(value = "category", required = false) Integer category,
                                                  @RequestParam(value = "offset", required = false) Integer offset,
                                                  @RequestParam(value = "rows", required = false) Integer rows) {
-        checkAccount(request, bloggerId);
+        handleAccountCheck(request, bloggerId);
         RequestContext context = new RequestContext(request);
 
         int cate;
@@ -104,7 +104,7 @@ public class BloggerGalleryController extends BaseBloggerController {
                              @RequestParam(value = "bewrite", required = false) String newBeWrite,
                              @RequestParam(value = "title", required = false) String newTitle) {
 
-        checkAccount(request, bloggerId);
+        handleAccountCheck(request, bloggerId);
         RequestContext context = new RequestContext(request);
 
         // 检查博主是否有指定图片

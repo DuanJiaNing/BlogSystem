@@ -1,8 +1,6 @@
 package com.duan.blogos.web.api;
 
 import com.duan.blogos.exception.BaseRuntimeException;
-import com.duan.blogos.exception.UnknownBlogException;
-import com.duan.blogos.exception.UnknownBloggerException;
 import com.duan.blogos.manager.ExceptionManager;
 import com.duan.blogos.manager.StringConstructorManager;
 import com.duan.blogos.manager.validate.BlogValidateManager;
@@ -98,7 +96,7 @@ public class BaseRestController {
     /**
      * 检查博主账户是否存在，存在返回null
      */
-    protected UnknownBloggerException checkAccount(RequestContext context, Integer bloggerId) {
+    protected BaseRuntimeException checkAccount(RequestContext context, Integer bloggerId) {
         if (bloggerId == null || bloggerId <= 0 || bloggerValidateManager.checkAccount(bloggerId) == null) {
             return exceptionManager.getUnknownBloggerException(context);
         }
@@ -109,7 +107,7 @@ public class BaseRestController {
     /**
      * 检查博文是否存在，存在返回null
      */
-    protected UnknownBlogException checkBlogExist(RequestContext context, Integer blogId) {
+    protected BaseRuntimeException checkBlogExist(RequestContext context, Integer blogId) {
         if (blogId == null || blogId <= 0 || !blogValidateManager.checkBlogExist(blogId)) {
             return exceptionManager.getUnknownBlogException(context);
         }

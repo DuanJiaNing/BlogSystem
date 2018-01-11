@@ -21,6 +21,19 @@
         WHERE blogger_id = #{bloggerId} AND id = #{categoryId};
     </select>
 
+    <select id="listCategoryByBloggerId" resultType="BlogCategory">
+        SELECT *
+        FROM blog_category
+        WHERE blogger_id=#{bloggerId}
+        LIMIT #{offset},#{rows}
+    </select>
+
+    <select id="getCategory" resultType="BlogCategory">
+        SELECT *
+        FROM blog_category
+        WHERE id=#{categoryId} AND blogger_id=#{bloggerId}
+    </select>
+
     <update id="update" parameterType="BlogCategory">
         UPDATE blog_category
         <set>

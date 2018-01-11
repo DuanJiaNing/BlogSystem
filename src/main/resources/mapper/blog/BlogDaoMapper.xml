@@ -75,29 +75,29 @@
             SELECT LAST_INSERT_ID() AS id
         </selectKey>
         INSERT INTO blog (
-            blogger_id,
-            category_ids,
-            label_ids,
-            state,
-            title,
-            content,
-            summary,
-            release_date,
-            nearest_modify_date,
-            key_words,
-            word_count
+        blogger_id,
+        category_ids,
+        label_ids,
+        state,
+        title,
+        content,
+        summary,
+        release_date,
+        nearest_modify_date,
+        key_words,
+        word_count
         ) VALUE (
-            #{bloggerId},
-            #{categoryIds},
-            #{labelIds},
-            ifnull(#{state}, 0), # state 0 为正在审核
-            #{title},
-            #{content},
-            #{summary},
-            NOW(),
-            NOW(),
-            #{keyWords},
-            ifnull(#{wordCount}, 0)
+        #{bloggerId},
+        #{categoryIds},
+        #{labelIds},
+        ifnull(#{state}, 0), # state 0 为正在审核
+        #{title},
+        #{content},
+        #{summary},
+        NOW(),
+        NOW(),
+        #{keyWords},
+        ifnull(#{wordCount}, 0)
         )
     </insert>
 
@@ -139,6 +139,14 @@
         SELECT b.id
         FROM blog b
         WHERE b.id = #{value}
+    </select>
+
+    <select id="listAllCategoryByBloggerId" resultType="Blog">
+        SELECT
+        b.id,
+        b.category_ids
+        FROM blog b
+        WHERE b.blogger_id=#{value}
     </select>
 
 </mapper>

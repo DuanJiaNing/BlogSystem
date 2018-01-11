@@ -34,7 +34,7 @@ public class BloggerProfileController extends BaseBloggerController {
     @RequestMapping(method = RequestMethod.GET)
     public ResultBean<BloggerProfile> get(HttpServletRequest request,
                                           @PathVariable Integer bloggerId) {
-        checkAccount(request, bloggerId);
+        handleAccountCheck(request, bloggerId);
 
         BloggerProfile profile = profileService.getBloggerProfile(bloggerId);
         if (profile == null) handlerEmptyResult(request);
@@ -53,7 +53,7 @@ public class BloggerProfileController extends BaseBloggerController {
                                  @RequestParam(value = "email", required = false) String email,
                                  @RequestParam(value = "aboutMe", required = false) String aboutMe,
                                  @RequestParam(value = "intro", required = false) String intro) {
-        checkAccount(request, bloggerId);
+        handleAccountCheck(request, bloggerId);
         checkParams(phone, email, request);
         int av = avatarId == null || avatarId <= 0 ? -1 : avatarId;
         int id = profileService.insertBloggerProfile(bloggerId, av, phone, email, aboutMe, intro);
@@ -84,7 +84,7 @@ public class BloggerProfileController extends BaseBloggerController {
             throw exceptionManager.getParameterIllegalException(new RequestContext(request));
         }
 
-        checkAccount(request, bloggerId);
+        handleAccountCheck(request, bloggerId);
         checkParams(phone, email, request);
         int av = avatarId == null || avatarId <= 0 ? -1 : avatarId;
         boolean result = profileService.updateBloggerProfile(bloggerId, av, phone, email, aboutMe, intro);
@@ -100,7 +100,7 @@ public class BloggerProfileController extends BaseBloggerController {
     @RequestMapping(method = RequestMethod.DELETE)
     public ResultBean delete(HttpServletRequest request,
                              @PathVariable Integer bloggerId) {
-        checkAccount(request, bloggerId);
+        handleAccountCheck(request, bloggerId);
 
         boolean result = profileService.deleteBloggerProfile(bloggerId);
         if (!result) handlerOperateFail(request);

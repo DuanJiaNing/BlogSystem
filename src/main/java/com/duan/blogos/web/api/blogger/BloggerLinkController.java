@@ -42,7 +42,7 @@ public class BloggerLinkController extends BaseBloggerController {
                                                 @RequestParam(value = "offset", required = false) Integer offset,
                                                 @RequestParam(value = "rows", required = false) Integer rows) {
 
-        checkAccount(request, bloggerId);
+        handleAccountCheck(request, bloggerId);
 
         int os = offset == null || offset < 0 ? 0 : offset;
         int rs = rows == null || rows < 0 ? bloggerPropertiesManager.getRequestBloggerLinkCount() : rows;
@@ -62,7 +62,7 @@ public class BloggerLinkController extends BaseBloggerController {
                               @RequestParam("title") String title,
                               @RequestParam("url") String url,
                               @RequestParam(value = "bewrite", required = false) String bewrite) {
-        checkAccount(request, bloggerId);
+        handleAccountCheck(request, bloggerId);
         RequestContext context = new RequestContext(request);
 
         //检查图片是否存在
@@ -98,7 +98,7 @@ public class BloggerLinkController extends BaseBloggerController {
                              @RequestParam(value = "title", required = false) String newTitle,
                              @RequestParam(value = "url", required = false) String newUrl,
                              @RequestParam(value = "bewrite", required = false) String newBewrite) {
-        checkAccount(request, bloggerId);
+        handleAccountCheck(request, bloggerId);
         RequestContext context = new RequestContext(request);
         checkLink(linkId, context);
 
@@ -130,7 +130,7 @@ public class BloggerLinkController extends BaseBloggerController {
     public ResultBean delete(HttpServletRequest request,
                              @PathVariable Integer bloggerId,
                              @PathVariable Integer linkId) {
-        checkAccount(request, bloggerId);
+        handleAccountCheck(request, bloggerId);
         RequestContext context = new RequestContext(request);
         checkLink(linkId, context);
 

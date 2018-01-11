@@ -26,23 +26,24 @@ public interface CategoryService {
     /**
      * 修改类别
      *
-     * @param categoryId   类别id
-     * @param newBloggerId 新的类别所属博主，不修改传 -1
-     * @param newTitle     新标题，不修改传 null
-     * @param newDesc      新描述，不修改传 null
+     * @param categoryId 类别id
+     * @param newIconId  新的类别图标，不修改传 -1
+     * @param newTitle   新标题，不修改传 null
+     * @param newBewrite 新描述，不修改传 null
      * @return 更新失败为false
      */
-    boolean updateBlogCategory(int categoryId, int newBloggerId, String newTitle, String newDesc);
+    boolean updateBlogCategory(int categoryId, int newIconId, String newTitle, String newBewrite);
 
     /**
      * 新增博文类别
      *
      * @param bloggerId 类别所属博主id
+     * @param iconId    类别标签id，为null传递-1
      * @param title     标题
      * @param desc      描述
      * @return 新纪录id
      */
-    int insertBlogCategory(int bloggerId, String title, String desc);
+    int insertBlogCategory(int bloggerId, int iconId, String title, String desc);
 
     /**
      * 删除类别，同时删除类别下的所有博文
@@ -50,17 +51,16 @@ public interface CategoryService {
      * @param bloggerId  博主id
      * @param categoryId 类别id
      */
-    void deleteCategoryAndBlogsAsWell(int bloggerId, int categoryId);
+    boolean deleteCategoryAndBlogsAsWell(int bloggerId, int categoryId);
 
     /**
      * 删除类别，同时移动类别下所有文章到新的类别中
      *
      * @param bloggerId     博主id
      * @param categoryId    要删除的类别
-     * @param newBloggerId  新的类别创建者（博主）id
      * @param newCategoryId 新的类别（新类别创建者创建的类别）
      */
-    void deleteCategoryAndMoveBlogsTo(int bloggerId, int categoryId, int newBloggerId, int newCategoryId);
+    boolean deleteCategoryAndMoveBlogsTo(int bloggerId, int categoryId, int newCategoryId);
 
     /**
      * 通过计算类别数量，来检查指定博主是否创建过指定类别
@@ -70,4 +70,13 @@ public interface CategoryService {
      * @return 创建过则结果不小于1，否则为0
      */
     int countCategoryForExistCheck(int bloggerId, int categoryId);
+
+    /**
+     * 根据id获得指定博文类别
+     *
+     * @param bloggerId  博主id
+     * @param categoryId 博文类别id
+     * @return 查询结果
+     */
+    BloggerCategoryDTO getCategory(int bloggerId, int categoryId);
 }

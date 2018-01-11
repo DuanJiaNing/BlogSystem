@@ -24,12 +24,12 @@ public class BaseBlogController extends BaseRestController {
      * 检查博文和博主是否存在，检查通过应该返回null
      */
     protected BaseRuntimeException check(RequestContext context, Integer blogId, Integer... bloggerIds) {
-        UnknownBlogException exception1 = checkBlogExist(context, blogId);
+        BaseRuntimeException exception1 = checkBlogExist(context, blogId);
         if (exception1 != null) return exception1;
 
         if (bloggerIds != null) {
             for (Integer id : bloggerIds) {
-                UnknownBloggerException exception = checkAccount(context, id);
+                BaseRuntimeException exception = checkAccount(context, id);
                 if (exception != null) return exception;
             }
         }

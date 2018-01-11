@@ -98,4 +98,12 @@ public interface BlogDao extends BaseDao<Blog> {
      * @return 查询结果
      */
     Integer getBlogIdById(int blogId);
+
+    /**
+     * 查询出指定博主的所有博文包含着的类别
+     *
+     * @param bloggerId 博主id
+     * @return 只查询了博文类别和博文id的集合
+     */
+    List<Blog> listAllCategoryByBloggerId(int bloggerId);
 }

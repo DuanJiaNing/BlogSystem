@@ -48,7 +48,7 @@ public class ImageController extends BaseBloggerController {
     public void get(HttpServletRequest request, HttpServletResponse response,
                     @PathVariable("bloggerId") Integer bloggerId,
                     @PathVariable("imageId") Integer imageId) {
-        checkAccount(request, bloggerId);
+        handleAccountCheck(request, bloggerId);
 
         BloggerPicture picture = galleryService.getPicture(imageId, bloggerId);
         BloggerPicture backupPicture = galleryService.getPictureByPropertiesCategory(
@@ -91,7 +91,7 @@ public class ImageController extends BaseBloggerController {
                              @RequestParam(value = "category", required = false) Integer category,
                              @RequestParam(value = "bewrite", required = false) String bewrite,
                              @RequestParam(value = "title", required = false) String title) {
-        checkAccount(request, bloggerId);
+        handleAccountCheck(request, bloggerId);
 
         MultipartFile file = request.getFile("image");// 与页面input的name相同
         int id = -1;
@@ -120,7 +120,7 @@ public class ImageController extends BaseBloggerController {
     public ResultBean delete(HttpServletRequest request,
                              @PathVariable("bloggerId") Integer bloggerId,
                              @PathVariable("imageId") Integer imageId) {
-        checkAccount(request, bloggerId);
+        handleAccountCheck(request, bloggerId);
 
         BloggerPicture picture = galleryService.getPicture(imageId, bloggerId);
         if (picture == null) {

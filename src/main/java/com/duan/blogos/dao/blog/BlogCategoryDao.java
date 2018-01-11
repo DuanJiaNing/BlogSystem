@@ -4,6 +4,7 @@ import com.duan.blogos.dao.BaseDao;
 import com.duan.blogos.entity.blog.BlogCategory;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -32,4 +33,26 @@ public interface BlogCategoryDao extends BaseDao<BlogCategory> {
      */
     int countCategoryByBloggerIdAndCategoryId(@Param("bloggerId") int bloggerId,
                                               @Param("categoryId") int categoryId);
+
+    /**
+     * 查询博主创建的所有博文类别
+     *
+     * @param bloggerId 博主id
+     * @param offset    结果集偏移
+     * @param rows      行数
+     * @return 查询结果
+     */
+    List<BlogCategory> listCategoryByBloggerId(@Param("bloggerId") int bloggerId,
+                                               @Param("offset") int offset,
+                                               @Param("rows") int rows);
+
+    /**
+     * 在限定博主的情况下获取指定id的博文类别
+     *
+     * @param bloggerId  博主id
+     * @param categoryId 类别id
+     * @return 查询结果
+     */
+    BlogCategory getCategory(@Param("bloggerId") int bloggerId,
+                             @Param("categoryId") int categoryId);
 }

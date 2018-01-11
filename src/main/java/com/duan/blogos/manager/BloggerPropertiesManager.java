@@ -21,6 +21,11 @@ public class BloggerPropertiesManager {
     private Integer requestBloggerCollectCount;
 
     /**
+     * 博主博文类别默认请求条数
+     */
+    private Integer requestBloggerBlogCategoryCount;
+
+    /**
      * 博主相册图片默认请求数量
      */
     private Integer requestBloggerPictureCount;
@@ -39,4 +44,20 @@ public class BloggerPropertiesManager {
      * 默认的博文收藏类别
      */
     private Integer defaultBlogCollectCategory;
+
+    /**
+     * 保存在session属性中的博主id对应的名字
+     */
+    private String sessionNameOfBloggerId;
+
+    /**
+     * 保存在session属性中的博主用户名对应的名字
+     */
+    private String sessionNameOfBloggerName;
+
+    /**
+     * 保存在session属性中的错误信息对应的名字
+     */
+    private String sessionNameOfErrorMsg;
+
 }
