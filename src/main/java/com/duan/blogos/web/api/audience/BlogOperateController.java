@@ -48,7 +48,7 @@ public class BlogOperateController extends BaseBlogController {
         RequestContext context = new RequestContext(request);
 
         //检查
-        BaseRuntimeException exception = check(context, blogId, spokesmanId, listenerId);
+        BaseRuntimeException exception = checkBlogAndBloggerExist(context, blogId, spokesmanId, listenerId);
         if (exception != null) throw exception;
         if (StringUtils.isEmpty(content)) throw exceptionManager.getParameterIllegalException(context);
 
@@ -69,7 +69,7 @@ public class BlogOperateController extends BaseBlogController {
         RequestContext context = new RequestContext(request);
 
         //检查
-        BaseRuntimeException exception = check(context, blogId, sharerId);
+        BaseRuntimeException exception = checkBlogAndBloggerExist(context, blogId, sharerId);
         if (exception != null) throw exception;
 
         //执行
@@ -89,7 +89,7 @@ public class BlogOperateController extends BaseBlogController {
         RequestContext context = new RequestContext(request);
 
         //检查
-        BaseRuntimeException exception = check(context, blogId, paierId);
+        BaseRuntimeException exception = checkBlogAndBloggerExist(context, blogId, paierId);
         if (exception != null) throw exception;
         if (money == null || Math.min(money, 0f) == money) throw exceptionManager.getParameterIllegalException(context);
 
@@ -112,7 +112,7 @@ public class BlogOperateController extends BaseBlogController {
         RequestContext context = new RequestContext(request);
 
         // 检查
-        BaseRuntimeException exception = check(context, blogId, collectorId);
+        BaseRuntimeException exception = checkBlogAndBloggerExist(context, blogId, collectorId);
         if (exception != null) throw exception;
 
         //检查博主是否有指定类别
@@ -144,7 +144,7 @@ public class BlogOperateController extends BaseBlogController {
         RequestContext context = new RequestContext(request);
 
         //检查
-        BaseRuntimeException exception = check(context, blogId, complainId);
+        BaseRuntimeException exception = checkBlogAndBloggerExist(context, blogId, complainId);
         if (exception != null) throw exception;
         if (StringUtils.isEmpty(content)) throw exceptionManager.getParameterIllegalException(context);
 
@@ -165,7 +165,7 @@ public class BlogOperateController extends BaseBlogController {
         RequestContext context = new RequestContext(request);
 
         //检查
-        BaseRuntimeException exception = check(context, blogId, likerId);
+        BaseRuntimeException exception = checkBlogAndBloggerExist(context, blogId, likerId);
         if (exception != null) throw exception;
 
         //执行
@@ -184,7 +184,7 @@ public class BlogOperateController extends BaseBlogController {
         RequestContext context = new RequestContext(request);
 
         //检查
-        BaseRuntimeException exception = check(context, blogId, bloggerId);
+        BaseRuntimeException exception = checkBlogAndBloggerExist(context, blogId, bloggerId);
         if (exception != null) throw exception;
 
         //执行
@@ -205,7 +205,7 @@ public class BlogOperateController extends BaseBlogController {
         RequestContext context = new RequestContext(request);
 
         //检查
-        BaseRuntimeException exception = check(context, blogId, bloggerId);
+        BaseRuntimeException exception = checkBlogAndBloggerExist(context, blogId, bloggerId);
         if (exception != null) throw exception;
 
         //执行

@@ -1,34 +1,90 @@
 package com.duan.blogos.service.impl.blogger.blog;
 
+import com.duan.blogos.dao.blog.BlogLabelDao;
 import com.duan.blogos.entity.blog.BlogLabel;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.blog.LabelService;
+import com.duan.blogos.util.CollectionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created on 2017/12/19.
  *
  * @author DuanJiaNing
  */
-@Service("labelService")
+@Service
 public class LabelServiceImpl implements LabelService {
+
+    @Autowired
+    private BlogLabelDao labelDao;
+
     @Override
     public int insertLabel(int bloggerId, String title) {
-        return 0;
+
+        BlogLabel label = new BlogLabel();
+        label.setBloggerId(bloggerId);
+        label.setTitle(title);
+        int effect = labelDao.insert(label);
+        if (effect <= 0) return -1;
+
+        return label.getId();
     }
 
     @Override
-    public boolean updateLabel(int labelId, int newBloggerId, String newTitle) {
-        return false;
+    public boolean updateLabel(int labelId, int bloggerId, String newTitle) {
+
+        //检查标签存在及标签创建者是否为当前博主
+        BlogLabel label = labelDao.getLabel(labelId);
+        if (label == null || label.getBloggerId() != bloggerId) return false;
+
+        BlogLabel la = new BlogLabel();
+        la.setTitle(newTitle);
+        la.setId(labelId);
+        int effect = labelDao.update(la);
+        if (effect <= 0) return false;
+
+        return true;
     }
 
     @Override
-    public BlogLabel deleteLabel(int labelId) {
-        return null;
+    public boolean deleteLabel(int bloggerId, int labelId) {
+
+        //检查标签存在及标签创建者是否为当前博主
+        BlogLabel label = labelDao.getLabel(labelId);
+        if (label == null || label.getBloggerId() != bloggerId) return false;
+
+        // 删除数据库记录
+        int effect = labelDao.delete(labelId);
+        if (effect <= 0) return false;
+
+        // TODO 将所有拥有该标签的博文修改
+
+        return true;
     }
 
     @Override
-    public ResultBean<BlogLabel> listLabel(int bloggerId) {
-        return null;
+    public ResultBean<List<BlogLabel>> listLabel(int offset, int rows) {
+
+        List<BlogLabel> result = labelDao.listLabel(offset, rows);
+        if (CollectionUtils.isEmpty(result)) return null;
+
+        return new ResultBean<>(result);
+    }
+
+    @Override
+    public BlogLabel getLabel(int labelId) {
+        return labelDao.getLabel(labelId);
+    }
+
+    @Override
+    public ResultBean<List<BlogLabel>> listLabelByBlogger(int bloggerId, int offset, int rows) {
+
+        List<BlogLabel> result = labelDao.listLabelByBloggerId(bloggerId, offset, rows);
+        if (CollectionUtils.isEmpty(result)) return null;
+
+        return new ResultBean<>(result);
     }
 }

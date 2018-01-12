@@ -24,4 +24,32 @@ public interface BlogLabelDao extends BaseDao<BlogLabel> {
      */
     List<BlogLabel> listLabelById(@Param("ids") int[] ids);
 
+    /**
+     * 根据标签id获得标签
+     *
+     * @param labelId 标签id
+     * @return 查询结果
+     */
+    BlogLabel getLabel(int labelId);
+
+    /**
+     * 无限制的获取标签
+     *
+     * @param offset 结果集偏移
+     * @param rows   行数
+     * @return 查询结果
+     */
+    List<BlogLabel> listLabel(@Param("offset") int offset, @Param("rows") int rows);
+
+    /**
+     * 获取指定博主创建的所有标签
+     *
+     * @param bloggerId 博主id
+     * @param offset    结果集偏移
+     * @param rows      行数
+     * @return 查询结果
+     */
+    List<BlogLabel> listLabelByBloggerId(@Param("bloggerId") int bloggerId,
+                                         @Param("offset") int offset,
+                                         @Param("rows") int rows);
 }

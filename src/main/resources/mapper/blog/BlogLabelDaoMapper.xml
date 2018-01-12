@@ -15,17 +15,36 @@
         </foreach>
     </select>
 
+    <select id="getLabel" resultType="BlogLabel">
+        SELECT *
+        FROM blog_label
+        WHERE id=#{value}
+    </select>
+
+    <select id="listLabel" resultType="BlogLabel">
+        SELECT *
+        FROM blog_label
+        LIMIT #{offset},#{rows}
+    </select>
+
+    <select id="listLabelByBloggerId" resultType="BlogLabel">
+        SELECT *
+        FROM blog_label
+        WHERE blogger_id=#{bloggerId}
+        LIMIT #{offset},#{rows}
+    </select>
+
     <update id="update" parameterType="BlogLabel">
         UPDATE blog_label
         <set>
             <if test="bloggerId != null">
-                blogger_id=#{bloggerId}
+                blogger_id=#{bloggerId},
             </if>
             <if test="title != null">
-                title=#{title}
+                title=#{title},
             </if>
             <if test="createDate != null">
-                create_date=#{createDate}
+                create_date=#{createDate},
             </if>
         </set>
         <where>
@@ -38,13 +57,13 @@
             SELECT LAST_INSERT_ID() AS id
         </selectKey>
         INSERT INTO blog_label (
-            blogger_id,
-            title,
-            create_date
+        blogger_id,
+        title,
+        create_date
         ) VALUE (
-            #{blogerId},
-            #{title},
-            NOW()
+        #{bloggerId},
+        #{title},
+        NOW()
         )
     </insert>
 

@@ -3,6 +3,8 @@ package com.duan.blogos.service.blogger.blog;
 import com.duan.blogos.entity.blog.BlogLabel;
 import com.duan.blogos.result.ResultBean;
 
+import java.util.List;
+
 /**
  * Created on 2017/12/18.
  * 标签服务
@@ -23,27 +25,46 @@ public interface LabelService {
     /**
      * 修改标签
      *
-     * @param labelId      标签id
-     * @param newBloggerId 新的标签所有者
-     * @param newTitle     新标签名
+     * @param labelId   标签id
+     * @param bloggerId 标签所有者
+     * @param newTitle  新标签名
      * @return 更新失败为false
      */
-    boolean updateLabel(int labelId, int newBloggerId, String newTitle);
+    boolean updateLabel(int labelId, int bloggerId, String newTitle);
 
     /**
-     * 删除标签
+     * 删除标签，只有标签是当前博主创建时才能删除
      *
-     * @param labelId 标签id
-     * @return 被删除的记录
+     * @param bloggerId 博主id
+     * @param labelId   标签id
+     * @return 删除成功返回true
      */
-    BlogLabel deleteLabel(int labelId);
+    boolean deleteLabel(int bloggerId, int labelId);
 
     /**
      * 获得博主创建的所有标签
      *
-     * @param bloggerId 博主id
+     * @param offset 结果集偏移量
+     * @param rows   行数
      * @return 查询结果
      */
-    ResultBean<BlogLabel> listLabel(int bloggerId);
+    ResultBean<List<BlogLabel>> listLabel(int offset, int rows);
 
+    /**
+     * 获得指定标签
+     *
+     * @param labelId 标签id
+     * @return 查询结果
+     */
+    BlogLabel getLabel(int labelId);
+
+    /**
+     * 获取指定博主创建的所有标签
+     *
+     * @param bloggerId 博主id
+     * @param offset    结果集偏移量
+     * @param rows      行数
+     * @return 查询结果
+     */
+    ResultBean<List<BlogLabel>> listLabelByBlogger(int bloggerId, int offset, int rows);
 }

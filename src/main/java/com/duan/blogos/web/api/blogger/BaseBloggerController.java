@@ -20,8 +20,11 @@ import javax.servlet.http.HttpSession;
 public class BaseBloggerController extends BaseRestController {
 
     @Autowired
-    BloggerPropertiesManager bloggerPropertiesManager;
+    protected BloggerPropertiesManager bloggerPropertiesManager;
 
+    /**
+     * 检查博主是否存在，不存在直接抛出异常
+     */
     protected void handleAccountCheck(HttpServletRequest request, Integer bloggerId) {
         RequestContext context = new RequestContext(request);
         BaseRuntimeException exception = checkAccount(context, bloggerId);

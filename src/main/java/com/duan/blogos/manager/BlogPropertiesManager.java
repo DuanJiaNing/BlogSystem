@@ -10,4 +10,9 @@ import lombok.Data;
 @Data
 public class BlogPropertiesManager {
 
+    /**
+     * 博文标签默认请求条数
+     */
+    private Integer requestBloggerBlogLabelCount;
+
 }

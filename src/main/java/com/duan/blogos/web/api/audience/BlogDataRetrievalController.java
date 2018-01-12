@@ -39,6 +39,9 @@ import java.util.List;
 public class BlogDataRetrievalController extends BaseBlogController {
 
     @Autowired
+    protected AudiencePropertiesManager audiencePropertiesManager;
+
+    @Autowired
     private BlogRetrievalService retrievalService;
 
     @Autowired
