@@ -1,10 +1,16 @@
 package com.duan.blogos.service.impl.blogger.blog;
 
+import com.duan.blogos.dao.blog.BlogDao;
 import com.duan.blogos.dao.blog.BlogLabelDao;
+import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogLabel;
+import com.duan.blogos.exception.BaseRuntimeException;
+import com.duan.blogos.manager.DbPropertiesManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.blog.LabelService;
+import com.duan.blogos.util.ArrayUtils;
 import com.duan.blogos.util.CollectionUtils;
+import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +26,12 @@ public class LabelServiceImpl implements LabelService {
 
     @Autowired
     private BlogLabelDao labelDao;
+
+    @Autowired
+    private BlogDao blogDao;
+
+    @Autowired
+    private DbPropertiesManager dbPropertiesManager;
 
     @Override
     public int insertLabel(int bloggerId, String title) {
@@ -60,7 +72,20 @@ public class LabelServiceImpl implements LabelService {
         int effect = labelDao.delete(labelId);
         if (effect <= 0) return false;
 
-        // TODO 将所有拥有该标签的博文修改
+        // 将所有拥有该标签的博文修改（j将标签移除）
+        List<Blog> blogs = blogDao.listAllLabelByBloggerId(bloggerId);
+        String ch = dbPropertiesManager.getStringFiledSplitCharacterForNumber();
+        for (Blog blog : blogs) {
+            int[] lids = StringUtils.intStringDistinctToArray(blog.getLabelIds(), ch);
+            if (CollectionUtils.isEmpty(lids)) continue;
+
+            if (CollectionUtils.intArrayContain(lids, labelId)) {
+                int[] ids = ArrayUtils.removeFromArray(lids, labelId);
+                blog.setLabelIds(StringUtils.intArrayToString(ids, ch));
+                if (blogDao.update(blog) <= 0)
+                    throw new BaseRuntimeException("update blog label ids fail");
+            }
+        }
 
         return true;
     }

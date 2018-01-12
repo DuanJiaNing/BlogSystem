@@ -132,8 +132,8 @@ public class BlogLabelController extends BaseBlogController {
      */
     @RequestMapping(value = "/{labelId}", method = RequestMethod.DELETE)
     public ResultBean delete(HttpServletRequest request,
-                             @RequestParam("bloggerId") Integer bloggerId,
-                             @PathVariable("labelId") Integer labelId) {
+                             @PathVariable("labelId") Integer labelId,
+                             @RequestParam("bloggerId") Integer bloggerId) {
         handleAccountCheck(request, bloggerId);
         handleBloggerSignInCheck(request, bloggerId);
 

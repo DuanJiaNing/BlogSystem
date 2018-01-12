@@ -1,6 +1,7 @@
 package com.duan.blogos.dao.blog;
 
 import com.duan.blogos.dao.BaseDao;
+import com.duan.blogos.entity.blog.BlogLabel;
 import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.entity.blog.Blog;
 import org.apache.ibatis.annotations.Param;
@@ -106,4 +107,12 @@ public interface BlogDao extends BaseDao<Blog> {
      * @return 只查询了博文类别和博文id的集合
      */
     List<Blog> listAllCategoryByBloggerId(int bloggerId);
+
+    /**
+     * 查询出指定博主的所有博文包含的标签
+     *
+     * @param bloggerId 博主id
+     * @return 只查询了博文标签和博文id的结果集
+     */
+    List<Blog> listAllLabelByBloggerId(int bloggerId);
 }

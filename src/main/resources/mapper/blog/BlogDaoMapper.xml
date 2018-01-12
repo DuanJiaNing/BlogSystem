@@ -149,4 +149,12 @@
         WHERE b.blogger_id=#{value}
     </select>
 
+    <select id="listAllLabelByBloggerId" resultType="Blog">
+        SELECT
+        b.id,
+        b.label_ids
+        FROM blog b
+        WHERE b.blogger_id=#{value}
+    </select>
+
 </mapper>

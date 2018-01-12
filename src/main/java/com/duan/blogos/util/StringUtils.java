@@ -57,6 +57,8 @@ public class StringUtils {
      * int数组拼接为字符串
      */
     public static String intArrayToString(int[] arr, String join) {
+        if (CollectionUtils.isEmpty(arr)) return "";
+
         Integer[] is = new Integer[arr.length];
         for (int i = 0; i < arr.length; i++) {
             is[i] = arr[i];
