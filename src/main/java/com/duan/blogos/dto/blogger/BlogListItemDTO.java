@@ -39,7 +39,6 @@ public class BlogListItemDTO implements Serializable {
     //最近修改日期
     private Timestamp nearestModifyDate;
 
-
     //评论次数
     private int commentCount;
 

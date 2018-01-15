@@ -28,6 +28,7 @@
         <property name="sessionNameOfBloggerId" value="${blogger.session.bloggerId}"/>
         <property name="sessionNameOfBloggerName" value="${blogger.session.bloggerName}"/>
         <property name="sessionNameOfErrorMsg" value="${blogger.session.errorMsg}"/>
+        <property name="requestBlogListCount" value="${blogger.requestBlogListCount}"/>
     </bean>
 
     <!--博文配置-->

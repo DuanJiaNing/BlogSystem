@@ -1,20 +1,21 @@
 package com.duan.blogos.service.impl.blogger.blog;
 
-import com.duan.blogos.dao.blog.BlogDao;
+import com.duan.blogos.dao.blog.BlogCategoryDao;
 import com.duan.blogos.dao.blog.BlogStatisticsDao;
 import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.dto.blogger.BlogListItemDTO;
 import com.duan.blogos.dto.blogger.BlogStatisticsDTO;
 import com.duan.blogos.entity.blog.Blog;
+import com.duan.blogos.entity.blog.BlogCategory;
 import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.exception.BaseRuntimeException;
 import com.duan.blogos.exception.LuceneException;
-import com.duan.blogos.manager.BlogLuceneIndexManager;
 import com.duan.blogos.manager.BlogSortRule;
-import com.duan.blogos.manager.DbPropertiesManager;
+import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.manager.WebsitePropertiesManager;
 import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.service.BlogFilterAbstract;
 import com.duan.blogos.service.blogger.blog.BlogService;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
@@ -25,34 +26,33 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
  * Created on 2017/12/19.
+ * 博主检索博文
  *
  * @author DuanJiaNing
  */
 @Service
-public class BlogServiceImpl implements BlogService {
-
-    @Autowired
-    private BlogDao blogDao;
+public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogListItemDTO>>> implements BlogService {
 
     @Autowired
     private BlogStatisticsDao statisticsDao;
 
     @Autowired
-    private DbPropertiesManager dbPropertiesManager;
-
-    @Autowired
     private WebsitePropertiesManager websitePropertiesManager;
 
     @Autowired
-    private BloggerPictureDao pictureDao;
+    private DataFillingManager dataFillingManager;
 
     @Autowired
-    private BlogLuceneIndexManager luceneIndexManager;
+    private BlogCategoryDao categoryDao;
+
+    @Autowired
+    private BloggerPictureDao pictureDao;
 
     @Override
     public int insertBlog(int bloggerId, int[] categories, int[] labels,
@@ -102,7 +102,7 @@ public class BlogServiceImpl implements BlogService {
 
     // 解析博文中引用的相册图片
     private int[] parseContentForImageIds(String content, int bloggerId) {
-        String regex = "http://" + websitePropertiesManager.getAddr() + "/image/" + bloggerId + "/(\\d)";
+        String regex = "http://" + websitePropertiesManager.getAddr() + "/image/" + bloggerId + "/(\\d+)";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(content);
 
@@ -181,17 +181,38 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public ResultBean<List<BlogListItemDTO>> listFilterAll(int[] categoryIds, int[] labelIds, String keyWord,
-                                                           int bloggerId, int offset, int rows, BlogSortRule sortRule,
-                                                           BlogStatusEnum status) {
+    public ResultBean<Blog> getBlog(int bloggerId, int blogId) {
+
+        Blog blog = blogDao.getBlogById(blogId);
+
+        String ch = dbPropertiesManager.getStringFiledSplitCharacterForNumber();
+        String chs = dbPropertiesManager.getStringFiledSplitCharacterForString();
+        String whs = websitePropertiesManager.getUrlConditionSplitCharacter();
+        if (blog != null && blog.getBloggerId().equals(bloggerId)) {
+
+            blog.setCategoryIds(blog.getCategoryIds().replace(ch, whs));
+            blog.setLabelIds(blog.getLabelIds().replace(ch, whs));
+            blog.setKeyWords(blog.getKeyWords().replace(chs, whs));
+            return new ResultBean<>(blog);
+
+        }
+
         return null;
     }
 
-
     @Override
-    public ResultBean<List<BlogListItemDTO>> listFilterByLabelAndCategory(int[] categoryIds, int[] labelIds,
-                                                                          int bloggerId, int offset, int rows,
-                                                                          BlogSortRule sortRule, BlogStatusEnum status) {
-        return null;
+    protected ResultBean<List<BlogListItemDTO>> constructResult(Map<Integer, Blog> blogHashMap, List<BlogStatistics> statistics,
+                                                                Map<Integer, int[]> blogIdMapCategoryIds) {
+        // 重组结果
+        List<BlogListItemDTO> result = new ArrayList<>();
+        for (BlogStatistics s : statistics) {
+            Integer blogId = s.getBlogId();
+            List<BlogCategory> categories = categoryDao.listCategoryById(blogIdMapCategoryIds.get(blogId));
+            Blog blog = blogHashMap.get(blogId);
+            BlogListItemDTO dto = dataFillingManager.bloggerBlogListItemToDTO(blog, s, categories);
+            result.add(dto);
+        }
+
+        return new ResultBean<>(result);
     }
 }

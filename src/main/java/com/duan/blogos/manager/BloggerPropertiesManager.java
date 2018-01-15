@@ -26,6 +26,11 @@ public class BloggerPropertiesManager {
     private Integer requestBloggerBlogCategoryCount;
 
     /**
+     * 博主获取博文列表时的默认获取条数
+     */
+    private Integer requestBlogListCount;
+
+    /**
      * 博主相册图片默认请求数量
      */
     private Integer requestBloggerPictureCount;

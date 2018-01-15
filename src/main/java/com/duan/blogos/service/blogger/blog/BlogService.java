@@ -152,4 +152,13 @@ public interface BlogService extends BlogFilter<ResultBean<List<BlogListItemDTO>
      * @return 存在返回true，否则false
      */
     boolean getBlogForCheckExist(int blogId);
+
+    /**
+     * 获得指定博主的指定博文
+     *
+     * @param bloggerId 博主id
+     * @param blogId    博文id
+     * @return 查询结果
+     */
+    ResultBean<Blog> getBlog(int bloggerId, int blogId);
 }

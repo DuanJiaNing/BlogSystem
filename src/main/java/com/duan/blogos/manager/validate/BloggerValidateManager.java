@@ -1,7 +1,6 @@
 package com.duan.blogos.manager.validate;
 
 import com.duan.blogos.entity.blogger.BloggerAccount;
-import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.manager.BloggerPropertiesManager;
 import com.duan.blogos.service.blogger.BloggerAccountService;
@@ -64,9 +63,20 @@ public class BloggerValidateManager {
         return count >= 1;
     }
 
-    public boolean checkBloggerBlogCategoryExist(Integer bloggerId, int... categoryIds) {
+    /**
+     * 检查博文类别是否存在
+     *
+     * @param bloggerId   博主id
+     * @param categoryIds 类别id
+     * @return 都存在时返回true
+     */
+    public boolean checkBloggerBlogCategoryExist(int bloggerId, int... categoryIds) {
+        for (int id : categoryIds) {
+            if (categoryService.countCategoryForExistCheck(bloggerId, id) < 1)
+                return false;
+        }
 
-        return false;
+        return true;
     }
 
     /**

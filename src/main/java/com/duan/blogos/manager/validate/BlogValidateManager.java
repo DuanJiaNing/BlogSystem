@@ -1,6 +1,7 @@
 package com.duan.blogos.manager.validate;
 
 import com.duan.blogos.dao.blog.BlogDao;
+import com.duan.blogos.dao.blog.BlogLabelDao;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.service.blogger.blog.BlogService;
 import com.duan.blogos.util.StringUtils;
@@ -22,6 +23,9 @@ public class BlogValidateManager {
     @Autowired
     private BlogDao blogDao;
 
+    @Autowired
+    private BlogLabelDao labelDao;
+
     /**
      * 检查博文是否存在
      *
@@ -30,6 +34,21 @@ public class BlogValidateManager {
      */
     public boolean checkBlogExist(Integer blogId) {
         return blogId != null && blogId > 0 && blogService.getBlogForCheckExist(blogId);
+    }
+
+    /**
+     * 检查标签是否存在
+     *
+     * @param labelIds 标签id
+     * @return 都存在返回true
+     */
+    public boolean checkLabelsExist(int[] labelIds) {
+        for (int id : labelIds) {
+            if (labelDao.getLabel(id) == null)
+                return false;
+        }
+
+        return true;
     }
 
     /**
@@ -60,13 +79,4 @@ public class BlogValidateManager {
         return true;
     }
 
-    /**
-     * 检查标签是否存在
-     *
-     * @param labelIds 标签id
-     * @return 都存在返回true
-     */
-    public boolean checkLabelsExist(int[] labelIds) {
-        return false;
-    }
 }

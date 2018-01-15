@@ -38,5 +38,11 @@ public enum BlogStatusEnum {
         return code;
     }
 
-
+    public static BlogStatusEnum valueOf(int code) {
+        for (BlogStatusEnum anEnum : values()) {
+            if (anEnum.getCode() == code)
+                return anEnum;
+        }
+        return null;
+    }
 }

@@ -11,7 +11,7 @@ import com.duan.blogos.manager.BlogSortRule;
 public interface BlogFilter<T> {
 
     /**
-     * 全限定检索
+     * 全限定检索（包括关键字）
      *
      * @param categoryIds 限定在博主的哪些类别之下，不做限定时传null
      * @param labelIds    限定在博主的哪些标签之下，不做限定时传null
@@ -27,7 +27,7 @@ public interface BlogFilter<T> {
                     BlogSortRule sortRule, BlogStatusEnum status);
 
     /**
-     * 标签&类别检索
+     * 标签&类别检索（无关键字）
      *
      * @param labelIds    限定在博主的哪些标签之下
      * @param categoryIds 限定在博主的哪些类别之下
