@@ -86,4 +86,9 @@ public class ExceptionManager {
     public BaseRuntimeException getBloggerNotLoggedInException(RequestContext context) {
         return new BloggerNotLoggedInException(context.getMessage("blogger.notLoggedIn"));
     }
+
+    public BaseRuntimeException getBlogIllegalException(RequestContext context) {
+        return new BlogIllegalException(context.getMessage("blog.illegal"));
+    }
+
 }

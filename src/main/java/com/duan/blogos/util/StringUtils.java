@@ -24,6 +24,17 @@ public class StringUtils {
     }
 
     /**
+     * 将字符串切分
+     *
+     * @param sour  字符串
+     * @param regex 切分表达式
+     * @return 字符串数组
+     */
+    public static String[] stringArrayToArray(String sour, String regex) {
+        return StringUtils.isEmpty(sour) ? null : sour.split(regex);
+    }
+
+    /**
      * 对象数组拼接为字符串
      */
     public static String arrayToString(Object[] arr, String join) {
@@ -128,4 +139,5 @@ public class StringUtils {
     public static boolean isEmail(String email) {
         return !isEmpty(email) && email.matches("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
     }
+
 }

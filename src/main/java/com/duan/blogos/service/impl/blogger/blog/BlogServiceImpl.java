@@ -2,20 +2,31 @@ package com.duan.blogos.service.impl.blogger.blog;
 
 import com.duan.blogos.dao.blog.BlogDao;
 import com.duan.blogos.dao.blog.BlogStatisticsDao;
+import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.dto.blogger.BlogListItemDTO;
 import com.duan.blogos.dto.blogger.BlogStatisticsDTO;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.enums.BlogStatusEnum;
+import com.duan.blogos.exception.BaseRuntimeException;
+import com.duan.blogos.exception.LuceneException;
+import com.duan.blogos.manager.BlogLuceneIndexManager;
 import com.duan.blogos.manager.BlogSortRule;
 import com.duan.blogos.manager.DbPropertiesManager;
+import com.duan.blogos.manager.WebsitePropertiesManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.blog.BlogService;
+import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created on 2017/12/19.
@@ -34,13 +45,23 @@ public class BlogServiceImpl implements BlogService {
     @Autowired
     private DbPropertiesManager dbPropertiesManager;
 
+    @Autowired
+    private WebsitePropertiesManager websitePropertiesManager;
+
+    @Autowired
+    private BloggerPictureDao pictureDao;
+
+    @Autowired
+    private BlogLuceneIndexManager luceneIndexManager;
+
     @Override
     public int insertBlog(int bloggerId, int[] categories, int[] labels,
                           BlogStatusEnum status, String title, String content,
                           String summary, String[] keyWords) {
 
-        //插入数据到bolg表
+        // 1 插入数据到bolg表
         String ch = dbPropertiesManager.getStringFiledSplitCharacterForNumber();
+        String chs = dbPropertiesManager.getStringFiledSplitCharacterForString();
         Blog blog = new Blog();
         blog.setBloggerId(bloggerId);
         blog.setCategoryIds(StringUtils.intArrayToString(categories, ch));
@@ -49,18 +70,53 @@ public class BlogServiceImpl implements BlogService {
         blog.setTitle(title);
         blog.setContent(content);
         blog.setSummary(summary);
-        blog.setKeyWords(StringUtils.arrayToString(keyWords, ch));
+        blog.setKeyWords(StringUtils.arrayToString(keyWords, chs));
         blog.setWordCount(content.length());
 
-        blogDao.insert(blog);
+        int effect = blogDao.insert(blog);
+        if (effect <= 0) return -1;
 
-        //插入数据到blog_statistics表（生成博文信息记录）
-        int blogId = blogDao.getBlogIdByUniqueKey(bloggerId, title);
+        int blogId = blog.getId();
+
+        // 2 插入数据到blog_statistics表（生成博文信息记录）
         BlogStatistics statistics = new BlogStatistics();
         statistics.setBlogId(blogId);
-        statisticsDao.insert(statistics);
+        effect = statisticsDao.insert(statistics);
+        if (effect <= 0) throw new BaseRuntimeException("insert blog statistic fail when insert blog");
+
+        // 3 解析本地图片引用并使自增
+        int[] imids = parseContentForImageIds(content, bloggerId);
+        if (!CollectionUtils.isEmpty(imids))
+            Arrays.stream(imids).forEach(pictureDao::updateUseCountPlus);
+
+        // 4 lucene创建索引
+        try {
+            luceneIndexManager.add(blog);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new LuceneException(e);
+        }
 
         return blogId;
+    }
+
+    // 解析博文中引用的相册图片
+    private int[] parseContentForImageIds(String content, int bloggerId) {
+        String regex = "http://" + websitePropertiesManager.getAddr() + "/image/" + bloggerId + "/(\\d)";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(content);
+
+        List<String> res = new ArrayList<>();
+        while (matcher.find()) {
+            String str = matcher.group();
+            int index = str.lastIndexOf("/");
+            res.add(str.substring(index + 1));
+        }
+
+        return res.stream()
+                .mapToInt(Integer::valueOf)
+                .distinct()
+                .toArray();
     }
 
     @Override

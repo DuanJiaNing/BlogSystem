@@ -47,14 +47,26 @@ public class BlogValidateManager {
     /**
      * 检验博文是否合法
      *
-     * @param title   博文标题
-     * @param content 博文内容
+     * @param title    博文标题
+     * @param content  博文内容
+     * @param summary  摘要
+     * @param keyWords 关键字
      * @return 合法返回true
      */
-    public boolean verifyBlog(String title, String content) {
+    public boolean verifyBlog(String title, String content, String summary, String keyWords) {
         if (StringUtils.isEmpty(title) || StringUtils.isEmpty(content)) return false;
 
         //TODO 博文内容校验
         return true;
+    }
+
+    /**
+     * 检查标签是否存在
+     *
+     * @param labelIds 标签id
+     * @return 都存在返回true
+     */
+    public boolean checkLabelsExist(int[] labelIds) {
+        return false;
     }
 }

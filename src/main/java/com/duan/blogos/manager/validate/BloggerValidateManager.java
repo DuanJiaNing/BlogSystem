@@ -64,6 +64,11 @@ public class BloggerValidateManager {
         return count >= 1;
     }
 
+    public boolean checkBloggerBlogCategoryExist(Integer bloggerId, int... categoryIds) {
+
+        return false;
+    }
+
     /**
      * 检查博主是否有权限操纵某些类别图片
      *

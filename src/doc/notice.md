@@ -5,6 +5,7 @@
 - API的url编写参考文章：http://www.ruanyifeng.com/blog/2014/05/restful_api.html
 - 各种检查在Controller层，业务由Service层实现
 - 文件名统一添加前缀 "时间-" 以避免覆盖。ImageManager#saveImageToDisk
+- 创作博文时，博文中若引用了自己的照片（通过上传图片，后选用）的方式，md时url要遵守ImageController的url格式
 
 ## 待办
 - controller层的一些操作在获取数据时不必检查博主是否登录，而在修改、删除操作时需要验证博主是否登录

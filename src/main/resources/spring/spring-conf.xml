@@ -7,7 +7,6 @@
     <!--读者配置-->
     <bean class="com.duan.blogos.manager.AudiencePropertiesManager" name="audiencePropertiesManager">
         <property name="requestBloggerBlogListCount" value="${audience.requestBloggerBlogListCount}"/>
-        <property name="urlConditionSplitCharacter" value="${audience.urlConditionSplitCharacter}"/>
         <property name="requestBloggerBlogCommentCount" value="${audience.requestBloggerBlogCommentCount}"/>
     </bean>
 
@@ -42,6 +41,7 @@
     <!--站点配置-->
     <bean class="com.duan.blogos.manager.WebsitePropertiesManager" name="websitePropertiesManager">
         <property name="addr" value="${website.addr}"/>
+        <property name="urlConditionSplitCharacter" value="${website.urlConditionSplitCharacter}"/>
         <property name="luceneIndexDir" value="${website.luceneIndexDir}"/>
     </bean>
 

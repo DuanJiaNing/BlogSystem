@@ -21,4 +21,10 @@ public class WebsitePropertiesManager {
      */
     private String luceneIndexDir;
 
+    /**
+     * 默认的url请求参数的间隔字符
+     * 如url中传递多个博文类别id时：1,2,3,8 这里间隔字符为","
+     */
+    private String urlConditionSplitCharacter;
+
 }

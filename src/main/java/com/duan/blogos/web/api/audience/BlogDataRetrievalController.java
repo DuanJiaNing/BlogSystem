@@ -69,7 +69,7 @@ public class BlogDataRetrievalController extends BaseBlogController {
         //检查数据合法性
         String sor = sort == null ? Rule.VIEW_COUNT.name() : sort.toUpperCase();
         String ord = order == null ? Order.DESC.name() : order.toUpperCase();
-        String ch = audiencePropertiesManager.getUrlConditionSplitCharacter();
+        String ch = websitePropertiesManager.getUrlConditionSplitCharacter();
         checkProperties(categoryIds, ch, labelIds, ch, sor, ord, context);
 
         //执行数据查询

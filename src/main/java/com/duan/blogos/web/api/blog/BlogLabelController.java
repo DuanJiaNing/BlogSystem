@@ -87,7 +87,6 @@ public class BlogLabelController extends BaseBlogController {
                           @RequestParam("bloggerId") Integer bloggerId,
                           @RequestParam("title") String title) {
 
-        handleAccountCheck(request, bloggerId);
         handleBloggerSignInCheck(request, bloggerId);
         handleTitleCheck(title, request);
 
@@ -104,7 +103,9 @@ public class BlogLabelController extends BaseBlogController {
     }
 
     // 检查博主是否登录
-    protected void handleBloggerSignInCheck(HttpServletRequest request, Integer bloggerId) {
+    private void handleBloggerSignInCheck(HttpServletRequest request, Integer bloggerId) {
+        handleAccountCheck(request, bloggerId);
+
         if (!bloggerValidateManager.checkBloggerSignIn(request, bloggerId))
             throw exceptionManager.getBloggerNotLoggedInException(new RequestContext(request));
     }
@@ -117,7 +118,6 @@ public class BlogLabelController extends BaseBlogController {
                              @PathVariable("labelId") Integer labelId,
                              @RequestParam("bloggerId") Integer bloggerId,
                              @RequestParam("title") String newTitle) {
-        handleAccountCheck(request, bloggerId);
         handleBloggerSignInCheck(request, bloggerId);
         handleTitleCheck(newTitle, request);
 
