@@ -3,6 +3,7 @@ package com.duan.blogos.manager.validate;
 import com.duan.blogos.dao.blog.BlogDao;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.service.blogger.blog.BlogService;
+import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -41,5 +42,19 @@ public class BlogValidateManager {
     public boolean isCreatorOfBlog(int bloggerId, int blogId) {
         Blog blog = blogDao.getBlogById(blogId);
         return blog != null && blog.getBloggerId() == bloggerId;
+    }
+
+    /**
+     * 检验博文是否合法
+     *
+     * @param title   博文标题
+     * @param content 博文内容
+     * @return 合法返回true
+     */
+    public boolean verifyBlog(String title, String content) {
+        if (StringUtils.isEmpty(title) || StringUtils.isEmpty(content)) return false;
+
+        //TODO 博文内容校验
+        return true;
     }
 }

@@ -18,12 +18,22 @@ public enum BloggerPictureCategoryEnum {
      */
     DEFAULT(0),
 
+    /**
+     * 博文图片，博文中包含的图片需要上传时保存到该类别下
+     */
+    BLOG_PICTURE(1),
+
     /*--------------------------------------------------*/
 
     /**
      * 博主友情链接默认图片（唯一）
      */
     BLOGGER_DEFAULT_UNIQUE_LINK_ICON(3),
+
+    /**
+     * 博主默认图片（请求指定图片而指定图片不存在时返回）（唯一）
+     */
+    BLOGGER_DEFAULT_UNIQUE_PICTURE(4),
 
     /**
      * 博主默认头像图标（唯一）
@@ -33,12 +43,7 @@ public enum BloggerPictureCategoryEnum {
     /**
      * 博主默认个人博文类别图标（唯一）
      */
-    BLOG_DEFAULT_UNIQUE_CATEGORY_ICON(6),
-
-    /**
-     * 博主默认图片（请求指定图片而指定图片不存在时返回）（唯一）
-     */
-    BLOGGER_DEFAULT_UNIQUE_PICTURE(4);
+    BLOG_DEFAULT_UNIQUE_CATEGORY_ICON(6);
 
     private int code;
 

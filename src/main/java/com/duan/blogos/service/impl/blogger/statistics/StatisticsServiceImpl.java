@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  *
  * @author DuanJiaNing
  */
-@Service("statisticsService")
+@Service
 public class StatisticsServiceImpl implements StatisticsService {
     @Override
     public ResultBean<BloggerStatisticsDTO> getBloggerStatistics(int bloggerId) {

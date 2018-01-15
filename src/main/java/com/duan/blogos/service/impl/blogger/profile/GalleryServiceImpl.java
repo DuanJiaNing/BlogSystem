@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -197,6 +196,11 @@ public class GalleryServiceImpl implements GalleryService {
         if (effect <= 0) return false;
 
         return true;
+    }
+
+    @Override
+    public void cleanBlogPicture(int bloggerId) {
+        // TODO
     }
 
 }

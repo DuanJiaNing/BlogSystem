@@ -20,7 +20,9 @@ public interface BlogService extends BlogFilter<ResultBean<List<BlogListItemDTO>
 
     /**
      * 新增博客
-     * 新增一篇博文后要为其生成一条对应的博文信息记录
+     * 1 为博文生成一条统计信息记录
+     * 2 解析博文中引用的本地图片（以使其useCount自增）
+     * 3 lucene添加索引
      *
      * @param bloggerId  博主id
      * @param categories 类别

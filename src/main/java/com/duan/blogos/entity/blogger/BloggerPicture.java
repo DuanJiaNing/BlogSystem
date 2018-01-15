@@ -36,4 +36,7 @@ public class BloggerPicture implements Serializable {
     //上传时间
     private Timestamp uploadDate;
 
+    // 图片被引用次数
+    private Integer useCount;
+
 }

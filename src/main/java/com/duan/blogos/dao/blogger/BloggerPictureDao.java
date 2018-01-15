@@ -74,4 +74,29 @@ public interface BloggerPictureDao extends BaseDao<BloggerPicture> {
                                                          @Param("category") int category,
                                                          @Param("offset") int offset,
                                                          @Param("rows") int rows);
+
+    /**
+     * 将图片被引用次数减一
+     *
+     * @param pictureId 图片id
+     * @return 操作影响的行数
+     */
+    int updateUseCountPlus(int pictureId);
+
+    /**
+     * 将图片被引用次数加一
+     *
+     * @param pictureId 图片id
+     * @return 操作影响的行数
+     */
+    int updateUseCountMinus(int pictureId);
+
+    /**
+     * 获得图片被引用次数
+     *
+     * @param pictureId 图片id
+     * @return 操作影响的行数
+     */
+    int getUseCount(int pictureId);
+
 }
