@@ -73,8 +73,13 @@
     </update>
 
     <delete id="delete" parameterType="integer">
-        DELETE FROM blog
+        DELETE FROM blog_statistics
         WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteByUnique" parameterType="integer">
+        DELETE FROM blog_statistics
+        WHERE blog_id = #{value}
     </delete>
 
     <update id="updateCommentCountPlus">

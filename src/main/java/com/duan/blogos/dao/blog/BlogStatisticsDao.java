@@ -13,6 +13,14 @@ import org.springframework.stereotype.Repository;
 public interface BlogStatisticsDao extends BaseDao<BlogStatistics> {
 
     /**
+     * 通过唯一约束（博文id）删除记录
+     *
+     * @param blogId 博文id
+     * @return 操作影响行数
+     */
+    int deleteByUnique(int blogId);
+
+    /**
      * 查询博文的统计信息
      *
      * @param blogId 对应博文id

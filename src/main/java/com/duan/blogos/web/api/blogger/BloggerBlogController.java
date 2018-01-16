@@ -28,6 +28,7 @@ import java.util.stream.Stream;
  * 3 获取指定博文
  * 4 修改博文
  * 5 删除博文
+ * 6 批量删除博文
  *
  * @author DuanJiaNing
  */
@@ -184,7 +185,7 @@ public class BloggerBlogController extends BaseBloggerController {
         handleBloggerSignInCheck(request, bloggerId);
         handleBlogExistAndCreatorCheck(request, bloggerId, blogId);
 
-        if (!blogService.deleteBlog(blogId))
+        if (!blogService.deleteBlog(bloggerId, blogId))
             handlerOperateFail(request);
 
         return new ResultBean<>("");
@@ -209,7 +210,7 @@ public class BloggerBlogController extends BaseBloggerController {
             handleBlogExistAndCreatorCheck(request, bloggerId, id);
         }
 
-        if (!blogService.deleteBlogPatch(blogIds))
+        if (!blogService.deleteBlogPatch(bloggerId, blogIds))
             handlerOperateFail(request);
 
         return new ResultBean<>("");

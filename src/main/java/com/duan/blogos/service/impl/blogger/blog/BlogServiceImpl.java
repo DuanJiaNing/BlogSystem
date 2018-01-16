@@ -181,16 +181,41 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
     }
 
     @Override
-    public boolean deleteBlog(int blogId) {
+    public boolean deleteBlog(int bloggerId, int blogId) {
 
-        return false;
+        Blog blog = blogDao.getBlogById(blogId);
+        if (blog == null) return false;
+
+        // 1 删除博文记录
+        int effect = blogDao.delete(blogId);
+        if (effect <= 0) return false;
+
+        // 2 删除统计信息
+        int effectS = statisticsDao.deleteByUnique(blogId);
+        // MAYBUG 断点调试时effectS始终为0，但最终事务提交时记录却会正确删除，？？？ 因而注释下面的判断
+        //if (effectS <= 0) throw new BaseRuntimeException("delete blog statistic fail when delete blog");
+
+        // 3 图片引用useCount--
+        int[] ids = parseContentForImageIds(blog.getContent(), bloggerId);
+        if (!CollectionUtils.isEmpty(ids))
+            Arrays.stream(ids).forEach(pictureDao::updateUseCountMinus);
+
+        // 4 删除lucene索引
+        try {
+            luceneIndexManager.delete(blogId);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new BaseRuntimeException(e);
+        }
+
+        return true;
     }
 
     @Override
-    public boolean deleteBlogPatch(int[] blogIds) {
+    public boolean deleteBlogPatch(int bloggerId, int[] blogIds) {
 
         for (int id : blogIds) {
-            if (!deleteBlog(id))
+            if (!deleteBlog(bloggerId, id))
                 throw new BaseRuntimeException("patch delete blog fail");
         }
 

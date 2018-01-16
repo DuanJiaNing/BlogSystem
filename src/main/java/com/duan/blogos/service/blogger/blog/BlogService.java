@@ -60,20 +60,22 @@ public interface BlogService extends BlogFilter<ResultBean<List<BlogListItemDTO>
      * 1 删除博文
      * 2 删除统计信息记录
      * 3 博文中引用的图片useCount--
-     * 4 删除lucene所有
+     * 4 删除lucene索引
      *
-     * @param blogId 博文id
+     * @param bloggerId 博主id
+     * @param blogId    博文id
      * @return 删除的记录
      */
-    boolean deleteBlog(int blogId);
+    boolean deleteBlog(int bloggerId, int blogId);
 
     /**
      * 批量删除博文
      *
-     * @param blogIds 博文id
+     * @param bloggerId 博主id
+     * @param blogIds   博文id
      * @return 操作失败为false
      */
-    boolean deleteBlogPatch(int[] blogIds);
+    boolean deleteBlogPatch(int bloggerId, int[] blogIds);
 
     /**
      * 获取博文统计信息
@@ -112,4 +114,5 @@ public interface BlogService extends BlogFilter<ResultBean<List<BlogListItemDTO>
      * @return 查询结果
      */
     ResultBean<Blog> getBlog(int bloggerId, int blogId);
+
 }
