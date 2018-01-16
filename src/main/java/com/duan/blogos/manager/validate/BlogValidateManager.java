@@ -3,10 +3,13 @@ package com.duan.blogos.manager.validate;
 import com.duan.blogos.dao.blog.BlogDao;
 import com.duan.blogos.dao.blog.BlogLabelDao;
 import com.duan.blogos.entity.blog.Blog;
+import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.service.blogger.blog.BlogService;
-import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created on 2017/12/26.
@@ -32,8 +35,8 @@ public class BlogValidateManager {
      * @param blogId 博文id
      * @return 博文存在返回true
      */
-    public boolean checkBlogExist(Integer blogId) {
-        return blogId != null && blogId > 0 && blogService.getBlogForCheckExist(blogId);
+    public boolean checkBlogExist(int blogId) {
+        return blogId > 0 && blogService.getBlogForCheckExist(blogId);
     }
 
     /**
@@ -60,7 +63,7 @@ public class BlogValidateManager {
      */
     public boolean isCreatorOfBlog(int bloggerId, int blogId) {
         Blog blog = blogDao.getBlogById(blogId);
-        return blog != null && blog.getBloggerId() == bloggerId;
+        return blog != null && blog.getBloggerId().equals(bloggerId);
     }
 
     /**
@@ -73,10 +76,23 @@ public class BlogValidateManager {
      * @return 合法返回true
      */
     public boolean verifyBlog(String title, String content, String summary, String keyWords) {
-        if (StringUtils.isEmpty(title) || StringUtils.isEmpty(content)) return false;
-
         //TODO 博文内容校验
         return true;
     }
 
+    /**
+     * 检查目标博文状态是否允许，一般用户只允许在“公开”，“私有”，“回收站”之间切换。
+     *
+     * @param status 状态值
+     * @return 允许返回true
+     */
+    public boolean isBlogStatusAllow(int status) {
+        List<BlogStatusEnum> list = Arrays.asList(BlogStatusEnum.PUBLIC, BlogStatusEnum.PRIVATE, BlogStatusEnum.DELETED);
+        int contain = 0;
+        for (BlogStatusEnum s : list) {
+            if (s.getCode() == status) contain++;
+        }
+
+        return contain > 0;
+    }
 }

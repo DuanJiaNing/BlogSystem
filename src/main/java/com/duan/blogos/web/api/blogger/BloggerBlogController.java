@@ -16,6 +16,8 @@ import org.springframework.web.servlet.support.RequestContext;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 /**
  * Created on 2018/1/15.
@@ -23,6 +25,8 @@ import java.util.List;
  * <p>
  * 1 新增博文
  * 2 获取博文
+ * 3 获取指定博文
+ * 4 修改博文
  *
  * @author DuanJiaNing
  */
@@ -60,8 +64,9 @@ public class BloggerBlogController extends BaseBloggerController {
         //检查博文类别和标签
         handleCategoryAndLabelCheck(request, bloggerId, cids, lids);
 
-        int id = blogService.insertBlog(bloggerId, cids, lids, BlogStatusEnum.PUBLIC, title, content,
-                summary, StringUtils.stringArrayToArray(keyWords, sp));
+        String[] kw = StringUtils.stringArrayToArray(keyWords, sp);
+        // UPDATE: 2018/1/16 更新 博文审核
+        int id = blogService.insertBlog(bloggerId, cids, lids, BlogStatusEnum.PUBLIC, title, content, summary, kw);
         if (id <= 0) handlerOperateFail(request);
 
         return new ResultBean<>(id);
@@ -126,20 +131,65 @@ public class BloggerBlogController extends BaseBloggerController {
      * 更新博文
      */
     @RequestMapping(value = "/{blogId}", method = RequestMethod.PUT)
-    public ResultBean update() {
+    public ResultBean update(HttpServletRequest request,
+                             @PathVariable Integer bloggerId,
+                             @PathVariable Integer blogId,
+                             @RequestParam(value = "title", required = false) String newTitle,
+                             @RequestParam(value = "content", required = false) String newContent,
+                             @RequestParam(value = "summary", required = false) String newSummary,
+                             @RequestParam(value = "cids", required = false) String newCategoryIds,
+                             @RequestParam(value = "lids", required = false) String newLabelIds,
+                             @RequestParam(value = "kword", required = false) String newKeyWord,
+                             @RequestParam(value = "status", required = false) Integer newStatus) {
 
-        return null;
+        // 所有参数都为null，则不更新。
+        if (Stream.of(newTitle, newContent, newSummary, newCategoryIds, newLabelIds, newKeyWord, newStatus)
+                .filter(Objects::nonNull).count() <= 0)
+            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
+
+        // 检查修改到的博文状态是否允许
+        if (newStatus != null && !blogValidateManager.isBlogStatusAllow(newStatus))
+            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
+
+        handleBloggerSignInCheck(request, bloggerId);
+        handleBlogExistAndCreatorCheck(request, bloggerId, blogId);
+        handleBlogContentCheck(request, newTitle, newContent, newSummary, newKeyWord);
+
+        String sp = websitePropertiesManager.getUrlConditionSplitCharacter();
+        int[] cids = newCategoryIds == null ? null : StringUtils.intStringDistinctToArray(newCategoryIds, sp);
+        int[] lids = newLabelIds == null ? null : StringUtils.intStringDistinctToArray(newLabelIds, sp);
+        String[] kw = newKeyWord == null ? null : StringUtils.stringArrayToArray(newKeyWord, sp);
+        BlogStatusEnum stat = newStatus == null ? null : BlogStatusEnum.valueOf(newStatus);
+
+        //执行更新
+        if (!blogService.updateBlog(bloggerId,blogId, cids, lids, stat, newTitle, newContent, newSummary, kw))
+            handlerOperateFail(request);
+
+        return new ResultBean<>("");
     }
 
     /**
      * 删除博文
      */
     @RequestMapping(value = "/{blogId}", method = RequestMethod.DELETE)
-    public ResultBean delete() {
+    public ResultBean delete(HttpServletRequest request,
+                             @PathVariable Integer bloggerId,
+                             @PathVariable Integer blogId) {
 
-        return null;
+        handleBloggerSignInCheck(request, bloggerId);
+        handleBlogExistAndCreatorCheck(request, bloggerId, blogId);
+
+        if (!blogService.deleteBlog(blogId))
+            handlerOperateFail(request);
+
+        return new ResultBean<>("");
     }
 
+    // 检查博文是否存在，且博文是否属于指定博主
+    private void handleBlogExistAndCreatorCheck(HttpServletRequest request, int bloggerId, int blogId) {
+        if (!blogValidateManager.isCreatorOfBlog(bloggerId, blogId))
+            throw exceptionManager.getUnknownBlogException(new RequestContext(request));
+    }
 
     // 检查类别和标签
     private void handleCategoryAndLabelCheck(HttpServletRequest request, int bloggerId, int[] cids, int[] lids) {

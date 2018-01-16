@@ -19,6 +19,7 @@ import com.duan.blogos.service.BlogFilterAbstract;
 import com.duan.blogos.service.blogger.blog.BlogService;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
+import jdk.jfr.events.ThrowablesEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +28,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.BrokenBarrierException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 /**
  * Created on 2017/12/19.
@@ -120,43 +123,66 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
     }
 
     @Override
-    public boolean updateBlog(int blogId, int newBloggerId, int[] newCategories, int[] newLabels, BlogStatusEnum newStatus, String newTitle, String newContent, String newSummary, String[] newKeyWords) {
-        return false;
+    public boolean updateBlog(int bloggerId, int blogId, int[] newCategories, int[] newLabels, BlogStatusEnum newStatus,
+                              String newTitle, String newContent, String newSummary, String[] newKeyWords) {
+
+        // 1 更新博文中引用的本地图片（取消引用的useCount--，新增的useCount++）
+        if (newContent != null) {
+            Blog oldBlog = blogDao.getBlogById(blogId);
+            if (!oldBlog.getContent().equals(newContent)) {
+
+                final int[] oldIids = parseContentForImageIds(oldBlog.getContent(), bloggerId); // 1 2 3 4
+                final int[] newIids = parseContentForImageIds(newContent, bloggerId); // 1 3 4 6
+
+                // 求交集 1 3 4
+                int[] array = IntStream.of(oldIids).filter(value -> {
+                    for (int id : newIids) if (id == value) return true;
+                    return false;
+                }).toArray();
+
+                // -- 2
+                int[] allM = new int[oldIids.length + array.length];
+                System.arraycopy(oldIids, 0, allM, 0, oldIids.length);
+                System.arraycopy(array, 0, allM, oldIids.length, array.length);
+                IntStream.of(allM).distinct().forEach(pictureDao::updateUseCountMinus);
+
+                // ++ 6
+                int[] allP = new int[newIids.length + array.length];
+                System.arraycopy(newIids, 0, allP, 0, newIids.length);
+                System.arraycopy(array, 0, allP, newIids.length, array.length);
+                IntStream.of(allP).distinct().forEach(pictureDao::updateUseCountPlus);
+            }
+        }
+
+        // 2 更新博文
+        String ch = dbPropertiesManager.getStringFiledSplitCharacterForNumber();
+        String chs = dbPropertiesManager.getStringFiledSplitCharacterForString();
+        Blog blog = new Blog();
+        blog.setId(blogId);
+        if (newCategories != null) blog.setCategoryIds(StringUtils.intArrayToString(newCategories, ch));
+        if (newLabels != null) blog.setLabelIds(StringUtils.intArrayToString(newLabels, ch));
+        if (newStatus != null) blog.setState(newStatus.getCode());
+        if (newTitle != null) blog.setTitle(newTitle);
+        if (newContent != null) blog.setContent(newContent);
+        if (newSummary != null) blog.setSummary(newSummary);
+        if (newKeyWords != null) blog.setKeyWords(StringUtils.arrayToString(newKeyWords, chs));
+        int effect = blogDao.update(blog);
+        if (effect <= 0) throw new BaseRuntimeException("update blog fail when blogger update blog");
+
+        // 3 更新lucene
+        try {
+            luceneIndexManager.update(blog);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new LuceneException(e);
+        }
+
+        return true;
     }
 
     @Override
-    public boolean updateBlogCategory(int blogId, int[] newCategories) {
+    public boolean deleteBlog(int blogId) {
         return false;
-    }
-
-    @Override
-    public boolean updateBlogLabel(int blogId, int[] newCategories) {
-        return false;
-    }
-
-    @Override
-    public boolean updateBlogState(int blogId, BlogStatusEnum newStatus) {
-        return false;
-    }
-
-    @Override
-    public boolean updateBlogTitle(int blogId, String newTitle) {
-        return false;
-    }
-
-    @Override
-    public boolean updateBlogSummary(int blogId, String newSummary) {
-        return false;
-    }
-
-    @Override
-    public boolean updateBlogKeyWords(int blogId, String[] newKeyWords) {
-        return false;
-    }
-
-    @Override
-    public Blog deleteBlog(int blogId) {
-        return null;
     }
 
     @Override
@@ -201,7 +227,8 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
     }
 
     @Override
-    protected ResultBean<List<BlogListItemDTO>> constructResult(Map<Integer, Blog> blogHashMap, List<BlogStatistics> statistics,
+    protected ResultBean<List<BlogListItemDTO>> constructResult(Map<Integer, Blog> blogHashMap,
+                                                                List<BlogStatistics> statistics,
                                                                 Map<Integer, int[]> blogIdMapCategoryIds) {
         // 重组结果
         List<BlogListItemDTO> result = new ArrayList<>();
@@ -216,4 +243,5 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
 
         return new ResultBean<>(result);
     }
+
 }

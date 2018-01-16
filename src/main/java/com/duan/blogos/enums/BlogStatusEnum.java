@@ -21,7 +21,7 @@ public enum BlogStatusEnum {
     /**
      * 文章已经被删除了，根据回收策略进行删除
      */
-    DELETED(-1),
+    DELETED(3),
 
     /**
      * 正在审核

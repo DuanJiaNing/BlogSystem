@@ -38,10 +38,12 @@ public interface BlogService extends BlogFilter<ResultBean<List<BlogListItemDTO>
                    String title, String content, String summary, String[] keyWords);
 
     /**
-     * 更新博文
+     * 1 更新博文
+     * 2 更新博文中引用的本地图片（取消引用的useCount--，新增的useCount++）
+     * 3 更新lucene
      *
+     * @param bloggerId     博主id
      * @param blogId        博文id
-     * @param newBloggerId  博文所属博主，不修改传-1
      * @param newCategories 新类别，不修改传null
      * @param newLabels     新标签，不修改传null
      * @param newStatus     新状态，不修改传null
@@ -51,70 +53,19 @@ public interface BlogService extends BlogFilter<ResultBean<List<BlogListItemDTO>
      * @param newKeyWords   新关键字，，不修改传null
      * @return 更新失败为false
      */
-    boolean updateBlog(int blogId, int newBloggerId, int[] newCategories, int[] newLabels, BlogStatusEnum newStatus,
+    boolean updateBlog(int bloggerId, int blogId, int[] newCategories, int[] newLabels, BlogStatusEnum newStatus,
                        String newTitle, String newContent, String newSummary, String[] newKeyWords);
 
     /**
-     * 修改博文所属类别
-     *
-     * @param blogId        博文id
-     * @param newCategories 类别
-     * @return 更新失败为false
-     */
-    boolean updateBlogCategory(int blogId, int[] newCategories);
-
-    /**
-     * 修改博文标签
-     *
-     * @param blogId        博文id
-     * @param newCategories 标签
-     * @return 更新失败为false
-     */
-    boolean updateBlogLabel(int blogId, int[] newCategories);
-
-    /**
-     * 修改博文状态
-     *
-     * @param blogId    博文id
-     * @param newStatus 新状态
-     * @return 更新失败为false
-     */
-    boolean updateBlogState(int blogId, BlogStatusEnum newStatus);
-
-    /**
-     * 修改博文标题
-     *
-     * @param blogId   博文id
-     * @param newTitle 新标题
-     * @return 更新失败为false
-     */
-    boolean updateBlogTitle(int blogId, String newTitle);
-
-    /**
-     * 修改博文摘要
-     *
-     * @param blogId     博文id
-     * @param newSummary 新摘要
-     * @return 更新失败为false
-     */
-    boolean updateBlogSummary(int blogId, String newSummary);
-
-    /**
-     * 修改博文关键字
-     *
-     * @param blogId      博文id
-     * @param newKeyWords 新关键字
-     * @return 更新失败为false
-     */
-    boolean updateBlogKeyWords(int blogId, String[] newKeyWords);
-
-    /**
-     * 删除博文
+     * 1 删除博文
+     * 2 删除统计信息记录
+     * 3 博文中引用的图片useCount--
+     * 4 删除lucene所有
      *
      * @param blogId 博文id
      * @return 删除的记录
      */
-    Blog deleteBlog(int blogId);
+    boolean deleteBlog(int blogId);
 
     /**
      * 批量删除博文
