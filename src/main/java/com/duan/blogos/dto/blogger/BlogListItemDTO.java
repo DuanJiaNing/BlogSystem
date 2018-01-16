@@ -25,7 +25,7 @@ public class BlogListItemDTO implements Serializable {
     private BlogCategory[] categories;
 
     //状态
-    private String state;
+    private int state;
 
     //博文标题
     private String title;

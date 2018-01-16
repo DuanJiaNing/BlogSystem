@@ -207,7 +207,8 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
         List<BlogListItemDTO> result = new ArrayList<>();
         for (BlogStatistics s : statistics) {
             Integer blogId = s.getBlogId();
-            List<BlogCategory> categories = categoryDao.listCategoryById(blogIdMapCategoryIds.get(blogId));
+            int[] ids = blogIdMapCategoryIds.get(blogId);
+            List<BlogCategory> categories = CollectionUtils.isEmpty(ids) ? null : categoryDao.listCategoryById(ids);
             Blog blog = blogHashMap.get(blogId);
             BlogListItemDTO dto = dataFillingManager.bloggerBlogListItemToDTO(blog, s, categories);
             result.add(dto);

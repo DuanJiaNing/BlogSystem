@@ -13,7 +13,7 @@ import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerLink;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.entity.blogger.BloggerProfile;
-import com.duan.blogos.enums.BlogStatusEnum;
+import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
 
 import java.util.List;
@@ -130,9 +130,10 @@ public class DataFillingManager {
         return dto;
     }
 
-    public com.duan.blogos.dto.blogger.BlogListItemDTO bloggerBlogListItemToDTO(Blog blog, BlogStatistics statistics, List<BlogCategory> categories) {
+    public com.duan.blogos.dto.blogger.BlogListItemDTO bloggerBlogListItemToDTO(Blog blog, BlogStatistics statistics,
+                                                                                List<BlogCategory> categories) {
         com.duan.blogos.dto.blogger.BlogListItemDTO dto = new com.duan.blogos.dto.blogger.BlogListItemDTO();
-        dto.setCategories(categories.toArray(new BlogCategory[categories.size()]));
+        dto.setCategories(CollectionUtils.isEmpty(categories) ? null : categories.toArray(new BlogCategory[categories.size()]));
         dto.setCollectCount(statistics.getCollectCount());
         dto.setCommentCount(statistics.getCommentCount());
         dto.setComplainCount(statistics.getComplainCount());
@@ -140,7 +141,7 @@ public class DataFillingManager {
         dto.setLikeCount(statistics.getLikeCount());
         dto.setNearestModifyDate(blog.getNearestModifyDate());
         dto.setReleaseDate(blog.getReleaseDate());
-        dto.setState(BlogStatusEnum.valueOf(blog.getState()).name());
+        dto.setState(blog.getState());
         dto.setSummary(blog.getSummary());
         dto.setTitle(blog.getTitle());
         dto.setViewCount(statistics.getViewCount());

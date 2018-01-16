@@ -70,7 +70,6 @@ public class BloggerBlogController extends BaseBloggerController {
     /**
      * 检索博文
      */
-    // TODO 待测试
     @RequestMapping(method = RequestMethod.GET)
     public ResultBean<List<BlogListItemDTO>> blogList(HttpServletRequest request,
                                                       @PathVariable Integer bloggerId,
@@ -87,7 +86,7 @@ public class BloggerBlogController extends BaseBloggerController {
         //检查排序规则
         String sor = sort == null ? Rule.VIEW_COUNT.name() : sort.toUpperCase();
         String ord = order == null ? Order.DESC.name() : order.toUpperCase();
-        handleSortRuleCheck(request, sort, ord);
+        handleSortRuleCheck(request, sor, ord);
 
         String sp = websitePropertiesManager.getUrlConditionSplitCharacter();
         int[] cids = StringUtils.intStringDistinctToArray(categoryIds, sp);
