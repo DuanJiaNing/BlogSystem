@@ -27,6 +27,7 @@ import java.util.stream.Stream;
  * 2 获取博文
  * 3 获取指定博文
  * 4 修改博文
+ * 5 删除博文
  *
  * @author DuanJiaNing
  */
@@ -158,11 +159,15 @@ public class BloggerBlogController extends BaseBloggerController {
         String sp = websitePropertiesManager.getUrlConditionSplitCharacter();
         int[] cids = newCategoryIds == null ? null : StringUtils.intStringDistinctToArray(newCategoryIds, sp);
         int[] lids = newLabelIds == null ? null : StringUtils.intStringDistinctToArray(newLabelIds, sp);
+
+        //检查博文类别和标签
+        handleCategoryAndLabelCheck(request, bloggerId, cids, lids);
+
         String[] kw = newKeyWord == null ? null : StringUtils.stringArrayToArray(newKeyWord, sp);
         BlogStatusEnum stat = newStatus == null ? null : BlogStatusEnum.valueOf(newStatus);
 
         //执行更新
-        if (!blogService.updateBlog(bloggerId,blogId, cids, lids, stat, newTitle, newContent, newSummary, kw))
+        if (!blogService.updateBlog(bloggerId, blogId, cids, lids, stat, newTitle, newContent, newSummary, kw))
             handlerOperateFail(request);
 
         return new ResultBean<>("");
@@ -180,6 +185,31 @@ public class BloggerBlogController extends BaseBloggerController {
         handleBlogExistAndCreatorCheck(request, bloggerId, blogId);
 
         if (!blogService.deleteBlog(blogId))
+            handlerOperateFail(request);
+
+        return new ResultBean<>("");
+    }
+
+    /**
+     * 批量删除博文
+     */
+    @RequestMapping(value = "/patch", method = RequestMethod.DELETE)
+    public ResultBean deletePatch(HttpServletRequest request,
+                                  @PathVariable Integer bloggerId,
+                                  @RequestParam("ids") String ids) {
+
+        handleBloggerSignInCheck(request, bloggerId);
+
+        int[] blogIds = StringUtils.intStringDistinctToArray(ids,
+                websitePropertiesManager.getUrlConditionSplitCharacter());
+        if (CollectionUtils.isEmpty(blogIds))
+            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
+
+        for (int id : blogIds) {
+            handleBlogExistAndCreatorCheck(request, bloggerId, id);
+        }
+
+        if (!blogService.deleteBlogPatch(blogIds))
             handlerOperateFail(request);
 
         return new ResultBean<>("");

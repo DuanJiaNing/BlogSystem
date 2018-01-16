@@ -19,7 +19,6 @@ import com.duan.blogos.service.BlogFilterAbstract;
 import com.duan.blogos.service.blogger.blog.BlogService;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
-import jdk.jfr.events.ThrowablesEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +27,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.BrokenBarrierException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
@@ -127,8 +125,8 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
                               String newTitle, String newContent, String newSummary, String[] newKeyWords) {
 
         // 1 更新博文中引用的本地图片（取消引用的useCount--，新增的useCount++）
+        Blog oldBlog = blogDao.getBlogById(blogId);
         if (newContent != null) {
-            Blog oldBlog = blogDao.getBlogById(blogId);
             if (!oldBlog.getContent().equals(newContent)) {
 
                 final int[] oldIids = parseContentForImageIds(oldBlog.getContent(), bloggerId); // 1 2 3 4
@@ -161,7 +159,9 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
         blog.setId(blogId);
         if (newCategories != null) blog.setCategoryIds(StringUtils.intArrayToString(newCategories, ch));
         if (newLabels != null) blog.setLabelIds(StringUtils.intArrayToString(newLabels, ch));
-        if (newStatus != null) blog.setState(newStatus.getCode());
+        // 博文未通过审核时不能修改状态
+        if (newStatus != null && !oldBlog.getState().equals(BlogStatusEnum.VERIFY.getCode()))
+            blog.setState(newStatus.getCode());
         if (newTitle != null) blog.setTitle(newTitle);
         if (newContent != null) blog.setContent(newContent);
         if (newSummary != null) blog.setSummary(newSummary);
@@ -182,12 +182,19 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
 
     @Override
     public boolean deleteBlog(int blogId) {
+
         return false;
     }
 
     @Override
     public boolean deleteBlogPatch(int[] blogIds) {
-        return false;
+
+        for (int id : blogIds) {
+            if (!deleteBlog(id))
+                throw new BaseRuntimeException("patch delete blog fail");
+        }
+
+        return true;
     }
 
     @Override
