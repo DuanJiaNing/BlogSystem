@@ -64,9 +64,6 @@ public class BlogBrowseServiceImpl implements BlogBrowseService {
     @Autowired
     private BloggerProfileDao profileDao;
 
-    @Autowired
-    private BlogStatisticsDao statisticsDao;
-
     @Override
     public ResultBean<BlogMainContentDTO> getBlogMainContent(int blogId) {
 

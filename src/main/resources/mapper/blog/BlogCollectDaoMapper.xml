@@ -47,9 +47,16 @@
     </delete>
 
     <select id="listCollectBlog" resultType="BlogCollect">
-        SELECT * FROM blog_collect
-        WHERE collector_id=#{bloggerId} AND category_id=#{category}
-        LIMIT #{offset},#{rows}
+        SELECT *
+        FROM blog_collect
+        WHERE collector_id = #{bloggerId} AND category_id = #{category}
+        LIMIT #{offset}, #{rows}
+    </select>
+
+    <select id="listAllCollectByBlogId" resultType="BlogCollect">
+        SELECT *
+        FROM blog_collect
+        WHERE blog_id = #{value}
     </select>
 
     <insert id="insert" parameterType="BlogCollect" useGeneratedKeys="true" keyProperty="id">

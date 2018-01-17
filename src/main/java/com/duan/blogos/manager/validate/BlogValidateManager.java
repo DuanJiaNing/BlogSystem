@@ -117,4 +117,17 @@ public class BlogValidateManager {
 
         return true;
     }
+
+    /**
+     * 检查博文的统计信息是否存在
+     *
+     * @param blogId 博文id
+     * @return 存在返回true
+     */
+    public boolean checkBlogStatisticExist(int blogId) {
+        Integer count = statisticsDao.getViewCount(blogId);
+        if (count == null) return false;
+
+        return true;
+    }
 }

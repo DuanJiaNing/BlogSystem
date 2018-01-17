@@ -5,6 +5,8 @@ import com.duan.blogos.entity.blog.BlogLike;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created on 2017/12/27.
  *
@@ -21,4 +23,12 @@ public interface BlogLikeDao extends BaseDao<BlogLike> {
      * @return 操作影响的行数
      */
     int deleteLikeByBloggerId(@Param("bloggerId") int bloggerId, @Param("blogId") int blogId);
+
+    /**
+     * 根据博文id获得所有喜欢记录
+     *
+     * @param blogId 博文id
+     * @return 查询结果
+     */
+    List<BlogLike> listAllLikeByBlogId(int blogId);
 }

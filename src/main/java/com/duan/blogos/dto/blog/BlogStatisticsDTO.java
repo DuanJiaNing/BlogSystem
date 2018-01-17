@@ -33,13 +33,16 @@ public class BlogStatisticsDTO implements Serializable {
     private BlogLabel[] labels;
 
     //状态
-    private String state;
+    private int state;
 
     //博文标题
     private String title;
 
     //博文摘要
     private String summary;
+
+    //博文关键字
+    private String[] keyWords;
 
     //首次发布日期
     private Timestamp releaseDate;
@@ -56,6 +59,6 @@ public class BlogStatisticsDTO implements Serializable {
     //收藏了该篇文章的人
     private BloggerDTO[] collects;
 
-    //赞赏了该篇文章的人
-    private BloggerDTO[] admires;
+    //评论了该篇文章的人
+    private BloggerDTO[] commenter;
 }

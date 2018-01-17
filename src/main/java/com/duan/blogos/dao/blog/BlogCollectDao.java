@@ -51,4 +51,12 @@ public interface BlogCollectDao extends BaseDao<BlogCollect> {
                        @Param("blogId") int blogId,
                        @Param("reason") String reason,
                        @Param("category") Integer category);
+
+    /**
+     * 根据博文id获得所有收藏记录
+     *
+     * @param blogId 博文id
+     * @return 查询结果
+     */
+    List<BlogCollect> listAllCollectByBlogId(int blogId);
 }

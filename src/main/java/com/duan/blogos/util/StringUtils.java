@@ -24,17 +24,6 @@ public class StringUtils {
     }
 
     /**
-     * 将字符串切分
-     *
-     * @param sour  字符串
-     * @param regex 切分表达式
-     * @return 字符串数组
-     */
-    public static String[] stringArrayToArray(String sour, String regex) {
-        return StringUtils.isEmpty(sour) ? null : sour.split(regex);
-    }
-
-    /**
      * 对象数组拼接为字符串
      */
     public static String arrayToString(Object[] arr, String join) {
@@ -54,14 +43,14 @@ public class StringUtils {
     }
 
     /**
-     * 字符串切分为字符串数组
+     * 将字符串切分
+     *
+     * @param sour  字符串
+     * @param regex 切分表达式
+     * @return 字符串数组
      */
-    public static String[] stringToStringArray(String sour, String regex) {
-        if (sour == null) {
-            return null;
-        }
-
-        return sour.split(regex);
+    public static String[] stringArrayToArray(String sour, String regex) {
+        return StringUtils.isEmpty(sour) ? null : sour.split(regex);
     }
 
     /**

@@ -1,9 +1,6 @@
 package com.duan.blogos.manager;
 
-import com.duan.blogos.dto.blog.BlogCommentDTO;
-import com.duan.blogos.dto.blog.BlogListItemDTO;
-import com.duan.blogos.dto.blog.BlogMainContentDTO;
-import com.duan.blogos.dto.blog.BlogStatisticsCountDTO;
+import com.duan.blogos.dto.blog.*;
 import com.duan.blogos.dto.blogger.BloggerCategoryDTO;
 import com.duan.blogos.dto.blogger.BloggerDTO;
 import com.duan.blogos.dto.blogger.BloggerLinkDTO;
@@ -26,7 +23,7 @@ import java.util.List;
  */
 public class DataFillingManager {
 
-    public BlogStatisticsCountDTO blogStatisticsToDTO(BlogStatistics statistics) {
+    public BlogStatisticsCountDTO blogStatisticsCountToDTO(BlogStatistics statistics) {
 
         BlogStatisticsCountDTO dto = new BlogStatisticsCountDTO();
         dto.setAdmireCount(statistics.getAdmireCount());
@@ -95,7 +92,7 @@ public class DataFillingManager {
         dto.setCategories(categories == null ? null : categories.toArray(new BlogCategory[categories.size()]));
         dto.setLabels(labels == null ? null : labels.toArray(new BlogLabel[labels.size()]));
         dto.setId(blog.getId());
-        dto.setKeyWords(StringUtils.stringToStringArray(blog.getKeyWords(), splitChar));
+        dto.setKeyWords(StringUtils.stringArrayToArray(blog.getKeyWords(), splitChar));
         dto.setNearestModifyDate(blog.getNearestModifyDate());
         dto.setReleaseDate(blog.getReleaseDate());
         dto.setStatus(blog.getState());
@@ -146,6 +143,28 @@ public class DataFillingManager {
         dto.setTitle(blog.getTitle());
         dto.setViewCount(statistics.getViewCount());
         dto.setWordCount(blog.getWordCount());
+        return dto;
+    }
+
+    public BlogStatisticsDTO blogStatisticsToDTO(Blog blog, BlogStatistics statistics, BlogCategory[] categories,
+                                                 BlogLabel[] labels, BloggerDTO[] likes, BloggerDTO[] collects,
+                                                 BloggerDTO[] commenter, String splitChar) {
+        BlogStatisticsDTO dto = new BlogStatisticsDTO();
+        dto.setCategories(categories);
+        dto.setCollects(collects);
+        dto.setCommenter(commenter);
+        dto.setId(statistics.getId());
+        dto.setKeyWords(StringUtils.stringArrayToArray(blog.getKeyWords(), splitChar));
+        dto.setLabels(labels);
+        dto.setLikes(likes);
+        dto.setNearestModifyDate(blog.getNearestModifyDate());
+        dto.setReleaseDate(blog.getReleaseDate());
+        dto.setState(blog.getState());
+        dto.setStatistics(statistics);
+        dto.setSummary(blog.getSummary());
+        dto.setTitle(blog.getTitle());
+        dto.setWordCount(blog.getWordCount());
+
         return dto;
     }
 }

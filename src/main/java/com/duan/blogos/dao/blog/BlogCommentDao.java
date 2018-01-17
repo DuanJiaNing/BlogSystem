@@ -29,4 +29,11 @@ public interface BlogCommentDao extends BaseDao<BlogComment> {
                                           @Param("rows") int rows,
                                           @Param("status") int status);
 
+    /**
+     * 根据博文id获得所有针对该博文的评论
+     *
+     * @param blogId 博文id
+     * @return 查询结果
+     */
+    List<BlogComment> listAllCommentByBlogId(int blogId);
 }

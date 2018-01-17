@@ -11,6 +11,12 @@
         LIMIT #{offset}, #{rows}
     </select>
 
+    <select id="listAllCommentByBlogId" resultType="BlogComment">
+        SELECT *
+        FROM blog_comment
+        WHERE blog_id = #{value}
+    </select>
+
     <update id="update" parameterType="BlogComment">
         UPDATE blog_comment
         <set>
@@ -43,19 +49,19 @@
             SELECT LAST_INSERT_ID() AS id
         </selectKey>
         INSERT INTO blog_comment (
-            blog_id,
-            spokesman_id,
-            listener_id,
-            content,
-            release_date,
-            state
+        blog_id,
+        spokesman_id,
+        listener_id,
+        content,
+        release_date,
+        state
         ) VALUE (
-            #{blogId},
-            #{spokesmanId},
-            #{listenerId},
-            #{content},
-            NOW(),
-            #{state}
+        #{blogId},
+        #{spokesmanId},
+        #{listenerId},
+        #{content},
+        NOW(),
+        #{state}
         )
     </insert>
 
