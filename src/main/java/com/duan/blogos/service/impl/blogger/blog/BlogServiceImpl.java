@@ -1,12 +1,14 @@
 package com.duan.blogos.service.impl.blogger.blog;
 
 import com.duan.blogos.dao.blog.BlogCategoryDao;
+import com.duan.blogos.dao.blog.BlogLabelDao;
 import com.duan.blogos.dao.blog.BlogStatisticsDao;
 import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.dto.blogger.BlogListItemDTO;
-import com.duan.blogos.dto.blogger.BlogStatisticsDTO;
+import com.duan.blogos.dto.blog.BlogStatisticsDTO;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogCategory;
+import com.duan.blogos.entity.blog.BlogLabel;
 import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.exception.BaseRuntimeException;
@@ -54,6 +56,9 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
 
     @Autowired
     private BloggerPictureDao pictureDao;
+
+    @Autowired
+    private BlogLabelDao labelDao;
 
     @Override
     public int insertBlog(int bloggerId, int[] categories, int[] labels,
@@ -220,11 +225,6 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
         }
 
         return true;
-    }
-
-    @Override
-    public ResultBean<BlogStatisticsDTO> getBlogStatistics(int blogId) {
-        return null;
     }
 
     @Override

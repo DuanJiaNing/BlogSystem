@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  *
  * @author DuanJiaNing
  */
-@Service("bloggerAccountService")
+@Service
 public class BloggerAccountServiceImpl implements BloggerAccountService {
 
     @Autowired

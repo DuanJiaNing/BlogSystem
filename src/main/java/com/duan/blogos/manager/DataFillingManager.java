@@ -3,7 +3,7 @@ package com.duan.blogos.manager;
 import com.duan.blogos.dto.blog.BlogCommentDTO;
 import com.duan.blogos.dto.blog.BlogListItemDTO;
 import com.duan.blogos.dto.blog.BlogMainContentDTO;
-import com.duan.blogos.dto.blog.BlogStatisticsDTO;
+import com.duan.blogos.dto.blog.BlogStatisticsCountDTO;
 import com.duan.blogos.dto.blogger.BloggerCategoryDTO;
 import com.duan.blogos.dto.blogger.BloggerDTO;
 import com.duan.blogos.dto.blogger.BloggerLinkDTO;
@@ -26,9 +26,9 @@ import java.util.List;
  */
 public class DataFillingManager {
 
-    public BlogStatisticsDTO blogStatisticsToDTO(BlogStatistics statistics) {
+    public BlogStatisticsCountDTO blogStatisticsToDTO(BlogStatistics statistics) {
 
-        BlogStatisticsDTO dto = new BlogStatisticsDTO();
+        BlogStatisticsCountDTO dto = new BlogStatisticsCountDTO();
         dto.setAdmireCount(statistics.getAdmireCount());
         dto.setBlogId(statistics.getBlogId());
         dto.setCollectCount(statistics.getCollectCount());

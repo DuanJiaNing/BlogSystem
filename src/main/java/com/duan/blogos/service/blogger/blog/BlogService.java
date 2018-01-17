@@ -1,7 +1,7 @@
 package com.duan.blogos.service.blogger.blog;
 
 import com.duan.blogos.dto.blogger.BlogListItemDTO;
-import com.duan.blogos.dto.blogger.BlogStatisticsDTO;
+import com.duan.blogos.dto.blog.BlogStatisticsDTO;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.manager.BlogSortRule;
@@ -76,14 +76,6 @@ public interface BlogService extends BlogFilter<ResultBean<List<BlogListItemDTO>
      * @return 操作失败为false
      */
     boolean deleteBlogPatch(int bloggerId, int[] blogIds);
-
-    /**
-     * 获取博文统计信息
-     *
-     * @param blogId 博文id
-     * @return 查询结果
-     */
-    ResultBean<BlogStatisticsDTO> getBlogStatistics(int blogId);
 
     /**
      * 按类别检索

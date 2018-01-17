@@ -6,14 +6,13 @@ import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.dao.blogger.BloggerProfileDao;
 import com.duan.blogos.dto.blog.BlogCommentDTO;
 import com.duan.blogos.dto.blog.BlogMainContentDTO;
-import com.duan.blogos.dto.blog.BlogStatisticsDTO;
+import com.duan.blogos.dto.blog.BlogStatisticsCountDTO;
 import com.duan.blogos.dto.blogger.BloggerDTO;
 import com.duan.blogos.entity.blog.*;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.entity.blogger.BloggerProfile;
 import com.duan.blogos.enums.BlogCommentStatusEnum;
-import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.manager.DbPropertiesManager;
 import com.duan.blogos.manager.StringConstructorManager;
@@ -84,14 +83,6 @@ public class BlogBrowseServiceImpl implements BlogBrowseService {
         String sc = dbPropertiesManager.getStringFiledSplitCharacterForString();
         BlogMainContentDTO dto = dataFillingManager.blogMainContentToDTO(blog, categories, labels, sc);
 
-        return new ResultBean<>(dto);
-    }
-
-    @Override
-    public ResultBean<BlogStatisticsDTO> getBlogStatistics(int blogId) {
-        BlogStatistics statistics = statisticsDao.getStatistics(blogId);
-        if (statistics == null) return null;
-        BlogStatisticsDTO dto = dataFillingManager.blogStatisticsToDTO(statistics);
         return new ResultBean<>(dto);
     }
 

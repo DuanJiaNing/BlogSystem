@@ -1,14 +1,15 @@
-package com.duan.blogos.service.blogger.statistics;
+package com.duan.blogos.service.blogger;
 
 import com.duan.blogos.dto.blogger.BloggerStatisticsDTO;
 import com.duan.blogos.result.ResultBean;
 
 /**
- * Created on 2017/12/18.
+ * Created on 2018/1/17.
+ * 博主统计信息服务
  *
  * @author DuanJiaNing
  */
-public interface StatisticsService {
+public interface BloggerStatisticsService {
 
     /**
      * 获取博主统计信息
@@ -17,5 +18,5 @@ public interface StatisticsService {
      * @return 查询结果
      */
     ResultBean<BloggerStatisticsDTO> getBloggerStatistics(int bloggerId);
-}
 
+}

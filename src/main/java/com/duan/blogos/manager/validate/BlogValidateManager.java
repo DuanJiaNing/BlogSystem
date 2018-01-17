@@ -2,7 +2,9 @@ package com.duan.blogos.manager.validate;
 
 import com.duan.blogos.dao.blog.BlogDao;
 import com.duan.blogos.dao.blog.BlogLabelDao;
+import com.duan.blogos.dao.blog.BlogStatisticsDao;
 import com.duan.blogos.entity.blog.Blog;
+import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.service.blogger.blog.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class BlogValidateManager {
 
     @Autowired
     private BlogLabelDao labelDao;
+
+    @Autowired
+    private BlogStatisticsDao statisticsDao;
 
     /**
      * 检查博文是否存在
@@ -94,5 +99,22 @@ public class BlogValidateManager {
         }
 
         return contain > 0;
+    }
+
+    /**
+     * 检测博主是否有指定博文的统计信息记录
+     *
+     * @param bloggerId 博主id
+     * @param blogId    博文id
+     * @return 有返回true
+     */
+    public boolean isCreatorOfBlogStatistic(int bloggerId, int blogId) {
+
+        if (!isCreatorOfBlog(bloggerId, blogId)) return false;
+
+        BlogStatistics statistics = statisticsDao.getStatistics(blogId);
+        if (statistics == null) return false;
+
+        return true;
     }
 }

@@ -2,10 +2,7 @@ package com.duan.blogos.service.audience;
 
 import com.duan.blogos.dto.blog.BlogCommentDTO;
 import com.duan.blogos.dto.blog.BlogMainContentDTO;
-import com.duan.blogos.dto.blog.BlogStatisticsDTO;
-import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.result.ResultBean;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -34,14 +31,6 @@ public interface BlogBrowseService {
      * @return 查询结果
      */
     ResultBean<BlogMainContentDTO> getBlogMainContent(int blogId);
-
-    /**
-     * 获取博文统计信息
-     *
-     * @param blogId 博文id
-     * @return 查询结果
-     */
-    ResultBean<BlogStatisticsDTO> getBlogStatistics(int blogId);
 
     /**
      * 获得博文评论列表，这里获取的是审核通过的评论

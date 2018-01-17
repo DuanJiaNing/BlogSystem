@@ -1,48 +1,61 @@
 package com.duan.blogos.dto.blog;
 
+import com.duan.blogos.dto.blogger.BloggerDTO;
+import com.duan.blogos.entity.blog.BlogCategory;
+import com.duan.blogos.entity.blog.BlogLabel;
+import com.duan.blogos.entity.blog.BlogStatistics;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 /**
- * Created on 2017/12/25.
+ * Created on 2017/12/19.
+ * 博文详细信息（包括统计信息），用于在单独的页面中查看博文的统计信息
  *
  * @author DuanJiaNing
  */
 @Data
 public class BlogStatisticsDTO implements Serializable {
 
-    private static final long serialVersionUID = -6010225954839747692L;
+    private static final long serialVersionUID = 1258582482361980014L;
 
-    // 表id
+    //博文id
     private int id;
 
-    //对应博文id
-    private int blogId;
+    //统计信息
+    private BlogStatistics statistics;
 
-    //评论次数
-    private int commentCount;
+    //博文所属类别
+    private BlogCategory[] categories;
 
-    //博文浏览次数
-    private int viewCount;
+    //博文标签
+    private BlogLabel[] labels;
 
-    //博主回复该博文评论的次数
-    private int replyCommentCount;
+    //状态
+    private String state;
 
-    //博文被收藏次数
-    private int collectCount;
+    //博文标题
+    private String title;
 
-    //博文举报次数
-    private int complainCount;
+    //博文摘要
+    private String summary;
 
-    //博文被分享次数
-    private int shareCount;
+    //首次发布日期
+    private Timestamp releaseDate;
 
-    //赞赏次数
-    private int admireCount;
+    //最近修改日期
+    private Timestamp nearestModifyDate;
 
-    //喜欢次数
-    private int likeCount;
+    //字数
+    private int wordCount;
 
+    //喜欢该篇文章的人
+    private BloggerDTO[] likes;
 
+    //收藏了该篇文章的人
+    private BloggerDTO[] collects;
+
+    //赞赏了该篇文章的人
+    private BloggerDTO[] admires;
 }

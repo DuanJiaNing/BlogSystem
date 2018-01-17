@@ -1,4 +1,4 @@
-package com.duan.blogos.service.impl.blogger.blog;
+package com.duan.blogos.service.impl.blog;
 
 import com.duan.blogos.dao.blog.BlogDao;
 import com.duan.blogos.dao.blog.BlogLabelDao;
@@ -7,7 +7,7 @@ import com.duan.blogos.entity.blog.BlogLabel;
 import com.duan.blogos.exception.BaseRuntimeException;
 import com.duan.blogos.manager.DbPropertiesManager;
 import com.duan.blogos.result.ResultBean;
-import com.duan.blogos.service.blogger.blog.LabelService;
+import com.duan.blogos.service.blog.BlogLabelService;
 import com.duan.blogos.util.ArrayUtils;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
@@ -22,7 +22,7 @@ import java.util.List;
  * @author DuanJiaNing
  */
 @Service
-public class LabelServiceImpl implements LabelService {
+public class BlogLabelServiceImpl implements BlogLabelService {
 
     @Autowired
     private BlogLabelDao labelDao;

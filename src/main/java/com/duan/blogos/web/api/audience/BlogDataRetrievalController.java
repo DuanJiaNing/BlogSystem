@@ -5,17 +5,14 @@ import com.duan.blogos.common.Rule;
 import com.duan.blogos.dto.blog.BlogCommentDTO;
 import com.duan.blogos.dto.blog.BlogListItemDTO;
 import com.duan.blogos.dto.blog.BlogMainContentDTO;
-import com.duan.blogos.dto.blog.BlogStatisticsDTO;
 import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.exception.BaseRuntimeException;
-import com.duan.blogos.exception.UnknownBloggerException;
 import com.duan.blogos.manager.AudiencePropertiesManager;
 import com.duan.blogos.manager.BlogSortRule;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.audience.BlogBrowseService;
 import com.duan.blogos.service.audience.BlogRetrievalService;
 import com.duan.blogos.util.StringUtils;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.RequestContext;
@@ -149,23 +146,6 @@ public class BlogDataRetrievalController extends BaseBlogController {
         if (resultBean == null) handlerEmptyResult(request);
 
         return resultBean;
-    }
-
-    /**
-     * 获得博文统计信息
-     */
-    @RequestMapping(value = "/{blogId}/statistics", method = RequestMethod.GET)
-    public ResultBean<BlogStatisticsDTO> blogStatistics(HttpServletRequest request, @PathVariable Integer blogId) {
-        final RequestContext context = new RequestContext(request);
-
-        //检查博文是否存在
-        BaseRuntimeException exception = checkBlogExist(context, blogId);
-        if (exception != null) throw exception;
-
-        ResultBean<BlogStatisticsDTO> statistics = blogBrowseService.getBlogStatistics(blogId);
-        if (statistics == null) handlerEmptyResult(request);
-
-        return statistics;
     }
 
 }

@@ -1,4 +1,4 @@
-package com.duan.blogos.service.blogger.blog;
+package com.duan.blogos.service.blog;
 
 import com.duan.blogos.entity.blog.BlogLabel;
 import com.duan.blogos.result.ResultBean;
@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author DuanJiaNing
  */
-public interface LabelService {
+public interface BlogLabelService {
 
     /**
      * 新增标签

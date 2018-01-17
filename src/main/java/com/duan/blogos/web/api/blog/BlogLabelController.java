@@ -2,7 +2,7 @@ package com.duan.blogos.web.api.blog;
 
 import com.duan.blogos.entity.blog.BlogLabel;
 import com.duan.blogos.result.ResultBean;
-import com.duan.blogos.service.blogger.blog.LabelService;
+import com.duan.blogos.service.blog.BlogLabelService;
 import com.duan.blogos.util.StringUtils;
 import com.duan.blogos.web.api.audience.BaseBlogController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ import java.util.List;
 public class BlogLabelController extends BaseBlogController {
 
     @Autowired
-    private LabelService labelService;
+    private BlogLabelService blogLabelService;
 
     /**
      * 查看所有标签
@@ -42,7 +42,7 @@ public class BlogLabelController extends BaseBlogController {
 
         int os = offset == null || offset < 0 ? 0 : offset;
         int rs = rows == null || rows < 0 ? blogPropertiesManager.getRequestBloggerBlogLabelCount() : rows;
-        ResultBean<List<BlogLabel>> resultBean = labelService.listLabel(os, rs);
+        ResultBean<List<BlogLabel>> resultBean = blogLabelService.listLabel(os, rs);
         if (resultBean == null) handlerEmptyResult(request);
 
         return resultBean;
@@ -55,7 +55,7 @@ public class BlogLabelController extends BaseBlogController {
     @RequestMapping(value = "/{labelId}", method = RequestMethod.GET)
     public ResultBean<BlogLabel> getLabel(HttpServletRequest request, @PathVariable("labelId") Integer labelId) {
 
-        BlogLabel label = labelService.getLabel(labelId);
+        BlogLabel label = blogLabelService.getLabel(labelId);
         if (label == null) handlerEmptyResult(request);
 
         return new ResultBean<>(label);
@@ -73,7 +73,7 @@ public class BlogLabelController extends BaseBlogController {
 
         int os = offset == null || offset < 0 ? 0 : offset;
         int rs = rows == null || rows < 0 ? blogPropertiesManager.getRequestBloggerBlogLabelCount() : rows;
-        ResultBean<List<BlogLabel>> result = labelService.listLabelByBlogger(bloggerId, os, rs);
+        ResultBean<List<BlogLabel>> result = blogLabelService.listLabelByBlogger(bloggerId, os, rs);
         if (result == null) handlerEmptyResult(request);
 
         return result;
@@ -90,7 +90,7 @@ public class BlogLabelController extends BaseBlogController {
         handleBloggerSignInCheck(request, bloggerId);
         handleTitleCheck(title, request);
 
-        int id = labelService.insertLabel(bloggerId, title);
+        int id = blogLabelService.insertLabel(bloggerId, title);
         if (id < 0) handlerOperateFail(request);
 
         return new ResultBean<>(id);
@@ -121,7 +121,7 @@ public class BlogLabelController extends BaseBlogController {
         handleBloggerSignInCheck(request, bloggerId);
         handleTitleCheck(newTitle, request);
 
-        boolean result = labelService.updateLabel(labelId, bloggerId, newTitle);
+        boolean result = blogLabelService.updateLabel(labelId, bloggerId, newTitle);
         if (!result) handlerOperateFail(request);
 
         return new ResultBean<>("");
@@ -137,7 +137,7 @@ public class BlogLabelController extends BaseBlogController {
         handleAccountCheck(request, bloggerId);
         handleBloggerSignInCheck(request, bloggerId);
 
-        boolean result = labelService.deleteLabel(bloggerId, labelId);
+        boolean result = blogLabelService.deleteLabel(bloggerId, labelId);
         if (!result) handlerOperateFail(request);
 
         return new ResultBean<>("");
