@@ -1,4 +1,4 @@
-package com.duan.blogos.exception;
+package com.duan.blogos.exception.internal;
 
 /**
  * Created on 2017/12/22.
@@ -8,10 +8,13 @@ package com.duan.blogos.exception;
  */
 public class UnspecifiedOperationException extends BaseRuntimeException {
 
+    private static final int code = 9;
+
     public UnspecifiedOperationException() {
+        super(code);
     }
 
     public UnspecifiedOperationException(String message) {
-        super(message);
+        super(message, code);
     }
 }

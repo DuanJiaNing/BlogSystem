@@ -3,7 +3,7 @@ package com.duan.blogos.service.impl.blogger.profile;
 import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
-import com.duan.blogos.exception.BaseRuntimeException;
+import com.duan.blogos.exception.internal.UnknownException;
 import com.duan.blogos.manager.ImageManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.profile.GalleryService;
@@ -95,7 +95,7 @@ public class GalleryServiceImpl implements GalleryService {
                 e.printStackTrace();
                 // 移动文件出错，文件移动情况未知，麻烦大了
                 // MAYBUG 回滚数据库操作，但磁盘操作无法预料，也无法处理
-                throw new BaseRuntimeException("move image fail when replace unique");
+                throw new UnknownException();
             }
         }
 
@@ -114,7 +114,7 @@ public class GalleryServiceImpl implements GalleryService {
             //删除磁盘文件
             boolean succ = imageManager.deleteImageFromDisk(path);
             // 删除失败时抛出异常，使数据库事务回滚
-            if (!succ) throw new BaseRuntimeException("delete image fail");
+            if (!succ) throw new UnknownException();
         }
 
         return true;
@@ -187,7 +187,7 @@ public class GalleryServiceImpl implements GalleryService {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                throw new BaseRuntimeException("move image fail when change image category");
+                throw new UnknownException();
             }
         }
 
@@ -200,7 +200,7 @@ public class GalleryServiceImpl implements GalleryService {
 
     @Override
     public void cleanBlogPicture(int bloggerId) {
-        // TODO
+        // TODO 在每次博文删除时清理博文中引用的图片以释放磁盘空间
     }
 
 }

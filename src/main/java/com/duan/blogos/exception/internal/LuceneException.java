@@ -1,4 +1,4 @@
-package com.duan.blogos.exception;
+package com.duan.blogos.exception.internal;
 
 import java.io.IOException;
 
@@ -9,7 +9,10 @@ import java.io.IOException;
  * @author DuanJiaNing
  */
 public class LuceneException extends BaseRuntimeException {
+
+    private static final int code = 15;
+
     public LuceneException(IOException e) {
-        super(e);
+        super(e, code);
     }
 }

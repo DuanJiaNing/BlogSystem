@@ -1,3 +1,4 @@
+
 ## notice
 - 记录服务层功能实现日志
 - api请求数据合法性在controller层处理
@@ -8,6 +9,8 @@
 - 创作博文时，博文中若引用了自己的照片（通过上传图片，后选用）的方式，md时url要遵守ImageController的url格式
 - src-java-service&web.api的分包原则为读者操作博文（audience），博文通用（blog），博主管理（blogger）
 - 注册时除了生成account记录外还有生成profile记录
+- 错误码最高17
+
 ## 待办
 - controller层的一些操作在获取数据时不必检查博主是否登录，而在修改、删除操作时需要验证博主是否登录
 - service层一些更新、删除操作，如果失败通过抛出异常的形式让事务回滚 --？ 有没有更好的方法

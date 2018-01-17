@@ -8,7 +8,7 @@ import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogCategory;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
-import com.duan.blogos.exception.BaseRuntimeException;
+import com.duan.blogos.exception.internal.UnknownException;
 import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.manager.DbPropertiesManager;
 import com.duan.blogos.manager.StringConstructorManager;
@@ -20,7 +20,6 @@ import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.crypto.CipherOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -112,7 +111,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         // 删除数据库类别记录
         int effectDelete = categoryDao.delete(categoryId);
-        if (effectDelete <= 0) throw new BaseRuntimeException("delete blog category fail");
+        if (effectDelete <= 0) throw new UnknownException();
 
         // 修改博文类别
         List<Blog> blogs = blogDao.listAllCategoryByBloggerId(bloggerId);
@@ -127,7 +126,7 @@ public class CategoryServiceImpl implements CategoryService {
                     int[] ar = ArrayUtils.removeFromArray(cids, categoryId);
                     blog.setCategoryIds(StringUtils.intArrayToString(ar, sp));
                     int effectUpdate = blogDao.update(blog);
-                    if (effectUpdate <= 0) throw new BaseRuntimeException("update blog category fail");
+                    if (effectUpdate <= 0) throw new UnknownException();
                 }
 
             });
@@ -140,7 +139,7 @@ public class CategoryServiceImpl implements CategoryService {
                     ArrayUtils.replace(cids, categoryId, newCategoryId);
                     blog.setCategoryIds(StringUtils.intArrayToString(cids, sp));
                     int effectUpdate = blogDao.update(blog);
-                    if (effectUpdate <= 0) throw new BaseRuntimeException("update blog category fail");
+                    if (effectUpdate <= 0) throw new UnknownException();
                 }
             });
 

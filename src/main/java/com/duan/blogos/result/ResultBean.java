@@ -1,5 +1,6 @@
 package com.duan.blogos.result;
 
+import com.duan.blogos.exception.internal.BaseRuntimeException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,19 +24,12 @@ public class ResultBean<T> implements Serializable {
      */
     public static final int SUCCESS = 0;
 
-    /**
-     * 结果状态为失败
-     */
-    public static final int FAIL = 1;
-
     private int code = SUCCESS;
     private String msg = "success";
     private T data;
 
     /**
      * 返回成功的构造函数
-     *
-     * @param data
      */
     public ResultBean(T data) {
         this.data = data;
@@ -43,12 +37,10 @@ public class ResultBean<T> implements Serializable {
 
     /**
      * 返回错误（获取数据错误）的构造函数
-     *
-     * @param e
      */
-    public ResultBean(Throwable e) {
+    public ResultBean(BaseRuntimeException e) {
         this.msg = e.getMessage();
-        this.code = FAIL;
+        this.code = e.getCode();
     }
 
 

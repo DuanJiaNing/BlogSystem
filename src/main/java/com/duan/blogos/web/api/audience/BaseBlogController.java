@@ -1,12 +1,7 @@
 package com.duan.blogos.web.api.audience;
 
-import com.duan.blogos.exception.BaseRuntimeException;
-import com.duan.blogos.exception.UnknownBlogException;
-import com.duan.blogos.exception.UnknownBloggerException;
-import com.duan.blogos.manager.AudiencePropertiesManager;
+import com.duan.blogos.exception.internal.BaseRuntimeException;
 import com.duan.blogos.manager.BlogPropertiesManager;
-import com.duan.blogos.manager.validate.BlogValidateManager;
-import com.duan.blogos.manager.validate.BloggerValidateManager;
 import com.duan.blogos.web.api.BaseRestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.support.RequestContext;

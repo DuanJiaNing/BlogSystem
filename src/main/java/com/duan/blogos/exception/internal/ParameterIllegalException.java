@@ -1,4 +1,4 @@
-package com.duan.blogos.exception;
+package com.duan.blogos.exception.internal;
 
 /**
  * Created on 2017/12/22.
@@ -8,10 +8,13 @@ package com.duan.blogos.exception;
  */
 public class ParameterIllegalException extends BaseRuntimeException {
 
+    private static final int code = 3;
+
     public ParameterIllegalException() {
+        super(code);
     }
 
     public ParameterIllegalException(String message) {
-        super(message);
+        super(message, code);
     }
 }

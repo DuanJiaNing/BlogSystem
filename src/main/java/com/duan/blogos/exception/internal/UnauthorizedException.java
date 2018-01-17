@@ -1,4 +1,4 @@
-package com.duan.blogos.exception;
+package com.duan.blogos.exception.internal;
 
 /**
  * Created on 2018/1/4.
@@ -8,14 +8,17 @@ package com.duan.blogos.exception;
  */
 public class UnauthorizedException extends BaseRuntimeException {
 
+    private static final int code = 4;
+
     public UnauthorizedException() {
+        super(code);
     }
 
     public UnauthorizedException(String message) {
-        super(message);
+        super(message, code);
     }
 
     public UnauthorizedException(Throwable cause) {
-        super(cause);
+        super(cause, code);
     }
 }

@@ -4,7 +4,7 @@ import com.duan.blogos.dao.blog.BlogDao;
 import com.duan.blogos.dao.blog.BlogLabelDao;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogLabel;
-import com.duan.blogos.exception.BaseRuntimeException;
+import com.duan.blogos.exception.internal.BaseRuntimeException;
 import com.duan.blogos.manager.DbPropertiesManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blog.BlogLabelService;

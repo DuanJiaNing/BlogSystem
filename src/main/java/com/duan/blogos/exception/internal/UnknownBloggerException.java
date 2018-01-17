@@ -1,4 +1,4 @@
-package com.duan.blogos.exception;
+package com.duan.blogos.exception.internal;
 
 /**
  * Created on 2017/12/20.
@@ -8,10 +8,13 @@ package com.duan.blogos.exception;
  */
 public class UnknownBloggerException extends BaseRuntimeException {
 
+    private static final int code = 6;
+
     public UnknownBloggerException(String message) {
-        super(message);
+        super(message,code);
     }
 
     public UnknownBloggerException() {
+        super(code);
     }
 }

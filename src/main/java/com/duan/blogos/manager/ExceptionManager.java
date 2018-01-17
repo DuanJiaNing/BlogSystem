@@ -1,15 +1,8 @@
 package com.duan.blogos.manager;
 
-import com.duan.blogos.exception.*;
-import com.duan.blogos.exception.UnspecifiedOperationException;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.exception.internal.*;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.MissingServletRequestParameterException;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.support.RequestContext;
-
-import javax.servlet.http.HttpServletRequest;
-import java.lang.management.MemoryUsage;
 
 /**
  * Created on 2017/12/26.
@@ -88,7 +81,7 @@ public class ExceptionManager {
     }
 
     public BaseRuntimeException getBlogIllegalException(RequestContext context) {
-        return new BlogIllegalException(context.getMessage("blog.illegal"));
+        return new BlogContentIllegalException(context.getMessage("blog.illegal"));
     }
 
 }

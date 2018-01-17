@@ -1,4 +1,4 @@
-package com.duan.blogos.exception;
+package com.duan.blogos.exception.internal;
 
 /**
  * Created on 2017/12/21.
@@ -7,10 +7,14 @@ package com.duan.blogos.exception;
  * @author DuanJiaNing
  */
 public class StringSplitException extends BaseRuntimeException {
+
+    private static final int code = 2;
+
     public StringSplitException(String message) {
-        super(message);
+        super(message, code);
     }
 
     public StringSplitException() {
+        super(code);
     }
 }

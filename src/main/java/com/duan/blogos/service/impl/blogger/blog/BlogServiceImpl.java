@@ -5,14 +5,12 @@ import com.duan.blogos.dao.blog.BlogLabelDao;
 import com.duan.blogos.dao.blog.BlogStatisticsDao;
 import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.dto.blogger.BlogListItemDTO;
-import com.duan.blogos.dto.blog.BlogStatisticsDTO;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogCategory;
-import com.duan.blogos.entity.blog.BlogLabel;
 import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.enums.BlogStatusEnum;
-import com.duan.blogos.exception.BaseRuntimeException;
-import com.duan.blogos.exception.LuceneException;
+import com.duan.blogos.exception.internal.LuceneException;
+import com.duan.blogos.exception.internal.UnknownException;
 import com.duan.blogos.manager.BlogSortRule;
 import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.manager.WebsitePropertiesManager;
@@ -88,7 +86,7 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
         BlogStatistics statistics = new BlogStatistics();
         statistics.setBlogId(blogId);
         effect = statisticsDao.insert(statistics);
-        if (effect <= 0) throw new BaseRuntimeException("insert blog statistic fail when insert blog");
+        if (effect <= 0) throw new UnknownException();
 
         // 3 解析本地图片引用并使自增
         int[] imids = parseContentForImageIds(content, bloggerId);
@@ -172,7 +170,7 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
         if (newSummary != null) blog.setSummary(newSummary);
         if (newKeyWords != null) blog.setKeyWords(StringUtils.arrayToString(newKeyWords, chs));
         int effect = blogDao.update(blog);
-        if (effect <= 0) throw new BaseRuntimeException("update blog fail when blogger update blog");
+        if (effect <= 0) throw new UnknownException();
 
         // 3 更新lucene
         try {
@@ -198,7 +196,7 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
         // 2 删除统计信息
         int effectS = statisticsDao.deleteByUnique(blogId);
         // MAYBUG 断点调试时effectS始终为0，但最终事务提交时记录却会正确删除，？？？ 因而注释下面的判断
-        //if (effectS <= 0) throw new BaseRuntimeException("delete blog statistic fail when delete blog");
+        //if (effectS <= 0) throw new UnknownException(blog");
 
         // 3 图片引用useCount--
         int[] ids = parseContentForImageIds(blog.getContent(), bloggerId);
@@ -210,7 +208,7 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
             luceneIndexManager.delete(blogId);
         } catch (IOException e) {
             e.printStackTrace();
-            throw new BaseRuntimeException(e);
+            throw new UnknownException();
         }
 
         return true;
@@ -221,7 +219,7 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
 
         for (int id : blogIds) {
             if (!deleteBlog(bloggerId, id))
-                throw new BaseRuntimeException("patch delete blog fail");
+                throw new UnknownException();
         }
 
         return true;

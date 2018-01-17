@@ -63,7 +63,7 @@ public class BlogOperateServiceImpl implements BlogOperateService {
     @Override
     public int insertShare(int blogId, int sharerId) {
 
-        // UPDATE: 2017/12/27 对分享者的操作做记录以保留其账户活跃度 etc
+        // UPDATE: 2017/12/27 对分享操作做额外记录以计算其账户活跃度 etc
         statisticsDao.updateShareCountPlus(blogId);
         Integer count = statisticsDao.getShareCount(blogId);
 

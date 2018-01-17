@@ -57,22 +57,13 @@ public enum Rule {
     /**
      * 最初发布日期
      */
-    RELEASE_DATE("release_date"),
-
-    /**
-     * 最近修改日期
-     */
-    NEAREST_MODIFY_DATE("nearest_modify_date");
+    RELEASE_DATE("release_date");
 
     //与数据库对应字段名
     private final String field;
 
     Rule(String field) {
         this.field = field;
-    }
-
-    public String getFieldName() {
-        return field;
     }
 
     /**

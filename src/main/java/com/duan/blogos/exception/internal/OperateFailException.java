@@ -1,4 +1,4 @@
-package com.duan.blogos.exception;
+package com.duan.blogos.exception.internal;
 
 /**
  * Created on 2017/12/22.
@@ -8,14 +8,17 @@ package com.duan.blogos.exception;
  */
 public class OperateFailException extends BaseRuntimeException {
 
+    private static final int code = 18;
+
     public OperateFailException() {
+        super(code);
     }
 
     public OperateFailException(String message) {
-        super(message);
+        super(message, code);
     }
 
     public OperateFailException(String message, Throwable e) {
-        super(message, e);
+        super(message, e, code);
     }
 }

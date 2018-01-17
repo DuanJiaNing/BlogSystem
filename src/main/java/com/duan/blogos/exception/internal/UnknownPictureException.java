@@ -1,4 +1,4 @@
-package com.duan.blogos.exception;
+package com.duan.blogos.exception.internal;
 
 /**
  * Created on 2017/12/20.
@@ -8,14 +8,17 @@ package com.duan.blogos.exception;
  */
 public class UnknownPictureException extends BaseRuntimeException {
 
+    private static final int code = 8;
+
     public UnknownPictureException(String message) {
-        super(message);
+        super(message,code);
     }
 
     public UnknownPictureException() {
+        super(code);
     }
 
     public UnknownPictureException(String message, Throwable e) {
-        super(message, e);
+        super(message, e,code);
     }
 }

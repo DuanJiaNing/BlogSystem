@@ -1,6 +1,6 @@
 package com.duan.blogos.web.api;
 
-import com.duan.blogos.exception.BaseRuntimeException;
+import com.duan.blogos.exception.internal.BaseRuntimeException;
 import com.duan.blogos.manager.ExceptionManager;
 import com.duan.blogos.manager.StringConstructorManager;
 import com.duan.blogos.manager.WebsitePropertiesManager;
