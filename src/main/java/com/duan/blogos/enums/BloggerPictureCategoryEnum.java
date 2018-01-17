@@ -14,14 +14,14 @@ import java.util.EnumSet;
 public enum BloggerPictureCategoryEnum {
 
     /**
-     * 默认图片类别
+     * 默认图片类别，博主必须登录才能查看
      */
-    DEFAULT(0),
+    PRIVATE(0),
 
     /**
-     * 博文图片，博文中包含的图片需要上传时保存到该类别下
+     * 公开图片，无效登录也能获取
      */
-    BLOG_PICTURE(1),
+    PUBLIC(1),
 
     /*--------------------------------------------------*/
 

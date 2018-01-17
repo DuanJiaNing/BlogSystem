@@ -8,7 +8,7 @@ import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogCategory;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
-import com.duan.blogos.exception.internal.UnknownException;
+import com.duan.blogos.exception.internal.SQLException;
 import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.manager.DbPropertiesManager;
 import com.duan.blogos.manager.StringConstructorManager;
@@ -111,7 +111,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         // 删除数据库类别记录
         int effectDelete = categoryDao.delete(categoryId);
-        if (effectDelete <= 0) throw new UnknownException();
+        if (effectDelete <= 0) throw new SQLException();
 
         // 修改博文类别
         List<Blog> blogs = blogDao.listAllCategoryByBloggerId(bloggerId);
@@ -126,7 +126,7 @@ public class CategoryServiceImpl implements CategoryService {
                     int[] ar = ArrayUtils.removeFromArray(cids, categoryId);
                     blog.setCategoryIds(StringUtils.intArrayToString(ar, sp));
                     int effectUpdate = blogDao.update(blog);
-                    if (effectUpdate <= 0) throw new UnknownException();
+                    if (effectUpdate <= 0) throw new SQLException();
                 }
 
             });
@@ -139,7 +139,7 @@ public class CategoryServiceImpl implements CategoryService {
                     ArrayUtils.replace(cids, categoryId, newCategoryId);
                     blog.setCategoryIds(StringUtils.intArrayToString(cids, sp));
                     int effectUpdate = blogDao.update(blog);
-                    if (effectUpdate <= 0) throw new UnknownException();
+                    if (effectUpdate <= 0) throw new SQLException();
                 }
             });
 
@@ -173,7 +173,7 @@ public class CategoryServiceImpl implements CategoryService {
             icon = pictureDao.getPictureById(iconId);
         }
 
-        if (icon != null) icon.setPath(constructorManager.constructPictureUrl(icon));
+        if (icon != null) icon.setPath(constructorManager.constructPictureUrl(icon, false));
         BloggerCategoryDTO dto = fillingManager.blogCategoryToDTO(category, icon);
 
         return dto;

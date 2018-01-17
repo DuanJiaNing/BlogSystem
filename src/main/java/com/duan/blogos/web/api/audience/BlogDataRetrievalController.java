@@ -6,7 +6,7 @@ import com.duan.blogos.dto.blog.BlogCommentDTO;
 import com.duan.blogos.dto.blog.BlogListItemDTO;
 import com.duan.blogos.dto.blog.BlogMainContentDTO;
 import com.duan.blogos.enums.BlogStatusEnum;
-import com.duan.blogos.exception.internal.BaseRuntimeException;
+import com.duan.blogos.exception.BaseRuntimeException;
 import com.duan.blogos.manager.AudiencePropertiesManager;
 import com.duan.blogos.manager.BlogSortRule;
 import com.duan.blogos.result.ResultBean;

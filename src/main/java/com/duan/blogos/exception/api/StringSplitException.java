@@ -1,8 +1,10 @@
-package com.duan.blogos.exception.internal;
+package com.duan.blogos.exception.api;
+
+import com.duan.blogos.exception.BaseRuntimeException;
 
 /**
  * Created on 2017/12/21.
- * 字符串未按指定字符间隔错误
+ * 字符串未按指定字符间隔
  *
  * @author DuanJiaNing
  */

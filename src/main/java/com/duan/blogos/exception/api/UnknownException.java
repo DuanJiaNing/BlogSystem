@@ -1,4 +1,6 @@
-package com.duan.blogos.exception.internal;
+package com.duan.blogos.exception.api;
+
+import com.duan.blogos.exception.BaseRuntimeException;
 
 /**
  * Created on 2017/12/20.

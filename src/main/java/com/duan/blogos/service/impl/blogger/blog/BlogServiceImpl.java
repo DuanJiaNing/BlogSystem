@@ -1,7 +1,6 @@
 package com.duan.blogos.service.impl.blogger.blog;
 
 import com.duan.blogos.dao.blog.BlogCategoryDao;
-import com.duan.blogos.dao.blog.BlogLabelDao;
 import com.duan.blogos.dao.blog.BlogStatisticsDao;
 import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.dto.blogger.BlogListItemDTO;
@@ -10,7 +9,7 @@ import com.duan.blogos.entity.blog.BlogCategory;
 import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.exception.internal.LuceneException;
-import com.duan.blogos.exception.internal.UnknownException;
+import com.duan.blogos.exception.internal.SQLException;
 import com.duan.blogos.manager.BlogSortRule;
 import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.manager.WebsitePropertiesManager;
@@ -55,9 +54,6 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
     @Autowired
     private BloggerPictureDao pictureDao;
 
-    @Autowired
-    private BlogLabelDao labelDao;
-
     @Override
     public int insertBlog(int bloggerId, int[] categories, int[] labels,
                           BlogStatusEnum status, String title, String content,
@@ -86,7 +82,7 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
         BlogStatistics statistics = new BlogStatistics();
         statistics.setBlogId(blogId);
         effect = statisticsDao.insert(statistics);
-        if (effect <= 0) throw new UnknownException();
+        if (effect <= 0) throw new SQLException();
 
         // 3 解析本地图片引用并使自增
         int[] imids = parseContentForImageIds(content, bloggerId);
@@ -170,7 +166,7 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
         if (newSummary != null) blog.setSummary(newSummary);
         if (newKeyWords != null) blog.setKeyWords(StringUtils.arrayToString(newKeyWords, chs));
         int effect = blogDao.update(blog);
-        if (effect <= 0) throw new UnknownException();
+        if (effect <= 0) throw new SQLException();
 
         // 3 更新lucene
         try {
@@ -208,7 +204,7 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
             luceneIndexManager.delete(blogId);
         } catch (IOException e) {
             e.printStackTrace();
-            throw new UnknownException();
+            throw new LuceneException(e);
         }
 
         return true;
@@ -219,7 +215,7 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
 
         for (int id : blogIds) {
             if (!deleteBlog(bloggerId, id))
-                throw new UnknownException();
+                throw new SQLException();
         }
 
         return true;

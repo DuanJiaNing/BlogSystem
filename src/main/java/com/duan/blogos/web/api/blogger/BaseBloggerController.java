@@ -1,6 +1,6 @@
 package com.duan.blogos.web.api.blogger;
 
-import com.duan.blogos.exception.internal.BaseRuntimeException;
+import com.duan.blogos.exception.BaseRuntimeException;
 import com.duan.blogos.manager.BloggerPropertiesManager;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.web.api.BaseRestController;

@@ -3,7 +3,8 @@ package com.duan.blogos.service.impl.blogger.profile;
 import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
-import com.duan.blogos.exception.internal.UnknownException;
+import com.duan.blogos.exception.internal.InternalIOException;
+import com.duan.blogos.exception.internal.SQLException;
 import com.duan.blogos.manager.ImageManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.profile.GalleryService;
@@ -84,10 +85,10 @@ public class GalleryServiceImpl implements GalleryService {
         if (unique != null) {
             try {
                 //移动原来的唯一图片到默认类别图片所在文件夹
-                String newPath = imageManager.moveImage(unique, bloggerId, BloggerPictureCategoryEnum.DEFAULT);
+                String newPath = imageManager.moveImage(unique, bloggerId, BloggerPictureCategoryEnum.PRIVATE);
 
                 //更新数据库记录
-                unique.setCategory(BloggerPictureCategoryEnum.DEFAULT.getCode());
+                unique.setCategory(BloggerPictureCategoryEnum.PRIVATE.getCode());
                 unique.setPath(newPath);
                 pictureDao.update(unique);
 
@@ -95,7 +96,7 @@ public class GalleryServiceImpl implements GalleryService {
                 e.printStackTrace();
                 // 移动文件出错，文件移动情况未知，麻烦大了
                 // MAYBUG 回滚数据库操作，但磁盘操作无法预料，也无法处理
-                throw new UnknownException();
+                throw new InternalIOException(e);
             }
         }
 
@@ -114,7 +115,7 @@ public class GalleryServiceImpl implements GalleryService {
             //删除磁盘文件
             boolean succ = imageManager.deleteImageFromDisk(path);
             // 删除失败时抛出异常，使数据库事务回滚
-            if (!succ) throw new UnknownException();
+            if (!succ) throw new SQLException();
         }
 
         return true;
@@ -129,6 +130,16 @@ public class GalleryServiceImpl implements GalleryService {
     public BloggerPicture getPicture(int pictureId, int bloggerId) {
         BloggerPicture picture = pictureDao.getPictureById(pictureId);
         if (picture == null || !picture.getBloggerId().equals(bloggerId)) return null;
+
+        return picture;
+    }
+
+    @Override
+    public BloggerPicture getPicture(int pictureId, int bloggerId, BloggerPictureCategoryEnum category) {
+        BloggerPicture picture = pictureDao.getPictureById(pictureId);
+        if (picture == null || !picture.getBloggerId().equals(bloggerId) ||
+                !picture.getCategory().equals(category.getCode()))
+            return null;
 
         return picture;
     }
@@ -187,7 +198,7 @@ public class GalleryServiceImpl implements GalleryService {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                throw new UnknownException();
+                throw new InternalIOException(e);
             }
         }
 

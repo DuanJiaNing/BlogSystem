@@ -117,7 +117,7 @@ public class BlogBrowseServiceImpl implements BlogBrowseService {
         if (id != null) {
             BloggerPicture avatar = pictureDao.getPictureById(id);
             if (avatar != null) {
-                avatar.setPath(constructorManager.constructPictureUrl(avatar));
+                avatar.setPath(constructorManager.constructPictureUrl(avatar, false));
             }
 
             return avatar;

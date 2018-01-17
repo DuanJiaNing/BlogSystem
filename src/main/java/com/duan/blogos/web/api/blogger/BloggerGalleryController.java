@@ -39,7 +39,7 @@ public class BloggerGalleryController extends BaseBloggerController {
     public ResultBean<BloggerPicture> get(HttpServletRequest request,
                                           @PathVariable("bloggerId") Integer bloggerId,
                                           @PathVariable("pictureId") Integer pictureId) {
-        handleAccountCheck(request, bloggerId);
+        handleBloggerSignInCheck(request, bloggerId);
 
         RequestContext context = new RequestContext(request);
         if (pictureId <= 0) throw exceptionManager.getParameterIllegalException(context);
@@ -47,7 +47,7 @@ public class BloggerGalleryController extends BaseBloggerController {
         BloggerPicture picture = galleryService.getPicture(pictureId, bloggerId);
         if (picture == null) handlerEmptyResult(request);
 
-        String url = stringConstructorManager.constructPictureUrl(picture);
+        String url = stringConstructorManager.constructPictureUrl(picture, true);
         picture.setPath(url);
 
         return new ResultBean<>(picture);
@@ -62,7 +62,7 @@ public class BloggerGalleryController extends BaseBloggerController {
                                                  @RequestParam(value = "category", required = false) Integer category,
                                                  @RequestParam(value = "offset", required = false) Integer offset,
                                                  @RequestParam(value = "rows", required = false) Integer rows) {
-        handleAccountCheck(request, bloggerId);
+        handleBloggerSignInCheck(request, bloggerId);
         RequestContext context = new RequestContext(request);
 
         int cate;
@@ -86,7 +86,7 @@ public class BloggerGalleryController extends BaseBloggerController {
         if (result == null) handlerEmptyResult(request);
 
         for (BloggerPicture picture : result.getData()) {
-            String url = stringConstructorManager.constructPictureUrl(picture);
+            String url = stringConstructorManager.constructPictureUrl(picture, true);
             picture.setPath(url);
         }
 
@@ -104,7 +104,7 @@ public class BloggerGalleryController extends BaseBloggerController {
                              @RequestParam(value = "bewrite", required = false) String newBeWrite,
                              @RequestParam(value = "title", required = false) String newTitle) {
 
-        handleAccountCheck(request, bloggerId);
+        handleBloggerSignInCheck(request, bloggerId);
         RequestContext context = new RequestContext(request);
 
         // 检查博主是否有指定图片

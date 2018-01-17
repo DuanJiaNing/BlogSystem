@@ -1,8 +1,10 @@
-package com.duan.blogos.exception.internal;
+package com.duan.blogos.exception.api;
+
+import com.duan.blogos.exception.BaseRuntimeException;
 
 /**
  * Created on 2017/12/22.
- * 不支持的操作
+ * 未指明操作，不明确的API调用
  *
  * @author DuanJiaNing
  */

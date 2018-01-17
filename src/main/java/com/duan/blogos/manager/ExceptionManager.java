@@ -1,6 +1,7 @@
 package com.duan.blogos.manager;
 
-import com.duan.blogos.exception.internal.*;
+import com.duan.blogos.exception.BaseRuntimeException;
+import com.duan.blogos.exception.api.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.RequestContext;
 
@@ -73,7 +74,7 @@ public class ExceptionManager {
     }
 
     public BaseRuntimeException getUnknownCategoryException(RequestContext context) {
-        return new UnknownCategoryException(context.getMessage("common.unknownCategory"));
+        return new UnknownBlogCategoryException(context.getMessage("common.unknownCategory"));
     }
 
     public BaseRuntimeException getBloggerNotLoggedInException(RequestContext context) {

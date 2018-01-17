@@ -1,6 +1,6 @@
 package com.duan.blogos.web.api.audience;
 
-import com.duan.blogos.exception.internal.BaseRuntimeException;
+import com.duan.blogos.exception.BaseRuntimeException;
 import com.duan.blogos.manager.BloggerPropertiesManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.audience.BlogOperateService;

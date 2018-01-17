@@ -19,13 +19,22 @@
 
 </head>
 <body>
-<h2>Hello World!</h2>
+<h2>上传图片</h2>
+<form enctype="multipart/form-data" action="${pageContext.request.contextPath}/image/1/" method="post">
+    <input type="file" name="image"> <br>
+    category:<input type="number" name="category"><br>
+    bewrite:<input type="text" name="bewrite"><br>
+    title:<input type="text" name="title"><br>
+    <input type="submit" value="提交">
+</form>
+<hr>
 <ul>
     <li>method:<input type="text" id="method" value="post"></li>
     <li>action:<input type="text" id="action" value="http://localhost:8080/blogger/1/blog"></li>
 </ul>
 <hr>
 
+<h2>新增博文</h2>
 <form id="form">
     <ol>
         <li>cids:<input type="text" name="cids"></li>

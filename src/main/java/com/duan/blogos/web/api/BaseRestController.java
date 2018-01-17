@@ -1,6 +1,7 @@
 package com.duan.blogos.web.api;
 
-import com.duan.blogos.exception.internal.BaseRuntimeException;
+import com.duan.blogos.exception.BaseRuntimeException;
+import com.duan.blogos.exception.internal.InternalRuntimeException;
 import com.duan.blogos.manager.ExceptionManager;
 import com.duan.blogos.manager.StringConstructorManager;
 import com.duan.blogos.manager.WebsitePropertiesManager;
@@ -62,7 +63,7 @@ public class BaseRestController {
     }
 
     /**
-     * 统一处理异常
+     * 统一处理异常，这些异常需要通知API调用者
      */
     @ExceptionHandler(BaseRuntimeException.class)
     @ResponseBody
@@ -72,12 +73,21 @@ public class BaseRestController {
     }
 
     /**
-     * 统一处理异常
+     * 统一处理异常，这些异常是服务器异常
+     */
+    @ExceptionHandler(InternalRuntimeException.class)
+    @ResponseBody
+    protected final ResultBean handlerException(HttpServletRequest request, BaseRuntimeException e) {
+        //转化为未知异常
+        return new ResultBean(exceptionManager.getUnknownException(new RequestContext(request), e));
+    }
+
+    /**
+     * 未进行转化的异常
      */
     @ExceptionHandler(Exception.class)
-    @ResponseBody
-    protected final ResultBean handlerException(HttpServletRequest request, Throwable e) {
-        return new ResultBean(exceptionManager.getUnknownException(new RequestContext(request), e));
+    protected final void handlerException(HttpServletRequest request, Throwable e) throws Throwable {
+        throw e;
     }
 
     /**

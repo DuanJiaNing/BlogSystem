@@ -74,6 +74,16 @@ public interface GalleryService {
     BloggerPicture getPicture(int pictureId, int bloggerId);
 
     /**
+     * 获得图片
+     *
+     * @param imageId     图片id
+     * @param bloggerId   博主id
+     * @param blogPicture 图片类别
+     * @return 查询结果
+     */
+    BloggerPicture getPicture(int imageId, int bloggerId, BloggerPictureCategoryEnum blogPicture);
+
+    /**
      * 检查图片是否存在
      *
      * @param pictureId 图片id
@@ -115,9 +125,11 @@ public interface GalleryService {
      * 清理指定博主的博文图片，这里根据图片表的useCount的值检索BLOG_PICTURE类别的图片，如果其值为0，可以删除，该清理过程
      * 应该尽量的少的执行；在这些情况下可以进行清理：1 如果磁盘空间占用过多、2 BLOG_PICTURE类别图片数量达到上限；清理时
      * 按照一定的清理策略进行删除，LRU，FIFO等。
-     *
+     * <p>
      * 此外，在每一次博文中引用到图片时将useCount自增，博文被删除时useCount自减。
+     *
      * @param bloggerId 博主id
      */
     void cleanBlogPicture(int bloggerId);
+
 }

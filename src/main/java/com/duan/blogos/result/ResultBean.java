@@ -1,6 +1,6 @@
 package com.duan.blogos.result;
 
-import com.duan.blogos.exception.internal.BaseRuntimeException;
+import com.duan.blogos.exception.BaseRuntimeException;
 import lombok.Getter;
 import lombok.Setter;
 

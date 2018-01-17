@@ -28,6 +28,8 @@ import java.io.IOException;
  * 1 输出图片
  * 2 上传图片
  * 3 从设备和数据库中删除图片
+ * <p>
+ * 参加ImageController#constructPictureUrl
  *
  * @author DuanJiaNing
  */
@@ -42,34 +44,40 @@ public class ImageController extends BaseBloggerController {
     private BloggerValidateManager validateManager;
 
     /**
-     * 输出图片，如果数据库不存在指定图片，则返回默认图片
+     * 输出公开图片，这些图片无需验证登录，如果数据库不存在指定图片，则返回默认图片
      */
-    @RequestMapping(value = "/{imageId}", method = RequestMethod.GET)
-    public void get(HttpServletRequest request, HttpServletResponse response,
-                    @PathVariable("bloggerId") Integer bloggerId,
-                    @PathVariable("imageId") Integer imageId) {
+    @RequestMapping(value = "/type=public/{imageId}", method = RequestMethod.GET)
+    public void getBlogPicture(HttpServletRequest request, HttpServletResponse response,
+                               @PathVariable("bloggerId") Integer bloggerId,
+                               @PathVariable("imageId") Integer imageId) {
         handleAccountCheck(request, bloggerId);
+
+        BloggerPicture picture = galleryService.getPicture(imageId, bloggerId,
+                BloggerPictureCategoryEnum.PUBLIC);
+        BloggerPicture backupPicture = galleryService.getPictureByPropertiesCategory(
+                BloggerPictureCategoryEnum.BLOGGER_DEFAULT_UNIQUE_PICTURE);
+
+        // 输出图片
+        outPutPicture(picture, backupPicture, request, response);
+
+    }
+
+    /**
+     * 获取博主的私有图片（任意图片），这些图片需要验证登录
+     */
+    @RequestMapping(value = "/type=private/{imageId}", method = RequestMethod.GET)
+    public void getBloggerPicture(HttpServletRequest request, HttpServletResponse response,
+                                  @PathVariable("bloggerId") Integer bloggerId,
+                                  @PathVariable("imageId") Integer imageId) {
+        handleBloggerSignInCheck(request, bloggerId);
 
         BloggerPicture picture = galleryService.getPicture(imageId, bloggerId);
         BloggerPicture backupPicture = galleryService.getPictureByPropertiesCategory(
                 BloggerPictureCategoryEnum.BLOGGER_DEFAULT_UNIQUE_PICTURE);
 
-        try (ServletOutputStream os = response.getOutputStream()) {
-            String path = picture == null ? backupPicture.getPath() : picture.getPath();
-            File image = new File(path);
-            if (!image.exists()) handlerOperateFail(request);
+        // 输出图片
+        outPutPicture(picture, backupPicture, request, response);
 
-            String type = ImageUtils.getImageMimeType(image.getName());
-            if (type == null) handlerOperateFail(request);
-
-            response.setContentType("image/" + type);
-
-            BufferedImage read = ImageIO.read(image);
-            ImageIO.write(read, type, os);
-        } catch (IOException e) {
-            e.printStackTrace();
-            handlerOperateFail(request, e);
-        }
     }
 
     /**
@@ -91,13 +99,14 @@ public class ImageController extends BaseBloggerController {
                              @RequestParam(value = "category", required = false) Integer category,
                              @RequestParam(value = "bewrite", required = false) String bewrite,
                              @RequestParam(value = "title", required = false) String title) {
-        handleAccountCheck(request, bloggerId);
+        handleBloggerSignInCheck(request, bloggerId);
 
         MultipartFile file = request.getFile("image");// 与页面input的name相同
         int id = -1;
         if (ImageUtils.isImageFile(file)) {
 
-            int cate = category == null ? BloggerPictureCategoryEnum.DEFAULT.getCode() : category;
+            // 默认上传到私有目录
+            int cate = category == null ? BloggerPictureCategoryEnum.PRIVATE.getCode() : category;
 
             //检查博主权限
             if (!validateManager.checkBloggerPictureLegal(bloggerId, cate)) {
@@ -120,16 +129,38 @@ public class ImageController extends BaseBloggerController {
     public ResultBean delete(HttpServletRequest request,
                              @PathVariable("bloggerId") Integer bloggerId,
                              @PathVariable("imageId") Integer imageId) {
-        handleAccountCheck(request, bloggerId);
+        handleBloggerSignInCheck(request, bloggerId);
 
         BloggerPicture picture = galleryService.getPicture(imageId, bloggerId);
         if (picture == null) {
             throw exceptionManager.getUnauthorizedException(new RequestContext(request));
         }
+
         boolean succ = galleryService.deletePicture(picture.getId(), true);
         if (!succ) handlerOperateFail(request);
 
         return new ResultBean<>("");
+    }
+
+    // 输出图片
+    private void outPutPicture(BloggerPicture picture, BloggerPicture backupPicture,
+                               HttpServletRequest request, HttpServletResponse response) {
+        try (ServletOutputStream os = response.getOutputStream()) {
+            String path = picture == null ? backupPicture.getPath() : picture.getPath();
+            File image = new File(path);
+            if (!image.exists()) handlerOperateFail(request);
+
+            String type = ImageUtils.getImageMimeType(image.getName());
+            if (type == null) handlerOperateFail(request);
+
+            response.setContentType("image/" + type);
+
+            BufferedImage read = ImageIO.read(image);
+            ImageIO.write(read, type, os);
+        } catch (IOException e) {
+            e.printStackTrace();
+            handlerOperateFail(request, e);
+        }
     }
 
 }

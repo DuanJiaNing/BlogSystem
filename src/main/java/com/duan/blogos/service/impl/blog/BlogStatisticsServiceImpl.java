@@ -158,7 +158,7 @@ public class BlogStatisticsServiceImpl implements BlogStatisticsService {
                 avatar = pictureDao.getPictureById(avatarId);
 
             if (avatar != null)
-                avatar.setPath(stringConstructorManager.constructPictureUrl(avatar));
+                avatar.setPath(stringConstructorManager.constructPictureUrl(avatar, false));
 
             BloggerDTO dto = dataFillingManager.bloggerAccountToDTO(account, profile, avatar);
             dtos[c++] = dto;

@@ -1,6 +1,6 @@
 package com.duan.blogos.web.api.audience;
 
-import com.duan.blogos.exception.internal.BaseRuntimeException;
+import com.duan.blogos.exception.BaseRuntimeException;
 import com.duan.blogos.manager.BlogPropertiesManager;
 import com.duan.blogos.web.api.BaseRestController;
 import org.springframework.beans.factory.annotation.Autowired;

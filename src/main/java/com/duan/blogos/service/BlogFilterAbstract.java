@@ -5,7 +5,7 @@ import com.duan.blogos.dao.blog.BlogStatisticsDao;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.enums.BlogStatusEnum;
-import com.duan.blogos.exception.internal.UnknownException;
+import com.duan.blogos.exception.internal.LuceneException;
 import com.duan.blogos.manager.BlogLuceneIndexManager;
 import com.duan.blogos.manager.BlogSortRule;
 import com.duan.blogos.manager.DbPropertiesManager;
@@ -91,7 +91,7 @@ public abstract class BlogFilterAbstract<T> implements BlogFilter<T> {
             ids = luceneIndexManager.search(keyWord, 10000);
         } catch (IOException | ParseException e) {
             e.printStackTrace();
-            throw new UnknownException("lucene parse exception", e);
+            throw new LuceneException(e);
         }
         //关键字为首要条件
         if (CollectionUtils.isEmpty(ids)) return null;
