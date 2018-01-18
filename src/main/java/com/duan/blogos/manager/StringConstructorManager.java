@@ -1,6 +1,7 @@
 package com.duan.blogos.manager;
 
 import com.duan.blogos.entity.blogger.BloggerPicture;
+import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,21 +25,28 @@ public class StringConstructorManager {
     /**
      * 构造图片的url
      *
-     * @param picture 图片
+     * @param picture         图片
      * @return 获取图片的url
      */
-    public String constructPictureUrl(BloggerPicture picture, boolean login) {
+    public String constructPictureUrl(BloggerPicture picture) {
         if (picture == null) return null;
-        //http://tnfs.tngou.net/image/lore/151107/fc2b0b50e9ed622a1e5385a15f0a33d2.png
 
-        // 参加ImageController
-        StringBuffer buffer = new StringBuffer(50);
+        // 参见ImageController
+        StringBuilder buffer = new StringBuilder(50);
+        int cate = picture.getCategory();
         buffer.append("http://")
                 .append(websitePropertiesManager.getAddr())
                 .append("/image/")
                 .append(picture.getBloggerId())
-                .append(login ? "/type=private/" : "/type=public/")
-                .append(picture.getId());
+                .append("/type=")
+                // 私有图片登录才能获取
+                .append(cate == BloggerPictureCategoryEnum.PRIVATE.getCode() ? "private" : "public")
+                .append("/")
+                .append(picture.getId())
+                .append("?default=")
+                // 默认图片类别与图片类别是一致的
+                .append(cate == BloggerPictureCategoryEnum.PRIVATE.getCode() ?
+                        BloggerPictureCategoryEnum.BLOGGER_UNIQUE_PICTURE.getCode() : cate);
 
         return buffer.toString();
     }

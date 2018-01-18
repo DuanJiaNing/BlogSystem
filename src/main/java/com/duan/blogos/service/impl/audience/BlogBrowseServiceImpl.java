@@ -6,7 +6,6 @@ import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.dao.blogger.BloggerProfileDao;
 import com.duan.blogos.dto.blog.BlogCommentDTO;
 import com.duan.blogos.dto.blog.BlogMainContentDTO;
-import com.duan.blogos.dto.blog.BlogStatisticsCountDTO;
 import com.duan.blogos.dto.blogger.BloggerDTO;
 import com.duan.blogos.entity.blog.*;
 import com.duan.blogos.entity.blogger.BloggerAccount;
@@ -117,7 +116,8 @@ public class BlogBrowseServiceImpl implements BlogBrowseService {
         if (id != null) {
             BloggerPicture avatar = pictureDao.getPictureById(id);
             if (avatar != null) {
-                avatar.setPath(constructorManager.constructPictureUrl(avatar, false));
+                avatar.setPath(constructorManager.constructPictureUrl(avatar
+                ));
             }
 
             return avatar;

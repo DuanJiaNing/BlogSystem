@@ -7,7 +7,6 @@ import com.duan.blogos.dto.blogger.BloggerCategoryDTO;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogCategory;
 import com.duan.blogos.entity.blogger.BloggerPicture;
-import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.exception.internal.SQLException;
 import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.manager.DbPropertiesManager;
@@ -22,6 +21,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.duan.blogos.enums.BloggerPictureCategoryEnum.BLOG_CATEGORY_ICON;
 
 /**
  * Created on 2017/12/19.
@@ -87,8 +88,7 @@ public class CategoryServiceImpl implements CategoryService {
         if (iconId > 0) category.setIconId(iconId);
         else {
             // 默认图片
-            int defaultIconId = pictureDao.getPictureIdByUniqueCategory(
-                    BloggerPictureCategoryEnum.BLOG_DEFAULT_UNIQUE_CATEGORY_ICON.getCode());
+            int defaultIconId = pictureDao.getPictureIdByUniqueCategory(BLOG_CATEGORY_ICON.getCode());
             category.setIconId(defaultIconId);
         }
 
@@ -163,17 +163,19 @@ public class CategoryServiceImpl implements CategoryService {
 
         Integer iconId = category.getIconId();
 
-        BloggerPicture icon;
+        BloggerPicture icon = null;
         if (iconId == null) {
             // 默认图片
-            int defaultIconId = pictureDao.getPictureIdByUniqueCategory(
-                    BloggerPictureCategoryEnum.BLOG_DEFAULT_UNIQUE_CATEGORY_ICON.getCode());
-            icon = pictureDao.getPictureById(defaultIconId);
+            Integer defaultIconId = pictureDao.getPictureIdByUniqueCategory(BLOG_CATEGORY_ICON.getCode());
+
+            if (defaultIconId != null)
+                icon = pictureDao.getPictureById(defaultIconId);
         } else {
             icon = pictureDao.getPictureById(iconId);
         }
 
-        if (icon != null) icon.setPath(constructorManager.constructPictureUrl(icon, false));
+        if (icon != null)
+            icon.setPath(constructorManager.constructPictureUrl(icon));
         BloggerCategoryDTO dto = fillingManager.blogCategoryToDTO(category, icon);
 
         return dto;

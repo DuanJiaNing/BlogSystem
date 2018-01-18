@@ -6,6 +6,7 @@ import com.duan.blogos.dto.blogger.BloggerLinkDTO;
 import com.duan.blogos.entity.blogger.BloggerLink;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
+import com.duan.blogos.manager.BloggerPropertiesManager;
 import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.profile.LinkService;
@@ -33,6 +34,9 @@ public class LinkServiceImpl implements LinkService {
     @Autowired
     private DataFillingManager fillingManager;
 
+    @Autowired
+    private BloggerPropertiesManager bloggerPropertiesManager;
+
     @Override
     public ResultBean<List<BloggerLinkDTO>> listBloggerLink(int bloggerId, int offset, int rows) {
 
@@ -42,7 +46,8 @@ public class LinkServiceImpl implements LinkService {
         for (BloggerLink link : list) {
             Integer iconId = link.getIconId();
             BloggerPicture icon = iconId == null ?
-                    pictureDao.getPictureByPropertiesCategory(BloggerPictureCategoryEnum.BLOGGER_DEFAULT_UNIQUE_LINK_ICON.getCode()) :
+                    pictureDao.getBloggerUniquePicture(bloggerPropertiesManager.getPictureManagerBloggerId(),
+                            BloggerPictureCategoryEnum.BLOGGER_LINK_ICON.getCode()) :
                     pictureDao.getPictureById(iconId);
             BloggerLinkDTO dto = fillingManager.bloggerLinkToDTO(link, icon);
             result.add(dto);

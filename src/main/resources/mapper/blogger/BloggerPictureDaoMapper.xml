@@ -16,36 +16,36 @@
         WHERE id = #{value}
     </select>
 
-    <select id="getPictureByPropertiesCategory" resultType="BloggerPicture">
+    <select id="getBloggerUniquePicture" resultType="BloggerPicture">
         SELECT *
         FROM blogger_picture
-        WHERE category = #{value}
+        WHERE category = #{category} AND blogger_id = #{bloggerId}
     </select>
 
     <select id="getPictureIdByUniqueCategory" resultType="java.lang.Integer">
         SELECT id
         FROM blogger_picture
-        WHERE category=#{value}
+        WHERE category = #{value}
     </select>
 
     <select id="listPictureByBloggerId" resultType="BloggerPicture">
         SELECT *
         FROM blogger_picture
-        WHERE blogger_id=#{bloggerId}
+        WHERE blogger_id = #{bloggerId}
         LIMIT #{offset}, #{rows}
     </select>
 
     <select id="listPictureByBloggerAndCategory" resultType="BloggerPicture">
         SELECT *
         FROM blogger_picture
-        WHERE blogger_id=#{bloggerId} AND category=#{category}
+        WHERE blogger_id = #{bloggerId} AND category = #{category}
         LIMIT #{offset}, #{rows}
     </select>
 
     <select id="getUseCount" resultType="java.lang.Integer">
         SELECT use_count
         FROM blogger_picture
-        WHERE id=#{value}
+        WHERE id = #{value}
     </select>
 
     <update id="update" parameterType="BloggerPicture">
@@ -78,13 +78,13 @@
     <update id="updateUseCountPlus">
         UPDATE blogger_picture
         SET use_count = use_count + 1
-        WHERE id=#{value}
+        WHERE id = #{value}
     </update>
 
     <update id="updateUseCountMinus">
         UPDATE blogger_picture
         SET use_count = use_count - 1
-        WHERE id=#{value}
+        WHERE id = #{value}
     </update>
 
     <delete id="delete">

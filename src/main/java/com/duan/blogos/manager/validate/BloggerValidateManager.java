@@ -80,7 +80,7 @@ public class BloggerValidateManager {
     }
 
     /**
-     * 检查博主是否有权限操纵某些类别图片
+     * 检查博主是否有权限操纵（新增，更新，删除）某些类别图片
      *
      * @param bloggerId 博主id
      * @param category  图片类别
@@ -89,12 +89,8 @@ public class BloggerValidateManager {
     public boolean checkBloggerPictureLegal(int bloggerId, int category) {
         int pictureManagerId = propertiesManager.getPictureManagerBloggerId();
 
-        //图片管理者可以上传任何类别图片
-        if (bloggerId == pictureManagerId) return true;
-        else { //非图片管理者只能上传部分类别图片
-            if (BloggerPictureCategoryEnum.isUniqueCategory(category)) return false;
-            else return true;
-        }
+        // 图片管理者可以操作任何类别图片,非图片管理者不能操作只有图片管理者才能操作的图片类=类别
+        return bloggerId == pictureManagerId || !BloggerPictureCategoryEnum.isPictureManageOnlyCategory(category);
     }
 
     /**
@@ -122,5 +118,15 @@ public class BloggerValidateManager {
      */
     public boolean checkBloggerPictureExist(int bloggerId, int pictureId) {
         return galleryService.getPicture(pictureId, bloggerId) != null;
+    }
+
+    /**
+     * 检查指定博主是否为图片管理者
+     *
+     * @param bloggerId 博主id
+     * @return 是返回true
+     */
+    public boolean isPictureManagerBlogger(int bloggerId) {
+        return propertiesManager.getPictureManagerBloggerId() == bloggerId;
     }
 }

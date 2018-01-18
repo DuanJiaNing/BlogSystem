@@ -19,6 +19,7 @@ import java.util.List;
  * 1 根据id获取图片
  * 2 获得多张图片
  * 3 更新图片信息
+ * 4 从设备和数据库中删除图片
  *
  * @author DuanJiaNing
  */
@@ -47,7 +48,7 @@ public class BloggerGalleryController extends BaseBloggerController {
         BloggerPicture picture = galleryService.getPicture(pictureId, bloggerId);
         if (picture == null) handlerEmptyResult(request);
 
-        String url = stringConstructorManager.constructPictureUrl(picture, true);
+        String url = stringConstructorManager.constructPictureUrl(picture);
         picture.setPath(url);
 
         return new ResultBean<>(picture);
@@ -86,7 +87,7 @@ public class BloggerGalleryController extends BaseBloggerController {
         if (result == null) handlerEmptyResult(request);
 
         for (BloggerPicture picture : result.getData()) {
-            String url = stringConstructorManager.constructPictureUrl(picture, true);
+            String url = stringConstructorManager.constructPictureUrl(picture);
             picture.setPath(url);
         }
 
@@ -132,6 +133,31 @@ public class BloggerGalleryController extends BaseBloggerController {
         boolean result = galleryService.updatePicture(pictureId,
                 newCategory == null ? null : BloggerPictureCategoryEnum.valueOf(newCategory), newBeWrite, newTitle);
         if (!result) handlerOperateFail(request);
+
+        return new ResultBean<>("");
+    }
+
+    /**
+     * 从设备和数据库中删除图片
+     */
+    @RequestMapping(value = "/{pictureId}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public ResultBean delete(HttpServletRequest request,
+                             @PathVariable("bloggerId") Integer bloggerId,
+                             @PathVariable("pictureId") Integer pictureId) {
+        handleBloggerSignInCheck(request, bloggerId);
+
+        BloggerPicture picture = galleryService.getPicture(pictureId, bloggerId);
+        if (picture == null) {
+            throw exceptionManager.getUnknownPictureException(new RequestContext(request));
+        }
+
+        //检查权限
+        if (!validateManager.checkBloggerPictureLegal(bloggerId, picture.getCategory()))
+            throw exceptionManager.getUnauthorizedException(new RequestContext(request));
+
+        boolean succ = galleryService.deletePicture(bloggerId, picture.getId(), true);
+        if (!succ) handlerOperateFail(request);
 
         return new ResultBean<>("");
     }

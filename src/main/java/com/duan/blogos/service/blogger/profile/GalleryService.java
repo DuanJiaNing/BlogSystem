@@ -50,11 +50,12 @@ public interface GalleryService {
     /**
      * 删除图片记录
      *
+     * @param bloggerId    博主id
      * @param pictureId    图片id
      * @param deleteOnDisk 是否同时从存储设备中删除
      * @return 删除成功返回true
      */
-    boolean deletePicture(int pictureId, boolean deleteOnDisk);
+    boolean deletePicture(int bloggerId, int pictureId, boolean deleteOnDisk);
 
     /**
      * 获得图片
@@ -74,16 +75,6 @@ public interface GalleryService {
     BloggerPicture getPicture(int pictureId, int bloggerId);
 
     /**
-     * 获得图片
-     *
-     * @param imageId     图片id
-     * @param bloggerId   博主id
-     * @param blogPicture 图片类别
-     * @return 查询结果
-     */
-    BloggerPicture getPicture(int imageId, int bloggerId, BloggerPictureCategoryEnum blogPicture);
-
-    /**
      * 检查图片是否存在
      *
      * @param pictureId 图片id
@@ -97,7 +88,7 @@ public interface GalleryService {
      * @param category 类别
      * @return 查询结果
      */
-    BloggerPicture getPictureByPropertiesCategory(BloggerPictureCategoryEnum category);
+    BloggerPicture getDefaultPicture(BloggerPictureCategoryEnum category);
 
     /**
      * 获得博主的多张图片

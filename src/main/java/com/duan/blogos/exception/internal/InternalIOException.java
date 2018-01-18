@@ -13,4 +13,8 @@ public class InternalIOException extends InternalRuntimeException {
     public InternalIOException(Throwable e) {
         super(e, code);
     }
+
+    public InternalIOException() {
+        super(code);
+    }
 }
