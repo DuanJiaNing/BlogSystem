@@ -107,8 +107,7 @@ public class BlogOperateController extends BaseBlogController {
     public ResultBean collectBlog(HttpServletRequest request,
                                   @PathVariable Integer blogId,
                                   @RequestParam("collectorId") Integer collectorId,
-                                  @RequestParam(value = "reason", required = false) String reason,
-                                  @RequestParam(value = "categoryId", required = false) Integer categoryId) {
+                                  @RequestParam(value = "reason", required = false) String reason) {
         RequestContext context = new RequestContext(request);
 
         // 检查
@@ -116,9 +115,9 @@ public class BlogOperateController extends BaseBlogController {
         if (exception != null) throw exception;
 
         //检查博主是否有指定类别
-        if (categoryId != null && !bloggerValidateManager.checkBloggerBlogCategoryExist(collectorId, categoryId)) {
-            throw exceptionManager.getParameterIllegalException(context);
-        }
+//        if (categoryId != null && !bloggerValidateManager.checkBloggerBlogCategoryExist(collectorId, categoryId)) {
+//            throw exceptionManager.getParameterIllegalException(context);
+//        }
 
         // 如果博文属于当前博主，收藏失败d
         if (blogValidateManager.isCreatorOfBlog(collectorId, blogId)) {
@@ -126,8 +125,8 @@ public class BlogOperateController extends BaseBlogController {
         }
 
         //执行
-        int id = operateService.insertCollect(blogId, collectorId, reason,
-                categoryId == null ? propertiesManager.getDefaultBlogCollectCategory() : categoryId);
+        // UPDATE: 2018/1/19 更新 收藏到自己的某一类别不开发，只收藏到一个类别中
+        int id = operateService.insertCollect(blogId, collectorId, reason, propertiesManager.getDefaultBlogCollectCategory());
         if (id <= 0) handlerOperateFail(request);
 
         return new ResultBean<>(id);

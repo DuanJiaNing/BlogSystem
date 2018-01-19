@@ -78,21 +78,31 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public boolean updateBlogCategory(int bloggerId, int categoryId, int newIconId, String newTitle, String newBewrite) {
 
-        if (newIconId > 0) {
+        BlogCategory category = categoryDao.getCategory(bloggerId, categoryId);
+        if (category == null) return false;
+
+        // 要修改图标并且与原图标不一样
+        if (newIconId > 0 && !Integer.valueOf(newIconId).equals(category.getIconId())) {
             //默认图片不能被使用
             if (bloggerValidateManager.isDefaultPicture(newIconId))
                 return false;
 
-            // 将图片修改为公开并移动目录
+            // 将新图标指向图片修改为公开并移动目录（需要的话）
             try {
                 imageManager.moveImageAndUpdateDbIfNecessary(bloggerId, newIconId, PUBLIC);
             } catch (IOException e) {
                 e.printStackTrace();
                 throw new InternalIOException(e);
             }
+
+            //旧图标useCount-- 新图标useCount++
+            Integer oldIconId;
+            if ((oldIconId = category.getIconId()) != null)
+                pictureDao.updateUseCountMinus(oldIconId);
+            pictureDao.updateUseCountPlus(newIconId);
+
         }
 
-        BlogCategory category = new BlogCategory();
         if (!StringUtils.isEmpty(newTitle)) category.setTitle(newTitle);
         if (!StringUtils.isEmpty(newBewrite)) category.setBewrite(newBewrite);
         if (newIconId > 0) category.setIconId(newIconId);
@@ -122,6 +132,9 @@ public class CategoryServiceImpl implements CategoryService {
                 e.printStackTrace();
                 throw new InternalIOException(e);
             }
+
+            // 图片引用次数++
+            pictureDao.updateUseCountPlus(iconId);
         }
 
         if (iconId > 0) category.setIconId(iconId);
@@ -141,6 +154,14 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public boolean deleteCategoryAndMoveBlogsTo(int bloggerId, int categoryId, int newCategoryId) {
+
+        BlogCategory category = categoryDao.getCategory(bloggerId, categoryId);
+        if (category == null) return false;
+
+        // 图片引用次数--
+        Integer iconId;
+        if ((iconId = category.getIconId()) != null)
+            pictureDao.updateUseCountMinus(iconId);
 
         // 删除数据库类别记录
         int effectDelete = categoryDao.delete(categoryId);

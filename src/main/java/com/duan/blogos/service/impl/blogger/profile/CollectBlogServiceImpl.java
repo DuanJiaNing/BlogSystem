@@ -137,8 +137,8 @@ public class CollectBlogServiceImpl implements CollectBlogService {
     }
 
     @Override
-    public boolean updateCollect(int bloggerId, int blogId, String newReason, Integer newCategory) {
-        int effect = collectDao.updateByUnique(bloggerId, blogId, newReason, newCategory);
+    public boolean updateCollect(int bloggerId, int blogId, String newReason, int newCategory) {
+        int effect = collectDao.updateByUnique(bloggerId, blogId, newReason, null);
         return effect > 0;
     }
 }

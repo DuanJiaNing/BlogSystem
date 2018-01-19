@@ -8,10 +8,12 @@ import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogCategory;
 import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.enums.BlogStatusEnum;
+import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.exception.internal.LuceneException;
 import com.duan.blogos.exception.internal.SQLException;
 import com.duan.blogos.manager.BlogSortRule;
 import com.duan.blogos.manager.DataFillingManager;
+import com.duan.blogos.manager.ImageManager;
 import com.duan.blogos.manager.WebsitePropertiesManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.BlogFilterAbstract;
@@ -47,6 +49,9 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
 
     @Autowired
     private DataFillingManager dataFillingManager;
+
+    @Autowired
+    private ImageManager imageManager;
 
     @Autowired
     private BlogCategoryDao categoryDao;
@@ -86,8 +91,20 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
 
         // 3 解析本地图片引用并使自增
         int[] imids = parseContentForImageIds(content, bloggerId);
-        if (!CollectionUtils.isEmpty(imids))
-            Arrays.stream(imids).forEach(pictureDao::updateUseCountPlus);
+        // UPDATE: 2018/1/19 更新 自增并没有实际作用
+        if (!CollectionUtils.isEmpty(imids)) {
+            Arrays.stream(imids).forEach(id -> {
+                pictureDao.updateUseCountPlus(id);
+
+                // 将用到的图片修改为public（有必要的话）
+                try {
+                    imageManager.moveImageAndUpdateDbIfNecessary(bloggerId, id, BloggerPictureCategoryEnum.PUBLIC);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            });
+        }
 
         // 4 lucene创建索引
         try {
@@ -102,7 +119,9 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
 
     // 解析博文中引用的相册图片
     private int[] parseContentForImageIds(String content, int bloggerId) {
-        String regex = "http://" + websitePropertiesManager.getAddr() + "/image/" + bloggerId + "/(\\d+)";
+        //http://localhost:8080/image/1/type=public/523?default=5
+        //http://localhost:8080/image/1/type=private/1
+        String regex = "http://" + websitePropertiesManager.getAddr() + "/image/" + bloggerId + "/.*?/(\\d+)";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(content);
 
@@ -147,7 +166,17 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
                 int[] allP = new int[newIids.length + array.length];
                 System.arraycopy(newIids, 0, allP, 0, newIids.length);
                 System.arraycopy(array, 0, allP, newIids.length, array.length);
-                IntStream.of(allP).distinct().forEach(pictureDao::updateUseCountPlus);
+                IntStream.of(allP).distinct().forEach(id -> {
+                    pictureDao.updateUseCountPlus(id);
+
+                    // 将用到的图片修改为public（有必要的话）
+                    try {
+                        imageManager.moveImageAndUpdateDbIfNecessary(bloggerId, id, BloggerPictureCategoryEnum.PUBLIC);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                });
             }
         }
 

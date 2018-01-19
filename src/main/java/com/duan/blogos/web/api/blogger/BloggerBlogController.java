@@ -53,7 +53,7 @@ public class BloggerBlogController extends BaseBloggerController {
                           @RequestParam(value = "keywords", required = false) String keyWords) {
 
         // 检查不能为null的参数是否为null
-        if (StringUtils.isEmpty(title) || StringUtils.isEmpty(content) || StringUtils.isEmpty(summary))
+        if (StringUtils.isEmpty_(title) || StringUtils.isEmpty_(content) || StringUtils.isEmpty_(summary))
             throw exceptionManager.getParameterIllegalException(new RequestContext(request));
 
         handleBloggerSignInCheck(request, bloggerId);

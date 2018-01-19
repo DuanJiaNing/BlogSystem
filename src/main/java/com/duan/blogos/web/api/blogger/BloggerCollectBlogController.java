@@ -32,16 +32,12 @@ public class BloggerCollectBlogController extends BaseBloggerController {
     @Autowired
     private CollectBlogService collectBlogService;
 
-    @Autowired
-    private CategoryService categoryService;
-
     /**
      * 收藏博文清单
      */
     @RequestMapping(method = RequestMethod.GET)
     public ResultBean<List<CollectBlogListItemDTO>> get(HttpServletRequest request,
                                                         @PathVariable("bloggerId") Integer bloggerId,
-                                                        @RequestParam(value = "category", required = false) Integer category,
                                                         @RequestParam(value = "offset", required = false) Integer offset,
                                                         @RequestParam(value = "rows", required = false) Integer rows,
                                                         @RequestParam(value = "sort", required = false) String sort,
@@ -49,23 +45,18 @@ public class BloggerCollectBlogController extends BaseBloggerController {
         final RequestContext context = new RequestContext(request);
         handleAccountCheck(request, bloggerId);
 
-        // 检查类别存在否
-        if (category != null && !category.equals(bloggerPropertiesManager.getDefaultBlogCollectCategory()) &&
-                categoryService.countCategoryForExistCheck(bloggerId, category) <= 0)
-            throw exceptionManager.getUnknownCategoryException(context);
-
         //检查数据合法性
         String sor = sort == null ? Rule.VIEW_COUNT.name() : sort.toUpperCase();
         String ord = order == null ? Order.DESC.name() : order.toUpperCase();
         if (!Rule.contains(sor)) throw exceptionManager.getBlogSortRuleUndefinedException(context);
         if (!Order.contains(ord)) throw exceptionManager.getBlogSortOrderUndefinedException(context);
 
-        int cid = category == null ? bloggerPropertiesManager.getDefaultBlogCollectCategory() : category;
         int os = offset == null || offset < 0 ? 0 : offset;
         int rs = rows == null || rows < 0 ? bloggerPropertiesManager.getRequestBloggerCollectCount() : rows;
 
         // 查询数据
-        ResultBean<List<CollectBlogListItemDTO>> result = collectBlogService.listCollectBlog(bloggerId, cid, os, rs,
+        ResultBean<List<CollectBlogListItemDTO>> result = collectBlogService.listCollectBlog(bloggerId,
+                bloggerPropertiesManager.getDefaultBlogCollectCategory(), os, rs,
                 BlogSortRule.valueOf(sor, ord));
         if (result == null) handlerEmptyResult(request);
 
@@ -79,7 +70,7 @@ public class BloggerCollectBlogController extends BaseBloggerController {
     public ResultBean cancel(HttpServletRequest request,
                              @PathVariable("bloggerId") Integer bloggerId,
                              @PathVariable("blogId") Integer blogId) {
-        handleAccountCheck(request, bloggerId);
+        handleBloggerSignInCheck(request, bloggerId);
 
         boolean result = collectBlogService.deleteCollectBlog(bloggerId, blogId);
         if (!result) handlerOperateFail(request);
@@ -94,22 +85,15 @@ public class BloggerCollectBlogController extends BaseBloggerController {
     public ResultBean update(HttpServletRequest request,
                              @PathVariable("blogId") Integer blogId,
                              @PathVariable("bloggerId") Integer bloggerId,
-                             @RequestParam(value = "reason", required = false) String newReason,
-                             @RequestParam(value = "category", required = false) Integer newCategory) {
-        final RequestContext context = new RequestContext(request);
+                             @RequestParam(value = "reason", required = false) String newReason) {
 
-        if (StringUtils.isEmpty(newReason) && newCategory == null) {
-            throw exceptionManager.getParameterIllegalException(context);
+        handleBloggerSignInCheck(request, bloggerId);
+
+        if (StringUtils.isEmpty(newReason)) {
+            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
         }
 
-        handleAccountCheck(request, bloggerId);
-
-        // 检查类别存在否
-        if (newCategory != null && !newCategory.equals(bloggerPropertiesManager.getDefaultBlogCollectCategory()) &&
-                categoryService.countCategoryForExistCheck(bloggerId, newCategory) <= 0)
-            throw exceptionManager.getUnknownCategoryException(context);
-
-        boolean result = collectBlogService.updateCollect(bloggerId, blogId, newReason, newCategory);
+        boolean result = collectBlogService.updateCollect(bloggerId, blogId, newReason, -1);
         if (!result) handlerOperateFail(request);
 
         return new ResultBean<>("");

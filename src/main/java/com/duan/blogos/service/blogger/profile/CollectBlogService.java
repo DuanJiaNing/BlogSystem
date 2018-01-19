@@ -67,5 +67,5 @@ public interface CollectBlogService {
      * @param newCategory 新的收藏到类别
      * @return 更新成功返回true
      */
-    boolean updateCollect(int bloggerId, int blogId, String newReason, Integer newCategory);
+    boolean updateCollect(int bloggerId, int blogId, String newReason, int newCategory);
 }
