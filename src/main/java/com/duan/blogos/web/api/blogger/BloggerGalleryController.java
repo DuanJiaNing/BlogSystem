@@ -12,6 +12,8 @@ import org.springframework.web.servlet.support.RequestContext;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+import static com.duan.blogos.enums.BloggerPictureCategoryEnum.DEFAULT_PICTURE;
+
 /**
  * Created on 2018/1/2.
  * 相册
@@ -48,7 +50,7 @@ public class BloggerGalleryController extends BaseBloggerController {
         BloggerPicture picture = galleryService.getPicture(pictureId, bloggerId);
         if (picture == null) handlerEmptyResult(request);
 
-        String url = stringConstructorManager.constructPictureUrl(picture);
+        String url = stringConstructorManager.constructPictureUrl(picture, DEFAULT_PICTURE);
         picture.setPath(url);
 
         return new ResultBean<>(picture);
@@ -87,7 +89,7 @@ public class BloggerGalleryController extends BaseBloggerController {
         if (result == null) handlerEmptyResult(request);
 
         for (BloggerPicture picture : result.getData()) {
-            String url = stringConstructorManager.constructPictureUrl(picture);
+            String url = stringConstructorManager.constructPictureUrl(picture, DEFAULT_PICTURE);
             picture.setPath(url);
         }
 
@@ -118,6 +120,7 @@ public class BloggerGalleryController extends BaseBloggerController {
             throw exceptionManager.getParameterIllegalException(context);
         }
 
+        // 更新图片类别只适用于图片管理员，普通博主没有修改类别的必要
         if (newCategory != null) {
 
             //检查类别是否存在

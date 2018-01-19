@@ -4,6 +4,7 @@ import com.duan.blogos.dto.blogger.BloggerCategoryDTO;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.blog.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.RequestContext;
 
@@ -79,6 +80,9 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
         handleBloggerSignInCheck(request, bloggerId);
         handlePictureExistCHeck(request, bloggerId, iconId);
 
+        if (StringUtils.isEmpty(title))
+            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
+
         int id = categoryService.insertBlogCategory(bloggerId, iconId == null ? -1 : iconId, title, bewrite);
         if (id < 0) handlerOperateFail(request);
 
@@ -99,9 +103,9 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
         handleParamAllNullForUpdate(request, newIconId, newTitle, newBewrite);
         handleBloggerSignInCheck(request, bloggerId);
         handleCategoryExistCheck(request, bloggerId, categoryId);
-        if (newIconId != null) handlePictureExistCHeck(request, bloggerId, newIconId);
+        handlePictureExistCHeck(request, bloggerId, newIconId);
 
-        if (!categoryService.updateBlogCategory(categoryId, newIconId, newTitle, newBewrite))
+        if (!categoryService.updateBlogCategory(bloggerId, categoryId, newIconId, newTitle, newBewrite))
             handlerOperateFail(request);
 
         return new ResultBean<>("");
@@ -132,7 +136,7 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
         handleBloggerSignInCheck(request, bloggerId);
         handleCategoryExistCheck(request, bloggerId, categoryId);
 
-        Integer cate = null;
+        int cate = -1;
         if (newCategoryId != null) {
 
             //检查删除类别和原博文移动到类别是否相同

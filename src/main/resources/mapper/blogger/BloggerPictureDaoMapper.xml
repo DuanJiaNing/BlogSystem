@@ -22,12 +22,6 @@
         WHERE category = #{category} AND blogger_id = #{bloggerId}
     </select>
 
-    <select id="getPictureIdByUniqueCategory" resultType="java.lang.Integer">
-        SELECT id
-        FROM blogger_picture
-        WHERE category = #{value}
-    </select>
-
     <select id="listPictureByBloggerId" resultType="BloggerPicture">
         SELECT *
         FROM blogger_picture

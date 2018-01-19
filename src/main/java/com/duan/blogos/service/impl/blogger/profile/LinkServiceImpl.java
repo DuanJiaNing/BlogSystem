@@ -5,7 +5,6 @@ import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.dto.blogger.BloggerLinkDTO;
 import com.duan.blogos.entity.blogger.BloggerLink;
 import com.duan.blogos.entity.blogger.BloggerPicture;
-import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.manager.BloggerPropertiesManager;
 import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.result.ResultBean;
@@ -16,6 +15,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.duan.blogos.enums.BloggerPictureCategoryEnum.DEFAULT_BLOGGER_LINK_ICON;
 
 /**
  * Created on 2017/12/19.
@@ -47,7 +48,7 @@ public class LinkServiceImpl implements LinkService {
             Integer iconId = link.getIconId();
             BloggerPicture icon = iconId == null ?
                     pictureDao.getBloggerUniquePicture(bloggerPropertiesManager.getPictureManagerBloggerId(),
-                            BloggerPictureCategoryEnum.BLOGGER_LINK_ICON.getCode()) :
+                            DEFAULT_BLOGGER_LINK_ICON.getCode()) :
                     pictureDao.getPictureById(iconId);
             BloggerLinkDTO dto = fillingManager.bloggerLinkToDTO(link, icon);
             result.add(dto);

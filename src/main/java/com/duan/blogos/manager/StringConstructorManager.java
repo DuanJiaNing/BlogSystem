@@ -25,10 +25,10 @@ public class StringConstructorManager {
     /**
      * 构造图片的url
      *
-     * @param picture         图片
+     * @param picture 图片
      * @return 获取图片的url
      */
-    public String constructPictureUrl(BloggerPicture picture) {
+    public String constructPictureUrl(BloggerPicture picture, BloggerPictureCategoryEnum defaultCate) {
         if (picture == null) return null;
 
         // 参见ImageController
@@ -44,9 +44,8 @@ public class StringConstructorManager {
                 .append("/")
                 .append(picture.getId())
                 .append("?default=")
-                // 默认图片类别与图片类别是一致的
-                .append(cate == BloggerPictureCategoryEnum.PRIVATE.getCode() ?
-                        BloggerPictureCategoryEnum.BLOGGER_UNIQUE_PICTURE.getCode() : cate);
+                .append(defaultCate == null ? BloggerPictureCategoryEnum.DEFAULT_PICTURE.getCode() :
+                        defaultCate.getCode());
 
         return buffer.toString();
     }

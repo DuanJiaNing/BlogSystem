@@ -11,6 +11,7 @@ import com.duan.blogos.entity.blog.*;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.entity.blogger.BloggerProfile;
+import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.manager.DbPropertiesManager;
 import com.duan.blogos.manager.StringConstructorManager;
@@ -158,8 +159,7 @@ public class BlogStatisticsServiceImpl implements BlogStatisticsService {
                 avatar = pictureDao.getPictureById(avatarId);
 
             if (avatar != null)
-                avatar.setPath(stringConstructorManager.constructPictureUrl(avatar
-                ));
+                avatar.setPath(stringConstructorManager.constructPictureUrl(avatar, BloggerPictureCategoryEnum.DEFAULT_BLOGGER_AVATAR));
 
             BloggerDTO dto = dataFillingManager.bloggerAccountToDTO(account, profile, avatar);
             dtos[c++] = dto;

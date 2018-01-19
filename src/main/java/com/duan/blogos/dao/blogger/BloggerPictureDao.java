@@ -34,7 +34,7 @@ public interface BloggerPictureDao extends BaseDao<BloggerPicture> {
     BloggerPicture getPictureByCategory(@Param("bloggerId") int bloggerId, @Param("category") int category);
 
     /**
-     * 根据类别获得图片，这些图片是博主唯一（一个博主只有对应类别的一张图片）的图片
+     * 获取博主唯一的图片，如图片管理员管理的默认图片，博主的头像。
      *
      * @param bloggerId 博主id
      * @param category  类别
@@ -42,14 +42,6 @@ public interface BloggerPictureDao extends BaseDao<BloggerPicture> {
      */
     BloggerPicture getBloggerUniquePicture(@Param("bloggerId") int bloggerId,
                                            @Param("category") int category);
-
-    /**
-     * 根据唯一图片对应的类别来获取图片id
-     *
-     * @param uniqueCategory 唯一的类别，见{@link BloggerPictureCategoryEnum#uniqueCate}
-     * @return id
-     */
-    Integer getPictureIdByUniqueCategory(int uniqueCategory);
 
     /**
      * 查询博主的所有图片

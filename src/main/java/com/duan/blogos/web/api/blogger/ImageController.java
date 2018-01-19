@@ -53,9 +53,9 @@ public class ImageController extends BaseBloggerController {
                                @RequestParam(value = "default", required = false) Integer category) {
         handleAccountCheck(request, bloggerId);
 
-        // 检查默认图片类别是否为默认类别
+        // 检查default是否为默认类别
         if (category != null)
-            handleBlogCategoryUniqueCheck(request, category);
+            handleBlogCategoryDefaultCheck(request, category);
 
         BloggerPicture picture = galleryService.getPicture(imageId, bloggerId);
 
@@ -64,7 +64,7 @@ public class ImageController extends BaseBloggerController {
             throw exceptionManager.getUnauthorizedException(new RequestContext(request));
 
         BloggerPicture backupPicture = galleryService.getDefaultPicture(
-                category == null ? BloggerPictureCategoryEnum.BLOGGER_UNIQUE_PICTURE
+                category == null ? BloggerPictureCategoryEnum.DEFAULT_PICTURE
                         : BloggerPictureCategoryEnum.valueOf(category)); //如果目标图片不存在，返回指定类别的默认图片
 
         // 输出图片
@@ -85,11 +85,11 @@ public class ImageController extends BaseBloggerController {
 
         // 检查默认图片类别是否为默认类别
         if (category != null)
-            handleBlogCategoryUniqueCheck(request, category);
+            handleBlogCategoryDefaultCheck(request, category);
 
         BloggerPicture picture = galleryService.getPicture(imageId, bloggerId);
         BloggerPicture backupPicture = galleryService.getDefaultPicture(
-                category == null ? BloggerPictureCategoryEnum.BLOGGER_UNIQUE_PICTURE
+                category == null ? BloggerPictureCategoryEnum.DEFAULT_PICTURE
                         : BloggerPictureCategoryEnum.valueOf(category)); //如果目标图片不存在，返回指定类别的默认图片
 
         // 输出图片
@@ -116,6 +116,7 @@ public class ImageController extends BaseBloggerController {
             // 默认上传到私有目录
             int cate = category == null ? BloggerPictureCategoryEnum.PRIVATE.getCode() : category;
 
+            // 普通用户没有指定图片类别的必要
             //检查博主权限
             if (!validateManager.checkBloggerPictureLegal(bloggerId, cate)) {
                 throw exceptionManager.getUnauthorizedException(new RequestContext(request));
@@ -130,8 +131,8 @@ public class ImageController extends BaseBloggerController {
     }
 
     // 检查默认图片类别是否为默认类别
-    private void handleBlogCategoryUniqueCheck(HttpServletRequest request, int category) {
-        if (!BloggerPictureCategoryEnum.isPictureManagerUniqueCategory(category))
+    private void handleBlogCategoryDefaultCheck(HttpServletRequest request, int category) {
+        if (!BloggerPictureCategoryEnum.isDefaultPictureCategory(category))
             throw exceptionManager.getParameterIllegalException(new RequestContext(request));
     }
 

@@ -1,6 +1,7 @@
 package com.duan.blogos.manager;
 
 import com.duan.blogos.dao.blogger.BloggerAccountDao;
+import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
@@ -27,6 +28,9 @@ public class ImageManager {
 
     @Autowired
     private BloggerAccountDao accountDao;
+
+    @Autowired
+    private BloggerPictureDao pictureDao;
 
     /**
      * 将图片保存到博主的对应文件夹下
@@ -112,5 +116,26 @@ public class ImageManager {
         FileUtils.moveFile(oldPicture, newPicture);
 
         return newPicture.getAbsolutePath();
+    }
+
+    /**
+     * 修改图片类别，并移动到对应类别
+     *
+     * @param bloggerId
+     * @param pictureId 图片id
+     * @param category  类别
+     * @return 移动了返回true
+     */
+    public boolean moveImageAndUpdateDbIfNecessary(int bloggerId, int pictureId, BloggerPictureCategoryEnum category) throws IOException {
+        if (pictureId <= 0 || category == null) return false;
+
+        BloggerPicture picture = pictureDao.getPictureById(pictureId);
+        if (picture == null || picture.getCategory() == category.getCode()) return false;
+
+        String newPath = moveImage(picture, bloggerId, category);
+        picture.setPath(newPath);
+        picture.setCategory(category.getCode());
+        return pictureDao.update(picture) > 0;
+
     }
 }

@@ -7,10 +7,10 @@ import com.duan.blogos.dto.blogger.BloggerCategoryDTO;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogCategory;
 import com.duan.blogos.entity.blogger.BloggerPicture;
+import com.duan.blogos.exception.internal.InternalIOException;
 import com.duan.blogos.exception.internal.SQLException;
-import com.duan.blogos.manager.DataFillingManager;
-import com.duan.blogos.manager.DbPropertiesManager;
-import com.duan.blogos.manager.StringConstructorManager;
+import com.duan.blogos.manager.*;
+import com.duan.blogos.manager.validate.BloggerValidateManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.blog.CategoryService;
 import com.duan.blogos.util.ArrayUtils;
@@ -19,10 +19,12 @@ import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.duan.blogos.enums.BloggerPictureCategoryEnum.BLOG_CATEGORY_ICON;
+import static com.duan.blogos.enums.BloggerPictureCategoryEnum.DEFAULT_BLOGGER_BLOG_CATEGORY_ICON;
+import static com.duan.blogos.enums.BloggerPictureCategoryEnum.PUBLIC;
 
 /**
  * Created on 2017/12/19.
@@ -45,6 +47,15 @@ public class CategoryServiceImpl implements CategoryService {
     private StringConstructorManager constructorManager;
 
     @Autowired
+    private BloggerPropertiesManager bloggerPropertiesManager;
+
+    @Autowired
+    private BloggerValidateManager bloggerValidateManager;
+
+    @Autowired
+    private ImageManager imageManager;
+
+    @Autowired
     private BloggerPictureDao pictureDao;
 
     @Autowired
@@ -65,7 +76,21 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public boolean updateBlogCategory(int categoryId, int newIconId, String newTitle, String newBewrite) {
+    public boolean updateBlogCategory(int bloggerId, int categoryId, int newIconId, String newTitle, String newBewrite) {
+
+        if (newIconId > 0) {
+            //默认图片不能被使用
+            if (bloggerValidateManager.isDefaultPicture(newIconId))
+                return false;
+
+            // 将图片修改为公开并移动目录
+            try {
+                imageManager.moveImageAndUpdateDbIfNecessary(bloggerId, newIconId, PUBLIC);
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new InternalIOException(e);
+            }
+        }
 
         BlogCategory category = new BlogCategory();
         if (!StringUtils.isEmpty(newTitle)) category.setTitle(newTitle);
@@ -85,13 +110,21 @@ public class CategoryServiceImpl implements CategoryService {
         BlogCategory category = new BlogCategory();
         category.setBewrite(bewrite);
 
-        if (iconId > 0) category.setIconId(iconId);
-        else {
-            // 默认图片
-            int defaultIconId = pictureDao.getPictureIdByUniqueCategory(BLOG_CATEGORY_ICON.getCode());
-            category.setIconId(defaultIconId);
+        if (iconId > 0) {
+            //默认图片不能被使用
+            if (bloggerValidateManager.isDefaultPicture(iconId))
+                return -1;
+
+            // 将图片修改为公开并移动目录
+            try {
+                imageManager.moveImageAndUpdateDbIfNecessary(bloggerId, iconId, PUBLIC);
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new InternalIOException(e);
+            }
         }
 
+        if (iconId > 0) category.setIconId(iconId);
         category.setBloggerId(bloggerId);
         category.setTitle(title);
         int effect = categoryDao.insert(category);
@@ -107,7 +140,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public boolean deleteCategoryAndMoveBlogsTo(int bloggerId, int categoryId, Integer newCategoryId) {
+    public boolean deleteCategoryAndMoveBlogsTo(int bloggerId, int categoryId, int newCategoryId) {
 
         // 删除数据库类别记录
         int effectDelete = categoryDao.delete(categoryId);
@@ -118,7 +151,7 @@ public class CategoryServiceImpl implements CategoryService {
         String sp = dbPropertiesManager.getStringFiledSplitCharacterForNumber();
 
         // 移除类别即可
-        if (newCategoryId == null) {
+        if (newCategoryId <= 0) {
             blogs.forEach(blog -> {
 
                 int[] cids = StringUtils.intStringDistinctToArray(blog.getCategoryIds(), sp);
@@ -166,16 +199,14 @@ public class CategoryServiceImpl implements CategoryService {
         BloggerPicture icon = null;
         if (iconId == null) {
             // 默认图片
-            Integer defaultIconId = pictureDao.getPictureIdByUniqueCategory(BLOG_CATEGORY_ICON.getCode());
-
-            if (defaultIconId != null)
-                icon = pictureDao.getPictureById(defaultIconId);
+            int pictureManagerId = bloggerPropertiesManager.getPictureManagerBloggerId();
+            icon = pictureDao.getBloggerUniquePicture(pictureManagerId, DEFAULT_BLOGGER_BLOG_CATEGORY_ICON.getCode());
         } else {
             icon = pictureDao.getPictureById(iconId);
         }
 
         if (icon != null)
-            icon.setPath(constructorManager.constructPictureUrl(icon));
+            icon.setPath(constructorManager.constructPictureUrl(icon, DEFAULT_BLOGGER_BLOG_CATEGORY_ICON));
         BloggerCategoryDTO dto = fillingManager.blogCategoryToDTO(category, icon);
 
         return dto;

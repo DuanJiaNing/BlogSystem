@@ -1,6 +1,8 @@
 package com.duan.blogos.manager.validate;
 
+import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.entity.blogger.BloggerAccount;
+import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.manager.BloggerPropertiesManager;
 import com.duan.blogos.service.blogger.BloggerAccountService;
@@ -29,6 +31,9 @@ public class BloggerValidateManager {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private BloggerPictureDao pictureDao;
 
     @Autowired
     private BloggerPropertiesManager propertiesManager;
@@ -90,7 +95,7 @@ public class BloggerValidateManager {
         int pictureManagerId = propertiesManager.getPictureManagerBloggerId();
 
         // 图片管理者可以操作任何类别图片,非图片管理者不能操作只有图片管理者才能操作的图片类=类别
-        return bloggerId == pictureManagerId || !BloggerPictureCategoryEnum.isPictureManageOnlyCategory(category);
+        return bloggerId == pictureManagerId || !BloggerPictureCategoryEnum.isDefaultPictureCategory(category);
     }
 
     /**
@@ -129,4 +134,21 @@ public class BloggerValidateManager {
     public boolean isPictureManagerBlogger(int bloggerId) {
         return propertiesManager.getPictureManagerBloggerId() == bloggerId;
     }
+
+
+    /**
+     * 检查图片是否为默认图片
+     *
+     * @param pictureId 图片id
+     * @return 是返回true
+     */
+    public boolean isDefaultPicture(int pictureId) {
+        if (pictureId <= 0) return false;
+
+        BloggerPicture picture = pictureDao.getPictureById(pictureId);
+        if (picture == null || !BloggerPictureCategoryEnum.isDefaultPictureCategory(picture.getCategory())) return false;
+
+        return true;
+    }
+
 }

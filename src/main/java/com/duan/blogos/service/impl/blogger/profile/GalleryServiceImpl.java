@@ -4,7 +4,6 @@ import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.exception.internal.InternalIOException;
-import com.duan.blogos.exception.internal.SQLException;
 import com.duan.blogos.manager.BloggerPropertiesManager;
 import com.duan.blogos.manager.ImageManager;
 import com.duan.blogos.result.ResultBean;
@@ -66,14 +65,11 @@ public class GalleryServiceImpl implements GalleryService {
         }
         if (path == null) return -1;
 
-        // 如果是图片管理员上传唯一（包括了头像）图片，需要移动其文件夹
+        // 如果是图片管理员上传默认图片，需要移动其文件夹
         int pictureManagerId = bloggerPropertiesManager.getPictureManagerBloggerId();
-        if (pictureManagerId == bloggerId && BloggerPictureCategoryEnum.isPictureManagerUniqueCategory(cate)) {
+        if (pictureManagerId == bloggerId && BloggerPictureCategoryEnum.isDefaultPictureCategory(cate)) {
             // 如果设备上已经有该唯一图片，将原来的图片移到私有文件夹，同时修改数据库
-            removeBloggerUniquePictureIfNecessary(bloggerId, category);
-        } else if (BloggerPictureCategoryEnum.isBloggerUniqueCategory(cate)) {
-            // 博主上传了博主唯一的图片，如头像
-            removeBloggerUniquePictureIfNecessary(bloggerId, category);
+            removeDefaultPictureIfNecessary(bloggerId, category);
         }
 
         //插入新纪录
@@ -84,15 +80,15 @@ public class GalleryServiceImpl implements GalleryService {
 
     /*
      * 腾地方
-     * 移到唯一类图片到私有图片文件夹，同时修改数据库记录
+     * 移到默认图片到私有图片文件夹，同时修改数据库记录
      * @param bloggerId 博主id
      */
-    private void removeBloggerUniquePictureIfNecessary(int bloggerId, BloggerPictureCategoryEnum uniqueCate) {
-        BloggerPicture unique = pictureDao.getBloggerUniquePicture(bloggerId, uniqueCate.getCode());
+    private void removeDefaultPictureIfNecessary(int bloggerId, BloggerPictureCategoryEnum defaultCate) {
+        BloggerPicture unique = pictureDao.getBloggerUniquePicture(bloggerId, defaultCate.getCode());
 
         if (unique != null) {
             try {
-                //移动原来的唯一图片到默认类别图片所在文件夹
+                //移动默认图片到私有类别图片所在文件夹
                 String newPath = imageManager.moveImage(unique, bloggerId, BloggerPictureCategoryEnum.PRIVATE);
 
                 //更新数据库记录
@@ -115,11 +111,10 @@ public class GalleryServiceImpl implements GalleryService {
 
         BloggerPicture picture = getPicture(pictureId);
 
-        // 对于唯一类别图片，图片管理员只能以更新（上传）的方式删除图片，因为这些图片必须时刻存在，头像除外
+        // 对默认图片，图片管理员只能以更新（上传）的方式删除图片，因为这些图片必须时刻存在
         int pictureManagerId = bloggerPropertiesManager.getPictureManagerBloggerId();
         int cate = picture.getCategory();
-        if (bloggerId == pictureManagerId &&
-                BloggerPictureCategoryEnum.isPictureManagerUniqueCategoryWithoutAvatar(cate))
+        if (bloggerId == pictureManagerId && BloggerPictureCategoryEnum.isDefaultPictureCategory(cate))
             return false;
 
         //删除数据库记录
@@ -192,22 +187,22 @@ public class GalleryServiceImpl implements GalleryService {
                 // 如果为图片管理员在操作
                 if (pictureManagerId == bloggerId) {
 
-                    // 以下两种情况将更新失败，对于唯一类别图片，且图片管理员在操作的情况下，要修改类别或删除图片，只能
-                    // 以 普通 -> 唯一 的修改方向替换图片，因为这些图片必须时刻存在，头像视为普通类别
+                    // 以下两种情况将更新失败，对于默认图片，且图片管理员在操作的情况下，要修改类别或删除图片，只能
+                    // 以 普通 -> 默认 的修改方向替换图片，因为这些图片必须时刻存在
 
-                    // 1 目标类别是唯一类别，原先类别也为唯一类别      唯一 -> 唯一
-                    // 2 目标类别为普通类别，原先类别为唯一类别        唯一 -> 普通
+                    // 1 目标类别是默认类别，原先类别也为默认类别      默认 -> 默认
+                    // 2 目标类别为普通类别，原先类别为默认类别        默认 -> 普通
 
                     int oldCategory = oldPicture.getCategory();
-                    if ((BloggerPictureCategoryEnum.isPictureManagerUniqueCategoryWithoutAvatar(oldCategory) &&
-                            BloggerPictureCategoryEnum.isPictureManagerUniqueCategoryWithoutAvatar(category.getCode())) ||
-                            (BloggerPictureCategoryEnum.isPictureManagerUniqueCategoryWithoutAvatar(oldCategory) &&
-                                    !BloggerPictureCategoryEnum.isPictureManagerUniqueCategoryWithoutAvatar(category.getCode()))) {
+                    if ((BloggerPictureCategoryEnum.isDefaultPictureCategory(oldCategory) &&
+                            BloggerPictureCategoryEnum.isDefaultPictureCategory(category.getCode())) ||
+                            (BloggerPictureCategoryEnum.isDefaultPictureCategory(oldCategory) &&
+                                    !BloggerPictureCategoryEnum.isDefaultPictureCategory(category.getCode()))) {
                         return false;
                     } else {
 
                         //腾位置，如果需要的话
-                        removeBloggerUniquePictureIfNecessary(bloggerId, category);
+                        removeDefaultPictureIfNecessary(bloggerId, category);
 
                         //移动到目标目录
                         newPath = imageManager.moveImage(oldPicture, bloggerId, category);

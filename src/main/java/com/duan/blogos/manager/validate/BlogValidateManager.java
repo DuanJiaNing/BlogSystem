@@ -3,10 +3,14 @@ package com.duan.blogos.manager.validate;
 import com.duan.blogos.dao.blog.BlogDao;
 import com.duan.blogos.dao.blog.BlogLabelDao;
 import com.duan.blogos.dao.blog.BlogStatisticsDao;
+import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogStatistics;
+import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BlogStatusEnum;
+import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.service.blogger.blog.BlogService;
+import org.apache.commons.io.filefilter.OrFileFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -130,4 +134,5 @@ public class BlogValidateManager {
 
         return true;
     }
+
 }

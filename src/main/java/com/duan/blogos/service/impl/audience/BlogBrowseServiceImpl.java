@@ -12,6 +12,7 @@ import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.entity.blogger.BloggerProfile;
 import com.duan.blogos.enums.BlogCommentStatusEnum;
+import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.manager.DbPropertiesManager;
 import com.duan.blogos.manager.StringConstructorManager;
@@ -116,8 +117,7 @@ public class BlogBrowseServiceImpl implements BlogBrowseService {
         if (id != null) {
             BloggerPicture avatar = pictureDao.getPictureById(id);
             if (avatar != null) {
-                avatar.setPath(constructorManager.constructPictureUrl(avatar
-                ));
+                avatar.setPath(constructorManager.constructPictureUrl(avatar, BloggerPictureCategoryEnum.DEFAULT_BLOGGER_AVATAR));
             }
 
             return avatar;

@@ -26,16 +26,18 @@ public interface CategoryService {
     /**
      * 修改类别
      *
+     * @param bloggerId  博主id
      * @param categoryId 类别id
      * @param newIconId  新的类别图标，不修改传 -1
      * @param newTitle   新标题，不修改传 null
      * @param newBewrite 新描述，不修改传 null
      * @return 更新失败为false
      */
-    boolean updateBlogCategory(int categoryId, int newIconId, String newTitle, String newBewrite);
+    boolean updateBlogCategory(int bloggerId, int categoryId, int newIconId, String newTitle, String newBewrite);
 
     /**
      * 新增博文类别
+     * 若指定了类别图标，将图标对应图片修改为“公开”
      *
      * @param bloggerId 类别所属博主id
      * @param iconId    类别标签id，为null传递-1
@@ -58,9 +60,9 @@ public interface CategoryService {
      *
      * @param bloggerId     博主id
      * @param categoryId    要删除的类别
-     * @param newCategoryId 新的类别（新类别创建者创建的类别）
+     * @param newCategoryId 新的类别（新类别创建者创建的类别），不修改传递-1
      */
-    boolean deleteCategoryAndMoveBlogsTo(int bloggerId, int categoryId, Integer newCategoryId);
+    boolean deleteCategoryAndMoveBlogsTo(int bloggerId, int categoryId, int newCategoryId);
 
     /**
      * 通过计算类别数量，来检查指定博主是否创建过指定类别
