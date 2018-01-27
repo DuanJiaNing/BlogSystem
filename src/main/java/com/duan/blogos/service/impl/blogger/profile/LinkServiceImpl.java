@@ -7,6 +7,7 @@ import com.duan.blogos.entity.blogger.BloggerLink;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.manager.BloggerPropertiesManager;
 import com.duan.blogos.manager.DataFillingManager;
+import com.duan.blogos.manager.StringConstructorManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.profile.LinkService;
 import com.duan.blogos.util.CollectionUtils;
@@ -38,6 +39,9 @@ public class LinkServiceImpl implements LinkService {
     @Autowired
     private BloggerPropertiesManager bloggerPropertiesManager;
 
+    @Autowired
+    private StringConstructorManager constructorManager;
+
     @Override
     public ResultBean<List<BloggerLinkDTO>> listBloggerLink(int bloggerId, int offset, int rows) {
 
@@ -50,6 +54,8 @@ public class LinkServiceImpl implements LinkService {
                     pictureDao.getBloggerUniquePicture(bloggerPropertiesManager.getPictureManagerBloggerId(),
                             DEFAULT_BLOGGER_LINK_ICON.getCode()) :
                     pictureDao.getPictureById(iconId);
+            icon.setPath(constructorManager.constructPictureUrl(icon, DEFAULT_BLOGGER_LINK_ICON));
+
             BloggerLinkDTO dto = fillingManager.bloggerLinkToDTO(link, icon);
             result.add(dto);
         }
@@ -60,6 +66,9 @@ public class LinkServiceImpl implements LinkService {
     @Override
     public int insertBloggerLink(int bloggerId, int iconId, String title, String url, String bewrite) {
 
+        //TODO 修改图片可见性
+
+        // 新增链接
         BloggerLink link = new BloggerLink();
         link.setBewrite(bewrite);
         link.setBloggerId(bloggerId);
@@ -74,6 +83,10 @@ public class LinkServiceImpl implements LinkService {
 
     @Override
     public boolean updateBloggerLink(int linkId, int newBloggerId, int newIconId, String newTitle, String newUrl, String newBewrite) {
+
+        //TODO 修改图片可见性
+
+        // 修改链接
         BloggerLink link = new BloggerLink();
         link.setBewrite(newBewrite);
         link.setBloggerId(newBloggerId < 0 ? null : newBloggerId);

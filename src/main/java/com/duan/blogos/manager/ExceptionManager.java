@@ -4,6 +4,7 @@ import com.duan.blogos.exception.BaseRuntimeException;
 import com.duan.blogos.exception.api.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.RequestContext;
+import sun.misc.Request;
 
 /**
  * Created on 2017/12/26.
@@ -85,4 +86,7 @@ public class ExceptionManager {
         return new BlogContentIllegalException(context.getMessage("blog.illegal"));
     }
 
+    public BaseRuntimeException getDuplicationDataException(RequestContext context) {
+        return new DuplicationDataException(context.getMessage("common.duplicationData"));
+    }
 }

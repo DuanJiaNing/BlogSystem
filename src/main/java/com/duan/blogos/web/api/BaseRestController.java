@@ -9,6 +9,7 @@ import com.duan.blogos.manager.validate.BlogValidateManager;
 import com.duan.blogos.manager.validate.BloggerValidateManager;
 import com.duan.blogos.result.ResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -68,7 +69,7 @@ public class BaseRestController {
     @ExceptionHandler(BaseRuntimeException.class)
     @ResponseBody
     // 注解无法继承，所以子类不允许覆盖这些方法
-    protected final ResultBean handlerException(BaseRuntimeException e) {
+    protected final ResultBean handleException(BaseRuntimeException e) {
         return new ResultBean(e);
     }
 
@@ -77,7 +78,7 @@ public class BaseRestController {
      */
     @ExceptionHandler(InternalRuntimeException.class)
     @ResponseBody
-    protected final ResultBean handlerException(HttpServletRequest request, BaseRuntimeException e) {
+    protected final ResultBean handleException(HttpServletRequest request, Exception e) {
         //转化为未知异常
         return new ResultBean(exceptionManager.getUnknownException(new RequestContext(request), e));
     }
@@ -86,9 +87,18 @@ public class BaseRestController {
      * 未进行转化的异常
      */
     @ExceptionHandler(Exception.class)
-    protected final void handlerException(HttpServletRequest request, Throwable e) throws Throwable {
-        throw e;
+    @ResponseBody
+    protected final ResultBean handleException(HttpServletRequest request, Throwable e) {
+
+        //---------------未进行转化但需要通知调用者的异常--------------^
+        if (e instanceof DuplicateKeyException) {
+            // 数据库“重复键”，违反唯一约束错误
+            return handleException(exceptionManager.getDuplicationDataException(new RequestContext(request)));
+        }
+
+        return handleException(request, (Exception) e);
     }
+
 
     /**
      * 统一处理“请求参数缺失”错误

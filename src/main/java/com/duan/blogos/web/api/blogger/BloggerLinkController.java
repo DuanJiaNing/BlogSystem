@@ -62,17 +62,16 @@ public class BloggerLinkController extends BaseBloggerController {
                               @RequestParam("title") String title,
                               @RequestParam("url") String url,
                               @RequestParam(value = "bewrite", required = false) String bewrite) {
-        handleAccountCheck(request, bloggerId);
-        RequestContext context = new RequestContext(request);
+        handleBloggerSignInCheck(request, bloggerId);
 
         //检查图片是否存在
         if (iconId != null && iconId > 0 && !galleryService.getPictureForCheckExist(iconId)) {
-            throw exceptionManager.getUnknownPictureException(context);
+            throw exceptionManager.getUnknownPictureException(new RequestContext(request));
         }
 
         //检查title和url规范
         if (StringUtils.isEmpty(title) || !StringUtils.isURL(url))
-            throw exceptionManager.getParameterIllegalException(context);
+            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
 
         int id = linkService.insertBloggerLink(bloggerId, iconId == null ? -1 : iconId, title, url, bewrite);
         if (id <= 0) handlerOperateFail(request);
