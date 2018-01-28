@@ -1,7 +1,6 @@
 package com.duan.blogos.service.blogger.profile;
 
 import com.duan.blogos.dto.blogger.BloggerLinkDTO;
-import com.duan.blogos.entity.blogger.BloggerLink;
 import com.duan.blogos.result.ResultBean;
 
 import java.util.List;
@@ -47,21 +46,20 @@ public interface LinkService {
     /**
      * 更新链接
      *
-     * @param linkId       链接id
-     * @param newBloggerId 新的博主（链接所属博主），不改变传 -1
-     * @param newIconId    新的图片id，不改变传 -1
-     * @param newTitle     新的标题，不改变传 null
-     * @param newUrl       新的url，不改变传 null
-     * @param newBewrite   新的描述，不改变传 null
+     * @param linkId     链接id
+     * @param newIconId  新的图片id，不改变传 -1
+     * @param newTitle   新的标题，不改变传 null
+     * @param newUrl     新的url，不改变传 null
+     * @param newBewrite 新的描述，不改变传 null
      * @return 更新失败为false
      */
-    boolean updateBloggerLink(int linkId, int newBloggerId, int newIconId, String newTitle,
+    boolean updateBloggerLink(int linkId, int newIconId, String newTitle,
                               String newUrl, String newBewrite);
 
     /**
      * 检查链接是否存在
      *
-     * @param linkId   链接id
+     * @param linkId 链接id
      * @return 存在为true
      */
     boolean getLinkForCheckExist(int linkId);

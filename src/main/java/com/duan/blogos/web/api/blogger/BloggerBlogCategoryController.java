@@ -78,7 +78,7 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
 
         // 检查博主是否登录
         handleBloggerSignInCheck(request, bloggerId);
-        handlePictureExistCHeck(request, bloggerId, iconId);
+        handlePictureExistCheck(request, bloggerId, iconId);
 
         if (StringUtils.isEmpty(title))
             throw exceptionManager.getParameterIllegalException(new RequestContext(request));
@@ -103,7 +103,7 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
         handleParamAllNullForUpdate(request, newIconId, newTitle, newBewrite);
         handleBloggerSignInCheck(request, bloggerId);
         handleCategoryExistCheck(request, bloggerId, categoryId);
-        handlePictureExistCHeck(request, bloggerId, newIconId);
+        handlePictureExistCheck(request, bloggerId, newIconId);
 
         if (!categoryService.updateBlogCategory(bloggerId, categoryId, newIconId, newTitle, newBewrite))
             handlerOperateFail(request);
@@ -115,12 +115,6 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
     private void handleCategoryExistCheck(HttpServletRequest request, Integer bloggerId, Integer categoryId) {
         if (!bloggerValidateManager.checkBloggerBlogCategoryExist(bloggerId, categoryId))
             throw exceptionManager.getUnknownCategoryException(new RequestContext(request));
-    }
-
-    // 检查图片存在
-    private void handlePictureExistCHeck(HttpServletRequest request, Integer bloggerId, Integer iconId) {
-        if (iconId != null && !bloggerValidateManager.checkBloggerPictureExist(bloggerId, iconId))
-            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
     }
 
     /**

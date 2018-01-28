@@ -7,10 +7,8 @@ import com.duan.blogos.dto.blogger.BloggerCategoryDTO;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogCategory;
 import com.duan.blogos.entity.blogger.BloggerPicture;
-import com.duan.blogos.exception.internal.InternalIOException;
 import com.duan.blogos.exception.internal.SQLException;
 import com.duan.blogos.manager.*;
-import com.duan.blogos.manager.validate.BloggerValidateManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.blog.CategoryService;
 import com.duan.blogos.util.ArrayUtils;
@@ -19,12 +17,10 @@ import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.duan.blogos.enums.BloggerPictureCategoryEnum.DEFAULT_BLOGGER_BLOG_CATEGORY_ICON;
-import static com.duan.blogos.enums.BloggerPictureCategoryEnum.PUBLIC;
 
 /**
  * Created on 2017/12/19.
@@ -50,9 +46,6 @@ public class CategoryServiceImpl implements CategoryService {
     private BloggerPropertiesManager bloggerPropertiesManager;
 
     @Autowired
-    private BloggerValidateManager bloggerValidateManager;
-
-    @Autowired
     private ImageManager imageManager;
 
     @Autowired
@@ -76,40 +69,20 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public boolean updateBlogCategory(int bloggerId, int categoryId, int newIconId, String newTitle, String newBewrite) {
+    public boolean updateBlogCategory(int bloggerId, int categoryId, int newIconId, String newTitle,
+                                      String newBewrite) {
 
         BlogCategory category = categoryDao.getCategory(bloggerId, categoryId);
-        if (category == null) return false;
-
-        // 要修改图标并且与原图标不一样
-        if (newIconId > 0 && !Integer.valueOf(newIconId).equals(category.getIconId())) {
-            //默认图片不能被使用
-            if (bloggerValidateManager.isDefaultPicture(newIconId))
-                return false;
-
-            // 将新图标指向图片修改为公开并移动目录（需要的话）
-            try {
-                imageManager.moveImageAndUpdateDbIfNecessary(bloggerId, newIconId, PUBLIC);
-            } catch (IOException e) {
-                e.printStackTrace();
-                throw new InternalIOException(e);
-            }
-
-            //旧图标useCount-- 新图标useCount++
-            Integer oldIconId;
-            if ((oldIconId = category.getIconId()) != null)
-                pictureDao.updateUseCountMinus(oldIconId);
-            pictureDao.updateUseCountPlus(newIconId);
-
-        }
-
+        Integer oldIconId = category.getIconId();
         if (!StringUtils.isEmpty(newTitle)) category.setTitle(newTitle);
         if (!StringUtils.isEmpty(newBewrite)) category.setBewrite(newBewrite);
         if (newIconId > 0) category.setIconId(newIconId);
         category.setId(categoryId);
-
         int effect = categoryDao.update(category);
         if (effect <= 0) return false;
+
+        // 修改图片可见性，引用次数
+        imageManager.imageUpdateHandle(bloggerId, newIconId, oldIconId);
 
         return true;
     }
@@ -119,29 +92,14 @@ public class CategoryServiceImpl implements CategoryService {
 
         BlogCategory category = new BlogCategory();
         category.setBewrite(bewrite);
-
-        if (iconId > 0) {
-            //默认图片不能被使用
-            if (bloggerValidateManager.isDefaultPicture(iconId))
-                return -1;
-
-            // 将图片修改为公开并移动目录
-            try {
-                imageManager.moveImageAndUpdateDbIfNecessary(bloggerId, iconId, PUBLIC);
-            } catch (IOException e) {
-                e.printStackTrace();
-                throw new InternalIOException(e);
-            }
-
-            // 图片引用次数++
-            pictureDao.updateUseCountPlus(iconId);
-        }
-
         if (iconId > 0) category.setIconId(iconId);
         category.setBloggerId(bloggerId);
         category.setTitle(title);
         int effect = categoryDao.insert(category);
         if (effect <= 0) return -1;
+
+        // 修改图片可见性，引用次数
+        imageManager.imageInsertHandle(bloggerId, iconId);
 
         return category.getId();
     }

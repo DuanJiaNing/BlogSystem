@@ -2,7 +2,6 @@ package com.duan.blogos.web.api.blogger;
 
 import com.duan.blogos.dto.blogger.BloggerLinkDTO;
 import com.duan.blogos.result.ResultBean;
-import com.duan.blogos.service.blogger.profile.GalleryService;
 import com.duan.blogos.service.blogger.profile.LinkService;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +28,6 @@ public class BloggerLinkController extends BaseBloggerController {
 
     @Autowired
     private LinkService linkService;
-
-    @Autowired
-    private GalleryService galleryService;
 
     /**
      * 获取链接
@@ -63,11 +59,7 @@ public class BloggerLinkController extends BaseBloggerController {
                               @RequestParam("url") String url,
                               @RequestParam(value = "bewrite", required = false) String bewrite) {
         handleBloggerSignInCheck(request, bloggerId);
-
-        //检查图片是否存在
-        if (iconId != null && iconId > 0 && !galleryService.getPictureForCheckExist(iconId)) {
-            throw exceptionManager.getUnknownPictureException(new RequestContext(request));
-        }
+        handlePictureExistCheck(request, bloggerId, iconId);
 
         //检查title和url规范
         if (StringUtils.isEmpty(title) || !StringUtils.isURL(url))
@@ -77,13 +69,6 @@ public class BloggerLinkController extends BaseBloggerController {
         if (id <= 0) handlerOperateFail(request);
 
         return new ResultBean<>(id);
-    }
-
-    //检查链接是否存在
-    private void checkLink(Integer linkId, RequestContext context) {
-        if (linkId == null || linkId <= 0 || !linkService.getLinkForCheckExist(linkId)) {
-            throw exceptionManager.getUnknownLinkException(context);
-        }
     }
 
     /**
@@ -97,26 +82,23 @@ public class BloggerLinkController extends BaseBloggerController {
                              @RequestParam(value = "title", required = false) String newTitle,
                              @RequestParam(value = "url", required = false) String newUrl,
                              @RequestParam(value = "bewrite", required = false) String newBewrite) {
-        handleAccountCheck(request, bloggerId);
         RequestContext context = new RequestContext(request);
-        checkLink(linkId, context);
 
         //都为null则无需更新
         if (newIconId == null && newTitle == null && newUrl == null && newBewrite == null) {
             throw exceptionManager.getParameterIllegalException(context);
         }
 
-        //检查图片是否存在
-        if (newIconId != null && newIconId > 0 && !galleryService.getPictureForCheckExist(newIconId)) {
-            throw exceptionManager.getUnknownPictureException(context);
-        }
+        handleBloggerSignInCheck(request, bloggerId);
+        handlePictureExistCheck(request, bloggerId, newIconId);
+        checkLinkExist(linkId, context);
 
         //检查url规范
         if (newUrl != null && !StringUtils.isURL(newUrl)) {
             throw exceptionManager.getParameterIllegalException(context);
         }
 
-        boolean result = linkService.updateBloggerLink(linkId, -1, newIconId == null ? -1 : newIconId, newTitle, newUrl, newBewrite);
+        boolean result = linkService.updateBloggerLink(linkId, newIconId == null ? -1 : newIconId, newTitle, newUrl, newBewrite);
         if (!result) handlerOperateFail(request);
 
         return new ResultBean<>("");
@@ -129,9 +111,9 @@ public class BloggerLinkController extends BaseBloggerController {
     public ResultBean delete(HttpServletRequest request,
                              @PathVariable Integer bloggerId,
                              @PathVariable Integer linkId) {
-        handleAccountCheck(request, bloggerId);
+        handleBloggerSignInCheck(request, bloggerId);
         RequestContext context = new RequestContext(request);
-        checkLink(linkId, context);
+        checkLinkExist(linkId, context);
 
         boolean result = linkService.deleteBloggerLink(linkId);
         if (!result) handlerOperateFail(request);
@@ -139,5 +121,12 @@ public class BloggerLinkController extends BaseBloggerController {
         return new ResultBean<>("");
     }
 
+
+    //检查链接是否存在
+    private void checkLinkExist(Integer linkId, RequestContext context) {
+        if (linkId == null || linkId <= 0 || !linkService.getLinkForCheckExist(linkId)) {
+            throw exceptionManager.getUnknownLinkException(context);
+        }
+    }
 
 }

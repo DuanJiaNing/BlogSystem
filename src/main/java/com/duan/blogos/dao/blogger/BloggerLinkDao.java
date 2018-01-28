@@ -34,4 +34,12 @@ public interface BloggerLinkDao extends BaseDao<BloggerLink> {
      * @return 链接id
      */
     Integer getLinkForCheckExist(int linkId);
+
+    /**
+     * 根据id查询链接
+     *
+     * @param linkId id
+     * @return 查询结果
+     */
+    BloggerLink getLink(int linkId);
 }

@@ -60,4 +60,14 @@ public class BaseBloggerController extends BaseRestController {
         throw exceptionManager.getParameterIllegalException(new RequestContext(request));
     }
 
+    /**
+     * 检查指定博主的图片存在
+     *
+     * @param bloggerId 博主id
+     * @param pictureId 图片id
+     */
+    protected void handlePictureExistCheck(HttpServletRequest request, Integer bloggerId, Integer pictureId) {
+        if (pictureId != null && !bloggerValidateManager.checkBloggerPictureExist(bloggerId, pictureId))
+            throw exceptionManager.getUnknownPictureException(new RequestContext(request));
+    }
 }

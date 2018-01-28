@@ -93,17 +93,8 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
         int[] imids = parseContentForImageIds(content, bloggerId);
         // UPDATE: 2018/1/19 更新 自增并没有实际作用
         if (!CollectionUtils.isEmpty(imids)) {
-            Arrays.stream(imids).forEach(id -> {
-                pictureDao.updateUseCountPlus(id);
-
-                // 将用到的图片修改为public（有必要的话）
-                try {
-                    imageManager.moveImageAndUpdateDbIfNecessary(bloggerId, id, BloggerPictureCategoryEnum.PUBLIC);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-            });
+            // 修改图片可见性，引用次数
+            Arrays.stream(imids).forEach(id -> imageManager.imageInsertHandle(bloggerId, id));
         }
 
         // 4 lucene创建索引

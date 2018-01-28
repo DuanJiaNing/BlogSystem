@@ -46,6 +46,12 @@
         WHERE id = #{value}
     </select>
 
+    <select id="getLink" resultType="BloggerLink">
+        SELECT *
+        FROM blogger_link
+        WHERE id = #{value}
+    </select>
+
     <insert id="insert" parameterType="BloggerLink" useGeneratedKeys="true" keyProperty="id">
         <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
             SELECT LAST_INSERT_ID() AS id

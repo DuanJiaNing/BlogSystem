@@ -7,6 +7,7 @@ import com.duan.blogos.entity.blogger.BloggerLink;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.manager.BloggerPropertiesManager;
 import com.duan.blogos.manager.DataFillingManager;
+import com.duan.blogos.manager.ImageManager;
 import com.duan.blogos.manager.StringConstructorManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.profile.LinkService;
@@ -42,6 +43,9 @@ public class LinkServiceImpl implements LinkService {
     @Autowired
     private StringConstructorManager constructorManager;
 
+    @Autowired
+    private ImageManager imageManager;
+
     @Override
     public ResultBean<List<BloggerLinkDTO>> listBloggerLink(int bloggerId, int offset, int rows) {
 
@@ -66,8 +70,6 @@ public class LinkServiceImpl implements LinkService {
     @Override
     public int insertBloggerLink(int bloggerId, int iconId, String title, String url, String bewrite) {
 
-        //TODO 修改图片可见性
-
         // 新增链接
         BloggerLink link = new BloggerLink();
         link.setBewrite(bewrite);
@@ -78,18 +80,19 @@ public class LinkServiceImpl implements LinkService {
         int effect = linkDao.insert(link);
         if (effect < 0) return -1;
 
+        // 修改图片可见性，引用次数
+        imageManager.imageInsertHandle(bloggerId, iconId);
+
         return link.getId();
     }
 
     @Override
-    public boolean updateBloggerLink(int linkId, int newBloggerId, int newIconId, String newTitle, String newUrl, String newBewrite) {
-
-        //TODO 修改图片可见性
+    public boolean updateBloggerLink(int linkId, int newIconId, String newTitle, String newUrl, String newBewrite) {
 
         // 修改链接
-        BloggerLink link = new BloggerLink();
+        BloggerLink link = linkDao.getLink(linkId);
+        Integer oldIconId = link.getIconId();
         link.setBewrite(newBewrite);
-        link.setBloggerId(newBloggerId < 0 ? null : newBloggerId);
         link.setIconId(newIconId < 0 ? null : newIconId);
         link.setTitle(newTitle);
         link.setUrl(newUrl);
@@ -97,11 +100,18 @@ public class LinkServiceImpl implements LinkService {
         int effect = linkDao.update(link);
         if (effect < 0) return false;
 
+        // 修改图片可见性，引用次数
+        imageManager.imageUpdateHandle(link.getBloggerId(), newIconId, oldIconId);
+
         return true;
     }
 
     @Override
     public boolean deleteBloggerLink(int linkId) {
+        BloggerLink link = linkDao.getLink(linkId);
+        if (link == null) return false;
+        if (link.getIconId() != null) pictureDao.updateUseCountMinus(link.getIconId());
+
         int effect = linkDao.delete(linkId);
         if (effect < 0) return false;
         return true;

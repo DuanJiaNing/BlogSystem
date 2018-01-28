@@ -146,11 +146,6 @@ public class GalleryServiceImpl implements GalleryService {
     }
 
     @Override
-    public boolean getPictureForCheckExist(int pictureId) {
-        return pictureDao.getPictureById(pictureId) != null;
-    }
-
-    @Override
     public BloggerPicture getDefaultPicture(BloggerPictureCategoryEnum category) {
         return pictureDao.getBloggerUniquePicture(bloggerPropertiesManager.getPictureManagerBloggerId(),
                 category.getCode());
