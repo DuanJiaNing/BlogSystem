@@ -1,14 +1,15 @@
 package com.duan.blogos.web.api.blogger;
 
 import com.duan.blogos.entity.blogger.BloggerAccount;
+import com.duan.blogos.manager.MessageManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.BloggerAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.RequestContext;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,20 +17,26 @@ import javax.servlet.http.HttpSession;
 /**
  * Created on 2018/1/11.
  * 博主登录
+ * <p>
+ * 1 用户名登录
+ * 2 电话号码登录
  *
  * @author DuanJiaNing
  */
-@Controller
-@RequestMapping("/blogger")
+@RestController
+@RequestMapping("/blogger/login")
 public class BloggerLoginController extends BaseBloggerController {
 
     @Autowired
     private BloggerAccountService accountService;
 
-    @RequestMapping(value = "/login/name", method = RequestMethod.POST)
-    public String loginWithUserName(HttpServletRequest request,
-                                    @RequestParam("username") String userName,
-                                    @RequestParam("password") String password) {
+    @Autowired
+    private MessageManager messageManager;
+
+    @RequestMapping(value = "/way=name", method = RequestMethod.POST)
+    public ResultBean loginWithUserName(HttpServletRequest request,
+                                        @RequestParam("username") String userName,
+                                        @RequestParam("password") String password) {
         // TODO 使用shiro
 
         BloggerAccount account = accountService.getAccount(userName);
@@ -39,25 +46,24 @@ public class BloggerLoginController extends BaseBloggerController {
             session.setAttribute(bloggerPropertiesManager.getSessionNameOfBloggerId(), account.getId());
             session.setAttribute(bloggerPropertiesManager.getSessionNameOfBloggerName(), account.getUsername());
 
-            return "blogger/main";
+            // 成功登录
+            return new ResultBean<>("");
         } else {
 
-            request.getServletContext().setAttribute(bloggerPropertiesManager.getSessionNameOfErrorMsg(), "登陆失败");
-            return "login";
+            // TODO 判断登录失败的原因
+            String errorMsg = messageManager.loginFail(new RequestContext(request), false);
+            request.getServletContext().setAttribute(bloggerPropertiesManager.getSessionNameOfErrorMsg(), errorMsg);
 
+            return new ResultBean(exceptionManager.getLoginFailException(new RequestContext(request), false));
         }
     }
 
-    @RequestMapping(value = "/login/phone", method = RequestMethod.POST)
-    public void loginWithPhoneNumber(HttpServletRequest request,
-                                     @RequestParam("phone") String phone,
-                                     @RequestParam("password") String password) {
+    @RequestMapping(value = "/way=phone", method = RequestMethod.POST)
+    public ResultBean loginWithPhoneNumber(HttpServletRequest request,
+                                           @RequestParam("phone") String phone,
+                                           @RequestParam("password") String password) {
 
-    }
-
-    @RequestMapping("/login")
-    public String login() {
-        return "login";
+        return null;
     }
 
 }

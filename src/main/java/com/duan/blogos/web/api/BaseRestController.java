@@ -8,6 +8,7 @@ import com.duan.blogos.manager.WebsitePropertiesManager;
 import com.duan.blogos.manager.validate.BlogValidateManager;
 import com.duan.blogos.manager.validate.BloggerValidateManager;
 import com.duan.blogos.result.ResultBean;
+import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -107,6 +108,15 @@ public class BaseRestController {
     @ResponseBody
     protected final ResultBean handlerException(HttpServletRequest request, MissingServletRequestParameterException e) {
         return new ResultBean(exceptionManager.getMissingRequestParameterException(new RequestContext(request), e));
+    }
+
+    /**
+     * 统一处理“请求参数与目标参数类型不匹配”错误
+     */
+    @ExceptionHandler(TypeMismatchException.class)
+    @ResponseBody
+    protected final ResultBean handlerException(HttpServletRequest request, TypeMismatchException e) {
+        return new ResultBean(exceptionManager.getParameterTypeMismatchException(new RequestContext(request), e));
     }
 
     /**

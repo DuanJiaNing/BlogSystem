@@ -77,4 +77,12 @@ public interface BloggerAccountService {
      */
     ResultBean<BloggerDTO> getBlogger(int bloggerId);
 
+    /**
+     * 删除账号
+     *
+     * @param bloggerId 博主id
+     * @return 上传成功返回true
+     */
+    boolean deleteAccount(int bloggerId);
+
 }

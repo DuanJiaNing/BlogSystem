@@ -20,7 +20,7 @@
                 email=#{email},
             </if>
             <if test="avatarId != null">
-                avatar_id=#{avatarId}
+                avatar_id=#{avatarId},
             </if>
             <if test="aboutMe != null">
                 about_me=#{aboutMe},
@@ -30,7 +30,7 @@
             </if>
         </set>
         <where>
-            blogger_id=#{bloggerId}
+            id=#{id}
         </where>
     </update>
 

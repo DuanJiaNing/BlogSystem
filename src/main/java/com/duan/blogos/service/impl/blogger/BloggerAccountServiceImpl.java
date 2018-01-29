@@ -53,4 +53,9 @@ public class BloggerAccountServiceImpl implements BloggerAccountService {
     public ResultBean<BloggerDTO> getBlogger(int bloggerId) {
         return null;
     }
+
+    @Override
+    public boolean deleteAccount(int bloggerId) {
+        return false;
+    }
 }

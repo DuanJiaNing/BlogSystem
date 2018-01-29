@@ -53,10 +53,12 @@ public class BloggerProfileController extends BaseBloggerController {
                                  @RequestParam(value = "email", required = false) String email,
                                  @RequestParam(value = "aboutMe", required = false) String aboutMe,
                                  @RequestParam(value = "intro", required = false) String intro) {
-        handleAccountCheck(request, bloggerId);
+        handleBloggerSignInCheck(request, bloggerId);
+        handlePictureExistCheck(request, bloggerId, avatarId);
+
         checkParams(phone, email, request);
-        int av = avatarId == null || avatarId <= 0 ? -1 : avatarId;
-        int id = profileService.insertBloggerProfile(bloggerId, av, phone, email, aboutMe, intro);
+        int id = profileService.insertBloggerProfile(bloggerId, avatarId == null || avatarId <= 0 ? -1 : avatarId,
+                phone, email, aboutMe, intro);
         if (id <= 0) handlerOperateFail(request);
 
         return new ResultBean<>(id);
@@ -64,8 +66,11 @@ public class BloggerProfileController extends BaseBloggerController {
 
     private void checkParams(String phone, String email, HttpServletRequest request) {
         RequestContext context = new RequestContext(request);
-        if (phone != null && !StringUtils.isPhone(phone)) throw exceptionManager.getParameterIllegalException(context);
-        if (email != null && !StringUtils.isEmail(email)) throw exceptionManager.getParameterIllegalException(context);
+        if (phone != null && !StringUtils.isPhone(phone))
+            throw exceptionManager.getParameterFormatIllegalException(context);
+
+        if (email != null && !StringUtils.isEmail(email))
+            throw exceptionManager.getParameterFormatIllegalException(context);
     }
 
     /**
@@ -84,7 +89,9 @@ public class BloggerProfileController extends BaseBloggerController {
             throw exceptionManager.getParameterIllegalException(new RequestContext(request));
         }
 
-        handleAccountCheck(request, bloggerId);
+        handleBloggerSignInCheck(request, bloggerId);
+        handlePictureExistCheck(request, bloggerId, avatarId);
+
         checkParams(phone, email, request);
         int av = avatarId == null || avatarId <= 0 ? -1 : avatarId;
         boolean result = profileService.updateBloggerProfile(bloggerId, av, phone, email, aboutMe, intro);
@@ -100,7 +107,7 @@ public class BloggerProfileController extends BaseBloggerController {
     @RequestMapping(method = RequestMethod.DELETE)
     public ResultBean delete(HttpServletRequest request,
                              @PathVariable Integer bloggerId) {
-        handleAccountCheck(request, bloggerId);
+        handleBloggerSignInCheck(request, bloggerId);
 
         boolean result = profileService.deleteBloggerProfile(bloggerId);
         if (!result) handlerOperateFail(request);

@@ -146,9 +146,31 @@ public class BloggerValidateManager {
         if (pictureId <= 0) return false;
 
         BloggerPicture picture = pictureDao.getPictureById(pictureId);
-        if (picture == null || !BloggerPictureCategoryEnum.isDefaultPictureCategory(picture.getCategory())) return false;
+        if (picture == null || !BloggerPictureCategoryEnum.isDefaultPictureCategory(picture.getCategory()))
+            return false;
 
         return true;
     }
 
+    /**
+     * 注册时检查用户名合法性
+     *
+     * @param username 用户名
+     * @return 合法返回true
+     */
+    public boolean checkUserName(String username) {
+        // TODO
+        return true;
+    }
+
+    /**
+     * 注册时检查用户名合法性
+     *
+     * @param password 用户名
+     * @return 合法返回true
+     */
+    public boolean checkPassword(String password) {
+        // TODO
+        return true;
+    }
 }

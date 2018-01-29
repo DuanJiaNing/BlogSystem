@@ -4,7 +4,6 @@ import com.duan.blogos.exception.BaseRuntimeException;
 import com.duan.blogos.exception.api.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.RequestContext;
-import sun.misc.Request;
 
 /**
  * Created on 2017/12/26.
@@ -89,4 +88,18 @@ public class ExceptionManager {
     public BaseRuntimeException getDuplicationDataException(RequestContext context) {
         return new DuplicationDataException(context.getMessage("common.duplicationData"));
     }
+
+    public BaseRuntimeException getParameterFormatIllegalException(RequestContext context) {
+        return new ParameterFormatIllegalException(context.getMessage("common.parameterFormatIllegal"));
+    }
+
+    public BaseRuntimeException getParameterTypeMismatchException(RequestContext context, Throwable e) {
+        return new ParameterTypeMismatchException(context.getMessage("common.parameterTypeMismatch"), e);
+    }
+
+    public BaseRuntimeException getLoginFailException(RequestContext context, boolean passwordIncorrect) {
+        return new LoginFailException(context.getMessage(passwordIncorrect ? "blogger.passwordIncorrect" : "blogger.unknownAccount"));
+    }
+
+
 }
