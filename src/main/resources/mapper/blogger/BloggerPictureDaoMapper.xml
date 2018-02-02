@@ -42,6 +42,12 @@
         WHERE id = #{value}
     </select>
 
+    <select id="getPictureByBloggerId" resultType="BloggerPicture">
+        SELECT *
+        FROM blogger_picture
+        WHERE blogger_id = #{value}
+    </select>
+
     <update id="update" parameterType="BloggerPicture">
         UPDATE blogger_picture
         <set>

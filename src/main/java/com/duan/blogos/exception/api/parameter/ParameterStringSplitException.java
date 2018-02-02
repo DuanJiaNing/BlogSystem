@@ -1,4 +1,4 @@
-package com.duan.blogos.exception.api;
+package com.duan.blogos.exception.api.parameter;
 
 import com.duan.blogos.exception.BaseRuntimeException;
 
@@ -8,15 +8,15 @@ import com.duan.blogos.exception.BaseRuntimeException;
  *
  * @author DuanJiaNing
  */
-public class StringSplitException extends BaseRuntimeException {
+public class ParameterStringSplitException extends BaseRuntimeException {
 
     private static final int code = 2;
 
-    public StringSplitException(String message) {
+    public ParameterStringSplitException(String message) {
         super(message, code);
     }
 
-    public StringSplitException() {
+    public ParameterStringSplitException() {
         super(code);
     }
 }

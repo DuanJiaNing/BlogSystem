@@ -1,4 +1,4 @@
-package com.duan.blogos.exception.api;
+package com.duan.blogos.exception.api.blogger;
 
 import com.duan.blogos.exception.BaseRuntimeException;
 

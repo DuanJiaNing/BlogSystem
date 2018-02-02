@@ -4,6 +4,7 @@ import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.manager.MessageManager;
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.BloggerAccountService;
+import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +14,8 @@ import org.springframework.web.servlet.support.RequestContext;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.math.BigInteger;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Created on 2018/1/11.
@@ -36,11 +39,12 @@ public class BloggerLoginController extends BaseBloggerController {
     @RequestMapping(value = "/way=name", method = RequestMethod.POST)
     public ResultBean loginWithUserName(HttpServletRequest request,
                                         @RequestParam("username") String userName,
-                                        @RequestParam("password") String password) {
+                                        @RequestParam("password") String password) throws NoSuchAlgorithmException {
         // TODO 使用shiro
 
         BloggerAccount account = accountService.getAccount(userName);
-        if (account.getUsername().equalsIgnoreCase(userName) && account.getPassword().equalsIgnoreCase(password)) {
+        if (account != null && account.getUsername().equals(userName) &&
+                account.getPassword().equals(new BigInteger(StringUtils.toSha(password)).toString())) {
 
             HttpSession session = request.getSession();
             session.setAttribute(bloggerPropertiesManager.getSessionNameOfBloggerId(), account.getId());

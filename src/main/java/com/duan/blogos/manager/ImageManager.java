@@ -91,10 +91,7 @@ public class ImageManager {
 
         File image = new File(path);
         if (image.exists() && image.isFile()) {
-            boolean deleted = image.delete();
-            if (!deleted) {
-                return false;
-            } else return true;
+            return image.delete();
         }
 
         return false;

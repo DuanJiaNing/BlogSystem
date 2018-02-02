@@ -2,20 +2,22 @@ package com.duan.blogos.web.api.blogger;
 
 import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.BloggerAccountService;
+import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.RequestContext;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created on 2018/1/17.
  * 博主账号api
  * <p>
  * 1 注册账号
- * 2 更新账号
- * 3 注销账号
+ * 2 修改用户名
+ * 3 修改密码
+ * 4 注销账号
  *
  * @author DuanJiaNing
  */
@@ -33,7 +35,8 @@ public class BloggerAccountController extends BaseBloggerController {
     public ResultBean register(HttpServletRequest request,
                                @RequestParam("username") String username,
                                @RequestParam("password") String password) {
-        handleCheck(request, username, password);
+        handleNameCheck(request, username);
+        handlePwdCheck(request, password);
 
         int id = accountService.insertAccount(username, password);
         if (id < 0) handlerOperateFail(request);
@@ -42,22 +45,46 @@ public class BloggerAccountController extends BaseBloggerController {
     }
 
     /**
-     * 修改账号
+     * 修改用户名
      */
-    @RequestMapping(value = "/{bloggerId}", method = RequestMethod.PUT)
-    public ResultBean modify(HttpServletRequest request,
-                             @PathVariable Integer bloggerId,
-                             @RequestParam(value = "username", required = false) String newUserName,
-                             @RequestParam(value = "password", required = false) String newPassword) {
+    @RequestMapping(value = "/{bloggerId}/update=name", method = RequestMethod.PUT)
+    public ResultBean modifyUsername(HttpServletRequest request,
+                                     @PathVariable Integer bloggerId,
+                                     @RequestParam(value = "username") String newUserName) {
         handleBloggerSignInCheck(request, bloggerId);
-        handleParamAllNullForUpdate(request, newUserName, newPassword);
-        handleCheck(request, newUserName, newPassword);
+        handleNameCheck(request, newUserName);
 
-        boolean result = accountService.updateAccount(bloggerId, newUserName, newPassword);
+        boolean result = accountService.updateAccountUserName(bloggerId, newUserName);
         if (!result) handlerOperateFail(request);
+
+        // 更新session信息
+        HttpSession session = request.getSession();
+        session.setAttribute(bloggerPropertiesManager.getSessionNameOfBloggerName(), newUserName);
 
         return new ResultBean<>("");
     }
+
+    /**
+     * 修改密码
+     */
+    @RequestMapping(value = "/{bloggerId}/update=pwd", method = RequestMethod.PUT)
+    public ResultBean modifyPassword(HttpServletRequest request,
+                                     @PathVariable Integer bloggerId,
+                                     @RequestParam(value = "old") String oldPassword,
+                                     @RequestParam(value = "new") String newPassword) {
+        handleBloggerSignInCheck(request, bloggerId);
+        handlePwdCheck(request, newPassword);
+
+        boolean result = accountService.updateAccountPassword(bloggerId, oldPassword, newPassword);
+        if (!result) handlerOperateFail(request);
+
+        // session 失效，重新登录
+        HttpSession session = request.getSession();
+        session.invalidate();
+
+        return new ResultBean<>("");
+    }
+
 
     /**
      * 注销账号
@@ -70,14 +97,22 @@ public class BloggerAccountController extends BaseBloggerController {
         boolean result = accountService.deleteAccount(bloggerId);
         if (!result) handlerOperateFail(request);
 
+        // session 失效
+        HttpSession session = request.getSession();
+        session.invalidate();
+
         return new ResultBean<>("");
     }
 
-    // 检查合法性
-    private void handleCheck(HttpServletRequest request, String username, String password) {
-        if ((!StringUtils.isEmpty(username) && !bloggerValidateManager.checkUserName(username)) ||
-                (!StringUtils.isEmpty(password) && !bloggerValidateManager.checkPassword(password)))
+    // 检查用户名合法性
+    private void handleNameCheck(HttpServletRequest request, String userName) {
+        if (StringUtils.isEmpty_(userName) || !bloggerValidateManager.checkUserName(userName))
             throw exceptionManager.getParameterIllegalException(new RequestContext(request));
     }
 
+    // 检查密码合法性
+    private void handlePwdCheck(HttpServletRequest request, String password) {
+        if (StringUtils.isEmpty_(password) || !bloggerValidateManager.checkPassword(password))
+            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
+    }
 }

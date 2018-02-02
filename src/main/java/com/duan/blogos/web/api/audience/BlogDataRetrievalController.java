@@ -92,11 +92,11 @@ public class BlogDataRetrievalController extends BaseBlogController {
                                  String sort, String order, RequestContext context) {
 
         if (categoryIds != null && !StringUtils.isIntStringSplitByChar(categoryIds, cr)) {
-            throw exceptionManager.getStringSplitException(context);
+            throw exceptionManager.getParameterStringSplitException(context);
         }
 
         if (labelIds != null && !StringUtils.isIntStringSplitByChar(labelIds, lr)) {
-            throw exceptionManager.getStringSplitException(context);
+            throw exceptionManager.getParameterStringSplitException(context);
         }
 
         if (sort != null && !Rule.contains(sort)) {

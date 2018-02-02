@@ -85,4 +85,22 @@ public interface BloggerAccountService {
      */
     boolean deleteAccount(int bloggerId);
 
+    /**
+     * 更新用户名
+     *
+     * @param bloggerId   博主id
+     * @param newUserName 新的用户名
+     * @return 更新成功返回true
+     */
+    boolean updateAccountUserName(int bloggerId, String newUserName);
+
+    /**
+     * 更新密码
+     *
+     * @param bloggerId   博主id
+     * @param oldPassword 旧密码
+     * @param newPassword 新的密码
+     * @return 更新成功返回true
+     */
+    boolean updateAccountPassword(int bloggerId, String oldPassword, String newPassword);
 }

@@ -1,7 +1,15 @@
 package com.duan.blogos.manager;
 
 import com.duan.blogos.exception.BaseRuntimeException;
-import com.duan.blogos.exception.api.*;
+import com.duan.blogos.exception.api.authorize.UnauthorizedException;
+import com.duan.blogos.exception.api.blog.*;
+import com.duan.blogos.exception.api.blogger.*;
+import com.duan.blogos.exception.api.common.*;
+import com.duan.blogos.exception.api.parameter.ParameterFormatIllegalException;
+import com.duan.blogos.exception.api.parameter.ParameterIllegalException;
+import com.duan.blogos.exception.api.parameter.ParameterStringSplitException;
+import com.duan.blogos.exception.api.parameter.ParameterTypeMismatchException;
+import com.duan.blogos.exception.internal.UnknownInternalException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.RequestContext;
 
@@ -25,8 +33,8 @@ public class ExceptionManager {
         return new UnknownBloggerException(context.getMessage("blogger.unknownBlogger"));
     }
 
-    public BaseRuntimeException getStringSplitException(RequestContext context) {
-        return new StringSplitException(context.getMessage("common.stringSplitIllegal"));
+    public BaseRuntimeException getParameterStringSplitException(RequestContext context) {
+        return new ParameterStringSplitException(context.getMessage("common.parameterStringSplitIllegal"));
     }
 
     public BaseRuntimeException getBlogSortRuleUndefinedException(RequestContext context) {
@@ -100,6 +108,5 @@ public class ExceptionManager {
     public BaseRuntimeException getLoginFailException(RequestContext context, boolean passwordIncorrect) {
         return new LoginFailException(context.getMessage(passwordIncorrect ? "blogger.passwordIncorrect" : "blogger.unknownAccount"));
     }
-
 
 }

@@ -1,5 +1,7 @@
 package com.duan.blogos.util;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.stream.Stream;
 
 /**
@@ -137,6 +139,18 @@ public class StringUtils {
      */
     public static boolean isEmail(String email) {
         return !isEmpty(email) && email.matches("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
+    }
+
+    /**
+     * 将字符串不可逆转化为 sha 字节数组
+     *
+     * @param str 字符串
+     * @return 转化结果
+     */
+    public static byte[] toSha(String str) throws NoSuchAlgorithmException {
+        MessageDigest sha = MessageDigest.getInstance("SHA");
+        sha.update(str.getBytes());
+        return sha.digest();
     }
 
 }

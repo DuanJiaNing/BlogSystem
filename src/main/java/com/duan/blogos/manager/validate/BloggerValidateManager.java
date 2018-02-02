@@ -8,6 +8,7 @@ import com.duan.blogos.manager.BloggerPropertiesManager;
 import com.duan.blogos.service.blogger.BloggerAccountService;
 import com.duan.blogos.service.blogger.blog.CategoryService;
 import com.duan.blogos.service.blogger.profile.GalleryService;
+import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -126,17 +127,6 @@ public class BloggerValidateManager {
     }
 
     /**
-     * 检查指定博主是否为图片管理者
-     *
-     * @param bloggerId 博主id
-     * @return 是返回true
-     */
-    public boolean isPictureManagerBlogger(int bloggerId) {
-        return propertiesManager.getPictureManagerBloggerId() == bloggerId;
-    }
-
-
-    /**
      * 检查图片是否为默认图片
      *
      * @param pictureId 图片id
@@ -159,18 +149,22 @@ public class BloggerValidateManager {
      * @return 合法返回true
      */
     public boolean checkUserName(String username) {
-        // TODO
+        if (StringUtils.isEmpty_(username)) return false;
+
+        // UPDATE: 2018/2/2 更新 当前版本对用户名（如格式）不做限制
         return true;
     }
 
     /**
-     * 注册时检查用户名合法性
+     * 校验密码：6-12 为，由字母和数字组成
      *
-     * @param password 用户名
+     * @param password 密码
      * @return 合法返回true
      */
     public boolean checkPassword(String password) {
-        // TODO
-        return true;
+        if (StringUtils.isEmpty_(password)) return false;
+
+        String regex = "^(?:(?=.*[A-z])(?=.*[0-9])).{6,12}$";
+        return password.matches(regex);
     }
 }

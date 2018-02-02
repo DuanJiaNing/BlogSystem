@@ -93,4 +93,10 @@ public interface BloggerPictureDao extends BaseDao<BloggerPicture> {
      */
     int getUseCount(int pictureId);
 
+    /**
+     * 根据博主id获得其所有图片
+     * @param bloggerId 博主id
+     * @return 查询结果
+     */
+    List<BloggerPicture> getPictureByBloggerId(int bloggerId);
 }
