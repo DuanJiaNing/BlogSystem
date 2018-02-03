@@ -4,10 +4,10 @@ import com.duan.blogos.exception.BaseRuntimeException;
 import com.duan.blogos.exception.internal.InternalRuntimeException;
 import com.duan.blogos.manager.ExceptionManager;
 import com.duan.blogos.manager.StringConstructorManager;
-import com.duan.blogos.manager.WebsitePropertiesManager;
+import com.duan.blogos.manager.properties.WebsiteProperties;
 import com.duan.blogos.manager.validate.BlogValidateManager;
 import com.duan.blogos.manager.validate.BloggerValidateManager;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -39,7 +39,7 @@ public class BaseRestController {
     protected StringConstructorManager stringConstructorManager;
 
     @Autowired
-    protected WebsitePropertiesManager websitePropertiesManager;
+    protected WebsiteProperties websiteProperties;
 
     /**
      * 处理结果为空的情况
@@ -128,17 +128,6 @@ public class BaseRestController {
     }
 
     /**
-     * 检查博主账户是否存在，存在返回null
-     */
-    protected BaseRuntimeException checkAccount(RequestContext context, Integer bloggerId) {
-        if (bloggerId == null || bloggerId <= 0 || bloggerValidateManager.checkAccount(bloggerId) == null) {
-            return exceptionManager.getUnknownBloggerException(context);
-        }
-
-        return null;
-    }
-
-    /**
      * 检查博文是否存在，存在返回null
      */
     protected BaseRuntimeException checkBlogExist(RequestContext context, Integer blogId) {
@@ -149,4 +138,14 @@ public class BaseRestController {
         return null;
     }
 
+    /**
+     * 检查博主账户是否存在，存在返回null
+     */
+    protected BaseRuntimeException checkAccountExist(RequestContext context, Integer bloggerId) {
+        if (bloggerId == null || bloggerId <= 0 || !bloggerValidateManager.checkAccountExist(bloggerId)) {
+            return exceptionManager.getUnknownBloggerException(context);
+        }
+
+        return null;
+    }
 }

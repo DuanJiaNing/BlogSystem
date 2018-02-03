@@ -1,6 +1,6 @@
 package com.duan.blogos.web.api.blogger;
 
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.BloggerAccountService;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +59,7 @@ public class BloggerAccountController extends BaseBloggerController {
 
         // 更新session信息
         HttpSession session = request.getSession();
-        session.setAttribute(bloggerPropertiesManager.getSessionNameOfBloggerName(), newUserName);
+        session.setAttribute(bloggerProperties.getSessionNameOfBloggerName(), newUserName);
 
         return new ResultBean<>("");
     }

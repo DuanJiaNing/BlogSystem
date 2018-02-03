@@ -2,7 +2,7 @@ package com.duan.blogos.web.api.blogger;
 
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.manager.MessageManager;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.BloggerAccountService;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,16 +47,16 @@ public class BloggerLoginController extends BaseBloggerController {
                 account.getPassword().equals(new BigInteger(StringUtils.toSha(password)).toString())) {
 
             HttpSession session = request.getSession();
-            session.setAttribute(bloggerPropertiesManager.getSessionNameOfBloggerId(), account.getId());
-            session.setAttribute(bloggerPropertiesManager.getSessionNameOfBloggerName(), account.getUsername());
+            session.setAttribute(bloggerProperties.getSessionNameOfBloggerId(), account.getId());
+            session.setAttribute(bloggerProperties.getSessionNameOfBloggerName(), account.getUsername());
 
             // 成功登录
             return new ResultBean<>("");
         } else {
 
             // TODO 判断登录失败的原因
-            String errorMsg = messageManager.loginFail(new RequestContext(request), false);
-            request.getServletContext().setAttribute(bloggerPropertiesManager.getSessionNameOfErrorMsg(), errorMsg);
+            String errorMsg = messageManager.getLoginFailMessage(new RequestContext(request), false);
+            request.getServletContext().setAttribute(bloggerProperties.getSessionNameOfErrorMsg(), errorMsg);
 
             return new ResultBean(exceptionManager.getLoginFailException(new RequestContext(request), false));
         }

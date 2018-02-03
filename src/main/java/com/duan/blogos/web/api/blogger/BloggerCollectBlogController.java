@@ -3,9 +3,8 @@ package com.duan.blogos.web.api.blogger;
 import com.duan.blogos.common.Order;
 import com.duan.blogos.common.Rule;
 import com.duan.blogos.dto.blogger.CollectBlogListItemDTO;
-import com.duan.blogos.manager.BlogSortRule;
-import com.duan.blogos.result.ResultBean;
-import com.duan.blogos.service.blogger.blog.CategoryService;
+import com.duan.blogos.common.BlogSortRule;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.profile.CollectBlogService;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,11 +51,11 @@ public class BloggerCollectBlogController extends BaseBloggerController {
         if (!Order.contains(ord)) throw exceptionManager.getBlogSortOrderUndefinedException(context);
 
         int os = offset == null || offset < 0 ? 0 : offset;
-        int rs = rows == null || rows < 0 ? bloggerPropertiesManager.getRequestBloggerCollectCount() : rows;
+        int rs = rows == null || rows < 0 ? bloggerProperties.getRequestBloggerCollectCount() : rows;
 
         // 查询数据
         ResultBean<List<CollectBlogListItemDTO>> result = collectBlogService.listCollectBlog(bloggerId,
-                bloggerPropertiesManager.getDefaultBlogCollectCategory(), os, rs,
+                bloggerProperties.getDefaultBlogCollectCategory(), os, rs,
                 BlogSortRule.valueOf(sor, ord));
         if (result == null) handlerEmptyResult(request);
 

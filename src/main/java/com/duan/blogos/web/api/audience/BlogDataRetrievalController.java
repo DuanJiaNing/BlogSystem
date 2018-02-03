@@ -6,10 +6,9 @@ import com.duan.blogos.dto.blog.BlogCommentDTO;
 import com.duan.blogos.dto.blog.BlogListItemDTO;
 import com.duan.blogos.dto.blog.BlogMainContentDTO;
 import com.duan.blogos.enums.BlogStatusEnum;
-import com.duan.blogos.exception.BaseRuntimeException;
-import com.duan.blogos.manager.AudiencePropertiesManager;
-import com.duan.blogos.manager.BlogSortRule;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.manager.properties.AudienceProperties;
+import com.duan.blogos.common.BlogSortRule;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.audience.BlogBrowseService;
 import com.duan.blogos.service.audience.BlogRetrievalService;
 import com.duan.blogos.util.StringUtils;
@@ -36,7 +35,7 @@ import java.util.List;
 public class BlogDataRetrievalController extends BaseBlogController {
 
     @Autowired
-    protected AudiencePropertiesManager audiencePropertiesManager;
+    protected AudienceProperties audienceProperties;
 
     @Autowired
     private BlogRetrievalService retrievalService;
@@ -57,17 +56,13 @@ public class BlogDataRetrievalController extends BaseBlogController {
                                                       @RequestParam(value = "rows", required = false) Integer rows,
                                                       @RequestParam(value = "sort", required = false) String sort,
                                                       @RequestParam(value = "order", required = false) String order) {
-        final RequestContext context = new RequestContext(request);
-
-        //检查账户
-        BaseRuntimeException exception = checkAccount(context, bloggerId);
-        if (exception != null) throw exception;
+        handleAccountCheck(request,bloggerId);
 
         //检查数据合法性
         String sor = sort == null ? Rule.VIEW_COUNT.name() : sort.toUpperCase();
         String ord = order == null ? Order.DESC.name() : order.toUpperCase();
-        String ch = websitePropertiesManager.getUrlConditionSplitCharacter();
-        checkProperties(categoryIds, ch, labelIds, ch, sor, ord, context);
+        String ch = websiteProperties.getUrlConditionSplitCharacter();
+        checkProperties(categoryIds, ch, labelIds, ch, sor, ord, new RequestContext(request));
 
         //执行数据查询
         BlogSortRule rule = new BlogSortRule(Rule.valueOf(sor), Order.valueOf(ord));
@@ -76,13 +71,45 @@ public class BlogDataRetrievalController extends BaseBlogController {
         int[] lids = StringUtils.intStringDistinctToArray(labelIds, ch);
 
         int os = offset == null || offset < 0 ? 0 : offset;
-        int rs = rows == null || rows < 0 ? audiencePropertiesManager.getRequestBloggerBlogListCount() : rows;
+        int rs = rows == null || rows < 0 ? audienceProperties.getRequestBloggerBlogListCount() : rows;
         ResultBean<List<BlogListItemDTO>> listResultBean = retrievalService.listFilterAll(cids, lids, keyWord, bloggerId,
                 os, rs, rule, BlogStatusEnum.PUBLIC);
 
         if (listResultBean == null) handlerEmptyResult(request);
 
         return listResultBean;
+    }
+
+    /**
+     * 获得博文主体内容
+     */
+    @RequestMapping(value = "/{blogId}/content", method = RequestMethod.GET)
+    public ResultBean<BlogMainContentDTO> blogMainContent(HttpServletRequest request,
+                                                          @PathVariable Integer blogId) {
+        handleBlogAndBloggerExistCheck(new RequestContext(request),blogId);
+
+        ResultBean<BlogMainContentDTO> mainContent = blogBrowseService.getBlogMainContent(blogId);
+        if (mainContent == null) handlerEmptyResult(request);
+
+        return mainContent;
+    }
+
+    /**
+     * 获得博文评论列表
+     */
+    @RequestMapping(value = "/{blogId}/comment", method = RequestMethod.GET)
+    public ResultBean<List<BlogCommentDTO>> blogComment(HttpServletRequest request,
+                                                        @PathVariable Integer blogId,
+                                                        @RequestParam(value = "offset", required = false) Integer offset,
+                                                        @RequestParam(value = "rows", required = false) Integer rows) {
+        handleBlogAndBloggerExistCheck(new RequestContext(request),blogId);
+
+        int os = offset == null || offset < 0 ? 0 : offset;
+        int rs = rows == null || rows < 0 ? audienceProperties.getRequestBloggerBlogCommentCount() : rows;
+        ResultBean<List<BlogCommentDTO>> resultBean = blogBrowseService.listBlogComment(blogId, os, rs);
+        if (resultBean == null) handlerEmptyResult(request);
+
+        return resultBean;
     }
 
     /*
@@ -106,46 +133,6 @@ public class BlogDataRetrievalController extends BaseBlogController {
         if (order != null && !Order.contains(order)) {
             throw exceptionManager.getBlogSortOrderUndefinedException(context);
         }
-    }
-
-    /**
-     * 获得博文主体内容
-     */
-    @RequestMapping(value = "/{blogId}/content", method = RequestMethod.GET)
-    public ResultBean<BlogMainContentDTO> blogMainContent(HttpServletRequest request,
-                                                          @PathVariable Integer blogId) {
-        final RequestContext context = new RequestContext(request);
-
-        //检查博文是否存在
-        BaseRuntimeException exception = checkBlogExist(context, blogId);
-        if (exception != null) throw exception;
-
-        ResultBean<BlogMainContentDTO> mainContent = blogBrowseService.getBlogMainContent(blogId);
-        if (mainContent == null) handlerEmptyResult(request);
-
-        return mainContent;
-    }
-
-    /**
-     * 获得博文评论列表
-     */
-    @RequestMapping(value = "/{blogId}/comment", method = RequestMethod.GET)
-    public ResultBean<List<BlogCommentDTO>> blogComment(HttpServletRequest request,
-                                                        @PathVariable Integer blogId,
-                                                        @RequestParam(value = "offset", required = false) Integer offset,
-                                                        @RequestParam(value = "rows", required = false) Integer rows) {
-        final RequestContext context = new RequestContext(request);
-
-        //检查博文是否存在
-        BaseRuntimeException exception = checkBlogExist(context, blogId);
-        if (exception != null) throw exception;
-
-        int os = offset == null || offset < 0 ? 0 : offset;
-        int rs = rows == null || rows < 0 ? audiencePropertiesManager.getRequestBloggerBlogCommentCount() : rows;
-        ResultBean<List<BlogCommentDTO>> resultBean = blogBrowseService.listBlogComment(blogId, os, rs);
-        if (resultBean == null) handlerEmptyResult(request);
-
-        return resultBean;
     }
 
 }

@@ -1,15 +1,15 @@
-package com.duan.blogos.manager;
+package com.duan.blogos.manager.properties;
 
 import lombok.Data;
 
 /**
  * Created on 2018/1/3.
- * 站点配置
+ * 站点配置参数
  *
  * @author DuanJiaNing
  */
 @Data
-public class WebsitePropertiesManager {
+public class WebsiteProperties {
 
     /**
      * 站点域名

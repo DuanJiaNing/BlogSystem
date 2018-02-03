@@ -21,6 +21,7 @@ import static com.duan.blogos.enums.BloggerPictureCategoryEnum.PUBLIC;
 
 /**
  * Created on 2018/1/3.
+ * 图片管理
  *
  * @author DuanJiaNing
  */
@@ -124,7 +125,7 @@ public class ImageManager {
     /**
      * 修改图片类别，并移动到对应类别
      *
-     * @param bloggerId
+     * @param bloggerId 博主id
      * @param pictureId 图片id
      * @param category  类别
      * @return 移动了返回true

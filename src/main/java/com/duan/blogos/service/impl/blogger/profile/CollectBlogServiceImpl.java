@@ -17,11 +17,11 @@ import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.entity.blogger.BloggerProfile;
-import com.duan.blogos.manager.BlogSortRule;
+import com.duan.blogos.common.BlogSortRule;
 import com.duan.blogos.manager.DataFillingManager;
-import com.duan.blogos.manager.DbPropertiesManager;
+import com.duan.blogos.manager.properties.DbProperties;
 import com.duan.blogos.manager.comparator.BlogListItemComparatorFactory;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.profile.CollectBlogService;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
@@ -66,7 +66,7 @@ public class CollectBlogServiceImpl implements CollectBlogService {
     private DataFillingManager fillingManager;
 
     @Autowired
-    private DbPropertiesManager dbPropertiesManager;
+    private DbProperties dbProperties;
 
     @Override
     public ResultBean<List<CollectBlogListItemDTO>> listCollectBlog(int bloggerId, int categoryId, int offset, int rows,
@@ -96,7 +96,7 @@ public class CollectBlogServiceImpl implements CollectBlogService {
             // BlogListItemDTO
             Blog blog = blogDao.getBlogById(blogId);
             int[] ids = StringUtils.intStringDistinctToArray(blog.getCategoryIds(),
-                    dbPropertiesManager.getStringFiledSplitCharacterForNumber());
+                    dbProperties.getStringFiledSplitCharacterForNumber());
             List<BlogCategory> categories = categoryDao.listCategoryById(ids);
             BlogListItemDTO listItemDTO = fillingManager.blogListItemToDTO(statistics, categories, blog);
 
@@ -117,11 +117,6 @@ public class CollectBlogServiceImpl implements CollectBlogService {
     }
 
     @Override
-    public ResultBean<Integer> insertCollectBlog(int bloggerId, int blogId, int categoryId, int authorId, String reason) {
-        return null;
-    }
-
-    @Override
     public boolean deleteCollectBlog(int bloggerId, int blogId) {
 
         // 博文统计信息-收藏记录减一
@@ -129,11 +124,6 @@ public class CollectBlogServiceImpl implements CollectBlogService {
 
         int effect = collectDao.deleteCollectByBloggerId(bloggerId, blogId);
         return effect > 0;
-    }
-
-    @Override
-    public boolean updateCollectBlogCategory(int blogId, int newCategoryId) {
-        return false;
     }
 
     @Override

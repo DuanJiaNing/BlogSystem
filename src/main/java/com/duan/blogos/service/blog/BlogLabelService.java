@@ -1,7 +1,7 @@
 package com.duan.blogos.service.blog;
 
 import com.duan.blogos.entity.blog.BlogLabel;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 
 import java.util.List;
 

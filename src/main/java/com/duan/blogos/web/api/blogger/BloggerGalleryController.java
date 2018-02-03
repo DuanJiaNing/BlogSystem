@@ -3,7 +3,7 @@ package com.duan.blogos.web.api.blogger;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.manager.validate.BloggerValidateManager;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.profile.GalleryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -82,7 +82,7 @@ public class BloggerGalleryController extends BaseBloggerController {
         } else cate = -1;
 
         int os = offset == null || offset < 0 ? 0 : offset;
-        int rs = rows == null || rows < 0 ? bloggerPropertiesManager.getRequestBloggerPictureCount() : rows;
+        int rs = rows == null || rows < 0 ? bloggerProperties.getRequestBloggerPictureCount() : rows;
 
         ResultBean<List<BloggerPicture>> result = galleryService.listBloggerPicture(bloggerId,
                 cate == -1 ? null : BloggerPictureCategoryEnum.valueOf(cate), os, rs);

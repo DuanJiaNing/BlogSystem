@@ -1,7 +1,7 @@
 package com.duan.blogos.service.impl.blogger;
 
 import com.duan.blogos.dto.blogger.BloggerStatisticsDTO;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.BloggerStatisticsService;
 import org.springframework.stereotype.Service;
 

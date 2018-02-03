@@ -2,7 +2,7 @@ package com.duan.blogos.enums;
 
 /**
  * Created on 2017/12/12.
- * 博文状态，code的值对应数据库表blog的state、字段
+ * 博文状态，code 的值对应数据库表 blog 的 state 字段
  *
  * @author DuanJiaNing
  */

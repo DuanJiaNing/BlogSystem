@@ -3,7 +3,7 @@ package com.duan.blogos.web.api.blogger;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.manager.validate.BloggerValidateManager;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.profile.GalleryService;
 import com.duan.blogos.util.ImageUtils;
 import org.springframework.beans.factory.annotation.Autowired;

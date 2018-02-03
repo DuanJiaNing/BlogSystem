@@ -1,7 +1,7 @@
 package com.duan.blogos.web.api.blogger;
 
 import com.duan.blogos.dto.blogger.BloggerLinkDTO;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.profile.LinkService;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +41,7 @@ public class BloggerLinkController extends BaseBloggerController {
         handleAccountCheck(request, bloggerId);
 
         int os = offset == null || offset < 0 ? 0 : offset;
-        int rs = rows == null || rows < 0 ? bloggerPropertiesManager.getRequestBloggerLinkCount() : rows;
+        int rs = rows == null || rows < 0 ? bloggerProperties.getRequestBloggerLinkCount() : rows;
         ResultBean<List<BloggerLinkDTO>> result = linkService.listBloggerLink(bloggerId, os, rs);
         if (result == null) handlerEmptyResult(request);
 

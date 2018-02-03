@@ -1,7 +1,7 @@
 package com.duan.blogos.web.api.blogger;
 
 import com.duan.blogos.exception.BaseRuntimeException;
-import com.duan.blogos.manager.BloggerPropertiesManager;
+import com.duan.blogos.manager.properties.BloggerProperties;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.web.api.BaseRestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +17,14 @@ import javax.servlet.http.HttpServletRequest;
 public class BaseBloggerController extends BaseRestController {
 
     @Autowired
-    protected BloggerPropertiesManager bloggerPropertiesManager;
+    protected BloggerProperties bloggerProperties;
 
     /**
      * 检查博主是否存在，不存在直接抛出异常
      */
     protected void handleAccountCheck(HttpServletRequest request, Integer bloggerId) {
         RequestContext context = new RequestContext(request);
-        BaseRuntimeException exception = checkAccount(context, bloggerId);
+        BaseRuntimeException exception = checkAccountExist(context, bloggerId);
         if (exception != null) throw exception;
     }
 

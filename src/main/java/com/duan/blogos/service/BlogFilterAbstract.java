@@ -7,8 +7,8 @@ import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.exception.internal.LuceneException;
 import com.duan.blogos.manager.BlogLuceneIndexManager;
-import com.duan.blogos.manager.BlogSortRule;
-import com.duan.blogos.manager.DbPropertiesManager;
+import com.duan.blogos.common.BlogSortRule;
+import com.duan.blogos.manager.properties.DbProperties;
 import com.duan.blogos.manager.comparator.BlogListItemComparatorFactory;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 public abstract class BlogFilterAbstract<T> implements BlogFilter<T> {
 
     @Autowired
-    protected DbPropertiesManager dbPropertiesManager;
+    protected DbProperties dbProperties;
 
     @Autowired
     protected BlogDao blogDao;
@@ -167,7 +167,7 @@ public abstract class BlogFilterAbstract<T> implements BlogFilter<T> {
 
         // 筛选符合条件的博文的id
         Map<Integer, int[]> map = new HashMap<>(); // 方便后面复用categories的id数组
-        String ch = dbPropertiesManager.getStringFiledSplitCharacterForNumber();
+        String ch = dbProperties.getStringFiledSplitCharacterForNumber();
 
         if (categoryIds == null && labelIds == null) { // 两者都没限定
             for (Blog blog : blogs) {

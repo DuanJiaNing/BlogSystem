@@ -4,9 +4,9 @@ import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.exception.internal.InternalIOException;
-import com.duan.blogos.manager.BloggerPropertiesManager;
+import com.duan.blogos.manager.properties.BloggerProperties;
 import com.duan.blogos.manager.ImageManager;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.profile.GalleryService;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.ImageUtils;
@@ -33,7 +33,7 @@ public class GalleryServiceImpl implements GalleryService {
     private ImageManager imageManager;
 
     @Autowired
-    private BloggerPropertiesManager bloggerPropertiesManager;
+    private BloggerProperties bloggerProperties;
 
     @Override
     public int insertPicture(int bloggerId, String path, String bewrite, BloggerPictureCategoryEnum category, String title) {
@@ -66,7 +66,7 @@ public class GalleryServiceImpl implements GalleryService {
         if (path == null) return -1;
 
         // 如果是图片管理员上传默认图片，需要移动其文件夹
-        int pictureManagerId = bloggerPropertiesManager.getPictureManagerBloggerId();
+        int pictureManagerId = bloggerProperties.getPictureManagerBloggerId();
         if (pictureManagerId == bloggerId && BloggerPictureCategoryEnum.isDefaultPictureCategory(cate)) {
             // 如果设备上已经有该唯一图片，将原来的图片移到私有文件夹，同时修改数据库
             removeDefaultPictureIfNecessary(bloggerId, category);
@@ -112,7 +112,7 @@ public class GalleryServiceImpl implements GalleryService {
         BloggerPicture picture = getPicture(pictureId);
 
         // 对默认图片，图片管理员只能以更新（上传）的方式删除图片，因为这些图片必须时刻存在
-        int pictureManagerId = bloggerPropertiesManager.getPictureManagerBloggerId();
+        int pictureManagerId = bloggerProperties.getPictureManagerBloggerId();
         int cate = picture.getCategory();
         if (bloggerId == pictureManagerId && BloggerPictureCategoryEnum.isDefaultPictureCategory(cate))
             return false;
@@ -147,7 +147,7 @@ public class GalleryServiceImpl implements GalleryService {
 
     @Override
     public BloggerPicture getDefaultPicture(BloggerPictureCategoryEnum category) {
-        return pictureDao.getBloggerUniquePicture(bloggerPropertiesManager.getPictureManagerBloggerId(),
+        return pictureDao.getBloggerUniquePicture(bloggerProperties.getPictureManagerBloggerId(),
                 category.getCode());
     }
 
@@ -178,7 +178,7 @@ public class GalleryServiceImpl implements GalleryService {
             int bloggerId = oldPicture.getBloggerId();
             try {
 
-                int pictureManagerId = bloggerPropertiesManager.getPictureManagerBloggerId();
+                int pictureManagerId = bloggerProperties.getPictureManagerBloggerId();
                 // 如果为图片管理员在操作
                 if (pictureManagerId == bloggerId) {
 
@@ -230,7 +230,6 @@ public class GalleryServiceImpl implements GalleryService {
 
     @Override
     public void cleanBlogPicture(int bloggerId) {
-        // TODO 在每次博文删除时清理博文中引用的图片以释放磁盘空间
     }
 
 }

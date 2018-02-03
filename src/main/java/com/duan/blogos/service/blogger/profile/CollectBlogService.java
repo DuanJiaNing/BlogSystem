@@ -1,9 +1,8 @@
 package com.duan.blogos.service.blogger.profile;
 
 import com.duan.blogos.dto.blogger.CollectBlogListItemDTO;
-import com.duan.blogos.entity.blog.BlogCollect;
-import com.duan.blogos.manager.BlogSortRule;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.common.BlogSortRule;
+import com.duan.blogos.restful.ResultBean;
 
 import java.util.List;
 
@@ -27,19 +26,6 @@ public interface CollectBlogService {
      */
     ResultBean<List<CollectBlogListItemDTO>> listCollectBlog(int bloggerId, int categoryId,
                                                              int offset, int rows, BlogSortRule sortRule);
-
-    /**
-     * 新增收藏文章
-     *
-     * @param bloggerId  收藏者id
-     * @param blogId     博文id
-     * @param categoryId 收藏到自己的哪一个类别之下
-     * @param authorId   作者id
-     * @param reason     收藏理由
-     * @return 执行结果，新增记录id
-     */
-    ResultBean<Integer> insertCollectBlog(int bloggerId, int blogId, int categoryId, int authorId, String reason);
-
     /**
      * 取消收藏
      *
@@ -48,15 +34,6 @@ public interface CollectBlogService {
      * @return 取消成功返回true
      */
     boolean deleteCollectBlog(int bloggerId, int blogId);
-
-    /**
-     * 更新收藏博文所在类别
-     *
-     * @param blogId        收藏博文id
-     * @param newCategoryId 新的类别
-     * @return 更新失败为false
-     */
-    boolean updateCollectBlogCategory(int blogId, int newCategoryId);
 
     /**
      * 更新收藏信息

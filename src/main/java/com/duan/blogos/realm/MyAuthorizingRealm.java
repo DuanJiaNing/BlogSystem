@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created on 2017/12/11.
+ * shiro realm
  *
  * @author DuanJiaNing
  */

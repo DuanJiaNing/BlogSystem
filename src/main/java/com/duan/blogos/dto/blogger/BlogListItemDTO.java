@@ -17,7 +17,6 @@ public class BlogListItemDTO implements Serializable {
 
     private static final long serialVersionUID = 2159619552751683259L;
 
-
     //博文id
     private int id;
 

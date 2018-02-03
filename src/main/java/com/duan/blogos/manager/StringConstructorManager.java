@@ -2,6 +2,8 @@ package com.duan.blogos.manager;
 
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
+import com.duan.blogos.manager.properties.BloggerProperties;
+import com.duan.blogos.manager.properties.WebsiteProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,25 +19,26 @@ import java.io.File;
 public class StringConstructorManager {
 
     @Autowired
-    private WebsitePropertiesManager websitePropertiesManager;
+    private WebsiteProperties websiteProperties;
 
     @Autowired
-    private BloggerPropertiesManager propertiesManager;
+    private BloggerProperties propertiesManager;
 
     /**
-     * 构造图片的url
+     * 构造图片的访问url
      *
-     * @param picture 图片
+     * @param picture     图片
+     * @param defaultCate 图片无法获取时使用的默认图片所属类别
      * @return 获取图片的url
      */
     public String constructPictureUrl(BloggerPicture picture, BloggerPictureCategoryEnum defaultCate) {
         if (picture == null) return null;
 
-        // 参见ImageController
+        // 参见ImageController：http://localhost:8080/image/1/type=public/523?default=5
         StringBuilder buffer = new StringBuilder(50);
         int cate = picture.getCategory();
         buffer.append("http://")
-                .append(websitePropertiesManager.getAddr())
+                .append(websiteProperties.getAddr())
                 .append("/image/")
                 .append(picture.getBloggerId())
                 .append("/type=")

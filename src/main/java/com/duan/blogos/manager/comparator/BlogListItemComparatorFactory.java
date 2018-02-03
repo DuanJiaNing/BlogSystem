@@ -2,10 +2,7 @@ package com.duan.blogos.manager.comparator;
 
 import com.duan.blogos.common.Order;
 import com.duan.blogos.common.Rule;
-import com.duan.blogos.dto.blog.BlogListItemDTO;
 import com.duan.blogos.entity.blog.BlogStatistics;
-
-import java.util.Comparator;
 
 /**
  * Created on 2017/12/20.
@@ -57,6 +54,38 @@ public class BlogListItemComparatorFactory extends BlogComparatorFactoryAbstract
                 return o1.getReleaseDate().compareTo(o2.getReleaseDate());
             } else {
                 return -o1.getReleaseDate().compareTo(o2.getReleaseDate());
+            }
+        });
+
+        add(Rule.COMPLAIN_COUNT, (o1, o2) -> {
+            if (order == Order.ASC) {
+                return Integer.compare(o1.getCommentCount(), o2.getComplainCount());
+            } else {
+                return -Integer.compare(o1.getCommentCount(), o2.getComplainCount());
+            }
+        });
+
+        add(Rule.SHARE_COUNT, (o1, o2) -> {
+            if (order == Order.ASC) {
+                return Integer.compare(o1.getShareCount(), o2.getShareCount());
+            } else {
+                return -Integer.compare(o1.getShareCount(), o2.getShareCount());
+            }
+        });
+
+        add(Rule.REPLY_COMMENT_COUNT, (o1, o2) -> {
+            if (order == Order.ASC) {
+                return Integer.compare(o1.getReplyCommentCount(), o2.getReplyCommentCount());
+            } else {
+                return -Integer.compare(o1.getReplyCommentCount(), o2.getReplyCommentCount());
+            }
+        });
+
+        add(Rule.ADMIRE_COUNT, (o1, o2) -> {
+            if (order == Order.ASC) {
+                return Integer.compare(o1.getAdmireCount(), o2.getAdmireCount());
+            } else {
+                return -Integer.compare(o1.getAdmireCount(), o2.getAdmireCount());
             }
         });
 

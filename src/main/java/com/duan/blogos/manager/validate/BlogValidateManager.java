@@ -3,14 +3,10 @@ package com.duan.blogos.manager.validate;
 import com.duan.blogos.dao.blog.BlogDao;
 import com.duan.blogos.dao.blog.BlogLabelDao;
 import com.duan.blogos.dao.blog.BlogStatisticsDao;
-import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogStatistics;
-import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BlogStatusEnum;
-import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.service.blogger.blog.BlogService;
-import org.apache.commons.io.filefilter.OrFileFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +15,7 @@ import java.util.List;
 
 /**
  * Created on 2017/12/26.
- * 博客验证
+ * 博文相关信息验证
  *
  * @author DuanJiaNing
  */
@@ -51,16 +47,11 @@ public class BlogValidateManager {
     /**
      * 检查标签是否存在
      *
-     * @param labelIds 标签id
-     * @return 都存在返回true
+     * @param labelId 标签id
+     * @return 存在返回true
      */
-    public boolean checkLabelsExist(int[] labelIds) {
-        for (int id : labelIds) {
-            if (labelDao.getLabel(id) == null)
-                return false;
-        }
-
-        return true;
+    public boolean checkLabelsExist(int labelId) {
+        return labelDao.getLabel(labelId) != null;
     }
 
     /**

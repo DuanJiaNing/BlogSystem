@@ -1,13 +1,12 @@
 package com.duan.blogos.service.impl.audience;
 
 import com.duan.blogos.dao.blog.BlogCategoryDao;
-import com.duan.blogos.dao.blog.BlogStatisticsDao;
 import com.duan.blogos.dto.blog.BlogListItemDTO;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogCategory;
 import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.manager.DataFillingManager;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.BlogFilterAbstract;
 import com.duan.blogos.service.audience.BlogRetrievalService;
 import org.springframework.beans.factory.annotation.Autowired;

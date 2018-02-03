@@ -11,11 +11,10 @@ import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.exception.internal.LuceneException;
 import com.duan.blogos.exception.internal.SQLException;
-import com.duan.blogos.manager.BlogSortRule;
 import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.manager.ImageManager;
-import com.duan.blogos.manager.WebsitePropertiesManager;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.manager.properties.WebsiteProperties;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.BlogFilterAbstract;
 import com.duan.blogos.service.blogger.blog.BlogService;
 import com.duan.blogos.util.CollectionUtils;
@@ -45,7 +44,7 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
     private BlogStatisticsDao statisticsDao;
 
     @Autowired
-    private WebsitePropertiesManager websitePropertiesManager;
+    private WebsiteProperties websiteProperties;
 
     @Autowired
     private DataFillingManager dataFillingManager;
@@ -65,8 +64,8 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
                           String summary, String[] keyWords) {
 
         // 1 插入数据到bolg表
-        String ch = dbPropertiesManager.getStringFiledSplitCharacterForNumber();
-        String chs = dbPropertiesManager.getStringFiledSplitCharacterForString();
+        String ch = dbProperties.getStringFiledSplitCharacterForNumber();
+        String chs = dbProperties.getStringFiledSplitCharacterForString();
         Blog blog = new Blog();
         blog.setBloggerId(bloggerId);
         blog.setCategoryIds(StringUtils.intArrayToString(categories, ch));
@@ -112,7 +111,7 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
     private int[] parseContentForImageIds(String content, int bloggerId) {
         //http://localhost:8080/image/1/type=public/523?default=5
         //http://localhost:8080/image/1/type=private/1
-        String regex = "http://" + websitePropertiesManager.getAddr() + "/image/" + bloggerId + "/.*?/(\\d+)";
+        String regex = "http://" + websiteProperties.getAddr() + "/image/" + bloggerId + "/.*?/(\\d+)";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(content);
 
@@ -172,8 +171,8 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
         }
 
         // 2 更新博文
-        String ch = dbPropertiesManager.getStringFiledSplitCharacterForNumber();
-        String chs = dbPropertiesManager.getStringFiledSplitCharacterForString();
+        String ch = dbProperties.getStringFiledSplitCharacterForNumber();
+        String chs = dbProperties.getStringFiledSplitCharacterForString();
         Blog blog = new Blog();
         blog.setId(blogId);
         if (newCategories != null) blog.setCategoryIds(StringUtils.intArrayToString(newCategories, ch));
@@ -242,12 +241,6 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
     }
 
     @Override
-    public ResultBean<List<BlogListItemDTO>> listFilterByStatus(int bloggerId, BlogStatusEnum status, int offset,
-                                                                int rows, BlogSortRule sortRule) {
-        return null;
-    }
-
-    @Override
     public boolean getBlogForCheckExist(int blogId) {
         return !(blogDao.getBlogIdById(blogId) == null);
     }
@@ -257,9 +250,9 @@ public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogList
 
         Blog blog = blogDao.getBlogById(blogId);
 
-        String ch = dbPropertiesManager.getStringFiledSplitCharacterForNumber();
-        String chs = dbPropertiesManager.getStringFiledSplitCharacterForString();
-        String whs = websitePropertiesManager.getUrlConditionSplitCharacter();
+        String ch = dbProperties.getStringFiledSplitCharacterForNumber();
+        String chs = dbProperties.getStringFiledSplitCharacterForString();
+        String whs = websiteProperties.getUrlConditionSplitCharacter();
         if (blog != null && blog.getBloggerId().equals(bloggerId)) {
 
             blog.setCategoryIds(blog.getCategoryIds().replace(ch, whs));

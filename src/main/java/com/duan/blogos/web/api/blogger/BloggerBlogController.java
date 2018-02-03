@@ -5,8 +5,8 @@ import com.duan.blogos.common.Rule;
 import com.duan.blogos.dto.blogger.BlogListItemDTO;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.enums.BlogStatusEnum;
-import com.duan.blogos.manager.BlogSortRule;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.common.BlogSortRule;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.blog.BlogService;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
@@ -59,7 +59,7 @@ public class BloggerBlogController extends BaseBloggerController {
         handleBloggerSignInCheck(request, bloggerId);
         handleBlogContentCheck(request, title, content, summary, keyWords);
 
-        String sp = websitePropertiesManager.getUrlConditionSplitCharacter();
+        String sp = websiteProperties.getUrlConditionSplitCharacter();
         int[] cids = StringUtils.intStringDistinctToArray(categoryIds, sp);
         int[] lids = StringUtils.intStringDistinctToArray(labelIds, sp);
 
@@ -95,7 +95,7 @@ public class BloggerBlogController extends BaseBloggerController {
         String ord = order == null ? Order.DESC.name() : order.toUpperCase();
         handleSortRuleCheck(request, sor, ord);
 
-        String sp = websitePropertiesManager.getUrlConditionSplitCharacter();
+        String sp = websiteProperties.getUrlConditionSplitCharacter();
         int[] cids = StringUtils.intStringDistinctToArray(categoryIds, sp);
         int[] lids = StringUtils.intStringDistinctToArray(labelIds, sp);
 
@@ -106,7 +106,7 @@ public class BloggerBlogController extends BaseBloggerController {
         //执行数据查询
         BlogSortRule rule = new BlogSortRule(Rule.valueOf(sor), Order.valueOf(ord));
         int os = offset == null || offset < 0 ? 0 : offset;
-        int rs = rows == null || rows < 0 ? bloggerPropertiesManager.getRequestBlogListCount() : rows;
+        int rs = rows == null || rows < 0 ? bloggerProperties.getRequestBlogListCount() : rows;
         ResultBean<List<BlogListItemDTO>> listResultBean = blogService.listFilterAll(cids, lids, keyWord, bloggerId,
                 os, rs, rule, stat);
         if (listResultBean == null) handlerEmptyResult(request);
@@ -157,7 +157,7 @@ public class BloggerBlogController extends BaseBloggerController {
         handleBlogExistAndCreatorCheck(request, bloggerId, blogId);
         handleBlogContentCheck(request, newTitle, newContent, newSummary, newKeyWord);
 
-        String sp = websitePropertiesManager.getUrlConditionSplitCharacter();
+        String sp = websiteProperties.getUrlConditionSplitCharacter();
         int[] cids = newCategoryIds == null ? null : StringUtils.intStringDistinctToArray(newCategoryIds, sp);
         int[] lids = newLabelIds == null ? null : StringUtils.intStringDistinctToArray(newLabelIds, sp);
 
@@ -202,7 +202,7 @@ public class BloggerBlogController extends BaseBloggerController {
         handleBloggerSignInCheck(request, bloggerId);
 
         int[] blogIds = StringUtils.intStringDistinctToArray(ids,
-                websitePropertiesManager.getUrlConditionSplitCharacter());
+                websiteProperties.getUrlConditionSplitCharacter());
         if (CollectionUtils.isEmpty(blogIds))
             throw exceptionManager.getParameterIllegalException(new RequestContext(request));
 
@@ -225,9 +225,20 @@ public class BloggerBlogController extends BaseBloggerController {
     // 检查类别和标签
     private void handleCategoryAndLabelCheck(HttpServletRequest request, int bloggerId, int[] cids, int[] lids) {
 
-        if (!CollectionUtils.isEmpty(cids) && !bloggerValidateManager.checkBloggerBlogCategoryExist(bloggerId, cids)
-                || (!CollectionUtils.isEmpty(lids) && !blogValidateManager.checkLabelsExist(lids)))
-            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
+        if (!CollectionUtils.isEmpty(cids)) {
+            for (int id : cids) {
+                if (!bloggerValidateManager.checkBloggerBlogCategoryExist(bloggerId, id))
+                    throw exceptionManager.getParameterIllegalException(new RequestContext(request));
+            }
+        }
+
+        if (!CollectionUtils.isEmpty(lids)) {
+            for (int id : lids) {
+                if (!blogValidateManager.checkLabelsExist(id))
+                    throw exceptionManager.getParameterIllegalException(new RequestContext(request));
+            }
+        }
+
     }
 
     //博文内容审核

@@ -9,7 +9,9 @@ import com.duan.blogos.entity.blog.BlogCategory;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.exception.internal.SQLException;
 import com.duan.blogos.manager.*;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.manager.properties.BloggerProperties;
+import com.duan.blogos.manager.properties.DbProperties;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.blog.CategoryService;
 import com.duan.blogos.util.ArrayUtils;
 import com.duan.blogos.util.CollectionUtils;
@@ -37,13 +39,13 @@ public class CategoryServiceImpl implements CategoryService {
     private DataFillingManager fillingManager;
 
     @Autowired
-    private DbPropertiesManager dbPropertiesManager;
+    private DbProperties dbProperties;
 
     @Autowired
     private StringConstructorManager constructorManager;
 
     @Autowired
-    private BloggerPropertiesManager bloggerPropertiesManager;
+    private BloggerProperties bloggerProperties;
 
     @Autowired
     private ImageManager imageManager;
@@ -105,12 +107,6 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public boolean deleteCategoryAndBlogsAsWell(int bloggerId, int categoryId) {
-
-        return false;
-    }
-
-    @Override
     public boolean deleteCategoryAndMoveBlogsTo(int bloggerId, int categoryId, int newCategoryId) {
 
         BlogCategory category = categoryDao.getCategory(bloggerId, categoryId);
@@ -127,7 +123,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         // 修改博文类别
         List<Blog> blogs = blogDao.listAllCategoryByBloggerId(bloggerId);
-        String sp = dbPropertiesManager.getStringFiledSplitCharacterForNumber();
+        String sp = dbProperties.getStringFiledSplitCharacterForNumber();
 
         // 移除类别即可
         if (newCategoryId <= 0) {
@@ -161,11 +157,6 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public int countCategoryForExistCheck(int bloggerId, int categoryId) {
-        return categoryDao.countCategoryByBloggerIdAndCategoryId(bloggerId, categoryId);
-    }
-
-    @Override
     public BloggerCategoryDTO getCategory(int bloggerId, int categoryId) {
         return getBloggerCategoryDTO(categoryDao.getCategory(bloggerId, categoryId));
     }
@@ -175,10 +166,10 @@ public class CategoryServiceImpl implements CategoryService {
 
         Integer iconId = category.getIconId();
 
-        BloggerPicture icon = null;
+        BloggerPicture icon;
         if (iconId == null) {
             // 默认图片
-            int pictureManagerId = bloggerPropertiesManager.getPictureManagerBloggerId();
+            int pictureManagerId = bloggerProperties.getPictureManagerBloggerId();
             icon = pictureDao.getBloggerUniquePicture(pictureManagerId, DEFAULT_BLOGGER_BLOG_CATEGORY_ICON.getCode());
         } else {
             icon = pictureDao.getPictureById(iconId);

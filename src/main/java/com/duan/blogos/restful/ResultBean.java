@@ -1,4 +1,4 @@
-package com.duan.blogos.result;
+package com.duan.blogos.restful;
 
 import com.duan.blogos.exception.BaseRuntimeException;
 import lombok.Getter;
@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 /**
  * Created on 2017/12/13.
- * 返回结果统一定义，该类包装的结果可向页面传递
+ * restful 风格 API 返回结果固定结构
  *
  * @author DuanJiaNing
  */
@@ -17,7 +17,7 @@ import java.io.Serializable;
 @Setter
 public class ResultBean<T> implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -4101051436094606437L;
 
     /**
      * 结果状态为成功

@@ -1,11 +1,9 @@
 package com.duan.blogos.service.blogger.blog;
 
 import com.duan.blogos.dto.blogger.BlogListItemDTO;
-import com.duan.blogos.dto.blog.BlogStatisticsDTO;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.enums.BlogStatusEnum;
-import com.duan.blogos.manager.BlogSortRule;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.BlogFilter;
 
 import java.util.List;
@@ -76,19 +74,6 @@ public interface BlogService extends BlogFilter<ResultBean<List<BlogListItemDTO>
      * @return 操作失败为false
      */
     boolean deleteBlogPatch(int bloggerId, int[] blogIds);
-
-    /**
-     * 按类别检索
-     *
-     * @param bloggerId 博主id
-     * @param status    博文状态
-     * @param offset    结果集起始位置
-     * @param rows      行数
-     * @param sortRule  排序规则，为null则不做约束
-     * @return 查询结果
-     */
-    ResultBean<List<BlogListItemDTO>> listFilterByStatus(int bloggerId, BlogStatusEnum status,
-                                                         int offset, int rows, BlogSortRule sortRule);
 
     /**
      * 检查博文是否存在

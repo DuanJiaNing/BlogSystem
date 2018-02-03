@@ -15,12 +15,6 @@
         </foreach>
     </select>
 
-    <select id="countCategoryByBloggerIdAndCategoryId" resultType="java.lang.Integer">
-        SELECT count(*)
-        FROM blog_category
-        WHERE blogger_id = #{bloggerId} AND id = #{categoryId};
-    </select>
-
     <select id="listCategoryByBloggerId" resultType="BlogCategory">
         SELECT *
         FROM blog_category

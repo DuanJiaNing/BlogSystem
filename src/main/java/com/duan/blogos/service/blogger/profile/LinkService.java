@@ -1,7 +1,7 @@
 package com.duan.blogos.service.blogger.profile;
 
 import com.duan.blogos.dto.blogger.BloggerLinkDTO;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 
 import java.util.List;
 

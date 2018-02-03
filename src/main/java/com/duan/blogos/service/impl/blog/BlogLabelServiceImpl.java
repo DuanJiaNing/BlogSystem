@@ -5,8 +5,8 @@ import com.duan.blogos.dao.blog.BlogLabelDao;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogLabel;
 import com.duan.blogos.exception.internal.SQLException;
-import com.duan.blogos.manager.DbPropertiesManager;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.manager.properties.DbProperties;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blog.BlogLabelService;
 import com.duan.blogos.util.ArrayUtils;
 import com.duan.blogos.util.CollectionUtils;
@@ -31,7 +31,7 @@ public class BlogLabelServiceImpl implements BlogLabelService {
     private BlogDao blogDao;
 
     @Autowired
-    private DbPropertiesManager dbPropertiesManager;
+    private DbProperties dbProperties;
 
     @Override
     public int insertLabel(int bloggerId, String title) {
@@ -74,7 +74,7 @@ public class BlogLabelServiceImpl implements BlogLabelService {
 
         // 将所有拥有该标签的博文修改（j将标签移除）
         List<Blog> blogs = blogDao.listAllLabelByBloggerId(bloggerId);
-        String ch = dbPropertiesManager.getStringFiledSplitCharacterForNumber();
+        String ch = dbProperties.getStringFiledSplitCharacterForNumber();
         for (Blog blog : blogs) {
             int[] lids = StringUtils.intStringDistinctToArray(blog.getLabelIds(), ch);
             if (CollectionUtils.isEmpty(lids)) continue;

@@ -5,11 +5,11 @@ import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.dto.blogger.BloggerLinkDTO;
 import com.duan.blogos.entity.blogger.BloggerLink;
 import com.duan.blogos.entity.blogger.BloggerPicture;
-import com.duan.blogos.manager.BloggerPropertiesManager;
+import com.duan.blogos.manager.properties.BloggerProperties;
 import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.manager.ImageManager;
 import com.duan.blogos.manager.StringConstructorManager;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.profile.LinkService;
 import com.duan.blogos.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,7 @@ public class LinkServiceImpl implements LinkService {
     private DataFillingManager fillingManager;
 
     @Autowired
-    private BloggerPropertiesManager bloggerPropertiesManager;
+    private BloggerProperties bloggerProperties;
 
     @Autowired
     private StringConstructorManager constructorManager;
@@ -55,7 +55,7 @@ public class LinkServiceImpl implements LinkService {
         for (BloggerLink link : list) {
             Integer iconId = link.getIconId();
             BloggerPicture icon = iconId == null ?
-                    pictureDao.getBloggerUniquePicture(bloggerPropertiesManager.getPictureManagerBloggerId(),
+                    pictureDao.getBloggerUniquePicture(bloggerProperties.getPictureManagerBloggerId(),
                             DEFAULT_BLOGGER_LINK_ICON.getCode()) :
                     pictureDao.getPictureById(iconId);
             icon.setPath(constructorManager.constructPictureUrl(icon, DEFAULT_BLOGGER_LINK_ICON));

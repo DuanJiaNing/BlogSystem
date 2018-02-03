@@ -12,15 +12,17 @@ import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.entity.blogger.BloggerProfile;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 /**
  * Created on 2017/12/25.
- * entity 数据填充为 dto 数据
+ * entity 数据转换为 dto 数据
  *
  * @author DuanJiaNing
  */
+@Component
 public class DataFillingManager {
 
     public BlogStatisticsCountDTO blogStatisticsCountToDTO(BlogStatistics statistics) {

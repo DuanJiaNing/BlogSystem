@@ -2,7 +2,7 @@ package com.duan.blogos.service.blogger.profile;
 
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -113,6 +113,7 @@ public interface GalleryService {
      *
      * @param bloggerId 博主id
      */
+    // UPDATE: 2018/2/3 更新 初始版本不予实现
     void cleanBlogPicture(int bloggerId);
 
 }

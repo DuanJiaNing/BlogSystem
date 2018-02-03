@@ -1,6 +1,7 @@
 package com.duan.blogos.manager;
 
 import com.duan.blogos.entity.blog.Blog;
+import com.duan.blogos.manager.properties.WebsiteProperties;
 import com.duan.blogos.util.StringUtils;
 import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
 import org.apache.lucene.document.Document;
@@ -35,7 +36,7 @@ public class BlogLuceneIndexManager {
     private static final String INDEX_BLOG_CONTENT = "content";
 
     @Autowired
-    private WebsitePropertiesManager propertiesManager;
+    private WebsiteProperties propertiesManager;
 
     /**
      * 获取IndexWriter实例
@@ -73,9 +74,7 @@ public class BlogLuceneIndexManager {
         }
     }
 
-    /*
-     * 检查blog用于创建索引的属性是否完备
-     */
+    // 检查blog用于创建索引的属性是否完备
     private boolean checkAndAdd(Document doc, Blog blog) {
 
         boolean res = false;

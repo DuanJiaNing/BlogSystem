@@ -1,14 +1,15 @@
-package com.duan.blogos.manager;
+package com.duan.blogos.manager.properties;
 
 import lombok.Data;
 
 /**
  * Created on 2017/12/28.
+ * 博主配置参数
  *
  * @author DuanJiaNing
  */
 @Data
-public class BloggerPropertiesManager {
+public class BloggerProperties {
 
     /**
      * 博主友情链接默认请求条数

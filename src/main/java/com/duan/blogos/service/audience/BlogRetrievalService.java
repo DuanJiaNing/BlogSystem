@@ -1,7 +1,7 @@
 package com.duan.blogos.service.audience;
 
 import com.duan.blogos.dto.blog.BlogListItemDTO;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.BlogFilter;
 
 import java.util.List;

@@ -1,22 +1,28 @@
 package com.duan.blogos.service.impl.audience;
 
-import com.duan.blogos.dao.blog.*;
+import com.duan.blogos.dao.blog.BlogCategoryDao;
+import com.duan.blogos.dao.blog.BlogCommentDao;
+import com.duan.blogos.dao.blog.BlogDao;
+import com.duan.blogos.dao.blog.BlogLabelDao;
 import com.duan.blogos.dao.blogger.BloggerAccountDao;
 import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.dao.blogger.BloggerProfileDao;
 import com.duan.blogos.dto.blog.BlogCommentDTO;
 import com.duan.blogos.dto.blog.BlogMainContentDTO;
 import com.duan.blogos.dto.blogger.BloggerDTO;
-import com.duan.blogos.entity.blog.*;
+import com.duan.blogos.entity.blog.Blog;
+import com.duan.blogos.entity.blog.BlogCategory;
+import com.duan.blogos.entity.blog.BlogComment;
+import com.duan.blogos.entity.blog.BlogLabel;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.entity.blogger.BloggerProfile;
 import com.duan.blogos.enums.BlogCommentStatusEnum;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.manager.DataFillingManager;
-import com.duan.blogos.manager.DbPropertiesManager;
+import com.duan.blogos.manager.properties.DbProperties;
 import com.duan.blogos.manager.StringConstructorManager;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.audience.BlogBrowseService;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
@@ -44,7 +50,7 @@ public class BlogBrowseServiceImpl implements BlogBrowseService {
     private BlogLabelDao labelDao;
 
     @Autowired
-    private DbPropertiesManager dbPropertiesManager;
+    private DbProperties dbProperties;
 
     @Autowired
     private DataFillingManager dataFillingManager;
@@ -70,14 +76,14 @@ public class BlogBrowseServiceImpl implements BlogBrowseService {
         //查询数据
         Blog blog = blogDao.getBlogById(blogId);
         if (blog == null) return null;
-        String ch = dbPropertiesManager.getStringFiledSplitCharacterForNumber();
+        String ch = dbProperties.getStringFiledSplitCharacterForNumber();
         int[] cids = StringUtils.intStringDistinctToArray(blog.getCategoryIds(), ch);
         int[] lids = StringUtils.intStringDistinctToArray(blog.getLabelIds(), ch);
         List<BlogCategory> categories = cids == null ? null : categoryDao.listCategoryById(cids);
         List<BlogLabel> labels = lids == null ? null : labelDao.listLabelById(lids);
 
         //填充数据
-        String sc = dbPropertiesManager.getStringFiledSplitCharacterForString();
+        String sc = dbProperties.getStringFiledSplitCharacterForString();
         BlogMainContentDTO dto = dataFillingManager.blogMainContentToDTO(blog, categories, labels, sc);
 
         return new ResultBean<>(dto);
@@ -131,30 +137,5 @@ public class BlogBrowseServiceImpl implements BlogBrowseService {
     private BloggerProfile getProfile(Integer bloggerId) {
         if (bloggerId == null) return null;
         return profileDao.getProfileByBloggerId(bloggerId);
-    }
-
-    @Override
-    public ResultBean<Integer> insertComment(String content, int spokesmanId, int listenerId, int blogId) {
-        return null;
-    }
-
-    @Override
-    public ResultBean<Integer> insertShareCountIncrement(int blogId) {
-        return null;
-    }
-
-    @Override
-    public ResultBean<Integer> insertAdmire(int blogId, int paierId, int earnerId, float money) {
-        return null;
-    }
-
-    @Override
-    public ResultBean<Integer> insertCollect(int blogId, int cllocterId, String reason, int categoryId) {
-        return null;
-    }
-
-    @Override
-    public ResultBean<Integer> insertComplain(int blogId, int complainerId, String reason) {
-        return null;
     }
 }

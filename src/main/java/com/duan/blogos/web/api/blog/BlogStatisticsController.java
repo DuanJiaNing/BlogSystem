@@ -2,7 +2,7 @@ package com.duan.blogos.web.api.blog;
 
 import com.duan.blogos.dto.blog.BlogStatisticsCountDTO;
 import com.duan.blogos.dto.blog.BlogStatisticsDTO;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blog.BlogStatisticsService;
 import com.duan.blogos.web.api.audience.BaseBlogController;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,13 +2,11 @@ package com.duan.blogos.service.impl.blogger;
 
 import com.duan.blogos.dao.blogger.BloggerAccountDao;
 import com.duan.blogos.dao.blogger.BloggerPictureDao;
-import com.duan.blogos.dto.blogger.BloggerDTO;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.exception.internal.UnknownInternalException;
-import com.duan.blogos.manager.BloggerPropertiesManager;
+import com.duan.blogos.manager.properties.BloggerProperties;
 import com.duan.blogos.manager.ImageManager;
-import com.duan.blogos.result.ResultBean;
 import com.duan.blogos.service.blogger.BloggerAccountService;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +34,7 @@ public class BloggerAccountServiceImpl implements BloggerAccountService {
     private ImageManager imageManager;
 
     @Autowired
-    private BloggerPropertiesManager propertiesManager;
+    private BloggerProperties propertiesManager;
 
     @Override
     public int insertAccount(String userName, String password) {
@@ -60,11 +58,6 @@ public class BloggerAccountServiceImpl implements BloggerAccountService {
     }
 
     @Override
-    public BloggerAccount getAccount(String userName, String password) {
-        return null;
-    }
-
-    @Override
     public BloggerAccount getAccount(int bloggerId) {
         return accountDao.getAccountById(bloggerId);
     }
@@ -72,30 +65,6 @@ public class BloggerAccountServiceImpl implements BloggerAccountService {
     @Override
     public BloggerAccount getAccount(String bloggerName) {
         return accountDao.getAccountByName(bloggerName);
-    }
-
-    @Override
-    public boolean updateAccount(int bloggerId, String newUserName, String newPassword) {
-
-        BloggerAccount account = new BloggerAccount();
-        account.setId(bloggerId);
-        if (newUserName != null) account.setUsername(newUserName);
-        if (newPassword != null) account.setPassword(newPassword);
-
-        int effect = accountDao.update(account);
-        if (effect <= 0) return false;
-
-        return true;
-    }
-
-    @Override
-    public ResultBean<BloggerDTO> getBloggerByBlog(int blogId) {
-        return null;
-    }
-
-    @Override
-    public ResultBean<BloggerDTO> getBlogger(int bloggerId) {
-        return null;
     }
 
     @Override

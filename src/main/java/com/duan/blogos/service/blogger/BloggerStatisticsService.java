@@ -1,7 +1,7 @@
 package com.duan.blogos.service.blogger;
 
 import com.duan.blogos.dto.blogger.BloggerStatisticsDTO;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 
 /**
  * Created on 2018/1/17.
@@ -9,6 +9,7 @@ import com.duan.blogos.result.ResultBean;
  *
  * @author DuanJiaNing
  */
+// UPDATE: 2018/2/3 更新 初始版本不予实现
 public interface BloggerStatisticsService {
 
     /**

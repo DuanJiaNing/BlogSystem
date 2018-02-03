@@ -9,12 +9,12 @@ import com.duan.blogos.exception.api.parameter.ParameterFormatIllegalException;
 import com.duan.blogos.exception.api.parameter.ParameterIllegalException;
 import com.duan.blogos.exception.api.parameter.ParameterStringSplitException;
 import com.duan.blogos.exception.api.parameter.ParameterTypeMismatchException;
-import com.duan.blogos.exception.internal.UnknownInternalException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.RequestContext;
 
 /**
  * Created on 2017/12/26.
+ * 将异常与说明关联，同时实现国际化
  *
  * @author DuanJiaNing
  */

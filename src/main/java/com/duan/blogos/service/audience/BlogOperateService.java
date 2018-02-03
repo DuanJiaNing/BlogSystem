@@ -35,16 +35,6 @@ public interface BlogOperateService {
     int insertShare(int blogId, int sharerId);
 
     /**
-     * 新增一次赞赏记录，同时博文赞赏次数加一
-     *
-     * @param blogId  博文id
-     * @param paierId 赞赏者id
-     * @param money   金额
-     * @return 新纪录id
-     */
-    int insertAdmire(int blogId, int paierId, float money);
-
-    /**
      * 新增投诉记录，同时博文投诉次数加一
      *
      * @param blogId     博文id

@@ -25,9 +25,6 @@ public class BlogOperateServiceImpl implements BlogOperateService {
     private BlogStatisticsDao statisticsDao;
 
     @Autowired
-    private BlogAdmireDao admireDao;
-
-    @Autowired
     private BlogCollectDao collectDao;
 
     @Autowired
@@ -63,29 +60,11 @@ public class BlogOperateServiceImpl implements BlogOperateService {
     @Override
     public int insertShare(int blogId, int sharerId) {
 
-        // UPDATE: 2017/12/27 对分享操作做额外记录以计算其账户活跃度 etc
         statisticsDao.updateShareCountPlus(blogId);
         Integer count = statisticsDao.getShareCount(blogId);
 
         return count == null ? -1 : count;
     }
-
-    @Override
-    public int insertAdmire(int blogId, int paierId, float money) {
-
-        BlogAdmire admire = new BlogAdmire();
-        admire.setBlogId(blogId);
-        admire.setMoney(money);
-        admire.setPaierId(paierId);
-        admireDao.insert(admire);
-
-        //博文赞赏次数加一
-        statisticsDao.updateAdmireCountPlus(blogId);
-
-        Integer id = admire.getId();
-        return id == null ? -1 : id;
-    }
-
     @Override
     public int insertCollect(int blogId, int collectorId, String reason, int categoryId) {
 

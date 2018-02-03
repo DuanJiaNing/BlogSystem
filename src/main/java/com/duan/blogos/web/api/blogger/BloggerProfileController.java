@@ -1,7 +1,7 @@
 package com.duan.blogos.web.api.blogger;
 
 import com.duan.blogos.entity.blogger.BloggerProfile;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.profile.ProfileService;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

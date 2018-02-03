@@ -1,7 +1,7 @@
 package com.duan.blogos.service.blogger.blog;
 
 import com.duan.blogos.dto.blogger.BloggerCategoryDTO;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 
 import java.util.List;
 
@@ -48,14 +48,6 @@ public interface CategoryService {
     int insertBlogCategory(int bloggerId, int iconId, String title, String desc);
 
     /**
-     * 删除类别，同时删除类别下的所有博文
-     *
-     * @param bloggerId  博主id
-     * @param categoryId 类别id
-     */
-    boolean deleteCategoryAndBlogsAsWell(int bloggerId, int categoryId);
-
-    /**
      * 删除类别，同时移动类别下所有文章到新的类别中
      *
      * @param bloggerId     博主id
@@ -63,15 +55,6 @@ public interface CategoryService {
      * @param newCategoryId 新的类别（新类别创建者创建的类别），不修改传递-1
      */
     boolean deleteCategoryAndMoveBlogsTo(int bloggerId, int categoryId, int newCategoryId);
-
-    /**
-     * 通过计算类别数量，来检查指定博主是否创建过指定类别
-     *
-     * @param bloggerId  博主id
-     * @param categoryId 类别id
-     * @return 创建过则结果不小于1，否则为0
-     */
-    int countCategoryForExistCheck(int bloggerId, int categoryId);
 
     /**
      * 根据id获得指定博文类别

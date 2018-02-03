@@ -61,4 +61,5 @@ public class BlogStatisticsDTO implements Serializable {
 
     //评论了该篇文章的人
     private BloggerDTO[] commenter;
+
 }

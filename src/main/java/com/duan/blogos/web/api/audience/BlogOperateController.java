@@ -1,8 +1,7 @@
 package com.duan.blogos.web.api.audience;
 
-import com.duan.blogos.exception.BaseRuntimeException;
-import com.duan.blogos.manager.BloggerPropertiesManager;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.manager.properties.BloggerProperties;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.audience.BlogOperateService;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +16,11 @@ import javax.servlet.http.HttpServletRequest;
  * <p>
  * 1 评论博文
  * 2 分享博文
- * 3 赞赏博文
- * 4 收藏博文
- * 5 投诉博文
- * 6 喜欢博文
- * 7 取消收藏
- * 8 取消喜欢
+ * 3 收藏博文
+ * 4 投诉博文
+ * 5 喜欢博文
+ * 6 取消收藏
+ * 7 取消喜欢
  *
  * @author DuanJiaNing
  */
@@ -34,23 +32,23 @@ public class BlogOperateController extends BaseBlogController {
     private BlogOperateService operateService;
 
     @Autowired
-    private BloggerPropertiesManager propertiesManager;
+    private BloggerProperties propertiesManager;
 
     /**
      * 评论博文
      */
-    @RequestMapping(value = "/comment", method = RequestMethod.POST)
+    @RequestMapping(value = "/operate=comment", method = RequestMethod.POST)
     public ResultBean commentBlog(HttpServletRequest request,
                                   @PathVariable Integer blogId,
                                   @RequestParam("spokesmanId") Integer spokesmanId,
                                   @RequestParam("listenerId") Integer listenerId,
                                   @RequestParam("content") String content) {
-        RequestContext context = new RequestContext(request);
 
-        //检查
-        BaseRuntimeException exception = checkBlogAndBloggerExist(context, blogId, spokesmanId, listenerId);
-        if (exception != null) throw exception;
-        if (StringUtils.isEmpty(content)) throw exceptionManager.getParameterIllegalException(context);
+        if (StringUtils.isEmpty_(content))
+            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
+
+        handleBloggerSignInCheck(request, spokesmanId);
+        handleBlogAndBloggerExistCheck(new RequestContext(request), blogId, listenerId);
 
         //执行操作
         int id = operateService.insertComment(blogId, spokesmanId, listenerId, content);
@@ -59,18 +57,16 @@ public class BlogOperateController extends BaseBlogController {
         return new ResultBean<>(id);
     }
 
+
     /**
      * 分享博文
      */
-    @RequestMapping(value = "/share", method = RequestMethod.POST)
+    @RequestMapping(value = "/operate=share", method = RequestMethod.POST)
     public ResultBean shareBlog(HttpServletRequest request,
                                 @PathVariable Integer blogId,
                                 @RequestParam("sharerId") Integer sharerId) {
-        RequestContext context = new RequestContext(request);
-
-        //检查
-        BaseRuntimeException exception = checkBlogAndBloggerExist(context, blogId, sharerId);
-        if (exception != null) throw exception;
+        handleBloggerSignInCheck(request, sharerId);
+        handleBlogAndBloggerExistCheck(new RequestContext(request), blogId);
 
         //执行
         int count = operateService.insertShare(blogId, sharerId);
@@ -79,45 +75,16 @@ public class BlogOperateController extends BaseBlogController {
     }
 
     /**
-     * 赞赏博文
-     */
-    @RequestMapping(value = "/admire", method = RequestMethod.POST)
-    public ResultBean admireBlog(HttpServletRequest request,
-                                 @PathVariable Integer blogId,
-                                 @RequestParam("paierId") Integer paierId,
-                                 @RequestParam("money") Float money) {
-        RequestContext context = new RequestContext(request);
-
-        //检查
-        BaseRuntimeException exception = checkBlogAndBloggerExist(context, blogId, paierId);
-        if (exception != null) throw exception;
-        if (money == null || Math.min(money, 0f) == money) throw exceptionManager.getParameterIllegalException(context);
-
-        //执行
-        int id = operateService.insertAdmire(blogId, paierId, money);
-        if (id <= 0) handlerOperateFail(request);
-
-        return new ResultBean<>(id);
-    }
-
-    /**
      * 收藏博文
      */
-    @RequestMapping(value = "/collect", method = RequestMethod.POST)
+    @RequestMapping(value = "/operate=collect", method = RequestMethod.POST)
     public ResultBean collectBlog(HttpServletRequest request,
                                   @PathVariable Integer blogId,
                                   @RequestParam("collectorId") Integer collectorId,
                                   @RequestParam(value = "reason", required = false) String reason) {
-        RequestContext context = new RequestContext(request);
 
-        // 检查
-        BaseRuntimeException exception = checkBlogAndBloggerExist(context, blogId, collectorId);
-        if (exception != null) throw exception;
-
-        //检查博主是否有指定类别
-//        if (categoryId != null && !bloggerValidateManager.checkBloggerBlogCategoryExist(collectorId, categoryId)) {
-//            throw exceptionManager.getParameterIllegalException(context);
-//        }
+        handleBloggerSignInCheck(request, collectorId);
+        handleBlogAndBloggerExistCheck(new RequestContext(request), blogId);
 
         // 如果博文属于当前博主，收藏失败d
         if (blogValidateManager.isCreatorOfBlog(collectorId, blogId)) {
@@ -135,17 +102,16 @@ public class BlogOperateController extends BaseBlogController {
     /**
      * 投诉博文
      */
-    @RequestMapping(value = "/complain", method = RequestMethod.POST)
+    @RequestMapping(value = "/operate=complain", method = RequestMethod.POST)
     public ResultBean complainBlog(HttpServletRequest request,
                                    @PathVariable Integer blogId,
                                    @RequestParam("complainId") Integer complainId,
                                    @RequestParam("content") String content) {
-        RequestContext context = new RequestContext(request);
+        if (StringUtils.isEmpty_(content))
+            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
 
-        //检查
-        BaseRuntimeException exception = checkBlogAndBloggerExist(context, blogId, complainId);
-        if (exception != null) throw exception;
-        if (StringUtils.isEmpty(content)) throw exceptionManager.getParameterIllegalException(context);
+        handleBloggerSignInCheck(request, complainId);
+        handleBlogAndBloggerExistCheck(new RequestContext(request), blogId);
 
         //执行
         int id = operateService.insertComplain(blogId, complainId, content);
@@ -157,15 +123,13 @@ public class BlogOperateController extends BaseBlogController {
     /**
      * 喜欢博文
      */
-    @RequestMapping(value = "/like", method = RequestMethod.POST)
+    @RequestMapping(value = "/operate=like", method = RequestMethod.POST)
     public ResultBean likeBlog(HttpServletRequest request,
                                @PathVariable Integer blogId,
                                @RequestParam("likerId") Integer likerId) {
-        RequestContext context = new RequestContext(request);
 
-        //检查
-        BaseRuntimeException exception = checkBlogAndBloggerExist(context, blogId, likerId);
-        if (exception != null) throw exception;
+        handleBloggerSignInCheck(request, likerId);
+        handleBlogAndBloggerExistCheck(new RequestContext(request), blogId);
 
         //执行
         int count = operateService.insertLike(blogId, likerId);
@@ -176,15 +140,13 @@ public class BlogOperateController extends BaseBlogController {
     /**
      * 取消收藏
      */
-    @RequestMapping(value = "/collect", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/operate=collect", method = RequestMethod.DELETE)
     public ResultBean removeCollect(HttpServletRequest request,
                                     @PathVariable Integer blogId,
                                     @RequestParam("bloggerId") Integer bloggerId) {
-        RequestContext context = new RequestContext(request);
 
-        //检查
-        BaseRuntimeException exception = checkBlogAndBloggerExist(context, blogId, bloggerId);
-        if (exception != null) throw exception;
+        handleBloggerSignInCheck(request, bloggerId);
+        handleBlogAndBloggerExistCheck(new RequestContext(request), blogId);
 
         //执行
         boolean result = operateService.deleteCollect(bloggerId, blogId);
@@ -197,15 +159,12 @@ public class BlogOperateController extends BaseBlogController {
     /**
      * 取消喜欢
      */
-    @RequestMapping(value = "/like", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/operate=like", method = RequestMethod.DELETE)
     public ResultBean removeLike(HttpServletRequest request,
                                  @PathVariable Integer blogId,
                                  @RequestParam("bloggerId") Integer bloggerId) {
-        RequestContext context = new RequestContext(request);
-
-        //检查
-        BaseRuntimeException exception = checkBlogAndBloggerExist(context, blogId, bloggerId);
-        if (exception != null) throw exception;
+        handleBloggerSignInCheck(request, bloggerId);
+        handleBlogAndBloggerExistCheck(new RequestContext(request), blogId);
 
         //执行
         boolean result = operateService.deleteLike(bloggerId, blogId);

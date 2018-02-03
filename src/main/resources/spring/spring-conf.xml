@@ -5,19 +5,19 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--读者配置-->
-    <bean class="com.duan.blogos.manager.AudiencePropertiesManager" name="audiencePropertiesManager">
+    <bean class="com.duan.blogos.manager.properties.AudienceProperties" name="audienceProperties">
         <property name="requestBloggerBlogListCount" value="${audience.requestBloggerBlogListCount}"/>
         <property name="requestBloggerBlogCommentCount" value="${audience.requestBloggerBlogCommentCount}"/>
     </bean>
 
     <!--数据库配置-->
-    <bean class="com.duan.blogos.manager.DbPropertiesManager" name="dbPropertiesManager">
+    <bean class="com.duan.blogos.manager.properties.DbProperties" name="dbProperties">
         <property name="stringFiledSplitCharacterForNumber" value="${db.stringFiledSplitCharacterForNumber}"/>
         <property name="stringFiledSplitCharacterForString" value="${db.stringFiledSplitCharacterForString}"/>
     </bean>
 
     <!--博主配置-->
-    <bean class="com.duan.blogos.manager.BloggerPropertiesManager" name="bloggerPropertiesManager">
+    <bean class="com.duan.blogos.manager.properties.BloggerProperties" name="bloggerProperties">
         <property name="requestBloggerLinkCount" value="${blogger.requestBloggerLinkCount}"/>
         <property name="bloggerImageRootPath" value="${blogger.bloggerImageRootPath}"/>
         <property name="pictureManagerBloggerId" value="${blogger.pictureManagerBloggerId}"/>
@@ -32,21 +32,18 @@
     </bean>
 
     <!--博文配置-->
-    <bean class="com.duan.blogos.manager.BlogPropertiesManager" name="blogPropertiesManager">
+    <bean class="com.duan.blogos.manager.properties.BlogProperties" name="blogProperties">
         <property name="requestBloggerBlogLabelCount" value="${blog.requestBloggerBlogLabelCount}"/>
     </bean>
 
-    <!--数据填充配置，e.g. pojo对象转为dto对象-->
-    <bean class="com.duan.blogos.manager.DataFillingManager" name="dataFillingManager"/>
-
     <!--站点配置-->
-    <bean class="com.duan.blogos.manager.WebsitePropertiesManager" name="websitePropertiesManager">
+    <bean class="com.duan.blogos.manager.properties.WebsiteProperties" name="websiteProperties">
         <property name="addr" value="${website.addr}"/>
         <property name="urlConditionSplitCharacter" value="${website.urlConditionSplitCharacter}"/>
         <property name="luceneIndexDir" value="${website.luceneIndexDir}"/>
     </bean>
 
-    <!--验证管理者-->
+    <!--管理者-->
     <context:component-scan base-package="com.duan.blogos.manager"/>
 
 </beans>

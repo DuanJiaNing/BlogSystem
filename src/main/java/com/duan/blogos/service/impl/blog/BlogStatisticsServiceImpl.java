@@ -13,9 +13,9 @@ import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.entity.blogger.BloggerProfile;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.manager.DataFillingManager;
-import com.duan.blogos.manager.DbPropertiesManager;
+import com.duan.blogos.manager.properties.DbProperties;
 import com.duan.blogos.manager.StringConstructorManager;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blog.BlogStatisticsService;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
@@ -35,7 +35,7 @@ import java.util.stream.IntStream;
 public class BlogStatisticsServiceImpl implements BlogStatisticsService {
 
     @Autowired
-    private DbPropertiesManager dbPropertiesManager;
+    private DbProperties dbProperties;
 
     @Autowired
     private DataFillingManager dataFillingManager;
@@ -85,7 +85,7 @@ public class BlogStatisticsServiceImpl implements BlogStatisticsService {
 
         // 类别
         BlogCategory[] categories = null;
-        String sn = dbPropertiesManager.getStringFiledSplitCharacterForNumber();
+        String sn = dbProperties.getStringFiledSplitCharacterForNumber();
         int[] cids = StringUtils.intStringDistinctToArray(blog.getCategoryIds(), sn);
         if (!CollectionUtils.isEmpty(cids)) {
             categories = categoryDao.listCategoryById(cids).toArray(new BlogCategory[cids.length]);
@@ -139,7 +139,7 @@ public class BlogStatisticsServiceImpl implements BlogStatisticsService {
         }
 
         BlogStatisticsDTO dto = dataFillingManager.blogStatisticsToDTO(blog, statistics, categories, labels,
-                likes, collects, commenter, dbPropertiesManager.getStringFiledSplitCharacterForString());
+                likes, collects, commenter, dbProperties.getStringFiledSplitCharacterForString());
 
         return new ResultBean<>(dto);
     }

@@ -1,7 +1,7 @@
 package com.duan.blogos.web.api.blogger;
 
 import com.duan.blogos.dto.blogger.BloggerCategoryDTO;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.blog.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -41,7 +41,7 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
         handleAccountCheck(request, bloggerId);
 
         int os = offset == null || offset < 0 ? 0 : offset;
-        int rs = rows == null || rows < 0 ? bloggerPropertiesManager.getRequestBloggerBlogCategoryCount() : rows;
+        int rs = rows == null || rows < 0 ? bloggerProperties.getRequestBloggerBlogCategoryCount() : rows;
         ResultBean<List<BloggerCategoryDTO>> result = categoryService.listBlogCategory(bloggerId, os, rs);
         if (result == null) handlerEmptyResult(request);
 
@@ -112,7 +112,7 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
     }
 
     // 检查指定博主是否有指定的博文类别
-    private void handleCategoryExistCheck(HttpServletRequest request, Integer bloggerId, Integer categoryId) {
+    private void handleCategoryExistCheck(HttpServletRequest request, int bloggerId, int categoryId) {
         if (!bloggerValidateManager.checkBloggerBlogCategoryExist(bloggerId, categoryId))
             throw exceptionManager.getUnknownCategoryException(new RequestContext(request));
     }

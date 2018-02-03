@@ -1,7 +1,7 @@
 package com.duan.blogos.web.api.blog;
 
 import com.duan.blogos.entity.blog.BlogLabel;
-import com.duan.blogos.result.ResultBean;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blog.BlogLabelService;
 import com.duan.blogos.util.StringUtils;
 import com.duan.blogos.web.api.audience.BaseBlogController;
@@ -41,7 +41,7 @@ public class BlogLabelController extends BaseBlogController {
                                            @RequestParam(value = "rows", required = false) Integer rows) {
 
         int os = offset == null || offset < 0 ? 0 : offset;
-        int rs = rows == null || rows < 0 ? blogPropertiesManager.getRequestBloggerBlogLabelCount() : rows;
+        int rs = rows == null || rows < 0 ? blogProperties.getRequestBloggerBlogLabelCount() : rows;
         ResultBean<List<BlogLabel>> resultBean = blogLabelService.listLabel(os, rs);
         if (resultBean == null) handlerEmptyResult(request);
 
@@ -72,7 +72,7 @@ public class BlogLabelController extends BaseBlogController {
         handleAccountCheck(request, bloggerId);
 
         int os = offset == null || offset < 0 ? 0 : offset;
-        int rs = rows == null || rows < 0 ? blogPropertiesManager.getRequestBloggerBlogLabelCount() : rows;
+        int rs = rows == null || rows < 0 ? blogProperties.getRequestBloggerBlogLabelCount() : rows;
         ResultBean<List<BlogLabel>> result = blogLabelService.listLabelByBlogger(bloggerId, os, rs);
         if (result == null) handlerEmptyResult(request);
 
@@ -100,14 +100,6 @@ public class BlogLabelController extends BaseBlogController {
     private void handleTitleCheck(String title, HttpServletRequest request) {
         if (StringUtils.isEmpty(title))
             throw exceptionManager.getParameterIllegalException(new RequestContext(request));
-    }
-
-    // 检查博主是否登录
-    private void handleBloggerSignInCheck(HttpServletRequest request, Integer bloggerId) {
-        handleAccountCheck(request, bloggerId);
-
-        if (!bloggerValidateManager.checkBloggerSignIn(request, bloggerId))
-            throw exceptionManager.getBloggerNotLoggedInException(new RequestContext(request));
     }
 
     /**

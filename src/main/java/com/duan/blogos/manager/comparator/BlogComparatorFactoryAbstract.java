@@ -18,7 +18,7 @@ public abstract class BlogComparatorFactoryAbstract<T> {
     private Map<Rule, Comparator<T>> coms = new HashMap<>();
     Order order = Order.ASC;
 
-    public BlogComparatorFactoryAbstract() {
+    BlogComparatorFactoryAbstract() {
         initFactory();
     }
 

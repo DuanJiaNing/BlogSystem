@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Created on 2017/12/26.
- * 博客验证
+ * 博文评论审核
  *
  * @author DuanJiaNing
  */
@@ -18,7 +18,7 @@ public class BlogCommentValidateManager {
      * @return 审核通过为true
      */
     public boolean checkCommentContent(String content) {
-        //TODO 博文评论审核
+        // UPDATE: 2018/2/3 更新
         return true;
     }
 

@@ -1,7 +1,7 @@
 package com.duan.blogos.service;
 
 import com.duan.blogos.enums.BlogStatusEnum;
-import com.duan.blogos.manager.BlogSortRule;
+import com.duan.blogos.common.BlogSortRule;
 
 /**
  * Created on 2017/12/19.

@@ -44,5 +44,4 @@ public class BlogStatisticsCountDTO implements Serializable {
     //喜欢次数
     private int likeCount;
 
-
 }
