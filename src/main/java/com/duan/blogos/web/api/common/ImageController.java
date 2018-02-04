@@ -1,4 +1,4 @@
-package com.duan.blogos.web.api.blogger;
+package com.duan.blogos.web.api.common;
 
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
@@ -6,6 +6,7 @@ import com.duan.blogos.manager.validate.BloggerValidateManager;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.profile.GalleryService;
 import com.duan.blogos.util.ImageUtils;
+import com.duan.blogos.web.api.BaseCheckController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ import java.io.IOException;
  */
 @Controller
 @RequestMapping("/image/{bloggerId}")
-public class ImageController extends BaseBloggerController {
+public class ImageController extends BaseCheckController {
 
     @Autowired
     private GalleryService galleryService;

@@ -1,10 +1,11 @@
-package com.duan.blogos.web.api.blogger;
+package com.duan.blogos.web.api;
 
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.manager.MessageManager;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.BloggerAccountService;
 import com.duan.blogos.util.StringUtils;
+import com.duan.blogos.web.api.blogger.BaseBloggerController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

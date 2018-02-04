@@ -29,10 +29,6 @@
         <property name="sessionNameOfBloggerName" value="${blogger.session.bloggerName}"/>
         <property name="sessionNameOfErrorMsg" value="${blogger.session.errorMsg}"/>
         <property name="requestBlogListCount" value="${blogger.requestBlogListCount}"/>
-    </bean>
-
-    <!--博文配置-->
-    <bean class="com.duan.blogos.manager.properties.BlogProperties" name="blogProperties">
         <property name="requestBloggerBlogLabelCount" value="${blog.requestBloggerBlogLabelCount}"/>
     </bean>
 

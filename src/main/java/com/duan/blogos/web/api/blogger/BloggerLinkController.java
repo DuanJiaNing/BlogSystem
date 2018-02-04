@@ -52,7 +52,7 @@ public class BloggerLinkController extends BaseBloggerController {
      * 新增链接
      */
     @RequestMapping(method = RequestMethod.POST)
-    public ResultBean newLink(HttpServletRequest request,
+    public ResultBean add(HttpServletRequest request,
                               @PathVariable Integer bloggerId,
                               @RequestParam(value = "iconId", required = false) Integer iconId,
                               @RequestParam("title") String title,

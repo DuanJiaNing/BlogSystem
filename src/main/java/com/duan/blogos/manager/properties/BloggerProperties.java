@@ -66,4 +66,9 @@ public class BloggerProperties {
      */
     private String sessionNameOfErrorMsg;
 
+    /**
+     * 博文标签默认请求条数
+     */
+    private Integer requestBloggerBlogLabelCount;
+
 }

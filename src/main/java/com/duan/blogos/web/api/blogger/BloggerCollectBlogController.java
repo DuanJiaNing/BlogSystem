@@ -35,7 +35,7 @@ public class BloggerCollectBlogController extends BaseBloggerController {
      * 收藏博文清单
      */
     @RequestMapping(method = RequestMethod.GET)
-    public ResultBean<List<CollectBlogListItemDTO>> get(HttpServletRequest request,
+    public ResultBean<List<CollectBlogListItemDTO>> list(HttpServletRequest request,
                                                         @PathVariable("bloggerId") Integer bloggerId,
                                                         @RequestParam(value = "offset", required = false) Integer offset,
                                                         @RequestParam(value = "rows", required = false) Integer rows,

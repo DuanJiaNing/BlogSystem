@@ -1,10 +1,9 @@
-package com.duan.blogos.web.api.blog;
+package com.duan.blogos.web.api.blogger;
 
 import com.duan.blogos.entity.blog.BlogLabel;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blog.BlogLabelService;
 import com.duan.blogos.util.StringUtils;
-import com.duan.blogos.web.api.audience.BaseBlogController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.RequestContext;
@@ -26,53 +25,25 @@ import java.util.List;
  * @author DuanJiaNing
  */
 @RestController
-@RequestMapping("/blog/label")
-public class BlogLabelController extends BaseBlogController {
+@RequestMapping("/blogger/{bloggerId}/label")
+public class BloggerLabelController extends BaseBloggerController {
 
     @Autowired
     private BlogLabelService blogLabelService;
 
-    /**
-     * 查看所有标签
-     */
-    @RequestMapping(method = RequestMethod.GET)
-    public ResultBean<List<BlogLabel>> get(HttpServletRequest request,
-                                           @RequestParam(value = "offset", required = false) Integer offset,
-                                           @RequestParam(value = "rows", required = false) Integer rows) {
-
-        int os = offset == null || offset < 0 ? 0 : offset;
-        int rs = rows == null || rows < 0 ? blogProperties.getRequestBloggerBlogLabelCount() : rows;
-        ResultBean<List<BlogLabel>> resultBean = blogLabelService.listLabel(os, rs);
-        if (resultBean == null) handlerEmptyResult(request);
-
-        return resultBean;
-    }
-
-
-    /**
-     * 获取指定标签
-     */
-    @RequestMapping(value = "/{labelId}", method = RequestMethod.GET)
-    public ResultBean<BlogLabel> getLabel(HttpServletRequest request, @PathVariable("labelId") Integer labelId) {
-
-        BlogLabel label = blogLabelService.getLabel(labelId);
-        if (label == null) handlerEmptyResult(request);
-
-        return new ResultBean<>(label);
-    }
 
     /**
      * 获取指定博主创建的标签
      */
     @RequestMapping(value = "/blogger", method = RequestMethod.GET)
-    public ResultBean<List<BlogLabel>> getLabelWithBlogger(HttpServletRequest request,
+    public ResultBean<List<BlogLabel>> list(HttpServletRequest request,
                                                            @RequestParam("bloggerId") Integer bloggerId,
                                                            @RequestParam(value = "offset", required = false) Integer offset,
                                                            @RequestParam(value = "rows", required = false) Integer rows) {
         handleAccountCheck(request, bloggerId);
 
         int os = offset == null || offset < 0 ? 0 : offset;
-        int rs = rows == null || rows < 0 ? blogProperties.getRequestBloggerBlogLabelCount() : rows;
+        int rs = rows == null || rows < 0 ? bloggerProperties.getRequestBloggerBlogLabelCount() : rows;
         ResultBean<List<BlogLabel>> result = blogLabelService.listLabelByBlogger(bloggerId, os, rs);
         if (result == null) handlerEmptyResult(request);
 
@@ -94,12 +65,6 @@ public class BlogLabelController extends BaseBlogController {
         if (id < 0) handlerOperateFail(request);
 
         return new ResultBean<>(id);
-    }
-
-    // 检查标题合法性
-    private void handleTitleCheck(String title, HttpServletRequest request) {
-        if (StringUtils.isEmpty(title))
-            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
     }
 
     /**
@@ -135,5 +100,10 @@ public class BlogLabelController extends BaseBlogController {
         return new ResultBean<>("");
     }
 
+    // 检查标题合法性
+    private void handleTitleCheck(String title, HttpServletRequest request) {
+        if (StringUtils.isEmpty(title))
+            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
+    }
 
 }

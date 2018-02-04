@@ -41,7 +41,7 @@ public class BloggerValidateManager {
      * @return 存在返回true
      */
     public boolean checkAccountExist(int id) {
-        return accountDao.getAccountById(id) == null;
+        return accountDao.getAccountById(id) != null;
     }
 
     /**

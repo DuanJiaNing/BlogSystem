@@ -34,7 +34,7 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
      * 查看所有类别
      */
     @RequestMapping(method = RequestMethod.GET)
-    public ResultBean<List<BloggerCategoryDTO>> get(HttpServletRequest request,
+    public ResultBean<List<BloggerCategoryDTO>> list(HttpServletRequest request,
                                                     @PathVariable("bloggerId") Integer bloggerId,
                                                     @RequestParam(value = "offset", required = false) Integer offset,
                                                     @RequestParam(value = "rows", required = false) Integer rows) {

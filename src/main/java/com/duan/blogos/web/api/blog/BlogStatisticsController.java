@@ -4,7 +4,6 @@ import com.duan.blogos.dto.blog.BlogStatisticsCountDTO;
 import com.duan.blogos.dto.blog.BlogStatisticsDTO;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blog.BlogStatisticsService;
-import com.duan.blogos.web.api.audience.BaseBlogController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +34,7 @@ public class BlogStatisticsController extends BaseBlogController {
      * 获得博文统计信息
      */
     @RequestMapping(method = RequestMethod.GET)
-    public ResultBean<BlogStatisticsDTO> blogStatistics(HttpServletRequest request,
+    public ResultBean<BlogStatisticsDTO> get(HttpServletRequest request,
                                                         @PathVariable Integer blogId) {
         handleBlogStatisticsExistCheck(request, blogId);
 
@@ -49,7 +48,7 @@ public class BlogStatisticsController extends BaseBlogController {
      * 获取统计信息（简版，只获取各项信息的次数）
      */
     @RequestMapping(value = "/count", method = RequestMethod.GET)
-    public ResultBean<BlogStatisticsCountDTO> blogStatisticsCount(HttpServletRequest request,
+    public ResultBean<BlogStatisticsCountDTO> getCount(HttpServletRequest request,
                                                                   @PathVariable Integer blogId) {
         handleBlogStatisticsExistCheck(request, blogId);
 

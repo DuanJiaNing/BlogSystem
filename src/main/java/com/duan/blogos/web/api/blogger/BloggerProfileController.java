@@ -46,7 +46,7 @@ public class BloggerProfileController extends BaseBloggerController {
      * 新增资料
      */
     @RequestMapping(method = RequestMethod.POST)
-    public ResultBean newProfile(HttpServletRequest request,
+    public ResultBean add(HttpServletRequest request,
                                  @PathVariable Integer bloggerId,
                                  @RequestParam(value = "avatarId", required = false) Integer avatarId,
                                  @RequestParam(value = "phone", required = false) String phone,
@@ -62,15 +62,6 @@ public class BloggerProfileController extends BaseBloggerController {
         if (id <= 0) handlerOperateFail(request);
 
         return new ResultBean<>(id);
-    }
-
-    private void checkParams(String phone, String email, HttpServletRequest request) {
-        RequestContext context = new RequestContext(request);
-        if (phone != null && !StringUtils.isPhone(phone))
-            throw exceptionManager.getParameterFormatIllegalException(context);
-
-        if (email != null && !StringUtils.isEmail(email))
-            throw exceptionManager.getParameterFormatIllegalException(context);
     }
 
     /**
@@ -114,4 +105,14 @@ public class BloggerProfileController extends BaseBloggerController {
 
         return new ResultBean<>("");
     }
+
+    private void checkParams(String phone, String email, HttpServletRequest request) {
+        RequestContext context = new RequestContext(request);
+        if (phone != null && !StringUtils.isPhone(phone))
+            throw exceptionManager.getParameterFormatIllegalException(context);
+
+        if (email != null && !StringUtils.isEmail(email))
+            throw exceptionManager.getParameterFormatIllegalException(context);
+    }
+
 }

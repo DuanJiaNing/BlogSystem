@@ -78,7 +78,7 @@ public class BloggerBlogController extends BaseBloggerController {
      * 检索博文
      */
     @RequestMapping(method = RequestMethod.GET)
-    public ResultBean<List<BlogListItemDTO>> blogList(HttpServletRequest request,
+    public ResultBean<List<BlogListItemDTO>> list(HttpServletRequest request,
                                                       @PathVariable Integer bloggerId,
                                                       @RequestParam(value = "cids", required = false) String categoryIds,
                                                       @RequestParam(value = "lids", required = false) String labelIds,
@@ -98,6 +98,8 @@ public class BloggerBlogController extends BaseBloggerController {
         String sp = websiteProperties.getUrlConditionSplitCharacter();
         int[] cids = StringUtils.intStringDistinctToArray(categoryIds, sp);
         int[] lids = StringUtils.intStringDistinctToArray(labelIds, sp);
+        //检查博文类别和标签
+        handleCategoryAndLabelCheck(request, bloggerId, cids, lids);
 
         BlogStatusEnum stat = null;
         if (status != null) stat = BlogStatusEnum.valueOf(status);

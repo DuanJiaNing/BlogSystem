@@ -24,22 +24,10 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author DuanJiaNing
  */
-public class BaseRestController {
+public class RestController {
 
     @Autowired
     protected ExceptionManager exceptionManager;
-
-    @Autowired
-    protected BlogValidateManager blogValidateManager;
-
-    @Autowired
-    protected BloggerValidateManager bloggerValidateManager;
-
-    @Autowired
-    protected StringConstructorManager stringConstructorManager;
-
-    @Autowired
-    protected WebsiteProperties websiteProperties;
 
     /**
      * 处理结果为空的情况
@@ -127,25 +115,4 @@ public class BaseRestController {
         throw exceptionManager.getUnspecifiedOperationException(new RequestContext(request));
     }
 
-    /**
-     * 检查博文是否存在，存在返回null
-     */
-    protected BaseRuntimeException checkBlogExist(RequestContext context, Integer blogId) {
-        if (blogId == null || blogId <= 0 || !blogValidateManager.checkBlogExist(blogId)) {
-            return exceptionManager.getUnknownBlogException(context);
-        }
-
-        return null;
-    }
-
-    /**
-     * 检查博主账户是否存在，存在返回null
-     */
-    protected BaseRuntimeException checkAccountExist(RequestContext context, Integer bloggerId) {
-        if (bloggerId == null || bloggerId <= 0 || !bloggerValidateManager.checkAccountExist(bloggerId)) {
-            return exceptionManager.getUnknownBloggerException(context);
-        }
-
-        return null;
-    }
 }
