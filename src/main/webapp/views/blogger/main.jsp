@@ -36,11 +36,24 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <b><a class="navbar-brand" style="color: orangered;">Clean blog</a></b>
+            <b><a class="navbar-brand" style="color: orangered;">BLOG</a></b>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav navbar-left">
+                <li><a></a></li>
+                <li><a></a></li>
+                <li><a></a></li>
+                <li><a></a></li>
+                <li><a style="font-size: 1.3em;color: #888888"><span
+                        class="glyphicon glyphicon-lamp glyphicon-align-left"></span>&nbsp;&nbsp;博文</a></li>
+                <li><a style="font-size: 1.3em;color: #888888"><span
+                        class="glyphicon glyphicon-piggy-bank glyphicon-align-left"></span>&nbsp;&nbsp;收藏</a></li>
+                <li><a style="font-size: 1.3em;color: #888888"><span
+                        class="glyphicon glyphicon-scale glyphicon-align-left"></span>&nbsp;&nbsp;喜欢</a></li>
+            </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
