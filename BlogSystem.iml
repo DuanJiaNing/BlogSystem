@@ -100,5 +100,8 @@
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-join:7.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-memory:7.1.0" level="project" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.16.6" level="project" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="jquery.slim" level="application" />
+    <orderEntry type="library" name="popper" level="application" />
   </component>
 </module>

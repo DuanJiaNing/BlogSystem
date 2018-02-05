@@ -28,7 +28,7 @@
     <!--把静态资源放在了statics目录下，资源映射如下-->
     <mvc:resources mapping="/css/**" location="/static/css"/>
     <mvc:resources mapping="/js/**" location="/static/js/"/>
-    <mvc:resources mapping="/image/**" location="/static/image/"/>
+    <mvc:resources mapping="/images/**" location="/static/image/"/>
 
 
     <!--国际化-->
