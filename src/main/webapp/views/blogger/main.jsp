@@ -42,18 +42,18 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-            <ul class="nav navbar-nav navbar-left">
-                <li><a></a></li>
-                <li><a></a></li>
-                <li><a></a></li>
-                <li><a></a></li>
-                <li><a style="font-size: 1.3em;color: #888888"><span
-                        class="glyphicon glyphicon-lamp glyphicon-align-left"></span>&nbsp;&nbsp;博文</a></li>
-                <li><a style="font-size: 1.3em;color: #888888"><span
-                        class="glyphicon glyphicon-piggy-bank glyphicon-align-left"></span>&nbsp;&nbsp;收藏</a></li>
-                <li><a style="font-size: 1.3em;color: #888888"><span
-                        class="glyphicon glyphicon-scale glyphicon-align-left"></span>&nbsp;&nbsp;喜欢</a></li>
-            </ul>
+            <%--<ul class="nav navbar-nav navbar-left">--%>
+            <%--<li><a></a></li>--%>
+            <%--<li><a></a></li>--%>
+            <%--<li><a></a></li>--%>
+            <%--<li><a></a></li>--%>
+            <%--<li><a style="font-size: 1.3em;color: #888888"><span--%>
+            <%--class="glyphicon glyphicon-lamp glyphicon-align-left"></span>&nbsp;&nbsp;博文</a></li>--%>
+            <%--<li><a style="font-size: 1.3em;color: #888888"><span--%>
+            <%--class="glyphicon glyphicon-piggy-bank glyphicon-align-left"></span>&nbsp;&nbsp;收藏</a></li>--%>
+            <%--<li><a style="font-size: 1.3em;color: #888888"><span--%>
+            <%--class="glyphicon glyphicon-scale glyphicon-align-left"></span>&nbsp;&nbsp;喜欢</a></li>--%>
+            <%--</ul>--%>
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -89,7 +89,7 @@
     <div class="row">
         <div class="col-md-9">
             <p>
-            <h3>&nbsp;&nbsp;&nbsp;&nbsp;一句话简介在此</h3>
+            <h3>&nbsp;&nbsp;一句话简介在此</h3>
             </p>
         </div>
         <div class="col-md-3">
@@ -101,132 +101,162 @@
     </div>
     <hr>
 
-    <div class="col-md-9">
-        <ul class="list-group">
-            <li class="list-group-item" style="border: 0px;">
-                <p>
-                <h3 class="list-group-item-heading" style="color: #3478B5;">javaEE - 同源策略 Jsonp & CORS</h3></p>
-                <h4>
-                    <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
-                    </small>
-                </h4>
-                <p class="list-group-item-text" style="font-size: 1.1em;padding-top: 10px;line-height: 23px">使用同源策略的原因
-                    Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
-                    通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
-                <h4>
-                    <small class="list-group-item-text" style="color: #3478B5;"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
-                    </small>
-                </h4>
-                <hr>
-            </li>
-            <li class="list-group-item" style="border: 0px;">
-                <p>
-                <h3 class="list-group-item-heading" style="color: #3478B5;">javaEE - 同源策略 Jsonp & CORS</h3></p>
-                <h4>
-                    <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
-                    </small>
-                </h4>
-                <p class="list-group-item-text" style="font-size: 1.1em;padding-top: 10px;line-height: 23px">使用同源策略的原因
-                    Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
-                    通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
-                <h4>
-                    <small class="list-group-item-text" style="color: #3478B5;"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
-                    </small>
-                </h4>
-                <hr>
-            </li>
-            <li class="list-group-item" style="border: 0px;">
-                <p>
-                <h3 class="list-group-item-heading" style="color: #3478B5;">javaEE - 同源策略 Jsonp & CORS</h3></p>
-                <h4>
-                    <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
-                    </small>
-                </h4>
-                <p class="list-group-item-text" style="font-size: 1.1em;padding-top: 10px;line-height: 23px">使用同源策略的原因
-                    Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
-                    通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
-                <h4>
-                    <small class="list-group-item-text" style="color: #3478B5;"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
-                    </small>
-                </h4>
-                <hr>
-            </li>
-
-        </ul>
-        <div class="row">
-
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="col-md-3"></div>
-        </div>
-    </div>
-
-    <div class="col-md-3">
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">收藏/喜欢的博文</h3>
-            </div>
-            <div class="panel-body">
-                Panel content
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">类别</h3>
-            </div>
-            <div class="panel-body">
-                Panel content
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">与我联系</h3>
-            </div>
-            <div class="panel-body">
-                Panel content
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-body">
-                标签在此
-            </div>
-        </div>
-    </div>
-
-</div>
-<br>
-<br>
-<br>
-<div class="container" style="height: 100px;border-top: solid 1px #3478B5">
     <div class="row">
-        <div class="col-md-5"></div>
-        <div class="col-md-2" style="background-color:darkseagreen;height: 130px"></div>
-        <div class="col-md-5"></div>
+        <%--博文列表部分--%>
+        <div class="col-md-9">
 
+            <%--博文列表--%>
+            <ul class="list-group">
+                <li class="list-group-item" style="border: 0px;">
+                    <p>
+                    <h3 class="list-group-item-heading" style="color: #3478B5;">javaEE - 同源策略 Jsonp & CORS</h3></p>
+                    <h4>
+                        <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
+                        </small>
+                    </h4>
+                    <p class="list-group-item-text" style="font-size: 1.1em;padding-top: 10px;line-height: 23px">
+                        使用同源策略的原因
+                        Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
+                        通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
+                    <h4>
+                        <small class="list-group-item-text" style="color: #3478B5;"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
+                        </small>
+                    </h4>
+                    <hr>
+                </li>
+                <li class="list-group-item" style="border: 0px;">
+                    <p>
+                    <h3 class="list-group-item-heading" style="color: #3478B5;">javaEE - 同源策略 Jsonp & CORS</h3></p>
+                    <h4>
+                        <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
+                        </small>
+                    </h4>
+                    <p class="list-group-item-text" style="font-size: 1.1em;padding-top: 10px;line-height: 23px">
+                        使用同源策略的原因
+                        Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
+                        通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
+                    <h4>
+                        <small class="list-group-item-text" style="color: #3478B5;"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
+                        </small>
+                    </h4>
+                    <hr>
+                </li>
+                <li class="list-group-item" style="border: 0px;">
+                    <p>
+                    <h3 class="list-group-item-heading" style="color: #3478B5;">javaEE - 同源策略 Jsonp & CORS</h3></p>
+                    <h4>
+                        <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
+                        </small>
+                    </h4>
+                    <p class="list-group-item-text" style="font-size: 1.1em;padding-top: 10px;line-height: 23px">
+                        使用同源策略的原因
+                        Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
+                        通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
+                    <h4>
+                        <small class="list-group-item-text" style="color: #3478B5;"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
+                        </small>
+                    </h4>
+                    <hr>
+                </li>
+            </ul>
+
+            <%--分页控件--%>
+            <div class="row">
+
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li>
+                                <a href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li>
+                                <a href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+
+        <%--右侧--%>
+        <div class="col-md-3">
+
+            <%--博主信息--%>
+            <div class="panel panel-default" style="border: 0px;">
+                <%--头像--%>
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <%--头像--%>
+                        <img src="images/7.png" class="img-rounded" style="width: 144px;height: 144px">
+                        <%--用户名--%>
+                        <p class="text-center">DuanJiaNing</p>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+                <hr>
+                <p class="lead" style="font-size: 0.9em">放置个人简介，如：欢迎来到我的私人博客，我将自己的学习笔记整理于此，有错误欢迎评论指正</p>
+
+                <%--创建的类别--%>
+                <br>
+                <div class="panel panel-default" style="border: 0px;">
+                    <div class="panel-heading" style="background-color: transparent">
+                        <h3 class="panel-title">类别</h3>
+                    </div>
+                    <div class="panel-body" style="padding-left: 0px;">
+                        <div class="list-group">
+                            <a style="border: 0px;" href="#" class="list-group-item">java<span
+                                    style="color: coral;font-size: small">&nbsp;(12)</span> </a>
+                            <a style="border: 0px;" href="#" class="list-group-item">Linux<span
+                                    style="color: coral;font-size: small">&nbsp;(2)</span></a>
+                            <a style="border: 0px;" href="#" class="list-group-item">算法<span
+                                    style="color: coral;font-size: small">&nbsp;(22)</span></a>
+                            <a style="border: 0px;" href="#" class="list-group-item">java - 集合框架<span
+                                    style="color: coral;font-size: small">&nbsp;(8)</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <%--友情链接--%>
+                <div class="panel panel-default" style="border: 0px;">
+                    <div class="panel-heading" style="background-color: transparent">
+                        <h3 class="panel-title">与我联系</h3>
+                    </div>
+                    <div class="panel-body">
+                        Panel content
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        标签在此
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <div class="container" style="height: 100px;border-top: solid 1px #3478B5">
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-2" style="background-color:darkseagreen;height: 130px"></div>
+            <div class="col-md-5"></div>
+
+        </div>
     </div>
 </div>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
