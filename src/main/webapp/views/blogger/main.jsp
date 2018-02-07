@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!doctype html>
 <html lang="en">
@@ -20,7 +21,140 @@
     <style>
         body {
             padding-top: 70px;
+            font-family: 微软雅黑, serif;
         }
+
+        .BLOG {
+            color: #767676;
+            font-family: 华文中宋, serif;
+        }
+
+        .os-name {
+            font-size: 1.5em;
+        }
+
+        .blog-list-item {
+            border: 0px;
+        }
+
+        .blog-list-item-title {
+            color: #3478B5;
+        }
+
+        .blog-list-item-summary {
+            font-size: 1.1em;
+            padding-top: 10px;
+            line-height: 23px;
+        }
+
+        .avatar {
+            text-align: center;
+        }
+
+        .avatar-img {
+            /*height: 160px;*/
+            width: 180px;
+        }
+
+        .blogger-name {
+            margin-top: 10px;
+        }
+
+        .blogger-like:hover {
+            color: black;
+            font-weight: bolder;
+            border-bottom: solid 1px black;
+        }
+
+        .blogger-like {
+            margin-left: 16px;
+            margin-right: 16px;
+            color: #767676;
+            border-bottom: solid 1px #767676;
+        }
+
+        .blogger-aboutme {
+            font-size: 0.9em;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        .default-line {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        h4.default-h4 {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .blogger-category {
+            border: 0px;
+        }
+
+        .count {
+            color: orange;
+            font-size: small;
+        }
+
+        .quit {
+            color: red;
+        }
+
+        .blogger-link {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        .blogger-link-item {
+            border: 0px;
+        }
+
+        .nav-bottom {
+            border-top: solid 1px #3478B5;
+        }
+
+        .blogger-label {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        .blogger-option {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .bottom-item {
+            margin-left: 16px;
+            margin-right: 16px;
+        }
+
+        .powered-by {
+            font-size: smaller;
+            color: #767676;
+        }
+
+        .blog-filter-text {
+            margin-right: 5%;
+            padding-right: 10px;
+            padding-left: 10px;
+            color: #767676;
+            border: solid 1px #d9d9d9;
+            border-radius: 0 0 10px 0;
+        }
+
+        .blog-filter-text:hover {
+            color: white;
+            background-color: #3478B5;
+        }
+
+        .blog-filter {
+            margin-top: 16px;
+            margin-bottom: 16px;
+            border-top: solid 1px #d9d9d9;
+        }
+
     </style>
 </head>
 <body>
@@ -36,24 +170,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <b><a class="navbar-brand" style="color: orangered;">BLOG</a></b>
+            <b><a class="navbar-brand os-name BLOG">BLOG</a></b>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-            <%--<ul class="nav navbar-nav navbar-left">--%>
-            <%--<li><a></a></li>--%>
-            <%--<li><a></a></li>--%>
-            <%--<li><a></a></li>--%>
-            <%--<li><a></a></li>--%>
-            <%--<li><a style="font-size: 1.3em;color: #888888"><span--%>
-            <%--class="glyphicon glyphicon-lamp glyphicon-align-left"></span>&nbsp;&nbsp;博文</a></li>--%>
-            <%--<li><a style="font-size: 1.3em;color: #888888"><span--%>
-            <%--class="glyphicon glyphicon-piggy-bank glyphicon-align-left"></span>&nbsp;&nbsp;收藏</a></li>--%>
-            <%--<li><a style="font-size: 1.3em;color: #888888"><span--%>
-            <%--class="glyphicon glyphicon-scale glyphicon-align-left"></span>&nbsp;&nbsp;喜欢</a></li>--%>
-            <%--</ul>--%>
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -65,21 +186,35 @@
                     </form>
                 </li>
 
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">DuanJiaNing <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </li>
+                <c:choose>
+                    <c:when test="${empty blogger_login_signal}">
+                        <li><a>登录</a></li>
+                        <li><a>注册</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">${blogger_name} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class="blogger-option"><a href="#">主页</a></li>
+                                <li class="blogger-option"><a href="#">收藏的博文&nbsp;<span class="count">(12)</span></a>
+                                </li>
+                                <li class="blogger-option"><a href="#">喜欢的博文&nbsp;<span class="count">(0)</span></a>
+                                </li>
+                                <li class="blogger-option"><a href="#">管理</a></li>
+                                <li class="blogger-option"><a href="#">反馈</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li class="blogger-option"><a href="#"><span class="quit">退出</span></a></li>
+                            </ul>
+                        </li>
 
-                <li>
-                    <button type="button" class="btn btn-default navbar-btn">写博文</button>
-                </li>
+                        <li>
+                            <button type="button" class="btn btn-default navbar-btn">写博文</button>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -89,7 +224,7 @@
     <div class="row">
         <div class="col-md-9">
             <p>
-            <h3>&nbsp;&nbsp;一句话简介在此</h3>
+            <h3>&nbsp;&nbsp;${blog_name}</h3>
             </p>
         </div>
         <div class="col-md-3">
@@ -99,7 +234,10 @@
             </h4>
         </div>
     </div>
-    <hr>
+
+    <p class="text-left blog-filter">
+        <span class="blog-filter-text">高级检索</span>
+    </p>
 
     <div class="row">
         <%--博文列表部分--%>
@@ -107,53 +245,182 @@
 
             <%--博文列表--%>
             <ul class="list-group">
-                <li class="list-group-item" style="border: 0px;">
+                <li class="list-group-item blog-list-item">
                     <p>
-                    <h3 class="list-group-item-heading" style="color: #3478B5;">javaEE - 同源策略 Jsonp & CORS</h3></p>
+                    <h3 class="list-group-item-heading blog-list-item-title"><a>javaEE - 同源策略 Jsonp & CORS</a>
+                    </h3></p>
                     <h4>
                         <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
                         </small>
                     </h4>
-                    <p class="list-group-item-text" style="font-size: 1.1em;padding-top: 10px;line-height: 23px">
+                    <p class="list-group-item-text blog-list-item-summary">
                         使用同源策略的原因
                         Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
                         通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
                     <h4>
-                        <small class="list-group-item-text" style="color: #3478B5;"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
+                        <small class="list-group-item-text blog-list-item-title"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
                         </small>
                     </h4>
                     <hr>
                 </li>
-                <li class="list-group-item" style="border: 0px;">
+                <li class="list-group-item blog-list-item">
                     <p>
-                    <h3 class="list-group-item-heading" style="color: #3478B5;">javaEE - 同源策略 Jsonp & CORS</h3></p>
+                    <h3 class="list-group-item-heading blog-list-item-title"><a>javaEE - 同源策略 Jsonp & CORS</a>
+                    </h3></p>
                     <h4>
                         <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
                         </small>
                     </h4>
-                    <p class="list-group-item-text" style="font-size: 1.1em;padding-top: 10px;line-height: 23px">
+                    <p class="list-group-item-text blog-list-item-summary">
                         使用同源策略的原因
                         Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
                         通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
                     <h4>
-                        <small class="list-group-item-text" style="color: #3478B5;"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
+                        <small class="list-group-item-text blog-list-item-title"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
                         </small>
                     </h4>
                     <hr>
                 </li>
-                <li class="list-group-item" style="border: 0px;">
+                <li class="list-group-item blog-list-item">
                     <p>
-                    <h3 class="list-group-item-heading" style="color: #3478B5;">javaEE - 同源策略 Jsonp & CORS</h3></p>
+                    <h3 class="list-group-item-heading blog-list-item-title"><a>javaEE - 同源策略 Jsonp & CORS</a>
+                    </h3></p>
                     <h4>
                         <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
                         </small>
                     </h4>
-                    <p class="list-group-item-text" style="font-size: 1.1em;padding-top: 10px;line-height: 23px">
+                    <p class="list-group-item-text blog-list-item-summary">
                         使用同源策略的原因
                         Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
                         通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
                     <h4>
-                        <small class="list-group-item-text" style="color: #3478B5;"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
+                        <small class="list-group-item-text blog-list-item-title"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
+                        </small>
+                    </h4>
+                    <hr>
+                </li>
+                <li class="list-group-item blog-list-item">
+                    <p>
+                    <h3 class="list-group-item-heading blog-list-item-title"><a>javaEE - 同源策略 Jsonp & CORS</a>
+                    </h3></p>
+                    <h4>
+                        <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
+                        </small>
+                    </h4>
+                    <p class="list-group-item-text blog-list-item-summary">
+                        使用同源策略的原因
+                        Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
+                        通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
+                    <h4>
+                        <small class="list-group-item-text blog-list-item-title"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
+                        </small>
+                    </h4>
+                    <hr>
+                </li>
+                <li class="list-group-item blog-list-item">
+                    <p>
+                    <h3 class="list-group-item-heading blog-list-item-title"><a>javaEE - 同源策略 Jsonp & CORS</a>
+                    </h3></p>
+                    <h4>
+                        <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
+                        </small>
+                    </h4>
+                    <p class="list-group-item-text blog-list-item-summary">
+                        使用同源策略的原因
+                        Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
+                        通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
+                    <h4>
+                        <small class="list-group-item-text blog-list-item-title"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
+                        </small>
+                    </h4>
+                    <hr>
+                </li>
+                <li class="list-group-item blog-list-item">
+                    <p>
+                    <h3 class="list-group-item-heading blog-list-item-title"><a>javaEE - 同源策略 Jsonp & CORS</a>
+                    </h3></p>
+                    <h4>
+                        <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
+                        </small>
+                    </h4>
+                    <p class="list-group-item-text blog-list-item-summary">
+                        使用同源策略的原因
+                        Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
+                        通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
+                    <h4>
+                        <small class="list-group-item-text blog-list-item-title"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
+                        </small>
+                    </h4>
+                    <hr>
+                </li>
+                <li class="list-group-item blog-list-item">
+                    <p>
+                    <h3 class="list-group-item-heading blog-list-item-title"><a>javaEE - 同源策略 Jsonp & CORS</a>
+                    </h3></p>
+                    <h4>
+                        <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
+                        </small>
+                    </h4>
+                    <p class="list-group-item-text blog-list-item-summary">
+                        使用同源策略的原因
+                        Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
+                        通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
+                    <h4>
+                        <small class="list-group-item-text blog-list-item-title"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
+                        </small>
+                    </h4>
+                    <hr>
+                </li>
+                <li class="list-group-item blog-list-item">
+                    <p>
+                    <h3 class="list-group-item-heading blog-list-item-title"><a>javaEE - 同源策略 Jsonp & CORS</a>
+                    </h3></p>
+                    <h4>
+                        <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
+                        </small>
+                    </h4>
+                    <p class="list-group-item-text blog-list-item-summary">
+                        使用同源策略的原因
+                        Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
+                        通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
+                    <h4>
+                        <small class="list-group-item-text blog-list-item-title"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
+                        </small>
+                    </h4>
+                    <hr>
+                </li>
+                <li class="list-group-item blog-list-item">
+                    <p>
+                    <h3 class="list-group-item-heading blog-list-item-title"><a>javaEE - 同源策略 Jsonp & CORS</a>
+                    </h3></p>
+                    <h4>
+                        <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
+                        </small>
+                    </h4>
+                    <p class="list-group-item-text blog-list-item-summary">
+                        使用同源策略的原因
+                        Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
+                        通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
+                    <h4>
+                        <small class="list-group-item-text blog-list-item-title"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
+                        </small>
+                    </h4>
+                    <hr>
+                </li>
+                <li class="list-group-item blog-list-item">
+                    <p>
+                    <h3 class="list-group-item-heading blog-list-item-title"><a>javaEE - 同源策略 Jsonp & CORS</a>
+                    </h3></p>
+                    <h4>
+                        <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
+                        </small>
+                    </h4>
+                    <p class="list-group-item-text blog-list-item-summary">
+                        使用同源策略的原因
+                        Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
+                        通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
+                    <h4>
+                        <small class="list-group-item-text blog-list-item-title"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
                         </small>
                     </h4>
                     <hr>
@@ -161,104 +428,128 @@
             </ul>
 
             <%--分页控件--%>
-            <div class="row">
-
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination">
-                            <li>
-                                <a href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li>
-                                <a href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-md-3"></div>
+            <div style="text-align: center;">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
 
         <%--右侧--%>
         <div class="col-md-3">
 
-            <%--博主信息--%>
-            <div class="panel panel-default" style="border: 0px;">
+            <%--头像--%>
+            <div>
                 <%--头像--%>
-                <div class="row">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-6">
-                        <%--头像--%>
-                        <img src="images/7.png" class="img-rounded" style="width: 144px;height: 144px">
-                        <%--用户名--%>
-                        <p class="text-center">DuanJiaNing</p>
-                    </div>
-                    <div class="col-md-3"></div>
-                </div>
-                <hr>
-                <p class="lead" style="font-size: 0.9em">放置个人简介，如：欢迎来到我的私人博客，我将自己的学习笔记整理于此，有错误欢迎评论指正</p>
-
-                <%--创建的类别--%>
                 <br>
-                <div class="panel panel-default" style="border: 0px;">
-                    <div class="panel-heading" style="background-color: transparent">
-                        <h3 class="panel-title">类别</h3>
-                    </div>
-                    <div class="panel-body" style="padding-left: 0px;">
-                        <div class="list-group">
-                            <a style="border: 0px;" href="#" class="list-group-item">java<span
-                                    style="color: coral;font-size: small">&nbsp;(12)</span> </a>
-                            <a style="border: 0px;" href="#" class="list-group-item">Linux<span
-                                    style="color: coral;font-size: small">&nbsp;(2)</span></a>
-                            <a style="border: 0px;" href="#" class="list-group-item">算法<span
-                                    style="color: coral;font-size: small">&nbsp;(22)</span></a>
-                            <a style="border: 0px;" href="#" class="list-group-item">java - 集合框架<span
-                                    style="color: coral;font-size: small">&nbsp;(8)</span></a>
-                        </div>
-                    </div>
+                <div class="avatar">
+                    <img src="images/Blue eyed_&_2e216493-5d50-4e39-8b9d-db2c2874c003.jpg"
+                         class="img-rounded avatar-img">
                 </div>
-
-                <%--友情链接--%>
-                <div class="panel panel-default" style="border: 0px;">
-                    <div class="panel-heading" style="background-color: transparent">
-                        <h3 class="panel-title">与我联系</h3>
-                    </div>
-                    <div class="panel-body">
-                        Panel content
-                    </div>
-                </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        标签在此
-                    </div>
-                </div>
+                <%--用户名--%>
+                <p class="text-center blogger-name">${blogger_name}</p>
             </div>
-        </div>
-    </div>
+            <hr>
+            <p class="lead blogger-aboutme">${about_me}</p>
+            <p class="blogger-like">我喜欢的博文</p>
+            <br>
+            <br>
 
-    <br>
-    <br>
-    <br>
-    <div class="container" style="height: 100px;border-top: solid 1px #3478B5">
-        <div class="row">
-            <div class="col-md-5"></div>
-            <div class="col-md-2" style="background-color:darkseagreen;height: 130px"></div>
-            <div class="col-md-5"></div>
+            <%--标签--%>
+            <h4 class="default-h4"><b>标签</b></h4>
+            <hr class="default-line">
+            <p class="blogger-label">
+                <a style="font-size: 0.8em">java</a>&nbsp;&nbsp;
+                <a>Linux</a>&nbsp;&nbsp;
+                <a style="font-size: 1.2em">计算机网络</a>&nbsp;&nbsp;
+                <a style="font-size: 1.5em">算法</a>&nbsp;&nbsp;
+                <a style="font-size: 0.8em">java</a>&nbsp;&nbsp;
+                <a style="font-size: 1.0em">算法</a>&nbsp;&nbsp;
+                <a style="font-size: 0.8em">java</a>&nbsp;&nbsp;
+                <a>Linux</a>&nbsp;&nbsp;
+                <a style="font-size: 0.5em">计算机网络</a>&nbsp;&nbsp;
+                <a>数据结构</a>&nbsp;&nbsp;
+                <a style="font-size: 2.0em">算法</a>&nbsp;&nbsp;
+            </p>
+            <br>
 
+            <%--创建的类别--%>
+            <h4 class="default-h4"><b>类别</b></h4>
+            <hr class="default-line">
+            <div class="list-group">
+                <a href="#" class="list-group-item blogger-category">全部<span
+                        class="count">&nbsp;(66)</span> </a>
+                <a href="#" class="list-group-item blogger-category">java<span
+                        class="count">&nbsp;(12)</span> </a>
+                <a href="#" class="list-group-item blogger-category">Linux<span
+                        class="count">&nbsp;(2)</span></a>
+                <a href="#" class="list-group-item blogger-category">算法<span
+                        class="count">&nbsp;(22)</span></a>
+                <a href="#" class="list-group-item blogger-category">java - 集合框架<span
+                        class="count">&nbsp;(8)</span></a>
+            </div>
+            <br>
+
+            <%--联系我--%>
+            <h4 class="default-h4"><b>联系我</b></h4>
+            <hr class="default-line">
+            <p class="blogger-link">
+                <a class="blogger-link-item">GitHub</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="blogger-link-item">CSDN</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="blogger-link-item">Gmail</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="blogger-link-item">微信</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="blogger-link-item">微博</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </p>
         </div>
+
     </div>
 </div>
+
+<br>
+<br>
+<br>
+<div class="container nav-bottom">
+    <br>
+    <div class="row">
+        <div class="col-md-5">
+            <p class="text-left bottom-item">
+                <span class="powered-by">Powered by DuanJiaNing</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a>About</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a>CSDN</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a>GitHub</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            </p>
+        </div>
+        <div class="col-md-2">
+            <p class="text-center lead BLOG"><b>BLOG</b></p>
+        </div>
+        <div class="col-md-5">
+            <p class="text-right bottom-item">
+                <a>Source</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a>Help</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            </p>
+        </div>
+
+    </div>
+    <br>
+</div>
+</div>
+
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

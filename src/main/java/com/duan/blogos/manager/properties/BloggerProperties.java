@@ -67,6 +67,11 @@ public class BloggerProperties {
     private String sessionNameOfErrorMsg;
 
     /**
+     * 保存在session属性中的博主登录标识，有值（任意值）就表示已登录
+     */
+    private String sessionBloggerLoginSignal;
+
+    /**
      * 博文标签默认请求条数
      */
     private Integer requestBloggerBlogLabelCount;

@@ -50,6 +50,7 @@ public class BloggerLoginController extends BaseBloggerController {
             HttpSession session = request.getSession();
             session.setAttribute(bloggerProperties.getSessionNameOfBloggerId(), account.getId());
             session.setAttribute(bloggerProperties.getSessionNameOfBloggerName(), account.getUsername());
+            session.setAttribute(bloggerProperties.getSessionBloggerLoginSignal(), "login");
 
             // 成功登录
             return new ResultBean<>("");

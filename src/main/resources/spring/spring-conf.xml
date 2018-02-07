@@ -27,6 +27,7 @@
         <property name="requestBloggerBlogCategoryCount" value="${blogger.requestBloggerBlogCategoryCount}"/>
         <property name="sessionNameOfBloggerId" value="${blogger.session.bloggerId}"/>
         <property name="sessionNameOfBloggerName" value="${blogger.session.bloggerName}"/>
+        <property name="sessionBloggerLoginSignal" value="${blogger.session.bloggerLoginSignal}"/>
         <property name="sessionNameOfErrorMsg" value="${blogger.session.errorMsg}"/>
         <property name="requestBlogListCount" value="${blogger.requestBlogListCount}"/>
         <property name="requestBloggerBlogLabelCount" value="${blog.requestBloggerBlogLabelCount}"/>
