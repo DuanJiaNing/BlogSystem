@@ -15,206 +15,23 @@
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/blogger/main.css">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/core.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.slim.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <script type="application/javascript" src="js/blogger/main.js"></script>
 
     <title>博主首页</title>
 
-    <style>
-        body {
-            padding-top: 70px;
-            font-family: 微软雅黑, serif;
-        }
-
-        .BLOG {
-            color: #767676;
-            font-family: 华文中宋, serif;
-        }
-
-        .os-name {
-            font-size: 1.5em;
-        }
-
-        .blog-list-item {
-            border: 0px;
-        }
-
-        .blog-list-item-title {
-            color: #3478B5;
-        }
-
-        .blog-list-item-summary {
-            font-size: 1.1em;
-            padding-top: 10px;
-            line-height: 23px;
-        }
-
-        .avatar {
-            text-align: center;
-        }
-
-        .avatar-img {
-            /*height: 160px;*/
-            width: 180px;
-        }
-
-        .blogger-name {
-            margin-top: 10px;
-        }
-
-        .blogger-like:hover {
-            color: black;
-            font-weight: bolder;
-            border-bottom: solid 1px black;
-        }
-
-        .blogger-like {
-            margin-left: 16px;
-            margin-right: 16px;
-            color: #767676;
-            border-bottom: solid 1px #767676;
-        }
-
-        .blogger-aboutme {
-            font-size: 0.9em;
-            padding-left: 16px;
-            padding-right: 16px;
-        }
-
-        .blogger-category {
-            border: 0px;
-        }
-
-        .count {
-            color: orange;
-            font-size: small;
-        }
-
-        .quit {
-            color: red;
-        }
-
-        .blogger-link {
-            padding-left: 16px;
-            padding-right: 16px;
-        }
-
-        .blogger-link-item {
-            border: 0px;
-        }
-
-        .nav-bottom {
-            border-top: solid 1px #3478B5;
-        }
-
-        .blogger-label {
-            padding-left: 16px;
-            padding-right: 16px;
-        }
-
-        .blogger-option {
-            padding-top: 5px;
-            padding-bottom: 5px;
-        }
-
-        .bottom-item {
-            margin-left: 16px;
-            margin-right: 16px;
-        }
-
-        .powered-by {
-            font-size: smaller;
-            color: #767676;
-        }
-
-        .blog-filter-text {
-            margin-right: 5%;
-            padding-right: 10px;
-            padding-left: 10px;
-            color: #767676;
-            border: solid 1px #d9d9d9;
-            border-radius: 0 0 10px 0;
-        }
-
-        .blog-filter-text:hover {
-            color: white;
-            background-color: #3478B5;
-        }
-
-        .blog-filter {
-            margin-top: 16px;
-            margin-bottom: 16px;
-            border-top: solid 1px #d9d9d9;
-        }
-
-        .dialog-sign-in-content {
-            background-color: #3478B5;
-            color: white;
-        }
-
-        .dialog-sign-in-title {
-            text-align: center;
-        }
-
-        .dialog-sign-in-body {
-            background-color: white;
-            color: black;
-        }
-
-        .dialog-sign-in-footer {
-            background-color: white;
-            color: black;
-            text-align: center;
-        }
-
-        /*通用*/
-        .form-input {
-            border-top: 0;
-            border-left: 0;
-            border-right: 0;
-            width: 100%;
-            padding: 8px;
-        }
-
-        .default-button-info {
-            border: solid 1px gray;
-            border-radius: 8px;
-            background-color: transparent;
-            color: dimgray;
-            padding: 3px 6px;
-            font-size: small;
-        }
-
-        .default-button-info:hover {
-            background-color: dimgray;
-            color: white;
-        }
-
-        .default-button-success:hover {
-            background-color: limegreen;
-            color: white;
-            box-shadow: -3px 3px 10px dimgray;
-        }
-
-        .default-button-success {
-            background-color: green;
-            color: white;
-            padding: 8px 16px;
-            border: 0;
-            font-size: medium;
-            box-shadow: -2px 2px 8px dimgray;
-
-        }
-
-        .default-line {
-            margin-top: 5px;
-            margin-bottom: 5px;
-        }
-
-        h4.default-h4 {
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-
-    </style>
 </head>
 <body>
 
@@ -294,7 +111,13 @@
                     <div class="col-md-2"></div>
                     <div class="col-md-8">
                         <p class="text-center lead">
-                            <small>用户名登录</small>&nbsp;&nbsp;|&nbsp;&nbsp;手机号登录
+                            <small class="dialog-sign-in-indicator" id="siginName"
+                                   onclick="showNameDiv()">用户名登录
+                            </small>&nbsp;&nbsp;|&nbsp;&nbsp;<small
+                                class="dialog-sign-in-indicator" style="font-weight: bold" id="siginPhone"
+                                onclick="showPhoneDiv()">
+                            手机号登录
+                        </small>
                         </p>
 
                         <div id="useUserName" style="display: none;">
@@ -676,17 +499,6 @@
     <br>
 </div>
 </div>
-
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="https://cdn.bootcss.com/jquery/3.3.1/core.js"></script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.slim.js"></script>
-<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
 
 </body>
 </html>
