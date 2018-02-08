@@ -79,16 +79,6 @@
             padding-right: 16px;
         }
 
-        .default-line {
-            margin-top: 5px;
-            margin-bottom: 5px;
-        }
-
-        h4.default-h4 {
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-
         .blogger-category {
             border: 0px;
         }
@@ -155,6 +145,75 @@
             border-top: solid 1px #d9d9d9;
         }
 
+        .dialog-sign-in-content {
+            background-color: #3478B5;
+            color: white;
+        }
+
+        .dialog-sign-in-title {
+            text-align: center;
+        }
+
+        .dialog-sign-in-body {
+            background-color: white;
+            color: black;
+        }
+
+        .dialog-sign-in-footer {
+            background-color: white;
+            color: black;
+            text-align: center;
+        }
+
+        /*通用*/
+        .form-input {
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            width: 100%;
+            padding: 8px;
+        }
+
+        .default-button-info {
+            border: solid 1px gray;
+            border-radius: 8px;
+            background-color: transparent;
+            color: dimgray;
+            padding: 3px 6px;
+            font-size: small;
+        }
+
+        .default-button-info:hover {
+            background-color: dimgray;
+            color: white;
+        }
+
+        .default-button-success:hover {
+            background-color: limegreen;
+            color: white;
+            box-shadow: -3px 3px 10px dimgray;
+        }
+
+        .default-button-success {
+            background-color: green;
+            color: white;
+            padding: 8px 16px;
+            border: 0;
+            font-size: medium;
+            box-shadow: -2px 2px 8px dimgray;
+
+        }
+
+        .default-line {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        h4.default-h4 {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -188,7 +247,8 @@
 
                 <c:choose>
                     <c:when test="${empty blogger_login_signal}">
-                        <li><a>登录</a></li>
+                        <li><a data-toggle="modal"
+                               data-target="#signIn">登录</a></li>
                         <li><a>注册</a></li>
                     </c:when>
                     <c:otherwise>
@@ -219,6 +279,73 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
+<%--登录框--%>
+<div class="modal fade" tabindex="-1" role="dialog" id="signIn">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content dialog-sign-in-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title dialog-sign-in-title">登录</h4>
+            </div>
+            <div class="modal-body dialog-sign-in-body">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <p class="text-center lead">
+                            <small>用户名登录</small>&nbsp;&nbsp;|&nbsp;&nbsp;手机号登录
+                        </p>
+
+                        <div id="useUserName" style="display: none;">
+                            <form>
+                                <div class="form-group">
+                                    <label>用户名</label><br>
+                                    <input type="text" id="userName" placeholder="用户名" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label>密码</label><br>
+                                    <input type="password" class="form-input" id="password" placeholder="密码">
+                                </div>
+                            </form>
+                        </div>
+
+                        <div id="useUserPhone">
+                            <form>
+                                <div class="form-group">
+                                    <label>电话</label><br>
+                                    <input type="number" class="form-input" id="phone" placeholder="电话号码">
+                                </div>
+                                <div class="form-group">
+                                    <label>验证码</label><br>
+                                    <div>
+                                        <table>
+                                            <tr>
+                                                <td><input type="password" class="form-input" id="code"
+                                                           placeholder="验证码"></td>
+                                                <td>
+                                                    &nbsp;&nbsp;<button class="default-button-info">获取验证码</button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+
+                </div>
+            </div>
+            <div class="modal-footer dialog-sign-in-footer">
+                <button type="submit" class="default-button-success">登入</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;<small>还没账号？</small>&nbsp;
+                <a>注册</a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <div class="container">
     <!-- Content here -->
     <div class="row">
@@ -551,14 +678,15 @@
 </div>
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/core.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.slim.js"></script>
 <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
-<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+
 </body>
 </html>
