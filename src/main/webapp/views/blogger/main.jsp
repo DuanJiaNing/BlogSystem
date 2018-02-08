@@ -16,11 +16,11 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="css/blogger/main.css">
+    <link rel="stylesheet" href="css/common.css">
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/core.js"></script>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.slim.js"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
@@ -28,9 +28,15 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
-    <script type="application/javascript" src="js/blogger/main.js"></script>
-
     <title>博主首页</title>
+
+    <script type="application/javascript">
+        var bloggerId = ${bloggerId};
+        var bloggerName = '${bloggerName}';
+        var bloggerLoginSignal = ${not empty bloggerLoginSignal};
+    </script>
+
+    <script type="application/javascript" src="js/blogger/main.js"></script>
 
 </head>
 <body>
@@ -63,16 +69,16 @@
                 </li>
 
                 <c:choose>
-                    <c:when test="${empty blogger_login_signal}">
+                    <c:when test="${empty bloggerLoginSignal}">
                         <li><a data-toggle="modal"
                                data-target="#signIn">登录</a></li>
-                        <li><a>注册</a></li>
+                        <li><a href="/register">注册</a></li>
                     </c:when>
                     <c:otherwise>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true"
-                               aria-expanded="false">${blogger_name} <span class="caret"></span></a>
+                               aria-expanded="false">${bloggerName} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li class="blogger-option"><a href="#">主页</a></li>
                                 <li class="blogger-option"><a href="#">收藏的博文&nbsp;<span class="count">(12)</span></a>
@@ -100,13 +106,13 @@
 <%--登录框--%>
 <div class="modal fade" tabindex="-1" role="dialog" id="signIn">
     <div class="modal-dialog" role="document">
-        <div class="modal-content dialog-sign-in-content">
+        <div class="modal-content dialog-title-container">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title dialog-sign-in-title">登录</h4>
+                <h4 class="modal-title dialog-title">登录</h4>
             </div>
-            <div class="modal-body dialog-sign-in-body">
+            <div class="modal-body dialog-body">
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-8">
@@ -116,7 +122,7 @@
                             </small>&nbsp;&nbsp;|&nbsp;&nbsp;<small
                                 class="dialog-sign-in-indicator" style="font-weight: bold" id="siginPhone"
                                 onclick="showPhoneDiv()">
-                            手机号登录
+                            手机验证码登录
                         </small>
                         </p>
 
@@ -155,26 +161,55 @@
                                 </div>
                             </form>
                         </div>
+                        <span class="error-msg" id="loginErrorMsg"></span>
+
                     </div>
                     <div class="col-md-2"></div>
 
                 </div>
             </div>
-            <div class="modal-footer dialog-sign-in-footer">
-                <button type="submit" class="default-button-success">登入</button>
+            <div class="modal-footer dialog-footer">
+                <button type="submit" class="button-success" id="signInBtn" onclick="signIn()">登入</button>
                 &nbsp;&nbsp;&nbsp;&nbsp;<small>还没账号？</small>&nbsp;
-                <a>注册</a>
+                <a href="/register">注册</a>
+                <p class="text-right"><a>忘记密码？</a></p>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<%--新建标签框--%>
+<div class="modal fade bs-example-modal-sm dialog-middle" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content dialog-title-container-middle">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title dialog-title">新建标签</h4>
+            </div>
+            <div class="modal-body dialog-body">
+                <form>
+                    <div class="form-group">
+                        <label>标签名</label><br>
+                        <input type="text" id="labelName" placeholder="标签名" class="form-input">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer dialog-footer">
+                <button class="button-success" data-dismiss="modal" onclick="newLabelAndReload()">创建</button>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 <div class="container">
     <!-- Content here -->
     <div class="row">
         <div class="col-md-9">
             <p>
-            <h3>&nbsp;&nbsp;${blog_name}</h3>
+            <h3>&nbsp;&nbsp;${blogName}</h3>
             </p>
         </div>
         <div class="col-md-3">
@@ -413,10 +448,10 @@
                          class="img-rounded avatar-img">
                 </div>
                 <%--用户名--%>
-                <p class="text-center blogger-name">${blogger_name}</p>
+                <p class="text-center blogger-name">${bloggerName}</p>
             </div>
             <hr>
-            <p class="lead blogger-aboutme">${about_me}</p>
+            <p class="lead blogger-aboutme">${aboutMe}</p>
             <p class="blogger-like">我喜欢的博文</p>
             <br>
             <br>
@@ -425,24 +460,13 @@
             <h4 class="default-h4"><b>标签</b></h4>
             <hr class="default-line">
             <p class="blogger-label">
-                <a style="font-size: 0.8em">java</a>&nbsp;&nbsp;
-                <a>Linux</a>&nbsp;&nbsp;
-                <a style="font-size: 1.2em">计算机网络</a>&nbsp;&nbsp;
-                <a style="font-size: 1.5em">算法</a>&nbsp;&nbsp;
-                <a style="font-size: 0.8em">java</a>&nbsp;&nbsp;
-                <a style="font-size: 1.0em">算法</a>&nbsp;&nbsp;
-                <a style="font-size: 0.8em">java</a>&nbsp;&nbsp;
-                <a>Linux</a>&nbsp;&nbsp;
-                <a style="font-size: 0.5em">计算机网络</a>&nbsp;&nbsp;
-                <a>数据结构</a>&nbsp;&nbsp;
-                <a style="font-size: 2.0em">算法</a>&nbsp;&nbsp;
             </p>
             <br>
 
             <%--创建的类别--%>
             <h4 class="default-h4"><b>类别</b></h4>
             <hr class="default-line">
-            <div class="list-group">
+            <div class="list-group" id="blogCategory">
                 <a href="#" class="list-group-item blogger-category">全部<span
                         class="count">&nbsp;(66)</span> </a>
                 <a href="#" class="list-group-item blogger-category">java<span
@@ -474,31 +498,6 @@
 <br>
 <br>
 <br>
-<div class="container nav-bottom">
-    <br>
-    <div class="row">
-        <div class="col-md-5">
-            <p class="text-left bottom-item">
-                <span class="powered-by">Powered by DuanJiaNing</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a>About</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a>CSDN</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a>GitHub</a>&nbsp;&nbsp;&nbsp;&nbsp;
-            </p>
-        </div>
-        <div class="col-md-2">
-            <p class="text-center lead BLOG"><b>BLOG</b></p>
-        </div>
-        <div class="col-md-5">
-            <p class="text-right bottom-item">
-                <a>Source</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a>Help</a>&nbsp;&nbsp;&nbsp;&nbsp;
-            </p>
-        </div>
-
-    </div>
-    <br>
-</div>
-</div>
-
+<jsp:include page="../footer.jsp"/>
 </body>
 </html>

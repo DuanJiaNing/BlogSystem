@@ -35,11 +35,11 @@ public class BloggerLabelController extends BaseBloggerController {
     /**
      * 获取指定博主创建的标签
      */
-    @RequestMapping(value = "/blogger", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ResultBean<List<BlogLabel>> list(HttpServletRequest request,
-                                                           @RequestParam("bloggerId") Integer bloggerId,
-                                                           @RequestParam(value = "offset", required = false) Integer offset,
-                                                           @RequestParam(value = "rows", required = false) Integer rows) {
+                                            @PathVariable Integer bloggerId,
+                                            @RequestParam(value = "offset", required = false) Integer offset,
+                                            @RequestParam(value = "rows", required = false) Integer rows) {
         handleAccountCheck(request, bloggerId);
 
         int os = offset == null || offset < 0 ? 0 : offset;
@@ -55,7 +55,7 @@ public class BloggerLabelController extends BaseBloggerController {
      */
     @RequestMapping(method = RequestMethod.POST)
     public ResultBean add(HttpServletRequest request,
-                          @RequestParam("bloggerId") Integer bloggerId,
+                          @PathVariable Integer bloggerId,
                           @RequestParam("title") String title) {
 
         handleBloggerSignInCheck(request, bloggerId);
@@ -73,7 +73,7 @@ public class BloggerLabelController extends BaseBloggerController {
     @RequestMapping(value = "/{labelId}", method = RequestMethod.PUT)
     public ResultBean update(HttpServletRequest request,
                              @PathVariable("labelId") Integer labelId,
-                             @RequestParam("bloggerId") Integer bloggerId,
+                             @PathVariable Integer bloggerId,
                              @RequestParam("title") String newTitle) {
         handleBloggerSignInCheck(request, bloggerId);
         handleTitleCheck(newTitle, request);
@@ -90,7 +90,7 @@ public class BloggerLabelController extends BaseBloggerController {
     @RequestMapping(value = "/{labelId}", method = RequestMethod.DELETE)
     public ResultBean delete(HttpServletRequest request,
                              @PathVariable("labelId") Integer labelId,
-                             @RequestParam("bloggerId") Integer bloggerId) {
+                             @PathVariable Integer bloggerId) {
         handleAccountCheck(request, bloggerId);
         handleBloggerSignInCheck(request, bloggerId);
 

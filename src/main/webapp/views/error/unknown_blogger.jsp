@@ -12,6 +12,6 @@
     <title>未知博主</title>
 </head>
 <body>
-${error_msg}
+${errorMsg}
 </body>
 </html>

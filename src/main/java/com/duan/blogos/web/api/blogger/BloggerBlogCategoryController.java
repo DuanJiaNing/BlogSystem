@@ -35,9 +35,9 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public ResultBean<List<BloggerCategoryDTO>> list(HttpServletRequest request,
-                                                    @PathVariable("bloggerId") Integer bloggerId,
-                                                    @RequestParam(value = "offset", required = false) Integer offset,
-                                                    @RequestParam(value = "rows", required = false) Integer rows) {
+                                                     @PathVariable Integer bloggerId,
+                                                     @RequestParam(value = "offset", required = false) Integer offset,
+                                                     @RequestParam(value = "rows", required = false) Integer rows) {
         handleAccountCheck(request, bloggerId);
 
         int os = offset == null || offset < 0 ? 0 : offset;
@@ -54,8 +54,8 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
      */
     @RequestMapping(value = "/{categoryId}", method = RequestMethod.GET)
     public ResultBean<BloggerCategoryDTO> get(HttpServletRequest request,
-                                              @PathVariable("bloggerId") Integer bloggerId,
-                                              @PathVariable("categoryId") Integer categoryId) {
+                                              @PathVariable Integer bloggerId,
+                                              @PathVariable Integer categoryId) {
         handleAccountCheck(request, bloggerId);
         handleCategoryExistCheck(request, bloggerId, categoryId);
 
@@ -71,7 +71,7 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
      */
     @RequestMapping(method = RequestMethod.POST)
     public ResultBean add(HttpServletRequest request,
-                          @PathVariable("bloggerId") Integer bloggerId,
+                          @PathVariable Integer bloggerId,
                           @RequestParam(value = "iconId", required = false) Integer iconId,
                           @RequestParam("title") String title,
                           @RequestParam(value = "bewrite", required = false) String bewrite) {
@@ -94,8 +94,8 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
      */
     @RequestMapping(value = "/{categoryId}", method = RequestMethod.PUT)
     public ResultBean update(HttpServletRequest request,
-                             @PathVariable("bloggerId") Integer bloggerId,
-                             @PathVariable("categoryId") Integer categoryId,
+                             @PathVariable Integer bloggerId,
+                             @PathVariable Integer categoryId,
                              @RequestParam(value = "iconId", required = false) Integer newIconId,
                              @RequestParam(value = "title", required = false) String newTitle,
                              @RequestParam(value = "bewrite", required = false) String newBewrite) {
@@ -123,8 +123,8 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
      */
     @RequestMapping(value = "/{categoryId}", method = RequestMethod.DELETE)
     public ResultBean delete(HttpServletRequest request,
-                             @PathVariable("bloggerId") Integer bloggerId,
-                             @PathVariable("categoryId") Integer categoryId,
+                             @PathVariable Integer bloggerId,
+                             @PathVariable Integer categoryId,
                              @RequestParam(value = "newCategoryId", required = false) Integer newCategoryId) {
 
         handleBloggerSignInCheck(request, bloggerId);

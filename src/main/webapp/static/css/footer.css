@@ -1,0 +1,14 @@
+
+.bottom-item {
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.powered-by {
+    font-size: smaller;
+    color: #767676;
+}
+
+.nav-bottom {
+    border-top: solid 1px #3478B5;
+}

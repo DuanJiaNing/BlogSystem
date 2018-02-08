@@ -46,8 +46,8 @@ public class MainPageController {
 
         int id = account.getId();
         BloggerProfile profile = profileService.getBloggerProfile(id);
-        mv.addObject("blog_name", profile.getIntro());
-        mv.addObject("about_me", profile.getAboutMe());
+        mv.addObject("blogName", profile.getIntro());
+        mv.addObject("aboutMe", profile.getAboutMe());
 
         return mv;
     }
