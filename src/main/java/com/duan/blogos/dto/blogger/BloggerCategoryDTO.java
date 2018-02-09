@@ -23,6 +23,9 @@ public class BloggerCategoryDTO implements Serializable {
     //类别所属博主id
     private int bloggerId;
 
+    // 类别对应的博文数量
+    private int count;
+
     //类别标题
     private String title;
 

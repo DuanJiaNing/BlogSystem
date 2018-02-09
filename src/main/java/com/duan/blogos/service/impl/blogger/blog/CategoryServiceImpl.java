@@ -64,7 +64,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         List<BloggerCategoryDTO> result = new ArrayList<>();
         for (BlogCategory category : categories) {
-            result.add(getBloggerCategoryDTO(category));
+            result.add(getBloggerCategoryDTO(bloggerId, category));
         }
 
         return new ResultBean<>(result);
@@ -158,11 +158,11 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public BloggerCategoryDTO getCategory(int bloggerId, int categoryId) {
-        return getBloggerCategoryDTO(categoryDao.getCategory(bloggerId, categoryId));
+        return getBloggerCategoryDTO(bloggerId, categoryDao.getCategory(bloggerId, categoryId));
     }
 
     // 获得单个类别
-    private BloggerCategoryDTO getBloggerCategoryDTO(BlogCategory category) {
+    private BloggerCategoryDTO getBloggerCategoryDTO(int bloggerId, BlogCategory category) {
 
         Integer iconId = category.getIconId();
 
@@ -177,9 +177,9 @@ public class CategoryServiceImpl implements CategoryService {
 
         if (icon != null)
             icon.setPath(constructorManager.constructPictureUrl(icon, DEFAULT_BLOGGER_BLOG_CATEGORY_ICON));
-        BloggerCategoryDTO dto = fillingManager.blogCategoryToDTO(category, icon);
 
-        return dto;
+        int count = blogDao.countBlogByCategory(bloggerId, category.getId());
+        return fillingManager.blogCategoryToDTO(category, icon, count);
     }
 
 }

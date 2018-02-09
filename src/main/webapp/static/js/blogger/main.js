@@ -49,18 +49,81 @@ function loadLabel() {
     )
 }
 
+function loadCategory() {
+    $.get(
+        '/blogger/' + bloggerId + '/category',
+        {offset: 0, rows: 1000},
+        function (result) {
+            var html = '';
+            if (result.code === 0) {
+                var array = result.data;
+                for (var index in array) {
+                    var ca = array[index];
+                    html += '<a class="list-group-item blogger-category" onclick="filterBlogByCategory(' + ca.id + ')">'
+                        + ca.title + '<span class="count">&nbsp;(' + ca.count + ')</span> </a>'
+                }
+            }
+
+            if (html === '') {
+                html = '<p class="text-center"><small>还没有类别&nbsp;</small>';
+                if (checkLogin())
+                    html += '<a data-toggle="modal" data-target="#newCategoryDialog">新建类别</a></p>';
+            }
+            $('#blogCategory').html(html);
+
+        }, 'json'
+    )
+}
+
 // 创建标签并重新加载 标签栏
 function newLabelAndReload() {
     var name = $('#labelName').val();
+
+    if (isStrEmpty(name)) {
+        $('#labelErrorMsg').html('标签名称不能为空');
+        return;
+    } else {
+        $('#labelErrorMsg').html(' ');
+    }
     $.post(
         '/blogger/' + bloggerId + '/label',
         {title: name},
         function (result) {
             if (result.code === 0) {
                 loadLabel();
+                $('.bs-example-modal-sm').modal('toggle');
+            } else {
+                $('#labelErrorMsg').html(result.msg);
             }
         }, 'json'
     );
+}
+
+// 创建类别并重新加载 类别栏
+function newCategoryAndReload() {
+    var title = $('#categoryTitle').val();
+    var bewrite = $('#categoryBewrite').val();
+
+    if (isStrEmpty(title)) {
+        $('#categoryErrorMsg').html('类别名称不能为空');
+        return;
+    } else {
+        $('#categoryErrorMsg').html(' ');
+    }
+
+    $.post(
+        '/blogger/' + bloggerId + '/category',
+        {title: title, bewrite: bewrite},
+        function (result) {
+            if (result.code === 0) {
+                loadCategory();
+                $('#newCategoryDialog').modal('toggle');
+            } else {
+                $('#categoryErrorMsg').html(result.msg);
+            }
+        }, 'json'
+    );
+
 }
 
 function checkLogin() {
@@ -93,30 +156,6 @@ function signIn() {
 // 加载初始博文列表
 function initBlog() {
 
-}
-
-// 加载类别
-function loadCategory() {
-    $.get(
-        '/blogger/' + bloggerId + '/category',
-        {offset: 0, rows: 1000},
-        function (result) {
-            var html = '';
-            if (result.code === 0) {
-                var array = result.data;
-                for (var index in array) {
-                    var ca = array[index];
-                    // TODO 类别数量
-                    html += '<a class="list-group-item blogger-category" onclick="filterBlogByCategory(' + ca.id + ')">'
-                        + ca.title + '<span class="count">&nbsp;(66)</span> </a>'
-                }
-
-                var div = $('#blogCategory');
-
-
-            }
-        }, 'json'
-    )
 }
 
 // 加载联系方式

@@ -118,7 +118,7 @@ public class DataFillingManager {
         return dto;
     }
 
-    public BloggerCategoryDTO blogCategoryToDTO(BlogCategory category, BloggerPicture icon) {
+    public BloggerCategoryDTO blogCategoryToDTO(BlogCategory category, BloggerPicture icon, int count) {
         BloggerCategoryDTO dto = new BloggerCategoryDTO();
         dto.setBloggerId(category.getBloggerId());
         dto.setCreateDate(category.getCreateDate());
@@ -126,6 +126,7 @@ public class DataFillingManager {
         dto.setIcon(icon);
         dto.setId(category.getId());
         dto.setTitle(category.getTitle());
+        dto.setCount(count);
         return dto;
     }
 

@@ -115,4 +115,14 @@ public interface BlogDao extends BaseDao<Blog> {
      * @return 只查询了博文标签和博文id的结果集
      */
     List<Blog> listAllLabelByBloggerId(int bloggerId);
+
+    /**
+     * 统计指定类别的博文数量
+     *
+     * @param bloggerId  博主id
+     * @param categoryId 类别id
+     * @return 数量
+     */
+    Integer countBlogByCategory(@Param("bloggerId") int bloggerId,
+                                @Param("categoryId") int categoryId);
 }

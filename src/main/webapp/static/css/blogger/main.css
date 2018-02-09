@@ -112,3 +112,17 @@ body {
 .dialog-sign-in-indicator {
     padding-bottom: 3px;
 }
+
+.button-new {
+    font-weight: bold;
+    border: solid 1px dimgray;
+    background-color: transparent;
+    color: dimgray;
+    padding: 0 4px;
+    font-size: small;
+}
+
+.button-new:hover {
+    background-color: dimgray;
+    color: white;
+}

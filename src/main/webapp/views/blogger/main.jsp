@@ -36,6 +36,7 @@
         var bloggerLoginSignal = ${not empty bloggerLoginSignal};
     </script>
 
+    <script type="application/javascript" src="js/common.js"></script>
     <script type="application/javascript" src="js/blogger/main.js"></script>
 
 </head>
@@ -71,7 +72,7 @@
                 <c:choose>
                     <c:when test="${empty bloggerLoginSignal}">
                         <li><a data-toggle="modal"
-                               data-target="#signIn">登录</a></li>
+                               data-target="#signInDialog">登录</a></li>
                         <li><a href="/register">注册</a></li>
                     </c:when>
                     <c:otherwise>
@@ -104,7 +105,7 @@
 </nav>
 
 <%--登录框--%>
-<div class="modal fade" tabindex="-1" role="dialog" id="signIn">
+<div class="modal fade" tabindex="-1" role="dialog" id="signInDialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content dialog-title-container">
             <div class="modal-header">
@@ -195,14 +196,53 @@
                         <input type="text" id="labelName" placeholder="标签名" class="form-input">
                     </div>
                 </form>
+                <span class="error-msg" id="labelErrorMsg"></span>
             </div>
             <div class="modal-footer dialog-footer">
-                <button class="button-success" data-dismiss="modal" onclick="newLabelAndReload()">创建</button>
+                <button class="button-success" onclick="newLabelAndReload()">创建</button>
             </div>
 
         </div>
     </div>
 </div>
+
+<%--新建类别框--%>
+<div class="modal fade" tabindex="-1" role="dialog" id="newCategoryDialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content dialog-title-container">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title dialog-title">新建类别</h4>
+            </div>
+            <div class="modal-body dialog-body">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <form>
+                            <div class="form-group">
+                                <label>名称</label><br>
+                                <input type="text" id="categoryTitle" placeholder="类别名" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>说明</label><br>
+                                <textarea class="default-textarea" id="categoryBewrite" placeholder="类别说明"></textarea>
+                            </div>
+                        </form>
+                        <span class="error-msg" id="categoryErrorMsg"></span>
+
+                    </div>
+                    <div class="col-md-2"></div>
+
+                </div>
+            </div>
+            <div class="modal-footer dialog-footer">
+                <button type="submit" class="button-success" id="newCategoryBtn" onclick="newCategoryAndReload()">创建
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <div class="container">
     <!-- Content here -->
@@ -457,31 +497,46 @@
             <br>
 
             <%--标签--%>
-            <h4 class="default-h4"><b>标签</b></h4>
+            <div class="row" onmouseenter="$('#labelNewBtn').show()"
+                 onmouseleave="$('#labelNewBtn').hide()">
+                <div class="col-md-9">
+                    <h4 class="default-h4"><b>标签</b></h4>
+                </div>
+                <div class="col-md-3">
+                    <br>
+                    <span class="button-new" id="labelNewBtn" style="display: none">+</span>
+                </div>
+            </div>
             <hr class="default-line">
             <p class="blogger-label">
             </p>
             <br>
 
             <%--创建的类别--%>
-            <h4 class="default-h4"><b>类别</b></h4>
+            <div class="row" onmouseenter="$('#categoryNewBtn').show()"
+                 onmouseleave="$('#categoryNewBtn').hide()">
+                <div class="col-md-9">
+                    <h4 class="default-h4"><b>类别</b></h4>
+                </div>
+                <div class="col-md-3">
+                    <br>
+                    <span class="button-new" id="categoryNewBtn" style="display: none">+</span>
+                </div>
+            </div>
             <hr class="default-line">
             <div class="list-group" id="blogCategory">
-                <a href="#" class="list-group-item blogger-category">全部<span
-                        class="count">&nbsp;(66)</span> </a>
-                <a href="#" class="list-group-item blogger-category">java<span
-                        class="count">&nbsp;(12)</span> </a>
-                <a href="#" class="list-group-item blogger-category">Linux<span
-                        class="count">&nbsp;(2)</span></a>
-                <a href="#" class="list-group-item blogger-category">算法<span
-                        class="count">&nbsp;(22)</span></a>
-                <a href="#" class="list-group-item blogger-category">java - 集合框架<span
-                        class="count">&nbsp;(8)</span></a>
             </div>
             <br>
 
             <%--联系我--%>
-            <h4 class="default-h4"><b>联系我</b></h4>
+            <div class="row" onmouseenter="$('#linkNewBtn').show()" onmouseleave="$('#linkNewBtn').hide()">
+                <div class="col-md-9">
+                    <h4 class="default-h4"><b>联系我</b></h4></div>
+                <div class="col-md-3">
+                    <br>
+                    <span class="button-new" id="linkNewBtn" style="display: none">+</span>
+                </div>
+            </div>
             <hr class="default-line">
             <p class="blogger-link">
                 <a class="blogger-link-item">GitHub</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

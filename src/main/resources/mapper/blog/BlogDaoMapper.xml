@@ -143,18 +143,24 @@
 
     <select id="listAllCategoryByBloggerId" resultType="Blog">
         SELECT
-        b.id,
-        b.category_ids
+            b.id,
+            b.category_ids
         FROM blog b
-        WHERE b.blogger_id=#{value}
+        WHERE b.blogger_id = #{value}
     </select>
 
     <select id="listAllLabelByBloggerId" resultType="Blog">
         SELECT
-        b.id,
-        b.label_ids
+            b.id,
+            b.label_ids
         FROM blog b
-        WHERE b.blogger_id=#{value}
+        WHERE b.blogger_id = #{value}
+    </select>
+
+    <select id="countBlogByCategory" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM blog b
+        WHERE b.blogger_id = #{bloggerId} AND locate(#{categoryId}, b.category_ids) > 0
     </select>
 
 </mapper>

@@ -43,6 +43,12 @@ input:-webkit-autofill {
     box-shadow: -3px 3px 10px dimgray;
 }
 
+.button-success:active {
+    background-color: darkgreen;
+    color: white;
+    box-shadow: -3px 3px 10px dimgray;
+}
+
 .button-success {
     background-color: green;
     color: white;
@@ -93,4 +99,11 @@ h4.default-h4 {
 .error-msg {
     color: red;
     font-size: medium;
+}
+
+.default-textarea {
+    width: 100%;
+    min-height: 80px;
+    border: 0;
+    padding: 8px;
 }
