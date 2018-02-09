@@ -114,11 +114,11 @@ body {
 }
 
 .button-new {
-    font-weight: bold;
+    border-radius: 5px;
     border: solid 1px dimgray;
     background-color: transparent;
     color: dimgray;
-    padding: 0 4px;
+    padding: 0 8px;
     font-size: small;
 }
 

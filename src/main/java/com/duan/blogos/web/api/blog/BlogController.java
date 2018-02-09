@@ -76,11 +76,19 @@ public class BlogController extends BaseBlogController {
     }
 
     /**
+     * 获得检索结果数量，只有在发起一次检索后才能获得正确的值
+     */
+    @RequestMapping(value = "/count", method = RequestMethod.GET)
+    public ResultBean getCount() {
+        return new ResultBean<>(retrievalService.getFilterCount());
+    }
+
+    /**
      * 获得博文主体内容
      */
     @RequestMapping(value = "/{blogId}", method = RequestMethod.GET)
     public ResultBean<BlogMainContentDTO> get(HttpServletRequest request,
-                                                          @PathVariable Integer blogId) {
+                                              @PathVariable Integer blogId) {
         handleBlogExistCheck(request, blogId);
 
         ResultBean<BlogMainContentDTO> mainContent = blogBrowseService.getBlogMainContent(blogId);

@@ -39,9 +39,9 @@ function loadLabel() {
             }
 
             if (html === '') {
-                html = '<p class="text-center"><small>还没有标签&nbsp;</small>';
+                html = '<p class="text-center"><small>没有标签&nbsp;</small>';
                 if (checkLogin())
-                    html += '<a data-toggle="modal" data-target=".bs-example-modal-sm">新建标签</a></p>';
+                    html += '<a data-toggle="modal" data-target="#newLabelDialog">新建标签</a></p>';
             }
             $('.blogger-label').html(html);
 
@@ -65,7 +65,7 @@ function loadCategory() {
             }
 
             if (html === '') {
-                html = '<p class="text-center"><small>还没有类别&nbsp;</small>';
+                html = '<p class="text-center"><small>没有类别&nbsp;</small>';
                 if (checkLogin())
                     html += '<a data-toggle="modal" data-target="#newCategoryDialog">新建类别</a></p>';
             }
@@ -73,6 +73,31 @@ function loadCategory() {
 
         }, 'json'
     )
+}
+
+function loadContact() {
+    $.get(
+        '/blogger/' + bloggerId + '/link',
+        {offset: 0, rows: 20},
+        function (result) {
+            var html = '';
+            if (result.code === 0) {
+                var array = result.data;
+                for (var index in array) {
+                    var link = array[index];
+                    html += '<a class="blogger-link-item" href="' + link.url + '">' + link.title + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+                }
+            }
+
+            if (html === '') {
+                html = '<p class="text-center"><small>没有链接&nbsp;</small>';
+                if (checkLogin())
+                    html += '<a data-toggle="modal" data-target="#newLinkDialog">新建链接</a></p>';
+            }
+            $('.blogger-link').html(html);
+
+        }, 'json'
+    );
 }
 
 // 创建标签并重新加载 标签栏
@@ -126,6 +151,39 @@ function newCategoryAndReload() {
 
 }
 
+// 新建链接并重新加载 链接栏（与我联系）
+function newLinkAndReload() {
+    var title = $('#linkTitle').val();
+    var url = $('#linkUrl').val();
+    var bewrite = $('#linkBewrite').val();
+
+    var error = $('#linkErrorMsg');
+    if (isStrEmpty(title)) {
+        error.html("名称不能为空");
+        return;
+    }
+
+    if (isStrEmpty(url) || !isUrl(url)) {
+        error.html("url不正确");
+        return;
+    }
+    error.html("");
+
+    $.post(
+        '/blogger/' + bloggerId + '/link',
+        {title: title, url: url, bewrite: bewrite},
+        function (result) {
+            if (result.code === 0) {
+                loadContact();
+                $('#newLinkDialog').modal('toggle');
+            } else {
+                $('#linkErrorMsg').html(result.msg);
+            }
+        }, 'json'
+    );
+
+}
+
 function checkLogin() {
     return bloggerLoginSignal == null;
 }
@@ -153,13 +211,90 @@ function signIn() {
 
 }
 
+var defaultBlogCount = 10;
+var current = 0;
+
 // 加载初始博文列表
 function initBlog() {
-
+    filterBlog(0, defaultBlogCount, true);
 }
 
-// 加载联系方式
-function initContact() {
+// 加载默认博文
+function filterBlog(offset, rows, refresh) {
+    $.get(
+        '/blog',
+        {bloggerId: bloggerId, offset: offset, rows: rows},
+        function (result) {
+            var html = '';
+            if (result.code === 0 && !isStrEmpty(result.data)) {
+                var array = result.data;
+                html += '<ul class="list-group">';
+
+                for (var index in array) {
+                    var item = array[index];
+
+                    var cates = '';
+                    var cate = item.categories;
+                    for (var i in cate) {
+                        cates += '<small>' + cate[i].title + '</small>&nbsp;';
+                    }
+
+                    html += '<li class="list-group-item blog-list-item">' +
+                        '<p>' +
+                        '<h3 class="list-group-item-heading blog-list-item-title"><a>' + item.title + '</a>' +
+                        '</h3></p>' +
+                        '<h4>' +
+                        '<small class="list-group-item-text"><b>' + dateFormat(item.releaseDate) + '</b>&nbsp;&nbsp;' +
+                        item.collectCount + '收藏&nbsp;&nbsp;' + item.viewCount + '浏览&nbsp;&nbsp;' + item.likeCount + '喜欢&nbsp;&nbsp;' + item.commentCount + '评论' +
+                        '</small>' +
+                        '</h4>' +
+                        '<p class="list-group-item-text blog-list-item-summary">' + item.summary + '</p>' +
+                        '<h4>' + cates +
+                        '</h4>' +
+                        '<hr>' +
+                        '</li>'
+                }
+
+                html += '</ul>';
+
+                if (refresh) {
+                    refreshPageIndicator(0);
+                }
+
+            }
+
+            if (html === '') {
+                html = '<h1>没有博文&nbsp;</h1>';
+            }
+
+            $('#blogList').html(html);
+
+        }, 'json'
+    );
+}
+
+// 刷新分页插件
+function refreshPageIndicator(initIndex) {
+    $.get(
+        '/blog/count',
+        null,
+        function (result) {
+            if (result.code === 0) {
+                var count = result.data;
+                $('#box').paging({
+                    initPageNo: initIndex, // 初始页码
+                    totalPages: count % defaultBlogCount > 0 ? (count / defaultBlogCount) + 1 : count / defaultBlogCount, //总页数
+                    totalCount: count + '条', // 条目总数
+                    slideSpeed: 600, // 缓动速度。单位毫秒
+                    jump: true, //是否支持跳转
+                    callback: function (page) { // 回调函数
+                        current = page;
+                        filterBlog((page - 1) * defaultBlogCount, defaultBlogCount, false);
+                    }
+                })
+            }
+        }, 'json'
+    );
 
 }
 
@@ -182,5 +317,5 @@ $(document).ready(function () {
     loadCategory();
 
     // 加载联系方式
-    initContact();
+    loadContact();
 });

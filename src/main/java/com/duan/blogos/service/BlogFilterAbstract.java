@@ -1,5 +1,6 @@
 package com.duan.blogos.service;
 
+import com.duan.blogos.common.BlogSortRule;
 import com.duan.blogos.dao.blog.BlogDao;
 import com.duan.blogos.dao.blog.BlogStatisticsDao;
 import com.duan.blogos.entity.blog.Blog;
@@ -7,9 +8,8 @@ import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.exception.internal.LuceneException;
 import com.duan.blogos.manager.BlogLuceneIndexManager;
-import com.duan.blogos.common.BlogSortRule;
-import com.duan.blogos.manager.properties.DbProperties;
 import com.duan.blogos.manager.comparator.BlogListItemComparatorFactory;
+import com.duan.blogos.manager.properties.DbProperties;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
 import org.apache.lucene.queryparser.classic.ParseException;
@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 /**
@@ -40,6 +41,13 @@ public abstract class BlogFilterAbstract<T> implements BlogFilter<T> {
 
     @Autowired
     private BlogStatisticsDao statisticsDao;
+
+    private static volatile AtomicInteger count = new AtomicInteger();
+
+    @Override
+    public int getFilterCount() {
+        return count.getAndSet(0);
+    }
 
     /**
      * 构造结果集，statistics是经过筛选而且排序了的结果，可借助statistics的顺序来得到最终结果
@@ -112,9 +120,9 @@ public abstract class BlogFilterAbstract<T> implements BlogFilter<T> {
         List<Integer> resultIds = filterByLuceneIds.stream().filter(filterByOtherIds::contains).collect(Collectors.toList());
         if (CollectionUtils.isEmpty(resultIds)) return null;
 
-        //构造结果
-        List<Blog> blogs = blogDao.listBlogByBlogIds(resultIds, status.getCode(), 0, resultIds.size());
-
+        //构造结果,排序并重组
+        count.set(resultIds.size());
+        List<Blog> blogs = blogDao.listBlogByBlogIds(resultIds, status.getCode(), offset, rows);
         return sortAndConstructResult(blogs, sortRule, map);
     }
 
@@ -128,9 +136,9 @@ public abstract class BlogFilterAbstract<T> implements BlogFilter<T> {
         Integer[] ids = map.keySet().toArray(new Integer[map.size()]);
         if (CollectionUtils.isEmpty(ids)) return null;
 
-        // 排序并重组
+        //构造结果,排序并重组
+        count.set(ids.length);
         List<Blog> resultBlogs = blogDao.listBlogByBlogIds(Arrays.asList(ids), status.getCode(), offset, rows);
-
         return sortAndConstructResult(resultBlogs, sortRule, map);
     }
 

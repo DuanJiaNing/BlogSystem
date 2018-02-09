@@ -41,4 +41,11 @@ public interface BlogFilter<T> {
     T listFilterByLabelAndCategory(int[] categoryIds, int[] labelIds, int bloggerId, int offset, int rows,
                                    BlogSortRule sortRule, BlogStatusEnum status);
 
+    /**
+     * 获得一次检索后的结果集总条数
+     *
+     * @return 数量
+     */
+    int getFilterCount();
+
 }

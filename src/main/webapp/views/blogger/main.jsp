@@ -17,6 +17,7 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="css/blogger/main.css">
     <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/paging.css">
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/core.js"></script>
@@ -36,6 +37,7 @@
         var bloggerLoginSignal = ${not empty bloggerLoginSignal};
     </script>
 
+    <script type="application/javascript" src="js/paging.js"></script>
     <script type="application/javascript" src="js/common.js"></script>
     <script type="application/javascript" src="js/blogger/main.js"></script>
 
@@ -180,7 +182,7 @@
 </div><!-- /.modal -->
 
 <%--新建标签框--%>
-<div class="modal fade bs-example-modal-sm dialog-middle" tabindex="-1" role="dialog"
+<div class="modal fade bs-example-modal-sm dialog-middle" tabindex="-1" role="dialog" id="newLabelDialog"
      aria-labelledby="mySmallModalLabel">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content dialog-title-container-middle">
@@ -244,6 +246,48 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<%--新建链接框--%>
+<div class="modal fade" tabindex="-1" role="dialog" id="newLinkDialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content dialog-title-container">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title dialog-title">新建联系方式</h4>
+            </div>
+            <div class="modal-body dialog-body">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <form>
+                            <div class="form-group">
+                                <label>名称</label><br>
+                                <input type="text" id="linkTitle" placeholder="名称" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>URL</label><br>
+                                <input type="text" id="linkUrl" placeholder="url" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>说明</label><br>
+                                <textarea class="default-textarea" id="linkBewrite" placeholder="说明"></textarea>
+                            </div>
+                        </form>
+                        <span class="error-msg" id="linkErrorMsg"></span>
+
+                    </div>
+                    <div class="col-md-2"></div>
+
+                </div>
+            </div>
+            <div class="modal-footer dialog-footer">
+                <button type="submit" class="button-success" id="newLinkBtn" onclick="newLinkAndReload()">创建
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <div class="container">
     <!-- Content here -->
     <div class="row">
@@ -267,213 +311,8 @@
     <div class="row">
         <%--博文列表部分--%>
         <div class="col-md-9">
-
-            <%--博文列表--%>
-            <ul class="list-group">
-                <li class="list-group-item blog-list-item">
-                    <p>
-                    <h3 class="list-group-item-heading blog-list-item-title"><a>javaEE - 同源策略 Jsonp & CORS</a>
-                    </h3></p>
-                    <h4>
-                        <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
-                        </small>
-                    </h4>
-                    <p class="list-group-item-text blog-list-item-summary">
-                        使用同源策略的原因
-                        Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
-                        通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
-                    <h4>
-                        <small class="list-group-item-text blog-list-item-title"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
-                        </small>
-                    </h4>
-                    <hr>
-                </li>
-                <li class="list-group-item blog-list-item">
-                    <p>
-                    <h3 class="list-group-item-heading blog-list-item-title"><a>javaEE - 同源策略 Jsonp & CORS</a>
-                    </h3></p>
-                    <h4>
-                        <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
-                        </small>
-                    </h4>
-                    <p class="list-group-item-text blog-list-item-summary">
-                        使用同源策略的原因
-                        Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
-                        通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
-                    <h4>
-                        <small class="list-group-item-text blog-list-item-title"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
-                        </small>
-                    </h4>
-                    <hr>
-                </li>
-                <li class="list-group-item blog-list-item">
-                    <p>
-                    <h3 class="list-group-item-heading blog-list-item-title"><a>javaEE - 同源策略 Jsonp & CORS</a>
-                    </h3></p>
-                    <h4>
-                        <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
-                        </small>
-                    </h4>
-                    <p class="list-group-item-text blog-list-item-summary">
-                        使用同源策略的原因
-                        Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
-                        通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
-                    <h4>
-                        <small class="list-group-item-text blog-list-item-title"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
-                        </small>
-                    </h4>
-                    <hr>
-                </li>
-                <li class="list-group-item blog-list-item">
-                    <p>
-                    <h3 class="list-group-item-heading blog-list-item-title"><a>javaEE - 同源策略 Jsonp & CORS</a>
-                    </h3></p>
-                    <h4>
-                        <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
-                        </small>
-                    </h4>
-                    <p class="list-group-item-text blog-list-item-summary">
-                        使用同源策略的原因
-                        Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
-                        通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
-                    <h4>
-                        <small class="list-group-item-text blog-list-item-title"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
-                        </small>
-                    </h4>
-                    <hr>
-                </li>
-                <li class="list-group-item blog-list-item">
-                    <p>
-                    <h3 class="list-group-item-heading blog-list-item-title"><a>javaEE - 同源策略 Jsonp & CORS</a>
-                    </h3></p>
-                    <h4>
-                        <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
-                        </small>
-                    </h4>
-                    <p class="list-group-item-text blog-list-item-summary">
-                        使用同源策略的原因
-                        Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
-                        通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
-                    <h4>
-                        <small class="list-group-item-text blog-list-item-title"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
-                        </small>
-                    </h4>
-                    <hr>
-                </li>
-                <li class="list-group-item blog-list-item">
-                    <p>
-                    <h3 class="list-group-item-heading blog-list-item-title"><a>javaEE - 同源策略 Jsonp & CORS</a>
-                    </h3></p>
-                    <h4>
-                        <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
-                        </small>
-                    </h4>
-                    <p class="list-group-item-text blog-list-item-summary">
-                        使用同源策略的原因
-                        Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
-                        通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
-                    <h4>
-                        <small class="list-group-item-text blog-list-item-title"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
-                        </small>
-                    </h4>
-                    <hr>
-                </li>
-                <li class="list-group-item blog-list-item">
-                    <p>
-                    <h3 class="list-group-item-heading blog-list-item-title"><a>javaEE - 同源策略 Jsonp & CORS</a>
-                    </h3></p>
-                    <h4>
-                        <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
-                        </small>
-                    </h4>
-                    <p class="list-group-item-text blog-list-item-summary">
-                        使用同源策略的原因
-                        Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
-                        通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
-                    <h4>
-                        <small class="list-group-item-text blog-list-item-title"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
-                        </small>
-                    </h4>
-                    <hr>
-                </li>
-                <li class="list-group-item blog-list-item">
-                    <p>
-                    <h3 class="list-group-item-heading blog-list-item-title"><a>javaEE - 同源策略 Jsonp & CORS</a>
-                    </h3></p>
-                    <h4>
-                        <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
-                        </small>
-                    </h4>
-                    <p class="list-group-item-text blog-list-item-summary">
-                        使用同源策略的原因
-                        Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
-                        通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
-                    <h4>
-                        <small class="list-group-item-text blog-list-item-title"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
-                        </small>
-                    </h4>
-                    <hr>
-                </li>
-                <li class="list-group-item blog-list-item">
-                    <p>
-                    <h3 class="list-group-item-heading blog-list-item-title"><a>javaEE - 同源策略 Jsonp & CORS</a>
-                    </h3></p>
-                    <h4>
-                        <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
-                        </small>
-                    </h4>
-                    <p class="list-group-item-text blog-list-item-summary">
-                        使用同源策略的原因
-                        Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
-                        通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
-                    <h4>
-                        <small class="list-group-item-text blog-list-item-title"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
-                        </small>
-                    </h4>
-                    <hr>
-                </li>
-                <li class="list-group-item blog-list-item">
-                    <p>
-                    <h3 class="list-group-item-heading blog-list-item-title"><a>javaEE - 同源策略 Jsonp & CORS</a>
-                    </h3></p>
-                    <h4>
-                        <small class="list-group-item-text"><b>Jan 23,2017</b>&nbsp;&nbsp;23收藏&nbsp;&nbsp;344浏览&nbsp;&nbsp;3喜欢
-                        </small>
-                    </h4>
-                    <p class="list-group-item-text blog-list-item-summary">
-                        使用同源策略的原因
-                        Cookie失窃，非法网页通过javascript访问其他应用的服务器，获取到Cookie后伪装成用户进行非法操作。
-                        通过iframe伪装form，将信息提交到恶意action，隐私数据提交到了不法网站，信息被盗取。</p>
-                    <h4>
-                        <small class="list-group-item-text blog-list-item-title"><u><i>阿萨德</i></u>&nbsp;&nbsp;23评论
-                        </small>
-                    </h4>
-                    <hr>
-                </li>
-            </ul>
-
-            <%--分页控件--%>
-            <div style="text-align: center;">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            <div id="blogList"></div>
+            <div class="box" id="box"></div>
         </div>
 
         <%--右侧--%>
@@ -497,54 +336,59 @@
             <br>
 
             <%--标签--%>
-            <div class="row" onmouseenter="$('#labelNewBtn').show()"
-                 onmouseleave="$('#labelNewBtn').hide()">
-                <div class="col-md-9">
-                    <h4 class="default-h4"><b>标签</b></h4>
+            <div onmouseenter="if(checkLogin())$('#labelNewBtn').show()"
+                 onmouseleave="if(checkLogin())$('#labelNewBtn').hide()">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4 class="default-h4"><b>标签</b></h4>
+                    </div>
+                    <div class="col-md-4">
+                        <br>
+                        <a class="button-new" id="labelNewBtn" style="display: none"
+                           data-target="#newLabelDialog" data-toggle="modal">新建</a>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <br>
-                    <span class="button-new" id="labelNewBtn" style="display: none">+</span>
-                </div>
+                <hr class="default-line">
+                <p class="blogger-label">
+                </p>
             </div>
-            <hr class="default-line">
-            <p class="blogger-label">
-            </p>
             <br>
 
             <%--创建的类别--%>
-            <div class="row" onmouseenter="$('#categoryNewBtn').show()"
-                 onmouseleave="$('#categoryNewBtn').hide()">
-                <div class="col-md-9">
-                    <h4 class="default-h4"><b>类别</b></h4>
+            <div onmouseenter="if(checkLogin())$('#categoryNewBtn').show()"
+                 onmouseleave="if(checkLogin())$('#categoryNewBtn').hide()">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4 class="default-h4"><b>类别</b></h4>
+                    </div>
+                    <div class="col-md-4">
+                        <br>
+                        <a class="button-new" id="categoryNewBtn" style="display: none" data-target="#newCategoryDialog"
+                           data-toggle="modal">新建</a>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <br>
-                    <span class="button-new" id="categoryNewBtn" style="display: none">+</span>
+                <hr class="default-line">
+                <div class="list-group" id="blogCategory">
                 </div>
-            </div>
-            <hr class="default-line">
-            <div class="list-group" id="blogCategory">
             </div>
             <br>
 
             <%--联系我--%>
-            <div class="row" onmouseenter="$('#linkNewBtn').show()" onmouseleave="$('#linkNewBtn').hide()">
-                <div class="col-md-9">
-                    <h4 class="default-h4"><b>联系我</b></h4></div>
-                <div class="col-md-3">
-                    <br>
-                    <span class="button-new" id="linkNewBtn" style="display: none">+</span>
+            <div onmouseenter="if(checkLogin())$('#linkNewBtn').show()"
+                 onmouseleave="if(checkLogin())$('#linkNewBtn').hide()">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4 class="default-h4"><b>联系我</b></h4></div>
+                    <div class="col-md-4">
+                        <br>
+                        <a class="button-new" id="linkNewBtn" style="display: none"
+                           data-target="#newLinkDialog" data-toggle="modal">新建</a>
+                    </div>
                 </div>
+                <hr class="default-line">
+                <p class="blogger-link">
+                </p>
             </div>
-            <hr class="default-line">
-            <p class="blogger-link">
-                <a class="blogger-link-item">GitHub</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a class="blogger-link-item">CSDN</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a class="blogger-link-item">Gmail</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a class="blogger-link-item">微信</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a class="blogger-link-item">微博</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </p>
         </div>
 
     </div>

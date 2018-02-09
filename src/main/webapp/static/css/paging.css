@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.fl {
+    float: left;
+}
+
+.box {
+    height: 33px;
+    line-height: 30px;
+    text-align: center;
+    font-size: small;
+}
+
+.box button {
+    padding: 0 5px;
+    margin: 0 5px;
+    height: 33px;
+    float: left;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    background-color: #ffffff;
+}
+
+.box .first-page,
+.box .last-page {
+    margin: 0;
+}
+
+.box .pageWrap {
+    height: 33px;
+    float: left;
+    overflow: hidden;
+}
+
+.box .pageWrap ul {
+    width: 100000px;
+    height: 33px;
+    float: left;
+}
+
+.box .pageWrap ul li {
+    width: 40px;
+    height: 33px;
+    border: 1px solid #ebebeb;
+    line-height: 33px;
+    box-sizing: border-box;
+    cursor: pointer;
+    float: left;
+}
+
+.box .pageWrap ul .sel-page {
+    background-color: #3478B5;
+    color: white;
+}
+
+.box .jump-text {
+    width: 60px;
+    height: 33px;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 0 5px;
+    float: left;
+}
+
+.box .jump-button {
+    margin: 0;
+    float: left;
+}
+
+.box .total-count {
+    margin-left: 16px;
+    margin-right: 16px;
+    float: left;
+    vertical-align: bottom;
+    font-size: smaller;
+}
