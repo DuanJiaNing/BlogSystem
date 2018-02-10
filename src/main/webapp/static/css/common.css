@@ -107,3 +107,38 @@ h4.default-h4 {
     border: 0;
     padding: 8px;
 }
+
+#scroll-to-top:hover {
+    background: #3478B5;
+    color: white;
+    opacity: 1;
+}
+
+#scroll-to-top:focus {
+    outline: 0;
+}
+
+#scroll-to-top {
+    position: fixed;
+    bottom: 48px;
+    right: 48px;
+
+    z-index: 9999;
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 24px;
+    padding: 8px;
+
+    text-align: center;
+    line-height: 30px;
+
+    background: dimgray;
+    color: white;
+
+    cursor: pointer;
+    text-decoration: none;
+    opacity: 0.4;
+    /*transition: opacity .2s ease-out;*/
+}

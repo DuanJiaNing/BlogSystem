@@ -27,7 +27,7 @@ public class BlogControllerTest extends BaseTest {
     public void bloggerBlogList() {
 
         DataProvider provider = new DataProvider();
-        int count = 0;
+        int count = 20;
         for (int i = 0; i < count; i++) {
 
             blogService.insertBlog(1,

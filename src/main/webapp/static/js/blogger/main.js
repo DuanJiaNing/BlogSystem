@@ -216,11 +216,12 @@ var current = 0;
 
 // 加载初始博文列表
 function initBlog() {
-    filterBlog(0, defaultBlogCount, true);
+    // 将会加载两次
+    filterBlog(0, defaultBlogCount, true, false);
 }
 
 // 加载默认博文
-function filterBlog(offset, rows, refresh) {
+function filterBlog(offset, rows, refreshPageIndicator, toTop) {
     $.get(
         '/blog',
         {bloggerId: bloggerId, offset: offset, rows: rows},
@@ -257,8 +258,12 @@ function filterBlog(offset, rows, refresh) {
 
                 html += '</ul>';
 
-                if (refresh) {
-                    refreshPageIndicator(0);
+                if (refreshPageIndicator) {
+                    setPageIndicator(0);
+                }
+
+                if (toTop) {
+                    scrollToTop();
                 }
 
             }
@@ -274,7 +279,7 @@ function filterBlog(offset, rows, refresh) {
 }
 
 // 刷新分页插件
-function refreshPageIndicator(initIndex) {
+function setPageIndicator(initIndex) {
     $.get(
         '/blog/count',
         null,
@@ -283,13 +288,13 @@ function refreshPageIndicator(initIndex) {
                 var count = result.data;
                 $('#box').paging({
                     initPageNo: initIndex, // 初始页码
-                    totalPages: count % defaultBlogCount > 0 ? (count / defaultBlogCount) + 1 : count / defaultBlogCount, //总页数
+                    totalPages: Math.ceil(count / defaultBlogCount), //总页数
                     totalCount: count + '条', // 条目总数
                     slideSpeed: 600, // 缓动速度。单位毫秒
                     jump: true, //是否支持跳转
                     callback: function (page) { // 回调函数
                         current = page;
-                        filterBlog((page - 1) * defaultBlogCount, defaultBlogCount, false);
+                        filterBlog((page - 1) * defaultBlogCount, defaultBlogCount, false, true);
                     }
                 })
             }
@@ -318,4 +323,15 @@ $(document).ready(function () {
 
     // 加载联系方式
     loadContact();
+});
+
+$(function () {
+    $("#scroll-to-top").click(function () {
+        scrollToTop();
+        $("#scroll-to-top").tooltip('hide');
+    });
+});
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip();
 });

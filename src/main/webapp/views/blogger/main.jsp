@@ -43,6 +43,7 @@
 
 </head>
 <body>
+<button id="scroll-to-top" data-toggle="tooltip" data-placement="left" title="回到顶部">TOP</button>
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">

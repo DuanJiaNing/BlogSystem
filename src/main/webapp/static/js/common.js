@@ -13,3 +13,7 @@ function dateFormat(date) {
     var d = new Date(date);
     return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
 }
+
+function scrollToTop() {
+    $("html,body").animate({scrollTop: 0}, 500);
+}
