@@ -63,9 +63,10 @@ public class DataFillingManager {
         return dto;
     }
 
-    public BlogListItemDTO blogListItemToDTO(BlogStatistics statistics, List<BlogCategory> categories, Blog blog) {
+    public BlogListItemDTO blogListItemToDTO(BlogStatistics statistics, BlogCategory[] categories, BlogLabel[] labels, Blog blog) {
         BlogListItemDTO dto = new BlogListItemDTO();
-        dto.setCategories(CollectionUtils.isEmpty(categories) ? null : categories.toArray(new BlogCategory[categories.size()]));
+        dto.setCategories(categories);
+        dto.setLabels(labels);
         dto.setCollectCount(statistics.getCollectCount());
         dto.setCommentCount(statistics.getCommentCount());
         dto.setId(blog.getId());

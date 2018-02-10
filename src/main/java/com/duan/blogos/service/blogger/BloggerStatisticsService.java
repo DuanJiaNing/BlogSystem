@@ -9,7 +9,6 @@ import com.duan.blogos.restful.ResultBean;
  *
  * @author DuanJiaNing
  */
-// UPDATE: 2018/2/3 更新 初始版本不予实现
 public interface BloggerStatisticsService {
 
     /**

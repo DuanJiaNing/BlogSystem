@@ -1,6 +1,7 @@
 package com.duan.blogos.dto.blog;
 
 import com.duan.blogos.entity.blog.BlogCategory;
+import com.duan.blogos.entity.blog.BlogLabel;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -23,6 +24,9 @@ public class BlogListItemDTO implements Serializable {
 
     //博文所属类别
     private BlogCategory[] categories;
+
+    //博文标签
+    private BlogLabel[] labels;
 
     //博文标题
     private String title;

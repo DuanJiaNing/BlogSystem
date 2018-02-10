@@ -1,19 +1,13 @@
 package com.duan.blogos.service.impl.blogger.profile;
 
-import com.duan.blogos.dao.blog.BlogCategoryDao;
-import com.duan.blogos.dao.blog.BlogCollectDao;
-import com.duan.blogos.dao.blog.BlogDao;
-import com.duan.blogos.dao.blog.BlogStatisticsDao;
+import com.duan.blogos.dao.blog.*;
 import com.duan.blogos.dao.blogger.BloggerAccountDao;
 import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.dao.blogger.BloggerProfileDao;
 import com.duan.blogos.dto.blog.BlogListItemDTO;
 import com.duan.blogos.dto.blogger.BloggerDTO;
 import com.duan.blogos.dto.blogger.CollectBlogListItemDTO;
-import com.duan.blogos.entity.blog.Blog;
-import com.duan.blogos.entity.blog.BlogCategory;
-import com.duan.blogos.entity.blog.BlogCollect;
-import com.duan.blogos.entity.blog.BlogStatistics;
+import com.duan.blogos.entity.blog.*;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.entity.blogger.BloggerProfile;
@@ -49,6 +43,9 @@ public class CollectBlogServiceImpl implements CollectBlogService {
 
     @Autowired
     private BlogCategoryDao categoryDao;
+
+    @Autowired
+    private BlogLabelDao labelDao;
 
     @Autowired
     private BlogDao blogDao;
@@ -95,10 +92,26 @@ public class CollectBlogServiceImpl implements CollectBlogService {
 
             // BlogListItemDTO
             Blog blog = blogDao.getBlogById(blogId);
-            int[] ids = StringUtils.intStringDistinctToArray(blog.getCategoryIds(),
-                    dbProperties.getStringFiledSplitCharacterForNumber());
-            List<BlogCategory> categories = categoryDao.listCategoryById(ids);
-            BlogListItemDTO listItemDTO = fillingManager.blogListItemToDTO(statistics, categories, blog);
+            String ch = dbProperties.getStringFiledSplitCharacterForNumber();
+
+            // category
+            int[] cids = StringUtils.intStringDistinctToArray(blog.getCategoryIds(), ch);
+            List<BlogCategory> categories = null;
+            if (!CollectionUtils.isEmpty(cids)) {
+                categories = categoryDao.listCategoryById(cids);
+            }
+
+            // label
+            int[] lids = StringUtils.intStringDistinctToArray(blog.getLabelIds(), ch);
+            List<BlogLabel> labels = null;
+            if (!CollectionUtils.isEmpty(lids)) {
+                labels = labelDao.listLabelById(lids);
+            }
+
+            BlogListItemDTO listItemDTO = fillingManager.blogListItemToDTO(statistics,
+                    CollectionUtils.isEmpty(categories) ? null : categories.toArray(new BlogCategory[categories.size()]),
+                    CollectionUtils.isEmpty(labels) ? null : labels.toArray(new BlogLabel[labels.size()]),
+                    blog);
 
             // BloggerDTO
             BloggerAccount account = accountDao.getAccountById(bloggerId);

@@ -12,7 +12,13 @@ body {
 }
 
 .blog-list-item-title {
-    color: #3478B5;
+    color: dodgerblue;
+    padding-bottom: 3px;
+}
+
+.blog-list-item-title:hover {
+    border-bottom: solid 2px dodgerblue;
+    cursor: pointer;
 }
 
 .blog-list-item-summary {
@@ -58,7 +64,7 @@ body {
 }
 
 .count {
-    color: orange;
+    color: orangered;
     font-size: small;
 }
 
@@ -96,7 +102,7 @@ body {
 
 .blog-filter-text:hover {
     color: white;
-    background-color: #3478B5;
+    background-color: dodgerblue;
 }
 
 .blog-filter {
@@ -125,4 +131,26 @@ body {
 .button-new:hover {
     background-color: dimgray;
     color: white;
+}
+
+.blog-category {
+    border-radius: 10px;
+    padding: 0 5px;
+    border: solid 1px orangered;
+    cursor: pointer;
+    color: orangered;
+}
+
+.blog-category:hover {
+    background-color: orangered;
+    color: white;
+}
+
+.blog-link:hover {
+    color: black;
+}
+
+.blog-link {
+    color: gray;
+    cursor: pointer;
 }

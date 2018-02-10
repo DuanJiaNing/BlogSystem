@@ -6,9 +6,9 @@
 
 .powered-by {
     font-size: smaller;
-    color: #767676;
+    color: gray;
 }
 
 .nav-bottom {
-    border-top: solid 1px #3478B5;
+    border-top: solid 1px dodgerblue;
 }

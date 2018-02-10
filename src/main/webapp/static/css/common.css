@@ -70,7 +70,7 @@ h4.default-h4 {
 }
 
 .dialog-title-container {
-    background-color: #3478B5;
+    background-color: dodgerblue;
     color: white;
 }
 
@@ -91,7 +91,7 @@ h4.default-h4 {
 }
 
 .dialog-title-container-middle {
-    background-color: #3478B5;
+    background-color: dodgerblue;
     color: white;
     width: 120%;
 }
@@ -109,7 +109,7 @@ h4.default-h4 {
 }
 
 #scroll-to-top:hover {
-    background: #3478B5;
+    background: dodgerblue;
     color: white;
     opacity: 1;
 }

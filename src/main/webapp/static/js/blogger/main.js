@@ -57,8 +57,10 @@ function loadCategory() {
             var html = '';
             if (result.code === 0) {
                 var array = result.data;
+                var sum = 0;
                 for (var index in array) {
                     var ca = array[index];
+                    sum += ca.count;
                     html += '<a class="list-group-item blogger-category" onclick="filterBlogByCategory(' + ca.id + ')">'
                         + ca.title + '<span class="count">&nbsp;(' + ca.count + ')</span> </a>'
                 }
@@ -69,7 +71,10 @@ function loadCategory() {
                 if (checkLogin())
                     html += '<a data-toggle="modal" data-target="#newCategoryDialog">新建类别</a></p>';
             }
-            $('#blogCategory').html(html);
+
+            // FIXME 博文总数，通过 BloggerStatisticController 获取
+            $('#blogCategory').html('<a class="list-group-item blogger-category" onclick="initBlog()">' +
+                '全部<span class="count">&nbsp;(' + sum + ')</span> </a>' + html);
 
         }, 'json'
     )
@@ -212,67 +217,104 @@ function signIn() {
 }
 
 var defaultBlogCount = 10;
-var current = 0;
 
 // 加载初始博文列表
 function initBlog() {
     // 将会加载两次
+    setFilterData(null, null, null);
     filterBlog(0, defaultBlogCount, true, false);
 }
 
-// 加载默认博文
+function setBlogs(array, defaulz) {
+
+    if (array == null || array.length === 0) {
+        $('#blogList').html(defaulz);
+    } else {
+
+        var html = '<ul class="list-group">';
+        for (var index in array) {
+            var item = array[index];
+
+            var cates = '';
+            var cate = item.categories;
+            for (var i in cate) {
+                var c = cate[i];
+                cates += '<small class="blog-category" onclick="filterBlogByCategory(' + c.id + ')" ' +
+                    'data-toggle="tooltip" title="' + c.bewrite + '" data-placement="bottom">' + c.title + '</small>&nbsp;&nbsp;';
+            }
+
+            var labels = '';
+            var label = item.labels;
+            for (var l in label) {
+                var lb = label[l];
+                labels += '<small title="标签" class="blog-link" onclick="filterBlogByLabel(' + lb.id + ')">#' + lb.title + '</small>&nbsp;&nbsp;';
+            }
+
+            html += '<li class="list-group-item blog-list-item">' +
+                '<p>' +
+                '<h3 class="list-group-item-heading "><span class="blog-list-item-title">' + item.title +
+                '</span></h3></p>' +
+                '<h4>' +
+                '<small class="list-group-item-text"><b>' + dateFormat(item.releaseDate) + '</b>&nbsp;&nbsp;' +
+                item.collectCount + '收藏&nbsp;&nbsp;' + item.viewCount + '浏览&nbsp;&nbsp;' + item.likeCount + '喜欢&nbsp;&nbsp;' + item.commentCount + '评论' +
+                '</small>' +
+                '</h4>' +
+                '<p class="list-group-item-text blog-list-item-summary">' + item.summary + '</p><br>' +
+                '<table>' +
+                '  <tr>' +
+                '    <td style="color: gray">' + cates + '&nbsp;&nbsp;</td>' +
+                (labels === '' ? '' : '<td style="color: gray">' + labels + '</td>') +
+                '  </tr>' +
+                '</table>' +
+                '<hr>' +
+                '</li>'
+        }
+
+        html += '</ul>';
+
+        $('#blogList').html(html);
+
+    }
+}
+
+// 博文检索条件
+var filterData = {
+    cids: null,
+    lids: null,
+    kword: null
+};
+
+function setFilterData(cids, lids, kword) {
+    filterData.cids = cids;
+    filterData.lids = lids;
+    filterData.kword = kword;
+}
+
+// 检索博文
 function filterBlog(offset, rows, refreshPageIndicator, toTop) {
     $.get(
         '/blog',
-        {bloggerId: bloggerId, offset: offset, rows: rows},
+        {
+            bloggerId: bloggerId,
+            offset: offset,
+            rows: rows,
+            cids: filterData.cids,
+            lids: filterData.lids,
+            kword: filterData.kword
+        },
         function (result) {
-            var html = '';
-            if (result.code === 0 && !isStrEmpty(result.data)) {
-                var array = result.data;
-                html += '<ul class="list-group">';
 
-                for (var index in array) {
-                    var item = array[index];
+            setBlogs(result.data, '<h1>没有博文&nbsp;</h1>');
 
-                    var cates = '';
-                    var cate = item.categories;
-                    for (var i in cate) {
-                        cates += '<small>' + cate[i].title + '</small>&nbsp;';
-                    }
-
-                    html += '<li class="list-group-item blog-list-item">' +
-                        '<p>' +
-                        '<h3 class="list-group-item-heading blog-list-item-title"><a>' + item.title + '</a>' +
-                        '</h3></p>' +
-                        '<h4>' +
-                        '<small class="list-group-item-text"><b>' + dateFormat(item.releaseDate) + '</b>&nbsp;&nbsp;' +
-                        item.collectCount + '收藏&nbsp;&nbsp;' + item.viewCount + '浏览&nbsp;&nbsp;' + item.likeCount + '喜欢&nbsp;&nbsp;' + item.commentCount + '评论' +
-                        '</small>' +
-                        '</h4>' +
-                        '<p class="list-group-item-text blog-list-item-summary">' + item.summary + '</p>' +
-                        '<h4>' + cates +
-                        '</h4>' +
-                        '<hr>' +
-                        '</li>'
-                }
-
-                html += '</ul>';
-
-                if (refreshPageIndicator) {
-                    setPageIndicator(0);
-                }
-
-                if (toTop) {
-                    scrollToTop();
-                }
-
+            if (refreshPageIndicator) {
+                setPageIndicator(0);
             }
 
-            if (html === '') {
-                html = '<h1>没有博文&nbsp;</h1>';
+            if (toTop) {
+                scrollToTop();
             }
 
-            $('#blogList').html(html);
+            initToolTip();
 
         }, 'json'
     );
@@ -293,8 +335,9 @@ function setPageIndicator(initIndex) {
                     slideSpeed: 600, // 缓动速度。单位毫秒
                     jump: true, //是否支持跳转
                     callback: function (page) { // 回调函数
-                        current = page;
-                        filterBlog((page - 1) * defaultBlogCount, defaultBlogCount, false, true);
+                        if (page !== 1) {
+                            filterBlog((page - 1) * defaultBlogCount, defaultBlogCount, false, true);
+                        }
                     }
                 })
             }
@@ -304,11 +347,13 @@ function setPageIndicator(initIndex) {
 }
 
 function filterBlogByLabel(id) {
-
+    setFilterData(null, id, null);
+    filterBlog(0, defaultBlogCount, true, true);
 }
 
 function filterBlogByCategory(id) {
-
+    setFilterData(id, null, null);
+    filterBlog(0, defaultBlogCount, true, true);
 }
 
 $(document).ready(function () {
@@ -332,6 +377,6 @@ $(function () {
     });
 });
 
-$(function () {
+function initToolTip() {
     $('[data-toggle="tooltip"]').tooltip();
-});
+}
