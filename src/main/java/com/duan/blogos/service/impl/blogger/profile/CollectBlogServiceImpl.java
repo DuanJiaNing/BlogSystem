@@ -130,16 +130,6 @@ public class CollectBlogServiceImpl implements CollectBlogService {
     }
 
     @Override
-    public boolean deleteCollectBlog(int bloggerId, int blogId) {
-
-        // 博文统计信息-收藏记录减一
-        statisticsDao.updateCollectCountMinus(blogId);
-
-        int effect = collectDao.deleteCollectByBloggerId(bloggerId, blogId);
-        return effect > 0;
-    }
-
-    @Override
     public boolean updateCollect(int bloggerId, int blogId, String newReason, int newCategory) {
         int effect = collectDao.updateByUnique(bloggerId, blogId, newReason, null);
         return effect > 0;

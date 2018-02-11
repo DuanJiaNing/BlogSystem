@@ -18,14 +18,20 @@
     <select id="listCategoryByBloggerId" resultType="BlogCategory">
         SELECT *
         FROM blog_category
-        WHERE blogger_id=#{bloggerId}
-        LIMIT #{offset},#{rows}
+        WHERE blogger_id = #{bloggerId}
+        LIMIT #{offset}, #{rows}
     </select>
 
     <select id="getCategory" resultType="BlogCategory">
         SELECT *
         FROM blog_category
-        WHERE id=#{categoryId} AND blogger_id=#{bloggerId}
+        WHERE id = #{categoryId} AND blogger_id = #{bloggerId}
+    </select>
+
+    <select id="countByBloggerId" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM blog_category
+        WHERE blogger_id = #{value}
     </select>
 
     <update id="update" parameterType="BlogCategory">

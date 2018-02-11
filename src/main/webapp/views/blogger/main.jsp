@@ -32,9 +32,14 @@
     <title>博主首页</title>
 
     <script type="application/javascript">
-        var bloggerId = ${bloggerId};
-        var bloggerName = '${bloggerName}';
+        var pageOwnerBloggerId = ${pageOwnerBloggerId};
+        var pageOwnerBloggerName = '${pageOwnerBloggerName}';
         var bloggerLoginSignal = ${not empty bloggerLoginSignal};
+        var blogCount = ${statistics["blogCount"]};
+        <c:if test="${not empty bloggerLoginSignal}">
+        var loginBloggerId = ${bloggerId};
+        </c:if>
+
     </script>
 
     <script type="application/javascript" src="js/paging.js"></script>
@@ -300,7 +305,9 @@
         <div class="col-md-3">
             <br>
             <h4>
-                <small>54篇博文&nbsp;&nbsp;|&nbsp;&nbsp;9834字&nbsp;&nbsp;|&nbsp;&nbsp;收获32个喜欢</small>
+                <small>${statistics["blogCount"]}篇博文&nbsp;&nbsp;|&nbsp;&nbsp;${statistics["wordCount"]}字&nbsp;&nbsp;|
+                    &nbsp;&nbsp;收获${statistics["likeCount"]}个喜欢
+                </small>
             </h4>
         </div>
     </div>
@@ -332,13 +339,17 @@
             </div>
             <hr>
             <p class="lead blogger-aboutme">${aboutMe}</p>
-            <p class="blogger-like">我喜欢的博文</p>
+            <p class="blogger-like-collect">他<a style="font-size: medium"
+                                                onclick="filterBlogByLike(0,defaultBlogCount,true,true)">
+                &nbsp;喜欢&nbsp;</a>/<a style="font-size: medium"
+                                      onclick="filterBlogByCollect(0,defaultBlogCount,true,true)">&nbsp;收藏&nbsp;</a>的博文
+            </p>
             <br>
             <br>
 
             <%--标签--%>
-            <div onmouseenter="if(checkLogin())$('#labelNewBtn').show()"
-                 onmouseleave="if(checkLogin())$('#labelNewBtn').hide()">
+            <div onmouseenter="if(isPageOwnerBloggerLogin())$('#labelNewBtn').show()"
+                 onmouseleave="if(isPageOwnerBloggerLogin())$('#labelNewBtn').hide()">
                 <div class="row">
                     <div class="col-md-8">
                         <h4 class="default-h4"><b>标签</b></h4>
@@ -356,8 +367,8 @@
             <br>
 
             <%--创建的类别--%>
-            <div onmouseenter="if(checkLogin())$('#categoryNewBtn').show()"
-                 onmouseleave="if(checkLogin())$('#categoryNewBtn').hide()">
+            <div onmouseenter="if(isPageOwnerBloggerLogin())$('#categoryNewBtn').show()"
+                 onmouseleave="if(isPageOwnerBloggerLogin())$('#categoryNewBtn').hide()">
                 <div class="row">
                     <div class="col-md-8">
                         <h4 class="default-h4"><b>类别</b></h4>
@@ -375,8 +386,8 @@
             <br>
 
             <%--联系我--%>
-            <div onmouseenter="if(checkLogin())$('#linkNewBtn').show()"
-                 onmouseleave="if(checkLogin())$('#linkNewBtn').hide()">
+            <div onmouseenter="if(isPageOwnerBloggerLogin())$('#linkNewBtn').show()"
+                 onmouseleave="if(isPageOwnerBloggerLogin())$('#linkNewBtn').hide()">
                 <div class="row">
                     <div class="col-md-8">
                         <h4 class="default-h4"><b>联系我</b></h4></div>

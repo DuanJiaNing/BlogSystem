@@ -59,6 +59,12 @@
         WHERE blog_id = #{value}
     </select>
 
+    <select id="countByCollectorId" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM blog_collect
+        WHERE collector_id = #{value}
+    </select>
+
     <insert id="insert" parameterType="BlogCollect" useGeneratedKeys="true" keyProperty="id">
         <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
             SELECT LAST_INSERT_ID() AS id

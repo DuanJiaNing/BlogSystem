@@ -13,11 +13,12 @@ body {
 
 .blog-list-item-title {
     color: dodgerblue;
-    padding-bottom: 3px;
+    padding-bottom: 2px;
 }
 
 .blog-list-item-title:hover {
-    border-bottom: solid 2px dodgerblue;
+    border-bottom: solid 2px blue;
+    color: blue;
     cursor: pointer;
 }
 
@@ -40,23 +41,16 @@ body {
     margin-top: 10px;
 }
 
-.blogger-like:hover {
-    color: black;
-    font-weight: bolder;
-    border-bottom: solid 1px black;
-}
-
-.blogger-like {
-    margin-left: 16px;
-    margin-right: 16px;
-    color: #767676;
-    border-bottom: solid 1px #767676;
-}
-
 .blogger-aboutme {
     font-size: 0.9em;
     padding-left: 16px;
     padding-right: 16px;
+}
+
+.blogger-like-collect {
+    padding-left: 16px;
+    padding-right: 16px;
+    cursor: pointer;
 }
 
 .blogger-category {

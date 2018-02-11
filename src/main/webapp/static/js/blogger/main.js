@@ -1,3 +1,12 @@
+var defaultBlogCount = 10;
+
+// 博文检索条件
+var filterData = {
+    cids: null,
+    lids: null,
+    kword: null
+};
+
 function showNameDiv() {
     var name = $('#useUserName');
     var phone = $('#useUserPhone');
@@ -24,7 +33,7 @@ function showPhoneDiv() {
 
 function loadLabel() {
     $.get(
-        '/blogger/' + bloggerId + '/label',
+        '/blogger/' + pageOwnerBloggerId + '/label',
         {offset: 0, rows: 20},
         function (result) {
             var html = '';
@@ -40,7 +49,7 @@ function loadLabel() {
 
             if (html === '') {
                 html = '<p class="text-center"><small>没有标签&nbsp;</small>';
-                if (checkLogin())
+                if (isPageOwnerBloggerLogin())
                     html += '<a data-toggle="modal" data-target="#newLabelDialog">新建标签</a></p>';
             }
             $('.blogger-label').html(html);
@@ -51,16 +60,14 @@ function loadLabel() {
 
 function loadCategory() {
     $.get(
-        '/blogger/' + bloggerId + '/category',
+        '/blogger/' + pageOwnerBloggerId + '/category',
         {offset: 0, rows: 1000},
         function (result) {
             var html = '';
             if (result.code === 0) {
                 var array = result.data;
-                var sum = 0;
                 for (var index in array) {
                     var ca = array[index];
-                    sum += ca.count;
                     html += '<a class="list-group-item blogger-category" onclick="filterBlogByCategory(' + ca.id + ')">'
                         + ca.title + '<span class="count">&nbsp;(' + ca.count + ')</span> </a>'
                 }
@@ -68,13 +75,14 @@ function loadCategory() {
 
             if (html === '') {
                 html = '<p class="text-center"><small>没有类别&nbsp;</small>';
-                if (checkLogin())
+                if (isPageOwnerBloggerLogin())
                     html += '<a data-toggle="modal" data-target="#newCategoryDialog">新建类别</a></p>';
-            }
 
-            // FIXME 博文总数，通过 BloggerStatisticController 获取
-            $('#blogCategory').html('<a class="list-group-item blogger-category" onclick="initBlog()">' +
-                '全部<span class="count">&nbsp;(' + sum + ')</span> </a>' + html);
+                $('#blogCategory').html(html);
+            } else {
+                $('#blogCategory').html('<a class="list-group-item blogger-category" onclick="initBlog()">' +
+                    '全部<span class="count">&nbsp;(' + blogCount + ')</span> </a>' + html);
+            }
 
         }, 'json'
     )
@@ -82,7 +90,7 @@ function loadCategory() {
 
 function loadContact() {
     $.get(
-        '/blogger/' + bloggerId + '/link',
+        '/blogger/' + pageOwnerBloggerId + '/link',
         {offset: 0, rows: 20},
         function (result) {
             var html = '';
@@ -90,13 +98,13 @@ function loadContact() {
                 var array = result.data;
                 for (var index in array) {
                     var link = array[index];
-                    html += '<a class="blogger-link-item" href="' + link.url + '">' + link.title + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+                    html += '<a class="blogger-link-item" target="_blank" href="' + link.url + '">' + link.title + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
                 }
             }
 
             if (html === '') {
                 html = '<p class="text-center"><small>没有链接&nbsp;</small>';
-                if (checkLogin())
+                if (isPageOwnerBloggerLogin())
                     html += '<a data-toggle="modal" data-target="#newLinkDialog">新建链接</a></p>';
             }
             $('.blogger-link').html(html);
@@ -116,7 +124,7 @@ function newLabelAndReload() {
         $('#labelErrorMsg').html(' ');
     }
     $.post(
-        '/blogger/' + bloggerId + '/label',
+        '/blogger/' + pageOwnerBloggerId + '/label',
         {title: name},
         function (result) {
             if (result.code === 0) {
@@ -142,7 +150,7 @@ function newCategoryAndReload() {
     }
 
     $.post(
-        '/blogger/' + bloggerId + '/category',
+        '/blogger/' + pageOwnerBloggerId + '/category',
         {title: title, bewrite: bewrite},
         function (result) {
             if (result.code === 0) {
@@ -175,7 +183,7 @@ function newLinkAndReload() {
     error.html("");
 
     $.post(
-        '/blogger/' + bloggerId + '/link',
+        '/blogger/' + pageOwnerBloggerId + '/link',
         {title: title, url: url, bewrite: bewrite},
         function (result) {
             if (result.code === 0) {
@@ -189,8 +197,8 @@ function newLinkAndReload() {
 
 }
 
-function checkLogin() {
-    return bloggerLoginSignal == null;
+function isPageOwnerBloggerLogin() {
+    return bloggerLoginSignal && pageOwnerBloggerId === loginBloggerId;
 }
 
 // 登录
@@ -216,13 +224,11 @@ function signIn() {
 
 }
 
-var defaultBlogCount = 10;
-
 // 加载初始博文列表
 function initBlog() {
     // 将会加载两次
     setFilterData(null, null, null);
-    filterBlog(0, defaultBlogCount, true, false);
+    filterBloggerBlog(0, defaultBlogCount, true, false);
 }
 
 function setBlogs(array, defaulz) {
@@ -252,7 +258,7 @@ function setBlogs(array, defaulz) {
 
             html += '<li class="list-group-item blog-list-item">' +
                 '<p>' +
-                '<h3 class="list-group-item-heading "><span class="blog-list-item-title">' + item.title +
+                '<h3 class="list-group-item-heading" ><span class="blog-list-item-title">' + item.title +
                 '</span></h3></p>' +
                 '<h4>' +
                 '<small class="list-group-item-text"><b>' + dateFormat(item.releaseDate) + '</b>&nbsp;&nbsp;' +
@@ -277,13 +283,6 @@ function setBlogs(array, defaulz) {
     }
 }
 
-// 博文检索条件
-var filterData = {
-    cids: null,
-    lids: null,
-    kword: null
-};
-
 function setFilterData(cids, lids, kword) {
     filterData.cids = cids;
     filterData.lids = lids;
@@ -291,11 +290,11 @@ function setFilterData(cids, lids, kword) {
 }
 
 // 检索博文
-function filterBlog(offset, rows, refreshPageIndicator, toTop) {
+function filterBloggerBlog(offset, rows, refreshPageIndicator, toTop) {
     $.get(
         '/blog',
         {
-            bloggerId: bloggerId,
+            bloggerId: pageOwnerBloggerId,
             offset: offset,
             rows: rows,
             cids: filterData.cids,
@@ -304,7 +303,11 @@ function filterBlog(offset, rows, refreshPageIndicator, toTop) {
         },
         function (result) {
 
-            setBlogs(result.data, '<h1>没有博文&nbsp;</h1>');
+            var ins = '';
+            if (isPageOwnerBloggerLogin())
+                ins = '，去<a style="font-size: x-large">写博文</a>';
+
+            setBlogs(result.data, '<br><br><br><p class="text-center lead">没有博文' + ins + '</p><br><br><br>');
 
             if (refreshPageIndicator) {
                 setPageIndicator(0);
@@ -319,6 +322,17 @@ function filterBlog(offset, rows, refreshPageIndicator, toTop) {
         }, 'json'
     );
 }
+
+function filterBlogByLabel(id) {
+    setFilterData(null, id, null);
+    filterBloggerBlog(0, defaultBlogCount, true, true);
+}
+
+function filterBlogByCategory(id) {
+    setFilterData(id, null, null);
+    filterBloggerBlog(0, defaultBlogCount, true, true);
+}
+
 
 // 刷新分页插件
 function setPageIndicator(initIndex) {
@@ -335,25 +349,13 @@ function setPageIndicator(initIndex) {
                     slideSpeed: 600, // 缓动速度。单位毫秒
                     jump: true, //是否支持跳转
                     callback: function (page) { // 回调函数
-                        if (page !== 1) {
-                            filterBlog((page - 1) * defaultBlogCount, defaultBlogCount, false, true);
-                        }
+                        filterBloggerBlog((page - 1) * defaultBlogCount, defaultBlogCount, false, true);
                     }
                 })
             }
         }, 'json'
     );
 
-}
-
-function filterBlogByLabel(id) {
-    setFilterData(null, id, null);
-    filterBlog(0, defaultBlogCount, true, true);
-}
-
-function filterBlogByCategory(id) {
-    setFilterData(id, null, null);
-    filterBlog(0, defaultBlogCount, true, true);
 }
 
 $(document).ready(function () {

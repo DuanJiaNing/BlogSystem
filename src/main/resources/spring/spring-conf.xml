@@ -31,6 +31,8 @@
         <property name="sessionNameOfErrorMsg" value="${blogger.session.errorMsg}"/>
         <property name="requestBlogListCount" value="${blogger.requestBlogListCount}"/>
         <property name="requestBloggerBlogLabelCount" value="${blog.requestBloggerBlogLabelCount}"/>
+        <property name="sessionNameOfPageOwnerBloggerId" value="${blogger.session.pageOwnerBloggerId}"/>
+        <property name="sessionNameOfPageOwnerBloggerName" value="${blogger.session.pageOwnerBloggerName}"/>
     </bean>
 
     <!--站点配置-->

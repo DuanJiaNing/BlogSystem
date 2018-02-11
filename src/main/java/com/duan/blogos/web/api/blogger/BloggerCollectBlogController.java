@@ -63,21 +63,6 @@ public class BloggerCollectBlogController extends BaseBloggerController {
     }
 
     /**
-     * 取消博文收藏
-     */
-    @RequestMapping(value = "/{blogId}", method = RequestMethod.DELETE)
-    public ResultBean cancel(HttpServletRequest request,
-                             @PathVariable("bloggerId") Integer bloggerId,
-                             @PathVariable("blogId") Integer blogId) {
-        handleBloggerSignInCheck(request, bloggerId);
-
-        boolean result = collectBlogService.deleteCollectBlog(bloggerId, blogId);
-        if (!result) handlerOperateFail(request);
-
-        return new ResultBean<>("");
-    }
-
-    /**
      * 修改博文收藏
      */
     @RequestMapping(value = "/{blogId}", method = RequestMethod.PUT)

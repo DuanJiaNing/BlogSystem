@@ -33,6 +33,12 @@
         WHERE blog_id = #{value}
     </select>
 
+    <select id="countLikeByLikerId" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM blog_like
+        WHERE liker_id = #{value}
+    </select>
+
     <insert id="insert" parameterType="BlogLike" useGeneratedKeys="true" keyProperty="id">
         <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
             SELECT LAST_INSERT_ID() AS id

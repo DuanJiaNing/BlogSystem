@@ -18,20 +18,26 @@
     <select id="getLabel" resultType="BlogLabel">
         SELECT *
         FROM blog_label
-        WHERE id=#{value}
+        WHERE id = #{value}
     </select>
 
     <select id="listLabel" resultType="BlogLabel">
         SELECT *
         FROM blog_label
-        LIMIT #{offset},#{rows}
+        LIMIT #{offset}, #{rows}
     </select>
 
     <select id="listLabelByBloggerId" resultType="BlogLabel">
         SELECT *
         FROM blog_label
-        WHERE blogger_id=#{bloggerId}
-        LIMIT #{offset},#{rows}
+        WHERE blogger_id = #{bloggerId}
+        LIMIT #{offset}, #{rows}
+    </select>
+
+    <select id="countByBloggerId" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM blog_label
+        WHERE blogger_id = #{value}
     </select>
 
     <update id="update" parameterType="BlogLabel">

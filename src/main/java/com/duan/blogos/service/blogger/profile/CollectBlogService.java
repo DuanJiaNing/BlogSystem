@@ -27,15 +27,6 @@ public interface CollectBlogService {
     ResultBean<List<CollectBlogListItemDTO>> listCollectBlog(int bloggerId, int categoryId,
                                                              int offset, int rows, BlogSortRule sortRule);
     /**
-     * 取消收藏
-     *
-     * @param bloggerId 博主id
-     * @param blogId    博文id
-     * @return 取消成功返回true
-     */
-    boolean deleteCollectBlog(int bloggerId, int blogId);
-
-    /**
      * 更新收藏信息
      *
      * @param bloggerId   博主id

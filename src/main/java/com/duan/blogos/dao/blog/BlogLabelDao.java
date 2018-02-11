@@ -52,4 +52,12 @@ public interface BlogLabelDao extends BaseDao<BlogLabel> {
     List<BlogLabel> listLabelByBloggerId(@Param("bloggerId") int bloggerId,
                                          @Param("offset") int offset,
                                          @Param("rows") int rows);
+
+    /**
+     * 统计指定博主创建的标签数量
+     *
+     * @param bloggerId 博主id
+     * @return 数量
+     */
+    Integer countByBloggerId(int bloggerId);
 }

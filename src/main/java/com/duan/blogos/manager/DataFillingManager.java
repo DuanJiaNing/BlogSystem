@@ -1,15 +1,14 @@
 package com.duan.blogos.manager;
 
 import com.duan.blogos.dto.blog.*;
-import com.duan.blogos.dto.blogger.BloggerCategoryDTO;
-import com.duan.blogos.dto.blogger.BloggerDTO;
-import com.duan.blogos.dto.blogger.BloggerLinkDTO;
-import com.duan.blogos.dto.blogger.CollectBlogListItemDTO;
+import com.duan.blogos.dto.blog.BlogListItemDTO;
+import com.duan.blogos.dto.blogger.*;
 import com.duan.blogos.entity.blog.*;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerLink;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.entity.blogger.BloggerProfile;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.stereotype.Component;
@@ -168,6 +167,21 @@ public class DataFillingManager {
         dto.setSummary(blog.getSummary());
         dto.setTitle(blog.getTitle());
         dto.setWordCount(blog.getWordCount());
+
+        return dto;
+    }
+
+    public BloggerStatisticsDTO bloggerStatisticToDTO(int blogCount, int wordCount, int likeCount, int likedCount,
+                                                      int categoryCount, int labelCount, int collectCount, int collectedCount) {
+        BloggerStatisticsDTO dto = new BloggerStatisticsDTO();
+        dto.setBlogCount(blogCount);
+        dto.setWordCount(wordCount);
+        dto.setLikeCount(likeCount);
+        dto.setLikedCount(likedCount);
+        dto.setCategoryCount(categoryCount);
+        dto.setLabelCount(labelCount);
+        dto.setCollectCount(collectCount);
+        dto.setCollectedCount(collectedCount);
 
         return dto;
     }

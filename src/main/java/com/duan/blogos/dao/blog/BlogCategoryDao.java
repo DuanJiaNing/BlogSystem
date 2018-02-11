@@ -44,4 +44,12 @@ public interface BlogCategoryDao extends BaseDao<BlogCategory> {
      */
     BlogCategory getCategory(@Param("bloggerId") int bloggerId,
                              @Param("categoryId") int categoryId);
+
+    /**
+     * 统计指定博主创建的类别数量
+     *
+     * @param bloggerId 博主id
+     * @return 数量
+     */
+    Integer countByBloggerId(int bloggerId);
 }

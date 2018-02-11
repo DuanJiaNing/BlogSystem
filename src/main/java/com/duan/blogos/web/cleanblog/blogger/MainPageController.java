@@ -1,9 +1,12 @@
 package com.duan.blogos.web.cleanblog.blogger;
 
+import com.duan.blogos.dto.blogger.BloggerStatisticsDTO;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerProfile;
 import com.duan.blogos.manager.properties.BloggerProperties;
+import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.BloggerAccountService;
+import com.duan.blogos.service.blogger.BloggerStatisticsService;
 import com.duan.blogos.service.blogger.profile.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +30,9 @@ public class MainPageController {
     private ProfileService profileService;
 
     @Autowired
+    private BloggerStatisticsService statisticsService;
+
+    @Autowired
     private BloggerProperties bloggerProperties;
 
     @RequestMapping
@@ -41,13 +47,16 @@ public class MainPageController {
             return mv;
         }
 
-        mv.addObject(bloggerProperties.getSessionNameOfBloggerId(), account.getId());
-        mv.addObject(bloggerProperties.getSessionNameOfBloggerName(), account.getUsername());
+        mv.addObject(bloggerProperties.getSessionNameOfPageOwnerBloggerId(), account.getId());
+        mv.addObject(bloggerProperties.getSessionNameOfPageOwnerBloggerName(), account.getUsername());
 
         int id = account.getId();
         BloggerProfile profile = profileService.getBloggerProfile(id);
         mv.addObject("blogName", profile.getIntro());
         mv.addObject("aboutMe", profile.getAboutMe());
+
+        ResultBean<BloggerStatisticsDTO> statistics = statisticsService.getBloggerStatistics(account.getId());
+        mv.addObject("statistics", statistics.getData());
 
         return mv;
     }

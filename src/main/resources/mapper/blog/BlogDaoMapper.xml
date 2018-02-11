@@ -163,4 +163,18 @@
         WHERE b.blogger_id = #{bloggerId} AND locate(#{categoryId}, b.category_ids) > 0
     </select>
 
+    <select id="countBlogByBloggerId" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM blog
+        WHERE blogger_id = #{bloggerId} AND state = #{state}
+    </select>
+
+    <select id="listAllWordCountByBloggerId" resultType="Blog">
+        SELECT
+            id,
+            word_count
+        FROM blog
+        WHERE blogger_id = #{bloggerId} AND state = #{state}
+    </select>
+
 </mapper>
