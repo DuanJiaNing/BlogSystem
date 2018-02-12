@@ -36,12 +36,12 @@ public enum Rule {
     /**
      * 博文举报次数
      */
-    COMPLAIN_COUNT("被举报次数"),
+    COMPLAIN_COUNT("举报次数"),
 
     /**
      * 博文被分享次数
      */
-    SHARE_COUNT("被分享次数"),
+    SHARE_COUNT("分享次数"),
 
     /**
      * 博主回复该博文次数

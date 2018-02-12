@@ -127,10 +127,12 @@
                     <div class="col-md-8">
                         <p class="text-center lead">
                             <small class="dialog-sign-in-indicator" id="siginName"
-                                   onclick="showNameDiv()">用户名登录
+                                   onclick="showNameDiv()"
+                            >用户名登录
                             </small>&nbsp;&nbsp;|&nbsp;&nbsp;<small
                                 class="dialog-sign-in-indicator" style="font-weight: bold" id="siginPhone"
-                                onclick="showPhoneDiv()">
+                                onclick="showPhoneDiv()"
+                            >
                             手机验证码登录
                         </small>
                         </p>
@@ -295,7 +297,7 @@
 </div><!-- /.modal -->
 
 <%--高级检索--%>
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id="complexFilter">
+<div class="modal fade" tabindex="-1" role="dialog" id="complexFilter">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content dialog-title-container">
             <div class="modal-header">
@@ -338,7 +340,6 @@
                                     </div>
                                 </td>
                                 <td>
-                                    &nbsp;
                                     <div class="dropdown">
                                         <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                                            style="cursor: pointer;font-size: medium"

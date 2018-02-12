@@ -3,6 +3,10 @@ body {
     font-family: 微软雅黑, serif;
 }
 
+a {
+    cursor: pointer;
+}
+
 .os-name {
     font-size: 1.5em;
 }
@@ -92,6 +96,7 @@ body {
     color: #767676;
     border: solid 1px #d9d9d9;
     border-radius: 0 0 10px 0;
+    cursor: pointer;
 }
 
 .blog-filter-text:hover {
@@ -111,6 +116,7 @@ body {
 
 .dialog-sign-in-indicator {
     padding-bottom: 3px;
+    cursor: pointer;
 }
 
 .button-new {
@@ -154,7 +160,7 @@ body {
     color: gray;
     font-size: small;
     padding: 1px 6px;
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
 .blog-filter-default:hover {
@@ -168,7 +174,7 @@ body {
     padding: 1px 6px;
     font-size: small;
     background-color: green;
-    border-radius: 8px;
+    border-radius: 10px;
     border: solid 1px darkgreen;
 }
 
@@ -178,6 +184,6 @@ body {
     padding: 1px 6px;
     font-size: small;
     background-color: red;
-    border-radius: 8px;
+    border-radius: 10px;
     border: solid 1px darkred;
 }

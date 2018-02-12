@@ -126,7 +126,7 @@ function loadSortRule() {
                     var item = array[index];
                     html += '<li><a onclick="setSortRule(\'' + item.key + '\',\'' + item.title + '\')">' + item.title + '</a></li>';
                 }
-                $('#complexFilterSortRuleShow').html(array[0].title + '<span class="caret"></span>');
+                $('#complexFilterSortRuleShow').html(array[0].title + '<span class="caret"></span>&nbsp;');
                 $('#complexFilterSortRule').html(html);
             }
         }, 'json');
@@ -151,7 +151,7 @@ function loadSortRule() {
 
 function setSortRule(key, title) {
     filterData.sort = key;
-    $('#complexFilterSortRuleShow').html(title + '<span class="caret"></span>');
+    $('#complexFilterSortRuleShow').html(title + '<span class="caret"></span>&nbsp;');
 }
 
 function setSortOrder(key, title) {
