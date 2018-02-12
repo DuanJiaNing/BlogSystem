@@ -4,7 +4,9 @@ var defaultBlogCount = 10;
 var filterData = {
     cids: null,
     lids: null,
-    kword: null
+    kword: null,
+    sort: null,
+    order: null
 };
 
 function showNameDiv() {
@@ -39,6 +41,8 @@ function loadLabel() {
             var html = '';
             if (result.code === 0) {
                 var array = result.data;
+                setComplexFilterLabel(array);
+
                 for (var index in array) {
                     var size = 0.4 + 1.5 * Math.random();
                     var label = array[index];
@@ -48,11 +52,10 @@ function loadLabel() {
             }
 
             if (html === '') {
-                html = '<p class="text-center"><small>没有标签&nbsp;</small>';
-                if (isPageOwnerBloggerLogin())
-                    html += '<a data-toggle="modal" data-target="#newLabelDialog">新建标签</a></p>';
+                setLabelWhenEmpty('blogLabel');
+            } else {
+                $('#blogLabel').html(html);
             }
-            $('.blogger-label').html(html);
 
         }, 'json'
     )
@@ -66,6 +69,8 @@ function loadCategory() {
             var html = '';
             if (result.code === 0) {
                 var array = result.data;
+                setComplexFilterCategory(array);
+
                 for (var index in array) {
                     var ca = array[index];
                     html += '<a class="list-group-item blogger-category" onclick="filterBlogByCategory(' + ca.id + ')">'
@@ -74,11 +79,7 @@ function loadCategory() {
             }
 
             if (html === '') {
-                html = '<p class="text-center"><small>没有类别&nbsp;</small>';
-                if (isPageOwnerBloggerLogin())
-                    html += '<a data-toggle="modal" data-target="#newCategoryDialog">新建类别</a></p>';
-
-                $('#blogCategory').html(html);
+                setCategoryWhenEmpty('blogCategory');
             } else {
                 $('#blogCategory').html('<a class="list-group-item blogger-category" onclick="initBlog()">' +
                     '全部<span class="count">&nbsp;(' + blogCount + ')</span> </a>' + html);
@@ -103,14 +104,142 @@ function loadContact() {
             }
 
             if (html === '') {
-                html = '<p class="text-center"><small>没有链接&nbsp;</small>';
-                if (isPageOwnerBloggerLogin())
-                    html += '<a data-toggle="modal" data-target="#newLinkDialog">新建链接</a></p>';
+                setContactWhenEmpty("bloggerLink");
+            } else {
+                $('#bloggerLink').html(html);
             }
-            $('.blogger-link').html(html);
 
         }, 'json'
     );
+}
+
+function loadSortRule() {
+
+    $.get(
+        '/sort-rule/rule',
+        null,
+        function (result) {
+            if (result.code === 0) {
+                var html = '';
+                var array = result.data;
+                for (var index in array) {
+                    var item = array[index];
+                    html += '<li><a onclick="setSortRule(\'' + item.key + '\',\'' + item.title + '\')">' + item.title + '</a></li>';
+                }
+                $('#complexFilterSortRuleShow').html(array[0].title + '<span class="caret"></span>');
+                $('#complexFilterSortRule').html(html);
+            }
+        }, 'json');
+
+    $.get(
+        '/sort-rule/order',
+        null,
+        function (result) {
+            if (result.code === 0) {
+                var html = '';
+                var array = result.data;
+                for (var index in array) {
+                    var item = array[index];
+                    html += '<li><a onclick="setSortOrder(\'' + item.key + '\',\'' + item.title + '\')">' + item.title + '</a></li>';
+                }
+                $('#complexFilterSortOrderShow').html(array[0].title + '<span class="caret"></span>');
+                $('#complexFilterSortOrder').html(html);
+            }
+        }, 'json');
+
+}
+
+function setSortRule(key, title) {
+    filterData.sort = key;
+    $('#complexFilterSortRuleShow').html(title + '<span class="caret"></span>');
+}
+
+function setSortOrder(key, title) {
+    filterData.order = key;
+    $('#complexFilterSortOrderShow').html(title + '<span class="caret"></span>');
+}
+
+function setContactWhenEmpty(id) {
+    var html = '<p class="text-center"><small>没有链接&nbsp;</small>';
+    if (isPageOwnerBloggerLogin())
+        html += '<a data-toggle="modal" data-target="#newLinkDialog">新建链接</a></p>';
+
+    $('#' + id).html(html);
+
+}
+
+function setCategoryWhenEmpty(id) {
+    var html = '<p class="text-center"><small>没有类别&nbsp;</small>';
+    if (isPageOwnerBloggerLogin())
+        html += '<a data-toggle="modal" data-target="#newCategoryDialog">新建类别</a></p>';
+
+    $('#' + id).html(html);
+}
+
+function setLabelWhenEmpty(id) {
+    var html = '<p class="text-center"><small>没有标签&nbsp;</small>';
+    if (isPageOwnerBloggerLogin())
+        html += '<a data-toggle="modal" data-target="#newLabelDialog">新建标签</a></p>';
+
+    $('#' + id).html(html);
+}
+
+
+function toggleLabelClass(t) {
+    var th = $(t);
+    if (th.hasClass('blog-filter-default')) {
+        th.removeClass('blog-filter-default');
+        th.addClass('blog-filter-label-choose');
+    } else {
+        th.addClass('blog-filter-default');
+        th.removeClass('blog-filter-label-choose');
+    }
+}
+
+function setComplexFilterLabel(array) {
+
+    var html = '';
+
+    for (var index in array) {
+        var item = array[index];
+        html += '<span class="blog-filter-default" onclick="toggleLabelClass(this)">' + item.title + '</span>&nbsp;&nbsp;';
+    }
+
+    if (html === '') {
+        setLabelWhenEmpty('complexFilterLabel');
+    } else {
+        $('#complexFilterLabel').html(html);
+    }
+
+
+}
+
+function toggleCategoryClass(t) {
+    var th = $(t);
+    if (th.hasClass('blog-filter-default')) {
+        th.removeClass('blog-filter-default');
+        th.addClass('blog-filter-category-choose');
+    } else {
+        th.addClass('blog-filter-default');
+        th.removeClass('blog-filter-category-choose');
+    }
+}
+
+function setComplexFilterCategory(array) {
+
+    var html = '';
+
+    for (var index in array) {
+        var item = array[index];
+        html += '<span class="blog-filter-default" onclick="toggleCategoryClass(this)">' + item.title + '</span>&nbsp;&nbsp;';
+    }
+
+    if (html === '') {
+        setLabelWhenEmpty('complexFilterCategory');
+    } else {
+        $('#complexFilterCategory').html(html);
+    }
+
 }
 
 // 创建标签并重新加载 标签栏
@@ -227,7 +356,7 @@ function signIn() {
 // 加载初始博文列表
 function initBlog() {
     // 将会加载两次
-    setFilterData(null, null, null);
+    setFilterData(null, null, null, null, null);
     filterBloggerBlog(0, defaultBlogCount, true, false);
 }
 
@@ -283,10 +412,12 @@ function setBlogs(array, defaulz) {
     }
 }
 
-function setFilterData(cids, lids, kword) {
+function setFilterData(cids, lids, kword, sort, order) {
     filterData.cids = cids;
     filterData.lids = lids;
     filterData.kword = kword;
+    filterData.sort = sort;
+    filterData.order = order;
 }
 
 // 检索博文
@@ -299,7 +430,9 @@ function filterBloggerBlog(offset, rows, refreshPageIndicator, toTop) {
             rows: rows,
             cids: filterData.cids,
             lids: filterData.lids,
-            kword: filterData.kword
+            kword: filterData.kword,
+            sort: filterData.sort,
+            order: filterData.order
         },
         function (result) {
 
@@ -324,12 +457,12 @@ function filterBloggerBlog(offset, rows, refreshPageIndicator, toTop) {
 }
 
 function filterBlogByLabel(id) {
-    setFilterData(null, id, null);
+    setFilterData(null, id, null, null, null);
     filterBloggerBlog(0, defaultBlogCount, true, true);
 }
 
 function filterBlogByCategory(id) {
-    setFilterData(id, null, null);
+    setFilterData(id, null, null, null, null);
     filterBloggerBlog(0, defaultBlogCount, true, true);
 }
 
@@ -370,6 +503,9 @@ $(document).ready(function () {
 
     // 加载联系方式
     loadContact();
+
+    // 加载高级检索的排序规则部分
+    loadSortRule();
 });
 
 $(function () {

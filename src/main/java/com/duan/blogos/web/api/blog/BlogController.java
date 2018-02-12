@@ -53,8 +53,8 @@ public class BlogController extends BaseBlogController {
         handleAccountCheck(request, bloggerId);
 
         //检查数据合法性
-        String sor = sort == null ? Rule.VIEW_COUNT.name() : sort.toUpperCase();
-        String ord = order == null ? Order.DESC.name() : order.toUpperCase();
+        String sor = StringUtils.isEmpty_(sort) ? Rule.VIEW_COUNT.name() : sort.toUpperCase();
+        String ord = StringUtils.isEmpty_(order) ? Order.DESC.name() : order.toUpperCase();
         handleSortRuleCheck(request, sor, ord);
 
         String ch = websiteProperties.getUrlConditionSplitCharacter();

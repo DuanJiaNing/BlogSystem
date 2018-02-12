@@ -294,6 +294,79 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<%--高级检索--%>
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" id="complexFilter">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content dialog-title-container">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title dialog-title">高级检索</h4>
+            </div>
+            <div class="modal-body dialog-body">
+                <form>
+                    <div class="form-group">
+                        <label>关键字</label><br>
+                        <input type="text" id="keyWord" placeholder="关键字，匹配博文标题、摘要及内容" class="form-input"><br><br>
+                    </div>
+
+                    <div class="form-group">
+                        <label>限定类别</label><br>
+                        <p id="complexFilterCategory"></p><br>
+                    </div>
+
+                    <div class="form-group">
+                        <label>限定标签</label><br>
+                        <p id="complexFilterLabel"></p><br>
+                    </div>
+
+                    <div class="form-group">
+                        <label>排序规则</label><br>
+                        <p id="complexFilterSortRule_">
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="dropdown">
+                                        按博文
+                                        <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                           style="cursor: pointer;font-size: medium"
+                                           aria-expanded="true" id="complexFilterSortRuleShow">
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1"
+                                            id="complexFilterSortRule">
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td>
+                                    &nbsp;
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                           style="cursor: pointer;font-size: medium"
+                                           aria-expanded="true" id="complexFilterSortOrderShow">
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1"
+                                            id="complexFilterSortOrder">
+                                        </ul>
+                                        排序
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        </p>
+                    </div>
+
+                </form>
+
+                <span class="error-msg" id="complexFilterErrorMsg"></span>
+            </div>
+            <div class="modal-footer dialog-footer">
+                <button type="submit" class="button-success" id="complexFilterBtn" onclick="complexFilter()">检索
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
 <div class="container">
     <!-- Content here -->
     <div class="row">
@@ -313,7 +386,8 @@
     </div>
 
     <p class="text-left blog-filter">
-        <span class="blog-filter-text">高级检索</span>
+        <span class="blog-filter-text" data-toggle="modal"
+              data-target="#complexFilter">高级检索</span>
     </p>
 
     <div class="row">
@@ -339,11 +413,11 @@
             </div>
             <hr>
             <p class="lead blogger-aboutme">${aboutMe}</p>
-            <p class="blogger-like-collect">他<a style="font-size: medium"
-                                                onclick="filterBlogByLike(0,defaultBlogCount,true,true)">
-                &nbsp;喜欢&nbsp;</a>/<a style="font-size: medium"
-                                      onclick="filterBlogByCollect(0,defaultBlogCount,true,true)">&nbsp;收藏&nbsp;</a>的博文
-            </p>
+            <%--<p class="blogger-like-collect">他<a style="font-size: medium"--%>
+            <%--onclick="filterBlogByLike(0,defaultBlogCount,true,true)">--%>
+            <%--&nbsp;喜欢&nbsp;</a>/<a style="font-size: medium"--%>
+            <%--onclick="filterBlogByCollect(0,defaultBlogCount,true,true)">&nbsp;收藏&nbsp;</a>的博文--%>
+            <%--</p>--%>
             <br>
             <br>
 
@@ -361,7 +435,7 @@
                     </div>
                 </div>
                 <hr class="default-line">
-                <p class="blogger-label">
+                <p class="blogger-label" id="blogLabel">
                 </p>
             </div>
             <br>
@@ -398,7 +472,7 @@
                     </div>
                 </div>
                 <hr class="default-line">
-                <p class="blogger-link">
+                <p class="blogger-link" id="bloggerLink">
                 </p>
             </div>
         </div>

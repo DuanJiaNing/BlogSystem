@@ -11,12 +11,22 @@ public enum Order {
     /**
      * 升序
      */
-    ASC,
+    ASC("升序"),
 
     /**
      * 降序
      */
-    DESC;
+    DESC("降序");
+
+    private final String title;
+
+    Order(String title) {
+        this.title = title;
+    }
+
+    public String title() {
+        return title;
+    }
 
     public static boolean contains(String name) {
         for (Order order : values()) {

@@ -11,47 +11,58 @@ public enum Rule {
     /**
      * 评论次数
      */
-    COMMENT_COUNT,
+    COMMENT_COUNT("评论次数"),
 
     /**
      * 博文浏览次数
      */
-    VIEW_COUNT,
+    VIEW_COUNT("浏览次数"),
 
     /**
      * 博文被收藏次数
      */
-    COLLECT_COUNT,
+    COLLECT_COUNT("收藏次数"),
 
     /**
      * 喜欢次数
      */
-    LIKE_COUNT,
+    LIKE_COUNT("喜欢次数"),
 
     /**
      * 最初发布日期
      */
-    RELEASE_DATE,
+    RELEASE_DATE("发布日期"),
 
     /**
      * 博文举报次数
      */
-    COMPLAIN_COUNT,
+    COMPLAIN_COUNT("被举报次数"),
 
     /**
      * 博文被分享次数
      */
-    SHARE_COUNT,
+    SHARE_COUNT("被分享次数"),
 
     /**
      * 博主回复该博文次数
      */
-    REPLY_COMMENT_COUNT,
+    REPLY_COMMENT_COUNT("评论回复次数"),
 
     /**
      * 赞赏次数
      */
-    ADMIRE_COUNT;
+    // UPDATE: 2018/2/12 保留但不使用
+    ADMIRE_COUNT("赞赏次数");
+
+    private final String title;
+
+    Rule(String title) {
+        this.title = title;
+    }
+
+    public String title() {
+        return title;
+    }
 
     /**
      * 检查是否存在与给定名字对应的枚举成员

@@ -21,8 +21,8 @@
             <p class="text-left bottom-item">
                 <span class="powered-by">Powered by DuanJiaNing</span>&nbsp;&nbsp;&nbsp;&nbsp;
                 <a>About</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a>CSDN</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a>GitHub</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="http://write.blog.csdn.net/postlist">CSDN</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="https://github.com/DuanJiaNing">GitHub</a>&nbsp;&nbsp;&nbsp;&nbsp;
             </p>
         </div>
         <div class="col-md-2">
@@ -30,7 +30,7 @@
         </div>
         <div class="col-md-5">
             <p class="text-right bottom-item">
-                <a>Source</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="https://github.com/DuanJiaNing/BlogSystem">Source</a>&nbsp;&nbsp;&nbsp;&nbsp;
                 <a>Help</a>&nbsp;&nbsp;&nbsp;&nbsp;
             </p>
         </div>

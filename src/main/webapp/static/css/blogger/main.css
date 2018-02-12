@@ -148,3 +148,36 @@ body {
     color: gray;
     cursor: pointer;
 }
+
+.blog-filter-default {
+    border: solid 1px gray;
+    color: gray;
+    font-size: small;
+    padding: 1px 6px;
+    border-radius: 8px;
+}
+
+.blog-filter-default:hover {
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.16);
+}
+
+.blog-filter-label-choose {
+    color: white;
+    cursor: pointer;
+    padding: 1px 6px;
+    font-size: small;
+    background-color: green;
+    border-radius: 8px;
+    border: solid 1px darkgreen;
+}
+
+.blog-filter-category-choose {
+    color: white;
+    cursor: pointer;
+    padding: 1px 6px;
+    font-size: small;
+    background-color: red;
+    border-radius: 8px;
+    border: solid 1px darkred;
+}
