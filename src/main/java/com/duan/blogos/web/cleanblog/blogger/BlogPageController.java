@@ -69,10 +69,10 @@ public class BlogPageController {
 //        session.setAttribute(bloggerProperties.getSessionBloggerLoginSignal(), "logined");
 
         // 模拟非所有者登陆
-        HttpSession session = request.getSession();
-        session.setAttribute(bloggerProperties.getSessionNameOfBloggerId(), 1);
-        session.setAttribute(bloggerProperties.getSessionNameOfBloggerName(), "duan");
-        session.setAttribute(bloggerProperties.getSessionBloggerLoginSignal(), "logined");
+//        HttpSession session = request.getSession();
+//        session.setAttribute(bloggerProperties.getSessionNameOfBloggerId(), 1);
+//        session.setAttribute(bloggerProperties.getSessionNameOfBloggerName(), "duan");
+//        session.setAttribute(bloggerProperties.getSessionBloggerLoginSignal(), "logined");
 
         return mv;
     }

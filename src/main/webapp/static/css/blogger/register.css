@@ -1,0 +1,66 @@
+
+div.con {
+    height: 100%;
+}
+
+a {
+    cursor: pointer;
+}
+
+.BLOG-title {
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+.register-left {
+    background-color: #ededed;
+    padding: 32px 64px;
+}
+
+.step {
+    padding: 4px 8px;
+    background-color: lightgray;
+    color: white;
+    border-radius: 20px;
+    font-size: small;
+}
+
+.step-choose {
+    padding: 3px 8px;
+    color: white;
+    border-radius: 20px;
+    background-color: orangered;
+    font-size: small;
+}
+
+.step-title {
+    color: darkgray;
+    font-size: small;
+}
+
+.step-title-choose {
+    color: orangered;
+    font-size: small;
+}
+
+.form-input {
+    max-width: 330px;
+}
+
+.form-input:focus {
+    border-bottom: solid 2px black;
+}
+
+.powered-by {
+    font-size: smaller;
+    color: gray;
+}
+
+.dialog-sign-in-indicator:hover {
+    border-bottom: solid 2px black;
+}
+
+.dialog-sign-in-indicator {
+    padding-bottom: 3px;
+    cursor: pointer;
+}

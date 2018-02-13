@@ -393,8 +393,6 @@ function signIn() {
             btn.html('登录');
         }, 'json'
     )
-
-
 }
 
 // 加载初始博文列表
