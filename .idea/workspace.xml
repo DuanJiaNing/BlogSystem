@@ -6,13 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ac934af-05bc-46b7-aaa8-6f8c621b9fd3" name="Default" comment="设计博客系统主页，完成博文高级检索，实现博主登录功能菜单">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/blogger/register.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/blogger/register.js" />
+    <list default="true" id="8ac934af-05bc-46b7-aaa8-6f8c621b9fd3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/cleanblog/blogger/BlogPageController.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/cleanblog/blogger/BlogPageController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/blogger/main.js" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/blogger/main.js" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/blogger/register.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/blogger/register.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -1225,14 +1220,7 @@
       <workItem from="1518498268971" duration="64000" />
       <workItem from="1518498567400" duration="1018000" />
       <workItem from="1518500180590" duration="5867000" />
-      <workItem from="1518529419620" duration="7672000" />
-    </task>
-    <task id="LOCAL-00046" summary="1 修改数据库结构，将图片表的类别字段简化&#10;3 完善文档和注释">
-      <created>1515385209075</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1515385209075</updated>
+      <workItem from="1518529419620" duration="7824000" />
     </task>
     <task id="LOCAL-00047" summary="修改数据库结构，将博文发布日期添加到博文统计信息表以方便博文排序">
       <created>1515472285890</created>
@@ -1570,7 +1558,14 @@
       <option name="project" value="LOCAL" />
       <updated>1518506038872</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="设计注册界面">
+      <created>1518537122001</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1518537122004</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1606,7 +1601,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="671264000" />
+    <option name="totallyTimeSpent" value="671416000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1731,7 +1726,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1 添加博文统计信息api；&#10;2 添加博主统计信息service；&#10;3 修改包结构" />
     <MESSAGE value="完成博文统计信息获取API" />
     <MESSAGE value="整理错误类型" />
     <MESSAGE value="修改图片获取API，私有图片只有登录才能获取" />
@@ -1756,7 +1750,8 @@
     <MESSAGE value="设计博客系统主页，实现博主信息统计API" />
     <MESSAGE value="设计博客系统主页，实现博文高级检索" />
     <MESSAGE value="设计博客系统主页，完成博文高级检索，实现博主登录功能菜单" />
-    <option name="LAST_COMMIT_MESSAGE" value="设计博客系统主页，完成博文高级检索，实现博主登录功能菜单" />
+    <MESSAGE value="设计注册界面" />
+    <option name="LAST_COMMIT_MESSAGE" value="设计注册界面" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
