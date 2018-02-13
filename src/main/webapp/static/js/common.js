@@ -17,3 +17,12 @@ function dateFormat(date) {
 function scrollToTop() {
     $("html,body").animate({scrollTop: 0}, 500);
 }
+
+function getArrayIndex(array, item) {
+    for (var index in array) {
+        if (array[index] === item)
+            return index;
+    }
+
+    return -1;
+}

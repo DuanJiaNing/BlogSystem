@@ -3,7 +3,10 @@ package com.duan.blogos.web.api.audience;
 import com.duan.blogos.BaseTest;
 import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.service.blogger.blog.BlogService;
+import com.duan.blogos.util.ArrayUtils;
 import com.duan.blogos.util.DataProvider;
+import com.duan.blogos.util.StringUtils;
+import com.duan.blogos.web.api.blogger.BloggerBlogController;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,8 +20,7 @@ import static org.junit.Assert.*;
 public class BlogControllerTest extends BaseTest {
 
     @Autowired
-    private BlogService blogService;
-
+    private BloggerBlogController controller;
 
     /**
      * 生成随机博文
@@ -29,15 +31,13 @@ public class BlogControllerTest extends BaseTest {
         DataProvider provider = new DataProvider();
         int count = 20;
         for (int i = 0; i < count; i++) {
-
-            blogService.insertBlog(1,
-                    new int[]{1, 2}, // 1 2 5
-                    new int[]{2}, // 1 2 3 5
-                    BlogStatusEnum.PUBLIC,
+            controller.add(null, 1,
+                    "1,2",
+                    "2",
                     provider.title(),
                     provider.content(),
                     provider.summary(),
-                    provider.keyWords());
+                    StringUtils.arrayToString(provider.keyWords(), ","));
 
         }
     }

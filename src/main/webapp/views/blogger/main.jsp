@@ -48,69 +48,10 @@
 
 </head>
 <body>
+
 <button id="scroll-to-top" data-toggle="tooltip" data-placement="left" title="回到顶部">TOP</button>
 
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <b><a class="navbar-brand os-name BLOG">BLOG</a></b>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <form class="navbar-form ">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="搜索博文">
-                        </div>
-                        <button type="submit" class="btn btn-default">搜索</button>
-                    </form>
-                </li>
-
-                <c:choose>
-                    <c:when test="${empty bloggerLoginSignal}">
-                        <li><a data-toggle="modal"
-                               data-target="#signInDialog">登录</a></li>
-                        <li><a href="/register">注册</a></li>
-                    </c:when>
-                    <c:otherwise>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true"
-                               aria-expanded="false">${bloggerName} <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li class="blogger-option"><a href="#">主页</a></li>
-                                <li class="blogger-option"><a href="#">收藏的博文&nbsp;<span class="count">(12)</span></a>
-                                </li>
-                                <li class="blogger-option"><a href="#">喜欢的博文&nbsp;<span class="count">(0)</span></a>
-                                </li>
-                                <li class="blogger-option"><a href="#">管理</a></li>
-                                <li class="blogger-option"><a href="#">反馈</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li class="blogger-option"><a href="#"><span class="quit">退出</span></a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <button type="button" class="btn btn-default navbar-btn">写博文</button>
-                        </li>
-                    </c:otherwise>
-                </c:choose>
-
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+<jsp:include page="../nav.jsp"/>
 
 <%--登录框--%>
 <div class="modal fade" tabindex="-1" role="dialog" id="signInDialog">
@@ -132,7 +73,7 @@
                             </small>&nbsp;&nbsp;|&nbsp;&nbsp;<small
                                 class="dialog-sign-in-indicator" style="font-weight: bold" id="siginPhone"
                                 onclick="showPhoneDiv()"
-                            >
+                        >
                             手机验证码登录
                         </small>
                         </p>
@@ -297,7 +238,7 @@
 </div><!-- /.modal -->
 
 <%--高级检索--%>
-<div class="modal fade" tabindex="-1" role="dialog" id="complexFilter">
+<div class="modal fade" tabindex="-1" role="dialog" id="complexFilterDialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content dialog-title-container">
             <div class="modal-header">
@@ -361,8 +302,10 @@
                 <span class="error-msg" id="complexFilterErrorMsg"></span>
             </div>
             <div class="modal-footer dialog-footer">
-                <button type="submit" class="button-success" id="complexFilterBtn" onclick="complexFilter()">检索
-                </button>
+                <button class="button-success" id="complexFilterBtn" onclick="complexFilter()">检索
+                </button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a id="complexFilterBtnReset" onclick="resetComplexFilter()">重置
+                </a>
             </div>
         </div><!-- /.modal-content -->
     </div>
@@ -388,7 +331,7 @@
 
     <p class="text-left blog-filter">
         <span class="blog-filter-text" data-toggle="modal"
-              data-target="#complexFilter">高级检索</span>
+              data-target="#complexFilterDialog">高级检索</span>
     </p>
 
     <div class="row">

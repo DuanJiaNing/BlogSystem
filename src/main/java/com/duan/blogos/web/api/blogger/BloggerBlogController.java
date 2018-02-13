@@ -79,15 +79,15 @@ public class BloggerBlogController extends BaseBloggerController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public ResultBean<List<BlogListItemDTO>> list(HttpServletRequest request,
-                                                      @PathVariable Integer bloggerId,
-                                                      @RequestParam(value = "cids", required = false) String categoryIds,
-                                                      @RequestParam(value = "lids", required = false) String labelIds,
-                                                      @RequestParam(value = "kword", required = false) String keyWord,
-                                                      @RequestParam(value = "offset", required = false) Integer offset,
-                                                      @RequestParam(value = "rows", required = false) Integer rows,
-                                                      @RequestParam(value = "sort", required = false) String sort,
-                                                      @RequestParam(value = "order", required = false) String order,
-                                                      @RequestParam(value = "status", required = false) Integer status) {
+                                                  @PathVariable Integer bloggerId,
+                                                  @RequestParam(value = "cids", required = false) String categoryIds,
+                                                  @RequestParam(value = "lids", required = false) String labelIds,
+                                                  @RequestParam(value = "kword", required = false) String keyWord,
+                                                  @RequestParam(value = "offset", required = false) Integer offset,
+                                                  @RequestParam(value = "rows", required = false) Integer rows,
+                                                  @RequestParam(value = "sort", required = false) String sort,
+                                                  @RequestParam(value = "order", required = false) String order,
+                                                  @RequestParam(value = "status", required = false) Integer status) {
         handleBloggerSignInCheck(request, bloggerId);
 
         //检查排序规则

@@ -50,13 +50,33 @@ input:-webkit-autofill {
 }
 
 .button-success {
+    outline: none;
     background-color: green;
     color: white;
     padding: 8px 32px;
     border: 0;
     font-size: medium;
     box-shadow: -2px 2px 8px dimgray;
+}
 
+.button-info:hover {
+    background-color: #ebebeb;
+    box-shadow: -3px 3px 10px dimgray;
+}
+
+.button-info:active {
+    background-color: gray;
+    box-shadow: -3px 3px 10px dimgray;
+}
+
+.button-info {
+    outline: none;
+    background-color: lightgray;
+    color: black;
+    padding: 8px 32px;
+    border: 0;
+    font-size: small;
+    box-shadow: -2px 2px 8px dimgray;
 }
 
 .default-line {

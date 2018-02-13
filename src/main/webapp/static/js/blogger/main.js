@@ -9,6 +9,9 @@ var filterData = {
     order: null
 };
 
+var cidsArray = [];
+var lidsArray = [];
+
 function showNameDiv() {
     var name = $('#useUserName');
     var phone = $('#useUserPhone');
@@ -184,25 +187,13 @@ function setLabelWhenEmpty(id) {
     $('#' + id).html(html);
 }
 
-
-function toggleLabelClass(t) {
-    var th = $(t);
-    if (th.hasClass('blog-filter-default')) {
-        th.removeClass('blog-filter-default');
-        th.addClass('blog-filter-label-choose');
-    } else {
-        th.addClass('blog-filter-default');
-        th.removeClass('blog-filter-label-choose');
-    }
-}
-
 function setComplexFilterLabel(array) {
 
     var html = '';
 
     for (var index in array) {
         var item = array[index];
-        html += '<span class="blog-filter-default" onclick="toggleLabelClass(this)">' + item.title + '</span>&nbsp;&nbsp;';
+        html += '<span class="blog-filter-default" onclick="toggleLabelClass(this)" key="' + item.id + '">' + item.title + '</span>&nbsp;&nbsp;';
     }
 
     if (html === '') {
@@ -211,18 +202,6 @@ function setComplexFilterLabel(array) {
         $('#complexFilterLabel').html(html);
     }
 
-
-}
-
-function toggleCategoryClass(t) {
-    var th = $(t);
-    if (th.hasClass('blog-filter-default')) {
-        th.removeClass('blog-filter-default');
-        th.addClass('blog-filter-category-choose');
-    } else {
-        th.addClass('blog-filter-default');
-        th.removeClass('blog-filter-category-choose');
-    }
 }
 
 function setComplexFilterCategory(array) {
@@ -231,7 +210,7 @@ function setComplexFilterCategory(array) {
 
     for (var index in array) {
         var item = array[index];
-        html += '<span class="blog-filter-default" onclick="toggleCategoryClass(this)">' + item.title + '</span>&nbsp;&nbsp;';
+        html += '<span class="blog-filter-default" onclick="toggleCategoryClass(this)" key="' + item.id + '">' + item.title + '</span>&nbsp;&nbsp;';
     }
 
     if (html === '') {
@@ -239,6 +218,68 @@ function setComplexFilterCategory(array) {
     } else {
         $('#complexFilterCategory').html(html);
     }
+
+}
+
+function toggleLabelClass(t) {
+    var th = $(t);
+    var key = th.attr('key');
+
+    if (th.hasClass('blog-filter-default')) {
+        th.removeClass('blog-filter-default');
+        th.addClass('blog-filter-label-choose');
+
+        lidsArray.push(key);
+
+    } else {
+        th.addClass('blog-filter-default');
+        th.removeClass('blog-filter-label-choose');
+
+        var index = getArrayIndex(lidsArray, key);
+        lidsArray.splice(index, 1);
+    }
+}
+
+function toggleCategoryClass(t) {
+    var th = $(t);
+    var key = th.attr('key');
+
+    if (th.hasClass('blog-filter-default')) {
+        th.removeClass('blog-filter-default');
+        th.addClass('blog-filter-category-choose');
+
+        cidsArray.push(key);
+
+    } else {
+        th.addClass('blog-filter-default');
+        th.removeClass('blog-filter-category-choose');
+
+        var index = getArrayIndex(cidsArray, key);
+        cidsArray.splice(index, 1);
+    }
+}
+
+function complexFilter() {
+    var keyword = $('#keyWord').val();
+    setFilterData(cidsArray.join(','), lidsArray.join(','), keyword, filterData.sort, filterData.order);
+    filterBloggerBlog(0, defaultBlogCount, true, true);
+    $('#complexFilterDialog').modal('toggle');
+}
+
+function resetComplexFilter() {
+    setFilterData(null, null, null, null, null);
+    // filterBloggerBlog(0, defaultBlogCount, true, true);
+    $('#keyWord').val('');
+
+    $('.blog-filter-category-choose').each(function (index, item) {
+        $(item).removeClass('blog-filter-category-choose');
+        $(item).addClass('blog-filter-default');
+    });
+
+    $('.blog-filter-label-choose').each(function (index, item) {
+        $(item).removeClass('blog-filter-label-choose');
+        $(item).addClass('blog-filter-default');
+    });
 
 }
 
@@ -258,7 +299,7 @@ function newLabelAndReload() {
         function (result) {
             if (result.code === 0) {
                 loadLabel();
-                $('.bs-example-modal-sm').modal('toggle');
+                $('#newLabelDialog').modal('toggle');
             } else {
                 $('#labelErrorMsg').html(result.msg);
             }
