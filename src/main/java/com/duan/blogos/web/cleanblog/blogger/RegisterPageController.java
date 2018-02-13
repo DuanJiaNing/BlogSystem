@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("register")
-public class RegisterController {
+public class RegisterPageController {
 
     @RequestMapping
     public String registerPage() {

@@ -69,12 +69,12 @@ public class BloggerProperties {
     /**
      * 保存在session属性中的页面所属博主id
      */
-    private String sessionNameOfPageOwnerBloggerId;
+    private String nameOfPageOwnerBloggerId;
 
     /**
      * 保存在session属性中的页面所属博主name
      */
-    private String sessionNameOfPageOwnerBloggerName;
+    private String nameOfPageOwnerBloggerName;
 
     /**
      * 保存在session属性中的博主登录标识，有值（任意值）就表示已登录

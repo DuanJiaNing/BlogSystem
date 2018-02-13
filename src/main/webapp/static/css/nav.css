@@ -1,0 +1,13 @@
+.search {
+    width: 230px;
+}
+
+.search-btn {
+    cursor: pointer;
+}
+
+.search-btn:hover {
+    cursor: pointer;
+    background-color: lightgray;
+    color: black;
+}

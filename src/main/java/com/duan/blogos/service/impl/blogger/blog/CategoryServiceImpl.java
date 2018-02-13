@@ -7,6 +7,7 @@ import com.duan.blogos.dto.blogger.BloggerCategoryDTO;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogCategory;
 import com.duan.blogos.entity.blogger.BloggerPicture;
+import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.exception.internal.SQLException;
 import com.duan.blogos.manager.*;
 import com.duan.blogos.manager.properties.BloggerProperties;
@@ -178,7 +179,7 @@ public class CategoryServiceImpl implements CategoryService {
         if (icon != null)
             icon.setPath(constructorManager.constructPictureUrl(icon, DEFAULT_BLOGGER_BLOG_CATEGORY_ICON));
 
-        int count = blogDao.countBlogByCategory(bloggerId, category.getId());
+        int count = blogDao.countBlogByCategory(bloggerId, category.getId(), BlogStatusEnum.PUBLIC.getCode());
         return fillingManager.blogCategoryToDTO(category, icon, count);
     }
 

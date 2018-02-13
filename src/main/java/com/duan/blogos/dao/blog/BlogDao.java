@@ -133,7 +133,8 @@ public interface BlogDao extends BaseDao<Blog> {
      * @return 数量
      */
     Integer countBlogByCategory(@Param("bloggerId") int bloggerId,
-                                @Param("categoryId") int categoryId);
+                                @Param("categoryId") int categoryId,
+                                @Param("state") int state);
 
     /**
      * 统计指定博主的博文数量

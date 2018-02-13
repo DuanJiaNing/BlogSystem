@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 /**
  * Created on 2018/2/5.
  *
@@ -21,7 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 @RequestMapping("/{bloggerName}")
-public class MainPageController {
+public class BlogPageController {
 
     @Autowired
     private BloggerAccountService accountService;
@@ -35,8 +38,9 @@ public class MainPageController {
     @Autowired
     private BloggerProperties bloggerProperties;
 
-    @RequestMapping
-    public ModelAndView mainPage(@PathVariable String bloggerName) {
+    @RequestMapping("/archives")
+    public ModelAndView mainPage(HttpServletRequest request,
+                                 @PathVariable String bloggerName) {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("blogger/main");
 
@@ -47,8 +51,8 @@ public class MainPageController {
             return mv;
         }
 
-        mv.addObject(bloggerProperties.getSessionNameOfPageOwnerBloggerId(), account.getId());
-        mv.addObject(bloggerProperties.getSessionNameOfPageOwnerBloggerName(), account.getUsername());
+        mv.addObject(bloggerProperties.getNameOfPageOwnerBloggerId(), account.getId());
+        mv.addObject(bloggerProperties.getNameOfPageOwnerBloggerName(), account.getUsername());
 
         int id = account.getId();
         BloggerProfile profile = profileService.getBloggerProfile(id);
@@ -57,6 +61,18 @@ public class MainPageController {
 
         ResultBean<BloggerStatisticsDTO> statistics = statisticsService.getBloggerStatistics(account.getId());
         mv.addObject("statistics", statistics.getData());
+
+        // 模拟所有者登陆
+//        HttpSession session = request.getSession();
+//        session.setAttribute(bloggerProperties.getSessionNameOfBloggerId(), account.getId());
+//        session.setAttribute(bloggerProperties.getSessionNameOfBloggerName(), account.getUsername());
+//        session.setAttribute(bloggerProperties.getSessionBloggerLoginSignal(), "logined");
+
+        // 模拟非所有者登陆
+        HttpSession session = request.getSession();
+        session.setAttribute(bloggerProperties.getSessionNameOfBloggerId(), 1);
+        session.setAttribute(bloggerProperties.getSessionNameOfBloggerName(), "duan");
+        session.setAttribute(bloggerProperties.getSessionBloggerLoginSignal(), "logined");
 
         return mv;
     }

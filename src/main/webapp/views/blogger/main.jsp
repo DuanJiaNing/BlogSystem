@@ -15,9 +15,9 @@
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/blogger/main.css">
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/paging.css">
+    <link rel="stylesheet" href="/css/blogger/main.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/paging.css">
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/core.js"></script>
@@ -34,24 +34,24 @@
     <script type="application/javascript">
         var pageOwnerBloggerId = ${pageOwnerBloggerId};
         var pageOwnerBloggerName = '${pageOwnerBloggerName}';
-        var bloggerLoginSignal = ${not empty bloggerLoginSignal};
+        var bloggerLoginSignal = ${not empty sessionScope['bloggerLoginSignal']};
         var blogCount = ${statistics["blogCount"]};
-        <c:if test="${not empty bloggerLoginSignal}">
-        var loginBloggerId = ${bloggerId};
+        <c:if test="${not empty sessionScope['bloggerLoginSignal']}">
+        var loginBloggerId = ${sessionScope["bloggerId"]};
         </c:if>
 
     </script>
 
-    <script type="application/javascript" src="js/paging.js"></script>
-    <script type="application/javascript" src="js/common.js"></script>
-    <script type="application/javascript" src="js/blogger/main.js"></script>
+    <script type="application/javascript" src="/js/paging.js"></script>
+    <script type="application/javascript" src="/js/common.js"></script>
+    <script type="application/javascript" src="/js/blogger/main.js"></script>
 
 </head>
 <body>
 
 <button id="scroll-to-top" data-toggle="tooltip" data-placement="left" title="回到顶部">TOP</button>
 
-<jsp:include page="../nav.jsp"/>
+<jsp:include page="/views/nav.jsp"/>
 
 <%--登录框--%>
 <div class="modal fade" tabindex="-1" role="dialog" id="signInDialog">
@@ -349,11 +349,11 @@
                 <%--头像--%>
                 <br>
                 <div class="avatar">
-                    <img src="images/Blue eyed_&_2e216493-5d50-4e39-8b9d-db2c2874c003.jpg"
+                    <img src="/images/Blue eyed_&_2e216493-5d50-4e39-8b9d-db2c2874c003.jpg"
                          class="img-rounded avatar-img">
                 </div>
                 <%--用户名--%>
-                <p class="text-center blogger-name">${bloggerName}</p>
+                <p class="text-center blogger-name">${pageOwnerBloggerName}</p>
             </div>
             <hr>
             <p class="lead blogger-aboutme">${aboutMe}</p>
@@ -427,6 +427,6 @@
 <br>
 <br>
 <br>
-<jsp:include page="../footer.jsp"/>
+<jsp:include page="/views/footer.jsp"/>
 </body>
 </html>

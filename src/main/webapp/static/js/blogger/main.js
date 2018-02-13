@@ -268,6 +268,9 @@ function complexFilter() {
 
 function resetComplexFilter() {
     setFilterData(null, null, null, null, null);
+    cidsArray = [];
+    lidsArray = [];
+
     // filterBloggerBlog(0, defaultBlogCount, true, true);
     $('#keyWord').val('');
 
@@ -479,7 +482,7 @@ function filterBloggerBlog(offset, rows, refreshPageIndicator, toTop) {
 
             var ins = '';
             if (isPageOwnerBloggerLogin())
-                ins = '，去<a style="font-size: x-large">写博文</a>';
+                ins = '，去<a style="font-size: x-large" href="/write_blog" target="_blank">写博文</a>';
 
             setBlogs(result.data, '<br><br><br><p class="text-center lead">没有博文' + ins + '</p><br><br><br>');
 
@@ -507,6 +510,15 @@ function filterBlogByCategory(id) {
     filterBloggerBlog(0, defaultBlogCount, true, true);
 }
 
+function filterBlogByKeyWord() {
+    var word = $('#searchBlog').val();
+    if (word !== '') {
+        setFilterData(null, null, word, null, null);
+        filterBloggerBlog(0, defaultBlogCount, true, true);
+    } else {
+        initBlog();
+    }
+}
 
 // 刷新分页插件
 function setPageIndicator(initIndex) {

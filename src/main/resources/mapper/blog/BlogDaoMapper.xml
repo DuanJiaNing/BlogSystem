@@ -160,7 +160,7 @@
     <select id="countBlogByCategory" resultType="java.lang.Integer">
         SELECT count(*)
         FROM blog b
-        WHERE b.blogger_id = #{bloggerId} AND locate(#{categoryId}, b.category_ids) > 0
+        WHERE b.blogger_id = #{bloggerId} AND b.state = #{state} AND locate(#{categoryId}, b.category_ids) > 0
     </select>
 
     <select id="countBlogByBloggerId" resultType="java.lang.Integer">

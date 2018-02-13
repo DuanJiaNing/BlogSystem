@@ -11,6 +11,8 @@
 
 <html>
 <head>
+    <link rel="stylesheet" href="/css/nav.css">
+
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -32,14 +34,13 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <form class="navbar-form ">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="搜索博文">
-                        </div>
-                        <button type="submit" class="btn btn-default">搜索</button>
-                    </form>
+                    <div class="input-group search navbar-btn">
+                        <input type="text" class="form-control" placeholder="搜索博文" id="searchBlog"
+                               aria-describedby="basic-addon2">
+                        <span class="input-group-addon search-btn" id="basic-addon2"
+                              onclick="filterBlogByKeyWord()">搜索</span>
+                    </div>
                 </li>
-
                 <c:choose>
                     <c:when test="${empty bloggerLoginSignal}">
                         <li><a data-toggle="modal"
@@ -50,9 +51,11 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true"
-                               aria-expanded="false">${bloggerName} <span class="caret"></span></a>
+                               aria-expanded="false">${sessionScope["bloggerName"]}<span
+                                    class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li class="blogger-option"><a href="#">主页</a></li>
+                                <li class="blogger-option"><a href="/${sessionScope['bloggerName']}/archives">主页</a>
+                                </li>
                                 <li class="blogger-option"><a href="#">收藏的博文&nbsp;<span class="count">(12)</span></a>
                                 </li>
                                 <li class="blogger-option"><a href="#">喜欢的博文&nbsp;<span class="count">(0)</span></a>
@@ -65,7 +68,9 @@
                         </li>
 
                         <li>
-                            <button type="button" class="btn btn-default navbar-btn">写博文</button>
+                            <button type="button" class="btn btn-default navbar-btn"
+                                    onclick="window.open('\\write_blog') ">写博文
+                            </button>
                         </li>
                     </c:otherwise>
                 </c:choose>
