@@ -136,9 +136,9 @@
                     <tr>
                         <td class="step-title-choose"><span class="step-choose">1</span>&nbsp;注册账户&nbsp;<span>————&nbsp;&nbsp;</span>
                         </td>
-                        <td class="step-title"><span class="step">2</span>&nbsp;补全信息&nbsp;<span>————&nbsp;&nbsp;</span>
+                        <td class="step-title" id="stepTitle2"><span id="stepTitle2_" class="step">2</span>&nbsp;补全信息&nbsp;<span>————&nbsp;&nbsp;</span>
                         </td>
-                        <td class="step-title"><span class="step">3</span>&nbsp;完成
+                        <td class="step-title" id="stepTitle3"><span id="stepTitle3_" class="step">3</span>&nbsp;完成
                         </td>
                     </tr>
                 </table>
@@ -150,23 +150,30 @@
                 <br>
                 <br>
 
-                <div id="inputAccount" style="display: none;">
+                <div id="inputAccount">
 
                     <form>
-                        <input type="text" id="registerUserName" placeholder="用户名" class="form-input"><br><br><br>
-                        <input type="password" class="form-input" id="registerPassword" placeholder="密码"><br><br><br>
-                        <input type="password" class="form-input" id="conformPassword" placeholder="确认密码">
+                        <input type="text" id="registerUserName" placeholder="用户名" class="form-input"
+                               onblur="checkInputEmpty('registerUserName')"><br><br><br>
+                        <input type="password" class="form-input" id="registerPassword" placeholder="密码"
+                               onblur="checkInputEmpty('registerPassword')"><br><br><br>
+                        <input type="password" class="form-input" id="conformPassword" placeholder="确认密码"
+                               onblur="checkInputEmpty('conformPassword')">
                     </form>
 
                 </div>
 
-                <div id="inputProfile" style="display: block;">
+                <div id="inputProfile" style="display: none;">
 
                     <form>
-                        <input type="number" id="registerPhone" placeholder="电话" class="form-input"><br><br><br>
-                        <input type="email" class="form-input" id="registerEmail" placeholder="email"><br><br><br>
-                        <input type="text" class="form-input" id="registerIntro" placeholder="博客标题"><br><br><br>
-                        <textarea class="default-textarea" id="registerAboutMe" placeholder="博主自述"></textarea>
+                        <input type="text" id="registerPhone" placeholder="电话" class="form-input"
+                               onblur="checkInputEmpty('registerPhone')"><br><br><br>
+                        <input type="email" class="form-input" id="registerEmail" placeholder="email"
+                               onblur="checkInputEmpty('registerEmail')"><br><br><br>
+                        <input type="text" class="form-input" id="registerIntro" placeholder="博客标题"
+                               onblur="checkInputEmpty('registerIntro')"><br><br><br>
+                        <textarea class="default-textarea" id="registerAboutMe" placeholder="博主自述"
+                                  onblur="checkInputEmpty('registerAboutMe')"></textarea>
                     </form>
 
                 </div>
@@ -174,7 +181,7 @@
                 <div id="inputFinish" style="display: none;">
                     <br>
                     <h3>
-                        &nbsp;&nbsp;<small>注册成功，进入</small>
+                        &nbsp;&nbsp;<small>注册成功，6 秒后将进入</small>
                         <a>个人主页</a></h3>
 
                 </div>
@@ -184,7 +191,8 @@
                 <span class="error-msg" id="registerErrorMsg"></span>
                 <br>
                 <br>
-                <button class="button-success" style="padding: 8px 64px;">下一步</button>
+                <button class="button-success" style="padding: 8px 64px;" onclick="nextStep()" id="nextStep">下一步
+                </button>
             </div>
             <div style="height: 10%">
                 <span class="powered-by">Powered by DuanJiaNing</span>
