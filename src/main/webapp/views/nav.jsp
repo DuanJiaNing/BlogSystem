@@ -63,7 +63,8 @@
                                 <li class="blogger-option"><a href="#">管理</a></li>
                                 <li class="blogger-option"><a href="#">反馈</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li class="blogger-option"><a href="#"><span class="quit">退出</span></a></li>
+                                <li class="blogger-option"><a href="#"><span
+                                        class="quit">退出</span></a></li>
                             </ul>
                         </li>
 

@@ -8,13 +8,19 @@ a {
 }
 
 .BLOG-title {
-    font-size: xx-large;
+    font-size: 4em;
     font-weight: bolder;
+    color: gray;
+}
+
+.saying {
+    color: white;
 }
 
 .register-left {
-    background-color: #ededed;
     padding: 32px 64px;
+    background: url("/images/register_left_img.jpg") no-repeat;
+    background-size: contain;
 }
 
 .step {

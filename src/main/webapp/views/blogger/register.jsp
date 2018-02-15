@@ -109,17 +109,9 @@
 <div class="container-">
     <div class="row">
         <div class="col-md-5 register-left con">
-            <div style="height: 40%">
-                <p class="BLOG BLOG-title">
-                    BLOG
-                </p>
-            </div>
-            <div style="height: 60%">
-                <blockquote class="blockquote-reverse">
-                    <p>成功与不成功之间有时距离很短——只要后者再向前几步。</p>
-                    <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                </blockquote>
-            </div>
+            <p class="BLOG-title">
+                BLOG
+            </p>
         </div>
         <div class="col-md-1 con"></div>
         <div class="col-md-4 con">
@@ -180,9 +172,8 @@
 
                 <div id="inputFinish" style="display: none;">
                     <br>
-                    <h3>
-                        &nbsp;&nbsp;<small>注册成功，6 秒后将进入</small>
-                        <a>个人主页</a></h3>
+                    <h3 id="finalInfo">
+                    </h3>
 
                 </div>
             </div>

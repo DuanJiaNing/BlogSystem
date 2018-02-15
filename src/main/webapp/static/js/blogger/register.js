@@ -43,25 +43,26 @@ function signIn() {
     )
 }
 
-var nextStepToEnd = function () {
-    if (checkInputProfile()) {
-        $('#nextStep').css('display', 'none');
-        $('#inputAccount').css('display', 'none');
-        $('#inputProfile').css('display', 'none');
-        $('#inputFinish').css('display', 'block');
-
-        $('#stepTitle3').removeClass('step-title');
-        $('#stepTitle3').addClass('step-title-choose');
-        $('#stepTitle3_').removeClass('step');
-        $('#stepTitle3_').addClass('step-choose');
-
-        register();
-    }
-};
-
 function nextStep() {
     if (checkInputAccount()) {
-        $('#nextStep').on('click', nextStepToEnd);
+        $('#nextStep').on('click', null, null, function () {
+            if (checkInputProfile() && $('#nextStep').attr('disable') !== 'disable') {
+                $('#nextStep').css('display', 'none');
+                $('#nextStep').attr('disable', 'disable');
+
+                $('#inputAccount').css('display', 'none');
+                $('#inputProfile').css('display', 'none');
+                $('#inputFinish').css('display', 'block');
+
+                $('#stepTitle3').removeClass('step-title');
+                $('#stepTitle3').addClass('step-title-choose');
+                $('#stepTitle3_').removeClass('step');
+                $('#stepTitle3_').addClass('step-choose');
+
+                register();
+            }
+        });
+
         $('#inputAccount').css('display', 'none');
         $('#inputProfile').css('display', 'block');
         $('#inputFinish').css('display', 'none');
@@ -102,7 +103,7 @@ function checkInputAccount() {
     // 检查密码格式规范
     var pwd = $('#registerPassword').val();
     if (pwd.match(pwdRegex) == null) {
-        error('密码格式不正确，应由 6-12 位字母和数字组成');
+        error('密码格式不正确，<small>密码由 6-12 位字母和数字组成</small>');
         return false;
     }
 
@@ -172,10 +173,13 @@ function error(msg) {
 function register() {
     var userName = $('#registerUserName').val();
     var password = $('#registerPassword').val();
+
     var phone = $('#registerPhone').val();
     var email = $('#registerEmail').val();
     var intro = $('#registerIntro').val();
     var aboutMe = $('#registerAboutMe').val();
+
+    info('正在注册...');
 
     $.post(
         '/blogger',
@@ -184,16 +188,58 @@ function register() {
             password: password
         },
         function (result) {
-            function jump() {
-                location.href = '/blog/' + userName + '/archives';
-            }
 
             if (result.code === 0) {
-                setTimeout(jump, 6000);
+                login(result.data);
             } else {
-                location.href = "/error/unknown_blogger";
+                failInfo(result.msg);
             }
-        });
 
-    // TODO
+            function jump() {
+                location.href = '/' + userName + '/archives';
+            }
+
+            function addProfile(id) {
+                $.post(
+                    '/blogger/' + id + '/profile',
+                    {
+                        phone: phone,
+                        email: email,
+                        aboutMe: aboutMe,
+                        intro: intro
+                    },
+                    function (result) {
+                        if (result.code === 0) {
+                            $('#finalInfo').html('<small> 注册成功，3秒后将进入</small><a>个人主页</a>');
+                            setTimeout(jump, 3000);
+                        }
+                    }, 'json'
+                )
+            }
+
+            function login(id) {
+                $.post(
+                    '/blogger/login/way=name',
+                    {
+                        username: userName,
+                        password: password
+                    }, function (result) {
+                        if (result.code === 0) {
+                            addProfile(id);
+                        } else {
+                            failInfo(result.msg);
+                        }
+                    }, 'json');
+            }
+
+        }, 'json');
+
+    function info(info) {
+        $('#finalInfo').html('&nbsp;&nbsp;' + info);
+    }
+
+    function failInfo(info) {
+        $('#finalInfo').html('&nbsp;&nbsp;<small>注册失败' + info + '</small>，<a href="/blogger/register">重试</a>');
+    }
+
 }
