@@ -61,12 +61,3 @@ a {
     font-size: smaller;
     color: gray;
 }
-
-.dialog-sign-in-indicator:hover {
-    border-bottom: solid 2px black;
-}
-
-.dialog-sign-in-indicator {
-    padding-bottom: 3px;
-    cursor: pointer;
-}

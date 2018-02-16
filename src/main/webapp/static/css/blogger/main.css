@@ -110,15 +110,6 @@ a {
     border-top: solid 1px #d9d9d9;
 }
 
-.dialog-sign-in-indicator:hover {
-    border-bottom: solid 2px black;
-}
-
-.dialog-sign-in-indicator {
-    padding-bottom: 3px;
-    cursor: pointer;
-}
-
 .button-new {
     border-radius: 5px;
     border: solid 1px dimgray;

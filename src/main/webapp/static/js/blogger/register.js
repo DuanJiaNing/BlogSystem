@@ -1,48 +1,3 @@
-function showNameDiv() {
-    var name = $('#useUserName');
-    var phone = $('#useUserPhone');
-    var siginName = $('#siginName');
-    var siginPhone = $('#siginPhone');
-
-    siginName.css('font-weight', 'bold');
-    siginPhone.css('font-weight', 'normal');
-    name.css('display', 'block');
-    phone.css('display', 'none');
-}
-
-function showPhoneDiv() {
-    var name = $('#useUserName');
-    var phone = $('#useUserPhone');
-    var siginName = $('#siginName');
-    var siginPhone = $('#siginPhone');
-
-    siginName.css('font-weight', 'normal');
-    siginPhone.css('font-weight', 'bold');
-    name.css('display', 'none');
-    phone.css('display', 'block');
-}
-
-// 登录
-function signIn() {
-    //TODO 电话验证码登录方式
-    var btn = $('#signInBtn');
-    var name = $('#userName').val();
-    var pwd = $('#password').val();
-
-    btn.html('登录中...');
-    $.post(
-        '/blogger/login/way=name',
-        {username: name, password: pwd},
-        function (result) {
-            if (result.code !== 0) {
-                $('#loginErrorMsg').html(result.msg);
-            }
-
-            btn.html('登录');
-        }, 'json'
-    )
-}
-
 function nextStep() {
     if (checkInputAccount()) {
         $('#nextStep').on('click', null, null, function () {
@@ -81,17 +36,13 @@ function checkInputEmpty(id) {
     var va = $('#' + id);
 
     if (va.val() === '') {
-        error('<small>请输入&nbsp;</small>' + va.attr('placeholder'));
+        errorInfo('<small>请输入&nbsp;</small>' + va.attr('placeholder'));
         return true;
     } else {
-        error('');
+        errorInfo('');
         return false;
     }
 }
-
-var pwdRegex = "^(?:(?=.*[A-z])(?=.*[0-9])).{6,12}$";
-var emailRegex = "\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
-var phoneRegex = ["^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0-9]))\\d{8}$", "^(0\\d{2}-\\d{8}(-\\d{1,4})?)|(0\\d{3}-\\d{7,8}(-\\d{1,4})?)$"];
 
 function checkInputAccount() {
     if (checkInputEmpty('registerUserName') ||
@@ -102,15 +53,15 @@ function checkInputAccount() {
 
     // 检查密码格式规范
     var pwd = $('#registerPassword').val();
-    if (pwd.match(pwdRegex) == null) {
-        error('密码格式不正确，<small>密码由 6-12 位字母和数字组成</small>');
+    if (!isPassword(pwd)) {
+        errorInfo('密码格式不正确，<small>密码由 6-12 位字母和数字组成</small>');
         return false;
     }
 
     // 检查两次密码是否一致
     var pwdc = $('#conformPassword').val();
     if (pwd !== pwdc) {
-        error('两次密码不一致');
+        errorInfo('两次密码不一致');
         return false;
     }
 
@@ -120,9 +71,9 @@ function checkInputAccount() {
         async: false,
         success: function (result) {
             if (result.code === 18) {
-                error('用户名已被占用');
+                errorInfo('用户名已被占用');
             } else {
-                error('');
+                errorInfo('');
             }
         }
     });
@@ -141,14 +92,14 @@ function checkInputProfile() {
 
     // 正则校验电话
     var phone = $('#registerPhone').val();
-    if (phone.match(phoneRegex[0]) == null && phone.match(phoneRegex[1]) == null) {
-        error('电话号码格式不正确')
+    if (!isPhone(phone)) {
+        errorInfo('电话号码格式不正确');
         return false;
     }
 
     // 正则校验邮箱
-    if ($('#registerEmail').val().match(emailRegex) == null) {
-        error('邮箱格式不正确');
+    if (!isEmail($('#registerEmail').val())) {
+        errorInfo('邮箱格式不正确');
         return false;
     }
 
@@ -156,17 +107,8 @@ function checkInputProfile() {
 }
 
 
-function error(msg) {
-    var dom = $('#registerErrorMsg');
-    dom.html(msg);
-    dom.css('background-color', 'red');
-    dom.css('color', 'white');
-
-    var s = function () {
-        dom.css('background-color', 'transparent');
-        dom.css('color', 'red');
-    };
-    setTimeout(s, 200);
+function errorInfo(msg) {
+    error(msg, 'registerErrorMsg');
 }
 
 
@@ -195,10 +137,6 @@ function register() {
                 failInfo(result.msg);
             }
 
-            function jump() {
-                location.href = '/' + userName + '/archives';
-            }
-
             function addProfile(id) {
                 $.post(
                     '/blogger/' + id + '/profile',
@@ -210,8 +148,15 @@ function register() {
                     },
                     function (result) {
                         if (result.code === 0) {
-                            $('#finalInfo').html('<small> 注册成功，3秒后将进入</small><a>个人主页</a>');
-                            setTimeout(jump, 3000);
+                            countDown(3, 1000, function (c) {
+                                if (c === 0) {
+                                    location.href = '/' + userName + '/archives';
+                                    return true;
+                                } else {
+                                    $('#finalInfo').html('<small> 注册成功，' + c + '秒后将进入</small><a>个人主页</a>');
+                                    return false;
+                                }
+                            });
                         }
                     }, 'json'
                 )

@@ -15,6 +15,10 @@
 
 </head>
 <body>
+
+<%--登录对话框--%>
+<jsp:include page="/views/dialog/login_dialog.jsp"/>
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -44,7 +48,7 @@
                 <c:choose>
                     <c:when test="${empty bloggerLoginSignal}">
                         <li><a data-toggle="modal"
-                               data-target="#signInDialog">登录</a></li>
+                               data-target="#loginDialog">登录</a></li>
                         <li><a href="/register">注册</a></li>
                     </c:when>
                     <c:otherwise>
