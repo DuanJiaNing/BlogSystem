@@ -127,3 +127,19 @@ function error(msg, id) {
     setTimeout(s, 200);
 }
 
+/**
+ * 改变按钮可用状态
+ * @param enable true为可用
+ * @param id 按钮id
+ * @param content 按钮内容
+ */
+function disableButton(enable, id, content) {
+    var button = $('#' + id);
+    button.html(content);
+    if (!enable && !button.hasClass('button-disable')) {
+        // FIXME 无效
+        button.addClass('button-disable');
+    } else {
+        button.removeClass('button-disable');
+    }
+}

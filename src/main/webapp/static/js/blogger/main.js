@@ -262,30 +262,6 @@ function resetComplexFilter() {
 
 }
 
-// 创建标签并重新加载 标签栏
-function newLabelAndReload() {
-    var name = $('#labelName').val();
-
-    if (isStrEmpty(name)) {
-        $('#labelErrorMsg').html('标签名称不能为空');
-        return;
-    } else {
-        $('#labelErrorMsg').html(' ');
-    }
-    $.post(
-        '/blogger/' + pageOwnerBloggerId + '/label',
-        {title: name},
-        function (result) {
-            if (result.code === 0) {
-                loadLabel();
-                $('#newLabelDialog').modal('toggle');
-            } else {
-                $('#labelErrorMsg').html(result.msg);
-            }
-        }, 'json'
-    );
-}
-
 // 创建类别并重新加载 类别栏
 function newCategoryAndReload() {
     var title = $('#categoryTitle').val();
@@ -307,39 +283,6 @@ function newCategoryAndReload() {
                 $('#newCategoryDialog').modal('toggle');
             } else {
                 $('#categoryErrorMsg').html(result.msg);
-            }
-        }, 'json'
-    );
-
-}
-
-// 新建链接并重新加载 链接栏（与我联系）
-function newLinkAndReload() {
-    var title = $('#linkTitle').val();
-    var url = $('#linkUrl').val();
-    var bewrite = $('#linkBewrite').val();
-
-    var error = $('#linkErrorMsg');
-    if (isStrEmpty(title)) {
-        error.html("名称不能为空");
-        return;
-    }
-
-    if (isStrEmpty(url) || !isUrl(url)) {
-        error.html("url不正确");
-        return;
-    }
-    error.html("");
-
-    $.post(
-        '/blogger/' + pageOwnerBloggerId + '/link',
-        {title: title, url: url, bewrite: bewrite},
-        function (result) {
-            if (result.code === 0) {
-                loadContact();
-                $('#newLinkDialog').modal('toggle');
-            } else {
-                $('#linkErrorMsg').html(result.msg);
             }
         }, 'json'
     );
@@ -524,3 +467,27 @@ $(function () {
 function initToolTip() {
     $('[data-toggle="tooltip"]').tooltip();
 }
+
+// ---------------------------------------创建标签时回调
+var funWhenCreateLabelSuccess = function (id) {
+    loadLabel();
+};
+
+var funWhenCreateLabelFail = function (result) {
+};
+
+// ---------------------------------------创建类别时回调
+var funWhenCreateCategorySuccess = function (id) {
+    loadCategory();
+};
+
+var funWhenCreateCategoryFail = function (result) {
+};
+
+// ---------------------------------------创建链接时回调
+var funWhenCreateLinkSuccess = function (id) {
+    loadContact();
+};
+
+var funWhenCreateLinkFail = function (result) {
+};

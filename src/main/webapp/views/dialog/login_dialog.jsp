@@ -10,9 +10,8 @@
 <head>
     <title>登录</title>
 
-    <link rel="stylesheet" href="/css/dialog/login/login_dialog.css">
-    <script type="application/javascript" src="/js/common.js"></script>
-    <script type="application/javascript" src="/js/dialog/login/login_dialog.js"></script>
+    <link rel="stylesheet" href="/css/dialog/login_dialog.css">
+    <script type="application/javascript" src="/js/dialog/login_dialog.js"></script>
 
 </head>
 <body>
@@ -85,7 +84,7 @@
                 </div>
             </div>
             <div class="modal-footer dialog-footer">
-                <button type="submit" class="button-success" id="loginBtn" onclick="login()">登入</button>
+                <button class="button-success" id="loginBtn" onclick="login()">登入</button>
                 <p class="text-right"><a>忘记密码？</a></p>
             </div>
         </div><!-- /.modal-content -->

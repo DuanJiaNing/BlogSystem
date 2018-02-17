@@ -163,3 +163,17 @@ h4.default-h4 {
     opacity: 0.4;
     /*transition: opacity .2s ease-out;*/
 }
+
+.button-disabled:hover {
+    cursor: not-allowed;
+    background-color: lightgray;
+    color: black;
+    box-shadow: -3px 3px 10px dimgray;
+}
+
+.button-disabled {
+    cursor: not-allowed;
+    background-color: lightgray;
+    color: black;
+    box-shadow: -3px 3px 10px dimgray;
+}

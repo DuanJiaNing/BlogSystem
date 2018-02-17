@@ -25,6 +25,7 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
+    <script type="application/javascript" src="/js/common.js"></script>
     <script type="application/javascript" src="/js/blogger/register.js"></script>
 
     <title>注册</title>
