@@ -12,12 +12,14 @@
 <html>
 <head>
     <link rel="stylesheet" href="/css/nav.css">
+    <script type="application/javascript" src="/js/nav.js"></script>
 
 </head>
 <body>
 
 <%--登录对话框--%>
 <jsp:include page="/views/dialog/login_dialog.jsp"/>
+<jsp:include page="/views/dialog/toast_dialog.jsp"/>
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -67,7 +69,7 @@
                                 <li class="blogger-option"><a href="#">管理</a></li>
                                 <li class="blogger-option"><a href="#">反馈</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li class="blogger-option"><a href="#"><span
+                                <li class="blogger-option"><a onclick="logout(${sessionScope['bloggerId']})"><span
                                         class="quit">退出</span></a></li>
                             </ul>
                         </li>
@@ -84,5 +86,6 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
 </body>
 </html>

@@ -176,11 +176,6 @@
             </div>
             <hr>
             <p class="lead blogger-aboutme">${aboutMe}</p>
-            <%--<p class="blogger-like-collect">他<a style="font-size: medium"--%>
-            <%--onclick="filterBlogByLike(0,defaultBlogCount,true,true)">--%>
-            <%--&nbsp;喜欢&nbsp;</a>/<a style="font-size: medium"--%>
-            <%--onclick="filterBlogByCollect(0,defaultBlogCount,true,true)">&nbsp;收藏&nbsp;</a>的博文--%>
-            <%--</p>--%>
             <br>
             <br>
 

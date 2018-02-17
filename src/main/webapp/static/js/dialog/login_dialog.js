@@ -24,7 +24,12 @@ function showPhoneDiv() {
 }
 
 // 登录
-function login() {
+/**
+ * 登录
+ * @param funAfterLoginSuccess 登录成功时回调，无参数
+ * @param funAfterLoginFail 登录失败时回调，参数为错误码和错误信息
+ */
+function login(funAfterLoginSuccess, funAfterLoginFail) {
     if ($('#useUserName').css('display') === 'block') {
         // 用户名登录
 
@@ -41,6 +46,7 @@ function login() {
             return;
         }
 
+        disableButton(false, 'loginBtn', '正在登录...');
         $.post(
             '/blogger/login/way=name',
             {
@@ -49,9 +55,18 @@ function login() {
             },
             function (result) {
                 if (result.code === 0) {
-                    location.reload();
+                    disableButton(false, 'loginBtn', '登录成功');
+
+                    setTimeout(function () {
+                        disableButton(true, 'loginBtn', '登录');
+                        funAfterLoginSuccess();
+                    }, 1000);
+
                 } else {
                     errorInfo(result.msg);
+                    disableButton(true, 'loginBtn', '登录');
+
+                    funAfterLoginFail(result);
                 }
             }
         );

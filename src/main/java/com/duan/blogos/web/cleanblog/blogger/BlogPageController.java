@@ -39,8 +39,7 @@ public class BlogPageController {
     private BloggerProperties bloggerProperties;
 
     @RequestMapping("/archives")
-    public ModelAndView mainPage(HttpServletRequest request,
-                                 @PathVariable String bloggerName) {
+    public ModelAndView mainPage(@PathVariable String bloggerName) {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("blogger/main");
 
@@ -61,18 +60,6 @@ public class BlogPageController {
 
         ResultBean<BloggerStatisticsDTO> statistics = statisticsService.getBloggerStatistics(account.getId());
         mv.addObject("statistics", statistics.getData());
-
-        // 模拟所有者登陆
-//        HttpSession session = request.getSession();
-//        session.setAttribute(bloggerProperties.getSessionNameOfBloggerId(), account.getId());
-//        session.setAttribute(bloggerProperties.getSessionNameOfBloggerName(), account.getUsername());
-//        session.setAttribute(bloggerProperties.getSessionBloggerLoginSignal(), "logined");
-
-        // 模拟非所有者登陆
-//        HttpSession session = request.getSession();
-//        session.setAttribute(bloggerProperties.getSessionNameOfBloggerId(), 1);
-//        session.setAttribute(bloggerProperties.getSessionNameOfBloggerName(), "duan");
-//        session.setAttribute(bloggerProperties.getSessionBloggerLoginSignal(), "logined");
 
         return mv;
     }

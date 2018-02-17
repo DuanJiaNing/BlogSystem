@@ -34,7 +34,9 @@
                 <span class="error-msg" id="labelErrorMsg"></span>
             </div>
             <div class="modal-footer dialog-footer">
-                <button class="button-success" onclick="createLabel(funWhenCreateLabelSuccess, funWhenCreateLabelFail)">创建</button>
+                <button class="button-success" id="newLabelBtn" onclick="createLabel(funWhenCreateLabelSuccess, funWhenCreateLabelFail)">
+                    创建
+                </button>
             </div>
 
         </div>

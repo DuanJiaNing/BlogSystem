@@ -53,7 +53,7 @@ input:-webkit-autofill {
     outline: none;
     background-color: green;
     color: white;
-    padding: 8px 32px;
+    padding: 8px 40px;
     border: 0;
     font-size: medium;
     box-shadow: -2px 2px 8px dimgray;
@@ -73,7 +73,7 @@ input:-webkit-autofill {
     outline: none;
     background-color: lightgray;
     color: black;
-    padding: 8px 32px;
+    padding: 8px 40px;
     border: 0;
     font-size: small;
     box-shadow: -2px 2px 8px dimgray;
@@ -164,16 +164,16 @@ h4.default-h4 {
     /*transition: opacity .2s ease-out;*/
 }
 
-.button-disabled:hover {
+.button-disable:hover {
     cursor: not-allowed;
     background-color: lightgray;
-    color: black;
+    color: dimgray;
     box-shadow: -3px 3px 10px dimgray;
 }
 
-.button-disabled {
+.button-disable {
     cursor: not-allowed;
     background-color: lightgray;
-    color: black;
+    color: dimgray;
     box-shadow: -3px 3px 10px dimgray;
 }

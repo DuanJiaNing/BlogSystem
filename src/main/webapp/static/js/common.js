@@ -136,10 +136,10 @@ function error(msg, id) {
 function disableButton(enable, id, content) {
     var button = $('#' + id);
     button.html(content);
+
     if (!enable && !button.hasClass('button-disable')) {
-        // FIXME 无效
         button.addClass('button-disable');
-    } else {
+    } else if (enable && button.hasClass('button-disable')) {
         button.removeClass('button-disable');
     }
 }

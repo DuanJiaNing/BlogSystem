@@ -14,16 +14,24 @@ function createCategory(funWhenCreateCategorySuccess, funWhenCreateCategoryFail)
         $('#categoryErrorMsg').html(' ');
     }
 
+    disableButton(false, 'newCategoryBtn', '正在创建...');
     $.post(
         '/blogger/' + pageOwnerBloggerId + '/category',
         {title: title, bewrite: bewrite},
         function (result) {
             if (result.code === 0) {
-                loadCategory();
+                disableButton(false, 'newCategoryBtn', '创建成功');
                 funWhenCreateCategorySuccess(result.data);
-                $('#newCategoryDialog').modal('toggle');
+
+                setTimeout(function () {
+                    disableButton(true, 'newCategoryBtn', '创建');
+                    $('#newCategoryDialog').modal('toggle');
+                }, 1000);
+
             } else {
                 error(result.msg, 'categoryErrorMsg');
+                disableButton(true, 'newCategoryBtn', '创建');
+
                 funWhenCreateCategoryFail(result);
             }
         }, 'json'

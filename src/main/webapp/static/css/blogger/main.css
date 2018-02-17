@@ -73,6 +73,7 @@ a {
 .blogger-link {
     padding-left: 16px;
     padding-right: 16px;
+    word-break: break-all;
 }
 
 .blogger-link-item {
@@ -82,6 +83,7 @@ a {
 .blogger-label {
     padding-left: 16px;
     padding-right: 16px;
+    word-break: break-all;
 }
 
 .blogger-option {
@@ -112,15 +114,15 @@ a {
 
 .button-new {
     border-radius: 5px;
-    border: solid 1px dimgray;
+    border: solid 1px lightgray;
     background-color: transparent;
-    color: dimgray;
+    color: gray;
     padding: 0 8px;
     font-size: small;
 }
 
 .button-new:hover {
-    background-color: dimgray;
+    background-color: gray;
     color: white;
 }
 

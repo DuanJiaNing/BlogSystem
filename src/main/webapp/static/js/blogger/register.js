@@ -188,3 +188,17 @@ function register() {
     }
 
 }
+
+// ----------------------------- 登录对话框回调
+function funAfterLoginSuccess() {
+    if ($('#useUserName').css('display') === 'block') {
+        // 用户名登录
+        location.href = '/' + $('#loginUserName').val() + '/archives';
+    } else {
+        // 电话验证码登录
+        // TODO
+    }
+}
+
+function funAfterLoginFail(result) {
+}

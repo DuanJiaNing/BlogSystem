@@ -21,18 +21,25 @@ function createLink(funWhenCreateLinkSuccess, funWhenCreateLinkFail) {
 
     error("", 'linkErrorMsg');
 
-    disableButton(false, 'newLinkBtn', '正在创建');
+    disableButton(false, 'newLinkBtn', '正在创建...');
     $.post(
         '/blogger/' + pageOwnerBloggerId + '/link',
         {title: title, url: url, bewrite: bewrite},
         function (result) {
-            disableButton(true, 'newLinkBtn');
             if (result.code === 0) {
+                disableButton(false, 'newLinkBtn', '创建成功');
                 funWhenCreateLinkSuccess(result.data);
-                $('#newLinkDialog').modal('toggle');
+
+                setTimeout(function () {
+                    disableButton(true, 'newLinkBtn', '创建');
+                    $('#newLinkDialog').modal('toggle');
+                }, 1000);
+
             } else {
-                funWhenCreateLinkFail(result);
+                disableButton(true, 'newLinkBtn', '创建');
                 error(result.msg, 'linkErrorMsg');
+
+                funWhenCreateLinkFail(result);
             }
         }, 'json'
     );

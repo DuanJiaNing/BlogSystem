@@ -14,16 +14,25 @@ function createLabel(funWhenCreateLabelSuccess, funWhenCreateLabelFail) {
         $('#labelErrorMsg').html(' ');
     }
 
+    disableButton(false, 'newLabelBtn', '正在创建...');
     $.post(
         '/blogger/' + pageOwnerBloggerId + '/label',
         {title: name},
         function (result) {
             if (result.code === 0) {
+                disableButton(false, 'newLabelBtn', '创建成功');
                 funWhenCreateLabelSuccess(result.data);
-                $('#newLabelDialog').modal('toggle');
+
+                setTimeout(function () {
+                    disableButton(true, 'newLabelBtn', '创建');
+                    $('#newLabelDialog').modal('toggle');
+                }, 1000);
+
             } else {
-                funWhenCreateLabelFail(result);
+                disableButton(true, 'newLabelBtn', '创建');
                 error(result.msg, 'labelErrorMsg');
+
+                funWhenCreateLabelFail(result);
             }
         }, 'json'
     );

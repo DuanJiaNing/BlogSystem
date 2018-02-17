@@ -79,6 +79,7 @@ function loadContact() {
                 for (var index in array) {
                     var link = array[index];
                     html += '<a class="blogger-link-item" target="_blank" href="' + link.url + '">' + link.title + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+                    ;
                 }
             }
 
