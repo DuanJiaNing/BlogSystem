@@ -42,39 +42,38 @@
                         </p>
 
                         <div id="useUserName" style="display: none;">
-                            <form>
-                                <div class="form-group">
-                                    <label>用户名</label><br>
-                                    <input type="text" id="loginUserName" placeholder="用户名" class="form-input">
-                                </div>
-                                <div class="form-group">
-                                    <label>密码</label><br>
-                                    <input type="password" class="form-input" id="loginPassword" placeholder="密码">
-                                </div>
-                            </form>
+                            <div class="form-group">
+                                <label>用户名</label><br>
+                                <input type="text" id="loginUserName" placeholder="用户名" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>密码</label><br>
+                                <input type="password" class="form-input" id="loginPassword" placeholder="密码">
+                            </div>
                         </div>
 
                         <div id="useUserPhone">
-                            <form>
-                                <div class="form-group">
-                                    <label>电话</label><br>
-                                    <input type="number" class="form-input" id="loginPhone" placeholder="电话号码">
+                            <div class="form-group">
+                                <label>电话</label><br>
+                                <input type="number" class="form-input" id="loginPhone" placeholder="电话号码">
+                            </div>
+                            <div class="form-group">
+                                <label>验证码</label><br>
+                                <div>
+                                    <table>
+                                        <tr>
+                                            <td><input type="number" class="form-input" id="loginPhoneCode"
+                                                       placeholder="验证码"></td>
+                                            <td>
+                                                &nbsp;&nbsp;<button class="default-button-info"
+                                                                    onclick="sendPhoneCode()"
+                                                                    id="sendPhoneCodeBtn">获取验证码
+                                            </button>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
-                                <div class="form-group">
-                                    <label>验证码</label><br>
-                                    <div>
-                                        <table>
-                                            <tr>
-                                                <td><input type="password" class="form-input" id="loginPhoneCode"
-                                                           placeholder="验证码"></td>
-                                                <td>
-                                                    &nbsp;&nbsp;<button class="default-button-info">获取验证码</button>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                         <span class="error-msg" id="loginErrorMsg"></span>
 

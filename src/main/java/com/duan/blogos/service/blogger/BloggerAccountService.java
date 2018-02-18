@@ -66,4 +66,12 @@ public interface BloggerAccountService {
      * @return 更新成功返回true
      */
     boolean updateAccountPassword(int bloggerId, String oldPassword, String newPassword);
+
+    /**
+     * 根据博主电话号码获得账户
+     *
+     * @param phone 电话号码
+     * @return 结果
+     */
+    BloggerAccount getAccountByPhone(String phone);
 }

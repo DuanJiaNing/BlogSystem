@@ -2,8 +2,10 @@ package com.duan.blogos.service.impl.blogger;
 
 import com.duan.blogos.dao.blogger.BloggerAccountDao;
 import com.duan.blogos.dao.blogger.BloggerPictureDao;
+import com.duan.blogos.dao.blogger.BloggerProfileDao;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerPicture;
+import com.duan.blogos.entity.blogger.BloggerProfile;
 import com.duan.blogos.exception.internal.UnknownInternalException;
 import com.duan.blogos.manager.properties.BloggerProperties;
 import com.duan.blogos.manager.ImageManager;
@@ -29,6 +31,9 @@ public class BloggerAccountServiceImpl implements BloggerAccountService {
 
     @Autowired
     private BloggerPictureDao pictureDao;
+
+    @Autowired
+    private BloggerProfileDao profileDao;
 
     @Autowired
     private ImageManager imageManager;
@@ -124,5 +129,12 @@ public class BloggerAccountServiceImpl implements BloggerAccountService {
         if (effect <= 0) return false;
 
         return true;
+    }
+
+    @Override
+    public BloggerAccount getAccountByPhone(String phone) {
+        BloggerProfile profile = profileDao.getProfileByPhone(phone);
+        if (profile == null) return null;
+        return accountDao.getAccountById(profile.getBloggerId());
     }
 }

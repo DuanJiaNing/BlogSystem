@@ -20,4 +20,11 @@ public interface BloggerProfileDao extends BaseDao<BloggerProfile> {
      */
     BloggerProfile getProfileByBloggerId(int bloggerId);
 
+    /**
+     * 根据电话查询博主资料
+     *
+     * @param phone 电话
+     * @return 结果
+     */
+    BloggerProfile getProfileByPhone(String phone);
 }

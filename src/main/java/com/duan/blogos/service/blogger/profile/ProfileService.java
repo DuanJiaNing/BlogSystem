@@ -52,4 +52,11 @@ public interface ProfileService {
      */
     BloggerProfile getBloggerProfile(int bloggerId);
 
+    /**
+     * 通过电话号码获得资料
+     *
+     * @param phone 电话号码
+     * @return 结果
+     */
+    BloggerProfile getBloggerProfileByPhone(String phone);
 }

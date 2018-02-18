@@ -24,7 +24,12 @@ public class ResultBean<T> implements Serializable {
      */
     public static final int SUCCESS = 0;
 
-    private int code = SUCCESS;
+    /**
+     * 结果状态为失败
+     */
+    public static final int FAIL = -1;
+
+    public int code = SUCCESS;
     private String msg = "success";
     private T data;
 
@@ -41,6 +46,14 @@ public class ResultBean<T> implements Serializable {
     public ResultBean(BaseRuntimeException e) {
         this.msg = e.getMessage();
         this.code = e.getCode();
+    }
+
+    /**
+     * 自定义信息和代码
+     */
+    public ResultBean(String msg, int code) {
+        this.msg = msg;
+        this.code = code;
     }
 
 

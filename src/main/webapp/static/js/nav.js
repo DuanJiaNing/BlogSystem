@@ -13,7 +13,7 @@ function logout(bloggerId) {
 }
 
 // ----------------------------- 登录对话框回调
-function funAfterLoginSuccess() {
+function funAfterLoginSuccess(result) {
     location.reload();
 }
 

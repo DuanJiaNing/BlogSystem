@@ -66,10 +66,26 @@ public class BloggerLoginController extends BaseBloggerController {
 
     @RequestMapping(value = "/way=phone", method = RequestMethod.POST)
     public ResultBean loginWithPhoneNumber(HttpServletRequest request,
-                                           @RequestParam("phone") String phone,
-                                           @RequestParam("password") String password) {
+                                           @RequestParam("phone") String phone) {
 
-        return null;
+        handlePhoneCheck(phone, request);
+
+        BloggerAccount account = accountService.getAccountByPhone(phone);
+        if (account == null) return new ResultBean<>("", ResultBean.FAIL);
+
+        HttpSession session = request.getSession();
+        session.setAttribute(bloggerProperties.getSessionNameOfBloggerId(), account.getId());
+        session.setAttribute(bloggerProperties.getSessionNameOfBloggerName(), account.getUsername());
+        session.setAttribute(bloggerProperties.getSessionBloggerLoginSignal(), "login");
+
+        // 成功登录
+        return new ResultBean<>(account.getUsername());
     }
 
+    private void handlePhoneCheck(String phone, HttpServletRequest request) {
+        RequestContext context = new RequestContext(request);
+        if (phone != null && !StringUtils.isPhone(phone))
+            throw exceptionManager.getParameterFormatIllegalException(context);
+
+    }
 }

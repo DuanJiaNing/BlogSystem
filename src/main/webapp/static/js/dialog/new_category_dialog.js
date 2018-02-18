@@ -14,23 +14,23 @@ function createCategory(funWhenCreateCategorySuccess, funWhenCreateCategoryFail)
         $('#categoryErrorMsg').html(' ');
     }
 
-    disableButton(false, 'newCategoryBtn', '正在创建...');
+    disableButton(false, 'newCategoryBtn', '正在创建...', "button-disable");
     $.post(
         '/blogger/' + pageOwnerBloggerId + '/category',
         {title: title, bewrite: bewrite},
         function (result) {
             if (result.code === 0) {
-                disableButton(false, 'newCategoryBtn', '创建成功');
+                disableButton(false, 'newCategoryBtn', '创建成功', "button-disable");
                 funWhenCreateCategorySuccess(result.data);
 
                 setTimeout(function () {
-                    disableButton(true, 'newCategoryBtn', '创建');
+                    disableButton(true, 'newCategoryBtn', '创建', "button-disable");
                     $('#newCategoryDialog').modal('toggle');
                 }, 1000);
 
             } else {
                 error(result.msg, 'categoryErrorMsg');
-                disableButton(true, 'newCategoryBtn', '创建');
+                disableButton(true, 'newCategoryBtn', '创建', "button-disable");
 
                 funWhenCreateCategoryFail(result);
             }

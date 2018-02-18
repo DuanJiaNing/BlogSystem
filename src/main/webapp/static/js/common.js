@@ -119,10 +119,14 @@ function error(msg, id) {
     dom.html(msg);
     dom.css('background-color', 'red');
     dom.css('color', 'white');
+    if (msg === '') {
+        dom.css('padding', '4px 0');
+    }
 
     var s = function () {
         dom.css('background-color', 'transparent');
         dom.css('color', 'red');
+        dom.css('padding', '4px 8px');
     };
     setTimeout(s, 200);
 }
@@ -132,14 +136,16 @@ function error(msg, id) {
  * @param enable true为可用
  * @param id 按钮id
  * @param content 按钮内容
+ * @param disableClass 按钮不可用时的id
  */
-function disableButton(enable, id, content) {
+function disableButton(enable, id, content, disableClass) {
+
     var button = $('#' + id);
     button.html(content);
 
-    if (!enable && !button.hasClass('button-disable')) {
-        button.addClass('button-disable');
-    } else if (enable && button.hasClass('button-disable')) {
-        button.removeClass('button-disable');
+    if (!enable && !button.hasClass(disableClass)) {
+        button.addClass(disableClass);
+    } else if (enable && button.hasClass(disableClass)) {
+        button.removeClass(disableClass);
     }
 }

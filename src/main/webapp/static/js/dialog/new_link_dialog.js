@@ -21,22 +21,22 @@ function createLink(funWhenCreateLinkSuccess, funWhenCreateLinkFail) {
 
     error("", 'linkErrorMsg');
 
-    disableButton(false, 'newLinkBtn', '正在创建...');
+    disableButton(false, 'newLinkBtn', '正在创建...', "button-disable");
     $.post(
         '/blogger/' + pageOwnerBloggerId + '/link',
         {title: title, url: url, bewrite: bewrite},
         function (result) {
             if (result.code === 0) {
-                disableButton(false, 'newLinkBtn', '创建成功');
+                disableButton(false, 'newLinkBtn', '创建成功', "button-disable");
                 funWhenCreateLinkSuccess(result.data);
 
                 setTimeout(function () {
-                    disableButton(true, 'newLinkBtn', '创建');
+                    disableButton(true, 'newLinkBtn', '创建', "button-disable");
                     $('#newLinkDialog').modal('toggle');
                 }, 1000);
 
             } else {
-                disableButton(true, 'newLinkBtn', '创建');
+                disableButton(true, 'newLinkBtn', '创建', "button-disable");
                 error(result.msg, 'linkErrorMsg');
 
                 funWhenCreateLinkFail(result);

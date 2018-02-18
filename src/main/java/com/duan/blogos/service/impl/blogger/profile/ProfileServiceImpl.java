@@ -86,4 +86,9 @@ public class ProfileServiceImpl implements ProfileService {
         return profileDao.getProfileByBloggerId(bloggerId);
     }
 
+    @Override
+    public BloggerProfile getBloggerProfileByPhone(String phone) {
+        return profileDao.getProfileByPhone(phone);
+    }
+
 }

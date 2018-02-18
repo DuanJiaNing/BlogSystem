@@ -14,22 +14,22 @@ function createLabel(funWhenCreateLabelSuccess, funWhenCreateLabelFail) {
         $('#labelErrorMsg').html(' ');
     }
 
-    disableButton(false, 'newLabelBtn', '正在创建...');
+    disableButton(false, 'newLabelBtn', '正在创建...', "button-disable");
     $.post(
         '/blogger/' + pageOwnerBloggerId + '/label',
         {title: name},
         function (result) {
             if (result.code === 0) {
-                disableButton(false, 'newLabelBtn', '创建成功');
+                disableButton(false, 'newLabelBtn', '创建成功', "button-disable");
                 funWhenCreateLabelSuccess(result.data);
 
                 setTimeout(function () {
-                    disableButton(true, 'newLabelBtn', '创建');
+                    disableButton(true, 'newLabelBtn', '创建', "button-disable");
                     $('#newLabelDialog').modal('toggle');
                 }, 1000);
 
             } else {
-                disableButton(true, 'newLabelBtn', '创建');
+                disableButton(true, 'newLabelBtn', '创建', "button-disable");
                 error(result.msg, 'labelErrorMsg');
 
                 funWhenCreateLabelFail(result);

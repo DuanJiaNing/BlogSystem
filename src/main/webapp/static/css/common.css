@@ -24,12 +24,13 @@ input:-webkit-autofill {
 }
 
 .default-button-info {
-    border: solid 1px gray;
+    border: solid 1px lightgray;
     border-radius: 8px;
     background-color: transparent;
     color: dimgray;
     padding: 3px 6px;
     font-size: small;
+    outline: 0;
 }
 
 .default-button-info:hover {
@@ -176,4 +177,16 @@ h4.default-h4 {
     background-color: lightgray;
     color: dimgray;
     box-shadow: -3px 3px 10px dimgray;
+}
+
+.button-info-disable {
+    cursor: not-allowed;
+    background-color: lightgray;
+    color: dimgray;
+}
+
+.button-info-disable:hover {
+    cursor: not-allowed;
+    background-color: lightgray;
+    color: dimgray;
 }

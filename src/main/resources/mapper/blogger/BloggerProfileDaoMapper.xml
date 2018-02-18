@@ -10,6 +10,12 @@
         WHERE blogger_id = #{value}
     </select>
 
+    <select id="getProfileByPhone" resultType="BloggerProfile">
+        SELECT *
+        FROM blogger_profile
+        WHERE phone = #{value}
+    </select>
+
     <update id="update" parameterType="BloggerProfile">
         UPDATE blogger_profile
         <set>

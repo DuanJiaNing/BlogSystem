@@ -47,16 +47,16 @@ public class BloggerProfileController extends BaseBloggerController {
      */
     @RequestMapping(method = RequestMethod.POST)
     public ResultBean add(HttpServletRequest request,
-                                 @PathVariable Integer bloggerId,
-                                 @RequestParam(value = "avatarId", required = false) Integer avatarId,
-                                 @RequestParam(value = "phone", required = false) String phone,
-                                 @RequestParam(value = "email", required = false) String email,
-                                 @RequestParam(value = "aboutMe", required = false) String aboutMe,
-                                 @RequestParam(value = "intro", required = false) String intro) {
+                          @PathVariable Integer bloggerId,
+                          @RequestParam(value = "avatarId", required = false) Integer avatarId,
+                          @RequestParam(value = "phone", required = false) String phone,
+                          @RequestParam(value = "email", required = false) String email,
+                          @RequestParam(value = "aboutMe", required = false) String aboutMe,
+                          @RequestParam(value = "intro", required = false) String intro) {
         handleBloggerSignInCheck(request, bloggerId);
         handlePictureExistCheck(request, bloggerId, avatarId);
 
-        checkParams(phone, email, request);
+        handleParamsCheck(phone, email, request);
         int id = profileService.insertBloggerProfile(bloggerId, avatarId == null || avatarId <= 0 ? -1 : avatarId,
                 phone, email, aboutMe, intro);
         if (id <= 0) handlerOperateFail(request);
@@ -83,7 +83,7 @@ public class BloggerProfileController extends BaseBloggerController {
         handleBloggerSignInCheck(request, bloggerId);
         handlePictureExistCheck(request, bloggerId, avatarId);
 
-        checkParams(phone, email, request);
+        handleParamsCheck(phone, email, request);
         int av = avatarId == null || avatarId <= 0 ? -1 : avatarId;
         boolean result = profileService.updateBloggerProfile(bloggerId, av, phone, email, aboutMe, intro);
         if (!result) handlerOperateFail(request);
@@ -106,7 +106,7 @@ public class BloggerProfileController extends BaseBloggerController {
         return new ResultBean<>("");
     }
 
-    private void checkParams(String phone, String email, HttpServletRequest request) {
+    private void handleParamsCheck(String phone, String email, HttpServletRequest request) {
         RequestContext context = new RequestContext(request);
         if (phone != null && !StringUtils.isPhone(phone))
             throw exceptionManager.getParameterFormatIllegalException(context);

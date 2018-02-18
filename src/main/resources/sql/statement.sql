@@ -31,6 +31,8 @@ ALTER TABLE blog_statistics ADD UNIQUE KEY (blog_id);
 # 一个博主只能拥有一张同名的照片
 ALTER TABLE blogger_picture ADD UNIQUE KEY (blogger_id,title);
 
+# 博主的手机号唯一
+ALTER TABLE blogger_profile ADD UNIQUE KEY (phone);
 
   # ---------------------------------------------------------test
 SELECT * FROM blog;

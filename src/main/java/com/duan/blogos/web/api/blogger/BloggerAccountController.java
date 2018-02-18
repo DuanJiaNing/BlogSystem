@@ -1,6 +1,7 @@
 package com.duan.blogos.web.api.blogger;
 
 import com.duan.blogos.entity.blogger.BloggerAccount;
+import com.duan.blogos.entity.blogger.BloggerProfile;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.BloggerAccountService;
 import com.duan.blogos.util.StringUtils;
@@ -54,6 +55,22 @@ public class BloggerAccountController extends BaseBloggerController {
         handleNameCheck(request, username);
 
         BloggerAccount account = accountService.getAccount(username);
+        if (account != null) {
+            return new ResultBean(exceptionManager.getDuplicationDataException(new RequestContext(request)));
+        } else {
+            return new ResultBean<>("");
+        }
+
+    }
+
+    /**
+     * 检查电话号码是否存在
+     */
+    @RequestMapping(value = "/check=phone", method = RequestMethod.GET)
+    public ResultBean checkProfileExist(HttpServletRequest request,
+                                        @RequestParam("phone") String phone) {
+        BloggerAccount account = accountService.getAccountByPhone(phone);
+
         if (account != null) {
             return new ResultBean(exceptionManager.getDuplicationDataException(new RequestContext(request)));
         } else {

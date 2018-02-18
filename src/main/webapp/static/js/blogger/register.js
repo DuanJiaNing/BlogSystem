@@ -1,7 +1,9 @@
 function nextStep() {
     if (checkInputAccount()) {
+
         $('#nextStep').on('click', null, null, function () {
             if (checkInputProfile() && $('#nextStep').attr('disable') !== 'disable') {
+
                 $('#nextStep').css('display', 'none');
                 $('#nextStep').attr('disable', 'disable');
 
@@ -27,41 +29,42 @@ function nextStep() {
         $('#stepTitle2_').removeClass('step');
         $('#stepTitle2_').addClass('step-choose');
 
+
     }
 
 }
 
 // 为 '' 返回true
-function checkInputEmpty(id) {
+function checkInputEmptyWhenRegister(id) {
     var va = $('#' + id);
 
     if (va.val() === '') {
-        errorInfo('<small>请输入&nbsp;</small>' + va.attr('placeholder'));
+        errorInfoWhenRegister('<small>请输入&nbsp;</small>' + va.attr('placeholder'));
         return true;
     } else {
-        errorInfo('');
+        errorInfoWhenRegister('');
         return false;
     }
 }
 
 function checkInputAccount() {
-    if (checkInputEmpty('registerUserName') ||
-        checkInputEmpty('registerPassword') ||
-        checkInputEmpty('conformPassword')) {
+    if (checkInputEmptyWhenRegister('registerUserName') ||
+        checkInputEmptyWhenRegister('registerPassword') ||
+        checkInputEmptyWhenRegister('conformPassword')) {
         return false;
     }
 
     // 检查密码格式规范
     var pwd = $('#registerPassword').val();
     if (!isPassword(pwd)) {
-        errorInfo('密码格式不正确，<small>密码由 6-12 位字母和数字组成</small>');
+        errorInfoWhenRegister('密码格式不正确，<small>密码由 6-12 位字母和数字组成</small>');
         return false;
     }
 
     // 检查两次密码是否一致
     var pwdc = $('#conformPassword').val();
     if (pwd !== pwdc) {
-        errorInfo('两次密码不一致');
+        errorInfoWhenRegister('两次密码不一致');
         return false;
     }
 
@@ -71,9 +74,9 @@ function checkInputAccount() {
         async: false,
         success: function (result) {
             if (result.code === 18) {
-                errorInfo('用户名已被占用');
+                errorInfoWhenRegister('用户名已被占用');
             } else {
-                errorInfo('');
+                errorInfoWhenRegister('');
             }
         }
     });
@@ -83,31 +86,45 @@ function checkInputAccount() {
 }
 
 function checkInputProfile() {
-    if (checkInputEmpty('registerPhone') ||
-        checkInputEmpty('registerEmail') ||
-        checkInputEmpty('registerIntro') ||
-        checkInputEmpty('registerAboutMe')) {
+    if (checkInputEmptyWhenRegister('registerPhone') ||
+        checkInputEmptyWhenRegister('registerEmail') ||
+        checkInputEmptyWhenRegister('registerIntro') ||
+        checkInputEmptyWhenRegister('registerAboutMe')) {
         return false;
     }
 
     // 正则校验电话
     var phone = $('#registerPhone').val();
     if (!isPhone(phone)) {
-        errorInfo('电话号码格式不正确');
+        errorInfoWhenRegister('电话号码格式不正确');
         return false;
     }
 
     // 正则校验邮箱
     if (!isEmail($('#registerEmail').val())) {
-        errorInfo('邮箱格式不正确');
+        errorInfoWhenRegister('邮箱格式不正确');
         return false;
     }
 
-    return true;
+    //检查电话号码重复
+    $.ajax({
+        url: '/blogger/check=phone?phone=' + phone,
+        async: false,
+        success: function (result) {
+            if (result.code === 18) {
+                errorInfoWhenRegister('该手机号已经被注册');
+            } else {
+                errorInfoWhenRegister('');
+            }
+        }
+    });
+
+    if ($('#registerErrorMsg').html() === '') return true;
+    else return false;
 }
 
 
-function errorInfo(msg) {
+function errorInfoWhenRegister(msg) {
     error(msg, 'registerErrorMsg');
 }
 
@@ -153,10 +170,12 @@ function register() {
                                     location.href = '/' + userName + '/archives';
                                     return true;
                                 } else {
-                                    $('#finalInfo').html('<small> 注册成功，' + c + '秒后将进入</small><a>个人主页</a>');
+                                    info('<small> 注册成功，' + c + '秒后将进入</small><a>个人主页</a>');
                                     return false;
                                 }
                             });
+                        } else {
+                            failInfo(result.msg);
                         }
                     }, 'json'
                 )
@@ -184,19 +203,19 @@ function register() {
     }
 
     function failInfo(info) {
-        $('#finalInfo').html('&nbsp;&nbsp;<small>注册失败' + info + '</small>，<a href="/blogger/register">重试</a>');
+        $('#finalInfo').html('&nbsp;&nbsp;<small>注册失败，' + info + '</small>，<a href="/blogger/register">重试</a>');
     }
 
 }
 
 // ----------------------------- 登录对话框回调
-function funAfterLoginSuccess() {
+function funAfterLoginSuccess(result) {
     if ($('#useUserName').css('display') === 'block') {
         // 用户名登录
         location.href = '/' + $('#loginUserName').val() + '/archives';
     } else {
         // 电话验证码登录
-        // TODO
+        location.href = '/' + result.data + '/archives';
     }
 }
 
