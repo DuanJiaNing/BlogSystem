@@ -463,7 +463,7 @@ function setPageIndicator(initIndex) {
 
 // 修改头像
 function editAvatar() {
-
+    $('#editAvatarDialog').modal('show')
 }
 
 

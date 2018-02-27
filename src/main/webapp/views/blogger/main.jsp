@@ -55,6 +55,7 @@
 <jsp:include page="/views/dialog/new_label_dialog.jsp"/>
 <jsp:include page="/views/dialog/new_category_dialog.jsp"/>
 <jsp:include page="/views/dialog/new_link_dialog.jsp"/>
+<jsp:include page="/views/dialog/upload_image_dialog.jsp"/>
 
 <%--高级检索--%>
 <div class="modal fade" tabindex="-1" role="dialog" id="complexFilterDialog">
@@ -171,7 +172,7 @@
                     <c:when test="${sessionScope['bloggerId'] == pageOwnerBloggerId}">
                         <%--头像--%>
                         <div class="avatar">
-                            <a class="avatar-edit" id="editAvatar" style="display: none">点击以更换头像</a>
+                            <a class="avatar-edit" id="editAvatar" style="display: none">点击更换头像</a>
 
                             <img src="/image/${pageOwnerBloggerId}/type=public/${avatarId}"
                                  class="img-rounded avatar-img avatar-img-editable"
