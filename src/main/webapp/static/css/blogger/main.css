@@ -34,11 +34,25 @@ a {
 
 .avatar {
     text-align: center;
+    position: relative;
 }
 
 .avatar-img {
-    /*height: 160px;*/
-    width: 180px;
+    height: 130px;
+    /*width: 180px;*/
+}
+
+.avatar-img-editable:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.avatar-edit {
+    position: absolute;
+    margin-left: 4px;
+    margin-top: 4px;
+    z-index: 10;
+    color: dimgray;
 }
 
 .blogger-name {
@@ -110,20 +124,6 @@ a {
     margin-top: 16px;
     margin-bottom: 16px;
     border-top: solid 1px #d9d9d9;
-}
-
-.button-new {
-    border-radius: 5px;
-    border: solid 1px lightgray;
-    background-color: transparent;
-    color: gray;
-    padding: 0 8px;
-    font-size: small;
-}
-
-.button-new:hover {
-    background-color: gray;
-    color: white;
 }
 
 .blog-category {

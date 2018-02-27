@@ -141,7 +141,8 @@
         <div class="col-md-3">
             <br>
             <h4>
-                <small>${statistics["blogCount"]}篇博文&nbsp;&nbsp;|&nbsp;&nbsp;${statistics["wordCount"]}字&nbsp;&nbsp;|
+                <small>${statistics["blogCount"]}篇博文&nbsp;&nbsp;<span class="vertical-line">|</span>
+                    &nbsp;&nbsp;${statistics["wordCount"]}字&nbsp;&nbsp;<span class="vertical-line">|</span>
                     &nbsp;&nbsp;收获${statistics["likeCount"]}个喜欢
                 </small>
             </h4>
@@ -165,14 +166,34 @@
 
             <%--头像--%>
             <div>
-                <%--头像--%>
                 <br>
-                <div class="avatar">
-                    <img src="/images/Blue eyed_&_2e216493-5d50-4e39-8b9d-db2c2874c003.jpg"
-                         class="img-rounded avatar-img">
-                </div>
-                <%--用户名--%>
-                <p class="text-center blogger-name">${pageOwnerBloggerName}</p>
+                <c:choose>
+                    <c:when test="${sessionScope['bloggerId'] == pageOwnerBloggerId}">
+                        <%--头像--%>
+                        <div class="avatar">
+                            <a class="avatar-edit" id="editAvatar" style="display: none">点击以更换头像</a>
+
+                            <img src="/image/${pageOwnerBloggerId}/type=public/${avatarId}"
+                                 class="img-rounded avatar-img avatar-img-editable"
+                                 onmouseenter="if(isPageOwnerBloggerLogin())$('#editAvatar').show()"
+                                 onmouseleave="if(isPageOwnerBloggerLogin())$('#editAvatar').hide()"
+                                 onclick="editAvatar()">
+                        </div>
+                        <%--用户名--%>
+                        <p class="text-center blogger-name">
+                            <a>${pageOwnerBloggerName}</a>
+                        </p>
+                    </c:when>
+                    <c:otherwise>
+                        <%--头像--%>
+                        <div class="avatar">
+                            <img src="/image/${pageOwnerBloggerId}/type=public/${avatarId}"
+                                 class="img-rounded avatar-img">
+                        </div>
+                        <%--用户名--%>
+                        <p class="text-center blogger-name">${pageOwnerBloggerName}</p>
+                    </c:otherwise>
+                </c:choose>
             </div>
             <hr>
             <p class="lead blogger-aboutme">${aboutMe}</p>
@@ -180,16 +201,19 @@
             <br>
 
             <%--标签--%>
-            <div onmouseenter="if(isPageOwnerBloggerLogin())$('#labelNewBtn').show()"
-                 onmouseleave="if(isPageOwnerBloggerLogin())$('#labelNewBtn').hide()">
+            <div onmouseenter="if(isPageOwnerBloggerLogin()){$('#labelNewBtn').fadeToggle('fast','linear');$('#labelEditBtn').fadeToggle('fast','linear')}"
+                 onmouseleave="if(isPageOwnerBloggerLogin()){$('#labelNewBtn').fadeToggle('fast','linear');$('#labelEditBtn').fadeToggle('fast','linear')}">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <h4 class="default-h4"><b>标签</b></h4>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <br>
-                        <a class="button-new" id="labelNewBtn" style="display: none"
-                           data-target="#newLabelDialog" data-toggle="modal">新建</a>
+                        <span class="button-edit" style="display: none" id="labelEditBtn"
+                              data-target="#newLabelDialog" data-toggle="modal">编辑</span>
+
+                        <span class="button-edit-new" style="display: none" id="labelNewBtn"
+                              data-target="#newLabelDialog" data-toggle="modal">新建</span>
                     </div>
                 </div>
                 <hr class="default-line">
@@ -199,16 +223,17 @@
             <br>
 
             <%--创建的类别--%>
-            <div onmouseenter="if(isPageOwnerBloggerLogin())$('#categoryNewBtn').show()"
-                 onmouseleave="if(isPageOwnerBloggerLogin())$('#categoryNewBtn').hide()">
+            <div onmouseenter="if(isPageOwnerBloggerLogin())$('#categoryNewBtn').fadeToggle('fast','linear')"
+                 onmouseleave="if(isPageOwnerBloggerLogin())$('#categoryNewBtn').fadeToggle('fast','linear')">
                 <div class="row">
                     <div class="col-md-8">
                         <h4 class="default-h4"><b>类别</b></h4>
                     </div>
                     <div class="col-md-4">
                         <br>
-                        <a class="button-new" id="categoryNewBtn" style="display: none" data-target="#newCategoryDialog"
-                           data-toggle="modal">新建</a>
+                        <span class="button-edit-new" id="categoryNewBtn" style="display: none"
+                              data-target="#newCategoryDialog"
+                              data-toggle="modal">新建</span>
                     </div>
                 </div>
                 <hr class="default-line">
@@ -218,15 +243,18 @@
             <br>
 
             <%--联系我--%>
-            <div onmouseenter="if(isPageOwnerBloggerLogin())$('#linkNewBtn').show()"
-                 onmouseleave="if(isPageOwnerBloggerLogin())$('#linkNewBtn').hide()">
+            <div onmouseenter="if(isPageOwnerBloggerLogin()){$('#linkNewBtn').fadeToggle('fast','linear');$('#linkEditBtn').fadeToggle('fast','linear')}"
+                 onmouseleave="if(isPageOwnerBloggerLogin()){$('#linkNewBtn').fadeToggle('fast','linear');$('#linkEditBtn').fadeToggle('fast','linear')}">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <h4 class="default-h4"><b>联系我</b></h4></div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <br>
-                        <a class="button-new" id="linkNewBtn" style="display: none"
-                           data-target="#newLinkDialog" data-toggle="modal">新建</a>
+                        <span class="button-edit" id="linkEditBtn" style="display: none"
+                              data-target="#newLinkDialog" data-toggle="modal">编辑</span>
+
+                        <span class="button-edit-new" id="linkNewBtn" style="display: none"
+                              data-target="#newLinkDialog" data-toggle="modal">新建</span>
                     </div>
                 </div>
                 <hr class="default-line">

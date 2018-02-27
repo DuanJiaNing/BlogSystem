@@ -52,8 +52,12 @@ function loadCategory() {
 
                 for (var index in array) {
                     var ca = array[index];
-                    html += '<a class="list-group-item blogger-category" onclick="filterBlogByCategory(' + ca.id + ')">'
-                        + ca.title + '<span class="count">&nbsp;(' + ca.count + ')</span> </a>'
+                    html += '<a class="list-group-item blogger-category" ' +
+                        'onclick="filterBlogByCategory(' + ca.id + ')"' +
+                        'onmouseenter="if(isPageOwnerBloggerLogin()) $(this).find(\'.badge\').fadeToggle(\'fast\',\'linear\');"' +
+                        'onmouseleave="if(isPageOwnerBloggerLogin()) $(this).find(\'.badge\').fadeToggle(\'fast\',\'linear\');">'
+                        + ca.title + '<span class="count">&nbsp;(' + ca.count + ')</span>' +
+                        '<span class="badge button-edit" style="display: none" onclick="editCategory()">编辑</span></a>'
                 }
             }
 
@@ -66,6 +70,10 @@ function loadCategory() {
 
         }, 'json'
     )
+}
+
+function editCategory() {
+    alert('dsaf');
 }
 
 function loadContact() {
@@ -326,10 +334,22 @@ function setBlogs(array, defaulz) {
                 labels += '<small title="标签" class="blog-link" onclick="filterBlogByLabel(' + lb.id + ')">#' + lb.title + '</small>&nbsp;&nbsp;';
             }
 
-            html += '<li class="list-group-item blog-list-item">' +
+            html += '<li ' +
+                'onmouseenter="if(isPageOwnerBloggerLogin()) $(this).find(\'.col-md-5 > p\').fadeToggle(\'fast\',\'linear\')" ' +
+                'onmouseleave="if(isPageOwnerBloggerLogin()) $(this).find(\'.col-md-5 > p\').fadeToggle(\'fast\',\'linear\')" class="list-group-item blog-list-item">' +
+                '<div class="row">' +
+                '<div class="col-md-7">' +
                 '<p>' +
-                '<h3 class="list-group-item-heading" ><span class="blog-list-item-title">' + item.title +
-                '</span></h3></p>' +
+                '<h3 class="list-group-item-heading"><span class="blog-list-item-title">' + item.title + '</span></h3>' +
+                '</p>' +
+                '</div>' +
+                '<div class="col-md-5">' +
+                '<p style="display: none;" class="text-right">' +
+                '<span class="button-edit">编辑</span>&nbsp;&nbsp;<span class="button-edit-check">数据</span>&nbsp;&nbsp;<span class="button-edit-delete">删除</span>' +
+                '</p>' +
+                '</div>' +
+                '</div>' +
+
                 '<h4>' +
                 '<small class="list-group-item-text"><b>' + dateFormat(item.releaseDate) + '</b>&nbsp;&nbsp;' +
                 item.collectCount + '收藏&nbsp;&nbsp;' + item.viewCount + '浏览&nbsp;&nbsp;' + item.likeCount + '喜欢&nbsp;&nbsp;' + item.commentCount + '评论' +
@@ -440,6 +460,12 @@ function setPageIndicator(initIndex) {
     );
 
 }
+
+// 修改头像
+function editAvatar() {
+
+}
+
 
 $(document).ready(function () {
     // 加载初始博文列表

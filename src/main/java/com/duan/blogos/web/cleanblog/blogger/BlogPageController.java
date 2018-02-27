@@ -3,10 +3,12 @@ package com.duan.blogos.web.cleanblog.blogger;
 import com.duan.blogos.dto.blogger.BloggerStatisticsDTO;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerProfile;
+import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.manager.properties.BloggerProperties;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.BloggerAccountService;
 import com.duan.blogos.service.blogger.BloggerStatisticsService;
+import com.duan.blogos.service.blogger.profile.GalleryService;
 import com.duan.blogos.service.blogger.profile.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 /**
  * Created on 2018/2/5.
@@ -34,6 +37,9 @@ public class BlogPageController {
 
     @Autowired
     private BloggerStatisticsService statisticsService;
+
+    @Autowired
+    private GalleryService galleryService;
 
     @Autowired
     private BloggerProperties bloggerProperties;
@@ -57,6 +63,11 @@ public class BlogPageController {
         BloggerProfile profile = profileService.getBloggerProfile(id);
         mv.addObject("blogName", profile.getIntro());
         mv.addObject("aboutMe", profile.getAboutMe());
+        mv.addObject("avatarId",
+                Optional.ofNullable(profile.getAvatarId())
+                        .orElse(galleryService
+                                .getDefaultPicture(BloggerPictureCategoryEnum.DEFAULT_BLOGGER_AVATAR)
+                                .getId()));
 
         ResultBean<BloggerStatisticsDTO> statistics = statisticsService.getBloggerStatistics(account.getId());
         mv.addObject("statistics", statistics.getData());

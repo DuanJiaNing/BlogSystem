@@ -190,3 +190,72 @@ h4.default-h4 {
     background-color: lightgray;
     color: dimgray;
 }
+
+.vertical-line {
+    color: lightgray;
+}
+
+/*---------------------------------------------button-edit*/
+.button-edit-new {
+    border-radius: 10px;
+    border: solid 1px limegreen;
+    background-color: transparent;
+    color: green;
+    margin: 0 auto;
+    padding: 2px 8px;
+    opacity: 0.7;
+    font-size: small;
+}
+
+.button-edit-new:hover {
+    background-color: green;
+    color: white;
+}
+
+.button-edit {
+    border-radius: 10px;
+    border: solid 1px lightgray;
+    background-color: transparent;
+    color: gray;
+    margin: 0 auto;
+    padding: 2px 8px;
+    opacity: 0.7;
+    font-size: small;
+}
+
+.button-edit:hover {
+    background-color: gray;
+    color: white;
+}
+
+.button-edit-delete {
+    border-radius: 10px;
+    border: solid 1px palevioletred;
+    background-color: transparent;
+    color: red;
+    margin: 0 auto;
+    padding: 2px 8px;
+    opacity: 0.7;
+    font-size: small;
+}
+
+.button-edit-delete:hover {
+    background-color: red;
+    color: white;
+}
+
+.button-edit-check {
+    border-radius: 10px;
+    border: solid 1px deepskyblue;
+    background-color: transparent;
+    color: dodgerblue;
+    margin: 0 auto;
+    padding: 2px 8px;
+    opacity: 0.7;
+    font-size: small;
+}
+
+.button-edit-check:hover {
+    background-color: dodgerblue;
+    color: white;
+}
