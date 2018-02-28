@@ -17,11 +17,16 @@ a {
 
 .blog-list-item-title {
     color: dodgerblue;
-    padding-bottom: 2px;
+    padding-left: 3px;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
 }
 
 .blog-list-item-title:hover {
-    border-bottom: solid 2px blue;
+    border-left: solid 2px blue;
     color: blue;
     cursor: pointer;
 }
@@ -30,6 +35,11 @@ a {
     font-size: 1.1em;
     padding-top: 10px;
     line-height: 23px;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
 }
 
 .avatar {
@@ -128,7 +138,8 @@ a {
 
 .blog-category {
     border-radius: 10px;
-    padding: 0 5px;
+    padding: 2px 8px;
+    font-size: x-small;
     border: solid 1px orangered;
     cursor: pointer;
     color: orangered;
@@ -145,6 +156,7 @@ a {
 
 .blog-link {
     color: gray;
+    font-size: x-small;
     cursor: pointer;
 }
 

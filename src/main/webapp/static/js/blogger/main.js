@@ -179,6 +179,9 @@ function setComplexFilterLabel(array) {
     for (var index in array) {
         var item = array[index];
         html += '<span class="blog-filter-default" onclick="toggleLabelClass(this)" key="' + item.id + '">' + item.title + '</span>&nbsp;&nbsp;';
+        if (index % 5 === 0) {
+            html += '<br>';
+        }
     }
 
     if (html === '') {
@@ -196,6 +199,9 @@ function setComplexFilterCategory(array) {
     for (var index in array) {
         var item = array[index];
         html += '<span class="blog-filter-default" onclick="toggleCategoryClass(this)" key="' + item.id + '">' + item.title + '</span>&nbsp;&nbsp;';
+        if (index % 4 === 0) {
+            html += '<br>';
+        }
     }
 
     if (html === '') {
@@ -323,27 +329,27 @@ function setBlogs(array, defaulz) {
             var cate = item.categories;
             for (var i in cate) {
                 var c = cate[i];
-                cates += '<small class="blog-category" onclick="filterBlogByCategory(' + c.id + ')" ' +
-                    'data-toggle="tooltip" title="' + c.bewrite + '" data-placement="bottom">' + c.title + '</small>&nbsp;&nbsp;';
+                cates += '<span class="blog-category" onclick="filterBlogByCategory(' + c.id + ')" ' +
+                    'data-toggle="tooltip" title="' + c.bewrite + '" data-placement="bottom">' + c.title + '</span>&nbsp;&nbsp;';
             }
 
             var labels = '';
             var label = item.labels;
             for (var l in label) {
                 var lb = label[l];
-                labels += '<small title="标签" class="blog-link" onclick="filterBlogByLabel(' + lb.id + ')">#' + lb.title + '</small>&nbsp;&nbsp;';
+                labels += '<span title="标签" class="blog-link" onclick="filterBlogByLabel(' + lb.id + ')">#' + lb.title + '</span>&nbsp;&nbsp;';
             }
 
             html += '<li ' +
-                'onmouseenter="if(isPageOwnerBloggerLogin()) $(this).find(\'.col-md-5 > p\').fadeToggle(\'fast\',\'linear\')" ' +
-                'onmouseleave="if(isPageOwnerBloggerLogin()) $(this).find(\'.col-md-5 > p\').fadeToggle(\'fast\',\'linear\')" class="list-group-item blog-list-item">' +
+                'onmouseenter="if(isPageOwnerBloggerLogin()) $(this).find(\'.col-md-3 > p\').fadeToggle(\'fast\',\'linear\')" ' +
+                'onmouseleave="if(isPageOwnerBloggerLogin()) $(this).find(\'.col-md-3 > p\').fadeToggle(\'fast\',\'linear\')" class="list-group-item blog-list-item">' +
                 '<div class="row">' +
-                '<div class="col-md-7">' +
+                '<div class="col-md-9">' +
                 '<p>' +
-                '<h3 class="list-group-item-heading"><span class="blog-list-item-title">' + item.title + '</span></h3>' +
+                '<h3 class="list-group-item-heading"><span class="blog-list-item-title" title="' + item.title + '">' + item.title + '</span></h3>' +
                 '</p>' +
                 '</div>' +
-                '<div class="col-md-5">' +
+                '<div class="col-md-3">' +
                 '<p style="display: none;" class="text-right">' +
                 '<span class="button-edit">编辑</span>&nbsp;&nbsp;<span class="button-edit-check">数据</span>&nbsp;&nbsp;<span class="button-edit-delete">删除</span>' +
                 '</p>' +

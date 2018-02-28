@@ -21,6 +21,9 @@ import java.util.List;
 
 /**
  * Created on 2018/2/4.
+ * <p>
+ * 1. 检索指定博主的博文列表
+ * 2. 获得博文主体内容
  *
  * @author DuanJiaNing
  */

@@ -75,12 +75,12 @@
 
                     <div class="form-group">
                         <label>限定类别</label><br>
-                        <p id="complexFilterCategory"></p><br>
+                        <p id="complexFilterCategory" style="line-height: 28px"></p><br>
                     </div>
 
                     <div class="form-group">
                         <label>限定标签</label><br>
-                        <p id="complexFilterLabel"></p><br>
+                        <p id="complexFilterLabel" style="line-height: 28px"></p><br>
                     </div>
 
                     <div class="form-group">

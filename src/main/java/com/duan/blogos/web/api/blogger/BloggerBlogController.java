@@ -56,7 +56,7 @@ public class BloggerBlogController extends BaseBloggerController {
         if (StringUtils.isEmpty_(title) || StringUtils.isEmpty_(content) || StringUtils.isEmpty_(summary))
             throw exceptionManager.getParameterIllegalException(new RequestContext(request));
 
-        handleBloggerSignInCheck(request, bloggerId);
+//        handleBloggerSignInCheck(request, bloggerId);
         handleBlogContentCheck(request, title, content, summary, keyWords);
 
         String sp = websiteProperties.getUrlConditionSplitCharacter();
