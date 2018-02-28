@@ -2,12 +2,10 @@ package com.duan.blogos.web.api.common;
 
 import com.duan.blogos.entity.blog.BlogLabel;
 import com.duan.blogos.restful.ResultBean;
-import com.duan.blogos.service.blog.BlogLabelService;
-import com.duan.blogos.util.StringUtils;
+import com.duan.blogos.service.blogger.BloggerLabelService;
 import com.duan.blogos.web.api.BaseCheckController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.RequestContext;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -30,7 +28,7 @@ import java.util.List;
 public class LabelController extends BaseCheckController {
 
     @Autowired
-    private BlogLabelService blogLabelService;
+    private BloggerLabelService bloggerLabelService;
 
     /**
      * 查看所有标签
@@ -42,7 +40,7 @@ public class LabelController extends BaseCheckController {
 
         int os = offset == null || offset < 0 ? 0 : offset;
         int rs = rows == null || rows < 0 ? 10 : rows;
-        ResultBean<List<BlogLabel>> resultBean = blogLabelService.listLabel(os, rs);
+        ResultBean<List<BlogLabel>> resultBean = bloggerLabelService.listLabel(os, rs);
         if (resultBean == null) handlerEmptyResult(request);
 
         return resultBean;
@@ -55,7 +53,7 @@ public class LabelController extends BaseCheckController {
     @RequestMapping(value = "/{labelId}", method = RequestMethod.GET)
     public ResultBean<BlogLabel> getLabel(HttpServletRequest request, @PathVariable("labelId") Integer labelId) {
 
-        BlogLabel label = blogLabelService.getLabel(labelId);
+        BlogLabel label = bloggerLabelService.getLabel(labelId);
         if (label == null) handlerEmptyResult(request);
 
         return new ResultBean<>(label);

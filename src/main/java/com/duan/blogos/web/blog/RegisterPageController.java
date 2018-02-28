@@ -1,4 +1,4 @@
-package com.duan.blogos.web.cleanblog.blogger;
+package com.duan.blogos.web.blog;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,4 +1,4 @@
-package com.duan.blogos.service.blogger.blog;
+package com.duan.blogos.service.blogger;
 
 import com.duan.blogos.dto.blogger.BlogListItemDTO;
 import com.duan.blogos.entity.blog.Blog;
@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author DuanJiaNing
  */
-public interface BlogService extends BlogFilter<ResultBean<List<BlogListItemDTO>>> {
+public interface BloggerBlogService extends BlogFilter<ResultBean<List<BlogListItemDTO>>> {
 
     /**
      * 1 新增博客

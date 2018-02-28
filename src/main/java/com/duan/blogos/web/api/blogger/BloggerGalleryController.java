@@ -4,7 +4,7 @@ import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.manager.validate.BloggerValidateManager;
 import com.duan.blogos.restful.ResultBean;
-import com.duan.blogos.service.blogger.profile.GalleryService;
+import com.duan.blogos.service.blogger.BloggerPictureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.RequestContext;
@@ -30,7 +30,7 @@ import static com.duan.blogos.enums.BloggerPictureCategoryEnum.DEFAULT_PICTURE;
 public class BloggerGalleryController extends BaseBloggerController {
 
     @Autowired
-    private GalleryService galleryService;
+    private BloggerPictureService bloggerPictureService;
 
     @Autowired
     private BloggerValidateManager validateManager;
@@ -47,7 +47,7 @@ public class BloggerGalleryController extends BaseBloggerController {
         RequestContext context = new RequestContext(request);
         if (pictureId <= 0) throw exceptionManager.getParameterIllegalException(context);
 
-        BloggerPicture picture = galleryService.getPicture(pictureId, bloggerId);
+        BloggerPicture picture = bloggerPictureService.getPicture(pictureId, bloggerId);
         if (picture == null) handlerEmptyResult(request);
 
         String url = stringConstructorManager.constructPictureUrl(picture, DEFAULT_PICTURE);
@@ -84,7 +84,7 @@ public class BloggerGalleryController extends BaseBloggerController {
         int os = offset == null || offset < 0 ? 0 : offset;
         int rs = rows == null || rows < 0 ? bloggerProperties.getRequestBloggerPictureCount() : rows;
 
-        ResultBean<List<BloggerPicture>> result = galleryService.listBloggerPicture(bloggerId,
+        ResultBean<List<BloggerPicture>> result = bloggerPictureService.listBloggerPicture(bloggerId,
                 cate == -1 ? null : BloggerPictureCategoryEnum.valueOf(cate), os, rs);
         if (result == null) handlerEmptyResult(request);
 
@@ -111,7 +111,7 @@ public class BloggerGalleryController extends BaseBloggerController {
         RequestContext context = new RequestContext(request);
 
         // 检查博主是否有指定图片
-        BloggerPicture picture = galleryService.getPicture(pictureId);
+        BloggerPicture picture = bloggerPictureService.getPicture(pictureId);
         if (picture == null || !bloggerId.equals(picture.getBloggerId())) {
             throw exceptionManager.getParameterIllegalException(context);
         }
@@ -133,7 +133,7 @@ public class BloggerGalleryController extends BaseBloggerController {
                 throw exceptionManager.getUnauthorizedException(context);
         }
 
-        boolean result = galleryService.updatePicture(pictureId,
+        boolean result = bloggerPictureService.updatePicture(pictureId,
                 newCategory == null ? null : BloggerPictureCategoryEnum.valueOf(newCategory), newBeWrite, newTitle);
         if (!result) handlerOperateFail(request);
 
@@ -150,7 +150,7 @@ public class BloggerGalleryController extends BaseBloggerController {
                              @PathVariable("pictureId") Integer pictureId) {
         handleBloggerSignInCheck(request, bloggerId);
 
-        BloggerPicture picture = galleryService.getPicture(pictureId, bloggerId);
+        BloggerPicture picture = bloggerPictureService.getPicture(pictureId, bloggerId);
         if (picture == null) {
             throw exceptionManager.getUnknownPictureException(new RequestContext(request));
         }
@@ -159,7 +159,7 @@ public class BloggerGalleryController extends BaseBloggerController {
         if (!validateManager.checkBloggerPictureLegal(bloggerId, picture.getCategory()))
             throw exceptionManager.getUnauthorizedException(new RequestContext(request));
 
-        boolean succ = galleryService.deletePicture(bloggerId, picture.getId(), true);
+        boolean succ = bloggerPictureService.deletePicture(bloggerId, picture.getId(), true);
         if (!succ) handlerOperateFail(request);
 
         return new ResultBean<>("");

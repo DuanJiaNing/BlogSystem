@@ -1,4 +1,4 @@
-package com.duan.blogos.service.blogger.blog;
+package com.duan.blogos.service.blogger;
 
 import com.duan.blogos.dto.blogger.BloggerCategoryDTO;
 import com.duan.blogos.restful.ResultBean;
@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author DuanJiaNing
  */
-public interface CategoryService {
+public interface BloggerCategoryService {
 
     /**
      * 获取博主创建的博文类别，按时间倒序排序

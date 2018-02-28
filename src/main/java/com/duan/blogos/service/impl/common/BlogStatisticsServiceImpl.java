@@ -1,4 +1,4 @@
-package com.duan.blogos.service.impl.blog;
+package com.duan.blogos.service.impl.common;
 
 import com.duan.blogos.dao.blog.*;
 import com.duan.blogos.dao.blogger.BloggerAccountDao;
@@ -16,7 +16,7 @@ import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.manager.properties.DbProperties;
 import com.duan.blogos.manager.StringConstructorManager;
 import com.duan.blogos.restful.ResultBean;
-import com.duan.blogos.service.blog.BlogStatisticsService;
+import com.duan.blogos.service.common.BlogStatisticsService;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

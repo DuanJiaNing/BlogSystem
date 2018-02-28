@@ -1,10 +1,10 @@
-package com.duan.blogos.service.impl.blog;
+package com.duan.blogos.service.impl.common;
 
 import com.duan.blogos.common.Order;
 import com.duan.blogos.common.Rule;
 import com.duan.blogos.dto.blog.BlogSortRuleDTO;
 import com.duan.blogos.restful.ResultBean;
-import com.duan.blogos.service.blog.BlogSortRuleService;
+import com.duan.blogos.service.common.BlogSortRuleService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

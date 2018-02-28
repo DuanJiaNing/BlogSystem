@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 
 /**
  * Created on 2017/12/26.
- * 博文喜欢表
+ * 博文喜欢记录
  *
  * @author DuanJiaNing
  */

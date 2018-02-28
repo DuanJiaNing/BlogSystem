@@ -2,7 +2,7 @@ package com.duan.blogos.web.api.blogger;
 
 import com.duan.blogos.dto.blogger.BloggerCategoryDTO;
 import com.duan.blogos.restful.ResultBean;
-import com.duan.blogos.service.blogger.blog.CategoryService;
+import com.duan.blogos.service.blogger.BloggerCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +28,7 @@ import java.util.List;
 public class BloggerBlogCategoryController extends BaseBloggerController {
 
     @Autowired
-    private CategoryService categoryService;
+    private BloggerCategoryService bloggerCategoryService;
 
     /**
      * 查看所有类别
@@ -42,7 +42,7 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
 
         int os = offset == null || offset < 0 ? 0 : offset;
         int rs = rows == null || rows < 0 ? bloggerProperties.getRequestBloggerBlogCategoryCount() : rows;
-        ResultBean<List<BloggerCategoryDTO>> result = categoryService.listBlogCategory(bloggerId, os, rs);
+        ResultBean<List<BloggerCategoryDTO>> result = bloggerCategoryService.listBlogCategory(bloggerId, os, rs);
         if (result == null) handlerEmptyResult(request);
 
         return result;
@@ -59,7 +59,7 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
         handleAccountCheck(request, bloggerId);
         handleCategoryExistCheck(request, bloggerId, categoryId);
 
-        BloggerCategoryDTO dto = categoryService.getCategory(bloggerId, categoryId);
+        BloggerCategoryDTO dto = bloggerCategoryService.getCategory(bloggerId, categoryId);
         if (dto == null) handlerOperateFail(request);
 
         return new ResultBean<>(dto);
@@ -83,7 +83,7 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
         if (StringUtils.isEmpty(title))
             throw exceptionManager.getParameterIllegalException(new RequestContext(request));
 
-        int id = categoryService.insertBlogCategory(bloggerId, iconId == null ? -1 : iconId, title, bewrite);
+        int id = bloggerCategoryService.insertBlogCategory(bloggerId, iconId == null ? -1 : iconId, title, bewrite);
         if (id < 0) handlerOperateFail(request);
 
         return new ResultBean<>(id);
@@ -105,7 +105,7 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
         handleCategoryExistCheck(request, bloggerId, categoryId);
         handlePictureExistCheck(request, bloggerId, newIconId);
 
-        if (!categoryService.updateBlogCategory(bloggerId, categoryId, newIconId, newTitle, newBewrite))
+        if (!bloggerCategoryService.updateBlogCategory(bloggerId, categoryId, newIconId, newTitle, newBewrite))
             handlerOperateFail(request);
 
         return new ResultBean<>("");
@@ -143,7 +143,7 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
             cate = newCategoryId;
         }
 
-        if (!categoryService.deleteCategoryAndMoveBlogsTo(bloggerId, categoryId, cate))
+        if (!bloggerCategoryService.deleteCategoryAndMoveBlogsTo(bloggerId, categoryId, cate))
             handlerOperateFail(request);
 
         return new ResultBean<>("");

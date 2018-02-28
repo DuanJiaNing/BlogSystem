@@ -1,4 +1,4 @@
-package com.duan.blogos.web.cleanblog.blogger;
+package com.duan.blogos.web.blog;
 
 import com.duan.blogos.dto.blogger.BloggerStatisticsDTO;
 import com.duan.blogos.entity.blogger.BloggerAccount;
@@ -8,16 +8,14 @@ import com.duan.blogos.manager.properties.BloggerProperties;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.BloggerAccountService;
 import com.duan.blogos.service.blogger.BloggerStatisticsService;
-import com.duan.blogos.service.blogger.profile.GalleryService;
-import com.duan.blogos.service.blogger.profile.ProfileService;
+import com.duan.blogos.service.blogger.BloggerPictureService;
+import com.duan.blogos.service.blogger.BloggerProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 /**
@@ -33,13 +31,13 @@ public class BlogPageController {
     private BloggerAccountService accountService;
 
     @Autowired
-    private ProfileService profileService;
+    private BloggerProfileService bloggerProfileService;
 
     @Autowired
     private BloggerStatisticsService statisticsService;
 
     @Autowired
-    private GalleryService galleryService;
+    private BloggerPictureService bloggerPictureService;
 
     @Autowired
     private BloggerProperties bloggerProperties;
@@ -60,12 +58,12 @@ public class BlogPageController {
         mv.addObject(bloggerProperties.getNameOfPageOwnerBloggerName(), account.getUsername());
 
         int id = account.getId();
-        BloggerProfile profile = profileService.getBloggerProfile(id);
+        BloggerProfile profile = bloggerProfileService.getBloggerProfile(id);
         mv.addObject("blogName", profile.getIntro());
         mv.addObject("aboutMe", profile.getAboutMe());
         mv.addObject("avatarId",
                 Optional.ofNullable(profile.getAvatarId())
-                        .orElse(galleryService
+                        .orElse(bloggerPictureService
                                 .getDefaultPicture(BloggerPictureCategoryEnum.DEFAULT_BLOGGER_AVATAR)
                                 .getId()));
 

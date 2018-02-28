@@ -1,16 +1,11 @@
 package com.duan.blogos.web.api.audience;
 
 import com.duan.blogos.BaseTest;
-import com.duan.blogos.enums.BlogStatusEnum;
-import com.duan.blogos.service.blogger.blog.BlogService;
-import com.duan.blogos.util.ArrayUtils;
 import com.duan.blogos.util.DataProvider;
 import com.duan.blogos.util.StringUtils;
 import com.duan.blogos.web.api.blogger.BloggerBlogController;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import static org.junit.Assert.*;
 
 /**
  * Created on 2017/12/22.

@@ -1,4 +1,4 @@
-package com.duan.blogos.service.impl.blogger.profile;
+package com.duan.blogos.service.impl.blogger;
 
 import com.duan.blogos.dao.blogger.BloggerLinkDao;
 import com.duan.blogos.dao.blogger.BloggerPictureDao;
@@ -10,7 +10,7 @@ import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.manager.ImageManager;
 import com.duan.blogos.manager.StringConstructorManager;
 import com.duan.blogos.restful.ResultBean;
-import com.duan.blogos.service.blogger.profile.LinkService;
+import com.duan.blogos.service.blogger.BloggerLinkService;
 import com.duan.blogos.util.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,7 @@ import static com.duan.blogos.enums.BloggerPictureCategoryEnum.DEFAULT_BLOGGER_L
  * @author DuanJiaNing
  */
 @Service
-public class LinkServiceImpl implements LinkService {
+public class BloggerLinkServiceImpl implements BloggerLinkService {
 
     @Autowired
     private BloggerLinkDao linkDao;

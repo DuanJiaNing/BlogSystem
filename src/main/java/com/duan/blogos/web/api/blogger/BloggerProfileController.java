@@ -2,7 +2,7 @@ package com.duan.blogos.web.api.blogger;
 
 import com.duan.blogos.entity.blogger.BloggerProfile;
 import com.duan.blogos.restful.ResultBean;
-import com.duan.blogos.service.blogger.profile.ProfileService;
+import com.duan.blogos.service.blogger.BloggerProfileService;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 public class BloggerProfileController extends BaseBloggerController {
 
     @Autowired
-    private ProfileService profileService;
+    private BloggerProfileService bloggerProfileService;
 
     /**
      * 获取资料
@@ -36,7 +36,7 @@ public class BloggerProfileController extends BaseBloggerController {
                                           @PathVariable Integer bloggerId) {
         handleAccountCheck(request, bloggerId);
 
-        BloggerProfile profile = profileService.getBloggerProfile(bloggerId);
+        BloggerProfile profile = bloggerProfileService.getBloggerProfile(bloggerId);
         if (profile == null) handlerEmptyResult(request);
 
         return new ResultBean<>(profile);
@@ -57,7 +57,7 @@ public class BloggerProfileController extends BaseBloggerController {
         handlePictureExistCheck(request, bloggerId, avatarId);
 
         handleParamsCheck(phone, email, request);
-        int id = profileService.insertBloggerProfile(bloggerId, avatarId == null || avatarId <= 0 ? -1 : avatarId,
+        int id = bloggerProfileService.insertBloggerProfile(bloggerId, avatarId == null || avatarId <= 0 ? -1 : avatarId,
                 phone, email, aboutMe, intro);
         if (id <= 0) handlerOperateFail(request);
 
@@ -85,7 +85,7 @@ public class BloggerProfileController extends BaseBloggerController {
 
         handleParamsCheck(phone, email, request);
         int av = avatarId == null || avatarId <= 0 ? -1 : avatarId;
-        boolean result = profileService.updateBloggerProfile(bloggerId, av, phone, email, aboutMe, intro);
+        boolean result = bloggerProfileService.updateBloggerProfile(bloggerId, av, phone, email, aboutMe, intro);
         if (!result) handlerOperateFail(request);
 
         return new ResultBean<>("");
@@ -100,7 +100,7 @@ public class BloggerProfileController extends BaseBloggerController {
                              @PathVariable Integer bloggerId) {
         handleBloggerSignInCheck(request, bloggerId);
 
-        boolean result = profileService.deleteBloggerProfile(bloggerId);
+        boolean result = bloggerProfileService.deleteBloggerProfile(bloggerId);
         if (!result) handlerOperateFail(request);
 
         return new ResultBean<>("");

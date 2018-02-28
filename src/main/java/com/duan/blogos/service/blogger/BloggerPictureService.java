@@ -1,4 +1,4 @@
-package com.duan.blogos.service.blogger.profile;
+package com.duan.blogos.service.blogger;
 
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
@@ -21,7 +21,7 @@ import java.util.List;
  *
  * @author DuanJiaNing
  */
-public interface GalleryService {
+public interface BloggerPictureService {
 
     /**
      * 数据库中新增图片记录

@@ -2,7 +2,7 @@ package com.duan.blogos.web.api.blogger;
 
 import com.duan.blogos.entity.blog.BlogLabel;
 import com.duan.blogos.restful.ResultBean;
-import com.duan.blogos.service.blog.BlogLabelService;
+import com.duan.blogos.service.blogger.BloggerLabelService;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +29,7 @@ import java.util.List;
 public class BloggerLabelController extends BaseBloggerController {
 
     @Autowired
-    private BlogLabelService blogLabelService;
+    private BloggerLabelService bloggerLabelService;
 
 
     /**
@@ -44,7 +44,7 @@ public class BloggerLabelController extends BaseBloggerController {
 
         int os = offset == null || offset < 0 ? 0 : offset;
         int rs = rows == null || rows < 0 ? bloggerProperties.getRequestBloggerBlogLabelCount() : rows;
-        ResultBean<List<BlogLabel>> result = blogLabelService.listLabelByBlogger(bloggerId, os, rs);
+        ResultBean<List<BlogLabel>> result = bloggerLabelService.listLabelByBlogger(bloggerId, os, rs);
         if (result == null) handlerEmptyResult(request);
 
         return result;
@@ -61,7 +61,7 @@ public class BloggerLabelController extends BaseBloggerController {
         handleBloggerSignInCheck(request, bloggerId);
         handleTitleCheck(title, request);
 
-        int id = blogLabelService.insertLabel(bloggerId, title);
+        int id = bloggerLabelService.insertLabel(bloggerId, title);
         if (id < 0) handlerOperateFail(request);
 
         return new ResultBean<>(id);
@@ -78,7 +78,7 @@ public class BloggerLabelController extends BaseBloggerController {
         handleBloggerSignInCheck(request, bloggerId);
         handleTitleCheck(newTitle, request);
 
-        boolean result = blogLabelService.updateLabel(labelId, bloggerId, newTitle);
+        boolean result = bloggerLabelService.updateLabel(labelId, bloggerId, newTitle);
         if (!result) handlerOperateFail(request);
 
         return new ResultBean<>("");
@@ -94,7 +94,7 @@ public class BloggerLabelController extends BaseBloggerController {
         handleAccountCheck(request, bloggerId);
         handleBloggerSignInCheck(request, bloggerId);
 
-        boolean result = blogLabelService.deleteLabel(bloggerId, labelId);
+        boolean result = bloggerLabelService.deleteLabel(bloggerId, labelId);
         if (!result) handlerOperateFail(request);
 
         return new ResultBean<>("");

@@ -1,4 +1,4 @@
-package com.duan.blogos.service.blogger.profile;
+package com.duan.blogos.service.blogger;
 
 import com.duan.blogos.dto.blogger.BloggerLinkDTO;
 import com.duan.blogos.restful.ResultBean;
@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author DuanJiaNing
  */
-public interface LinkService {
+public interface BloggerLinkService {
 
     /**
      * 获取友情链接，自动按优先级从高到底排序

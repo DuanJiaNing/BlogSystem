@@ -1,4 +1,4 @@
-package com.duan.blogos.service.blogger.profile;
+package com.duan.blogos.service.blogger;
 
 import com.duan.blogos.entity.blogger.BloggerProfile;
 
@@ -8,7 +8,7 @@ import com.duan.blogos.entity.blogger.BloggerProfile;
  *
  * @author DuanJiaNing
  */
-public interface ProfileService {
+public interface BloggerProfileService {
 
     /**
      * 新增博主资料

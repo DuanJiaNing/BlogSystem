@@ -1,4 +1,4 @@
-package com.duan.blogos.service.impl.blogger.blog;
+package com.duan.blogos.service.impl.blogger;
 
 import com.duan.blogos.dao.blog.BlogCategoryDao;
 import com.duan.blogos.dao.blog.BlogDao;
@@ -13,7 +13,7 @@ import com.duan.blogos.manager.*;
 import com.duan.blogos.manager.properties.BloggerProperties;
 import com.duan.blogos.manager.properties.DbProperties;
 import com.duan.blogos.restful.ResultBean;
-import com.duan.blogos.service.blogger.blog.CategoryService;
+import com.duan.blogos.service.blogger.BloggerCategoryService;
 import com.duan.blogos.util.ArrayUtils;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
@@ -31,7 +31,7 @@ import static com.duan.blogos.enums.BloggerPictureCategoryEnum.DEFAULT_BLOGGER_B
  * @author DuanJiaNing
  */
 @Service
-public class CategoryServiceImpl implements CategoryService {
+public class BloggerCategoryServiceImpl implements BloggerCategoryService {
 
     @Autowired
     private BlogCategoryDao categoryDao;

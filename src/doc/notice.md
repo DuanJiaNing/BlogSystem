@@ -23,4 +23,4 @@
 
 ## 难点<br>
 - 数据库操作可以自动回滚，但磁盘操作无法自动回滚
-com.duan.blogos.service.impl.blogger.profile.GalleryServiceImpl#insertPicture
+com.duan.blogos.service.impl.blogger.GalleryServiceImpl#insertPicture

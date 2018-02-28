@@ -3,7 +3,7 @@ package com.duan.blogos.web.api.blog;
 import com.duan.blogos.dto.blog.BlogStatisticsCountDTO;
 import com.duan.blogos.dto.blog.BlogStatisticsDTO;
 import com.duan.blogos.restful.ResultBean;
-import com.duan.blogos.service.blog.BlogStatisticsService;
+import com.duan.blogos.service.common.BlogStatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

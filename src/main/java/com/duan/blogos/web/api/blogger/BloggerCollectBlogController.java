@@ -5,7 +5,7 @@ import com.duan.blogos.common.Rule;
 import com.duan.blogos.dto.blogger.CollectBlogListItemDTO;
 import com.duan.blogos.common.BlogSortRule;
 import com.duan.blogos.restful.ResultBean;
-import com.duan.blogos.service.blogger.profile.CollectBlogService;
+import com.duan.blogos.service.blogger.BloggerCollectBlogService;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +29,7 @@ import java.util.List;
 public class BloggerCollectBlogController extends BaseBloggerController {
 
     @Autowired
-    private CollectBlogService collectBlogService;
+    private BloggerCollectBlogService bloggerCollectBlogService;
 
     /**
      * 收藏博文清单
@@ -54,7 +54,7 @@ public class BloggerCollectBlogController extends BaseBloggerController {
         int rs = rows == null || rows < 0 ? bloggerProperties.getRequestBloggerCollectCount() : rows;
 
         // 查询数据
-        ResultBean<List<CollectBlogListItemDTO>> result = collectBlogService.listCollectBlog(bloggerId,
+        ResultBean<List<CollectBlogListItemDTO>> result = bloggerCollectBlogService.listCollectBlog(bloggerId,
                 bloggerProperties.getDefaultBlogCollectCategory(), os, rs,
                 BlogSortRule.valueOf(sor, ord));
         if (result == null) handlerEmptyResult(request);
@@ -77,7 +77,7 @@ public class BloggerCollectBlogController extends BaseBloggerController {
             throw exceptionManager.getParameterIllegalException(new RequestContext(request));
         }
 
-        boolean result = collectBlogService.updateCollect(bloggerId, blogId, newReason, -1);
+        boolean result = bloggerCollectBlogService.updateCollect(bloggerId, blogId, newReason, -1);
         if (!result) handlerOperateFail(request);
 
         return new ResultBean<>("");

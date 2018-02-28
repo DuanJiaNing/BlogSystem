@@ -1,4 +1,4 @@
-package com.duan.blogos.service.blogger.profile;
+package com.duan.blogos.service.blogger;
 
 import com.duan.blogos.dto.blogger.CollectBlogListItemDTO;
 import com.duan.blogos.common.BlogSortRule;
@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author DuanJiaNing
  */
-public interface CollectBlogService {
+public interface BloggerCollectBlogService {
 
     /**
      * 获得博主收藏的博文清单

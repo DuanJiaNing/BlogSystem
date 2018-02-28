@@ -1,4 +1,4 @@
-package com.duan.blogos.service.impl.blogger.profile;
+package com.duan.blogos.service.impl.blogger;
 
 import com.duan.blogos.dao.blog.*;
 import com.duan.blogos.dao.blogger.BloggerAccountDao;
@@ -16,7 +16,7 @@ import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.manager.properties.DbProperties;
 import com.duan.blogos.manager.comparator.BlogListItemComparatorFactory;
 import com.duan.blogos.restful.ResultBean;
-import com.duan.blogos.service.blogger.profile.CollectBlogService;
+import com.duan.blogos.service.blogger.BloggerCollectBlogService;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ import java.util.Map;
  * @author DuanJiaNing
  */
 @Service
-public class CollectBlogServiceImpl implements CollectBlogService {
+public class BloggerCollectBlogServiceImpl implements BloggerCollectBlogService {
 
     @Autowired
     private BlogCollectDao collectDao;

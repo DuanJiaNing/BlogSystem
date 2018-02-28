@@ -1,10 +1,10 @@
-package com.duan.blogos.service.impl.blogger.profile;
+package com.duan.blogos.service.impl.blogger;
 
 import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.dao.blogger.BloggerProfileDao;
 import com.duan.blogos.entity.blogger.BloggerProfile;
 import com.duan.blogos.manager.ImageManager;
-import com.duan.blogos.service.blogger.profile.ProfileService;
+import com.duan.blogos.service.blogger.BloggerProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * @author DuanJiaNing
  */
 @Service
-public class ProfileServiceImpl implements ProfileService {
+public class BloggerProfileServiceImpl implements BloggerProfileService {
 
     @Autowired
     private BloggerProfileDao profileDao;

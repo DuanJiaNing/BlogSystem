@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 /**
  * Created on 2017/12/12.
+ * 博主个人信息
  *
  * @author DuanJiaNing
  */

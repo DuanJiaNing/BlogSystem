@@ -1,4 +1,4 @@
-package com.duan.blogos.service.impl.blogger.profile;
+package com.duan.blogos.service.impl.blogger;
 
 import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.entity.blogger.BloggerPicture;
@@ -7,7 +7,7 @@ import com.duan.blogos.exception.internal.InternalIOException;
 import com.duan.blogos.manager.properties.BloggerProperties;
 import com.duan.blogos.manager.ImageManager;
 import com.duan.blogos.restful.ResultBean;
-import com.duan.blogos.service.blogger.profile.GalleryService;
+import com.duan.blogos.service.blogger.BloggerPictureService;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.ImageUtils;
 import com.duan.blogos.util.StringUtils;
@@ -24,7 +24,7 @@ import java.util.List;
  * @author DuanJiaNing
  */
 @Service
-public class GalleryServiceImpl implements GalleryService {
+public class BloggerPictureServiceImpl implements BloggerPictureService {
 
     @Autowired
     private BloggerPictureDao pictureDao;

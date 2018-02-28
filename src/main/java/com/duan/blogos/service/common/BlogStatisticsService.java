@@ -1,4 +1,4 @@
-package com.duan.blogos.service.blog;
+package com.duan.blogos.service.common;
 
 import com.duan.blogos.dto.blog.BlogStatisticsCountDTO;
 import com.duan.blogos.dto.blog.BlogStatisticsDTO;

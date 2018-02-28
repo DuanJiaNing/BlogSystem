@@ -4,7 +4,7 @@ import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.manager.validate.BloggerValidateManager;
 import com.duan.blogos.restful.ResultBean;
-import com.duan.blogos.service.blogger.profile.GalleryService;
+import com.duan.blogos.service.blogger.BloggerPictureService;
 import com.duan.blogos.util.ImageUtils;
 import com.duan.blogos.web.api.BaseCheckController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ import java.io.IOException;
 public class ImageController extends BaseCheckController {
 
     @Autowired
-    private GalleryService galleryService;
+    private BloggerPictureService bloggerPictureService;
 
     @Autowired
     private BloggerValidateManager validateManager;
@@ -58,13 +58,13 @@ public class ImageController extends BaseCheckController {
         if (category != null)
             handleBlogCategoryDefaultCheck(request, category);
 
-        BloggerPicture picture = galleryService.getPicture(imageId, bloggerId);
+        BloggerPicture picture = bloggerPictureService.getPicture(imageId, bloggerId);
 
         // 如果图片是私有的，不能访问
         if (picture != null && picture.getCategory().equals(BloggerPictureCategoryEnum.PRIVATE.getCode()))
             throw exceptionManager.getUnauthorizedException(new RequestContext(request));
 
-        BloggerPicture backupPicture = galleryService.getDefaultPicture(
+        BloggerPicture backupPicture = bloggerPictureService.getDefaultPicture(
                 category == null ? BloggerPictureCategoryEnum.DEFAULT_PICTURE
                         : BloggerPictureCategoryEnum.valueOf(category)); //如果目标图片不存在，返回指定类别的默认图片
 
@@ -88,8 +88,8 @@ public class ImageController extends BaseCheckController {
         if (category != null)
             handleBlogCategoryDefaultCheck(request, category);
 
-        BloggerPicture picture = galleryService.getPicture(imageId, bloggerId);
-        BloggerPicture backupPicture = galleryService.getDefaultPicture(
+        BloggerPicture picture = bloggerPictureService.getPicture(imageId, bloggerId);
+        BloggerPicture backupPicture = bloggerPictureService.getDefaultPicture(
                 category == null ? BloggerPictureCategoryEnum.DEFAULT_PICTURE
                         : BloggerPictureCategoryEnum.valueOf(category)); //如果目标图片不存在，返回指定类别的默认图片
 
@@ -123,7 +123,7 @@ public class ImageController extends BaseCheckController {
                 throw exceptionManager.getUnauthorizedException(new RequestContext(request));
             }
 
-            id = galleryService.insertPicture(file, bloggerId, bewrite, BloggerPictureCategoryEnum.valueOf(cate),
+            id = bloggerPictureService.insertPicture(file, bloggerId, bewrite, BloggerPictureCategoryEnum.valueOf(cate),
                     title);
             if (id <= 0) handlerOperateFail(request);
         }

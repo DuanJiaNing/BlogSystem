@@ -6,7 +6,7 @@ import com.duan.blogos.dao.blog.BlogStatisticsDao;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.enums.BlogStatusEnum;
-import com.duan.blogos.service.blogger.blog.BlogService;
+import com.duan.blogos.service.blogger.BloggerBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +23,7 @@ import java.util.List;
 public class BlogValidateManager {
 
     @Autowired
-    private BlogService blogService;
+    private BloggerBlogService bloggerBlogService;
 
     @Autowired
     private BlogDao blogDao;
@@ -41,7 +41,7 @@ public class BlogValidateManager {
      * @return 博文存在返回true
      */
     public boolean checkBlogExist(int blogId) {
-        return blogId > 0 && blogService.getBlogForCheckExist(blogId);
+        return blogId > 0 && bloggerBlogService.getBlogForCheckExist(blogId);
     }
 
     /**

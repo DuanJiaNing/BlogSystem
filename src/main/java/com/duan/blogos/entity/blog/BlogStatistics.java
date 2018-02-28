@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 
 /**
  * Created on 2017/12/14.
+ * 博文统计信息
  *
  * @author DuanJiaNing
  */

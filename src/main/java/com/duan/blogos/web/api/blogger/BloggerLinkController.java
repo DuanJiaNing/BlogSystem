@@ -2,7 +2,7 @@ package com.duan.blogos.web.api.blogger;
 
 import com.duan.blogos.dto.blogger.BloggerLinkDTO;
 import com.duan.blogos.restful.ResultBean;
-import com.duan.blogos.service.blogger.profile.LinkService;
+import com.duan.blogos.service.blogger.BloggerLinkService;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +27,7 @@ import java.util.List;
 public class BloggerLinkController extends BaseBloggerController {
 
     @Autowired
-    private LinkService linkService;
+    private BloggerLinkService bloggerLinkService;
 
     /**
      * 获取链接
@@ -42,7 +42,7 @@ public class BloggerLinkController extends BaseBloggerController {
 
         int os = offset == null || offset < 0 ? 0 : offset;
         int rs = rows == null || rows < 0 ? bloggerProperties.getRequestBloggerLinkCount() : rows;
-        ResultBean<List<BloggerLinkDTO>> result = linkService.listBloggerLink(bloggerId, os, rs);
+        ResultBean<List<BloggerLinkDTO>> result = bloggerLinkService.listBloggerLink(bloggerId, os, rs);
         if (result == null) handlerEmptyResult(request);
 
         return result;
@@ -65,7 +65,7 @@ public class BloggerLinkController extends BaseBloggerController {
         if (StringUtils.isEmpty(title) || !StringUtils.isURL(url))
             throw exceptionManager.getParameterIllegalException(new RequestContext(request));
 
-        int id = linkService.insertBloggerLink(bloggerId, iconId == null ? -1 : iconId, title, url, bewrite);
+        int id = bloggerLinkService.insertBloggerLink(bloggerId, iconId == null ? -1 : iconId, title, url, bewrite);
         if (id <= 0) handlerOperateFail(request);
 
         return new ResultBean<>(id);
@@ -98,7 +98,7 @@ public class BloggerLinkController extends BaseBloggerController {
             throw exceptionManager.getParameterIllegalException(context);
         }
 
-        boolean result = linkService.updateBloggerLink(linkId, newIconId == null ? -1 : newIconId, newTitle, newUrl, newBewrite);
+        boolean result = bloggerLinkService.updateBloggerLink(linkId, newIconId == null ? -1 : newIconId, newTitle, newUrl, newBewrite);
         if (!result) handlerOperateFail(request);
 
         return new ResultBean<>("");
@@ -115,7 +115,7 @@ public class BloggerLinkController extends BaseBloggerController {
         RequestContext context = new RequestContext(request);
         checkLinkExist(linkId, context);
 
-        boolean result = linkService.deleteBloggerLink(linkId);
+        boolean result = bloggerLinkService.deleteBloggerLink(linkId);
         if (!result) handlerOperateFail(request);
 
         return new ResultBean<>("");
@@ -124,7 +124,7 @@ public class BloggerLinkController extends BaseBloggerController {
 
     //检查链接是否存在
     private void checkLinkExist(Integer linkId, RequestContext context) {
-        if (linkId == null || linkId <= 0 || !linkService.getLinkForCheckExist(linkId)) {
+        if (linkId == null || linkId <= 0 || !bloggerLinkService.getLinkForCheckExist(linkId)) {
             throw exceptionManager.getUnknownLinkException(context);
         }
     }

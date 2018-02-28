@@ -2,7 +2,7 @@ package com.duan.blogos.web.api.common;
 
 import com.duan.blogos.dto.blog.BlogSortRuleDTO;
 import com.duan.blogos.restful.ResultBean;
-import com.duan.blogos.service.blog.BlogSortRuleService;
+import com.duan.blogos.service.common.BlogSortRuleService;
 import com.duan.blogos.web.api.BaseCheckController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

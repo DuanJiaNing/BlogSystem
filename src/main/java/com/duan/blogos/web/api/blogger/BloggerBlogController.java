@@ -7,7 +7,7 @@ import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.common.BlogSortRule;
 import com.duan.blogos.restful.ResultBean;
-import com.duan.blogos.service.blogger.blog.BlogService;
+import com.duan.blogos.service.blogger.BloggerBlogService;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ import java.util.stream.Stream;
 public class BloggerBlogController extends BaseBloggerController {
 
     @Autowired
-    private BlogService blogService;
+    private BloggerBlogService bloggerBlogService;
 
     /**
      * 新增博文
@@ -68,7 +68,7 @@ public class BloggerBlogController extends BaseBloggerController {
 
         String[] kw = StringUtils.stringArrayToArray(keyWords, sp);
         // UPDATE: 2018/1/16 更新 博文审核
-        int id = blogService.insertBlog(bloggerId, cids, lids, BlogStatusEnum.PUBLIC, title, content, summary, kw);
+        int id = bloggerBlogService.insertBlog(bloggerId, cids, lids, BlogStatusEnum.PUBLIC, title, content, summary, kw);
         if (id <= 0) handlerOperateFail(request);
 
         return new ResultBean<>(id);
@@ -109,7 +109,7 @@ public class BloggerBlogController extends BaseBloggerController {
         BlogSortRule rule = new BlogSortRule(Rule.valueOf(sor), Order.valueOf(ord));
         int os = offset == null || offset < 0 ? 0 : offset;
         int rs = rows == null || rows < 0 ? bloggerProperties.getRequestBlogListCount() : rows;
-        ResultBean<List<BlogListItemDTO>> listResultBean = blogService.listFilterAll(cids, lids, keyWord, bloggerId,
+        ResultBean<List<BlogListItemDTO>> listResultBean = bloggerBlogService.listFilterAll(cids, lids, keyWord, bloggerId,
                 os, rs, rule, stat);
         if (listResultBean == null) handlerEmptyResult(request);
 
@@ -125,7 +125,7 @@ public class BloggerBlogController extends BaseBloggerController {
                                 @PathVariable Integer blogId) {
         handleBloggerSignInCheck(request, bloggerId);
 
-        ResultBean<Blog> blog = blogService.getBlog(bloggerId, blogId);
+        ResultBean<Blog> blog = bloggerBlogService.getBlog(bloggerId, blogId);
         if (blog == null) handlerEmptyResult(request);
 
         return blog;
@@ -170,7 +170,7 @@ public class BloggerBlogController extends BaseBloggerController {
         BlogStatusEnum stat = newStatus == null ? null : BlogStatusEnum.valueOf(newStatus);
 
         //执行更新
-        if (!blogService.updateBlog(bloggerId, blogId, cids, lids, stat, newTitle, newContent, newSummary, kw))
+        if (!bloggerBlogService.updateBlog(bloggerId, blogId, cids, lids, stat, newTitle, newContent, newSummary, kw))
             handlerOperateFail(request);
 
         return new ResultBean<>("");
@@ -187,7 +187,7 @@ public class BloggerBlogController extends BaseBloggerController {
         handleBloggerSignInCheck(request, bloggerId);
         handleBlogExistAndCreatorCheck(request, bloggerId, blogId);
 
-        if (!blogService.deleteBlog(bloggerId, blogId))
+        if (!bloggerBlogService.deleteBlog(bloggerId, blogId))
             handlerOperateFail(request);
 
         return new ResultBean<>("");
@@ -212,7 +212,7 @@ public class BloggerBlogController extends BaseBloggerController {
             handleBlogExistAndCreatorCheck(request, bloggerId, id);
         }
 
-        if (!blogService.deleteBlogPatch(bloggerId, blogIds))
+        if (!bloggerBlogService.deleteBlogPatch(bloggerId, blogIds))
             handlerOperateFail(request);
 
         return new ResultBean<>("");

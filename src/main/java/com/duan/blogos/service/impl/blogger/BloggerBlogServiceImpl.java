@@ -1,4 +1,4 @@
-package com.duan.blogos.service.impl.blogger.blog;
+package com.duan.blogos.service.impl.blogger;
 
 import com.duan.blogos.dao.blog.BlogCategoryDao;
 import com.duan.blogos.dao.blog.BlogStatisticsDao;
@@ -16,7 +16,7 @@ import com.duan.blogos.manager.ImageManager;
 import com.duan.blogos.manager.properties.WebsiteProperties;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.BlogFilterAbstract;
-import com.duan.blogos.service.blogger.blog.BlogService;
+import com.duan.blogos.service.blogger.BloggerBlogService;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,7 @@ import java.util.stream.IntStream;
  * @author DuanJiaNing
  */
 @Service
-public class BlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogListItemDTO>>> implements BlogService {
+public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<BlogListItemDTO>>> implements BloggerBlogService {
 
     @Autowired
     private BlogStatisticsDao statisticsDao;
