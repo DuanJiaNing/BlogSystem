@@ -10,16 +10,16 @@ function createLink(funWhenCreateLinkSuccess, funWhenCreateLinkFail) {
     var bewrite = $('#linkBewrite').val();
 
     if (isStrEmpty(title)) {
-        error("名称不能为空", 'linkErrorMsg');
+        error("名称不能为空", 'linkErrorMsg', true);
         return;
     }
 
     if (isStrEmpty(url) || !isUrl(url)) {
-        error("url不正确", 'linkErrorMsg');
+        error("url不正确", 'linkErrorMsg', true);
         return;
     }
 
-    error("", 'linkErrorMsg');
+    error("", 'linkErrorMsg', true);
 
     disableButton(false, 'newLinkBtn', '正在创建...', "button-disable");
     $.post(
@@ -37,7 +37,7 @@ function createLink(funWhenCreateLinkSuccess, funWhenCreateLinkFail) {
 
             } else {
                 disableButton(true, 'newLinkBtn', '创建', "button-disable");
-                error(result.msg, 'linkErrorMsg');
+                error(result.msg, 'linkErrorMsg', true);
 
                 funWhenCreateLinkFail(result);
             }

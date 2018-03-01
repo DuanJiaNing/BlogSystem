@@ -9,7 +9,6 @@
 <html>
 <head>
     <title>新建类别</title>
-    <script type="application/javascript" src="/js/dialog/new_category_dialog.js"></script>
 
 </head>
 <body>
@@ -51,5 +50,6 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<script type="application/javascript" src="/js/dialog/new_category_dialog.js"></script>
 </body>
 </html>

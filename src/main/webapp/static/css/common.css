@@ -52,7 +52,7 @@ input:-webkit-autofill {
 
 .button-success {
     outline: none;
-    background-color: green;
+    background-color: #00aa00;
     color: white;
     padding: 8px 40px;
     border: 0;
@@ -167,16 +167,18 @@ h4.default-h4 {
 
 .button-disable:hover {
     cursor: not-allowed;
-    background-color: lightgray;
-    color: dimgray;
-    box-shadow: -3px 3px 10px dimgray;
+    /*background-color: lightgray;*/
+    /*color: dimgray;*/
+    box-shadow: 0 0 0;
+    opacity: 0.6;
 }
 
 .button-disable {
     cursor: not-allowed;
-    background-color: lightgray;
-    color: dimgray;
-    box-shadow: -3px 3px 10px dimgray;
+    /*background-color: lightgray;*/
+    /*color: dimgray;*/
+    box-shadow: 0 0 0;
+    opacity: 0.6;
 }
 
 .button-info-disable {
@@ -258,4 +260,20 @@ h4.default-h4 {
 .button-edit-check:hover {
     background-color: dodgerblue;
     color: white;
+}
+
+.button-operation {
+    border: solid 1px lightgray;
+    background-color: #efefef;
+    color: dimgray;
+    padding: 5px 16px;
+    cursor: pointer;
+    outline: none;
+    font-weight: normal;
+}
+
+.button-operation:hover {
+    border: solid 1px gray;
+    background-color: lightgray;
+    padding: 5px 16px;
 }

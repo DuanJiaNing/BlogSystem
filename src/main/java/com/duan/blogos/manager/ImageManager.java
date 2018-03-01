@@ -50,6 +50,9 @@ public class ImageManager {
         String type = ImageUtils.getImageType(file);
         if (type == null) return null;
 
+        // 二进制数据流的情况
+        if (type.equals("octet-stream")) type = ImageUtils.getImageMimeType(file.getOriginalFilename());
+
         BloggerAccount account = accountDao.getAccountById(bloggerId);
         String dirPath = constructorManager.constructImageDirPath(account.getUsername(),
                 BloggerPictureCategoryEnum.valueOf(category).name());

@@ -9,7 +9,6 @@
 <html>
 <head>
     <title>提示</title>
-    <script type="application/javascript" src="/js/dialog/toast_dialog.js"></script>
 
 </head>
 <body>
@@ -30,6 +29,8 @@
         </div>
     </div>
 </div>
+
+<script type="application/javascript" src="/js/dialog/toast_dialog.js"></script>
 
 </body>
 </html>

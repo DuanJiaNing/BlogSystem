@@ -111,7 +111,7 @@ public class ImageController extends BaseCheckController {
         handleBloggerSignInCheck(request, bloggerId);
 
         MultipartFile file = request.getFile("image");// 与页面input的name相同
-        int id = -1;
+        int id;
         if (ImageUtils.isImageFile(file)) {
 
             // 默认上传到私有目录
@@ -126,6 +126,8 @@ public class ImageController extends BaseCheckController {
             id = bloggerPictureService.insertPicture(file, bloggerId, bewrite, BloggerPictureCategoryEnum.valueOf(cate),
                     title);
             if (id <= 0) handlerOperateFail(request);
+        } else {
+            return new ResultBean(exceptionManager.getPictureFormatErrorException(new RequestContext(request)));
         }
 
         return new ResultBean<>(id);

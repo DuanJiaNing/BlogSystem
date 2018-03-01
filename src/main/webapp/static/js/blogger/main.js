@@ -330,7 +330,11 @@ function setBlogs(array, defaulz) {
             for (var i in cate) {
                 var c = cate[i];
                 cates += '<span class="blog-category" onclick="filterBlogByCategory(' + c.id + ')" ' +
-                    'data-toggle="tooltip" title="' + c.bewrite + '" data-placement="bottom">' + c.title + '</span>&nbsp;&nbsp;';
+                    'data-toggle="tooltip" data-placement="bottom"';
+                if (!isStrEmpty_(c.bewrite))
+                    cates += ' title="' + c.bewrite + '"';
+
+                cates += '>' + c.title + '</span>&nbsp;&nbsp;';
             }
 
             var labels = '';

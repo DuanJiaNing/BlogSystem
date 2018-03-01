@@ -8,7 +8,7 @@ function createLabel(funWhenCreateLabelSuccess, funWhenCreateLabelFail) {
 
     // 需要common.js
     if (isStrEmpty(name)) {
-        error('标签名称不能为空', 'labelErrorMsg');
+        error('标签名称不能为空', 'labelErrorMsg', true);
         return;
     } else {
         $('#labelErrorMsg').html(' ');
@@ -30,7 +30,7 @@ function createLabel(funWhenCreateLabelSuccess, funWhenCreateLabelFail) {
 
             } else {
                 disableButton(true, 'newLabelBtn', '创建', "button-disable");
-                error(result.msg, 'labelErrorMsg');
+                error(result.msg, 'labelErrorMsg', true);
 
                 funWhenCreateLabelFail(result);
             }

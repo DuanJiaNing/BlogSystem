@@ -25,9 +25,6 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
-    <script type="application/javascript" src="/js/common.js"></script>
-    <script type="application/javascript" src="/js/blogger/register.js"></script>
-
     <title>注册</title>
 </head>
 <body>
@@ -74,12 +71,9 @@
                 <div id="inputAccount">
 
                     <form>
-                        <input type="text" id="registerUserName" placeholder="用户名" class="form-input"
-                               onblur="checkInputEmpty('registerUserName')"><br><br><br>
-                        <input type="password" class="form-input" id="registerPassword" placeholder="密码"
-                               onblur="checkInputEmpty('registerPassword')"><br><br><br>
-                        <input type="password" class="form-input" id="conformPassword" placeholder="确认密码"
-                               onblur="checkInputEmpty('conformPassword')">
+                        <input type="text" id="registerUserName" placeholder="用户名" class="form-input"><br><br><br>
+                        <input type="password" class="form-input" id="registerPassword" placeholder="密码"><br><br><br>
+                        <input type="password" class="form-input" id="conformPassword" placeholder="确认密码">
                     </form>
 
                 </div>
@@ -87,14 +81,10 @@
                 <div id="inputProfile" style="display: none;">
 
                     <form>
-                        <input type="text" id="registerPhone" placeholder="电话" class="form-input"
-                               onblur="checkInputEmpty('registerPhone')"><br><br><br>
-                        <input type="email" class="form-input" id="registerEmail" placeholder="email"
-                               onblur="checkInputEmpty('registerEmail')"><br><br><br>
-                        <input type="text" class="form-input" id="registerIntro" placeholder="博客标题"
-                               onblur="checkInputEmpty('registerIntro')"><br><br><br>
-                        <textarea class="default-textarea" id="registerAboutMe" placeholder="博主自述"
-                                  onblur="checkInputEmpty('registerAboutMe')"></textarea>
+                        <input type="text" id="registerPhone" placeholder="电话" class="form-input"><br><br><br>
+                        <input type="email" class="form-input" id="registerEmail" placeholder="email"><br><br><br>
+                        <input type="text" class="form-input" id="registerIntro" placeholder="博客标题"><br><br><br>
+                        <textarea class="default-textarea" id="registerAboutMe" placeholder="博主自述"></textarea>
                     </form>
 
                 </div>
@@ -130,6 +120,9 @@
         </div>
     </div>
 </div>
+
+<script type="application/javascript" src="/js/common.js"></script>
+<script type="application/javascript" src="/js/blogger/register.js"></script>
 
 </body>
 </html>

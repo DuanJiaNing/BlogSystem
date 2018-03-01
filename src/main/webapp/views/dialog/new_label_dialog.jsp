@@ -9,7 +9,6 @@
 <html>
 <head>
     <title>新建标签</title>
-    <script type="application/javascript" src="/js/dialog/new_label_dialog.js"></script>
 
 </head>
 <body>
@@ -42,6 +41,8 @@
         </div>
     </div>
 </div>
+
+<script type="application/javascript" src="/js/dialog/new_label_dialog.js"></script>
 
 </body>
 </html>

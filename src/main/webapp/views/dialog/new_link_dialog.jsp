@@ -9,7 +9,6 @@
 <html>
 <head>
     <title>新建标签</title>
-    <script type="application/javascript" src="/js/dialog/new_link_dialog.js"></script>
 
 </head>
 <body>
@@ -56,6 +55,8 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<script type="application/javascript" src="/js/dialog/new_link_dialog.js"></script>
 
 </body>
 </html>

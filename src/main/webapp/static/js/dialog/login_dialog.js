@@ -188,5 +188,5 @@ function checkInputEmptyWhenLogin(id) {
 }
 
 function errorInfoWhenLogin(msg) {
-    error(msg, 'loginErrorMsg');
+    error(msg, 'loginErrorMsg', true);
 }

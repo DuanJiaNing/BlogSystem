@@ -8,7 +8,7 @@ function createCategory(funWhenCreateCategorySuccess, funWhenCreateCategoryFail)
     var bewrite = $('#categoryBewrite').val();
 
     if (isStrEmpty(title)) {
-        error('类别名称不能为空', 'categoryErrorMsg');
+        error('类别名称不能为空', 'categoryErrorMsg', true);
         return;
     } else {
         $('#categoryErrorMsg').html(' ');
@@ -29,7 +29,7 @@ function createCategory(funWhenCreateCategorySuccess, funWhenCreateCategoryFail)
                 }, 1000);
 
             } else {
-                error(result.msg, 'categoryErrorMsg');
+                error(result.msg, 'categoryErrorMsg', true);
                 disableButton(true, 'newCategoryBtn', '创建', "button-disable");
 
                 funWhenCreateCategoryFail(result);

@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/paging.css">
 
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 要在最前面引入-->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/core.js"></script>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
@@ -31,21 +31,6 @@
 
     <title>博主首页</title>
 
-    <script type="application/javascript">
-        var pageOwnerBloggerId = ${pageOwnerBloggerId};
-        var pageOwnerBloggerName = '${pageOwnerBloggerName}';
-        var bloggerLoginSignal = ${not empty sessionScope['bloggerLoginSignal']};
-        var blogCount = ${statistics["blogCount"]};
-        <c:if test="${not empty sessionScope['bloggerLoginSignal']}">
-        var loginBloggerId = ${sessionScope["bloggerId"]};
-        </c:if>
-
-    </script>
-
-    <script type="application/javascript" src="/js/paging.js"></script>
-    <script type="application/javascript" src="/js/common.js"></script>
-    <script type="application/javascript" src="/js/blogger/main.js"></script>
-
 </head>
 <body>
 
@@ -55,7 +40,7 @@
 <jsp:include page="/views/dialog/new_label_dialog.jsp"/>
 <jsp:include page="/views/dialog/new_category_dialog.jsp"/>
 <jsp:include page="/views/dialog/new_link_dialog.jsp"/>
-<jsp:include page="/views/dialog/upload_image_dialog.jsp"/>
+<jsp:include page="/views/dialog/upload_avatar_dialog.jsp"/>
 
 <%--高级检索--%>
 <div class="modal fade" tabindex="-1" role="dialog" id="complexFilterDialog">
@@ -175,7 +160,8 @@
                             <a class="avatar-edit" id="editAvatar" style="display: none">点击更换头像</a>
 
                             <img src="/image/${pageOwnerBloggerId}/type=public/${avatarId}"
-                                 class="img-rounded avatar-img avatar-img-editable"
+                                 class="img-circle avatar-img avatar-img-editable"
+                                 id="bloggerAvatar"
                                  onmouseenter="if(isPageOwnerBloggerLogin())$('#editAvatar').show()"
                                  onmouseleave="if(isPageOwnerBloggerLogin())$('#editAvatar').hide()"
                                  onclick="editAvatar()">
@@ -271,5 +257,21 @@
 <br>
 <br>
 <jsp:include page="/views/footer.jsp"/>
+
+<script type="application/javascript">
+    var pageOwnerBloggerId = ${pageOwnerBloggerId};
+    var pageOwnerBloggerName = '${pageOwnerBloggerName}';
+    var bloggerLoginSignal = ${not empty sessionScope['bloggerLoginSignal']};
+    var blogCount = ${statistics["blogCount"]};
+    <c:if test="${not empty sessionScope['bloggerLoginSignal']}">
+    var loginBloggerId = ${sessionScope["bloggerId"]};
+    </c:if>
+
+</script>
+
+<script type="application/javascript" src="/js/paging.js"></script>
+<script type="application/javascript" src="/js/common.js"></script>
+<script type="application/javascript" src="/js/blogger/main.js"></script>
+
 </body>
 </html>

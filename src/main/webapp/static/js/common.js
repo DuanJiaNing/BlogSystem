@@ -8,6 +8,15 @@ function isStrEmpty(str) {
 }
 
 /**
+ * 判断字符串是否为空
+ * @param str 字符串
+ * @returns {boolean} 为 null,undefined,'null'或 ''时返回true
+ */
+function isStrEmpty_(str) {
+    return str == null || str === undefined || str === '' || str === 'null';
+}
+
+/**
  * 判断字符串是否为url
  * @param url 字符串
  * @returns {boolean} 是返回true
@@ -113,8 +122,9 @@ function countDown(count, cir, callback) {
  * 在指定id处显示错误信息（有闪动效果）
  * @param msg 错误信息
  * @param id id
+ * @param disappear 1s 后错误信息消失
  */
-function error(msg, id) {
+function error(msg, id, disappear) {
     var dom = $('#' + id);
     dom.html(msg);
     dom.css('background-color', 'red');
@@ -128,7 +138,15 @@ function error(msg, id) {
         dom.css('color', 'red');
         dom.css('padding', '4px 8px');
     };
+
     setTimeout(s, 200);
+
+    var f = function () {
+        dom.html('');
+    };
+
+    if (disappear)
+        setTimeout(f, 1000);
 }
 
 /**

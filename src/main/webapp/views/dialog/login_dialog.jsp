@@ -11,7 +11,6 @@
     <title>登录</title>
 
     <link rel="stylesheet" href="/css/dialog/login_dialog.css">
-    <script type="application/javascript" src="/js/dialog/login_dialog.js"></script>
 
 </head>
 <body>
@@ -31,17 +30,17 @@
                     <div class="col-md-2"></div>
                     <div class="col-md-8">
                         <p class="text-center lead">
-                            <small class="dialog-sign-in-indicator" id="loginByName"
+                            <small class="dialog-sign-in-indicator" style="font-weight: bold" id="loginByName"
                                    onclick="showNameDiv()"
                             >用户名登录
                             </small>&nbsp;&nbsp;|&nbsp;&nbsp;<small
-                                class="dialog-sign-in-indicator" style="font-weight: bold" id="loginByPhone"
+                                class="dialog-sign-in-indicator" id="loginByPhone"
                                 onclick="showPhoneDiv()">
                             手机验证码登录
                         </small>
                         </p>
 
-                        <div id="useUserName" style="display: none;">
+                        <div id="useUserName">
                             <div class="form-group">
                                 <label>用户名</label><br>
                                 <input type="text" id="loginUserName" placeholder="用户名" class="form-input">
@@ -52,7 +51,7 @@
                             </div>
                         </div>
 
-                        <div id="useUserPhone">
+                        <div id="useUserPhone" style="display: none;">
                             <div class="form-group">
                                 <label>电话</label><br>
                                 <input type="number" class="form-input" id="loginPhone" placeholder="电话号码">
@@ -91,6 +90,8 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<script type="application/javascript" src="/js/dialog/login_dialog.js"></script>
 
 </body>
 </html>

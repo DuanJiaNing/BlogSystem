@@ -109,4 +109,7 @@ public class ExceptionManager {
         return new LoginFailException(context.getMessage(passwordIncorrect ? "blogger.passwordIncorrect" : "blogger.unknownAccount"));
     }
 
+    public BaseRuntimeException getPictureFormatErrorException(RequestContext context) {
+        return new PictureFormatErrorException(context.getMessage("common.pictureFormatError"));
+    }
 }
