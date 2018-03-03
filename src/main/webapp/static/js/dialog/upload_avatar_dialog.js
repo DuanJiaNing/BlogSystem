@@ -68,37 +68,11 @@ function saveAvatar(bloggerId) {
 
 function sendAvatarData(base64url, bloggerId) {
 
-    // 去除 data URL 中的头部说明
-    var img64 = base64url.replace(/^data:image\/(png|jpg);base64,/, "");
-
-    // 使用函数 atob 将字符串形式的内容转为二进制形式的数据
-    var binaryImg = atob(img64);
-
-    // 创建 ArrayBuffer 并使用 Uint8 的方式给它赋值（ArrayBuffer 的使用方式有点怪异）
-    var arrayBuffer = new ArrayBuffer(binaryImg.length);
-    var uint8 = new Uint8Array(arrayBuffer);
-    for (var i = 0; i < length; i++) {
-        uint8[i] = binaryImg.charCodeAt(i);
-    }
-
-    // 使用 ArrayBuffer 对象生成  Blob
-    // var blob = new Blob([arrayBuffer], {type: 'image/png'});
-    var blob = new Blob([arrayBuffer]);
-
-    // 构造 Formdata，准备上传 Blob
-    var form = new FormData();
-
-    // 将 Blob 对象加入 form data 中，注意属性的名称与 server 端的变量名称一致
-    // 二进制数据文件名必须标明为图片类型(后端要求)
-    form.append("image", blob, 'blogger-' + bloggerId + '-avatar.png');
-
     $.ajax({
-        url: '/image/' + bloggerId,
+        url: '/blogger/' + bloggerId + '/profile/avatar',
         type: 'POST',
         cache: false,
-        data: form,
-        processData: false,
-        contentType: false,
+        data: {avatar: base64url},
         dataType: "json",
         beforeSend: function () {
             disableButton(false, 'editAvatarBtn', '正在上传...', 'button-disable');
@@ -113,8 +87,6 @@ function sendAvatarData(base64url, bloggerId) {
                     $('#bloggerAvatar').attr('src', url);
 
                     disableButton(true, 'editAvatarBtn', '上传', "button-disable");
-                    $('#tailoringImg').attr('src', '');
-                    $('.preview-image').html('');
 
                     $('#editAvatarDialog').modal('toggle');
                 }, 1000);

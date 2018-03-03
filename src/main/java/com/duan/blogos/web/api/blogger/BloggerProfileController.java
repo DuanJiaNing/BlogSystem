@@ -1,14 +1,19 @@
 package com.duan.blogos.web.api.blogger;
 
 import com.duan.blogos.entity.blogger.BloggerProfile;
+import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.restful.ResultBean;
+import com.duan.blogos.service.blogger.BloggerPictureService;
 import com.duan.blogos.service.blogger.BloggerProfileService;
 import com.duan.blogos.util.StringUtils;
+import org.apache.shiro.crypto.hash.format.Base64Format;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.RequestContext;
+import sun.misc.BASE64Decoder;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Base64;
 
 /**
  * Created on 2017/12/29.
@@ -27,6 +32,9 @@ public class BloggerProfileController extends BaseBloggerController {
 
     @Autowired
     private BloggerProfileService bloggerProfileService;
+
+    @Autowired
+    private BloggerPictureService bloggerPictureService;
 
     /**
      * 获取资料
@@ -104,6 +112,36 @@ public class BloggerProfileController extends BaseBloggerController {
         if (!result) handlerOperateFail(request);
 
         return new ResultBean<>("");
+    }
+
+    /**
+     * 更新头像
+     */
+    @RequestMapping(value = "/avatar", method = RequestMethod.POST)
+    public ResultBean updateAvatar(HttpServletRequest request,
+                                   @PathVariable Integer bloggerId,
+                                   @RequestParam(value = "avatar") String base64urlData) {
+        handleImageBase64Check(request, base64urlData);
+        handleBloggerSignInCheck(request, bloggerId);
+
+        // 保存图片
+        String base = base64urlData.replaceFirst("^data:image/(png|jpg);base64,", "");
+        byte[] bs = Base64.getDecoder().decode(base);
+        int id = bloggerPictureService.insertPicture(bs, bloggerId, "once-avatar-" + bloggerId + ".png", "", BloggerPictureCategoryEnum.PUBLIC, "");
+        if (id <= 0) handlerOperateFail(request);
+
+        boolean res = bloggerProfileService.updateBloggerProfile(bloggerId, id, null, null, null, null);
+        if (!res) handlerOperateFail(request);
+
+        return new ResultBean<>(id);
+    }
+
+    private void handleImageBase64Check(HttpServletRequest request, String base64urlData) {
+
+        if (!base64urlData.contains("data:image") || !base64urlData.contains("base64")) {
+            throw exceptionManager.getParameterFormatIllegalException(new RequestContext(request));
+        }
+
     }
 
     private void handleParamsCheck(String phone, String email, HttpServletRequest request) {

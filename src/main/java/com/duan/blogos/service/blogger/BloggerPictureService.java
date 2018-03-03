@@ -48,6 +48,19 @@ public interface BloggerPictureService {
     int insertPicture(MultipartFile file, int bloggerId, String bewrite, BloggerPictureCategoryEnum category, String title);
 
     /**
+     * 向数据库中新增图片记录，同时将图片保存到设备
+     *
+     * @param bs        图片数据
+     * @param bloggerId 博主id
+     * @param name      图片名字
+     * @param bewrite   描述
+     * @param category  类别
+     * @param title     标题
+     * @return 新纪录id
+     */
+    int insertPicture(byte[] bs, int bloggerId, String name, String bewrite, BloggerPictureCategoryEnum category, String title);
+
+    /**
      * 删除图片记录
      *
      * @param bloggerId    博主id

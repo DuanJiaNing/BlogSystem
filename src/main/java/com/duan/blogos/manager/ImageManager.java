@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -39,6 +41,34 @@ public class ImageManager {
 
     /**
      * 将图片保存到博主的对应文件夹下
+     */
+    public String saveImageToDisk(byte[] bs, String name, int bloggerId, int category) throws IOException {
+
+        String type = ImageUtils.getImageMimeType(name);
+        if (type == null) return null;
+
+        BloggerAccount account = accountDao.getAccountById(bloggerId);
+        String dirPath = constructorManager.constructImageDirPath(account.getUsername(),
+                BloggerPictureCategoryEnum.valueOf(category).name());
+
+        File specDir = new File(dirPath);
+        if (!specDir.exists() || !specDir.isDirectory()) specDir.mkdirs();
+
+        //文件名统一添加前缀 "时间-" 以避免覆盖
+        name = System.currentTimeMillis() + "-" + handleImageName(name, type);
+
+        File image = new File(specDir.getAbsolutePath() + File.separator + name);
+        if (!image.exists() || image.isDirectory()) {
+            FileOutputStream stream = new FileOutputStream(image);
+            stream.write(bs);
+            stream.close();
+        }
+
+        return image.getAbsolutePath();
+    }
+
+    /**
+     * 将图片保存到博主的对应文件夹下
      *
      * @param file      图片
      * @param bloggerId 博主id
@@ -50,12 +80,10 @@ public class ImageManager {
         String type = ImageUtils.getImageType(file);
         if (type == null) return null;
 
-        // 二进制数据流的情况
-        if (type.equals("octet-stream")) type = ImageUtils.getImageMimeType(file.getOriginalFilename());
-
         BloggerAccount account = accountDao.getAccountById(bloggerId);
         String dirPath = constructorManager.constructImageDirPath(account.getUsername(),
                 BloggerPictureCategoryEnum.valueOf(category).name());
+
         File specDir = new File(dirPath);
         if (!specDir.exists() || !specDir.isDirectory()) specDir.mkdirs();
 
@@ -219,4 +247,5 @@ public class ImageManager {
 
         return false;
     }
+
 }

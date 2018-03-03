@@ -175,7 +175,7 @@
                         <%--头像--%>
                         <div class="avatar">
                             <img src="/image/${pageOwnerBloggerId}/type=public/${avatarId}"
-                                 class="img-rounded avatar-img">
+                                 class="img-circle img-rounded avatar-img">
                         </div>
                         <%--用户名--%>
                         <p class="text-center blogger-name">${pageOwnerBloggerName}</p>

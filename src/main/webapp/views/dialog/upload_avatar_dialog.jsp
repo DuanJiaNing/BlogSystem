@@ -52,7 +52,7 @@
                     </div>
                 </div>
 
-                <p>上传图片，<b>调整选框来选定区域</b>，点击确定以使用新头像。<br>
+                <p>上传图片，<b>调整选框来选定区域</b>，点击上传以使用新头像。<br>
                     <small class="upload-msg">支持格式：.jpg .jpeg .png</small>
                 </p>
 

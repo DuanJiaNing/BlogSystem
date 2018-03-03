@@ -78,6 +78,34 @@ public class BloggerPictureServiceImpl implements BloggerPictureService {
 
     }
 
+    @Override
+    public int insertPicture(byte[] bs, int bloggerId, String name, String bewrite, BloggerPictureCategoryEnum category, String title) {
+
+        int cate = category.getCode();
+        String path;
+
+        //保存到磁盘
+        try {
+            path = imageManager.saveImageToDisk(bs, name, bloggerId, cate);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return -1;
+        }
+        if (path == null) return -1;
+
+        // 如果是图片管理员上传默认图片，需要移动其文件夹
+        int pictureManagerId = bloggerProperties.getPictureManagerBloggerId();
+        if (pictureManagerId == bloggerId && BloggerPictureCategoryEnum.isDefaultPictureCategory(cate)) {
+            // 如果设备上已经有该唯一图片，将原来的图片移到私有文件夹，同时修改数据库
+            removeDefaultPictureIfNecessary(bloggerId, category);
+        }
+
+        //插入新纪录
+        String ti = StringUtils.isEmpty(title) ? ImageUtils.getImageName(name) : title;
+        return insertPicture(bloggerId, path, bewrite, category, ti);
+
+    }
+
     /*
      * 腾地方
      * 移到默认图片到私有图片文件夹，同时修改数据库记录

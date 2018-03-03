@@ -43,12 +43,10 @@ public class ImageUtils {
         if (file == null) return false;
 
         String mimetype = file.getContentType();
-        String name = file.getOriginalFilename();
         String type = mimetype.split("/")[0];
 
         // 要么是图片类型，要么是二进制数据但文件名必须标明为图片类型
-        return type.equals("image") ||
-                (mimetype.equals("application/octet-stream") && getImageMimeType(name) != null);
+        return type.equals("image");
     }
 
     /**
