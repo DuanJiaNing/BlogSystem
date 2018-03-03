@@ -224,7 +224,7 @@
                     </div>
                 </div>
                 <hr class="default-line">
-                <div class="list-group" id="blogCategory">
+                <div class="list-group category-list-group" id="blogCategory">
                 </div>
             </div>
             <br>
