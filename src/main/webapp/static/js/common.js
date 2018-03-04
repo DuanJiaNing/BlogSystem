@@ -186,3 +186,21 @@ function toggleDivState(blockId, noneId, boldId, normalId, errorMsgId, msg) {
 
     error(msg, errorMsgId, true);
 }
+
+/**
+ * 情况dom
+ * @param id
+ */
+function clearDiv(id) {
+    $('#' + id).html('');
+}
+
+/**
+ * 检查dom内容是否为空
+ * @param id
+ * @returns {boolean} 为空返回true
+ */
+function checkHtmlEmpty(id) {
+    if ($('#' + id).html() === '') return true;
+    else return false;
+}

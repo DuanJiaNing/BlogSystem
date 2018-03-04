@@ -147,7 +147,8 @@ function setModifyLabel(array) {
     var html = '';
     for (var index in array) {
         var label = array[index];
-        html += '<a class="list-group-item border0" style="text-align: center" create="' + label.createDate + '">' + label.title + '</a>';
+        html += '<a class="list-group-item border0" style="text-align: center" create="' + label.createDate + '" ' +
+            'did="' + label.id + '" onclick="addModifyLabelChoose(this)">' + label.title + '</a>';
     }
 
     if (html === '') {
@@ -162,7 +163,8 @@ function setModifyLink(array) {
     var html = '';
     for (var index in array) {
         var link = array[index];
-        html += '<a class="list-group-item border0" style="text-align: center">' + link.title + '</a>';
+        html += '<a class="list-group-item border0" style="text-align: center" ' +
+            'onclick="addModifyLinkChoose(this)" did="' + link.id + '">' + link.title + '</a>';
     }
 
     if (html === '') {
@@ -177,7 +179,8 @@ function setModifyCategory(array) {
     var html = '';
     for (var index in array) {
         var category = array[index];
-        html += '<a class="list-group-item border0" style="text-align: center">' + category.title + '</a>';
+        html += '<a class="list-group-item border0" style="text-align: center"' +
+            'onclick="addModifyCategoryChoose(this)" did="' + category.id + '">' + category.title + '</a>';
     }
 
     if (html === '') {
@@ -545,7 +548,10 @@ var funWhenCreateLinkSuccess = function (id) {
 var funWhenCreateLinkFail = function (result) {
 };
 
-
+// -------------------------------------------------------------------------------------------------------编辑标签后回调
+var funWhenEditLabelSuccess = function () {
+    loadLabel();
+};
 
 $(document).ready(function () {
     // 加载初始博文列表

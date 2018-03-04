@@ -26,26 +26,32 @@
                 <div class="row">
                     <div class="col-md-4">
                         <span class="glyphicon glyphicon glyphicon-chevron-up center-icon" aria-hidden="true"
-                              onclick="$(this).animate({scrollTop: 0}, 500);"></span>
+                              onclick="$('#modifyLinkListGroup').animate({scrollTop: 0}, 300);"></span>
                         <br>
                         <br>
-                        <div class="list-group" style="max-height: 300px;overflow: auto"
+                        <div class="list-group" style="max-height: 300px;overflow: auto;margin: 0 50px;"
                              id="modifyLinkListGroup"></div>
                         <span class="glyphicon glyphicon glyphicon-chevron-down center-icon" aria-hidden="true"
-                              onclick="$(this).animate({scrollTop: $(this).css('height')}, 500);"></span>
+                              onclick="$('#modifyLinkListGroup').animate({scrollTop: $('#modifyLinkListGroup').css('height')}, 300);"></span>
                     </div>
 
-                    <div class="col-md-8">
+                    <div class="col-md-8" style="min-height: 400px">
                         <p class="text-center lead">
                             <small class="indicator" style="font-weight: bold" id="modifyLinkAsEdit"
-                                   onclick="toggleDivState('chooseEditLink','chooseDeleteLink','modifyLinkAsEdit','modifyLinkAsDelete','modifyLinkErrorMsg','')"
+                                   onclick="toggleDivState('chooseEditLink','chooseDeleteLink','modifyLinkAsEdit',
+                                   'modifyLinkAsDelete','modifyLinkErrorMsg','');clearDiv('showChoosedLink');selectLinkModel=1;"
                             >编辑
                             </small>&nbsp;&nbsp;<span class="vertical-line">|</span>&nbsp;&nbsp;<small
                                 class="indicator" id="modifyLinkAsDelete"
-                                onclick="toggleDivState('chooseDeleteLink','chooseEditLink','modifyLinkAsDelete','modifyLinkAsEdit','modifyLinkErrorMsg','')">
+                                onclick="toggleDivState('chooseDeleteLink','chooseEditLink','modifyLinkAsDelete',
+                                'modifyLinkAsEdit','modifyLinkErrorMsg','');clearDiv('showChoosedLink');selectLinkModel=2;">
                             删除
                         </small>
                         </p>
+
+                        <small style="color: darkgray;">选择链接</small>
+                        <hr class="default-line">
+                        <p id="showChoosedLink" style="line-height: 24px;min-height: 120px"></p>
 
                         <div id="chooseEditLink">
                             <div class="form-group">
@@ -67,6 +73,6 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<script src="/js/dialog/modify_label_dialog.js"></script>
+<script src="/js/dialog/modify_link_dialog.js"></script>
 </body>
 </html>

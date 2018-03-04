@@ -72,8 +72,8 @@ public class BloggerLabelController extends BaseBloggerController {
      */
     @RequestMapping(value = "/{labelId}", method = RequestMethod.PUT)
     public ResultBean update(HttpServletRequest request,
-                             @PathVariable("labelId") Integer labelId,
                              @PathVariable Integer bloggerId,
+                             @PathVariable Integer labelId,
                              @RequestParam("title") String newTitle) {
         handleBloggerSignInCheck(request, bloggerId);
         handleTitleCheck(newTitle, request);
