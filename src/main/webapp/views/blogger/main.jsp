@@ -41,6 +41,9 @@
 <jsp:include page="/views/dialog/new_category_dialog.jsp"/>
 <jsp:include page="/views/dialog/new_link_dialog.jsp"/>
 <jsp:include page="/views/dialog/upload_avatar_dialog.jsp"/>
+<jsp:include page="/views/dialog/modify_label_dialog.jsp"/>
+<jsp:include page="/views/dialog/modify_category_dialog.jsp"/>
+<jsp:include page="/views/dialog/modify_link_dialog.jsp"/>
 
 <%--高级检索--%>
 <div class="modal fade" tabindex="-1" role="dialog" id="complexFilterDialog">
@@ -197,7 +200,7 @@
                     <div class="col-md-6">
                         <br>
                         <span class="button-edit" style="display: none" id="labelEditBtn"
-                              data-target="#newLabelDialog" data-toggle="modal">编辑</span>
+                              data-target="#modifyLabelDialog" data-toggle="modal">编辑</span>
 
                         <span class="button-edit-new" style="display: none" id="labelNewBtn"
                               data-target="#newLabelDialog" data-toggle="modal">新建</span>
@@ -210,14 +213,17 @@
             <br>
 
             <%--创建的类别--%>
-            <div onmouseenter="if(isPageOwnerBloggerLogin())$('#categoryNewBtn').fadeToggle('fast','linear')"
-                 onmouseleave="if(isPageOwnerBloggerLogin())$('#categoryNewBtn').fadeToggle('fast','linear')">
+            <div onmouseenter="if(isPageOwnerBloggerLogin()){$('#categoryNewBtn').fadeToggle('fast','linear');$('#categoryEditBtn').fadeToggle('fast','linear')}"
+                 onmouseleave="if(isPageOwnerBloggerLogin()){$('#categoryNewBtn').fadeToggle('fast','linear');$('#categoryEditBtn').fadeToggle('fast','linear')}">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <h4 class="default-h4"><b>类别</b></h4>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <br>
+                        <span class="button-edit" id="categoryEditBtn" style="display: none"
+                              data-target="#modifyCategoryDialog" data-toggle="modal">编辑</span>
+
                         <span class="button-edit-new" id="categoryNewBtn" style="display: none"
                               data-target="#newCategoryDialog"
                               data-toggle="modal">新建</span>
@@ -238,7 +244,7 @@
                     <div class="col-md-6">
                         <br>
                         <span class="button-edit" id="linkEditBtn" style="display: none"
-                              data-target="#newLinkDialog" data-toggle="modal">编辑</span>
+                              data-target="#modifyLinkDialog" data-toggle="modal">编辑</span>
 
                         <span class="button-edit-new" id="linkNewBtn" style="display: none"
                               data-target="#newLinkDialog" data-toggle="modal">新建</span>

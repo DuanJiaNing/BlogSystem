@@ -81,10 +81,6 @@ a {
     cursor: pointer;
 }
 
-.blogger-category {
-    border: solid 0;
-}
-
 .count {
     color: orangered;
     font-size: small;

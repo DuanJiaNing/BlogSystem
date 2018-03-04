@@ -277,3 +277,27 @@ h4.default-h4 {
     background-color: lightgray;
     padding: 5px 16px;
 }
+
+/*登录方式，编辑（标签）方式*/
+.indicator:hover {
+    border-bottom: solid 2px black;
+}
+
+.indicator {
+    padding-bottom: 3px;
+    cursor: pointer;
+}
+
+.border0 {
+    border: solid 0;
+}
+
+.center-icon {
+    text-align: center;
+    width: 100%;
+    color: lightgray;
+}
+
+.center-icon:hover {
+    color: gray;
+}

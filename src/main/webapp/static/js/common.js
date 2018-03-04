@@ -167,3 +167,22 @@ function disableButton(enable, id, content, disableClass) {
         button.removeClass(disableClass);
     }
 }
+
+/**
+ *  反转div的显示
+ * @param blockId 要显示的id
+ * @param noneId 隐藏的id
+ * @param boldId 指示文字粗体
+ * @param normalId 指示文字普通
+ * @param errorMsgId 错误id
+ * @param msg 错误信息
+ */
+function toggleDivState(blockId, noneId, boldId, normalId, errorMsgId, msg) {
+    $('#' + blockId).css('display', 'block');
+    $('#' + noneId).css('display', 'none');
+
+    $('#' + boldId).css('font-weight', 'bold');
+    $('#' + normalId).css('font-weight', 'normal');
+
+    error(msg, errorMsgId, true);
+}

@@ -1,31 +1,3 @@
-function showNameDiv() {
-    var useUserName = $('#useUserName');
-    var useUserPhone = $('#useUserPhone');
-    useUserName.css('display', 'block');
-    useUserPhone.css('display', 'none');
-
-    var loginByName = $('#loginByName');
-    var loginByPhone = $('#loginByPhone');
-    loginByName.css('font-weight', 'bold');
-    loginByPhone.css('font-weight', 'normal');
-
-    errorInfoWhenLogin('');
-
-}
-
-function showPhoneDiv() {
-    var useUserName = $('#useUserName');
-    var useUserPhone = $('#useUserPhone');
-    useUserName.css('display', 'none');
-    useUserPhone.css('display', 'block');
-
-    var loginByName = $('#loginByName');
-    var loginByPhone = $('#loginByPhone');
-    loginByName.css('font-weight', 'normal');
-    loginByPhone.css('font-weight', 'bold');
-
-    errorInfoWhenLogin('');
-}
 
 // 登录
 /**

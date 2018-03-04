@@ -9,9 +9,11 @@ var filterData = {
     order: null
 };
 
+// 高级检索时保存id
 var cidsArray = [];
 var lidsArray = [];
 
+// -----------------------------------------------------------------------------------------------------------------加载
 function loadLabel() {
     $.get(
         '/blogger/' + pageOwnerBloggerId + '/label',
@@ -20,7 +22,10 @@ function loadLabel() {
             var html = '';
             if (result.code === 0) {
                 var array = result.data;
+                // 设置高级筛选框内容
                 setComplexFilterLabel(array);
+                // 设置标签编辑框内容
+                setModifyLabel(array);
 
                 for (var index in array) {
                     var size = 0.4 + 1.5 * Math.random();
@@ -48,32 +53,30 @@ function loadCategory() {
             var html = '';
             if (result.code === 0) {
                 var array = result.data;
+                // 设置高级筛选框内容
                 setComplexFilterCategory(array);
+                // 设置类别编辑框内容
+                setModifyCategory(array);
 
                 for (var index in array) {
                     var ca = array[index];
-                    html += '<a class="list-group-item blogger-category" ' +
+                    html += '<a class="list-group-item border0" ' +
                         'onclick="filterBlogByCategory(' + ca.id + ')"' +
                         'onmouseenter="if(isPageOwnerBloggerLogin()) $(this).find(\'.badge\').fadeToggle(\'fast\',\'linear\');"' +
                         'onmouseleave="if(isPageOwnerBloggerLogin()) $(this).find(\'.badge\').fadeToggle(\'fast\',\'linear\');">'
-                        + ca.title + '<span class="count">&nbsp;(' + ca.count + ')</span>' +
-                        '<span class="badge button-edit" style="display: none" onclick="editCategory()">编辑</span></a>'
+                        + ca.title + '<span class="count">&nbsp;(' + ca.count + ')</span></a>'
                 }
             }
 
             if (html === '') {
                 setCategoryWhenEmpty('blogCategory');
             } else {
-                $('#blogCategory').html('<a class="list-group-item blogger-category" onclick="initBlog()">' +
+                $('#blogCategory').html('<a class="list-group-item border0" onclick="initBlog()">' +
                     '全部<span class="count">&nbsp;(' + blogCount + ')</span> </a>' + html);
             }
 
         }, 'json'
     )
-}
-
-function editCategory() {
-    alert('dsaf');
 }
 
 function loadContact() {
@@ -84,6 +87,8 @@ function loadContact() {
             var html = '';
             if (result.code === 0) {
                 var array = result.data;
+                setModifyLink(array);
+
                 for (var index in array) {
                     var link = array[index];
                     html += '<a class="blogger-link-item" target="_blank" href="' + link.url + '">' + link.title + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
@@ -137,6 +142,53 @@ function loadSortRule() {
 
 }
 
+// ----------------------------------------------------------------------------------------------------------加载-编辑框
+function setModifyLabel(array) {
+    var html = '';
+    for (var index in array) {
+        var label = array[index];
+        html += '<a class="list-group-item border0" style="text-align: center" create="' + label.createDate + '">' + label.title + '</a>';
+    }
+
+    if (html === '') {
+        setLabelWhenEmpty('modifyLabelListGroup');
+    } else {
+        $('#modifyLabelListGroup').html(html);
+    }
+
+}
+
+function setModifyLink(array) {
+    var html = '';
+    for (var index in array) {
+        var link = array[index];
+        html += '<a class="list-group-item border0" style="text-align: center">' + link.title + '</a>';
+    }
+
+    if (html === '') {
+        setLabelWhenEmpty('modifyLinkListGroup');
+    } else {
+        $('#modifyLinkListGroup').html(html);
+    }
+
+}
+
+function setModifyCategory(array) {
+    var html = '';
+    for (var index in array) {
+        var category = array[index];
+        html += '<a class="list-group-item border0" style="text-align: center">' + category.title + '</a>';
+    }
+
+    if (html === '') {
+        setCategoryWhenEmpty('modifyCategoryListGroup');
+    } else {
+        $('#modifyCategoryListGroup').html(html);
+    }
+
+}
+
+// ---------------------------------------------------------------------------------------------加载-高级检索框-排序规则
 function setSortRule(key, title) {
     filterData.sort = key;
     $('#complexFilterSortRuleShow').html(title + '<span class="caret"></span>&nbsp;');
@@ -147,6 +199,7 @@ function setSortOrder(key, title) {
     $('#complexFilterSortOrderShow').html(title + '<span class="caret"></span>');
 }
 
+// -------------------------------------------------------------------------------------------------------加载时内容为空
 function setContactWhenEmpty(id) {
     var html = '<p class="text-center"><small>没有链接&nbsp;</small>';
     if (isPageOwnerBloggerLogin())
@@ -172,6 +225,7 @@ function setLabelWhenEmpty(id) {
     $('#' + id).html(html);
 }
 
+// --------------------------------------------------------------------------------------------------------加载-高级检索
 function setComplexFilterLabel(array) {
 
     var html = '';
@@ -212,6 +266,7 @@ function setComplexFilterCategory(array) {
 
 }
 
+// ----------------------------------------------------------------------------------------反转高级检索标签/类别选中状态
 function toggleLabelClass(t) {
     var th = $(t);
     var key = th.attr('key');
@@ -250,6 +305,7 @@ function toggleCategoryClass(t) {
     }
 }
 
+// -------------------------------------------------------------------------------------------------------------检索博文
 function complexFilter() {
     var keyword = $('#keyWord').val();
     setFilterData(cidsArray.join(','), lidsArray.join(','), keyword, filterData.sort, filterData.order);
@@ -257,64 +313,62 @@ function complexFilter() {
     $('#complexFilterDialog').modal('toggle');
 }
 
-function resetComplexFilter() {
-    setFilterData(null, null, null, null, null);
-    cidsArray = [];
-    lidsArray = [];
-
-    // filterBloggerBlog(0, defaultBlogCount, true, true);
-    $('#keyWord').val('');
-
-    $('.blog-filter-category-choose').each(function (index, item) {
-        $(item).removeClass('blog-filter-category-choose');
-        $(item).addClass('blog-filter-default');
-    });
-
-    $('.blog-filter-label-choose').each(function (index, item) {
-        $(item).removeClass('blog-filter-label-choose');
-        $(item).addClass('blog-filter-default');
-    });
-
-}
-
-// 创建类别并重新加载 类别栏
-function newCategoryAndReload() {
-    var title = $('#categoryTitle').val();
-    var bewrite = $('#categoryBewrite').val();
-
-    if (isStrEmpty(title)) {
-        $('#categoryErrorMsg').html('类别名称不能为空');
-        return;
-    } else {
-        $('#categoryErrorMsg').html(' ');
-    }
-
-    $.post(
-        '/blogger/' + pageOwnerBloggerId + '/category',
-        {title: title, bewrite: bewrite},
+function filterBloggerBlog(offset, rows, refreshPageIndicator, toTop) {
+    $.get(
+        '/blog',
+        {
+            bloggerId: pageOwnerBloggerId,
+            offset: offset,
+            rows: rows,
+            cids: filterData.cids,
+            lids: filterData.lids,
+            kword: filterData.kword,
+            sort: filterData.sort,
+            order: filterData.order
+        },
         function (result) {
-            if (result.code === 0) {
-                loadCategory();
-                $('#newCategoryDialog').modal('toggle');
-            } else {
-                $('#categoryErrorMsg').html(result.msg);
+
+            var ins = '';
+            if (isPageOwnerBloggerLogin())
+                ins = '，去<a style="font-size: x-large" href="/write_blog" target="_blank">写博文</a>';
+
+            setBlogs(result.data, '<br><br><br><p class="text-center lead">没有博文' + ins + '</p><br><br><br>');
+
+            if (refreshPageIndicator) {
+                setPageIndicator(0);
             }
+
+            if (toTop) {
+                scrollToTop();
+            }
+
+            initToolTip();
+
         }, 'json'
     );
-
 }
 
-function isPageOwnerBloggerLogin() {
-    return bloggerLoginSignal && pageOwnerBloggerId === loginBloggerId;
+function filterBlogByLabel(id) {
+    setFilterData(null, id, null, null, null);
+    filterBloggerBlog(0, defaultBlogCount, true, true);
 }
 
-// 加载初始博文列表
-function initBlog() {
-    // 将会加载两次
-    setFilterData(null, null, null, null, null);
-    filterBloggerBlog(0, defaultBlogCount, true, false);
+function filterBlogByCategory(id) {
+    setFilterData(id, null, null, null, null);
+    filterBloggerBlog(0, defaultBlogCount, true, true);
 }
 
+function filterBlogByKeyWord() {
+    var word = $('#searchBlog').val();
+    if (word !== '') {
+        setFilterData(null, null, word, null, null);
+        filterBloggerBlog(0, defaultBlogCount, true, true);
+    } else {
+        initBlog();
+    }
+}
+
+// ---------------------------------------------------------------------------------------------------------装载博文列表
 function setBlogs(array, defaulz) {
 
     if (array == null || array.length === 0) {
@@ -383,68 +437,46 @@ function setBlogs(array, defaulz) {
     }
 }
 
+// -----------------------------------------------------------------------------------------------------重置高级检索条件
+function resetComplexFilter() {
+    setFilterData(null, null, null, null, null);
+    cidsArray = [];
+    lidsArray = [];
+
+    // filterBloggerBlog(0, defaultBlogCount, true, true);
+    $('#keyWord').val('');
+
+    $('.blog-filter-category-choose').each(function (index, item) {
+        $(item).removeClass('blog-filter-category-choose');
+        $(item).addClass('blog-filter-default');
+    });
+
+    $('.blog-filter-label-choose').each(function (index, item) {
+        $(item).removeClass('blog-filter-label-choose');
+        $(item).addClass('blog-filter-default');
+    });
+
+}
+
+// 判断当前博客是否为登陆博主主页
+function isPageOwnerBloggerLogin() {
+    return bloggerLoginSignal && pageOwnerBloggerId === loginBloggerId;
+}
+
+// 加载初始博文列表
+function initBlog() {
+    // 将会加载两次
+    setFilterData(null, null, null, null, null);
+    filterBloggerBlog(0, defaultBlogCount, true, false);
+}
+
+// 填充检索条件
 function setFilterData(cids, lids, kword, sort, order) {
     filterData.cids = cids;
     filterData.lids = lids;
     filterData.kword = kword;
     filterData.sort = sort;
     filterData.order = order;
-}
-
-// 检索博文
-function filterBloggerBlog(offset, rows, refreshPageIndicator, toTop) {
-    $.get(
-        '/blog',
-        {
-            bloggerId: pageOwnerBloggerId,
-            offset: offset,
-            rows: rows,
-            cids: filterData.cids,
-            lids: filterData.lids,
-            kword: filterData.kword,
-            sort: filterData.sort,
-            order: filterData.order
-        },
-        function (result) {
-
-            var ins = '';
-            if (isPageOwnerBloggerLogin())
-                ins = '，去<a style="font-size: x-large" href="/write_blog" target="_blank">写博文</a>';
-
-            setBlogs(result.data, '<br><br><br><p class="text-center lead">没有博文' + ins + '</p><br><br><br>');
-
-            if (refreshPageIndicator) {
-                setPageIndicator(0);
-            }
-
-            if (toTop) {
-                scrollToTop();
-            }
-
-            initToolTip();
-
-        }, 'json'
-    );
-}
-
-function filterBlogByLabel(id) {
-    setFilterData(null, id, null, null, null);
-    filterBloggerBlog(0, defaultBlogCount, true, true);
-}
-
-function filterBlogByCategory(id) {
-    setFilterData(id, null, null, null, null);
-    filterBloggerBlog(0, defaultBlogCount, true, true);
-}
-
-function filterBlogByKeyWord() {
-    var word = $('#searchBlog').val();
-    if (word !== '') {
-        setFilterData(null, null, word, null, null);
-        filterBloggerBlog(0, defaultBlogCount, true, true);
-    } else {
-        initBlog();
-    }
 }
 
 // 刷新分页插件
@@ -471,10 +503,48 @@ function setPageIndicator(initIndex) {
 
 }
 
-// 修改头像
+// 显示 修改头像 框
 function editAvatar() {
     $('#editAvatarDialog').modal('show')
 }
+
+// 回到顶部
+$(function () {
+    $("#scroll-to-top").click(function () {
+        scrollToTop();
+        $("#scroll-to-top").tooltip('hide');
+    });
+});
+
+// 初始化所有的 tip
+function initToolTip() {
+    $('[data-toggle="tooltip"]').tooltip();
+}
+
+// -------------------------------------------------------------------------------------------------------创建标签时回调
+var funWhenCreateLabelSuccess = function (id) {
+    loadLabel();
+};
+
+var funWhenCreateLabelFail = function (result) {
+};
+
+// -------------------------------------------------------------------------------------------------------创建类别时回调
+var funWhenCreateCategorySuccess = function (id) {
+    loadCategory();
+};
+
+var funWhenCreateCategoryFail = function (result) {
+};
+
+// -------------------------------------------------------------------------------------------------------创建链接时回调
+var funWhenCreateLinkSuccess = function (id) {
+    loadContact();
+};
+
+var funWhenCreateLinkFail = function (result) {
+};
+
 
 
 $(document).ready(function () {
@@ -493,38 +563,3 @@ $(document).ready(function () {
     // 加载高级检索的排序规则部分
     loadSortRule();
 });
-
-$(function () {
-    $("#scroll-to-top").click(function () {
-        scrollToTop();
-        $("#scroll-to-top").tooltip('hide');
-    });
-});
-
-function initToolTip() {
-    $('[data-toggle="tooltip"]').tooltip();
-}
-
-// ---------------------------------------创建标签时回调
-var funWhenCreateLabelSuccess = function (id) {
-    loadLabel();
-};
-
-var funWhenCreateLabelFail = function (result) {
-};
-
-// ---------------------------------------创建类别时回调
-var funWhenCreateCategorySuccess = function (id) {
-    loadCategory();
-};
-
-var funWhenCreateCategoryFail = function (result) {
-};
-
-// ---------------------------------------创建链接时回调
-var funWhenCreateLinkSuccess = function (id) {
-    loadContact();
-};
-
-var funWhenCreateLinkFail = function (result) {
-};

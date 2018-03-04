@@ -30,12 +30,12 @@
                     <div class="col-md-2"></div>
                     <div class="col-md-8">
                         <p class="text-center lead">
-                            <small class="dialog-sign-in-indicator" style="font-weight: bold" id="loginByName"
-                                   onclick="showNameDiv()"
+                            <small class="indicator" style="font-weight: bold" id="loginByName"
+                                   onclick="toggleDivState('useUserName','useUserPhone','loginByName','loginByPhone','loginErrorMsg','')"
                             >用户名登录
-                            </small>&nbsp;&nbsp;|&nbsp;&nbsp;<small
-                                class="dialog-sign-in-indicator" id="loginByPhone"
-                                onclick="showPhoneDiv()">
+                            </small>&nbsp;&nbsp;<span class="vertical-line">|</span>&nbsp;&nbsp;<small
+                                class="indicator" id="loginByPhone"
+                                onclick="toggleDivState('useUserPhone','useUserName','loginByPhone','loginByName','loginErrorMsg','')">
                             手机验证码登录
                         </small>
                         </p>
