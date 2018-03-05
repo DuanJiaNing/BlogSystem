@@ -1,7 +1,9 @@
 body {
     padding-top: 70px;
     font-family: 微软雅黑, serif;
-    background-color: #f7f7f7;
+
+    background-size: cover;
+    background: url(/images/background.jpg) no-repeat fixed center center;
 }
 
 a {

@@ -78,7 +78,7 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
                           @RequestParam(value = "bewrite", required = false) String bewrite) {
 
         // 检查博主是否登录
-//        handleBloggerSignInCheck(request, bloggerId);
+        handleBloggerSignInCheck(request, bloggerId);
         handlePictureExistCheck(request, bloggerId, iconId);
 
         if (StringUtils.isEmpty(title))
