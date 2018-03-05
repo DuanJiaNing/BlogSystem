@@ -9,6 +9,13 @@
     <list default="true" id="8ac934af-05bc-46b7-aaa8-6f8c621b9fd3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/blogger/main.css" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/blogger/main.css" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/common.css" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/common.css" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/footer.css" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/footer.css" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/nav.css" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/nav.css" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/blogger/main.js" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/blogger/main.js" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/blogger/main.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/blogger/main.jsp" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/footer.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/footer.jsp" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/nav.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/nav.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -51,7 +58,151 @@
     <favorites_list name="BlogSystem" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="common.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/common.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="nav.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/nav.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="15" column="28" lean-forward="false" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="nav.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/views/nav.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-705">
+              <caret line="23" column="82" lean-forward="false" selection-start-line="23" selection-start-column="82" selection-end-line="23" selection-end-column="82" />
+              <folding>
+                <element signature="n#style#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/blogger/main.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="footer.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/views/footer.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="20" column="40" lean-forward="false" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="footer.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/footer.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="294">
+              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/views/blogger/main.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1671">
+              <caret line="160" column="37" lean-forward="false" selection-start-line="160" selection-start-column="37" selection-end-line="160" selection-end-column="37" />
+              <folding>
+                <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#p#1;n#div#1;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#1;n#div#2;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#1;n#div#3;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/blogger/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="367">
+              <caret line="93" column="56" lean-forward="false" selection-start-line="93" selection-start-column="39" selection-end-line="93" selection-end-column="56" />
+              <folding>
+                <element signature="n#!!block;n#loadLabel#0" expanded="false" />
+                <element signature="e#459#1261#0" expanded="false" />
+                <element signature="e#523#1091#0" expanded="false" />
+                <element signature="e#751#1077#0" expanded="false" />
+                <element signature="n#!!block;n#loadCategory#0" expanded="false" />
+                <element signature="n#!!block;n#loadSortRule#0" expanded="false" />
+                <element signature="n#!!block;n#setModifyLabel#0" expanded="false" />
+                <element signature="n#!!block;n#setModifyCategory#0" expanded="false" />
+                <element signature="n#!!block;n#setSortRule#0" expanded="false" />
+                <element signature="n#!!block;n#setSortOrder#0" expanded="false" />
+                <element signature="n#!!block;n#setContactWhenEmpty#0" expanded="false" />
+                <element signature="n#!!block;n#setCategoryWhenEmpty#0" expanded="false" />
+                <element signature="n#!!block;n#setLabelWhenEmpty#0" expanded="false" />
+                <element signature="n#!!block;n#setComplexFilterLabel#0" expanded="false" />
+                <element signature="n#!!block;n#setComplexFilterCategory#0" expanded="false" />
+                <element signature="n#!!block;n#toggleLabelClass#0" expanded="false" />
+                <element signature="n#!!block;n#toggleCategoryClass#0" expanded="false" />
+                <element signature="n#!!block;n#complexFilter#0" expanded="false" />
+                <element signature="n#!!block;n#filterBloggerBlog#0" expanded="false" />
+                <element signature="n#!!block;n#filterBlogByLabel#0" expanded="false" />
+                <element signature="n#!!block;n#filterBlogByCategory#0" expanded="false" />
+                <element signature="n#!!block;n#filterBlogByKeyWord#0" expanded="false" />
+                <element signature="n#!!block;n#setBlogs#0" expanded="false" />
+                <element signature="e#12167#14760#0" expanded="false" />
+                <element signature="n#!!block;n#resetComplexFilter#0" expanded="false" />
+                <element signature="n#!!block;n#isPageOwnerBloggerLogin#0" expanded="false" />
+                <element signature="n#!!block;n#initBlog#0" expanded="false" />
+                <element signature="n#!!block;n#setFilterData#0" expanded="false" />
+                <element signature="n#!!block;n#setPageIndicator#0" expanded="false" />
+                <marker date="1520239954398" expanded="false" signature="925:950" ph="..." />
+                <marker date="1520239954398" expanded="true" signature="1045:1051" ph="&amp;nbsp;" />
+                <marker date="1520239954398" expanded="true" signature="1051:1057" ph="&amp;nbsp;" />
+                <marker date="1520239954398" expanded="true" signature="5732:5750" ph="..." />
+                <marker date="1520239954398" expanded="true" signature="12668:12674" ph="&amp;nbsp;" />
+                <marker date="1520239954398" expanded="true" signature="12674:12680" ph="&amp;nbsp;" />
+                <marker date="1520239954398" expanded="true" signature="12963:12969" ph="&amp;nbsp;" />
+                <marker date="1520239954398" expanded="true" signature="12969:12975" ph="&amp;nbsp;" />
+                <marker date="1520239954398" expanded="true" signature="13732:13746" ph="..." />
+                <marker date="1520239954398" expanded="true" signature="13823:13829" ph="&amp;nbsp;" />
+                <marker date="1520239954398" expanded="true" signature="13829:13835" ph="&amp;nbsp;" />
+                <marker date="1520239954398" expanded="true" signature="13876:13882" ph="&amp;nbsp;" />
+                <marker date="1520239954398" expanded="true" signature="13882:13888" ph="&amp;nbsp;" />
+                <marker date="1520239954398" expanded="true" signature="14141:14147" ph="&amp;nbsp;" />
+                <marker date="1520239954398" expanded="true" signature="14147:14153" ph="&amp;nbsp;" />
+                <marker date="1520239954398" expanded="true" signature="14196:14202" ph="&amp;nbsp;" />
+                <marker date="1520239954398" expanded="true" signature="14202:14208" ph="&amp;nbsp;" />
+                <marker date="1520239954398" expanded="true" signature="14232:14238" ph="&amp;nbsp;" />
+                <marker date="1520239954398" expanded="true" signature="14238:14244" ph="&amp;nbsp;" />
+                <marker date="1520239954398" expanded="true" signature="14268:14274" ph="&amp;nbsp;" />
+                <marker date="1520239954398" expanded="true" signature="14274:14280" ph="&amp;nbsp;" />
+                <marker date="1520239954398" expanded="true" signature="14536:14547" ph="..." />
+                <marker date="1520239954398" expanded="true" signature="14562:14568" ph="&amp;nbsp;" />
+                <marker date="1520239954398" expanded="true" signature="14568:14574" ph="&amp;nbsp;" />
+                <marker date="1520239954398" expanded="true" signature="14633:14644" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -73,14 +224,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>blog-cate</find>
-      <find>complexFilterCategory</find>
-      <find>cate</find>
-      <find>blog-filter-default</find>
-      <find>complexFilterLabel</find>
-      <find>jcropApi</find>
-      <find>checkInputEmpty</find>
-      <find>cropper-reset-btn</find>
       <find>460</find>
       <find>tailoring-content</find>
       <find>tailoring-container</find>
@@ -103,6 +246,14 @@
       <find>Cate</find>
       <find>Category</find>
       <find>类别</find>
+      <find>box</find>
+      <find>高级</find>
+      <find>高级检索</find>
+      <find>filter</find>
+      <find>blogger-profile-label-title</find>
+      <find>item</find>
+      <find>line</find>
+      <find>blogger-link-item</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -128,10 +279,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blogger/BloggerLink.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blogger/BloggerPicture.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blogger/BloggerProfile.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blog/BlogController.java" />
         <option value="$PROJECT_DIR$/src/doc/wiki/blog/博文检索.md" />
@@ -162,23 +309,27 @@
         <option value="$PROJECT_DIR$/src/main/resources/config/db.properties" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/dialog/login_dialog.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/dialog/login_dialog.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/blogger/main.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/common.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerLabelController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/dialog/login_dialog.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerBlogCategoryController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/dialog/modify_label_dialog.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/static/css/common.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/dialog/modify_label_dialog.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/dialog/modify_category_dialog.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerLinkController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/static/js/blogger/main.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/dialog/modify_category_dialog.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/dialog/modify_label_dialog.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/dialog/modify_link_dialog.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/dialog/modify_link_dialog.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/nav.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/css/nav.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/blogger/main.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/js/blogger/main.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/blogger/main.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/css/common.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/footer.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/css/footer.css" />
       </list>
     </option>
   </component>
@@ -326,6 +477,69 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="blogger" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="blogger" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="blogger" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -1033,14 +1247,7 @@
       <workItem from="1520142306834" duration="10178000" />
       <workItem from="1520218010958" duration="1497000" />
       <workItem from="1520220279186" duration="10758000" />
-      <workItem from="1520233322758" duration="1561000" />
-    </task>
-    <task id="LOCAL-00064" summary="完成博文更新API">
-      <created>1516103455172</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1516103455178</updated>
+      <workItem from="1520233322758" duration="7208000" />
     </task>
     <task id="LOCAL-00065" summary="完成博文删除，批量删除API和文档">
       <created>1516107560125</created>
@@ -1378,7 +1585,14 @@
       <option name="project" value="LOCAL" />
       <updated>1520231035842</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="完成标签删除，类别修改、删除，链接修改、删除功能">
+      <created>1520235057509</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1520235057510</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1414,7 +1628,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="815698000" />
+    <option name="totallyTimeSpent" value="821345000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1426,6 +1640,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="70" y="-9" width="1859" height="1098" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6710963" sideWeight="0.50214595" order="2" side_tool="true" content_ui="tabs" />
@@ -1450,7 +1665,7 @@
       <window_info id="Version Control" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.687395" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6929972" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32779622" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24033614" sideWeight="0.48172757" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24033614" sideWeight="0.48172757" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26610646" sideWeight="0.50777775" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29075631" sideWeight="0.5182724" order="4" side_tool="true" content_ui="tabs" />
@@ -1613,34 +1828,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/dialog/toast_dialog.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/dialog/new_link_dialog.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/dialog/new_link_dialog.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="35" column="25" lean-forward="true" selection-start-line="32" selection-start-column="16" selection-end-line="35" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/exception/api/common/OperateFailException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="26" column="0" lean-forward="true" selection-start-line="10" selection-start-column="34" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/doc/notice.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -1824,14 +2011,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/blogger/main.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/dialog/login_dialog.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="987">
@@ -1865,6 +2044,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
           <caret line="56" column="20" lean-forward="true" selection-start-line="54" selection-start-column="16" selection-end-line="56" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1897,13 +2077,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/common.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="308" column="12" lean-forward="true" selection-start-line="308" selection-start-column="12" selection-end-line="308" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/dialog/modify_label_dialog.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1923,6 +2096,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="597">
           <caret line="88" column="30" lean-forward="true" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1930,92 +2104,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="22" column="10" lean-forward="false" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/blogger/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="669">
-          <caret line="63" column="20" lean-forward="true" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/blogger/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="431" column="65" lean-forward="true" selection-start-line="431" selection-start-column="65" selection-end-line="431" selection-end-column="65" />
           <folding>
-            <element signature="n#!!block;n#loadLabel#0" expanded="false" />
-            <element signature="n#!!block;n#loadCategory#0" expanded="false" />
-            <element signature="n#!!block;n#loadContact#0" expanded="false" />
-            <element signature="n#!!block;n#loadSortRule#0" expanded="false" />
-            <element signature="n#!!block;n#setModifyLabel#0" expanded="false" />
-            <element signature="n#!!block;n#setModifyCategory#0" expanded="false" />
-            <element signature="n#!!block;n#setSortRule#0" expanded="false" />
-            <element signature="n#!!block;n#setSortOrder#0" expanded="false" />
-            <element signature="n#!!block;n#setContactWhenEmpty#0" expanded="false" />
-            <element signature="n#!!block;n#setCategoryWhenEmpty#0" expanded="false" />
-            <element signature="n#!!block;n#setLabelWhenEmpty#0" expanded="false" />
-            <element signature="n#!!block;n#setComplexFilterLabel#0" expanded="false" />
-            <element signature="n#!!block;n#setComplexFilterCategory#0" expanded="false" />
-            <element signature="n#!!block;n#toggleLabelClass#0" expanded="false" />
-            <element signature="n#!!block;n#toggleCategoryClass#0" expanded="false" />
-            <element signature="n#!!block;n#complexFilter#0" expanded="false" />
-            <element signature="n#!!block;n#filterBloggerBlog#0" expanded="false" />
-            <element signature="n#!!block;n#filterBlogByLabel#0" expanded="false" />
-            <element signature="n#!!block;n#filterBlogByCategory#0" expanded="false" />
-            <element signature="n#!!block;n#filterBlogByKeyWord#0" expanded="false" />
-            <element signature="n#!!block;n#resetComplexFilter#0" expanded="false" />
-            <element signature="n#!!block;n#isPageOwnerBloggerLogin#0" expanded="false" />
-            <element signature="n#!!block;n#initBlog#0" expanded="false" />
-            <element signature="n#!!block;n#setFilterData#0" expanded="false" />
-            <element signature="n#!!block;n#setPageIndicator#0" expanded="false" />
-            <marker date="1520230243301" expanded="true" signature="896:921" ph="..." />
-            <marker date="1520230243301" expanded="true" signature="1016:1022" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="1022:1028" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="2206:2212" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="2526:2532" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="3350:3356" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="3356:3362" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="3362:3368" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="3368:3374" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="3374:3380" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="3380:3386" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="4200:4206" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="5221:5239" ph="..." />
-            <marker date="1520230243301" expanded="true" signature="5703:5721" ph="..." />
-            <marker date="1520230243301" expanded="true" signature="6208:6226" ph="..." />
-            <marker date="1520230243301" expanded="true" signature="6783:6789" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="7144:7150" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="7399:7405" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="7654:7660" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="8194:8200" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="8200:8206" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="8687:8693" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="8693:8699" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="10881:10899" ph="..." />
-            <marker date="1520230243301" expanded="true" signature="12639:12645" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="12645:12651" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="12934:12940" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="12940:12946" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="13668:13682" ph="..." />
-            <marker date="1520230243301" expanded="true" signature="13759:13765" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="13765:13771" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="13812:13818" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="13818:13824" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="14071:14077" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="14077:14083" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="14126:14132" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="14132:14138" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="14162:14168" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="14168:14174" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="14198:14204" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="14204:14210" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="14487:14498" ph="..." />
-            <marker date="1520230243301" expanded="true" signature="14513:14519" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="14519:14525" ph="&amp;nbsp;" />
-            <marker date="1520230243301" expanded="true" signature="14584:14595" ph="..." />
+            <marker date="1520230691836" expanded="true" signature="510:522" ph="..." />
           </folding>
         </state>
       </provider>
@@ -2070,6 +2160,133 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="66" column="75" lean-forward="false" selection-start-line="66" selection-start-column="75" selection-end-line="66" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/blogger/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="93" column="56" lean-forward="false" selection-start-line="93" selection-start-column="39" selection-end-line="93" selection-end-column="56" />
+          <folding>
+            <element signature="n#!!block;n#loadLabel#0" expanded="false" />
+            <element signature="e#459#1261#0" expanded="false" />
+            <element signature="e#523#1091#0" expanded="false" />
+            <element signature="e#751#1077#0" expanded="false" />
+            <element signature="n#!!block;n#loadCategory#0" expanded="false" />
+            <element signature="n#!!block;n#loadSortRule#0" expanded="false" />
+            <element signature="n#!!block;n#setModifyLabel#0" expanded="false" />
+            <element signature="n#!!block;n#setModifyCategory#0" expanded="false" />
+            <element signature="n#!!block;n#setSortRule#0" expanded="false" />
+            <element signature="n#!!block;n#setSortOrder#0" expanded="false" />
+            <element signature="n#!!block;n#setContactWhenEmpty#0" expanded="false" />
+            <element signature="n#!!block;n#setCategoryWhenEmpty#0" expanded="false" />
+            <element signature="n#!!block;n#setLabelWhenEmpty#0" expanded="false" />
+            <element signature="n#!!block;n#setComplexFilterLabel#0" expanded="false" />
+            <element signature="n#!!block;n#setComplexFilterCategory#0" expanded="false" />
+            <element signature="n#!!block;n#toggleLabelClass#0" expanded="false" />
+            <element signature="n#!!block;n#toggleCategoryClass#0" expanded="false" />
+            <element signature="n#!!block;n#complexFilter#0" expanded="false" />
+            <element signature="n#!!block;n#filterBloggerBlog#0" expanded="false" />
+            <element signature="n#!!block;n#filterBlogByLabel#0" expanded="false" />
+            <element signature="n#!!block;n#filterBlogByCategory#0" expanded="false" />
+            <element signature="n#!!block;n#filterBlogByKeyWord#0" expanded="false" />
+            <element signature="n#!!block;n#setBlogs#0" expanded="false" />
+            <element signature="e#12167#14760#0" expanded="false" />
+            <element signature="n#!!block;n#resetComplexFilter#0" expanded="false" />
+            <element signature="n#!!block;n#isPageOwnerBloggerLogin#0" expanded="false" />
+            <element signature="n#!!block;n#initBlog#0" expanded="false" />
+            <element signature="n#!!block;n#setFilterData#0" expanded="false" />
+            <element signature="n#!!block;n#setPageIndicator#0" expanded="false" />
+            <marker date="1520239954398" expanded="false" signature="925:950" ph="..." />
+            <marker date="1520239954398" expanded="true" signature="1045:1051" ph="&amp;nbsp;" />
+            <marker date="1520239954398" expanded="true" signature="1051:1057" ph="&amp;nbsp;" />
+            <marker date="1520239954398" expanded="true" signature="5732:5750" ph="..." />
+            <marker date="1520239954398" expanded="true" signature="12668:12674" ph="&amp;nbsp;" />
+            <marker date="1520239954398" expanded="true" signature="12674:12680" ph="&amp;nbsp;" />
+            <marker date="1520239954398" expanded="true" signature="12963:12969" ph="&amp;nbsp;" />
+            <marker date="1520239954398" expanded="true" signature="12969:12975" ph="&amp;nbsp;" />
+            <marker date="1520239954398" expanded="true" signature="13732:13746" ph="..." />
+            <marker date="1520239954398" expanded="true" signature="13823:13829" ph="&amp;nbsp;" />
+            <marker date="1520239954398" expanded="true" signature="13829:13835" ph="&amp;nbsp;" />
+            <marker date="1520239954398" expanded="true" signature="13876:13882" ph="&amp;nbsp;" />
+            <marker date="1520239954398" expanded="true" signature="13882:13888" ph="&amp;nbsp;" />
+            <marker date="1520239954398" expanded="true" signature="14141:14147" ph="&amp;nbsp;" />
+            <marker date="1520239954398" expanded="true" signature="14147:14153" ph="&amp;nbsp;" />
+            <marker date="1520239954398" expanded="true" signature="14196:14202" ph="&amp;nbsp;" />
+            <marker date="1520239954398" expanded="true" signature="14202:14208" ph="&amp;nbsp;" />
+            <marker date="1520239954398" expanded="true" signature="14232:14238" ph="&amp;nbsp;" />
+            <marker date="1520239954398" expanded="true" signature="14238:14244" ph="&amp;nbsp;" />
+            <marker date="1520239954398" expanded="true" signature="14268:14274" ph="&amp;nbsp;" />
+            <marker date="1520239954398" expanded="true" signature="14274:14280" ph="&amp;nbsp;" />
+            <marker date="1520239954398" expanded="true" signature="14536:14547" ph="..." />
+            <marker date="1520239954398" expanded="true" signature="14562:14568" ph="&amp;nbsp;" />
+            <marker date="1520239954398" expanded="true" signature="14568:14574" ph="&amp;nbsp;" />
+            <marker date="1520239954398" expanded="true" signature="14633:14644" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/common.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/nav.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="28" lean-forward="false" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/nav.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-705">
+          <caret line="23" column="82" lean-forward="false" selection-start-line="23" selection-start-column="82" selection-end-line="23" selection-end-column="82" />
+          <folding>
+            <element signature="n#style#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/blogger/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/blogger/main.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1671">
+          <caret line="160" column="37" lean-forward="false" selection-start-line="160" selection-start-column="37" selection-end-line="160" selection-end-column="37" />
+          <folding>
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#p#1;n#div#1;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#2;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#3;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/footer.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="20" column="40" lean-forward="false" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/footer.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>

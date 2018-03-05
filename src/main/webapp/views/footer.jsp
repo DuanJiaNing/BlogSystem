@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<div class="container nav-bottom">
+<div class="container-fluid nav-bottom">
     <br>
     <div class="row">
         <div class="col-md-5">
@@ -26,7 +26,7 @@
             </p>
         </div>
         <div class="col-md-2">
-            <p class="text-center lead BLOG"><b>BLOG</b></p>
+            <p class="text-center lead BLOG-white"><b>BLOG</b></p>
         </div>
         <div class="col-md-5">
             <p class="text-right bottom-item">

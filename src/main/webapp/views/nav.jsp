@@ -21,7 +21,7 @@
 <jsp:include page="/views/dialog/login_dialog.jsp"/>
 <jsp:include page="/views/dialog/toast_dialog.jsp"/>
 
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top" style="background-color: white">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">

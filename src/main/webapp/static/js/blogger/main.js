@@ -30,7 +30,7 @@ function loadLabel() {
                 for (var index in array) {
                     var size = 0.4 + 1.5 * Math.random();
                     var label = array[index];
-                    html += '<a style="font-size: ' + size + 'em" onclick="filterBlogByLabel(' + label.id + ')">' +
+                    html += '<a class="blog-list-item-label" style="font-size: ' + size + 'em" onclick="filterBlogByLabel(' + label.id + ')">' +
                         label.title + '</a>&nbsp;&nbsp;';
                 }
             }
@@ -410,7 +410,8 @@ function setBlogs(array, defaulz) {
 
             html += '<li ' +
                 'onmouseenter="if(isPageOwnerBloggerLogin()) $(this).find(\'.col-md-3 > p\').fadeToggle(\'fast\',\'linear\')" ' +
-                'onmouseleave="if(isPageOwnerBloggerLogin()) $(this).find(\'.col-md-3 > p\').fadeToggle(\'fast\',\'linear\')" class="list-group-item blog-list-item">' +
+                'onmouseleave="if(isPageOwnerBloggerLogin()) $(this).find(\'.col-md-3 > p\').fadeToggle(\'fast\',\'linear\')" ' +
+                'class="list-group-item blog-list-item shadow-border">' +
                 '<div class="row">' +
                 '<div class="col-md-9">' +
                 '<p>' +
@@ -425,18 +426,17 @@ function setBlogs(array, defaulz) {
                 '</div>' +
 
                 '<h4>' +
-                '<small class="list-group-item-text"><b>' + dateFormat(item.releaseDate) + '</b>&nbsp;&nbsp;' +
+                '<small class="list-group-item-count-text"><b>' + dateFormat(item.releaseDate) + '</b>&nbsp;&nbsp;' +
                 item.collectCount + '收藏&nbsp;&nbsp;' + item.viewCount + '浏览&nbsp;&nbsp;' + item.likeCount + '喜欢&nbsp;&nbsp;' + item.commentCount + '评论' +
                 '</small>' +
                 '</h4>' +
-                '<p class="list-group-item-text blog-list-item-summary">' + item.summary + '</p><br>' +
+                '<p class="blog-list-item-summary">' + item.summary + '</p><br>' +
                 '<table>' +
                 '  <tr>' +
                 '    <td style="color: gray">' + cates + '&nbsp;&nbsp;</td>' +
                 (labels === '' ? '' : '<td style="color: gray">' + labels + '</td>') +
                 '  </tr>' +
                 '</table>' +
-                '<hr>' +
                 '</li>'
         }
 

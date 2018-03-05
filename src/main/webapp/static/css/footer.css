@@ -1,7 +1,6 @@
 
-.bottom-item {
-    margin-left: 16px;
-    margin-right: 16px;
+.bottom-item a {
+    color: darkgray;
 }
 
 .powered-by {
@@ -10,5 +9,6 @@
 }
 
 .nav-bottom {
-    border-top: solid 1px dodgerblue;
+    padding: 16px 64px 0;
+    background-color: #202020;
 }

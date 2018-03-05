@@ -154,8 +154,7 @@
         <div class="col-md-3">
 
             <%--头像--%>
-            <div>
-                <br>
+            <div class="blogger-profile shadow-border">
                 <c:choose>
                     <c:when test="${sessionScope['bloggerId'] == pageOwnerBloggerId}">
                         <%--头像--%>
@@ -171,7 +170,7 @@
                         </div>
                         <%--用户名--%>
                         <p class="text-center blogger-name">
-                            <a>${pageOwnerBloggerName}</a>
+                                ${pageOwnerBloggerName}
                         </p>
                     </c:when>
                     <c:otherwise>
@@ -184,75 +183,70 @@
                         <p class="text-center blogger-name">${pageOwnerBloggerName}</p>
                     </c:otherwise>
                 </c:choose>
+                <hr>
+                <p class="text-center lead blogger-aboutme">${aboutMe}</p>
             </div>
-            <hr>
-            <p class="lead blogger-aboutme">${aboutMe}</p>
-            <br>
-            <br>
 
+            <br>
             <%--标签--%>
-            <div onmouseenter="if(isPageOwnerBloggerLogin()){$('#labelNewBtn').fadeToggle('fast','linear');$('#labelEditBtn').fadeToggle('fast','linear')}"
-                 onmouseleave="if(isPageOwnerBloggerLogin()){$('#labelNewBtn').fadeToggle('fast','linear');$('#labelEditBtn').fadeToggle('fast','linear')}">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h4 class="default-h4"><b>标签</b></h4>
-                    </div>
-                    <div class="col-md-6">
-                        <br>
-                        <span class="button-edit" style="display: none" id="labelEditBtn"
-                              data-target="#modifyLabelDialog" data-toggle="modal">编辑</span>
+            <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerLabelContainer').fadeToggle('fast','linear')"
+                 onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerLabelContainer').fadeToggle('fast','linear')"
+                 class="blogger-profile shadow-border">
 
-                        <span class="button-edit-new" style="display: none" id="labelNewBtn"
-                              data-target="#newLabelDialog" data-toggle="modal">新建</span>
-                    </div>
-                </div>
-                <hr class="default-line">
-                <p class="blogger-label" id="blogLabel">
+                <p class="text-center blogger-profile-title">
+                    标签
                 </p>
+
+                <p class="text-center" style="display: none" id="bloggerLabelContainer">
+                    <span class="button-edit" id="labelEditBtn"
+                          data-target="#modifyLabelDialog" data-toggle="modal">编辑</span>
+                    <span class="button-edit-new" id="labelNewBtn"
+                          data-target="#newLabelDialog" data-toggle="modal">新建</span>
+                </p>
+
+                <hr class="default-line">
+                <p class="blogger-label-content" id="blogLabel">
+                </p>
+
             </div>
             <br>
 
             <%--创建的类别--%>
-            <div onmouseenter="if(isPageOwnerBloggerLogin()){$('#categoryNewBtn').fadeToggle('fast','linear');$('#categoryEditBtn').fadeToggle('fast','linear')}"
-                 onmouseleave="if(isPageOwnerBloggerLogin()){$('#categoryNewBtn').fadeToggle('fast','linear');$('#categoryEditBtn').fadeToggle('fast','linear')}">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h4 class="default-h4"><b>类别</b></h4>
-                    </div>
-                    <div class="col-md-6">
-                        <br>
-                        <span class="button-edit" id="categoryEditBtn" style="display: none"
-                              data-target="#modifyCategoryDialog" data-toggle="modal">编辑</span>
+            <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerCategoryContainer').fadeToggle('fast','linear')"
+                 onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerCategoryContainer').fadeToggle('fast','linear')"
+                 class="blogger-profile shadow-border">
+                <p class="text-center blogger-profile-title">
+                    类别
+                </p>
 
-                        <span class="button-edit-new" id="categoryNewBtn" style="display: none"
-                              data-target="#newCategoryDialog"
-                              data-toggle="modal">新建</span>
-                    </div>
-                </div>
+                <p class="text-center" style="display: none" id="bloggerCategoryContainer">
+                    <span class="button-edit" id="categoryEditBtn"
+                          data-target="#modifyCategoryDialog" data-toggle="modal">编辑</span>
+                    <span class="button-edit-new" id="categoryNewBtn"
+                          data-target="#newCategoryDialog"
+                          data-toggle="modal">新建</span>
+                </p>
                 <hr class="default-line">
-                <div class="list-group category-list-group" id="blogCategory">
-                </div>
+                <div class="list-group category-list-group" id="blogCategory"></div>
             </div>
             <br>
 
             <%--联系我--%>
-            <div onmouseenter="if(isPageOwnerBloggerLogin()){$('#linkNewBtn').fadeToggle('fast','linear');$('#linkEditBtn').fadeToggle('fast','linear')}"
-                 onmouseleave="if(isPageOwnerBloggerLogin()){$('#linkNewBtn').fadeToggle('fast','linear');$('#linkEditBtn').fadeToggle('fast','linear')}">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h4 class="default-h4"><b>联系我</b></h4></div>
-                    <div class="col-md-6">
-                        <br>
-                        <span class="button-edit" id="linkEditBtn" style="display: none"
-                              data-target="#modifyLinkDialog" data-toggle="modal">编辑</span>
-
-                        <span class="button-edit-new" id="linkNewBtn" style="display: none"
-                              data-target="#newLinkDialog" data-toggle="modal">新建</span>
-                    </div>
-                </div>
-                <hr class="default-line">
-                <p class="blogger-link" id="bloggerLink">
+            <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerLinkContainer').fadeToggle('fast','linear')"
+                 onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerLinkContainer').fadeToggle('fast','linear')"
+                 class="blogger-profile shadow-border">
+                <p class="text-center blogger-profile-title">
+                    联系我
                 </p>
+
+                <p class="text-center" style="display: none" id="bloggerLinkContainer">
+                    <span class="button-edit" id="linkEditBtn"
+                          data-target="#modifyLinkDialog" data-toggle="modal">编辑</span>
+                    <span class="button-edit-new" id="linkNewBtn"
+                          data-target="#newLinkDialog" data-toggle="modal">新建</span>
+                </p>
+                <hr class="default-line">
+                <p class="blogger-link" id="bloggerLink"></p>
             </div>
         </div>
 

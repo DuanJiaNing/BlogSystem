@@ -1,6 +1,7 @@
 body {
     padding-top: 70px;
     font-family: 微软雅黑, serif;
+    background-color: #f7f7f7;
 }
 
 a {
@@ -11,13 +12,17 @@ a {
     font-size: 1.5em;
 }
 
+/*-------------------------------------------------------------------博文列表项*/
 .blog-list-item {
-    border: 0;
+    margin-bottom: 32px;
+    padding: 23px 19px;
 }
 
 .blog-list-item-title {
-    color: dodgerblue;
+    color: black;
     padding-left: 3px;
+    font-family: 方正姚体, serif;
+    font-weight: bold;
 
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -26,20 +31,23 @@ a {
 }
 
 .blog-list-item-title:hover {
-    border-left: solid 2px blue;
-    color: blue;
+    color: dimgray;
     cursor: pointer;
 }
 
+.list-group-item-count-text {
+    color: #0A0A0A;
+}
+
 .blog-list-item-summary {
-    font-size: 1.1em;
+    font-size: small;
     padding-top: 10px;
     line-height: 23px;
-    color: #323232;
+    color: #626061;
 
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     overflow: hidden;
 }
 
@@ -64,10 +72,6 @@ a {
     margin-top: 4px;
     z-index: 10;
     color: dimgray;
-}
-
-.blogger-name {
-    margin-top: 10px;
 }
 
 .blogger-aboutme {
@@ -99,9 +103,14 @@ a {
 
 .blogger-link-item {
     border: 0px;
+    color: black;
 }
 
-.blogger-label {
+.blog-list-item-label {
+    color: black;
+}
+
+.blogger-label-content {
     padding-left: 16px;
     padding-right: 16px;
     word-break: break-all;
@@ -116,15 +125,15 @@ a {
     margin-right: 5%;
     padding-right: 10px;
     padding-left: 10px;
-    color: #767676;
-    border: solid 1px #d9d9d9;
+    color: white;
+    background-color: #aeaeae;
     border-radius: 0 0 10px 0;
     cursor: pointer;
 }
 
 .blog-filter-text:hover {
     color: white;
-    background-color: dodgerblue;
+    background-color: #686868;
 }
 
 .blog-filter {
@@ -195,3 +204,23 @@ a {
     overflow-y: auto;
 }
 
+/*----------------------页面右侧部分*/
+
+.blogger-profile {
+    padding: 23px 10px;
+    background-color: white;
+}
+
+.blogger-profile-title {
+    font-weight: bold;
+    font-size: medium;
+    margin-bottom: 16px;
+}
+
+.blogger-name {
+    margin-top: 10px;
+    color: black;
+    padding-left: 3px;
+    font-family: 方正姚体, serif;
+    font-weight: bold;
+}
