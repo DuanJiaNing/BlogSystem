@@ -53,11 +53,11 @@ public class BloggerLinkController extends BaseBloggerController {
      */
     @RequestMapping(method = RequestMethod.POST)
     public ResultBean add(HttpServletRequest request,
-                              @PathVariable Integer bloggerId,
-                              @RequestParam(value = "iconId", required = false) Integer iconId,
-                              @RequestParam("title") String title,
-                              @RequestParam("url") String url,
-                              @RequestParam(value = "bewrite", required = false) String bewrite) {
+                          @PathVariable Integer bloggerId,
+                          @RequestParam(value = "iconId", required = false) Integer iconId,
+                          @RequestParam("title") String title,
+                          @RequestParam("url") String url,
+                          @RequestParam(value = "bewrite", required = false) String bewrite) {
         handleBloggerSignInCheck(request, bloggerId);
         handlePictureExistCheck(request, bloggerId, iconId);
 

@@ -23,63 +23,6 @@ input:-webkit-autofill {
     /*border: 1px solid #CCC !important;*/
 }
 
-.default-button-info {
-    border: solid 1px lightgray;
-    border-radius: 8px;
-    background-color: transparent;
-    color: dimgray;
-    padding: 3px 6px;
-    font-size: small;
-    outline: 0;
-}
-
-.default-button-info:hover {
-    background-color: dimgray;
-    color: white;
-}
-
-.button-success:hover {
-    background-color: limegreen;
-    color: white;
-    box-shadow: -3px 3px 10px dimgray;
-}
-
-.button-success:active {
-    background-color: darkgreen;
-    color: white;
-    box-shadow: -3px 3px 10px dimgray;
-}
-
-.button-success {
-    outline: none;
-    background-color: #00aa00;
-    color: white;
-    padding: 8px 40px;
-    border: 0;
-    font-size: medium;
-    box-shadow: -2px 2px 8px dimgray;
-}
-
-.button-info:hover {
-    background-color: #ebebeb;
-    box-shadow: -3px 3px 10px dimgray;
-}
-
-.button-info:active {
-    background-color: gray;
-    box-shadow: -3px 3px 10px dimgray;
-}
-
-.button-info {
-    outline: none;
-    background-color: lightgray;
-    color: black;
-    padding: 8px 40px;
-    border: 0;
-    font-size: small;
-    box-shadow: -2px 2px 8px dimgray;
-}
-
 .default-line {
     margin-top: 5px;
     margin-bottom: 5px;
@@ -167,16 +110,12 @@ h4.default-h4 {
 
 .button-disable:hover {
     cursor: not-allowed;
-    /*background-color: lightgray;*/
-    /*color: dimgray;*/
     box-shadow: 0 0 0;
     opacity: 0.6;
 }
 
 .button-disable {
     cursor: not-allowed;
-    /*background-color: lightgray;*/
-    /*color: dimgray;*/
     box-shadow: 0 0 0;
     opacity: 0.6;
 }
@@ -197,6 +136,66 @@ h4.default-h4 {
     color: lightgray;
 }
 
+/*----------------------------------------------------------------------------------------------------------------按钮*/
+.button-info {
+    border: solid 1px lightgray;
+    border-radius: 8px;
+    background-color: transparent;
+    color: dimgray;
+    padding: 3px 6px;
+    font-size: small;
+    outline: 0;
+}
+
+.button-info:hover {
+    background-color: dimgray;
+    color: white;
+}
+
+.button-success:hover {
+    background-color: limegreen;
+    color: white;
+    box-shadow: -3px 3px 10px dimgray;
+}
+
+.button-success:active {
+    background-color: darkgreen;
+    color: white;
+    box-shadow: -3px 3px 10px dimgray;
+}
+
+.button-success {
+    outline: none;
+    background-color: #00aa00;
+    color: white;
+    padding: 8px 40px;
+    border: 0;
+    font-size: medium;
+    box-shadow: -2px 2px 8px dimgray;
+}
+
+.button-dangerous:hover {
+    background-color: #dc1b15;
+    color: white;
+    box-shadow: -3px 3px 10px dimgray;
+}
+
+.button-dangerous:active {
+    background-color: #cc5441;
+    color: white;
+    box-shadow: -3px 3px 10px dimgray;
+}
+
+.button-dangerous {
+    outline: none;
+    background-color: #e5433d;
+    color: white;
+    padding: 8px 40px;
+    border: 0;
+    font-size: medium;
+    box-shadow: -2px 2px 8px dimgray;
+}
+
 /*---------------------------------------------button-edit*/
 .button-edit-new {
     border-radius: 10px;
@@ -206,6 +205,7 @@ h4.default-h4 {
     margin: 0 auto;
     padding: 2px 8px;
     opacity: 0.7;
+    cursor: pointer;
     font-size: small;
 }
 
@@ -222,6 +222,7 @@ h4.default-h4 {
     margin: 0 auto;
     padding: 2px 8px;
     opacity: 0.7;
+    cursor: pointer;
     font-size: small;
 }
 
@@ -237,6 +238,7 @@ h4.default-h4 {
     color: red;
     margin: 0 auto;
     padding: 2px 8px;
+    cursor: pointer;
     opacity: 0.7;
     font-size: small;
 }
@@ -254,6 +256,7 @@ h4.default-h4 {
     margin: 0 auto;
     padding: 2px 8px;
     opacity: 0.7;
+    cursor: pointer;
     font-size: small;
 }
 
@@ -267,6 +270,7 @@ h4.default-h4 {
     background-color: #efefef;
     color: dimgray;
     padding: 5px 16px;
+    cursor: pointer;
     cursor: pointer;
     outline: none;
     font-weight: normal;
@@ -300,4 +304,14 @@ h4.default-h4 {
 
 .center-icon:hover {
     color: gray;
+}
+
+.modify-item-choosed {
+    color: darkgray;
+    border-radius: 10px;
+    background-color: #efefef;
+    font-size: smaller;
+    padding: 2px 10px;
+    cursor: pointer;
+    margin-right: 10px;
 }

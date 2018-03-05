@@ -64,7 +64,7 @@
                                             <td><input type="number" class="form-input" id="loginPhoneCode"
                                                        placeholder="验证码"></td>
                                             <td>
-                                                &nbsp;&nbsp;<button class="default-button-info"
+                                                &nbsp;&nbsp;<button class="button-info"
                                                                     onclick="sendPhoneCode()"
                                                                     id="sendPhoneCodeBtn">获取验证码
                                             </button>

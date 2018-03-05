@@ -10,6 +10,7 @@ import org.springframework.web.servlet.support.RequestContext;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created on 2018/1/11.
@@ -105,7 +106,8 @@ public class BloggerBlogCategoryController extends BaseBloggerController {
         handleCategoryExistCheck(request, bloggerId, categoryId);
         handlePictureExistCheck(request, bloggerId, newIconId);
 
-        if (!bloggerCategoryService.updateBlogCategory(bloggerId, categoryId, newIconId, newTitle, newBewrite))
+        if (!bloggerCategoryService.updateBlogCategory(bloggerId, categoryId, Optional.ofNullable(newIconId).orElse(-1),
+                newTitle, newBewrite))
             handlerOperateFail(request);
 
         return new ResultBean<>("");

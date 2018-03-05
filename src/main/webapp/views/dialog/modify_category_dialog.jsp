@@ -31,41 +31,77 @@
                         <br>
                         <div class="list-group" style="max-height: 300px;overflow: auto;margin: 0 50px;"
                              id="modifyCategoryListGroup"></div>
+                        <br>
                         <span class="glyphicon glyphicon glyphicon-chevron-down center-icon" aria-hidden="true"
                               onclick="$('#modifyCategoryListGroup').animate({scrollTop: $('#modifyCategoryListGroup').css('height')}, 300);"></span>
                     </div>
 
-                    <div class="col-md-8" style="min-height: 400px">
+                    <div class="col-md-8" style="min-height: 400px;">
                         <p class="text-center lead">
                             <small class="indicator" style="font-weight: bold" id="modifyCategoryAsEdit"
                                    onclick="toggleDivState('chooseEditCategory','chooseDeleteCategory',
-                                   'modifyCategoryAsEdit','modifyCategoryAsDelete','modifyCategoryErrorMsg','');clearDiv('showChoosedCategory');selectCategoryModel=1;"
+                                   'modifyCategoryAsEdit','modifyCategoryAsDelete','modifyCategoryErrorMsg','');
+                                   clearDiv('showChoosedCategory');clearDiv('showChoosedCategoryBewrite');selectCategoryModel=1;"
                             >编辑
                             </small>&nbsp;&nbsp;<span class="vertical-line">|</span>&nbsp;&nbsp;<small
                                 class="indicator" id="modifyCategoryAsDelete"
                                 onclick="toggleDivState('chooseDeleteCategory','chooseEditCategory','modifyCategoryAsDelete',
-                                'modifyCategoryAsEdit','modifyCategoryErrorMsg','');clearDiv('showChoosedCategory');selectCategoryModel=2;">
+                                'modifyCategoryAsEdit','modifyCategoryErrorMsg','');clearDiv('showChoosedCategory');
+                                clearDiv('showChoosedCategoryBewrite');selectCategoryModel=2;">
                             删除
                         </small>
                         </p>
 
-                        <small style="color: darkgray;">选择类别</small>
-                        <hr class="default-line">
-                        <p id="showChoosedCategory" style="line-height: 24px;min-height: 120px"></p>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <small style="color: darkgray;">选择类别</small>
+                                <hr class="default-line">
+                                <p id="showChoosedCategory" style="line-height: 24px;min-height: 120px"></p>
+                            </div>
+                            <div class="col-md-5">
+                                <small style="color: darkgray">类别说明</small>
+                                <br>
+                                <p id="showChoosedCategoryBewrite" style="max-height: 230px;overflow-y: auto"></p>
+                            </div>
+                        </div>
 
                         <div id="chooseEditCategory">
                             <div class="form-group">
+                                <label>类别名</label><br>
+                                <input type="text" placeholder="类别名" id="editCategoryTitle" class="form-input">
+                                <br>
+                                <br>
+
+                                <label>说明</label><br>
+                                <input type="text" placeholder="说明" class="form-input" id="editCategoryBewrite">
+
+                                <br>
+                                <br>
+                                <button class="button-success" id="modifyEditCategoryBtn"
+                                        onclick="exeCategoryUpdate(this,${sessionScope['bloggerId']},funWhenEditCategorySuccess)">
+                                    提交
+                                </button>
                             </div>
                         </div>
 
                         <div id="chooseDeleteCategory" style="display: none;">
-                            <div class="form-group">
-                            </div>
+                            <br>
+                            <p>
+                                <small>可选择</small>
+                                <b>&nbsp;多个&nbsp;</b>
+                                <small>类别。</small>
+                            </p>
+                            <button class="button-dangerous" id="modifyDeleteCategoryBtn"
+                                    onclick="exeCategoryDelete(this,${sessionScope['bloggerId']},funWhenDeleteCategorySuccess)">
+                                删除
+                            </button>
                         </div>
+
+                        <br>
+                        <span class="error-msg" id="modifyCategoryErrorMsg"></span>
+
                     </div>
                 </div>
-
-                <span class="error-msg" id="modifyCategoryErrorMsg"></span>
 
             </div>
 

@@ -91,15 +91,22 @@ function loadContact() {
 
                 for (var index in array) {
                     var link = array[index];
-                    html += '<a class="blogger-link-item" target="_blank" href="' + link.url + '">' + link.title + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-                    ;
+                    html += '<a class="blogger-link-item"';
+
+                    var bewrite = link.bewrite;
+                    if (!isStrEmpty_(bewrite))
+                        html += ' data-toggle="tooltip" title="' + bewrite + '" data-placement="bottom"';
+
+                    html += ' target="_blank" href="' + link.url + '">' + link.title + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
                 }
+
             }
 
             if (html === '') {
                 setContactWhenEmpty("bloggerLink");
             } else {
                 $('#bloggerLink').html(html);
+                initToolTip();
             }
 
         }, 'json'
@@ -163,7 +170,7 @@ function setModifyLink(array) {
     var html = '';
     for (var index in array) {
         var link = array[index];
-        html += '<a class="list-group-item border0" style="text-align: center" ' +
+        html += '<a class="list-group-item border0" style="text-align: center" url="' + link.url + '" bewrite="' + link.bewrite + '" ' +
             'onclick="addModifyLinkChoose(this)" did="' + link.id + '">' + link.title + '</a>';
     }
 
@@ -180,7 +187,7 @@ function setModifyCategory(array) {
     for (var index in array) {
         var category = array[index];
         html += '<a class="list-group-item border0" style="text-align: center"' +
-            'onclick="addModifyCategoryChoose(this)" did="' + category.id + '">' + category.title + '</a>';
+            'onclick="addModifyCategoryChoose(this)" did="' + category.id + '" bewrite="' + category.bewrite + '">' + category.title + '</a>';
     }
 
     if (html === '') {
@@ -551,7 +558,37 @@ var funWhenCreateLinkFail = function (result) {
 // -------------------------------------------------------------------------------------------------------编辑标签后回调
 var funWhenEditLabelSuccess = function () {
     loadLabel();
+    filterBloggerBlog(0, defaultBlogCount, true, false);
 };
+
+// -------------------------------------------------------------------------------------------------------编辑类别后回调
+var funWhenEditCategorySuccess = function () {
+    loadCategory();
+    filterBloggerBlog(0, defaultBlogCount, true, false);
+};
+
+// -------------------------------------------------------------------------------------------------------编辑链接后回调
+var funWhenEditLinkSuccess = function () {
+    loadContact();
+};
+
+// -------------------------------------------------------------------------------------------------------删除标签后回调
+var funWhenDeleteLabelSuccess = function () {
+    loadLabel();
+    filterBloggerBlog(0, defaultBlogCount, true, false);
+};
+
+// -------------------------------------------------------------------------------------------------------删除类别后回调
+var funWhenDeleteCategorySuccess = function () {
+    loadCategory();
+    filterBloggerBlog(0, defaultBlogCount, true, false);
+};
+
+// -------------------------------------------------------------------------------------------------------删除链接后回调
+var funWhenDeleteLinkSuccess = function () {
+    loadContact();
+};
+
 
 $(document).ready(function () {
     // 加载初始博文列表

@@ -14,14 +14,13 @@ function addModifyLabelChoose(th) {
         return;
     }
 
-    // 编辑时只能选择一个
-    if (selectLabelModel === 1 && dom.html() !== '') {
-        return;
-    }
-
     var title = $(th).html();
-    dom.html(dom.html() + '<span did="' + did + '" class="modify-label-choosed" ' +
-        'onclick="disChooseLabel(this)">' + title + ' <span style="opacity: 0.5">x</span></span>');
+    var span = '<span did="' + did + '" class="modify-item-choosed" ' +
+        'onclick="disChooseLabel(this)">' + title + ' <span style="opacity: 0.5">x</span></span>';
+    if (selectLabelModel === 1 && dom.html() !== '') {
+        // 编辑时只能选择一个
+        dom.html(span);
+    } else dom.html(dom.html() + span);
 }
 
 function exeLabelUpdate(th, bloggerId, funWhenEditLabelSuccess) {
@@ -43,10 +42,10 @@ function exeLabelUpdate(th, bloggerId, funWhenEditLabelSuccess) {
         type: 'put',
         success: function (result) {
             if (result.code === 0) {
-                disableButton(false, 'modifyLabelBtn', '修改成功', "button-disable");
+                disableButton(false, 'modifyEditLabelBtn', '修改成功', "button-disable");
 
                 setTimeout(function () {
-                    disableButton(true, 'modifyLabelBtn', '提交', "button-disable");
+                    disableButton(true, 'modifyEditLabelBtn', '提交', "button-disable");
                     funWhenEditLabelSuccess();
 
                     $('#modifyLabelDialog').modal('hide');
@@ -59,5 +58,49 @@ function exeLabelUpdate(th, bloggerId, funWhenEditLabelSuccess) {
             }
         }
     });
+
+}
+
+function exeLabelDelete(th, bloggerId, funWhenDeleteLabelSuccess) {
+    if (checkHtmlEmpty('showChoosedLabel')) {
+        error('请选择标签', 'modifyLabelErrorMsg', true)
+        return;
+    }
+
+    var doms = $('#showChoosedLabel > span');
+
+    disableButton(false, 'modifyDeleteLabelBtn', '正在删除...', "button-disable");
+    var i = 0;
+    var fail = false;
+    var msg = '';
+    for (; i < doms.length; i++) {
+        var id = $(doms[i]).attr('did');
+
+        $.ajax({
+            url: '/blogger/' + bloggerId + '/label/' + id,
+            async: false,
+            type: 'delete',
+            success: function (result) {
+                if (result.code !== 0) {
+                    fail = true;
+                    msg = result.msg;
+                }
+            }
+        });
+
+        if (fail) {
+            error(msg, 'modifyLabelErrorMsg', true);
+            return;
+        }
+    }
+
+    disableButton(false, 'modifyDeleteLabelBtn', '删除成功', "button-disable");
+    setTimeout(function () {
+        disableButton(true, 'modifyDeleteLabelBtn', '删除', "button-disable");
+        funWhenDeleteLabelSuccess();
+
+        $('#modifyLabelDialog').modal('hide');
+        clearDiv('showChoosedLabel');
+    }, 1000);
 
 }

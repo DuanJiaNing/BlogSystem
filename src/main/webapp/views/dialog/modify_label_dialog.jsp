@@ -32,6 +32,8 @@
                         <br>
                         <div class="list-group" id="modifyLabelListGroup"
                              style="max-height: 300px;overflow: auto;margin: 0 50px;"></div>
+                        <br>
+
                         <span class="glyphicon glyphicon glyphicon-chevron-down center-icon" aria-hidden="true"
                               onclick="$('#modifyLabelListGroup').animate({scrollTop: $('#modifyLabelListGroup').css('height')}, 300);"></span>
                     </div>
@@ -50,9 +52,16 @@
                         </small>
                         </p>
 
-                        <small style="color: darkgray;">选择标签</small>
-                        <hr class="default-line">
-                        <p id="showChoosedLabel" style="line-height: 24px;min-height: 120px"></p>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <small style="color: darkgray;">选择标签</small>
+                                <hr class="default-line">
+                                <p id="showChoosedLabel" style="line-height: 24px;min-height: 120px"></p>
+
+                            </div>
+                            <div class="col-md-5">
+                            </div>
+                        </div>
 
                         <div id="chooseEditLabel">
                             <div class="form-group">
@@ -60,15 +69,23 @@
                                 <input type="text" placeholder="标签名" class="form-input">
                             </div>
                             <br>
-                            <button class="button-success" id="modifyLabelBtn"
+                            <button class="button-success" id="modifyEditLabelBtn"
                                     onclick="exeLabelUpdate(this,${sessionScope['bloggerId']},funWhenEditLabelSuccess)">
                                 提交
                             </button>
                         </div>
 
                         <div id="chooseDeleteLabel" style="display: none;">
-                            <div class="form-group">
-                            </div>
+                            <br>
+                            <p>
+                                <small>可选择</small>
+                                <b>&nbsp;多个&nbsp;</b>
+                                <small>标签。</small>
+                            </p>
+                            <button class="button-dangerous" id="modifyDeleteLabelBtn"
+                                    onclick="exeLabelDelete(this,${sessionScope['bloggerId']},funWhenDeleteLabelSuccess)">
+                                删除
+                            </button>
                         </div>
 
                         <br>
