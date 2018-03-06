@@ -243,9 +243,6 @@ function setComplexFilterLabel(array) {
     for (var index in array) {
         var item = array[index];
         html += '<span class="blog-filter-default" onclick="toggleLabelClass(this)" key="' + item.id + '">' + item.title + '</span>&nbsp;&nbsp;';
-        if (index % 5 === 0) {
-            html += '<br>';
-        }
     }
 
     if (html === '') {
@@ -263,9 +260,6 @@ function setComplexFilterCategory(array) {
     for (var index in array) {
         var item = array[index];
         html += '<span class="blog-filter-default" onclick="toggleCategoryClass(this)" key="' + item.id + '">' + item.title + '</span>&nbsp;&nbsp;';
-        if (index % 4 === 0) {
-            html += '<br>';
-        }
     }
 
     if (html === '') {
@@ -589,6 +583,13 @@ var funWhenDeleteLinkSuccess = function () {
     loadContact();
 };
 
+// ------------------------------------------------------------------------------------------------------ 登录对话框回调
+function funAfterLoginSuccess(result) {
+    location.reload();
+}
+
+function funAfterLoginFail(result) {
+}
 
 $(document).ready(function () {
     // 加载初始博文列表

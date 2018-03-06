@@ -29,6 +29,7 @@
     <mvc:resources mapping="/css/**" location="/static/css/"/>
     <mvc:resources mapping="/js/**" location="/static/js/"/>
     <mvc:resources mapping="/images/**" location="/static/image/"/>
+    <mvc:resources mapping="/plugin/**" location="/static/plugin/"/>
 
 
     <!--国际化-->

@@ -9,7 +9,6 @@
 <%@ page isELIgnored="false" %>
 <html>
 <head>
-    <title>未知博主</title>
 </head>
 <body>
 ${errorMsg}

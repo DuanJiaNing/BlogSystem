@@ -1,0 +1,44 @@
+
+.blog-select-default {
+    border: solid 1px lightgray;
+    color: gray;
+    font-size: small;
+    padding: 0 14px;
+    cursor: pointer;
+    border-radius: 12px;
+}
+
+.blog-select-default:hover {
+    background-color: rgba(128, 128, 128, 0.16);
+}
+
+.blog-select-label-choose {
+    color: white;
+    cursor: pointer;
+    padding: 0 14px;
+    border-radius: 12px;
+    font-size: small;
+    background-color: green;
+    border: solid 1px darkgreen;
+    box-shadow: -3px 3px 10px #bababa;
+}
+
+.blog-select-category-choose {
+    color: white;
+    cursor: pointer;
+    padding: 0 14px;
+    border-radius: 12px;
+    font-size: small;
+    background-color: red;
+    border: solid 1px darkred;
+    box-shadow: -3px 3px 10px #adadad;
+}
+
+span {
+    word-break: normal;
+    /*width: auto;*/
+    display: inline-block;
+    /*white-space: pre-wrap;*/
+    word-wrap: break-word;
+    overflow: hidden;
+}

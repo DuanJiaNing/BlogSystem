@@ -1,0 +1,47 @@
+.search {
+    width: 230px;
+}
+
+.search-btn {
+    cursor: pointer;
+}
+
+.search-btn:hover {
+    cursor: pointer;
+    background-color: lightgray;
+    color: black;
+}
+
+nav {
+    background-color: white;
+}
+
+.blogger-option {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.quit {
+    color: red;
+}
+
+.button-top-main {
+    margin-top: 10px;
+    background-color: #00aa00;
+    outline: 0;
+    border: 0;
+    border-radius: 20px;
+    color: white;
+    padding: 6px 13px;
+    box-shadow: -3px 3px 5px #cecece;
+}
+
+.button-top-main:hover {
+    background-color: limegreen;
+    color: white;
+    box-shadow: -3px 3px 10px #cecece;
+}
+
+.button-top-main:active {
+    opacity: 0.5;
+}

@@ -23,7 +23,7 @@ a {
 .blog-list-item-title {
     color: black;
     padding-left: 3px;
-    font-family: 方正姚体, serif;
+    font-family: 华文中宋, 方正姚体, serif;
     font-weight: bold;
 
     display: -webkit-box;
@@ -88,15 +88,6 @@ a {
     cursor: pointer;
 }
 
-.count {
-    color: orangered;
-    font-size: small;
-}
-
-.quit {
-    color: red;
-}
-
 .blogger-link {
     padding-left: 16px;
     padding-right: 16px;
@@ -116,11 +107,6 @@ a {
     padding-left: 16px;
     padding-right: 16px;
     word-break: break-all;
-}
-
-.blogger-option {
-    padding-top: 5px;
-    padding-bottom: 5px;
 }
 
 .blog-filter-text {
@@ -169,36 +155,47 @@ a {
 }
 
 .blog-filter-default {
-    border: solid 1px gray;
+    border: solid 1px lightgray;
     color: gray;
     font-size: small;
-    padding: 1px 6px;
-    border-radius: 10px;
+    padding: 0 14px;
+    cursor: pointer;
+    border-radius: 12px;
 }
 
 .blog-filter-default:hover {
-    cursor: pointer;
     background-color: rgba(128, 128, 128, 0.16);
 }
 
 .blog-filter-label-choose {
     color: white;
     cursor: pointer;
-    padding: 1px 6px;
+    padding: 0 14px;
+    border-radius: 12px;
     font-size: small;
     background-color: green;
-    border-radius: 10px;
     border: solid 1px darkgreen;
+    box-shadow: -3px 3px 10px #adadad;
 }
 
 .blog-filter-category-choose {
     color: white;
     cursor: pointer;
-    padding: 1px 6px;
+    padding: 0 14px;
+    border-radius: 12px;
     font-size: small;
     background-color: red;
-    border-radius: 10px;
     border: solid 1px darkred;
+    box-shadow: -3px 3px 10px #adadad;
+}
+
+span {
+    word-break: normal;
+    /*width: auto;*/
+    display: inline-block;
+    /*white-space: pre-wrap;*/
+    word-wrap: break-word;
+    overflow: hidden;
 }
 
 .category-list-group {
@@ -206,17 +203,19 @@ a {
     overflow-y: auto;
 }
 
+.blogger-profile-title {
+    font-weight: bold;
+    font-family: 华文中宋, 方正姚体, serif;
+
+    font-size: medium;
+    margin-bottom: 16px;
+}
+
 /*----------------------页面右侧部分*/
 
 .blogger-profile {
     padding: 23px 10px;
     background-color: white;
-}
-
-.blogger-profile-title {
-    font-weight: bold;
-    font-size: medium;
-    margin-bottom: 16px;
 }
 
 .blogger-name {

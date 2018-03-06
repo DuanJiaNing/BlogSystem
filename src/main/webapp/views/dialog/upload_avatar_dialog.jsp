@@ -11,7 +11,7 @@
     <title>修改头像</title>
 
     <link rel="stylesheet" href="/css/dialog/upload_avatar_dialog.css">
-    <link rel="stylesheet" href="/css/plugin/cropper/cropper.min.css">
+    <link rel="stylesheet" href="/plugin/cropper/css/cropper.min.css">
 
 </head>
 <body>
@@ -61,15 +61,18 @@
             </div>
 
             <div class="modal-footer dialog-footer">
-                <button class="button-success" id="editAvatarBtn" onclick="saveAvatar(${sessionScope["bloggerId"]})">确定
-                </button>
+                <p class="text-right">
+                    <button class="button-success" id="editAvatarBtn"
+                            onclick="saveAvatar(${sessionScope["bloggerId"]})">确定
+                    </button>&nbsp;&nbsp;&nbsp;&nbsp;
+                </p>
             </div>
 
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<script src="/js/plugin/cropper/cropper.min.js"></script>
+<script src="/plugin/cropper/js/cropper.min.js"></script>
 <script src="/js/dialog/upload_avatar_dialog.js"></script>
 </body>
 </html>

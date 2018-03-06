@@ -7,16 +7,416 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ac934af-05bc-46b7-aaa8-6f8c621b9fd3" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/image/background.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/blog/EditBlogController.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/blogger/edit_blog.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/nav/nav_edit_blog.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/blogger/edit_blog.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/nav/nav_edit_blog.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/css/editormd.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/css/editormd.logo.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/css/editormd.logo.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/css/editormd.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/css/editormd.preview.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/css/editormd.preview.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/editormd.min.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/fonts/FontAwesome.otf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/fonts/editormd-logo.eot" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/fonts/editormd-logo.svg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/fonts/editormd-logo.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/fonts/editormd-logo.woff" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/fonts/fontawesome-webfont.eot" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/fonts/fontawesome-webfont.svg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/fonts/fontawesome-webfont.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/fonts/fontawesome-webfont.woff" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/fonts/fontawesome-webfont.woff2" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/loading.gif" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/loading@2x.gif" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/loading@3x.gif" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/logos/editormd-favicon-16x16.ico" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/logos/editormd-favicon-24x24.ico" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/logos/editormd-favicon-32x32.ico" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/logos/editormd-favicon-48x48.ico" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/logos/editormd-favicon-64x64.ico" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/logos/editormd-logo-114x114.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/logos/editormd-logo-120x120.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/logos/editormd-logo-144x144.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/logos/editormd-logo-16x16.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/logos/editormd-logo-180x180.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/logos/editormd-logo-240x240.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/logos/editormd-logo-24x24.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/logos/editormd-logo-320x320.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/logos/editormd-logo-32x32.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/logos/editormd-logo-48x48.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/logos/editormd-logo-57x57.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/logos/editormd-logo-64x64.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/logos/editormd-logo-72x72.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/logos/editormd-logo-96x96.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/images/logos/vi.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/languages/en.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/languages/zh-tw.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/AUTHORS" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/LICENSE" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/README.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/comment/comment.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/comment/continuecomment.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/dialog/dialog.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/dialog/dialog.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/display/fullscreen.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/display/fullscreen.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/display/panel.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/display/placeholder.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/display/rulers.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/edit/closebrackets.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/edit/closetag.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/edit/continuelist.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/edit/matchbrackets.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/edit/matchtags.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/edit/trailingspace.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/fold/brace-fold.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/fold/comment-fold.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/fold/foldcode.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/fold/foldgutter.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/fold/foldgutter.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/fold/indent-fold.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/fold/markdown-fold.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/fold/xml-fold.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/hint/anyword-hint.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/hint/css-hint.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/hint/html-hint.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/hint/javascript-hint.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/hint/show-hint.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/hint/show-hint.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/hint/sql-hint.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/hint/xml-hint.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/lint/coffeescript-lint.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/lint/css-lint.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/lint/javascript-lint.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/lint/json-lint.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/lint/lint.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/lint/lint.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/lint/yaml-lint.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/merge/merge.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/merge/merge.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/mode/loadmode.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/mode/multiplex.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/mode/multiplex_test.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/mode/overlay.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/mode/simple.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/runmode/colorize.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/runmode/runmode-standalone.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/runmode/runmode.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/runmode/runmode.node.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/scroll/annotatescrollbar.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/scroll/scrollpastend.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/scroll/simplescrollbars.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/scroll/simplescrollbars.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/search/match-highlighter.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/search/matchesonscrollbar.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/search/matchesonscrollbar.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/search/search.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/search/searchcursor.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/selection/active-line.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/selection/mark-selection.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/selection/selection-pointer.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/tern/tern.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/tern/tern.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/tern/worker.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addon/wrap/hardwrap.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/addons.min.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/bower.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/codemirror.min.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/codemirror.min.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/lib/codemirror.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/lib/codemirror.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/apl/apl.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/apl/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/asterisk/asterisk.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/asterisk/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/clike/clike.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/clike/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/clike/scala.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/clojure/clojure.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/clojure/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/cobol/cobol.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/cobol/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/coffeescript/coffeescript.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/coffeescript/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/commonlisp/commonlisp.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/commonlisp/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/css/css.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/css/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/css/less.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/css/less_test.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/css/scss.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/css/scss_test.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/css/test.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/cypher/cypher.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/cypher/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/d/d.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/d/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/dart/dart.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/dart/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/diff/diff.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/diff/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/django/django.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/django/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/dockerfile/dockerfile.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/dockerfile/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/dtd/dtd.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/dtd/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/dylan/dylan.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/dylan/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/ebnf/ebnf.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/ebnf/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/ecl/ecl.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/ecl/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/eiffel/eiffel.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/eiffel/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/erlang/erlang.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/erlang/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/forth/forth.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/forth/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/fortran/fortran.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/fortran/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/gas/gas.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/gas/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/gfm/gfm.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/gfm/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/gfm/test.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/gherkin/gherkin.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/gherkin/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/go/go.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/go/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/groovy/groovy.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/groovy/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/haml/haml.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/haml/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/haml/test.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/haskell/haskell.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/haskell/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/haxe/haxe.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/haxe/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/htmlembedded/htmlembedded.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/htmlembedded/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/htmlmixed/htmlmixed.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/htmlmixed/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/http/http.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/http/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/idl/idl.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/idl/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/jade/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/jade/jade.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/javascript/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/javascript/javascript.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/javascript/json-ld.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/javascript/test.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/javascript/typescript.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/jinja2/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/jinja2/jinja2.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/julia/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/julia/julia.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/kotlin/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/kotlin/kotlin.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/livescript/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/livescript/livescript.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/lua/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/lua/lua.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/markdown/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/markdown/markdown.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/markdown/test.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/meta.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/mirc/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/mirc/mirc.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/mllike/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/mllike/mllike.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/modelica/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/modelica/modelica.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/nginx/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/nginx/nginx.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/ntriples/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/ntriples/ntriples.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/octave/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/octave/octave.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/pascal/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/pascal/pascal.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/pegjs/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/pegjs/pegjs.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/perl/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/perl/perl.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/php/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/php/php.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/php/test.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/pig/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/pig/pig.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/properties/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/properties/properties.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/puppet/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/puppet/puppet.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/python/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/python/python.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/q/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/q/q.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/r/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/r/r.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/rpm/changes/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/rpm/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/rpm/rpm.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/rst/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/rst/rst.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/ruby/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/ruby/ruby.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/ruby/test.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/rust/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/rust/rust.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/sass/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/sass/sass.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/scheme/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/scheme/scheme.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/shell/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/shell/shell.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/shell/test.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/sieve/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/sieve/sieve.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/slim/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/slim/slim.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/slim/test.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/smalltalk/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/smalltalk/smalltalk.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/smarty/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/smarty/smarty.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/smartymixed/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/smartymixed/smartymixed.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/solr/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/solr/solr.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/soy/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/soy/soy.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/sparql/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/sparql/sparql.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/spreadsheet/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/spreadsheet/spreadsheet.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/sql/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/sql/sql.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/stex/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/stex/stex.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/stex/test.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/stylus/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/stylus/stylus.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/tcl/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/tcl/tcl.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/textile/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/textile/test.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/textile/textile.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/tiddlywiki/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/tiddlywiki/tiddlywiki.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/tiddlywiki/tiddlywiki.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/tiki/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/tiki/tiki.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/tiki/tiki.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/toml/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/toml/toml.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/tornado/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/tornado/tornado.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/turtle/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/turtle/turtle.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/vb/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/vb/vb.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/vbscript/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/vbscript/vbscript.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/velocity/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/velocity/velocity.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/verilog/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/verilog/test.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/verilog/verilog.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/xml/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/xml/test.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/xml/xml.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/xquery/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/xquery/test.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/xquery/xquery.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/yaml/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/yaml/yaml.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/z80/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/mode/z80/z80.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/modes.min.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/package.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/3024-day.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/3024-night.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/ambiance-mobile.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/ambiance.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/base16-dark.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/base16-light.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/blackboard.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/cobalt.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/colorforth.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/eclipse.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/elegant.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/erlang-dark.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/lesser-dark.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/mbo.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/mdn-like.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/midnight.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/monokai.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/neat.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/neo.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/night.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/paraiso-dark.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/paraiso-light.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/pastel-on-dark.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/rubyblue.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/solarized.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/the-matrix.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/tomorrow-night-bright.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/tomorrow-night-eighties.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/twilight.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/vibrant-ink.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/xq-dark.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/xq-light.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/theme/zenburn.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/flowchart.min.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/jquery.flowchart.min.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/marked.min.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/prettify.min.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/raphael.min.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/sequence-diagram.min.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/underscore.min.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/plugins/code-block-dialog/code-block-dialog.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/plugins/emoji-dialog/emoji-dialog.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/plugins/emoji-dialog/emoji.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/plugins/goto-line-dialog/goto-line-dialog.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/plugins/help-dialog/help-dialog.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/plugins/help-dialog/help.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/plugins/html-entities-dialog/html-entities-dialog.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/plugins/html-entities-dialog/html-entities.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/plugins/image-dialog/image-dialog.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/plugins/link-dialog/link-dialog.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/plugins/plugin-template.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/plugins/preformatted-text-dialog/preformatted-text-dialog.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/plugins/reference-link-dialog/reference-link-dialog.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/plugins/table-dialog/table-dialog.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/plugins/test-plugin/test-plugin.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/views/blogger/edit_blog.jsp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/views/nav/nav_edit_blog.jsp" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerBlogCategoryController.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerBlogCategoryController.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/blog/WriteBlogController.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" afterPath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/blogger/main.css" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/blogger/main.css" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/image/1-10_&amp;_24b52059-975e-4523-883b-bf80ae4f8389.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/image/1-11_&amp;_a8ccd85e-4f44-4c77-896c-a06fb347a4db.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/image/7.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/image/Blue eyed_&amp;_2e216493-5d50-4e39-8b9d-db2c2874c003.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/image/register_img.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/image/金属圆点_&amp;_ec3afd6f-aed3-4e4b-86d6-20a1212c8837.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/common.css" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/common.css" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/nav.css" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/nav/nav.css" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/plugin/cropper/cropper.min.css" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/cropper/css/cropper.min.css" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/blogger/main.js" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/blogger/main.js" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/nav.js" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/nav/nav.js" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/plugin/cropper/cropper.min.js" afterPath="$PROJECT_DIR$/src/main/webapp/static/plugin/cropper/js/cropper.min.js" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/blogger/main.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/blogger/main.jsp" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/blogger/write_blog.jsp" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/dialog/login_dialog.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/dialog/login_dialog.jsp" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/dialog/new_category_dialog.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/dialog/new_category_dialog.jsp" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/dialog/new_label_dialog.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/dialog/new_label_dialog.jsp" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/dialog/new_link_dialog.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/dialog/new_link_dialog.jsp" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/dialog/upload_avatar_dialog.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/dialog/upload_avatar_dialog.jsp" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/error/error.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/error/error.jsp" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/error/unknown_blogger.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/error/unknown_blogger.jsp" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/nav.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/nav/nav.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -57,7 +457,7 @@
         <item name="blog@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="blog: schema" type="c314c289:MysqlImplModel$Schema" />
-        <item name="blog_category: table" type="98d5ac3d:MysqlImplModel$Table" />
+        <item name="blog: table" type="98d5ac3d:MysqlImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -67,118 +467,57 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/blogger/main.js">
+      <file leaf-file-name="nav_edit_blog.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/views/nav/nav_edit_blog.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="81" column="23" lean-forward="false" selection-start-line="81" selection-start-column="23" selection-end-line="81" selection-end-column="23" />
-              <folding>
-                <element signature="n#!!block;n#loadLabel#0" expanded="false" />
-                <element signature="e#459#1261#0" expanded="false" />
-                <element signature="e#523#1091#0" expanded="false" />
-                <element signature="e#751#1077#0" expanded="false" />
-                <element signature="n#!!block;n#loadCategory#0" expanded="false" />
-                <element signature="n#!!block;n#loadContact#0" expanded="false" />
-                <element signature="n#!!block;n#loadSortRule#0" expanded="false" />
-                <element signature="n#!!block;n#setModifyLabel#0" expanded="false" />
-                <element signature="n#!!block;n#setModifyLink#0" expanded="false" />
-                <element signature="n#!!block;n#setModifyCategory#0" expanded="false" />
-                <element signature="n#!!block;n#setSortRule#0" expanded="false" />
-                <element signature="n#!!block;n#setSortOrder#0" expanded="false" />
-                <element signature="n#!!block;n#setContactWhenEmpty#0" expanded="false" />
-                <element signature="n#!!block;n#setCategoryWhenEmpty#0" expanded="false" />
-                <element signature="n#!!block;n#setLabelWhenEmpty#0" expanded="false" />
-                <element signature="n#!!block;n#setComplexFilterLabel#0" expanded="false" />
-                <element signature="n#!!block;n#setComplexFilterCategory#0" expanded="false" />
-                <element signature="n#!!block;n#toggleLabelClass#0" expanded="false" />
-                <element signature="n#!!block;n#toggleCategoryClass#0" expanded="false" />
-                <element signature="n#!!block;n#complexFilter#0" expanded="false" />
-                <element signature="n#!!block;n#filterBloggerBlog#0" expanded="false" />
-                <element signature="n#!!block;n#filterBlogByLabel#0" expanded="false" />
-                <element signature="n#!!block;n#filterBlogByCategory#0" expanded="false" />
-                <element signature="n#!!block;n#filterBlogByKeyWord#0" expanded="false" />
-                <element signature="n#!!block;n#setBlogs#0" expanded="false" />
-                <element signature="e#12167#14760#0" expanded="false" />
-                <element signature="n#!!block;n#resetComplexFilter#0" expanded="false" />
-                <element signature="n#!!block;n#isPageOwnerBloggerLogin#0" expanded="false" />
-                <element signature="n#!!block;n#initBlog#0" expanded="false" />
-                <element signature="n#!!block;n#setFilterData#0" expanded="false" />
-                <element signature="n#!!block;n#setPageIndicator#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BloggerBlogCategoryController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerBlogCategoryController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
-              <caret line="45" column="82" lean-forward="false" selection-start-line="45" selection-start-column="82" selection-end-line="45" selection-end-column="82" />
+            <state relative-caret-position="399">
+              <caret line="19" column="53" lean-forward="true" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BloggerCategoryServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/impl/blogger/BloggerCategoryServiceImpl.java">
+      <file leaf-file-name="nav_edit_blog.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/nav/nav_edit_blog.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="619">
-              <caret line="181" column="39" lean-forward="true" selection-start-line="181" selection-start-column="39" selection-end-line="181" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BlogDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dao/blog/BlogDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="455">
-              <caret line="134" column="12" lean-forward="false" selection-start-line="134" selection-start-column="12" selection-end-line="134" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BlogDaoMapper.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/blog/BlogDaoMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="162" column="105" lean-forward="false" selection-start-line="162" selection-start-column="93" selection-end-line="162" selection-end-column="105" />
+            <state relative-caret-position="420">
+              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding>
-                <marker date="1518501146317" expanded="true" signature="272:356" ph="SELECT * FRO... blog" />
-                <marker date="1518501146317" expanded="true" signature="434:551" ph="SELECT * FRO... blog" />
-                <marker date="1518501146317" expanded="true" signature="619:645" ph="SELECT * FRO... blog" />
-                <marker date="1518501146317" expanded="true" signature="1876:1917" ph="DELETE FROM blog... " />
-                <marker date="1518501146317" expanded="true" signature="2114:2143" ph="SELECT LAST_... " />
-                <marker date="1518501146317" expanded="true" signature="2173:2686" ph="INSERT INTO blog... " />
-                <marker date="1518501146317" expanded="true" signature="2770:2932" ph="SELECT b.id,... blog" />
-                <marker date="1518501146317" expanded="true" signature="3032:3311" ph="SELECT * FRO... blog" />
-                <marker date="1518501146317" expanded="true" signature="3405:3501" ph="SELECT b.id blog" />
-                <marker date="1518501146317" expanded="true" signature="3573:3631" ph="SELECT * FRO... blog" />
-                <marker date="1518501146317" expanded="true" signature="3718:3779" ph="SELECT b.id blog" />
-                <marker date="1518501146317" expanded="true" signature="3866:3975" ph="SELECT b.id,... blog" />
-                <marker date="1518501146317" expanded="true" signature="4059:4165" ph="SELECT b.id,... blog" />
-                <marker date="1518501146317" expanded="true" signature="4258:4404" ph="SELECT count... blog" />
-                <marker date="1518501146317" expanded="true" signature="4498:4592" ph="SELECT count... blog" />
-                <marker date="1518501146317" expanded="true" signature="4680:4804" ph="SELECT id, w... blog" />
+                <marker date="1520328068606" expanded="true" signature="317:323" ph="&amp;nbsp;" />
+                <marker date="1520328068606" expanded="true" signature="323:329" ph="&amp;nbsp;" />
+                <marker date="1520328068606" expanded="true" signature="674:680" ph="&amp;nbsp;" />
+                <marker date="1520328068606" expanded="true" signature="680:686" ph="&amp;nbsp;" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BlogCategoryDaoMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/blog/BlogCategoryDaoMapper.xml">
+      <file leaf-file-name="edit_blog.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/views/blogger/edit_blog.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
-              <folding>
-                <marker date="1518359042624" expanded="true" signature="618:726" ph="SELECT * FRO... blog_category" />
-                <marker date="1518359042624" expanded="true" signature="806:904" ph="SELECT * FRO... blog_category" />
-                <marker date="1518359042624" expanded="true" signature="994:1072" ph="SELECT count... blog_category" />
-                <marker date="1518359042624" expanded="true" signature="1782:1832" ph="DELETE FROM blog_category... " />
-                <marker date="1518359042624" expanded="true" signature="2037:2066" ph="SELECT LAST_... " />
-                <marker date="1518359042624" expanded="true" signature="2096:2333" ph="INSERT INTO blog_category... " />
-              </folding>
+            <state relative-caret-position="189">
+              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit_blog.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/blogger/edit_blog.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="nav_edit_blog.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/nav/nav_edit_blog.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="693">
+              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -205,20 +544,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>460</find>
-      <find>tailoring-content</find>
-      <find>tailoring-container</find>
-      <find>col</find>
-      <find>previewImg</find>
-      <find>preview-box-parcel</find>
-      <find>ava</find>
-      <find>button-info-disable</find>
-      <find>tailoringImg</find>
-      <find>modifycategoryDialog</find>
-      <find>toggleModifyLabelClass</find>
-      <find>showChoosedLabel</find>
-      <find>err</find>
-      <find>modifyLabelBtn</find>
       <find>button-disable</find>
       <find>button-disa</find>
       <find>Label</find>
@@ -230,11 +555,25 @@
       <find>box</find>
       <find>高级</find>
       <find>高级检索</find>
-      <find>filter</find>
       <find>blogger-profile-label-title</find>
       <find>item</find>
       <find>blogger-link-item</find>
       <find>line</find>
+      <find>static</find>
+      <find>cropper</find>
+      <find>testEditor</find>
+      <find>blogger-option</find>
+      <find>dialog</find>
+      <find>华文中宋</find>
+      <find>button</find>
+      <find>navbar-btn</find>
+      <find>createBlog</find>
+      <find>write</find>
+      <find>blog-filter-label-choose</find>
+      <find>filter</find>
+      <find>-filter-</find>
+      <find>complex</find>
+      <find>select</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -260,40 +599,18 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blog/BlogController.java" />
-        <option value="$PROJECT_DIR$/src/doc/wiki/blog/博文检索.md" />
-        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerBlogController.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/duan/blogos/web/api/audience/BlogControllerTest.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/static/js/plugin/cropper/cropper.min.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/static/css/plugin/cropper/cropper.min.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/dialog/new_category_dialog.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/dialog/new_label_dialog.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/dialog/new_link_dialog.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/dialog/toast_dialog.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/blogger/register.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/static/css/plugin/cropper/ImgCropping.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/static/css/dialog/upload_avatar_dialog.css" />
-        <option value="$PROJECT_DIR$/src/doc/notice.md" />
-        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/exception/api/common/PictureFormatErrorException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/manager/ExceptionManager.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/messages_en.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/messages_zh.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/common/ImageController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/BloggerPictureService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/impl/blogger/BloggerPictureServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/util/ImageUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/manager/ImageManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerProfileController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/dialog/upload_avatar_dialog.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/dialog/upload_avatar_dialog.jsp" />
         <option value="$PROJECT_DIR$/src/main/resources/config/db.properties" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/dialog/login_dialog.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/dialog/login_dialog.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/common.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerLabelController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/dialog/login_dialog.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/dialog/modify_label_dialog.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/dialog/modify_label_dialog.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/dialog/modify_category_dialog.jsp" />
@@ -302,15 +619,37 @@
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/dialog/modify_label_dialog.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/dialog/modify_link_dialog.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/dialog/modify_link_dialog.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/nav.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/static/css/nav.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/static/js/blogger/main.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/static/css/common.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/footer.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/footer.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/views/blogger/main.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/static/css/blogger/main.css" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerBlogCategoryController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/applicationContext.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/nav.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/error/unknown_blogger.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/error/error.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/blog/WriteBlogController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/css/nav.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/js/nav/nav.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/js/blogger/write_blog.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/css/blogger/write_blog.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/blogger/write_blog.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/nav/nav_write_blog.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/blog/EditBlogController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/js/blogger/main.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/dialog/upload_avatar_dialog.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/dialog/new_link_dialog.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/dialog/new_label_dialog.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/dialog/new_category_dialog.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/dialog/login_dialog.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/blogger/main.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/css/blogger/edit_blog.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/css/nav/nav.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/nav/nav.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/css/common.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/css/nav/nav_edit_blog.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/css/blogger/main.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/blogger/edit_blog.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/js/nav/nav_edit_blog.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/views/nav/nav_edit_blog.jsp" />
       </list>
     </option>
   </component>
@@ -398,18 +737,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="BlogSystem" type="1abcf292:AndroidViewProjectNode" />
-              <item name="BlogSystem" type="1039202d:NonAndroidModuleNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -470,7 +797,47 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="blogos" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="blog" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
               <item name="blogger" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -479,23 +846,9 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="image" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="nav" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
@@ -522,6 +875,16 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="nav" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -531,12 +894,40 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="audience" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="blogger" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="dialog" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="nav" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -549,6 +940,17 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="BlogSystem" type="1abcf292:AndroidViewProjectNode" />
+              <item name="BlogSystem" type="1039202d:NonAndroidModuleNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -578,15 +980,15 @@
       <recent name="" />
       <recent name="com.duan.blogos.BaseTest" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\src\main\webapp\static\js\nav" />
+      <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\src\main\webapp\static\css\nav" />
+      <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\src\main\webapp\views\nav" />
+      <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\src\main\webapp\static\plugin\cropper\js" />
+      <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\src\main\webapp\static\plugin\cropper\css" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.duan.blogos.web.api" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\src\main\webapp\static\js\dialog" />
-      <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\src\main\webapp\static\css\dialog" />
-      <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\src\main\webapp\views\dialog" />
-      <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\src\main\webapp\static\js\plugin\cropper" />
-      <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\src\main\webapp\static\css\plugin" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.duan.blogos.web.api.blog" />
@@ -595,12 +997,12 @@
       <recent name="com.duan.blogos.exception" />
       <recent name="com.duan.blogos.manager.validate" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\src\main\webapp\static\image" />
-      <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\src\main\webapp\static\css\plugin\cropper" />
-      <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\src\doc\wiki\common" />
-      <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\src\doc\wiki\blogger" />
-      <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\src\main\webapp\static\css\dialog" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\src\main\webapp\static\js\nav" />
+      <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\src\main\webapp\static\plugin\editormd" />
+      <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\src\main\webapp\views\nav" />
+      <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\src\main\webapp\static\js\plugin\editormd" />
+      <recent name="D:\JetBrains\IntelliJ_IDEAProjects\BlogSystem\src\main\webapp\static\css\plugin\editormd" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -1239,14 +1641,9 @@
       <workItem from="1520142306834" duration="10178000" />
       <workItem from="1520218010958" duration="1497000" />
       <workItem from="1520220279186" duration="10758000" />
-      <workItem from="1520233322758" duration="10165000" />
-    </task>
-    <task id="LOCAL-00066" summary="1 添加博文统计信息api；&#10;2 添加博主统计信息service；&#10;3 修改包结构">
-      <created>1516162689307</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1516162689308</updated>
+      <workItem from="1520233322758" duration="10211000" />
+      <workItem from="1520311244757" duration="15867000" />
+      <workItem from="1520328823260" duration="432000" />
     </task>
     <task id="LOCAL-00067" summary="完成博文统计信息获取API">
       <created>1516179426929</created>
@@ -1584,7 +1981,14 @@
       <option name="project" value="LOCAL" />
       <updated>1520240779463</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="完成博主主页">
+      <created>1520245329896</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1520245329896</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1620,7 +2024,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="824302000" />
+    <option name="totallyTimeSpent" value="840647000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1642,7 +2046,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.81173867" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3344538" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27731094" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18095239" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24985994" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1653,11 +2057,11 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890365" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.77297896" sideWeight="0.49803922" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.5005537" sideWeight="0.49803922" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.687395" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6929972" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32779622" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37310925" sideWeight="0.48172757" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27507004" sideWeight="0.48172757" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26610646" sideWeight="0.50777775" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29075631" sideWeight="0.5182724" order="4" side_tool="true" content_ui="tabs" />
@@ -1745,8 +2149,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="设计博客系统主页，博文内容获取，分页控件" />
-    <MESSAGE value="设计博客系统主页，完善分页功能" />
     <MESSAGE value="设计博客系统主页，完善博文列表项，实现博主信息统计API" />
     <MESSAGE value="设计博客系统主页，实现博主信息统计API" />
     <MESSAGE value="设计博客系统主页，实现博文高级检索" />
@@ -1770,7 +2172,9 @@
     <MESSAGE value="完成标签修改功能" />
     <MESSAGE value="完成标签删除，类别修改、删除，链接修改、删除功能" />
     <MESSAGE value="修改UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改UI" />
+    <MESSAGE value="完成博主主页页面" />
+    <MESSAGE value="完成博主主页" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成博主主页" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1820,329 +2224,361 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/manager/ImageManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dao/blog/BlogCategoryDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+        <state relative-caret-position="291">
+          <caret line="33" column="23" lean-forward="false" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-dao.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/blog/BlogDaoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="158" column="0" lean-forward="true" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dao/blog/BlogDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="134" column="12" lean-forward="false" selection-start-line="134" selection-start-column="12" selection-end-line="134" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/impl/blogger/BloggerCategoryServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="619">
+          <caret line="181" column="39" lean-forward="true" selection-start-line="181" selection-start-column="39" selection-end-line="181" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/blog/BlogCategoryDaoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/Full example - Editor.md examples.html" />
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/editormd.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="1" column="2845" lean-forward="false" selection-start-line="1" selection-start-column="2845" selection-end-line="1" selection-end-column="2845" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/lib/codemirror/lib/codemirror.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="31" column="68" lean-forward="true" selection-start-line="31" selection-start-column="68" selection-end-line="31" selection-end-column="68" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/db.properties">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/css/editormd.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/common/LabelController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-12">
-          <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/dialog/login_dialog.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/BlogLabel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="28" column="32" lean-forward="false" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/dialog/new_category_dialog.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/dialog/new_category_dialog.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="681">
-          <caret line="52" column="87" lean-forward="false" selection-start-line="52" selection-start-column="87" selection-end-line="52" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/dialog/upload_avatar_dialog.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="1" lean-forward="false" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
+        <state relative-caret-position="121">
+          <caret line="1008" column="20" lean-forward="true" selection-start-line="1008" selection-start-column="20" selection-end-line="1008" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/dialog/upload_avatar_dialog.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+        <state relative-caret-position="304">
+          <caret line="72" column="21" lean-forward="false" selection-start-line="72" selection-start-column="21" selection-end-line="72" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blogger/BloggerLinkDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/dialog/login_dialog.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="987">
-          <caret line="47" column="10" lean-forward="true" selection-start-line="25" selection-start-column="6" selection-end-line="47" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.1.7.RELEASE/spring-web-4.1.7.RELEASE-sources.jar!/org/springframework/web/filter/HttpPutFormContentFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="70" column="13" lean-forward="true" selection-start-line="70" selection-start-column="13" selection-end-line="70" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="72" column="12" lean-forward="true" selection-start-line="72" selection-start-column="12" selection-end-line="72" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/BloggerLabelService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/css/editormd.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <caret line="1" column="1694" lean-forward="false" selection-start-line="1" selection-start-column="1694" selection-end-line="1" selection-end-column="1694" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/dialog/upload_avatar_dialog.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerProfileController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="56" column="20" lean-forward="true" selection-start-line="54" selection-start-column="16" selection-end-line="56" selection-end-column="20" />
+        <state relative-caret-position="438">
+          <caret line="124" column="53" lean-forward="false" selection-start-line="124" selection-start-column="53" selection-end-line="124" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/common/ImageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-654">
+          <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/manager/validate/BloggerValidateManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/BloggerLoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="37" column="42" lean-forward="true" selection-start-line="37" selection-start-column="42" selection-end-line="37" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/common.js">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/BloggerLogoutController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="193" column="9" lean-forward="false" selection-start-line="193" selection-start-column="9" selection-end-line="193" selection-end-column="9" />
+        <state relative-caret-position="231">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/dialog/modify_label_dialog.css">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/web/blog/RegisterPageController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="231">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerLabelController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/web/blog/BlogPageController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="96" column="77" lean-forward="true" selection-start-line="96" selection-start-column="77" selection-end-line="96" selection-end-column="77" />
+        <state relative-caret-position="429">
+          <caret line="44" column="30" lean-forward="false" selection-start-line="44" selection-start-column="22" selection-end-line="44" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/error/unknown_blogger.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="7" lean-forward="true" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/error/error.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerBlogCategoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="40" column="113" lean-forward="true" selection-start-line="40" selection-start-column="53" selection-end-line="40" selection-end-column="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/alibaba/druid/1.0.16/druid-1.0.16.jar!/support/http/resources/css/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="8" column="37724" lean-forward="false" selection-start-line="8" selection-start-column="37724" selection-end-line="8" selection-end-column="37724" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/audience/blogger_home.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/idea.jar!/resources/html5-schema/html5/meta.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="48" column="16" lean-forward="false" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="378">
+            <caret line="18" column="30" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/plugin/editormd/plugins/help-dialog/help.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/dialog/modify_link_dialog.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="21" column="47" lean-forward="false" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blog/BlogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="619">
+          <caret line="73" column="48" lean-forward="false" selection-start-line="73" selection-start-column="48" selection-end-line="73" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/blogger/edit_blog.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="639">
+          <caret line="39" column="1" lean-forward="true" selection-start-line="39" selection-start-column="1" selection-end-line="43" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/web/blog/EditBlogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="32" column="45" lean-forward="true" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/views/dialog/modify_label_dialog.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="597">
-          <caret line="88" column="30" lean-forward="true" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
+        <state relative-caret-position="420">
+          <caret line="56" column="63" lean-forward="false" selection-start-line="56" selection-start-column="39" selection-end-line="56" selection-end-column="63" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/dialog/modify_label_dialog.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="22" column="10" lean-forward="false" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
-          <folding>
-            <marker date="1520230691836" expanded="true" signature="510:522" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerLinkController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="103" column="36" lean-forward="false" selection-start-line="103" selection-start-column="36" selection-end-line="103" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/dialog/modify_link_dialog.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="119" column="51" lean-forward="true" selection-start-line="119" selection-start-column="51" selection-end-line="119" selection-end-column="51" />
-          <folding>
-            <marker date="1520230878681" expanded="true" signature="361:376" ph="..." />
-            <marker date="1520230878681" expanded="true" signature="474:489" ph="..." />
-            <marker date="1520230878681" expanded="true" signature="930:942" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/dialog/modify_link_dialog.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="97" column="53" lean-forward="false" selection-start-line="97" selection-start-column="53" selection-end-line="97" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/dialog/modify_category_dialog.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
-          <folding>
-            <marker date="1520230574157" expanded="true" signature="766:778" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/views/dialog/modify_category_dialog.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="96" column="37" lean-forward="false" selection-start-line="87" selection-start-column="27" selection-end-line="96" selection-end-column="37" />
+        <state relative-caret-position="-1575">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/dialog/toast_dialog.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="21" column="47" lean-forward="true" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/dialog/upload_avatar_dialog.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="66" column="53" lean-forward="false" selection-start-line="66" selection-start-column="53" selection-end-line="66" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/dialog/new_link_dialog.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="516">
+          <caret line="53" column="53" lean-forward="false" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/dialog/new_label_dialog.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="39" column="53" lean-forward="false" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/dialog/new_category_dialog.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="47" column="53" lean-forward="false" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/views/dialog/login_dialog.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="66" column="75" lean-forward="false" selection-start-line="66" selection-start-column="75" selection-end-line="66" selection-end-column="75" />
+        <state relative-caret-position="516">
+          <caret line="89" column="53" lean-forward="false" selection-start-line="89" selection-start-column="53" selection-end-line="89" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/blogger/main.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/nav/nav.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="34" column="5" lean-forward="false" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-          <folding>
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#p#1;n#div#1;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#1;n#div#2;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#1;n#div#3;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/footer.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/footer.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="20" column="40" lean-forward="false" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/blogger/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/nav.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-705">
-          <caret line="23" column="82" lean-forward="false" selection-start-line="23" selection-start-column="82" selection-end-line="23" selection-end-column="82" />
-          <folding>
-            <element signature="n#style#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/nav.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="28" lean-forward="false" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+        <state relative-caret-position="429">
+          <caret line="77" column="73" lean-forward="true" selection-start-line="77" selection-start-column="73" selection-end-line="77" selection-end-column="73" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/common.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        <state relative-caret-position="147">
+          <caret line="7" column="19" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/nav/nav.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="11" lean-forward="true" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/nav/nav.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/blogger/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="177" column="38" lean-forward="false" selection-start-line="177" selection-start-column="38" selection-end-line="177" selection-end-column="38" />
+          <caret line="188" column="38" lean-forward="false" selection-start-line="188" selection-start-column="38" selection-end-line="188" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/nav/nav_edit_blog.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="693">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/image/pool.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/blogger/edit_blog.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/image/register_img.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/image/金属圆点_&amp;_ec3afd6f-aed3-4e4b-86d6-20a1212c8837.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/image/Blue eyed_&amp;_2e216493-5d50-4e39-8b9d-db2c2874c003.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/image/1-11_&amp;_a8ccd85e-4f44-4c77-896c-a06fb347a4db.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/image/1-10_&amp;_24b52059-975e-4523-883b-bf80ae4f8389.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/image/7.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/image/register_left_img.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/blogger/edit_blog.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/blogger/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="81" column="23" lean-forward="false" selection-start-line="81" selection-start-column="23" selection-end-line="81" selection-end-column="23" />
+        <state relative-caret-position="378">
+          <caret line="263" column="0" lean-forward="true" selection-start-line="263" selection-start-column="0" selection-end-line="263" selection-end-column="0" />
           <folding>
-            <element signature="n#!!block;n#loadLabel#0" expanded="false" />
-            <element signature="e#459#1261#0" expanded="false" />
-            <element signature="e#523#1091#0" expanded="false" />
             <element signature="e#751#1077#0" expanded="false" />
             <element signature="n#!!block;n#loadCategory#0" expanded="false" />
             <element signature="n#!!block;n#loadContact#0" expanded="false" />
@@ -2155,111 +2591,52 @@
             <element signature="n#!!block;n#setContactWhenEmpty#0" expanded="false" />
             <element signature="n#!!block;n#setCategoryWhenEmpty#0" expanded="false" />
             <element signature="n#!!block;n#setLabelWhenEmpty#0" expanded="false" />
-            <element signature="n#!!block;n#setComplexFilterLabel#0" expanded="false" />
-            <element signature="n#!!block;n#setComplexFilterCategory#0" expanded="false" />
-            <element signature="n#!!block;n#toggleLabelClass#0" expanded="false" />
-            <element signature="n#!!block;n#toggleCategoryClass#0" expanded="false" />
             <element signature="n#!!block;n#complexFilter#0" expanded="false" />
             <element signature="n#!!block;n#filterBloggerBlog#0" expanded="false" />
             <element signature="n#!!block;n#filterBlogByLabel#0" expanded="false" />
             <element signature="n#!!block;n#filterBlogByCategory#0" expanded="false" />
             <element signature="n#!!block;n#filterBlogByKeyWord#0" expanded="false" />
             <element signature="n#!!block;n#setBlogs#0" expanded="false" />
-            <element signature="e#12167#14760#0" expanded="false" />
+            <element signature="e#12029#14622#0" expanded="false" />
             <element signature="n#!!block;n#resetComplexFilter#0" expanded="false" />
             <element signature="n#!!block;n#isPageOwnerBloggerLogin#0" expanded="false" />
             <element signature="n#!!block;n#initBlog#0" expanded="false" />
             <element signature="n#!!block;n#setFilterData#0" expanded="false" />
             <element signature="n#!!block;n#setPageIndicator#0" expanded="false" />
+            <marker date="1520324730111" expanded="true" signature="8223:8229" ph="&amp;nbsp;" />
+            <marker date="1520324730111" expanded="true" signature="8229:8235" ph="&amp;nbsp;" />
+            <marker date="1520324730111" expanded="true" signature="8647:8653" ph="&amp;nbsp;" />
+            <marker date="1520324730111" expanded="true" signature="8653:8659" ph="&amp;nbsp;" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dto/blogger/BloggerCategoryDTO.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/blogger/main.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        <state relative-caret-position="498">
+          <caret line="267" column="0" lean-forward="false" selection-start-line="267" selection-start-column="0" selection-end-line="268" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerBlogCategoryController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/js/nav/nav_edit_blog.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="45" column="82" lean-forward="false" selection-start-line="45" selection-start-column="82" selection-end-line="45" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/BloggerCategoryService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="23" column="41" lean-forward="false" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dao/blog/BlogCategoryDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="33" column="23" lean-forward="false" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/blog/BlogCategoryDaoMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+        <state relative-caret-position="420">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
-            <marker date="1518359042624" expanded="true" signature="618:726" ph="SELECT * FRO... blog_category" />
-            <marker date="1518359042624" expanded="true" signature="806:904" ph="SELECT * FRO... blog_category" />
-            <marker date="1518359042624" expanded="true" signature="994:1072" ph="SELECT count... blog_category" />
-            <marker date="1518359042624" expanded="true" signature="1782:1832" ph="DELETE FROM blog_category... " />
-            <marker date="1518359042624" expanded="true" signature="2037:2066" ph="SELECT LAST_... " />
-            <marker date="1518359042624" expanded="true" signature="2096:2333" ph="INSERT INTO blog_category... " />
+            <marker date="1520328068606" expanded="true" signature="317:323" ph="&amp;nbsp;" />
+            <marker date="1520328068606" expanded="true" signature="323:329" ph="&amp;nbsp;" />
+            <marker date="1520328068606" expanded="true" signature="674:680" ph="&amp;nbsp;" />
+            <marker date="1520328068606" expanded="true" signature="680:686" ph="&amp;nbsp;" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/service/impl/blogger/BloggerCategoryServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/nav/nav_edit_blog.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="619">
-          <caret line="181" column="39" lean-forward="true" selection-start-line="181" selection-start-column="39" selection-end-line="181" selection-end-column="39" />
+        <state relative-caret-position="399">
+          <caret line="19" column="53" lean-forward="true" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/dao/blog/BlogDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="134" column="12" lean-forward="false" selection-start-line="134" selection-start-column="12" selection-end-line="134" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/blog/BlogDaoMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="162" column="105" lean-forward="false" selection-start-line="162" selection-start-column="93" selection-end-line="162" selection-end-column="105" />
-          <folding>
-            <marker date="1518501146317" expanded="true" signature="272:356" ph="SELECT * FRO... blog" />
-            <marker date="1518501146317" expanded="true" signature="434:551" ph="SELECT * FRO... blog" />
-            <marker date="1518501146317" expanded="true" signature="619:645" ph="SELECT * FRO... blog" />
-            <marker date="1518501146317" expanded="true" signature="1876:1917" ph="DELETE FROM blog... " />
-            <marker date="1518501146317" expanded="true" signature="2114:2143" ph="SELECT LAST_... " />
-            <marker date="1518501146317" expanded="true" signature="2173:2686" ph="INSERT INTO blog... " />
-            <marker date="1518501146317" expanded="true" signature="2770:2932" ph="SELECT b.id,... blog" />
-            <marker date="1518501146317" expanded="true" signature="3032:3311" ph="SELECT * FRO... blog" />
-            <marker date="1518501146317" expanded="true" signature="3405:3501" ph="SELECT b.id blog" />
-            <marker date="1518501146317" expanded="true" signature="3573:3631" ph="SELECT * FRO... blog" />
-            <marker date="1518501146317" expanded="true" signature="3718:3779" ph="SELECT b.id blog" />
-            <marker date="1518501146317" expanded="true" signature="3866:3975" ph="SELECT b.id,... blog" />
-            <marker date="1518501146317" expanded="true" signature="4059:4165" ph="SELECT b.id,... blog" />
-            <marker date="1518501146317" expanded="true" signature="4258:4404" ph="SELECT count... blog" />
-            <marker date="1518501146317" expanded="true" signature="4498:4592" ph="SELECT count... blog" />
-            <marker date="1518501146317" expanded="true" signature="4680:4804" ph="SELECT id, w... blog" />
-          </folding>
         </state>
       </provider>
     </entry>

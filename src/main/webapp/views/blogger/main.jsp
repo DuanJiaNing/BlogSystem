@@ -36,7 +36,7 @@
 
 <button id="scroll-to-top" data-toggle="tooltip" data-placement="left" title="回到顶部">TOP</button>
 
-<jsp:include page="/views/nav.jsp"/>
+<jsp:include page="/views/nav/nav.jsp"/>
 <jsp:include page="/views/dialog/new_label_dialog.jsp"/>
 <jsp:include page="/views/dialog/new_category_dialog.jsp"/>
 <jsp:include page="/views/dialog/new_link_dialog.jsp"/>
@@ -110,10 +110,12 @@
                 <span class="error-msg" id="complexFilterErrorMsg"></span>
             </div>
             <div class="modal-footer dialog-footer">
-                <button class="button-success" id="complexFilterBtn" onclick="complexFilter()">检索
-                </button>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a id="complexFilterBtnReset" onclick="resetComplexFilter()">重置
-                </a>
+                <p class="text-right">
+                    <a id="complexFilterBtnReset" onclick="resetComplexFilter()">重置
+                    </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="button-success" id="complexFilterBtn" onclick="complexFilter()">检索
+                    </button>&nbsp;&nbsp;&nbsp;&nbsp;
+                </p>
             </div>
         </div><!-- /.modal-content -->
     </div>

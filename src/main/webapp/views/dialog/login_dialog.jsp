@@ -82,10 +82,14 @@
                 </div>
             </div>
             <div class="modal-footer dialog-footer">
-                <button class="button-success" id="loginBtn" onclick="login(funAfterLoginSuccess,funAfterLoginFail)">
-                    登入
-                </button>
-                <p class="text-right"><a>忘记密码？</a></p>
+                <p class="text-right">
+                    <a>忘记密码？</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="button-success" id="loginBtn"
+                            onclick="login(funAfterLoginSuccess,funAfterLoginFail)">
+                        登入
+                    </button>&nbsp;&nbsp;&nbsp;&nbsp;
+                </p>
+
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

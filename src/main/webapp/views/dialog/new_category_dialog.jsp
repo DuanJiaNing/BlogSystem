@@ -42,9 +42,12 @@
                 </div>
             </div>
             <div class="modal-footer dialog-footer">
-                <button class="button-success" id="newCategoryBtn"
-                        onclick="createCategory(funWhenCreateCategorySuccess, funWhenCreateCategoryFail)">创建
-                </button>
+                <p class="text-right">
+                    <button class="button-success" id="newCategoryBtn"
+                            onclick="createCategory(funWhenCreateCategorySuccess, funWhenCreateCategoryFail)">创建
+                    </button>&nbsp;&nbsp;&nbsp;&nbsp;
+                </p>
+
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
