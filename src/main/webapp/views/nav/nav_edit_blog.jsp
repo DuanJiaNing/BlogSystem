@@ -20,13 +20,8 @@
         var bloggerId = ${sessionScope['bloggerId']};
 
         // 编辑博文时有值
-        <c:if test="${not empty labelIds}">
-        var labelId = ${labelIds};
-        </c:if>
-
-        <c:if test="${not empty catyegoryId}">
-        var catyegoryId = ${catyegoryId};
-        </c:if>
+        var labelId = '${labelIds}';
+        var categoryId = '${categoryId}';
 
     </script>
 

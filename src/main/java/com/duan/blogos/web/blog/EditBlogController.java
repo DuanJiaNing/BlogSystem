@@ -1,6 +1,10 @@
 package com.duan.blogos.web.blog;
 
+import com.duan.blogos.entity.blog.Blog;
+import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.manager.validate.BloggerValidateManager;
+import com.duan.blogos.restful.ResultBean;
+import com.duan.blogos.service.blogger.BloggerBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,15 +25,31 @@ public class EditBlogController {
     @Autowired
     private BloggerValidateManager bloggerValidateManager;
 
+    @Autowired
+    private BloggerBlogService blogService;
+
     @RequestMapping
     public ModelAndView mainPage(HttpServletRequest request,
-                                 @RequestParam(value = "bid", required = false) Integer bloggerId) {
+                                 @RequestParam(value = "bid", required = false) Integer bloggerId,
+                                 @RequestParam(value = "blogId", required = false) Integer blogId) {
         ModelAndView mv = new ModelAndView();
 
         if (bloggerId == null || !bloggerValidateManager.checkBloggerSignIn(request, bloggerId)) {
             mv.setViewName("/error/error");
             mv.addObject("errorMsg", "请先登录");
         } else {
+            if (blogId != null) {
+                ResultBean<Blog> blog = blogService.getBlog(bloggerId, blogId);
+                Blog data = blog.getData();
+                mv.addObject("categoryId", data.getCategoryIds());
+                mv.addObject("labelIds", data.getLabelIds());
+                mv.addObject("blogTitle", data.getTitle());
+                mv.addObject("blogSummary", data.getSummary());
+                if (data.getState().equals(BlogStatusEnum.PRIVATE.getCode())) {
+                    mv.addObject("blogIsPrivate", true);
+                }
+                mv.addObject("blogContentMd", data.getContentMd());
+            }
             mv.setViewName("/blogger/edit_blog");
         }
 

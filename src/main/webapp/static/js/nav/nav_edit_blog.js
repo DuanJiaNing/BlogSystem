@@ -9,7 +9,14 @@ function setLabel(array) {
 
     for (var index in array) {
         var item = array[index];
-        html += '<span class="blog-select-default" onclick="toggleLabelClass(this)" key="' + item.id + '">' + item.title + '</span>&nbsp;&nbsp;';
+        var id = item.id + '';
+
+        var clasz = 'blog-select-default';
+        if (labelId !== '' && labelId.indexOf(id, 0) !== -1) {
+            clasz = 'blog-select-label-choose';
+        }
+
+        html += '<span class="' + clasz + '" onclick="toggleLabelClass(this)" key="' + item.id + '">' + item.title + '</span>&nbsp;&nbsp;';
     }
 
     if (html === '') {
@@ -25,7 +32,14 @@ function setCategory(array) {
 
     for (var index in array) {
         var item = array[index];
-        html += '<span class="blog-select-default" onclick="toggleCategoryClass(this)" key="' + item.id + '">' + item.title + '</span>&nbsp;&nbsp;';
+        var id = item.id + '';
+
+        var clasz = 'blog-select-default';
+        if (categoryId !== '' && categoryId.indexOf(id, 0) !== -1) {
+            clasz = 'blog-select-category-choose';
+        }
+
+        html += '<span class="' + clasz + '" onclick="toggleCategoryClass(this)" key="' + item.id + '">' + item.title + '</span>&nbsp;&nbsp;';
     }
 
     if (html === '') {

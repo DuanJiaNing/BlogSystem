@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<%@ page isELIgnored="false" %>--%>
+<%@ page isELIgnored="false" %>
 <%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 
 <html>
@@ -37,7 +37,8 @@
 
 <div class="editormd" id="editormd-container">
 
-    <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc" id="editormd"></textarea>
+    <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc"
+              id="editormd">${blogContentMd}</textarea>
 
     <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
     <!-- html textarea 需要开启配置项 saveHTMLToTextarea == true -->
@@ -47,6 +48,7 @@
 
 <script type="text/javascript" src="/plugin/editormd/editormd.min.js"></script>
 <script type="text/javascript" src="/js/blogger/edit_blog.js"></script>
+
 
 </body>
 </html>

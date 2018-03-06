@@ -334,7 +334,7 @@ function filterBloggerBlog(offset, rows, refreshPageIndicator, toTop) {
 
             var ins = '';
             if (isPageOwnerBloggerLogin())
-                ins = '，去<a style="font-size: x-large" href="/write_blog" target="_blank">写博文</a>';
+                ins = '，去<a style="font-size: x-large" href="/edit_blog?bid=' + loginBloggerId + '" target="_blank">写博文</a>';
 
             setBlogs(result.data, '<br><br><br><p class="text-center lead">没有博文' + ins + '</p><br><br><br>');
 
@@ -414,7 +414,7 @@ function setBlogs(array, defaulz) {
                 '</div>' +
                 '<div class="col-md-3">' +
                 '<p style="display: none;" class="text-right">' +
-                '<span class="button-edit">编辑</span>&nbsp;&nbsp;<span class="button-edit-check">数据</span>&nbsp;&nbsp;<span class="button-edit-delete">删除</span>' +
+                '<span class="button-edit" onclick="window.open(\'/edit_blog?bid=' + pageOwnerBloggerId + '&blogId=' + item.id + '\',\'_blank\')">编辑</span>&nbsp;&nbsp;<span class="button-edit-check">数据</span>&nbsp;&nbsp;<span class="button-edit-delete">删除</span>' +
                 '</p>' +
                 '</div>' +
                 '</div>' +

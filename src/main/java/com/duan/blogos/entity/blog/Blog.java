@@ -37,6 +37,9 @@ public class Blog implements Serializable {
     //博文主体内容
     private String content;
 
+    //博文主体内容(md格式)
+    private String contentMd;
+
     //博文摘要
     private String summary;
 
