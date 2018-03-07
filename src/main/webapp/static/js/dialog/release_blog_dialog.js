@@ -215,7 +215,7 @@ function releaseBlog(editMode, funAfterReleaseBlogSuccess) {
 
     function afterReleaseSuccess(result) {
         if (result.code === 0) {
-            disableButton(false, 'editReleaseBtn', '修改成功', "button-disable");
+            disableButton(false, 'editReleaseBtn', '发布成功', "button-disable");
 
             setTimeout(function () {
                 disableButton(true, 'editReleaseBtn', '发布', "button-disable");
