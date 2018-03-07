@@ -74,3 +74,8 @@ function loadCategory() {
         }, 'json'
     )
 }
+
+var funAfterReleaseBlogSuccess = function () {
+    // 将编辑页面替换为发布文章的阅读页面
+    window.open('/read_blog');
+};

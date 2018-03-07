@@ -209,14 +209,8 @@ function register() {
 }
 
 // ----------------------------- 登录对话框回调
-function funAfterLoginSuccess(result) {
-    if ($('#useUserName').css('display') === 'block') {
-        // 用户名登录
-        location.href = '/' + $('#loginUserName').val() + '/archives';
-    } else {
-        // 电话验证码登录
-        location.href = '/' + result.data + '/archives';
-    }
+function funAfterLoginSuccess(result, name) {
+    location.href = '/' + name + '/archives';
 }
 
 function funAfterLoginFail(result) {

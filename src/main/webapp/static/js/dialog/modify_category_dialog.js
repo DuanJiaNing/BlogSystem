@@ -71,12 +71,14 @@ function exeCategoryUpdate(th, bloggerId, funWhenEditCategorySuccess) {
 
                 setTimeout(function () {
                     disableButton(true, 'modifyEditCategoryBtn', '提交', "button-disable");
+
                     funWhenEditCategorySuccess();
 
                     $('#modifyCategoryDialog').modal('hide');
+
                     $('#editCategoryTitle').val('');
                     $('#editCategoryBewrite').val('');
-
+                    clearDiv('showChoosedCategoryBewrite');
                     clearDiv('showChoosedCategory');
                 }, 1000);
 
@@ -127,6 +129,10 @@ function exeCategoryDelete(th, bloggerId, funWhenDeleteCategorySuccess) {
         funWhenDeleteCategorySuccess();
 
         $('#modifyCategoryDialog').modal('hide');
+
+        $('#editCategoryTitle').val('');
+        $('#editCategoryBewrite').val('');
+        clearDiv('showChoosedCategoryBewrite');
         clearDiv('showChoosedCategory');
     }, 1000);
 

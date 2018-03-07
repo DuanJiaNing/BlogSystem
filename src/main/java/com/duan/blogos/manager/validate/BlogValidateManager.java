@@ -75,7 +75,7 @@ public class BlogValidateManager {
      * @param keyWords 关键字
      * @return 合法返回true
      */
-    public boolean verifyBlog(String title, String content, String summary, String keyWords) {
+    public boolean verifyBlog(String title, String content, String contentMd, String summary, String keyWords) {
         //TODO 博文内容校验
         return true;
     }

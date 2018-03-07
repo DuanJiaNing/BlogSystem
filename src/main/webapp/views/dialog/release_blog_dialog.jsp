@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 
 <html>
 <head>
@@ -50,26 +50,14 @@
                 </div>
 
                 <br>
-                <p>
-                    <small style="color: gray;">设置为私有</small>
-                    <c:choose>
-                        <c:when test="${not empty blogIsPrivate}">
-                            <input type="checkbox" id="editSetPrivate" style="margin-top: 3px;padding-top: 5px"
-                                   checked="checked">
-                        </c:when>
-                        <c:otherwise>
-                            <input type="checkbox" id="editSetPrivate" style="margin-top: 3px;padding-top: 5px">
-                        </c:otherwise>
-                    </c:choose>
-                </p>
-
                 <span class="error-msg" id="editBlogErrorMsg"></span>
             </div>
             <div class="modal-footer dialog-footer">
                 <p class="text-right">
-                    <a id="complexFilterBtnReset">清空
+                    <a id="editBlogBtnReset" onclick="clearBlogData()">清空
                     </a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="button-success" id="editReleaseBtn">发布
+                    <button class="button-success" id="editReleaseBtn"
+                            onclick="releaseBlog(editMode,funAfterReleaseBlogSuccess)">发布
                     </button>&nbsp;&nbsp;
                 </p>
             </div>

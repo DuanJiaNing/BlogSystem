@@ -32,6 +32,10 @@ function createLink(funWhenCreateLinkSuccess, funWhenCreateLinkFail) {
 
                 setTimeout(function () {
                     disableButton(true, 'newLinkBtn', '创建', "button-disable");
+                    $('#linkTitle').val('');
+                    $('#linkUrl').val('');
+                    $('#linkBewrite').val('');
+
                     $('#newLinkDialog').modal('toggle');
                 }, 1000);
 

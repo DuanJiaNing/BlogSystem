@@ -49,6 +49,7 @@ public class BloggerBlogController extends BaseBloggerController {
                           @RequestParam(value = "lids", required = false) String labelIds,
                           @RequestParam("title") String title,
                           @RequestParam("content") String content,
+                          @RequestParam("contentMd") String contentMd,
                           @RequestParam("summary") String summary,
                           @RequestParam(value = "keywords", required = false) String keyWords) {
 
@@ -57,7 +58,7 @@ public class BloggerBlogController extends BaseBloggerController {
             throw exceptionManager.getParameterIllegalException(new RequestContext(request));
 
 //        handleBloggerSignInCheck(request, bloggerId);
-        handleBlogContentCheck(request, title, content, summary, keyWords);
+        handleBlogContentCheck(request, title, content, contentMd, summary, keyWords);
 
         String sp = websiteProperties.getUrlConditionSplitCharacter();
         int[] cids = StringUtils.intStringDistinctToArray(categoryIds, sp);
@@ -68,7 +69,7 @@ public class BloggerBlogController extends BaseBloggerController {
 
         String[] kw = StringUtils.stringArrayToArray(keyWords, sp);
         // UPDATE: 2018/1/16 更新 博文审核
-        int id = bloggerBlogService.insertBlog(bloggerId, cids, lids, BlogStatusEnum.PUBLIC, title, content, summary, kw);
+        int id = bloggerBlogService.insertBlog(bloggerId, cids, lids, BlogStatusEnum.PUBLIC, title, content, contentMd, summary, kw);
         if (id <= 0) handlerOperateFail(request);
 
         return new ResultBean<>(id);
@@ -140,6 +141,7 @@ public class BloggerBlogController extends BaseBloggerController {
                              @PathVariable Integer blogId,
                              @RequestParam(value = "title", required = false) String newTitle,
                              @RequestParam(value = "content", required = false) String newContent,
+                             @RequestParam(value = "contentMd", required = false) String newContentMd,
                              @RequestParam(value = "summary", required = false) String newSummary,
                              @RequestParam(value = "cids", required = false) String newCategoryIds,
                              @RequestParam(value = "lids", required = false) String newLabelIds,
@@ -157,7 +159,7 @@ public class BloggerBlogController extends BaseBloggerController {
 
         handleBloggerSignInCheck(request, bloggerId);
         handleBlogExistAndCreatorCheck(request, bloggerId, blogId);
-        handleBlogContentCheck(request, newTitle, newContent, newSummary, newKeyWord);
+        handleBlogContentCheck(request, newTitle, newContent, newContentMd, newSummary, newKeyWord);
 
         String sp = websiteProperties.getUrlConditionSplitCharacter();
         int[] cids = newCategoryIds == null ? null : StringUtils.intStringDistinctToArray(newCategoryIds, sp);
@@ -170,7 +172,7 @@ public class BloggerBlogController extends BaseBloggerController {
         BlogStatusEnum stat = newStatus == null ? null : BlogStatusEnum.valueOf(newStatus);
 
         //执行更新
-        if (!bloggerBlogService.updateBlog(bloggerId, blogId, cids, lids, stat, newTitle, newContent, newSummary, kw))
+        if (!bloggerBlogService.updateBlog(bloggerId, blogId, cids, lids, stat, newTitle, newContent, newContentMd, newSummary, kw))
             handlerOperateFail(request);
 
         return new ResultBean<>("");
@@ -244,9 +246,9 @@ public class BloggerBlogController extends BaseBloggerController {
     }
 
     //博文内容审核
-    private void handleBlogContentCheck(HttpServletRequest request, String title, String content, String summary,
+    private void handleBlogContentCheck(HttpServletRequest request, String title, String content, String contentMd, String summary,
                                         String keyWords) {
-        if (!blogValidateManager.verifyBlog(title, content, summary, keyWords))
+        if (!blogValidateManager.verifyBlog(title, content, contentMd, summary, keyWords))
             throw exceptionManager.getBlogIllegalException(new RequestContext(request));
 
     }

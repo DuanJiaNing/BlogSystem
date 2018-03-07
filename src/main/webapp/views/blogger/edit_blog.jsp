@@ -16,9 +16,18 @@
     <c:choose>
         <c:when test="${not empty blogContentMd}">
             <title>${bloggerName}-编辑博文</title>
+            <script type="application/javascript">
+                // 编辑模式
+                var editMode = 1;
+                var blogId = ${blogId};
+            </script>
         </c:when>
         <c:otherwise>
             <title>${bloggerName}-创作博文</title>
+            <script type="application/javascript">
+                // 创作模式
+                var editMode = 2;
+            </script>
         </c:otherwise>
     </c:choose>
 
@@ -50,11 +59,13 @@
 
     <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
     <!-- html textarea 需要开启配置项 saveHTMLToTextarea == true -->
-    <textarea class="editormd-html-textarea" name="editorhtml" id="editorHtml"></textarea>
+    <textarea class="editormd-html-textarea" name="editorhtml"
+              id="editorHtml"></textarea>
 
 </div>
 
 <script type="text/javascript" src="/plugin/editormd/editormd.min.js"></script>
+<script type="application/javascript" src="/js/common.js"></script>
 <script type="text/javascript" src="/js/blogger/edit_blog.js"></script>
 
 

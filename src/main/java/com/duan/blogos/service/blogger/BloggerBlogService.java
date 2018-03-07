@@ -28,12 +28,13 @@ public interface BloggerBlogService extends BlogFilter<ResultBean<List<BlogListI
      * @param status     状态
      * @param title      标题
      * @param content    内容
+     * @param contentMd  md内容
      * @param summary    摘要
      * @param keyWords   关键字
      * @return 新纪录id
      */
     int insertBlog(int bloggerId, int[] categories, int[] labels, BlogStatusEnum status,
-                   String title, String content, String summary, String[] keyWords);
+                   String title, String content, String contentMd, String summary, String[] keyWords);
 
     /**
      * 1 更新博文
@@ -47,12 +48,13 @@ public interface BloggerBlogService extends BlogFilter<ResultBean<List<BlogListI
      * @param newStatus     新状态，不修改传null
      * @param newTitle      新标题，不修改传null
      * @param newContent    新内容，不修改传null
+     * @param newContentMd  md内容，不修改传null
      * @param newSummary    新摘要，不修改传null
      * @param newKeyWords   新关键字，，不修改传null
      * @return 更新失败为false
      */
     boolean updateBlog(int bloggerId, int blogId, int[] newCategories, int[] newLabels, BlogStatusEnum newStatus,
-                       String newTitle, String newContent, String newSummary, String[] newKeyWords);
+                       String newTitle, String newContent, String newContentMd, String newSummary, String[] newKeyWords);
 
     /**
      * 1 删除博文

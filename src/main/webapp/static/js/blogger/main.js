@@ -584,8 +584,8 @@ var funWhenDeleteLinkSuccess = function () {
 };
 
 // ------------------------------------------------------------------------------------------------------ 登录对话框回调
-function funAfterLoginSuccess(result) {
-    location.reload();
+function funAfterLoginSuccess(result, name) {
+    location.href = '/' + name + '/archives';
 }
 
 function funAfterLoginFail(result) {

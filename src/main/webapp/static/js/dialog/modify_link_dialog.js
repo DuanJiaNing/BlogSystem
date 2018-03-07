@@ -75,10 +75,13 @@ function exeLinkUpdate(th, bloggerId, funWhenEditLinkSuccess) {
                     funWhenEditLinkSuccess();
 
                     $('#modifyLinkDialog').modal('hide');
-                    $('#editLinkTitle').val('');
-                    $('#editLinkBewrite').val('');
 
+                    $('#editLinkTitle').val('');
+                    $('#editLinkUrl').val('');
+                    $('#editLinkBewrite').val('');
                     clearDiv('showChoosedLink');
+                    clearDiv('showChoosedLinkDetail');
+
                 }, 1000);
 
             } else {
@@ -128,7 +131,13 @@ function exeLinkDelete(th, bloggerId, funWhenDeleteLinkSuccess) {
         funWhenDeleteLinkSuccess();
 
         $('#modifyLinkDialog').modal('hide');
+
+        $('#editLinkTitle').val('');
+        $('#editLinkUrl').val('');
+        $('#editLinkBewrite').val('');
         clearDiv('showChoosedLink');
+        clearDiv('showChoosedLinkDetail');
+
     }, 1000);
 
 }

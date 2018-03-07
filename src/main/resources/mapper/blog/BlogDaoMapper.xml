@@ -43,6 +43,9 @@
             <if test="content != null">
                 content=#{content},
             </if>
+            <if test="contentMd != null">
+                content_md=#{contentMd},
+            </if>
             <if test="summary != null">
                 summary=#{summary},
             </if>
@@ -81,6 +84,7 @@
         state,
         title,
         content,
+        content_md,
         summary,
         release_date,
         nearest_modify_date,
@@ -93,6 +97,7 @@
         ifnull(#{state}, 0), # state 0 为正在审核
         #{title},
         #{content},
+        #{contentMd},
         #{summary},
         NOW(),
         NOW(),

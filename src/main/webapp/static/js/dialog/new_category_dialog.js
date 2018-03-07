@@ -25,6 +25,9 @@ function createCategory(funWhenCreateCategorySuccess, funWhenCreateCategoryFail)
 
                 setTimeout(function () {
                     disableButton(true, 'newCategoryBtn', '创建', "button-disable");
+                    $('#categoryTitle').val('');
+                    $('#categoryBewrite').val('');
+
                     $('#newCategoryDialog').modal('toggle');
                 }, 1000);
 

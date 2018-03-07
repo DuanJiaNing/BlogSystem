@@ -25,7 +25,7 @@ import java.util.Optional;
  */
 @Controller
 @RequestMapping("/{bloggerName}")
-public class BlogPageController {
+public class BloggerPageController {
 
     @Autowired
     private BloggerAccountService accountService;

@@ -126,13 +126,13 @@ h4.default-h4 {
 
 .button-disable:hover {
     cursor: not-allowed;
-    box-shadow: 0 0 0;
+    box-shadow: 0 0 0 transparent;
     opacity: 0.6;
 }
 
 .button-disable {
     cursor: not-allowed;
-    box-shadow: 0 0 0;
+    box-shadow: 0 0 0 transparent;
     opacity: 0.6;
 }
 

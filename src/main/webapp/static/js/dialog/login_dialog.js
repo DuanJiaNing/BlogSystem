@@ -35,7 +35,7 @@ function login(funAfterLoginSuccess, funAfterLoginFail) {
 
                     setTimeout(function () {
                         disableButton(true, 'loginBtn', '登录', "button-disable");
-                        funAfterLoginSuccess(result);
+                        funAfterLoginSuccess(result,name);
                     }, 1000);
 
                 } else {

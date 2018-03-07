@@ -39,12 +39,12 @@
                         <p class="text-center lead">
                             <small class="indicator" style="font-weight: bold" id="modifyLinkAsEdit"
                                    onclick="toggleDivState('chooseEditLink','chooseDeleteLink','modifyLinkAsEdit',
-                                   'modifyLinkAsDelete','modifyLinkErrorMsg','');clearDiv('showChoosedLink');selectLinkModel=1;"
+                                   'modifyLinkAsDelete','modifyLinkErrorMsg','');clearDiv('showChoosedLink');clearDiv('showChoosedLinkDetail');selectLinkModel=1;"
                             >编辑
                             </small>&nbsp;&nbsp;<span class="vertical-line">|</span>&nbsp;&nbsp;<small
                                 class="indicator" id="modifyLinkAsDelete"
                                 onclick="toggleDivState('chooseDeleteLink','chooseEditLink','modifyLinkAsDelete',
-                                'modifyLinkAsEdit','modifyLinkErrorMsg','');clearDiv('showChoosedLink');selectLinkModel=2;">
+                                'modifyLinkAsEdit','modifyLinkErrorMsg','');clearDiv('showChoosedLink');clearDiv('showChoosedLinkDetail');selectLinkModel=2;">
                             删除
                         </small>
                         </p>

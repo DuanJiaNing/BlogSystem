@@ -25,6 +25,8 @@ function createLabel(funWhenCreateLabelSuccess, funWhenCreateLabelFail) {
 
                 setTimeout(function () {
                     disableButton(true, 'newLabelBtn', '创建', "button-disable");
+                    $('#labelName').val('');
+
                     $('#newLabelDialog').modal('toggle');
                 }, 1000);
 

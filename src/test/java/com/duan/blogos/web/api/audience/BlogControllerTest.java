@@ -42,6 +42,7 @@ public class BlogControllerTest extends BaseTest {
                     "2",
                     provider.title(),
                     provider.content(),
+                    "",
                     provider.summary(),
                     StringUtils.arrayToString(provider.keyWords(), ","));
 
@@ -91,7 +92,7 @@ public class BlogControllerTest extends BaseTest {
                 String summary = content.substring(0, 130);
                 String keyWords = title.substring(0, 4);
 
-                controller.add(null, 1, getIns(cids), getIns(lids), title, content, summary, keyWords);
+                controller.add(null, 1, getIns(cids), getIns(lids), title, content, "", summary, keyWords);
 
             }
         }

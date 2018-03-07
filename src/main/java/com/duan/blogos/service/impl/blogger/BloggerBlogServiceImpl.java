@@ -60,7 +60,7 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
 
     @Override
     public int insertBlog(int bloggerId, int[] categories, int[] labels,
-                          BlogStatusEnum status, String title, String content,
+                          BlogStatusEnum status, String title, String content, String contentMd,
                           String summary, String[] keyWords) {
 
         // 1 插入数据到bolg表
@@ -73,6 +73,7 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
         blog.setState(status.getCode());
         blog.setTitle(title);
         blog.setContent(content);
+        blog.setContentMd(contentMd);
         blog.setSummary(summary);
         blog.setKeyWords(StringUtils.arrayToString(keyWords, chs));
         blog.setWordCount(content.length());
@@ -130,7 +131,7 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
 
     @Override
     public boolean updateBlog(int bloggerId, int blogId, int[] newCategories, int[] newLabels, BlogStatusEnum newStatus,
-                              String newTitle, String newContent, String newSummary, String[] newKeyWords) {
+                              String newTitle, String newContent, String newContentMd, String newSummary, String[] newKeyWords) {
 
         // 1 更新博文中引用的本地图片（取消引用的useCount--，新增的useCount++）
         Blog oldBlog = blogDao.getBlogById(blogId);
@@ -183,6 +184,7 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
         if (newTitle != null) blog.setTitle(newTitle);
         if (newContent != null) blog.setContent(newContent);
         if (newSummary != null) blog.setSummary(newSummary);
+        if (newContentMd != null) blog.setContentMd(newContentMd);
         if (newKeyWords != null) blog.setKeyWords(StringUtils.arrayToString(newKeyWords, chs));
         int effect = blogDao.update(blog);
         if (effect <= 0) throw new SQLException();
@@ -253,11 +255,22 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
         String ch = dbProperties.getStringFiledSplitCharacterForNumber();
         String chs = dbProperties.getStringFiledSplitCharacterForString();
         String whs = websiteProperties.getUrlConditionSplitCharacter();
+
         if (blog != null && blog.getBloggerId().equals(bloggerId)) {
 
-            blog.setCategoryIds(blog.getCategoryIds().replace(ch, whs));
-            blog.setLabelIds(blog.getLabelIds().replace(ch, whs));
-            blog.setKeyWords(blog.getKeyWords().replace(chs, whs));
+            String cids = blog.getCategoryIds();
+            String lids = blog.getLabelIds();
+            String keyWords = blog.getKeyWords();
+
+            if (!StringUtils.isEmpty(cids))
+                blog.setCategoryIds(cids.replace(ch, whs));
+
+            if (!StringUtils.isEmpty(lids))
+                blog.setLabelIds(lids.replace(ch, whs));
+
+            if (!StringUtils.isEmpty_(keyWords))
+                blog.setKeyWords(keyWords.replace(chs, whs));
+
             return new ResultBean<>(blog);
 
         }

@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 @RequestMapping("/edit_blog")
-public class EditBlogController {
+public class EditBlogPageController {
 
     @Autowired
     private BloggerValidateManager bloggerValidateManager;
@@ -41,6 +41,7 @@ public class EditBlogController {
             if (blogId != null) {
                 ResultBean<Blog> blog = blogService.getBlog(bloggerId, blogId);
                 Blog data = blog.getData();
+                mv.addObject("blogId", blogId);
                 mv.addObject("categoryId", data.getCategoryIds());
                 mv.addObject("labelIds", data.getLabelIds());
                 mv.addObject("blogTitle", data.getTitle());

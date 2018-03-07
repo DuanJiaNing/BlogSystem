@@ -46,11 +46,12 @@ function exeLabelUpdate(th, bloggerId, funWhenEditLabelSuccess) {
 
                 setTimeout(function () {
                     disableButton(true, 'modifyEditLabelBtn', '提交', "button-disable");
-                    funWhenEditLabelSuccess();
 
+                    funWhenEditLabelSuccess();
                     $('#modifyLabelDialog').modal('hide');
-                    $('#chooseEditLabel > div > input').val('');
+
                     clearDiv('showChoosedLabel');
+                    $('#chooseEditLabel > div > input').val('');
                 }, 1000);
 
             } else {
@@ -97,9 +98,11 @@ function exeLabelDelete(th, bloggerId, funWhenDeleteLabelSuccess) {
     disableButton(false, 'modifyDeleteLabelBtn', '删除成功', "button-disable");
     setTimeout(function () {
         disableButton(true, 'modifyDeleteLabelBtn', '删除', "button-disable");
-        funWhenDeleteLabelSuccess();
 
+        funWhenDeleteLabelSuccess();
         $('#modifyLabelDialog').modal('hide');
+
+        $('#chooseEditLabel > div > input').val('');
         clearDiv('showChoosedLabel');
     }, 1000);
 
