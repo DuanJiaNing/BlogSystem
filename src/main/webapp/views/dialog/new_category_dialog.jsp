@@ -8,8 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>新建类别</title>
-
 </head>
 <body>
 <div class="modal fade" tabindex="-1" role="dialog" id="newCategoryDialog">

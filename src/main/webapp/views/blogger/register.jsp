@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="/views/dialog/login_dialog.jsp" %>
+
 <html>
 <head>
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
@@ -30,7 +32,6 @@
 <body>
 
 <%--登录对话框--%>
-<jsp:include page="/views/dialog/login_dialog.jsp"/>
 
 <div class="container-">
     <div class="row">

@@ -8,7 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>编辑标签</title>
     <link rel="stylesheet" href="/css/dialog/modify_label_dialog.css">
 
 </head>

@@ -24,3 +24,4 @@
 ## 难点<br>
 - 数据库操作可以自动回滚，但磁盘操作无法自动回滚
 com.duan.blogos.service.impl.blogger.GalleryServiceImpl#insertPicture
+- 修改tomcat对post请求的长度限制，默认2M，maxPostSize=-1，tomcat 6及以下版本修改为0

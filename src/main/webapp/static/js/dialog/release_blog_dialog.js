@@ -1,7 +1,3 @@
-$(document).ready(function () {
-    loadLabel();
-    loadCategory();
-});
 
 function setLabel(array) {
 
@@ -47,32 +43,6 @@ function setCategory(array) {
         $('#editBlogCategory').html(html);
     }
 
-}
-
-function loadLabel() {
-    $.get(
-        '/blogger/' + bloggerId + '/label',
-        {offset: 0, rows: 20},
-        function (result) {
-            if (result.code === 0) {
-                var array = result.data;
-                setLabel(array);
-            }
-        }, 'json'
-    )
-}
-
-function loadCategory() {
-    $.get(
-        '/blogger/' + bloggerId + '/category',
-        {offset: 0, rows: 1000},
-        function (result) {
-            if (result.code === 0) {
-                var array = result.data;
-                setCategory(array);
-            }
-        }, 'json'
-    )
 }
 
 // 选中的类别和标签id

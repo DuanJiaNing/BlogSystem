@@ -7,11 +7,20 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
-<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ include file="/views/nav/nav_edit_blog.jsp" %>
 
 <html>
 <head>
-    <title>创作博文</title>
+    <c:choose>
+        <c:when test="${not empty blogContentMd}">
+            <title>${bloggerName}-编辑博文</title>
+        </c:when>
+        <c:otherwise>
+            <title>${bloggerName}-创作博文</title>
+        </c:otherwise>
+    </c:choose>
 
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -33,7 +42,6 @@
 
 </head>
 <body>
-<jsp:include page="/views/nav/nav_edit_blog.jsp"/>
 
 <div class="editormd" id="editormd-container">
 

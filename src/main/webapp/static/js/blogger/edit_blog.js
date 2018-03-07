@@ -41,4 +41,36 @@ function initEditormd() {
 
 $(document).ready(function () {
     initEditormd();
+
+    loadLabel();
+    loadCategory();
 });
+
+
+function loadLabel() {
+    $.get(
+        '/blogger/' + bloggerId + '/label',
+        {offset: 0, rows: 20},
+        function (result) {
+            if (result.code === 0) {
+                var array = result.data;
+                // 填充立即发布对话框数据
+                setLabel(array);
+            }
+        }, 'json'
+    )
+}
+
+function loadCategory() {
+    $.get(
+        '/blogger/' + bloggerId + '/category',
+        {offset: 0, rows: 1000},
+        function (result) {
+            if (result.code === 0) {
+                var array = result.data;
+                // 填充立即发布对话框数据
+                setCategory(array);
+            }
+        }, 'json'
+    )
+}

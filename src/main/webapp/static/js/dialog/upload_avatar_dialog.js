@@ -68,11 +68,30 @@ function saveAvatar(bloggerId) {
 
 function sendAvatarData(base64url, bloggerId) {
 
+    // var ia = new Uint8Array(base64url.length);
+    // for (var i = 0; i < base64url.length; i++) {
+    //     ia[i] = base64url.charCodeAt(i);
+    // };
+    // var blob=new Blob([ia], {type:"image/png"});
+    // var formdata=new FormData();
+    // formdata.append('file',blob);
+    //
+    // $.ajax({
+    //     url : url,
+    //     data :  formdata,
+    //     processData : false,
+    //     contentType : false,
+    //     dataType: 'json',
+    //     type : "POST",
+    //     success : function(data){}
+    // });
+
     $.ajax({
         url: '/blogger/' + bloggerId + '/profile/avatar',
         type: 'POST',
         cache: false,
-        data: {avatar: base64url},
+        // 修改tomcat对post请求的长度限制，默认2M，maxPostSize=-1，tomcat 6及以下版本修改为0
+        data: {avatarBaseUrlData: base64url},
         dataType: "json",
         beforeSend: function () {
             disableButton(false, 'editAvatarBtn', '正在上传...', 'button-disable');

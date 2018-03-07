@@ -8,8 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>提示</title>
-
 </head>
 <body>
 <div class="modal fade bs-example-modal-sm dialog-middle" tabindex="-1" role="dialog" id="toastDialog"

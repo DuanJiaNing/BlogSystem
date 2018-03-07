@@ -120,7 +120,7 @@ public class BloggerProfileController extends BaseBloggerController {
     @RequestMapping(value = "/avatar", method = RequestMethod.POST)
     public ResultBean updateAvatar(HttpServletRequest request,
                                    @PathVariable Integer bloggerId,
-                                   @RequestParam(value = "avatar") String base64urlData) {
+                                   @RequestParam(value = "avatarBaseUrlData") String base64urlData) {
         handleImageBase64Check(request, base64urlData);
         handleBloggerSignInCheck(request, bloggerId);
 

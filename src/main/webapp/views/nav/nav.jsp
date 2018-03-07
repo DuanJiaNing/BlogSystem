@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/views/dialog/login_dialog.jsp" %>
+<%@ include file="/views/dialog/toast_dialog.jsp" %>
 
 <html>
 <head>
@@ -16,10 +18,6 @@
 
 </head>
 <body>
-
-<%--登录对话框--%>
-<jsp:include page="/views/dialog/login_dialog.jsp"/>
-<jsp:include page="/views/dialog/toast_dialog.jsp"/>
 
 <nav class="navbar navbar-default navbar-fixed-top" style="background-color: white">
     <div class="container">

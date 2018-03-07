@@ -8,8 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>修改头像</title>
-
     <link rel="stylesheet" href="/css/dialog/upload_avatar_dialog.css">
     <link rel="stylesheet" href="/plugin/cropper/css/cropper.min.css">
 

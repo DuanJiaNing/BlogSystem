@@ -9,8 +9,16 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!doctype html>
-<html lang="en">
+<%@ include file="/views/nav/nav.jsp" %>
+<%@ include file="/views/dialog/new_label_dialog.jsp" %>
+<%@ include file="/views/dialog/new_category_dialog.jsp" %>
+<%@ include file="/views/dialog/new_link_dialog.jsp" %>
+<%@ include file="/views/dialog/upload_avatar_dialog.jsp" %>
+<%@ include file="/views/dialog/modify_label_dialog.jsp" %>
+<%@ include file="/views/dialog/modify_category_dialog.jsp" %>
+<%@ include file="/views/dialog/modify_link_dialog.jsp" %>
+
+<html>
 <head>
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -29,21 +37,13 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
-    <title>博主首页</title>
+    <title>${pageOwnerBloggerName}-主页</title>
 
 </head>
 <body>
 
 <button id="scroll-to-top" data-toggle="tooltip" data-placement="left" title="回到顶部">TOP</button>
 
-<jsp:include page="/views/nav/nav.jsp"/>
-<jsp:include page="/views/dialog/new_label_dialog.jsp"/>
-<jsp:include page="/views/dialog/new_category_dialog.jsp"/>
-<jsp:include page="/views/dialog/new_link_dialog.jsp"/>
-<jsp:include page="/views/dialog/upload_avatar_dialog.jsp"/>
-<jsp:include page="/views/dialog/modify_label_dialog.jsp"/>
-<jsp:include page="/views/dialog/modify_category_dialog.jsp"/>
-<jsp:include page="/views/dialog/modify_link_dialog.jsp"/>
 
 <%--高级检索--%>
 <div class="modal fade" tabindex="-1" role="dialog" id="complexFilterDialog">
