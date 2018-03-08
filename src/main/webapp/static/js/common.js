@@ -204,3 +204,16 @@ function checkHtmlEmpty(id) {
     if ($('#' + id).html() === '') return true;
     else return false;
 }
+
+/**
+ * 将字符串转码为 16 进制(Unicode  \u1b24)
+ * @param str 字符串
+ * @returns {string}
+ */
+function stringToUnicode(str) {
+    var val = "";
+    for (var i = 0; i < str.length; i++) {
+        val += '\\u' + str.charCodeAt(i).toString(16);
+    }
+    return val;
+}

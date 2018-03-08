@@ -11,7 +11,7 @@
 .preview-image {
     border: solid 1px lightgray;
     box-shadow: 0 0 6px lightgray;
-    border-radius: 100%;
+    /*border-radius: 100%;*/
     width: 180px;
     height: 180px;
     overflow: hidden;

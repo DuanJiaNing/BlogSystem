@@ -5,6 +5,7 @@ import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.manager.validate.BloggerValidateManager;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.BloggerBlogService;
+import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,7 +50,7 @@ public class EditBlogPageController {
                 if (data.getState().equals(BlogStatusEnum.PRIVATE.getCode())) {
                     mv.addObject("blogIsPrivate", true);
                 }
-                mv.addObject("blogContentMd", data.getContentMd());
+                mv.addObject("blogContentMd", StringUtils.stringToUnicode(data.getContentMd()));
             }
             mv.setViewName("/blogger/edit_blog");
         }

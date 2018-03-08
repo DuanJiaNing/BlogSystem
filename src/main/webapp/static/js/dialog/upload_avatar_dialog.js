@@ -12,47 +12,6 @@ function selectImg(file) {
     reader.readAsDataURL(file.files[0]);
 }
 
-//cropper图片裁剪
-$('#tailoringImg').cropper({
-    aspectRatio: 1 / 1,//默认比例
-    preview: '.preview-image',//预览视图
-    guides: false,  //裁剪框的虚线(九宫格)
-    autoCropArea: 0.5,  //0-1之间的数值，定义自动剪裁区域的大小，默认0.8
-    movable: false, //是否允许移动图片
-    dragCrop: true,  //是否允许移除当前的剪裁框，并通过拖动来新建一个剪裁框区域
-    movable: true,  //是否允许移动剪裁框
-    resizable: true,  //是否允许改变裁剪框的大小
-    zoomable: false,  //是否允许缩放图片大小
-    mouseWheelZoom: false,  //是否允许通过鼠标滚轮来缩放图片
-    touchDragZoom: true,  //是否允许通过触摸移动来缩放图片
-    rotatable: true,  //是否允许旋转图片
-    crop: function (e) {
-        // 输出结果数据裁剪图像。
-    }
-});
-
-//旋转
-$(".cropper-rotate-btn").on("click", function () {
-    $('#tailoringImg').cropper("rotate", 90);
-});
-
-//复位
-$(".cropper-reset-btn").on("click", function () {
-    $('#tailoringImg').cropper("reset");
-});
-
-//换向
-var flagX = true;
-$(".cropper-scaleX-btn").on("click", function () {
-    if (flagX) {
-        $('#tailoringImg').cropper("scaleX", -1);
-        flagX = false;
-    } else {
-        $('#tailoringImg').cropper("scaleX", 1);
-        flagX = true;
-    }
-    flagX != flagX;
-});
 
 //裁剪后的处理
 function saveAvatar(bloggerId) {
@@ -67,24 +26,6 @@ function saveAvatar(bloggerId) {
 }
 
 function sendAvatarData(base64url, bloggerId) {
-
-    // var ia = new Uint8Array(base64url.length);
-    // for (var i = 0; i < base64url.length; i++) {
-    //     ia[i] = base64url.charCodeAt(i);
-    // };
-    // var blob=new Blob([ia], {type:"image/png"});
-    // var formdata=new FormData();
-    // formdata.append('file',blob);
-    //
-    // $.ajax({
-    //     url : url,
-    //     data :  formdata,
-    //     processData : false,
-    //     contentType : false,
-    //     dataType: 'json',
-    //     type : "POST",
-    //     success : function(data){}
-    // });
 
     $.ajax({
         url: '/blogger/' + bloggerId + '/profile/avatar',
@@ -117,4 +58,48 @@ function sendAvatarData(base64url, bloggerId) {
         }
     });
 
+}
+
+function initCropper() {
+    //cropper图片裁剪
+    $('#tailoringImg').cropper({
+        aspectRatio: 1 / 1,//默认比例
+        preview: '.preview-image',//预览视图
+        guides: false,  //裁剪框的虚线(九宫格)
+        autoCropArea: 0.5,  //0-1之间的数值，定义自动剪裁区域的大小，默认0.8
+        movable: false, //是否允许移动图片
+        dragCrop: true,  //是否允许移除当前的剪裁框，并通过拖动来新建一个剪裁框区域
+        movable: true,  //是否允许移动剪裁框
+        resizable: true,  //是否允许改变裁剪框的大小
+        zoomable: false,  //是否允许缩放图片大小
+        mouseWheelZoom: false,  //是否允许通过鼠标滚轮来缩放图片
+        touchDragZoom: true,  //是否允许通过触摸移动来缩放图片
+        rotatable: true,  //是否允许旋转图片
+        crop: function (e) {
+            // 输出结果数据裁剪图像。
+        }
+    });
+
+    //旋转
+    $(".cropper-rotate-btn").on("click", function () {
+        $('#tailoringImg').cropper("rotate", 90);
+    });
+
+    //复位
+    $(".cropper-reset-btn").on("click", function () {
+        $('#tailoringImg').cropper("reset");
+    });
+
+    //换向
+    var flagX = true;
+    $(".cropper-scaleX-btn").on("click", function () {
+        if (flagX) {
+            $('#tailoringImg').cropper("scaleX", -1);
+            flagX = false;
+        } else {
+            $('#tailoringImg').cropper("scaleX", 1);
+            flagX = true;
+        }
+        flagX != flagX;
+    });
 }

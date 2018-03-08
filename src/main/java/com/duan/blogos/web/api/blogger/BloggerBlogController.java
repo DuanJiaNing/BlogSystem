@@ -57,8 +57,12 @@ public class BloggerBlogController extends BaseBloggerController {
         if (StringUtils.isEmpty_(title) || StringUtils.isEmpty_(content) || StringUtils.isEmpty_(summary))
             throw exceptionManager.getParameterIllegalException(new RequestContext(request));
 
-//        handleBloggerSignInCheck(request, bloggerId);
+        // 将 Unicode 解码
+        content = StringUtils.unicodeToString(content);
+        contentMd = StringUtils.unicodeToString(contentMd);
+
         handleBlogContentCheck(request, title, content, contentMd, summary, keyWords);
+
 
         String sp = websiteProperties.getUrlConditionSplitCharacter();
         int[] cids = StringUtils.intStringDistinctToArray(categoryIds, sp);
@@ -129,6 +133,11 @@ public class BloggerBlogController extends BaseBloggerController {
         ResultBean<Blog> blog = bloggerBlogService.getBlog(bloggerId, blogId);
         if (blog == null) handlerEmptyResult(request);
 
+        // 编码为 Unicode
+        Blog bg = blog.getData();
+        bg.setContent(StringUtils.stringToUnicode(bg.getContent()));
+        bg.setContentMd(StringUtils.stringToUnicode(bg.getContentMd()));
+
         return blog;
     }
 
@@ -159,6 +168,11 @@ public class BloggerBlogController extends BaseBloggerController {
 
         handleBloggerSignInCheck(request, bloggerId);
         handleBlogExistAndCreatorCheck(request, bloggerId, blogId);
+
+        // 将 Unicode 解码
+        newContent = StringUtils.unicodeToString(newContent);
+        newContentMd = StringUtils.unicodeToString(newContentMd);
+
         handleBlogContentCheck(request, newTitle, newContent, newContentMd, newSummary, newKeyWord);
 
         String sp = websiteProperties.getUrlConditionSplitCharacter();

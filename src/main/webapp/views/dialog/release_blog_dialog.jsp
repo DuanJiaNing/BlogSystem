@@ -11,7 +11,6 @@
 
 <html>
 <head>
-
     <link rel="stylesheet" href="/css/dialog/release_blog_dialog.css">
 
 </head>

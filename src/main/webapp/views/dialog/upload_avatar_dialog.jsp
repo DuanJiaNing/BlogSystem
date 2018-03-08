@@ -72,5 +72,6 @@
 
 <script src="/plugin/cropper/js/cropper.min.js"></script>
 <script src="/js/dialog/upload_avatar_dialog.js"></script>
+
 </body>
 </html>

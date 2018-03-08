@@ -313,11 +313,19 @@ function toggleCategoryClass(t) {
 function complexFilter() {
     var keyword = $('#keyWord').val();
     setFilterData(cidsArray.join(','), lidsArray.join(','), keyword, filterData.sort, filterData.order);
-    filterBloggerBlog(0, defaultBlogCount, true, true);
+    filterBloggerBlog(0, defaultBlogCount, true, true, false);
     $('#complexFilterDialog').modal('toggle');
 }
 
-function filterBloggerBlog(offset, rows, refreshPageIndicator, toTop) {
+/**
+ * 重新加载博文列表
+ * @param offset
+ * @param rows
+ * @param refreshPageIndicator 刷新列表分页插件（博文列表重新加载时一般都需要刷新）
+ * @param toTop 滑动到顶部
+ * @param refreshTotalRealCount 刷新总博文数量（博文新增或删除时才需刷新）
+ */
+function filterBloggerBlog(offset, rows, refreshPageIndicator, toTop, refreshTotalRealCount) {
     $.get(
         '/blog',
         {
@@ -342,6 +350,9 @@ function filterBloggerBlog(offset, rows, refreshPageIndicator, toTop) {
                 setPageIndicator(0);
             }
 
+            if (refreshTotalRealCount)
+                $('#blogCount').html(result.data.length + '篇博文');
+
             if (toTop) {
                 scrollToTop();
             }
@@ -354,19 +365,19 @@ function filterBloggerBlog(offset, rows, refreshPageIndicator, toTop) {
 
 function filterBlogByLabel(id) {
     setFilterData(null, id, null, null, null);
-    filterBloggerBlog(0, defaultBlogCount, true, true);
+    filterBloggerBlog(0, defaultBlogCount, true, true, false);
 }
 
 function filterBlogByCategory(id) {
     setFilterData(id, null, null, null, null);
-    filterBloggerBlog(0, defaultBlogCount, true, true);
+    filterBloggerBlog(0, defaultBlogCount, true, true, false);
 }
 
 function filterBlogByKeyWord() {
     var word = $('#searchBlog').val();
     if (word !== '') {
         setFilterData(null, null, word, null, null);
-        filterBloggerBlog(0, defaultBlogCount, true, true);
+        filterBloggerBlog(0, defaultBlogCount, true, true, false);
     } else {
         initBlog();
     }
@@ -399,7 +410,8 @@ function setBlogs(array, defaulz) {
             var label = item.labels;
             for (var l in label) {
                 var lb = label[l];
-                labels += '<span title="标签" class="blog-link" onclick="filterBlogByLabel(' + lb.id + ')">#' + lb.title + '</span>&nbsp;&nbsp;';
+                labels += '<span title="标签" class="blog-link" onclick="filterBlogByLabel(' + lb.id + ')">#' + lb.title
+                    + '</span>&nbsp;&nbsp;';
             }
 
             html += '<li ' +
@@ -409,12 +421,15 @@ function setBlogs(array, defaulz) {
                 '<div class="row">' +
                 '<div class="col-md-9">' +
                 '<p>' +
-                '<h3 class="list-group-item-heading"><span class="blog-list-item-title" title="' + item.title + '">' + item.title + '</span></h3>' +
+                '<h3 class="list-group-item-heading"><span class="blog-list-item-title" title="' + item.title + '">' +
+                item.title + '</span></h3>' +
                 '</p>' +
                 '</div>' +
                 '<div class="col-md-3">' +
                 '<p style="display: none;" class="text-right">' +
-                '<span class="button-edit" onclick="window.open(\'/edit_blog?bid=' + pageOwnerBloggerId + '&blogId=' + item.id + '\',\'_blank\')">编辑</span>&nbsp;&nbsp;<span class="button-edit-check">数据</span>&nbsp;&nbsp;<span class="button-edit-delete">删除</span>' +
+                '<span class="button-edit" onclick="window.open(\'/edit_blog?bid=' + pageOwnerBloggerId + '&blogId=' +
+                item.id + '\',\'_blank\')">编辑</span>&nbsp;&nbsp;<span class="button-edit-check">数据</span>&nbsp;&nbsp;' +
+                '<span class="button-edit-delete" onclick="showDeleteConfirmDialog(' + item.id + ')">删除</span>' +
                 '</p>' +
                 '</div>' +
                 '</div>' +
@@ -439,6 +454,44 @@ function setBlogs(array, defaulz) {
         $('#blogList').html(html);
 
     }
+}
+
+var confirmDeleteBlogId = -1;
+
+function showDeleteConfirmDialog(blogId) {
+    $('#confirmDialog').modal('show');
+    $('#confirmText').html('确认删除，删除后将无法恢复');
+    confirmDeleteBlogId = blogId;
+}
+
+// -------------------------------------------------------------------------------------------------------- 确认删除博文
+function confirmExe() {
+
+    disableButton(false, 'confirmBtn', '正在删除...', "button-disable");
+    $.ajax({
+        url: '/blogger/' + loginBloggerId + '/blog/' + confirmDeleteBlogId,
+        async: false,
+        type: 'delete',
+        success: function (result) {
+            if (result.code === 0) {
+                confirmDeleteBlogId = -1;
+                disableButton(false, 'confirmBtn', '删除成功', "button-disable");
+                filterBloggerBlog(0, defaultBlogCount, true, false, true);
+
+                setTimeout(function () {
+                    disableButton(true, 'confirmBtn', '确认', "button-disable");
+
+                    $('#confirmDialog').modal('hide');
+                    clearDiv('confirmText');
+
+                }, 1000);
+
+            } else {
+                disableButton(true, 'confirmBtn', '确认', "button-disable");
+                error('删除失败：' + result.msg, 'confirmErrorMsg', false);
+            }
+        }
+    });
 }
 
 // -----------------------------------------------------------------------------------------------------重置高级检索条件
@@ -471,7 +524,7 @@ function isPageOwnerBloggerLogin() {
 function initBlog() {
     // 将会加载两次
     setFilterData(null, null, null, null, null);
-    filterBloggerBlog(0, defaultBlogCount, true, false);
+    filterBloggerBlog(0, defaultBlogCount, true, false, false);
 }
 
 // 填充检索条件
@@ -498,7 +551,7 @@ function setPageIndicator(initIndex) {
                     slideSpeed: 600, // 缓动速度。单位毫秒
                     jump: true, //是否支持跳转
                     callback: function (page) { // 回调函数
-                        filterBloggerBlog((page - 1) * defaultBlogCount, defaultBlogCount, false, true);
+                        filterBloggerBlog((page - 1) * defaultBlogCount, defaultBlogCount, false, true, false);
                     }
                 })
             }
@@ -552,13 +605,13 @@ var funWhenCreateLinkFail = function (result) {
 // -------------------------------------------------------------------------------------------------------编辑标签后回调
 var funWhenEditLabelSuccess = function () {
     loadLabel();
-    filterBloggerBlog(0, defaultBlogCount, true, false);
+    filterBloggerBlog(0, defaultBlogCount, true, false, false);
 };
 
 // -------------------------------------------------------------------------------------------------------编辑类别后回调
 var funWhenEditCategorySuccess = function () {
     loadCategory();
-    filterBloggerBlog(0, defaultBlogCount, true, false);
+    filterBloggerBlog(0, defaultBlogCount, true, false, false);
 };
 
 // -------------------------------------------------------------------------------------------------------编辑链接后回调
@@ -569,13 +622,13 @@ var funWhenEditLinkSuccess = function () {
 // -------------------------------------------------------------------------------------------------------删除标签后回调
 var funWhenDeleteLabelSuccess = function () {
     loadLabel();
-    filterBloggerBlog(0, defaultBlogCount, true, false);
+    filterBloggerBlog(0, defaultBlogCount, true, false, false);
 };
 
 // -------------------------------------------------------------------------------------------------------删除类别后回调
 var funWhenDeleteCategorySuccess = function () {
     loadCategory();
-    filterBloggerBlog(0, defaultBlogCount, true, false);
+    filterBloggerBlog(0, defaultBlogCount, true, false, false);
 };
 
 // -------------------------------------------------------------------------------------------------------删除链接后回调
@@ -606,4 +659,7 @@ $(document).ready(function () {
 
     // 加载高级检索的排序规则部分
     loadSortRule();
+
+    // 初始化修改头像模态框
+    initCropper();
 });

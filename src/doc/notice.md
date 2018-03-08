@@ -25,3 +25,5 @@
 - 数据库操作可以自动回滚，但磁盘操作无法自动回滚
 com.duan.blogos.service.impl.blogger.GalleryServiceImpl#insertPicture
 - 修改tomcat对post请求的长度限制，默认2M，maxPostSize=-1，tomcat 6及以下版本修改为0
+- 数据库中的 blog表的 content 和 contentMd （博文内容html/md）字段用 16 进制数据保存，否则在URL数据传送时可能会出错。
+用英文 "," 切割16进制字符。StringUtils#stringToUnicode方法

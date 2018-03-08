@@ -10,10 +10,6 @@ a {
     cursor: pointer;
 }
 
-.os-name {
-    font-size: 1.5em;
-}
-
 /*-------------------------------------------------------------------博文列表项*/
 .blog-list-item {
     margin-bottom: 32px;
@@ -59,7 +55,9 @@ a {
 }
 
 .avatar-img {
-    height: 130px;
+    height: 140px;
+    border: solid 10px #e0e0e0;
+    outline: solid 5px #f0f0f0;
     /*width: 180px;*/
 }
 
@@ -113,8 +111,8 @@ a {
     margin-right: 5%;
     padding-right: 10px;
     padding-left: 10px;
-    color: white;
-    background-color: #aeaeae;
+    color: rgba(255, 69, 0, 0.56);
+    background-color: #dedede;
     border-radius: 0 0 10px 0;
     cursor: pointer;
 }

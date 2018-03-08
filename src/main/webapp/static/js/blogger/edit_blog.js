@@ -2,8 +2,8 @@ function initEditormd() {
 
     var editormdContainer = $(function () {
         editormd("editormd-container", {
-            width: "90%",
-            height: 640,
+            width: "100%",
+            height: 680,
             //markdown : md,
             codeFold: true,
             syncScrolling: "single",

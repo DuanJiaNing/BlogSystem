@@ -30,7 +30,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <b><a class="navbar-brand os-name BLOG">BLOG</a></b>
+            <b><a class="navbar-brand BLOG">BLOG</a></b>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

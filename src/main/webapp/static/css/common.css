@@ -9,6 +9,7 @@ a {
 }
 
 .BLOG {
+    font-size: 1.6em;
     color: #767676;
     font-family: 华文中宋, serif;
 }
@@ -122,30 +123,6 @@ h4.default-h4 {
     text-decoration: none;
     opacity: 0.4;
     /*transition: opacity .2s ease-out;*/
-}
-
-.button-disable:hover {
-    cursor: not-allowed;
-    box-shadow: 0 0 0 transparent;
-    opacity: 0.6;
-}
-
-.button-disable {
-    cursor: not-allowed;
-    box-shadow: 0 0 0 transparent;
-    opacity: 0.6;
-}
-
-.button-info-disable {
-    cursor: not-allowed;
-    background-color: lightgray;
-    color: dimgray;
-}
-
-.button-info-disable:hover {
-    cursor: not-allowed;
-    background-color: lightgray;
-    color: dimgray;
 }
 
 .vertical-line {
@@ -339,4 +316,30 @@ h4.default-h4 {
 .count {
     color: orangered;
     font-size: small;
+}
+
+/*相同样式在同一选择其中在 css 文件中越靠后，优先级越高*/
+/*https://www.cnblogs.com/zhangpengshou/archive/2012/08/08/2628737.html*/
+.button-disable:hover {
+    cursor: not-allowed;
+    box-shadow: 0 0 0 transparent;
+    opacity: 0.6;
+}
+
+.button-disable {
+    cursor: not-allowed;
+    box-shadow: 0 0 0 transparent;
+    opacity: 0.6;
+}
+
+.button-info-disable {
+    cursor: not-allowed;
+    background-color: lightgray;
+    color: dimgray;
+}
+
+.button-info-disable:hover {
+    cursor: not-allowed;
+    background-color: lightgray;
+    color: dimgray;
 }

@@ -177,7 +177,7 @@ function releaseBlog(editMode, funAfterReleaseBlogSuccess) {
         }
 
         if (!isStrEmpty(contentMd)) {
-            data += 'content=' + content + '&' + 'contentMd=' + contentMd + '&';
+            data += 'content=' + stringToUnicode(content) + '&' + 'contentMd=' + stringToUnicode(contentMd) + '&';
         }
 
         if (!isStrEmpty(summary)) {
@@ -202,8 +202,8 @@ function releaseBlog(editMode, funAfterReleaseBlogSuccess) {
                 cids: cidsArray.length === 0 ? '' : cidsArray.join(','),
                 lids: lidsArray.length === 0 ? '' : lidsArray.join(','),
                 title: title,
-                content: content,
-                contentMd: contentMd,
+                content: stringToUnicode(content),
+                contentMd: stringToUnicode(contentMd),
                 summary: summary,
                 keywords: ''
             },

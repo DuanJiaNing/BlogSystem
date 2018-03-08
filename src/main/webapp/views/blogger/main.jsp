@@ -13,10 +13,10 @@
 <%@ include file="/views/dialog/new_label_dialog.jsp" %>
 <%@ include file="/views/dialog/new_category_dialog.jsp" %>
 <%@ include file="/views/dialog/new_link_dialog.jsp" %>
-<%@ include file="/views/dialog/upload_avatar_dialog.jsp" %>
 <%@ include file="/views/dialog/modify_label_dialog.jsp" %>
 <%@ include file="/views/dialog/modify_category_dialog.jsp" %>
 <%@ include file="/views/dialog/modify_link_dialog.jsp" %>
+<%@ include file="/views/dialog/confirm_dialog.jsp" %>
 
 <html>
 <head>
@@ -41,6 +41,9 @@
 
 </head>
 <body>
+
+<%--只能动态导入，否则出错--%>
+<jsp:include page="/views/dialog/upload_avatar_dialog.jsp"/>
 
 <button id="scroll-to-top" data-toggle="tooltip" data-placement="left" title="回到顶部">TOP</button>
 
@@ -132,9 +135,9 @@
         <div class="col-md-3">
             <br>
             <h4>
-                <small>${statistics["blogCount"]}篇博文&nbsp;&nbsp;<span class="vertical-line">|</span>
-                    &nbsp;&nbsp;${statistics["wordCount"]}字&nbsp;&nbsp;<span class="vertical-line">|</span>
-                    &nbsp;&nbsp;收获${statistics["likeCount"]}个喜欢
+                <small><span id="blogCount">${statistics["blogCount"]}篇博文</span><span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    ${statistics["wordCount"]}字<span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    收获${statistics["likeCount"]}个喜欢
                 </small>
             </h4>
         </div>
@@ -164,7 +167,7 @@
                             <a class="avatar-edit" id="editAvatar" style="display: none">点击更换头像</a>
 
                             <img src="/image/${pageOwnerBloggerId}/type=public/${avatarId}"
-                                 class="img-circle avatar-img avatar-img-editable"
+                                 class="avatar-img avatar-img-editable"
                                  id="bloggerAvatar"
                                  onmouseenter="if(isPageOwnerBloggerLogin())$('#editAvatar').show()"
                                  onmouseleave="if(isPageOwnerBloggerLogin())$('#editAvatar').hide()"
@@ -179,7 +182,7 @@
                         <%--头像--%>
                         <div class="avatar">
                             <img src="/image/${pageOwnerBloggerId}/type=public/${avatarId}"
-                                 class="img-circle img-rounded avatar-img">
+                                 class="avatar-img">
                         </div>
                         <%--用户名--%>
                         <p class="text-center blogger-name">${pageOwnerBloggerName}</p>
