@@ -9,23 +9,9 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/web/api/blogger/BloggerBlogController.java" line="138" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ac934af-05bc-46b7-aaa8-6f8c621b9fd3" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/blogger/read_blog.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/blogger/read_blog.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/views/nav/nav_read_blog.jsp" />
+    <list default="true" id="8ac934af-05bc-46b7-aaa8-6f8c621b9fd3" name="Default" comment="1 编写博文阅读页面，完成部分功能。&#10;2 lucenen 创建索引时将博文 content 的 html 标签剔除。">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/manager/BlogLuceneIndexManager.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/manager/BlogLuceneIndexManager.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/BloggerBlogService.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/blogger/BloggerBlogService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/impl/blogger/BloggerBlogServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/impl/blogger/BloggerBlogServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/blog/BlogReadPageController.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/blog/BlogReadPageController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/blog/BloggerPageController.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/blog/BloggerPageController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/blogger/edit_blog.js" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/blogger/edit_blog.js" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/blogger/main.js" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/blogger/main.js" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/dialog/release_blog_dialog.js" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/dialog/release_blog_dialog.js" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/blogger/edit_blog.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/blogger/edit_blog.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/blogger/main.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/blogger/main.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/blogger/read_blog.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/blogger/read_blog.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/error/unknown_blogger.jsp" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/blogger/main.css" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/blogger/main.css" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -96,16 +82,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="read_blog.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="read_blog.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/views/blogger/read_blog.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="45" column="8" lean-forward="true" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
+            <state relative-caret-position="378">
+              <caret line="41" column="8" lean-forward="true" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#small#0;n#p#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/blogger/main.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="184">
+              <caret line="41" column="21" lean-forward="true" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/views/blogger/main.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="291">
+              <caret line="165" column="39" lean-forward="true" selection-start-line="165" selection-start-column="39" selection-end-line="165" selection-end-column="39" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -152,7 +158,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>SELECT</find>
       <find>avatarBaseUrlData</find>
       <find>&lt;jsp:include</find>
       <find>&lt;title&gt;</find>
@@ -182,6 +187,7 @@
       <find>top</find>
       <find>tooltip</find>
       <find>data-placement=&quot;left&quot;</find>
+      <find>avatar</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -235,7 +241,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/dialog/upload_avatar_dialog.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/dialog/upload_avatar_dialog.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/dialog/upload_avatar_dialog.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/static/css/blogger/main.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/dialog/confirm_dialog.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/common.css" />
         <option value="$PROJECT_DIR$/src/main/resources/config/db.properties" />
@@ -258,6 +263,7 @@
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/blogger/read_blog.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/blogger/read_blog.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/blogger/read_blog.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/static/css/blogger/main.css" />
       </list>
     </option>
   </component>
@@ -1224,14 +1230,7 @@
       <workItem from="1520398158869" duration="16088000" />
       <workItem from="1520415806938" duration="177000" />
       <workItem from="1520482522220" duration="14930000" />
-      <workItem from="1520568841588" duration="13570000" />
-    </task>
-    <task id="LOCAL-00074" summary="1 完成友情链接API修改">
-      <created>1517155413750</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1517155413750</updated>
+      <workItem from="1520568841588" duration="13883000" />
     </task>
     <task id="LOCAL-00075" summary="1 完成博主资料API修改&#10;2 添加博主账号API">
       <created>1517238505989</created>
@@ -1569,7 +1568,14 @@
       <option name="project" value="LOCAL" />
       <updated>1520503410458</updated>
     </task>
-    <option name="localTasksCounter" value="123" />
+    <task id="LOCAL-00123" summary="1 编写博文阅读页面，完成部分功能。&#10;2 lucenen 创建索引时将博文 content 的 html 标签剔除。">
+      <created>1520585031767</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1520585031768</updated>
+    </task>
+    <option name="localTasksCounter" value="124" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1605,7 +1611,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="895620000" />
+    <option name="totallyTimeSpent" value="895933000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1840,6 +1846,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="64" column="32" lean-forward="true" selection-start-line="64" selection-start-column="32" selection-end-line="64" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2179,22 +2186,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/blogger/main.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="139" column="22" lean-forward="true" selection-start-line="139" selection-start-column="22" selection-end-line="139" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/blogger/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="27" column="21" lean-forward="true" selection-start-line="20" selection-start-column="22" selection-end-line="27" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/blogger/read_blog.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="471">
@@ -2279,13 +2270,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/views/blogger/read_blog.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="45" column="8" lean-forward="true" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
+        <state relative-caret-position="378">
+          <caret line="41" column="8" lean-forward="true" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
           <folding>
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#small#0;n#p#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/views/blogger/main.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="165" column="39" lean-forward="true" selection-start-line="165" selection-start-column="39" selection-end-line="165" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/blogger/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="41" column="21" lean-forward="true" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -19,13 +19,6 @@ a {
 .blog-list-item-title {
     color: black;
     padding-left: 3px;
-    font-family: 华文中宋, 方正姚体, serif;
-    font-weight: bold;
-
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-    overflow: hidden;
 }
 
 .blog-list-item-title:hover {
@@ -56,7 +49,7 @@ a {
 
 .avatar-img {
     height: 140px;
-    border: solid 10px #e0e0e0;
+    border: solid 5px #e0e0e0;
     outline: solid 5px #f0f0f0;
     /*width: 180px;*/
 }
