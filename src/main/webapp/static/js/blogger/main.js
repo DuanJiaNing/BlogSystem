@@ -421,7 +421,8 @@ function setBlogs(array, defaulz) {
                 '<div class="row">' +
                 '<div class="col-md-9">' +
                 '<p>' +
-                '<h3 class="list-group-item-heading"><span class="blog-list-item-title" title="' + item.title + '">' +
+                '<h3 class="list-group-item-heading"><span onclick="window.open(\'/' + pageOwnerBloggerName + '/blog/' +
+                item.title + '\',\'_blank\')" class="blog-list-item-title" title="' + item.title + '">' +
                 item.title + '</span></h3>' +
                 '</p>' +
                 '</div>' +
@@ -523,7 +524,7 @@ function isPageOwnerBloggerLogin() {
 // 加载初始博文列表
 function initBlog() {
     // 将会加载两次
-    setFilterData(null, null, null, null, null);
+    setFilterData(null, null, null, "release_date", "desc");
     filterBloggerBlog(0, defaultBlogCount, true, false, false);
 }
 

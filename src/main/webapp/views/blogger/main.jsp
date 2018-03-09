@@ -271,7 +271,6 @@
     <c:if test="${not empty sessionScope['bloggerLoginSignal']}">
     var loginBloggerId = ${sessionScope["bloggerId"]};
     </c:if>
-
 </script>
 
 <script type="application/javascript" src="/js/paging.js"></script>

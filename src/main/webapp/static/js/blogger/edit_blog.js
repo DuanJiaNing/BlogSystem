@@ -75,7 +75,8 @@ function loadCategory() {
     )
 }
 
-var funAfterReleaseBlogSuccess = function () {
+var funAfterReleaseBlogSuccess = function (title) {
     // 将编辑页面替换为发布文章的阅读页面
-    window.open('/read_blog');
+    location.href = '/' + bloggerName + '/blog/' + title;
 };
+

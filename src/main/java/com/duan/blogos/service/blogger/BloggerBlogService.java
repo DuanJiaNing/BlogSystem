@@ -94,4 +94,12 @@ public interface BloggerBlogService extends BlogFilter<ResultBean<List<BlogListI
      */
     ResultBean<Blog> getBlog(int bloggerId, int blogId);
 
+    /**
+     * 通过博主id和博文名获得博文id
+     *
+     * @param bloggerId 博主id
+     * @param blogName  博文标题
+     * @return 存在返回id，否则-1
+     */
+    int getBlogId(int bloggerId, String blogName);
 }

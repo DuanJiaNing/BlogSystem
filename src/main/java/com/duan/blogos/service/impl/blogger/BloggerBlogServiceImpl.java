@@ -19,14 +19,13 @@ import com.duan.blogos.service.BlogFilterAbstract;
 import com.duan.blogos.service.blogger.BloggerBlogService;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
+import jdk.nashorn.internal.runtime.options.Option;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.border.TitledBorder;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
@@ -294,6 +293,12 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
         }
 
         return new ResultBean<>(result);
+    }
+
+    @Override
+    public int getBlogId(int bloggerId, String blogName) {
+        Integer id = blogDao.getBlogIdByUniqueKey(bloggerId, blogName);
+        return Optional.ofNullable(id).orElse(-1);
     }
 
 }

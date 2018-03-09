@@ -1,0 +1,59 @@
+body {
+    font-family: 微软雅黑, serif;
+
+    background-size: cover;
+    background: url(/images/background.jpg) no-repeat fixed center center;
+}
+
+body img {
+    max-width: 100%;
+}
+
+a {
+    cursor: pointer;
+}
+
+.operation-container button {
+    background-color: transparent;
+    outline: 0;
+    border: 0;
+    border-bottom: solid 1px lightgray;
+    font-size: x-small;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.operation-container button:hover {
+    background-color: lightgray;
+}
+
+.operation-container {
+    position: fixed;
+    bottom: 48px;
+    right: 48px;
+
+    z-index: 9999;
+
+    width: 48px;
+
+    padding: 8px;
+
+    text-align: center;
+
+    background: white;
+    color: dimgray;
+
+    text-decoration: none;
+}
+
+.blog-title {
+    font-size: 2.4em;
+
+    font-family: 华文中宋, 方正姚体, serif;
+    font-weight: bold;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}

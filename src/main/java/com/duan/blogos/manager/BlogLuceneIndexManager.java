@@ -3,6 +3,7 @@ package com.duan.blogos.manager;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.manager.properties.WebsiteProperties;
 import com.duan.blogos.util.StringUtils;
+import lombok.val;
 import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -67,11 +68,19 @@ public class BlogLuceneIndexManager {
         //相当于数据库中的一条记录
         Document doc = new Document();
         if (checkAndAdd(doc, blog)) {
+            removeHtmlFromBlogContent(blog);
 
             //添加索引记录
             writer.addDocument(doc);
             writer.close();
         }
+    }
+
+    // 将 blog content 中的 html 标签移除
+    private void removeHtmlFromBlogContent(Blog blog) {
+        String content = blog.getContent();
+        String res = content.replaceAll("<.*?>", " ");
+        blog.setContent(res);
     }
 
     // 检查blog用于创建索引的属性是否完备
@@ -120,6 +129,7 @@ public class BlogLuceneIndexManager {
         Document doc = new Document();
 
         if (checkAndAdd(doc, blog)) {
+            removeHtmlFromBlogContent(blog);
             writer.updateDocument(new Term(INDEX_BLOG_ID, blog.getId() + ""), doc);
         }
 

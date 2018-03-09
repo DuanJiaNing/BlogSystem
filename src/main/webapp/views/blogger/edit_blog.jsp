@@ -17,6 +17,10 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
+    <script type="application/javascript">
+        var bloggerName = '${bloggerName}';
+    </script>
+
     <c:choose>
         <c:when test="${not empty blogContentMd}">
             <title>${bloggerName}-编辑博文</title>

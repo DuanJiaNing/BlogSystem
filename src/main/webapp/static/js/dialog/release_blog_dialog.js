@@ -221,11 +221,16 @@ function releaseBlog(editMode, funAfterReleaseBlogSuccess) {
                 disableButton(true, 'editReleaseBtn', '发布', "button-disable");
                 $('#releaseBlogDialog').modal('hide');
 
-                funAfterReleaseBlogSuccess(result);
+                funAfterReleaseBlogSuccess(title);
             }, 1000);
 
         } else {
-            errorInfoWhenRelease('发布失败：' + result.msg);
+            disableButton(true, 'editReleaseBtn', '发布', "button-disable");
+            if (result.code = 18) {
+                errorInfoWhenRelease('存在同名博文');
+            } else {
+                errorInfoWhenRelease('发布失败：' + result.msg);
+            }
         }
     }
 

@@ -49,8 +49,9 @@ public class BloggerPageController {
 
         BloggerAccount account = accountService.getAccount(bloggerName);
         if (account == null) {
-            mv.setViewName("error/unknown_blogger");
+            mv.addObject("code", 6);
             mv.addObject(bloggerProperties.getSessionNameOfErrorMsg(), "博主不存在！");
+            mv.setViewName("error/error");
             return mv;
         }
 
