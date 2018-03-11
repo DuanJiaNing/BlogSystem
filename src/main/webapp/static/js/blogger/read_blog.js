@@ -38,7 +38,7 @@ function likeBlog(th) {
             null,
             function (result) {
                 if (result.code === 0) {
-                    splash('取消喜欢', like, true);
+                    splash('取消喜欢', like, true, "dimgray", "orangered");
                     updateBlogCountStatistics();
                 } else {
                     toast('出错啦：' + result.msg, 2000);
@@ -51,7 +51,7 @@ function likeBlog(th) {
             type: 'delete',
             success: function (result) {
                 if (result.code === 0) {
-                    splash('喜欢', like, true);
+                    splash('喜欢', like, true, "dimgray", "orangered");
                     updateBlogCountStatistics();
                 } else {
                     toast('出错啦：' + result.msg, 2000);
@@ -72,7 +72,7 @@ function collectBlog(th) {
             null,
             function (result) {
                 if (result.code === 0) {
-                    splash('取消收藏', collect, true);
+                    splash('取消收藏', collect, true, "dimgray", "orangered");
                     updateBlogCountStatistics();
                 } else {
                     toast('出错啦：' + result.msg, 2000);
@@ -85,7 +85,7 @@ function collectBlog(th) {
             type: 'delete',
             success: function (result) {
                 if (result.code === 0) {
-                    splash('收藏', collect, true);
+                    splash('收藏', collect, true, "dimgray", "orangered");
                     updateBlogCountStatistics();
                 } else {
                     toast('出错啦：' + result.msg, 2000);

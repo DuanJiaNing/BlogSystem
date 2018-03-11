@@ -149,12 +149,12 @@ function error(msg, id, disappear) {
         setTimeout(f, 1000);
 }
 
-function splash(msg, $dom, disappear) {
+function splash(msg, $dom, disappear, color, splashColor) {
     $dom.html(msg);
-    $dom.css('color', 'orangered');
+    $dom.css('color', splashColor);
 
     var s = function () {
-        $dom.css('color', 'black');
+        $dom.css('color', color);
     };
 
     setTimeout(s, 200);
