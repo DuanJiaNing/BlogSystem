@@ -1,5 +1,6 @@
 package com.duan.blogos.service.impl.blogger;
 
+import com.duan.blogos.common.BlogSortRule;
 import com.duan.blogos.dao.blog.*;
 import com.duan.blogos.dao.blogger.BloggerAccountDao;
 import com.duan.blogos.dao.blogger.BloggerPictureDao;
@@ -11,10 +12,9 @@ import com.duan.blogos.entity.blog.*;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.entity.blogger.BloggerProfile;
-import com.duan.blogos.common.BlogSortRule;
 import com.duan.blogos.manager.DataFillingManager;
-import com.duan.blogos.manager.properties.DbProperties;
 import com.duan.blogos.manager.comparator.BlogListItemComparatorFactory;
+import com.duan.blogos.manager.properties.DbProperties;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.BloggerCollectBlogService;
 import com.duan.blogos.util.CollectionUtils;
@@ -133,5 +133,11 @@ public class BloggerCollectBlogServiceImpl implements BloggerCollectBlogService 
     public boolean updateCollect(int bloggerId, int blogId, String newReason, int newCategory) {
         int effect = collectDao.updateByUnique(bloggerId, blogId, newReason, null);
         return effect > 0;
+    }
+
+    @Override
+    public boolean getCollectState(int bloggerId, int blogId) {
+        BlogCollect collect = collectDao.getCollect(bloggerId, blogId);
+        return collect != null;
     }
 }

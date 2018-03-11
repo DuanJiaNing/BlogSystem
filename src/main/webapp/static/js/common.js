@@ -149,6 +149,20 @@ function error(msg, id, disappear) {
         setTimeout(f, 1000);
 }
 
+function splash(msg, $dom, disappear) {
+    $dom.html(msg);
+    $dom.css('color', 'orangered');
+
+    var s = function () {
+        $dom.css('color', 'black');
+    };
+
+    setTimeout(s, 200);
+
+    if (disappear)
+        setTimeout(f, 1000);
+}
+
 /**
  * 改变按钮可用状态
  * @param enable true为可用

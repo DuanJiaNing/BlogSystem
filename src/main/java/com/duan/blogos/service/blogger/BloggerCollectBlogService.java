@@ -26,6 +26,7 @@ public interface BloggerCollectBlogService {
      */
     ResultBean<List<CollectBlogListItemDTO>> listCollectBlog(int bloggerId, int categoryId,
                                                              int offset, int rows, BlogSortRule sortRule);
+
     /**
      * 更新收藏信息
      *
@@ -36,4 +37,13 @@ public interface BloggerCollectBlogService {
      * @return 更新成功返回true
      */
     boolean updateCollect(int bloggerId, int blogId, String newReason, int newCategory);
+
+    /**
+     * 获得博文收藏状态
+     *
+     * @param bloggerId 博主id
+     * @param blogId    博文id
+     * @return 已收藏为 true
+     */
+    boolean getCollectState(int bloggerId, int blogId);
 }

@@ -67,4 +67,13 @@ public interface BlogCollectDao extends BaseDao<BlogCollect> {
      * @return 数量
      */
     Integer countByCollectorId(int bloggerId);
+
+    /**
+     * 根据博主id和博文id获取收藏记录
+     *
+     * @param bloggerId 博主id
+     * @param blogId    博文id
+     * @return 查询记录
+     */
+    BlogCollect getCollect(@Param("bloggerId") int bloggerId, @Param("blogId") int blogId);
 }

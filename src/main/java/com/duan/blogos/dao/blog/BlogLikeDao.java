@@ -39,4 +39,13 @@ public interface BlogLikeDao extends BaseDao<BlogLike> {
      * @return 数量
      */
     Integer countLikeByLikerId(int bloggerId);
+
+    /**
+     * 根据博主id和博文id获取记录
+     *
+     * @param bloggerId 博主id
+     * @param blogId    博文id
+     * @return 查询记录
+     */
+    BlogLike getLike(@Param("bloggerId") int bloggerId, @Param("blogId") int blogId);
 }
