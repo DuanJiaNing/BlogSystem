@@ -60,9 +60,17 @@ http://...XXX.../blogger/1/link?iconId=2&title=Git&url=https://git&bewrite=描�
 ![](https://raw.githubusercontent.com/DuanJiaNing/Pictures/master/BlogSystem/code-BloggerLinkController#add.png)
 
 ### 示例网站截图
+
+#### 博主主页
 ![](https://raw.githubusercontent.com/DuanJiaNing/Pictures/master/BlogSystem/blog-main-page.jpg)
+
+#### 注册页面
 ![](https://raw.githubusercontent.com/DuanJiaNing/Pictures/master/BlogSystem/register.png)
+
+#### 博文编辑（创作）页面
 ![](https://raw.githubusercontent.com/DuanJiaNing/Pictures/master/BlogSystem/blog-edit.png)
+
+#### 博文浏览页面
 ![](https://raw.githubusercontent.com/DuanJiaNing/Pictures/master/BlogSystem/blog-read.png)
 
 
