@@ -57,7 +57,7 @@ http://...XXX.../blogger/1/link?iconId=2&title=Git&url=https://git&bewrite=描�
 操作成功返回新链接记录的id
 
 - 后端接口
-![](https://raw.githubusercontent.com/DuanJiaNing/Pictures/master/BlogSystem/code-BloggerLinkController#add.png)
+![](https://github.com/DuanJiaNing/Pictures/blob/master/BlogSystem/code-BloggerLinkController%23add.png?raw=true)
 
 ### 示例网站截图
 
