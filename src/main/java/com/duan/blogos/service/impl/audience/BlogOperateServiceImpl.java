@@ -1,11 +1,13 @@
 package com.duan.blogos.service.impl.audience;
 
-import com.duan.blogos.dao.blog.*;
-import com.duan.blogos.entity.blog.*;
-import com.duan.blogos.enums.BlogCommentStatusEnum;
-import com.duan.blogos.manager.validate.BlogCommentValidateManager;
+import com.duan.blogos.dao.blog.BlogCollectDao;
+import com.duan.blogos.dao.blog.BlogComplainDao;
+import com.duan.blogos.dao.blog.BlogLikeDao;
+import com.duan.blogos.dao.blog.BlogStatisticsDao;
+import com.duan.blogos.entity.blog.BlogCollect;
+import com.duan.blogos.entity.blog.BlogComplain;
+import com.duan.blogos.entity.blog.BlogLike;
 import com.duan.blogos.service.audience.BlogOperateService;
-import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,9 +21,6 @@ import org.springframework.stereotype.Service;
 public class BlogOperateServiceImpl implements BlogOperateService {
 
     @Autowired
-    private BlogCommentDao commentDao;
-
-    @Autowired
     private BlogStatisticsDao statisticsDao;
 
     @Autowired
@@ -33,30 +32,6 @@ public class BlogOperateServiceImpl implements BlogOperateService {
     @Autowired
     private BlogComplainDao complainDao;
 
-    @Autowired
-    private BlogCommentValidateManager commentValidateManager;
-
-    @Override
-    public int insertComment(int blogId, int spokesmanId, int listenerId, String content) {
-
-        // 审核评论
-        if (!commentValidateManager.checkCommentContent(content)) return -1;
-
-        BlogComment comment = new BlogComment();
-        comment.setBlogId(blogId);
-        comment.setContent(content);
-        comment.setListenerId(listenerId);
-        comment.setSpokesmanId(spokesmanId);
-        comment.setState(BlogCommentStatusEnum.RIGHTFUL.getCode());
-        commentDao.insert(comment);
-
-        //博文评论次数加一
-        statisticsDao.updateCommentCountPlus(blogId);
-        Integer id = comment.getId();
-
-        return id == null ? -1 : id;
-    }
-
     @Override
     public int insertShare(int blogId, int sharerId) {
 
@@ -65,6 +40,7 @@ public class BlogOperateServiceImpl implements BlogOperateService {
 
         return count == null ? -1 : count;
     }
+
     @Override
     public int insertCollect(int blogId, int collectorId, String reason, int categoryId) {
 

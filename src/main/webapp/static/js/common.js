@@ -76,6 +76,16 @@ function dateFormat(date) {
 }
 
 /**
+ * 将日期格式为 2017-02-13 14:11 的格式
+ * @param date long（java）型日期
+ * @returns {string} 字符串
+ */
+function dateFormat_(date) {
+    var d = new Date(date);
+    return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes();
+}
+
+/**
  * 滚动到网页顶部
  */
 function scrollToTop() {
@@ -149,7 +159,7 @@ function error(msg, id, disappear) {
         setTimeout(f, 1000);
 }
 
-function splash(msg, $dom, disappear, color, splashColor) {
+function splash(msg, $dom, color, splashColor) {
     $dom.html(msg);
     $dom.css('color', splashColor);
 
@@ -158,9 +168,6 @@ function splash(msg, $dom, disappear, color, splashColor) {
     };
 
     setTimeout(s, 200);
-
-    if (disappear)
-        setTimeout(f, 1000);
 }
 
 /**
@@ -202,7 +209,7 @@ function toggleDivState(blockId, noneId, boldId, normalId, errorMsgId, msg) {
 }
 
 /**
- * 情况dom
+ * 清空dom
  * @param id
  */
 function clearDiv(id) {

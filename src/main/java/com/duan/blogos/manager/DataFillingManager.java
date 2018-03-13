@@ -40,7 +40,7 @@ public class DataFillingManager {
         return dto;
     }
 
-    public BlogCommentDTO blogCommentToDTO(BlogComment comment, BloggerDTO spokesman, BloggerDTO listener) {
+    public BlogCommentDTO blogCommentToDTO(BlogComment comment, BloggerDTO spokesman) {
         BlogCommentDTO dto = new BlogCommentDTO();
         dto.setBlogId(comment.getBlogId());
         dto.setContent(comment.getContent());
@@ -48,7 +48,6 @@ public class DataFillingManager {
         dto.setReleaseDate(comment.getReleaseDate());
         dto.setState(comment.getState());
         dto.setSpokesman(spokesman);
-        dto.setListener(listener);
         return dto;
     }
 

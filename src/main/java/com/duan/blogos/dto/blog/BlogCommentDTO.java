@@ -26,8 +26,8 @@ public class BlogCommentDTO implements Serializable {
     // 评论者
     private BloggerDTO spokesman;
 
-    // 被评论者（博文作者）
-    private BloggerDTO listener;
+    // 被评论者
+//    private BloggerDTO listener;
 
     // 评论内容
     private String content;

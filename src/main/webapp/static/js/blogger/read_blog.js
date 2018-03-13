@@ -3,6 +3,9 @@ function funAfterLoginSuccess(result, name) {
     location.reload();
 }
 
+function funAfterLoginFail(result) {
+}
+
 // 回到顶部
 $(function () {
     $("#goto-top").click(function () {
@@ -10,9 +13,6 @@ $(function () {
         $("#goto-top").tooltip('hide');
     });
 });
-
-function funAfterLoginFail(result) {
-}
 
 // 初始化所有的 tip
 function initToolTip() {
@@ -38,7 +38,7 @@ function likeBlog(th) {
             null,
             function (result) {
                 if (result.code === 0) {
-                    splash('取消喜欢', like, true, "dimgray", "orangered");
+                    splash('取消喜欢', like, "dimgray", "orangered");
                     updateBlogCountStatistics();
                 } else {
                     toast('出错啦：' + result.msg, 2000);
@@ -51,7 +51,7 @@ function likeBlog(th) {
             type: 'delete',
             success: function (result) {
                 if (result.code === 0) {
-                    splash('喜欢', like, true, "dimgray", "orangered");
+                    splash('喜欢', like, "dimgray", "orangered");
                     updateBlogCountStatistics();
                 } else {
                     toast('出错啦：' + result.msg, 2000);
@@ -72,7 +72,7 @@ function collectBlog(th) {
             null,
             function (result) {
                 if (result.code === 0) {
-                    splash('取消收藏', collect, true, "dimgray", "orangered");
+                    splash('取消收藏', collect, "dimgray", "orangered");
                     updateBlogCountStatistics();
                 } else {
                     toast('出错啦：' + result.msg, 2000);
@@ -85,7 +85,7 @@ function collectBlog(th) {
             type: 'delete',
             success: function (result) {
                 if (result.code === 0) {
-                    splash('收藏', collect, true, "dimgray", "orangered");
+                    splash('收藏', collect, "dimgray", "orangered");
                     updateBlogCountStatistics();
                 } else {
                     toast('出错啦：' + result.msg, 2000);
@@ -97,7 +97,21 @@ function collectBlog(th) {
 }
 
 function updateBlogCountStatistics() {
+    $.get(
+        '/blog/' + blogId + '/statistics/count',
+        function (result) {
+            if (result.code === 0) {
+                $('#blogLikeCount').html(result.data.likeCount);
 
+                $('#blogCollectCount').html(result.data.collectCount);
+
+                $('#blogCommentCount').html(result.data.commentCount);
+                $('#commentCount').html(result.data.commentCount);
+
+                $('#blogViewCount').html(result.data.viewCount);
+            }
+        }
+    )
 }
 
 function shareBlog() {
@@ -109,7 +123,133 @@ function complainBlog() {
 
 }
 
+function loadComment() {
+
+    $.get(
+        '/blog/' + blogId + '/comment',
+        {
+            rows: 1000,
+            offset: 0
+        },
+        function (result) {
+
+            var container = $('#commentContainer');
+            var html = '';
+
+            if (result.code === 0) {
+
+                var array = result.data;
+                $('#commentCount').html(array.length);
+
+                for (var index in array) {
+                    var comment = array[index];
+                    var del = '';
+
+                    if (isLoginBloggerComment(comment.spokesman.id)) {
+                        del = '<span class=" vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>' +
+                            '<span style="cursor: pointer" onclick="deleteComment(' + comment.id + ')">删除</span>';
+                    }
+
+                    var bgname = comment.spokesman.username;
+                    html += '<div class="comment">' +
+                        '         <small style="color: gray">' + dateFormat_(comment.releaseDate) + del +
+                        '         </small>' +
+                        '         <hr class="default-line">' +
+                        '         <dl class="dl-horizontal">' +
+                        '             <dt style="cursor: pointer" data-toggle="tooltip" title="' + comment.spokesman.profile.aboutMe +
+                        '" data-placement="top"' +
+                        ' onclick="window.open(\'/' + bgname + '/archives\',\'_blank\')">' + bgname + '</dt>' +
+                        '             <dd style="word-wrap: break-word">' + comment.content + '</dd>' +
+                        '         </dl>' +
+                        '     </div>';
+                }
+
+            } else if (result.code === 14) {
+                $('#commentCount').html('0');
+
+                if (bloggerLoginSignal) {
+                    html = '<h4>还没有留言，留下一个留言吧！</h4>';
+                } else {
+                    html = '<h4>还没有留言，<a onclick="$(\'#loginDialog\').modal(\'show\')">登录</a>&nbsp;' +
+                        '或&nbsp;<a href="/register">注册</a>&nbsp;然后留下一个留言吧！</h4>';
+                }
+            } else {
+                html += result.msg;
+            }
+
+            container.html(html);
+            initToolTip();
+
+        }
+    )
+
+}
+
+// 登录博主的留言
+function isLoginBloggerComment(bgid) {
+    if (typeof(loginBloggerId) === "undefined") return false;
+    else return loginBloggerId === bgid;
+}
+
+// 删除留言
+function deleteComment(bgid) {
+    $.ajax({
+        url: '/blogger/' + loginBloggerId + '/comment/' + bgid + '?blogId=' + blogId,
+        async: false,
+        type: 'delete',
+        success: function (result) {
+            if (result.code === 0) {
+                loadComment();
+            }
+        }
+    });
+}
+
+// 留言字数上限
+var commentMaxLimit = 400;
+
+function leaveAComment() {
+    var dom = $('#leaveAComment');
+    var comment = dom.val();
+
+    if (isStrEmpty(comment)) {
+        error('留言不能为空', 'commentErrorMsg', true);
+        return;
+    }
+
+    if (comment.length > commentMaxLimit) {
+        error('留言字数最多为400字', 'commentErrorMsg', true);
+        return;
+    }
+
+    disableButton(false, 'commentBtn', '正在留言...', "button-disable");
+    $.post(
+        '/blogger/' + loginBloggerId + '/comment',
+        {
+            blogId: blogId,
+            content: comment,
+            listenerId: blogOwnerBloggerId
+        },
+        function (result) {
+            if (result.code === 0) {
+                disableButton(false, 'commentBtn', '留言成功', "button-disable");
+
+                setTimeout(function () {
+                    disableButton(true, 'commentBtn', '提交', "button-disable");
+                    loadComment();
+                    dom.val('');
+                }, 1000);
+
+            } else {
+                error('留言出错：' + result.code, 'commentErrorMsg', true);
+                disableButton(true, 'loginBtn', '提交', "button-disable");
+            }
+        }
+    )
+
+}
 
 $(document).ready(function () {
     initToolTip();
+    loadComment();
 });

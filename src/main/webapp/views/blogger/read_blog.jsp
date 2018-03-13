@@ -44,17 +44,22 @@
 
     <button title="投诉" onclick="complainBlog()">投诉</button>
     <br>
-    <c:choose>
-        <c:when test="${not empty collectState}">
-            <button title="取消收藏" onclick="collectBlog(this)">取消收藏</button>
-        </c:when>
-        <c:otherwise>
-            <button title="收藏" onclick="collectBlog(this)">收藏</button>
-        </c:otherwise>
-    </c:choose>
-    <br>
+
+    <%--未登录，或登录了但登录博主不是当前博文所有者时显示--%>
+    <c:if test="${empty sessionScope['bloggerLoginSignal'] or (blogOwnerBloggerId ne bloggerId)}">
+        <c:choose>
+            <c:when test="${not empty collectState}">
+                <button title="取消收藏" onclick="collectBlog(this)">取消收藏</button>
+            </c:when>
+            <c:otherwise>
+                <button title="收藏" onclick="collectBlog(this)">收藏</button>
+            </c:otherwise>
+        </c:choose>
+        <br>
+    </c:if>
 
     <c:choose>
+        <%--likeState不为null代表有博主登录了--%>
         <c:when test="${not empty likeState}">
             <button title="取消喜欢" onclick="likeBlog(this)">取消喜欢</button>
         </c:when>
@@ -66,22 +71,26 @@
 </div>
 
 <div class="container" style="min-height: 100%">
-    <div class="shadow-border blog-content">
 
-        <p class="text-center blog-title">
+    <div class="shadow-border blog-container">
+
+        <p class="text-center title">
             ${main["title"]}
         </p>
         <p class="text-center">
             <small style="color: gray">
-                发表于&nbsp;<script>document.write(dateFormat(new Date('${main.releaseDate}')))</script>
+                <a target="_blank" href="/${bloggerName}/archives" class="button-info blog-author">${bloggerName}</a>&nbsp;&nbsp;&nbsp;发表于&nbsp;
+                <script>document.write(dateFormat(new Date('${main.releaseDate}')))</script>
                 <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                喜欢&nbsp;${stat.likeCount}
+                喜欢&nbsp;<span id="blogLikeCount">${stat.likeCount}</span>
                 <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                收藏&nbsp;${stat.collectCount}
+                收藏&nbsp;<span id="blogCollectCount">${stat.collectCount}</span>
                 <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                评论&nbsp;${stat.commentCount}
+                留言&nbsp;<span id="blogCommentCount">${stat.commentCount}</span>
                 <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
                 ${main["wordCount"]}&nbsp;字
+                <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                <span id="blogViewCount">${stat.viewCount}</span>&nbsp;次浏览
             </small>
         </p>
         <hr>
@@ -90,7 +99,53 @@
             ${main["content"]}
         </p>
     </div>
+
+    <br>
+    <div class="shadow-border blog-container">
+
+        <p class="text-left title title-small">
+            留言（<span id="commentCount"></span>）条
+        </p>
+        <hr>
+        <br>
+
+        <div id="commentContainer">
+        </div>
+
+        <c:if test="${empty sessionScope['bloggerLoginSignal']}">
+            <p class="text-right">
+                <small style="color: gray">
+                    <a onclick="$('#loginDialog').modal('show')">登录</a>&nbsp;或&nbsp;
+                    <a href="/register">注册</a>&nbsp;参与留言！
+                </small>
+            </p>
+        </c:if>
+    </div>
+
+    <c:if test="${not empty sessionScope['bloggerLoginSignal']}">
+        <br>
+        <div class="shadow-border blog-container">
+            <p class="text-left" style="color: gray;">
+                我要留言
+            </p>
+            <hr>
+            <textarea id="leaveAComment" class="input-comment" placeholder="您的留言"></textarea>
+            <br>
+            <br>
+            <p class="text-right">
+                <button class="button-success" id="commentBtn"
+                        onclick="leaveAComment()">
+                    提交
+                </button>&nbsp;&nbsp;&nbsp;&nbsp;
+            </p>
+
+            <span class="error-msg" id="commentErrorMsg"></span>
+
+        </div>
+    </c:if>
+
 </div>
+
 <br>
 <br>
 
@@ -102,6 +157,7 @@
 
     var bloggerLoginSignal = ${not empty sessionScope['bloggerLoginSignal']};
     var blogId = ${main.id};
+    var blogOwnerBloggerId = ${blogOwnerBloggerId};
     <c:if test="${not empty sessionScope['bloggerLoginSignal']}">
     var loginBloggerId = ${sessionScope["bloggerId"]};
     </c:if>

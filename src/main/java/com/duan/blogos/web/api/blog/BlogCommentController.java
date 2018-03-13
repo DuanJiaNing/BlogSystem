@@ -26,9 +26,9 @@ public class BlogCommentController extends BaseBlogController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public ResultBean<List<BlogCommentDTO>> get(HttpServletRequest request,
-                                                        @PathVariable Integer blogId,
-                                                        @RequestParam(value = "offset", required = false) Integer offset,
-                                                        @RequestParam(value = "rows", required = false) Integer rows) {
+                                                @PathVariable Integer blogId,
+                                                @RequestParam(value = "offset", required = false) Integer offset,
+                                                @RequestParam(value = "rows", required = false) Integer rows) {
         handleBlogExistCheck(request, blogId);
 
         int os = offset == null || offset < 0 ? 0 : offset;

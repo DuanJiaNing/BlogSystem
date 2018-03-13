@@ -3,6 +3,7 @@ package com.duan.blogos.web.blog;
 import com.duan.blogos.dto.blog.BlogMainContentDTO;
 import com.duan.blogos.dto.blog.BlogStatisticsCountDTO;
 import com.duan.blogos.entity.blogger.BloggerAccount;
+import com.duan.blogos.manager.BloggerSessionManager;
 import com.duan.blogos.manager.properties.BloggerProperties;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.audience.BlogBrowseService;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created on 2018/3/7.
@@ -39,6 +42,9 @@ public class BlogReadPageController {
     private BloggerProperties bloggerProperties;
 
     @Autowired
+    private BloggerSessionManager sessionManager;
+
+    @Autowired
     private BlogBrowseService blogBrowseService;
 
     @Autowired
@@ -48,12 +54,14 @@ public class BlogReadPageController {
     private BloggerCollectBlogService collectBlogService;
 
     @RequestMapping
-    public ModelAndView page(@PathVariable String bloggerName,
+    public ModelAndView page(HttpServletRequest request,
+                             @PathVariable String bloggerName,
                              @PathVariable String blogName) {
         ModelAndView mv = new ModelAndView();
 
+        // 博文作者博主账户
         BloggerAccount account = accountService.getAccount(bloggerName);
-        int bloggerId = account.getId();
+
         if (account == null) {
             mv.setViewName("error/error");
             mv.addObject("code", 6);
@@ -69,17 +77,24 @@ public class BlogReadPageController {
             return mv;
         }
 
+        // 博文浏览次数自增1
+        statisticsService.updateBlogViewCountPlus(blogId);
+
         ResultBean<BlogMainContentDTO> mainContent = blogBrowseService.getBlogMainContent(blogId);
         ResultBean<BlogStatisticsCountDTO> statistics = statisticsService.getBlogStatisticsCount(blogId);
 
+        mv.addObject("blogOwnerBloggerId", account.getId());
         mv.addObject("main", mainContent.getData());
         mv.addObject("stat", statistics.getData());
 
-        if (likeService.getLikeState(bloggerId, blogId))
-            mv.addObject("likeState", "");
-        if (collectBlogService.getCollectState(bloggerId, blogId))
-            mv.addObject("collectState", "");
-
+        // 登陆博主 id
+        int loginBloggerId = sessionManager.getLoginBloggerId(request);
+        if (loginBloggerId != -1) {
+            if (likeService.getLikeState(loginBloggerId, blogId))
+                mv.addObject("likeState", true);
+            if (collectBlogService.getCollectState(loginBloggerId, blogId))
+                mv.addObject("collectState", true);
+        }
 
         mv.setViewName("blogger/read_blog");
         return mv;

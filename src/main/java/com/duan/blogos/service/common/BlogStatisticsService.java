@@ -26,5 +26,13 @@ public interface BlogStatisticsService {
      * @return 查询结果
      */
     ResultBean<BlogStatisticsCountDTO> getBlogStatisticsCount(int blogId);
+
+    /**
+     * 更新博文浏览次数（加一）
+     *
+     * @param blogId 博文id
+     * @return 更新成功为true
+     */
+    boolean updateBlogViewCountPlus(int blogId);
 }
 

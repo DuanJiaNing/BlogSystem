@@ -13,13 +13,12 @@ import javax.servlet.http.HttpServletRequest;
  * Created on 2017/12/25.
  * 读者对博文可以进行的操作
  * <p>
- * 1 评论博文
- * 2 分享博文
- * 3 收藏博文
- * 4 投诉博文
- * 5 喜欢博文
- * 6 取消收藏
- * 7 取消喜欢
+ * 1 分享博文
+ * 2 收藏博文
+ * 3 投诉博文
+ * 4 喜欢博文
+ * 5 取消收藏
+ * 6 取消喜欢
  *
  * @author DuanJiaNing
  */
@@ -29,31 +28,6 @@ public class BloggerOperateController extends BaseBloggerController {
 
     @Autowired
     private BlogOperateService operateService;
-
-    /**
-     * 评论博文
-     */
-    @RequestMapping(value = "/operate=comment", method = RequestMethod.POST)
-    public ResultBean commentBlog(HttpServletRequest request,
-                                  @PathVariable Integer blogId,
-                                  @PathVariable Integer bloggerId,
-                                  @RequestParam("listenerId") Integer listenerId,
-                                  @RequestParam("content") String content) {
-
-        if (StringUtils.isEmpty_(content))
-            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
-
-        handleBloggerSignInCheck(request, bloggerId);
-        handleAccountCheck(request, listenerId);
-        handleBlogExistCheck(request, blogId);
-
-        //执行操作
-        int id = operateService.insertComment(blogId, bloggerId, listenerId, content);
-        if (id <= 0) handlerOperateFail(request);
-
-        return new ResultBean<>(id);
-    }
-
 
     /**
      * 分享博文

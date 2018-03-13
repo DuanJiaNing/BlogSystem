@@ -20,8 +20,8 @@ import com.duan.blogos.entity.blogger.BloggerProfile;
 import com.duan.blogos.enums.BlogCommentStatusEnum;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.manager.DataFillingManager;
-import com.duan.blogos.manager.properties.DbProperties;
 import com.duan.blogos.manager.StringConstructorManager;
+import com.duan.blogos.manager.properties.DbProperties;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.audience.BlogBrowseService;
 import com.duan.blogos.util.CollectionUtils;
@@ -105,14 +105,7 @@ public class BlogBrowseServiceImpl implements BlogBrowseService {
             BloggerDTO smDTO = dataFillingManager.bloggerAccountToDTO(smAccount, smProfile,
                     getAvatar(smProfile.getAvatarId()));
 
-            //作者数据
-            int lid = comment.getListenerId();
-            BloggerAccount lAccount = accountDao.getAccountById(lid);
-            BloggerProfile lProfile = getProfile(lid);
-            BloggerDTO lDTO = dataFillingManager.bloggerAccountToDTO(lAccount, lProfile,
-                    getAvatar(lProfile.getAvatarId()));
-
-            BlogCommentDTO dto = dataFillingManager.blogCommentToDTO(comment, smDTO, lDTO);
+            BlogCommentDTO dto = dataFillingManager.blogCommentToDTO(comment, smDTO);
             result.add(dto);
         }
 

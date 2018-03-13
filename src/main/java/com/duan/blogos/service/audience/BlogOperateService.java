@@ -15,17 +15,6 @@ package com.duan.blogos.service.audience;
 public interface BlogOperateService {
 
     /**
-     * 新增一条评论记录，同时博文评论次数加一
-     *
-     * @param blogId      博文id
-     * @param spokesmanId 发言者
-     * @param listenerId  被评论者
-     * @param content     评论内容
-     * @return 新纪录id
-     */
-    int insertComment(int blogId, int spokesmanId, int listenerId, String content);
-
-    /**
      * 博文分享次数加一
      *
      * @param blogId   博文id

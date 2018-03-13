@@ -13,8 +13,8 @@ import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.entity.blogger.BloggerProfile;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.manager.DataFillingManager;
-import com.duan.blogos.manager.properties.DbProperties;
 import com.duan.blogos.manager.StringConstructorManager;
+import com.duan.blogos.manager.properties.DbProperties;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.common.BlogStatisticsService;
 import com.duan.blogos.util.CollectionUtils;
@@ -176,5 +176,13 @@ public class BlogStatisticsServiceImpl implements BlogStatisticsService {
 
         BlogStatisticsCountDTO dto = dataFillingManager.blogStatisticsCountToDTO(statistics);
         return new ResultBean<>(dto);
+    }
+
+    @Override
+    public boolean updateBlogViewCountPlus(int blogId) {
+        int effect = statisticsDao.updateViewCountPlus(blogId);
+
+        if (effect > 0) return true;
+        else return false;
     }
 }
