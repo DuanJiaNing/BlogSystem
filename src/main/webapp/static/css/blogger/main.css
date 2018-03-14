@@ -88,10 +88,14 @@ a {
 .blogger-link-item {
     border: 0px;
     color: black;
+    /*word-wrap: break-word;*/
+    display: inline-block;
+    /*text-wrap: normal;*/
 }
 
 .blog-list-item-label {
     color: black;
+    display: inline-block;
 }
 
 .blogger-label-content {

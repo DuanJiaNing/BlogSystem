@@ -52,6 +52,12 @@
         WHERE id = #{value}
     </select>
 
+    <select id="countLinkByBloggerId" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM blogger_link
+        WHERE blogger_id = #{value}
+    </select>
+
     <insert id="insert" parameterType="BloggerLink" useGeneratedKeys="true" keyProperty="id">
         <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
             SELECT LAST_INSERT_ID() AS id

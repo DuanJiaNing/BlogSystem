@@ -171,7 +171,8 @@ public class DataFillingManager {
     }
 
     public BloggerStatisticsDTO bloggerStatisticToDTO(int blogCount, int wordCount, int likeCount, int likedCount,
-                                                      int categoryCount, int labelCount, int collectCount, int collectedCount) {
+                                                      int categoryCount, int labelCount, int collectCount,
+                                                      int collectedCount, int linkCount) {
         BloggerStatisticsDTO dto = new BloggerStatisticsDTO();
         dto.setBlogCount(blogCount);
         dto.setWordCount(wordCount);
@@ -181,6 +182,7 @@ public class DataFillingManager {
         dto.setLabelCount(labelCount);
         dto.setCollectCount(collectCount);
         dto.setCollectedCount(collectedCount);
+        dto.setLinkCount(linkCount);
 
         return dto;
     }

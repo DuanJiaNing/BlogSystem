@@ -2,15 +2,13 @@ package com.duan.blogos.web.blog;
 
 import com.duan.blogos.dto.blog.BlogMainContentDTO;
 import com.duan.blogos.dto.blog.BlogStatisticsCountDTO;
+import com.duan.blogos.dto.blogger.BloggerStatisticsDTO;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.manager.BloggerSessionManager;
 import com.duan.blogos.manager.properties.BloggerProperties;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.audience.BlogBrowseService;
-import com.duan.blogos.service.blogger.BloggerAccountService;
-import com.duan.blogos.service.blogger.BloggerBlogService;
-import com.duan.blogos.service.blogger.BloggerCollectBlogService;
-import com.duan.blogos.service.blogger.BloggerLikeService;
+import com.duan.blogos.service.blogger.*;
 import com.duan.blogos.service.common.BlogStatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +35,9 @@ public class BlogReadPageController {
 
     @Autowired
     private BlogStatisticsService statisticsService;
+
+    @Autowired
+    private BloggerStatisticsService bloggerStatisticsService;
 
     @Autowired
     private BloggerProperties bloggerProperties;
@@ -89,6 +90,10 @@ public class BlogReadPageController {
 
         // 登陆博主 id
         int loginBloggerId = sessionManager.getLoginBloggerId(request);
+
+        ResultBean<BloggerStatisticsDTO> loginBgStat = bloggerStatisticsService.getBloggerStatistics(loginBloggerId);
+        mv.addObject("loginBgStat", loginBgStat.getData());
+
         if (loginBloggerId != -1) {
             if (likeService.getLikeState(loginBloggerId, blogId))
                 mv.addObject("likeState", true);

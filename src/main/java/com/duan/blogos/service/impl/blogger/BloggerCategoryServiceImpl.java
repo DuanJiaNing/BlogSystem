@@ -115,8 +115,9 @@ public class BloggerCategoryServiceImpl implements BloggerCategoryService {
 
         // 图片引用次数--
         Integer iconId;
-        if ((iconId = category.getIconId()) != null)
+        if ((iconId = category.getIconId()) != null && pictureDao.getUseCount(iconId) > 0) {
             pictureDao.updateUseCountMinus(iconId);
+        }
 
         // 删除数据库类别记录
         int effectDelete = categoryDao.delete(categoryId);

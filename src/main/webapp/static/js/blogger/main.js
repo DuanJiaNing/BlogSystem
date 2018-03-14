@@ -27,6 +27,8 @@ function loadLabel() {
                 // 设置标签编辑框内容
                 setModifyLabel(array);
 
+                $('#labelCount').html('(' + array.length + ')');
+
                 for (var index in array) {
                     var size = 0.4 + 1.5 * Math.random();
                     var label = array[index];
@@ -57,6 +59,7 @@ function loadCategory() {
                 setComplexFilterCategory(array);
                 // 设置类别编辑框内容
                 setModifyCategory(array);
+                $('#categoryCount').html('(' + array.length + ')');
 
                 for (var index in array) {
                     var ca = array[index];
@@ -88,6 +91,7 @@ function loadContact() {
             if (result.code === 0) {
                 var array = result.data;
                 setModifyLink(array);
+                $('#linkCount').html('(' + array.length + ')');
 
                 for (var index in array) {
                     var link = array[index];
@@ -539,6 +543,7 @@ function setFilterData(cids, lids, kword, sort, order) {
 
 // 刷新分页插件
 function setPageIndicator(initIndex) {
+    var init = true;
     $.get(
         '/blog/count',
         null,
@@ -552,6 +557,11 @@ function setPageIndicator(initIndex) {
                     slideSpeed: 600, // 缓动速度。单位毫秒
                     jump: true, //是否支持跳转
                     callback: function (page) { // 回调函数
+                        if (init && page === 1) {
+                            init = false;
+                            return;
+                        }
+
                         filterBloggerBlog((page - 1) * defaultBlogCount, defaultBlogCount, false, true, false);
                     }
                 })
@@ -570,7 +580,6 @@ function editAvatar() {
 $(function () {
     $("#scroll-to-top").click(function () {
         scrollToTop();
-        $("#scroll-to-top").tooltip('hide');
     });
 });
 

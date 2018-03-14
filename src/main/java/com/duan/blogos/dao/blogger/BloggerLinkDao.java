@@ -42,4 +42,12 @@ public interface BloggerLinkDao extends BaseDao<BloggerLink> {
      * @return 查询结果
      */
     BloggerLink getLink(int linkId);
+
+    /**
+     * 统计博主的链接数量
+     *
+     * @param bloggerId 博主id
+     * @return 统计结果
+     */
+    int countLinkByBloggerId(int bloggerId);
 }

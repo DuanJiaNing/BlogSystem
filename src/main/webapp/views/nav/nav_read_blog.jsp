@@ -47,13 +47,15 @@
                                aria-expanded="false">${sessionScope["bloggerName"]}<span
                                     class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li class="blogger-option"><a href="/${sessionScope['bloggerName']}/archives">主页</a>
+                                <li class="blogger-option"><a href="/${sessionScope['bloggerName']}/archives">我的主页</a>
                                 </li>
-                                <li class="blogger-option"><a href="#">收藏的博文&nbsp;<span class="count">(12)</span></a>
+                                <li class="blogger-option"><a href="#">收藏的文章&nbsp;<span
+                                        class="count">(${loginBgStat.collectCount})</span></a>
                                 </li>
-                                <li class="blogger-option"><a href="#">喜欢的博文&nbsp;<span class="count">(0)</span></a>
+                                <li class="blogger-option"><a href="#">喜欢的文章&nbsp;<span
+                                        class="count">(${loginBgStat.likedCount})</span></a>
                                 </li>
-                                <li class="blogger-option"><a href="#">管理</a></li>
+                                <li class="blogger-option"><a href="#">设置</a></li>
                                 <li class="blogger-option"><a href="#">反馈</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li class="blogger-option"><a onclick="logout(loginBloggerId)"><span

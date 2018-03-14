@@ -45,7 +45,9 @@
 <%--只能动态导入，否则出错--%>
 <jsp:include page="/views/dialog/upload_avatar_dialog.jsp"/>
 
-<button id="scroll-to-top" data-toggle="tooltip" data-placement="left" title="回到顶部">TOP</button>
+<div class="operation-container shadow-border">
+    <button id="scroll-to-top" title="回到顶部">TOP</button>
+</div>
 
 <%--高级检索--%>
 <div class="modal fade" tabindex="-1" role="dialog" id="complexFilterDialog">
@@ -134,9 +136,9 @@
         <div class="col-md-3">
             <br>
             <h4>
-                <small><span id="blogCount">${statistics["blogCount"]}篇博文</span><span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                    ${statistics["wordCount"]}字<span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                    收获${statistics["likeCount"]}个喜欢
+                <small><span id="blogCount">${ownerBgStat["blogCount"]}&nbsp;篇博文</span><span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    ${ownerBgStat["wordCount"]}&nbsp;字<span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    收获&nbsp;${ownerBgStat["likeCount"]}&nbsp;个喜欢
                 </small>
             </h4>
         </div>
@@ -193,12 +195,12 @@
 
             <br>
             <%--标签--%>
-            <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerLabelContainer').fadeToggle('fast','linear')"
-                 onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerLabelContainer').fadeToggle('fast','linear')"
+            <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerLabelContainer').slideToggle()"
+                 onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerLabelContainer').slideToggle()"
                  class="blogger-profile shadow-border">
 
                 <p class="text-center blogger-profile-title">
-                    标签
+                    标签&nbsp;<small id="labelCount" style="color: darkgray">(${ownerBgStat.labelCount})</small>
                 </p>
 
                 <p class="text-center" style="display: none" id="bloggerLabelContainer">
@@ -216,11 +218,11 @@
             <br>
 
             <%--创建的类别--%>
-            <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerCategoryContainer').fadeToggle('fast','linear')"
-                 onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerCategoryContainer').fadeToggle('fast','linear')"
+            <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerCategoryContainer').slideToggle()"
+                 onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerCategoryContainer').slideToggle()"
                  class="blogger-profile shadow-border">
                 <p class="text-center blogger-profile-title">
-                    类别
+                    类别&nbsp;<small id="categoryCount" style="color: darkgray">(${ownerBgStat.categoryCount})</small>
                 </p>
 
                 <p class="text-center" style="display: none" id="bloggerCategoryContainer">
@@ -236,11 +238,11 @@
             <br>
 
             <%--联系我--%>
-            <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerLinkContainer').fadeToggle('fast','linear')"
-                 onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerLinkContainer').fadeToggle('fast','linear')"
+            <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerLinkContainer').slideToggle()"
+                 onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerLinkContainer').slideToggle()"
                  class="blogger-profile shadow-border">
                 <p class="text-center blogger-profile-title">
-                    联系我
+                    联系我&nbsp;<small id="linkCount" style="color: darkgray">(${ownerBgStat.linkCount})</small>
                 </p>
 
                 <p class="text-center" style="display: none" id="bloggerLinkContainer">
@@ -266,7 +268,7 @@
     var pageOwnerBloggerId = ${pageOwnerBloggerId};
     var pageOwnerBloggerName = '${pageOwnerBloggerName}';
     var bloggerLoginSignal = ${not empty sessionScope['bloggerLoginSignal']};
-    var blogCount = ${statistics["blogCount"]};
+    var blogCount = ${ownerBgStat["blogCount"]};
     <c:if test="${not empty sessionScope['bloggerLoginSignal']}">
     var loginBloggerId = ${sessionScope["bloggerId"]};
     </c:if>

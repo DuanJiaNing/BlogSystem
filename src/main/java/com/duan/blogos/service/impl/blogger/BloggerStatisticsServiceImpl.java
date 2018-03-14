@@ -1,6 +1,7 @@
 package com.duan.blogos.service.impl.blogger;
 
 import com.duan.blogos.dao.blog.*;
+import com.duan.blogos.dao.blogger.BloggerLinkDao;
 import com.duan.blogos.dto.blogger.BloggerStatisticsDTO;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.enums.BlogStatusEnum;
@@ -25,6 +26,9 @@ public class BloggerStatisticsServiceImpl implements BloggerStatisticsService {
 
     @Autowired
     private BlogLikeDao likeDao;
+
+    @Autowired
+    private BloggerLinkDao linkDao;
 
     @Autowired
     private BlogCategoryDao categoryDao;
@@ -59,8 +63,10 @@ public class BloggerStatisticsServiceImpl implements BloggerStatisticsService {
         int collectCount = collectDao.countByCollectorId(bloggerId);
         int collectedCount = blogs.stream().mapToInt(Blog::getId).map(statisticsDao::getCollectCount).sum();
 
+        int linkCount = linkDao.countLinkByBloggerId(bloggerId);
+
         BloggerStatisticsDTO dto = dataFillingManager.bloggerStatisticToDTO(blogCount, wordCountSum, likeCount, likeGiveCount,
-                categoryCount, labelCount, collectCount, collectedCount);
+                categoryCount, labelCount, collectCount, collectedCount,linkCount);
 
         return new ResultBean<>(dto);
     }

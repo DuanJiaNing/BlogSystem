@@ -90,41 +90,6 @@ h4.default-h4 {
     padding: 8px;
 }
 
-#scroll-to-top:hover {
-    background: dodgerblue;
-    color: white;
-    opacity: 1;
-}
-
-#scroll-to-top:focus {
-    outline: 0;
-}
-
-#scroll-to-top {
-    position: fixed;
-    bottom: 48px;
-    right: 48px;
-
-    z-index: 9999;
-
-    width: 48px;
-    height: 48px;
-
-    border-radius: 24px;
-    padding: 8px;
-
-    text-align: center;
-    line-height: 30px;
-
-    background: dimgray;
-    color: white;
-
-    cursor: pointer;
-    text-decoration: none;
-    opacity: 0.4;
-    /*transition: opacity .2s ease-out;*/
-}
-
 .vertical-line {
     color: lightgray;
 }
@@ -342,4 +307,38 @@ h4.default-h4 {
     cursor: not-allowed;
     background-color: lightgray;
     color: dimgray;
+}
+
+.operation-container button {
+    background-color: transparent;
+    outline: 0;
+    border: 0;
+    border-bottom: solid 1px lightgray;
+    font-size: x-small;
+    padding: 5px;
+}
+
+.operation-container button:hover {
+    background-color: lightgray;
+}
+
+.operation-container {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    border: solid 1px lightgray;
+
+    z-index: 9999;
+
+    width: 48px;
+
+    padding: 8px;
+
+    text-align: center;
+
+    background: white;
+    color: dimgray;
+
+    text-decoration: none;
+    opacity: 0.7;
 }

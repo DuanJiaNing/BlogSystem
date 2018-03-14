@@ -13,40 +13,6 @@ a {
     cursor: pointer;
 }
 
-.operation-container button {
-    background-color: transparent;
-    outline: 0;
-    border: 0;
-    border-bottom: solid 1px lightgray;
-    font-size: x-small;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-.operation-container button:hover {
-    background-color: lightgray;
-}
-
-.operation-container {
-    position: fixed;
-    bottom: 32px;
-    right: 32px;
-
-    z-index: 9999;
-
-    width: 48px;
-
-    padding: 8px;
-
-    text-align: center;
-
-    background: white;
-    color: dimgray;
-
-    text-decoration: none;
-    opacity: 0.7;
-}
-
 .title {
     font-size: 2.4em;
 

@@ -38,4 +38,7 @@ public class BloggerStatisticsDTO implements Serializable {
 
     //文章被收藏数
     private int collectedCount;
+
+    //链接数量
+    private int linkCount;
 }

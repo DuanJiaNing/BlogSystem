@@ -1,10 +1,12 @@
 package com.duan.blogos.web.blog;
 
+import com.duan.blogos.dto.blogger.BloggerStatisticsDTO;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.manager.validate.BloggerValidateManager;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.BloggerBlogService;
+import com.duan.blogos.service.blogger.BloggerStatisticsService;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,9 @@ public class EditBlogPageController {
     @Autowired
     private BloggerBlogService blogService;
 
+    @Autowired
+    private BloggerStatisticsService statisticsService;
+
     @RequestMapping
     public ModelAndView mainPage(HttpServletRequest request,
                                  @RequestParam(value = "bid", required = false) Integer bloggerId,
@@ -52,6 +57,10 @@ public class EditBlogPageController {
                 }
                 mv.addObject("blogContentMd", StringUtils.stringToUnicode(data.getContentMd()));
             }
+
+            ResultBean<BloggerStatisticsDTO> loginBgStat = statisticsService.getBloggerStatistics(bloggerId);
+            mv.addObject("loginBgStat", loginBgStat.getData());
+
             mv.setViewName("/blogger/edit_blog");
         }
 
