@@ -238,3 +238,8 @@ function stringToUnicode(str) {
     }
     return val;
 }
+
+// 初始化所有的 tip
+function initToolTip() {
+    $('[data-toggle="tooltip"]').tooltip();
+}

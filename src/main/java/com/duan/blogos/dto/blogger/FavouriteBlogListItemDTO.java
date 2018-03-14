@@ -1,7 +1,6 @@
 package com.duan.blogos.dto.blogger;
 
 import com.duan.blogos.dto.blog.BlogListItemDTO;
-import com.duan.blogos.dto.blog.BlogMainContentDTO;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -14,7 +13,7 @@ import java.sql.Timestamp;
  * @author DuanJiaNing
  */
 @Data
-public class CollectBlogListItemDTO implements Serializable {
+public class FavouriteBlogListItemDTO implements Serializable {
 
     private static final long serialVersionUID = 1348316821909506029L;
 
@@ -30,13 +29,10 @@ public class CollectBlogListItemDTO implements Serializable {
     //作者id
     private BloggerDTO author;
 
-    //收藏的理由
+    //收藏/喜欢理由
     private String reason;
 
-    //收藏时间
-    private Timestamp collectDate;
-
-    //收藏到自己的哪一个类别之下
-    private int categoryId;
+    //收藏/喜欢时间
+    private Timestamp date;
 
 }

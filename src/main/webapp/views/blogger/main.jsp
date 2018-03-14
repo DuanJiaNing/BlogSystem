@@ -23,6 +23,9 @@
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+
     <link rel="stylesheet" href="/css/blogger/main.css">
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/paging.css">
@@ -192,8 +195,26 @@
                 <hr>
                 <p class="text-center lead blogger-aboutme">${aboutMe}</p>
             </div>
-
             <br>
+
+            <%--他的喜欢，收藏--%>
+            <div class="shadow-border" style="background-color: white">
+                <br>
+                <div class="list-group">
+                    <a class="list-group-item vertical-center blogger-favourite"
+                       href="/${pageOwnerBloggerName}/blog/favourite/like">
+                        <i class="material-icons icons">favorite_border</i>&nbsp;
+                        他喜欢的文章&nbsp;<span class="count">(${ownerBgStat.likedCount})</span>
+                    </a>
+                    <a class="list-group-item vertical-center blogger-favourite"
+                       href="/${pageOwnerBloggerName}/blog/favourite/collect">
+                        <i class="material-icons icons">collections_bookmark</i>&nbsp;
+                        他收藏的文章&nbsp;<span class="count">(${ownerBgStat.collectCount})</span>
+                    </a>
+                </div>
+            </div>
+            <br>
+
             <%--标签--%>
             <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerLabelContainer').slideToggle()"
                  onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerLabelContainer').slideToggle()"

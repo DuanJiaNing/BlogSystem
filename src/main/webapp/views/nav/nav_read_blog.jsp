@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
+
 <%@ include file="/views/dialog/login_dialog.jsp" %>
 
 <html>
@@ -16,7 +19,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default navbar-static-top" style="background-color: white">
+<nav class="navbar navbar-default navbar-static-top">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -49,11 +52,13 @@
                             <ul class="dropdown-menu">
                                 <li class="blogger-option"><a href="/${sessionScope['bloggerName']}/archives">我的主页</a>
                                 </li>
-                                <li class="blogger-option"><a href="#">收藏的文章&nbsp;<span
-                                        class="count">(${loginBgStat.collectCount})</span></a>
+                                <li class="blogger-option">
+                                    <a href="/${bloggerName}/blog/favourite/collect">收藏的文章&nbsp;
+                                        <span class="count">(${loginBgStat.collectCount})</span></a>
                                 </li>
-                                <li class="blogger-option"><a href="#">喜欢的文章&nbsp;<span
-                                        class="count">(${loginBgStat.likedCount})</span></a>
+                                <li class="blogger-option">
+                                    <a href="/${bloggerName}/blog/favourite/like">喜欢的文章&nbsp;
+                                        <span class="count">(${loginBgStat.likedCount})</span></a>
                                 </li>
                                 <li class="blogger-option"><a href="#">设置</a></li>
                                 <li class="blogger-option"><a href="#">反馈</a></li>

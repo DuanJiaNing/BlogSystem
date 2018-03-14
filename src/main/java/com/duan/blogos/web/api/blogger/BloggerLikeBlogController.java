@@ -6,7 +6,7 @@ import com.duan.blogos.common.Rule;
 import com.duan.blogos.dto.blogger.FavouriteBlogListItemDTO;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.BloggerCollectBlogService;
-import com.duan.blogos.util.StringUtils;
+import com.duan.blogos.service.blogger.BloggerLikeBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.RequestContext;
@@ -25,11 +25,11 @@ import java.util.List;
  * @author DuanJiaNing
  */
 @RestController
-@RequestMapping("/blogger/{bloggerId}/collect")
-public class BloggerCollectBlogController extends BaseBloggerController {
+@RequestMapping("/blogger/{bloggerId}/like")
+public class BloggerLikeBlogController extends BaseBloggerController {
 
     @Autowired
-    private BloggerCollectBlogService bloggerCollectBlogService;
+    private BloggerLikeBlogService likeBlogService;
 
     /**
      * 收藏博文清单
@@ -54,33 +54,11 @@ public class BloggerCollectBlogController extends BaseBloggerController {
         int rs = rows == null || rows < 0 ? bloggerProperties.getRequestBloggerCollectCount() : rows;
 
         // 查询数据
-        ResultBean<List<FavouriteBlogListItemDTO>> result = bloggerCollectBlogService.listCollectBlog(bloggerId,
-                bloggerProperties.getDefaultBlogCollectCategory(), os, rs,
+        ResultBean<List<FavouriteBlogListItemDTO>> result = likeBlogService.listLikeBlog(bloggerId, os, rs,
                 BlogSortRule.valueOf(sor, ord));
         if (result == null) handlerEmptyResult(request);
 
         return result;
-    }
-
-    /**
-     * 修改博文收藏
-     */
-    @RequestMapping(value = "/{blogId}", method = RequestMethod.PUT)
-    public ResultBean update(HttpServletRequest request,
-                             @PathVariable("blogId") Integer blogId,
-                             @PathVariable("bloggerId") Integer bloggerId,
-                             @RequestParam(value = "reason", required = false) String newReason) {
-
-        handleBloggerSignInCheck(request, bloggerId);
-
-        if (StringUtils.isEmpty(newReason)) {
-            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
-        }
-
-        boolean result = bloggerCollectBlogService.updateCollect(bloggerId, blogId, newReason, -1);
-        if (!result) handlerOperateFail(request);
-
-        return new ResultBean<>("");
     }
 
 
@@ -93,6 +71,6 @@ public class BloggerCollectBlogController extends BaseBloggerController {
 
         handleAccountCheck(request, bloggerId);
 
-        return new ResultBean<>(bloggerCollectBlogService.countByBloggerId(bloggerId));
+        return new ResultBean<>(likeBlogService.countByBloggerId(bloggerId));
     }
 }

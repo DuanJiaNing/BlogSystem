@@ -451,7 +451,7 @@ function setBlogs(array, defaulz) {
                 (labels === '' ? '' : '<td style="color: gray">' + labels + '</td>') +
                 '  </tr>' +
                 '</table>' +
-                '</li>'
+                '</li><br>'
         }
 
         html += '</ul>';
@@ -582,11 +582,6 @@ $(function () {
         scrollToTop();
     });
 });
-
-// 初始化所有的 tip
-function initToolTip() {
-    $('[data-toggle="tooltip"]').tooltip();
-}
 
 // -------------------------------------------------------------------------------------------------------创建标签时回调
 var funWhenCreateLabelSuccess = function (id) {

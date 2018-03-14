@@ -18,7 +18,7 @@ import com.duan.blogos.manager.StringConstructorManager;
 import com.duan.blogos.manager.comparator.BlogListItemComparatorFactory;
 import com.duan.blogos.manager.properties.DbProperties;
 import com.duan.blogos.restful.ResultBean;
-import com.duan.blogos.service.blogger.BloggerCollectBlogService;
+import com.duan.blogos.service.blogger.BloggerLikeBlogService;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,15 +30,15 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created on 2017/12/19.
+ * Created on 2018/3/11.
  *
  * @author DuanJiaNing
  */
 @Service
-public class BloggerCollectBlogServiceImpl implements BloggerCollectBlogService {
+public class BloggerLikeBlogServiceImpl implements BloggerLikeBlogService {
 
     @Autowired
-    private BlogCollectDao collectDao;
+    private BlogLikeDao likeDao;
 
     @Autowired
     private BlogStatisticsDao statisticsDao;
@@ -71,19 +71,25 @@ public class BloggerCollectBlogServiceImpl implements BloggerCollectBlogService 
     private StringConstructorManager constructorManager;
 
     @Override
-    public ResultBean<List<FavouriteBlogListItemDTO>> listCollectBlog(int bloggerId, int categoryId, int offset, int rows, BlogSortRule sortRule) {
-        List<BlogCollect> collects = collectDao.listCollectBlog(bloggerId, categoryId, offset, rows);
-        if (CollectionUtils.isEmpty(collects)) return null;
+    public boolean getLikeState(int bloggerId, int blogId) {
+        BlogLike like = likeDao.getLike(bloggerId, blogId);
+        return like != null;
+    }
+
+    @Override
+    public ResultBean<List<FavouriteBlogListItemDTO>> listLikeBlog(int bloggerId, int offset, int rows, BlogSortRule sortRule) {
+        List<BlogLike> likes = likeDao.listLikeBlog(bloggerId, offset, rows);
+        if (CollectionUtils.isEmpty(likes)) return null;
 
         //排序
         List<BlogStatistics> temp = new ArrayList<>();
         //方便排序后的重组
-        Map<Integer, BlogCollect> blogCollectMap = new HashMap<>();
-        for (BlogCollect collect : collects) {
-            int blogId = collect.getBlogId();
+        Map<Integer, BlogLike> blogLikeMap = new HashMap<>();
+        for (BlogLike like : likes) {
+            int blogId = like.getBlogId();
             BlogStatistics statistics = statisticsDao.getStatistics(blogId);
             temp.add(statistics);
-            blogCollectMap.put(blogId, collect);
+            blogLikeMap.put(blogId, like);
         }
         BlogListItemComparatorFactory factory = new BlogListItemComparatorFactory();
         temp.sort(factory.get(sortRule.getRule(), sortRule.getOrder()));
@@ -137,8 +143,8 @@ public class BloggerCollectBlogServiceImpl implements BloggerCollectBlogService 
             BloggerDTO bloggerDTO = fillingManager.bloggerAccountToDTO(account, profile, avatar);
 
             // 结果
-            BlogCollect collect = blogCollectMap.get(blogId);
-            FavouriteBlogListItemDTO dto = fillingManager.collectBlogListItemToDTO(bloggerId, collect, listItemDTO, bloggerDTO);
+            BlogLike like = blogLikeMap.get(blogId);
+            FavouriteBlogListItemDTO dto = fillingManager.likeBlogListItemToDTO(bloggerId, like, listItemDTO, bloggerDTO);
             result.add(dto);
         }
 
@@ -146,19 +152,7 @@ public class BloggerCollectBlogServiceImpl implements BloggerCollectBlogService 
     }
 
     @Override
-    public boolean updateCollect(int bloggerId, int blogId, String newReason, int newCategory) {
-        int effect = collectDao.updateByUnique(bloggerId, blogId, newReason, null);
-        return effect > 0;
-    }
-
-    @Override
-    public boolean getCollectState(int bloggerId, int blogId) {
-        BlogCollect collect = collectDao.getCollect(bloggerId, blogId);
-        return collect != null;
-    }
-
-    @Override
     public int countByBloggerId(int bloggerId) {
-        return collectDao.countByCollectorId(bloggerId);
+        return likeDao.countLikeByLikerId(bloggerId);
     }
 }

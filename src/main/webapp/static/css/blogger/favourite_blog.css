@@ -1,0 +1,66 @@
+body {
+    padding-top: 70px;
+    font-family: 微软雅黑, serif;
+
+    background-size: cover;
+    background: url(/images/background.jpg) no-repeat fixed center center;
+}
+
+a {
+    cursor: pointer;
+}
+
+.blog-container {
+    background-color: white;
+    padding: 32px 10%
+}
+
+.blogger-avatar {
+    margin-top: 10px;
+    margin-right: 16px;
+    height: 65px;
+    width: 65px;
+}
+
+.item-blogger-name {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 130px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.item-blogger-name:hover {
+    color: gray;
+}
+
+.item-date {
+    color: gray;
+    font-size: xx-small;
+}
+
+td {
+    height: 30px;
+    /*border: solid 1px gray;*/
+}
+
+.item-blog-title {
+    font-weight: bold;
+    font-family: 华文中宋, 方正姚体, serif;
+    cursor: pointer;
+}
+
+.item-blog-title:hover {
+    color: gray;
+}
+
+.item-blog-summary {
+    font-size: small;
+    line-height: 23px;
+    color: #626061;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}

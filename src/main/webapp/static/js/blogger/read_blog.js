@@ -14,11 +14,6 @@ $(function () {
     });
 });
 
-// 初始化所有的 tip
-function initToolTip() {
-    $('[data-toggle="tooltip"]').tooltip();
-}
-
 function checkLogin() {
     if (!bloggerLoginSignal) {
         // 显示登录对话框

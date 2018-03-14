@@ -45,6 +45,13 @@
         WHERE blog_id = #{blogId} AND liker_id = #{bloggerId}
     </select>
 
+    <select id="listLikeBlog" resultType="BlogLike">
+        SELECT *
+        FROM blog_like
+        WHERE liker_id = #{bloggerId}
+        LIMIT #{offset}, #{rows}
+    </select>
+
     <insert id="insert" parameterType="BlogLike" useGeneratedKeys="true" keyProperty="id">
         <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
             SELECT LAST_INSERT_ID() AS id

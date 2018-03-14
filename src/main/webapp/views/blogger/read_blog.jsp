@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ include file="/views/nav/nav_read_blog.jsp" %>
 <%@ include file="/views/dialog/toast_dialog.jsp" %>
 

@@ -49,7 +49,7 @@ public class BlogReadPageController {
     private BlogBrowseService blogBrowseService;
 
     @Autowired
-    private BloggerLikeService likeService;
+    private BloggerLikeBlogService likeService;
 
     @Autowired
     private BloggerCollectBlogService collectBlogService;

@@ -8,7 +8,6 @@ import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerLink;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.entity.blogger.BloggerProfile;
-import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.stereotype.Component;
@@ -105,17 +104,6 @@ public class DataFillingManager {
         return dto;
     }
 
-    public CollectBlogListItemDTO collectBlogListItemToDTO(int bloggerId, BlogCollect collect, BlogListItemDTO blog, BloggerDTO author) {
-        CollectBlogListItemDTO dto = new CollectBlogListItemDTO();
-        dto.setAuthor(author);
-        dto.setBlog(blog);
-        dto.setBloggerId(bloggerId);
-        dto.setCategoryId(collect.getCategoryId());
-        dto.setCollectDate(collect.getCollectDate());
-        dto.setId(collect.getId());
-        dto.setReason(collect.getReason());
-        return dto;
-    }
 
     public BloggerCategoryDTO blogCategoryToDTO(BlogCategory category, BloggerPicture icon, int count) {
         BloggerCategoryDTO dto = new BloggerCategoryDTO();
@@ -184,6 +172,27 @@ public class DataFillingManager {
         dto.setCollectedCount(collectedCount);
         dto.setLinkCount(linkCount);
 
+        return dto;
+    }
+
+    public FavouriteBlogListItemDTO collectBlogListItemToDTO(int bloggerId, BlogCollect collect, BlogListItemDTO blog, BloggerDTO author) {
+        FavouriteBlogListItemDTO dto = new FavouriteBlogListItemDTO();
+        dto.setAuthor(author);
+        dto.setBlog(blog);
+        dto.setBloggerId(bloggerId);
+        dto.setDate(collect.getCollectDate());
+        dto.setId(collect.getId());
+        dto.setReason(collect.getReason());
+        return dto;
+    }
+
+    public FavouriteBlogListItemDTO likeBlogListItemToDTO(int bloggerId, BlogLike like, BlogListItemDTO blog, BloggerDTO liker) {
+        FavouriteBlogListItemDTO dto = new FavouriteBlogListItemDTO();
+        dto.setAuthor(liker);
+        dto.setBlog(blog);
+        dto.setBloggerId(bloggerId);
+        dto.setDate(like.getLikeDate());
+        dto.setId(like.getId());
         return dto;
     }
 }

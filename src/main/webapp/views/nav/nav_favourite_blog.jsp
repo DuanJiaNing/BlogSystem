@@ -6,11 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 
 <%@ include file="/views/dialog/login_dialog.jsp" %>
-<%@ include file="/views/dialog/toast_dialog.jsp" %>
 
 <html>
 <head>
@@ -38,14 +37,6 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <div class="input-group search navbar-btn">
-                        <input type="text" class="form-control" placeholder="搜索博文" id="searchBlog"
-                               aria-describedby="basic-addon2">
-                        <span class="input-group-addon search-btn" id="basic-addon2"
-                              onclick="filterBlogByKeyWord()">搜索</span>
-                    </div>
-                </li>
                 <c:choose>
                     <c:when test="${empty bloggerLoginSignal}">
                         <li><a data-toggle="modal"
@@ -61,30 +52,27 @@
                             <ul class="dropdown-menu">
                                 <li class="blogger-option"><a href="/${sessionScope['bloggerName']}/archives">我的主页</a>
                                 </li>
+
                                 <li class="blogger-option">
-                                    <a href="/${sessionScope["bloggerName"]}/blog/favourite/collect">收藏的文章&nbsp;
-                                        <span class="count">(${loginBgStat.collectCount})</span></a>
+                                    <a href="/${bloggerName}/blog/favourite/collect">收藏的文章&nbsp;
+                                        <span class="count"
+                                              id="favouriteCollectCount">(${loginBgStat.collectCount})</span></a>
                                 </li>
                                 <li class="blogger-option">
-                                    <a href="/${sessionScope["bloggerName"]}/blog/favourite/like">喜欢的文章&nbsp;
-                                        <span class="count">(${loginBgStat.likedCount})</span></a>
+                                    <a href="/${bloggerName}/blog/favourite/like">喜欢的文章&nbsp;
+                                        <span class="count"
+                                              id="favouriteLikeCount">(${loginBgStat.likedCount})</span></a>
                                 </li>
+
                                 <li class="blogger-option"><a href="#">设置</a></li>
                                 <li class="blogger-option"><a href="#">反馈</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li class="blogger-option"><a onclick="logout(${sessionScope['bloggerId']})"><span
+                                <li class="blogger-option"><a onclick="logout(loginBloggerId)"><span
                                         class="quit">退出</span></a></li>
                             </ul>
                         </li>
-
-                        <li>
-                            <button type="button" class="button-top-main"
-                                    onclick="window.open('/edit_blog?bid=${sessionScope['bloggerId']}') ">写博文
-                            </button>
-                        </li>
                     </c:otherwise>
                 </c:choose>
-
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

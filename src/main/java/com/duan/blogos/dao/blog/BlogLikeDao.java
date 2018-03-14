@@ -48,4 +48,18 @@ public interface BlogLikeDao extends BaseDao<BlogLike> {
      * @return 查询记录
      */
     BlogLike getLike(@Param("bloggerId") int bloggerId, @Param("blogId") int blogId);
+
+    /**
+     * 查询博文
+     *
+     * @param bloggerId 博主id
+     * @param offset    起始偏移
+     * @param rows      行数
+     * @return 查询结果
+     */
+    List<BlogLike> listLikeBlog(
+            @Param("bloggerId") int bloggerId,
+            @Param("offset") int offset,
+            @Param("rows") int rows);
+
 }

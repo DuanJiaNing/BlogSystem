@@ -1,3 +1,8 @@
+nav {
+    background-color: white;
+    border-bottom: solid 1px #e6e6e6;
+}
+
 .search {
     width: 230px;
 }

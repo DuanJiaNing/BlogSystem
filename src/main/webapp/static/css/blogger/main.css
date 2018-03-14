@@ -12,7 +12,6 @@ a {
 
 /*-------------------------------------------------------------------博文列表项*/
 .blog-list-item {
-    margin-bottom: 32px;
     padding: 23px 19px;
 }
 
@@ -204,6 +203,12 @@ span {
 
     font-size: medium;
     margin-bottom: 16px;
+}
+
+.blogger-favourite {
+    font-family: 华文中宋, 方正姚体, serif;
+    font-size: medium;
+    border: 0;
 }
 
 /*----------------------页面右侧部分*/
