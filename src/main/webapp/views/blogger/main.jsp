@@ -48,8 +48,9 @@
 <%--只能动态导入，否则出错--%>
 <jsp:include page="/views/dialog/upload_avatar_dialog.jsp"/>
 
-<div class="operation-container shadow-border">
-    <button id="scroll-to-top" title="回到顶部">TOP</button>
+<div class="operation-container border clickable-gray" onclick="scrollToTop();" style="padding: 11px">
+    <%--<button id="scroll-to-top" title="回到顶部">TOP</button>--%>
+    <img class="icon24px" src="/images/icon/icons8-collapse-arrow-64.png" title="回到顶部">
 </div>
 
 <%--高级检索--%>
@@ -135,7 +136,7 @@
                 <td valign="middle">
                     <h4>${blogName}
                         <small>
-                            &nbsp;
+                            &nbsp;&nbsp;
                             <span id="blogCount">${ownerBgStat["blogCount"]}&nbsp;篇博文</span>
                             <span class="vertical-line">&nbsp;|&nbsp;</span>
                             ${ownerBgStat["wordCount"]}&nbsp;字<span
@@ -149,7 +150,10 @@
                         <input type="text" class="form-control input-search" placeholder="搜索博文" id="searchBlog"
                                aria-describedby="basic-addon2">
                         <span class="input-group-addon input-search-btn" id="basic-addon2"
-                              onclick="filterBlogByKeyWord()">搜索</span>
+                              onclick="filterBlogByKeyWord()">
+                            <img class="icon24px" src="/images/icon/icons8-search-50.png">&nbsp;
+
+                        </span>
 
                     </div>
                 </td>
@@ -181,7 +185,7 @@
         <div class="col-md-3">
 
             <%--头像--%>
-            <div class="blogger-profile shadow-border">
+            <div class="blogger-profile border">
                 <c:choose>
                     <c:when test="${sessionScope['bloggerId'] == pageOwnerBloggerId}">
                         <%--头像--%>
@@ -216,17 +220,18 @@
             <br>
 
             <%--他的喜欢，收藏--%>
-            <div class="shadow-border" style="background-color: white">
+            <div class="border" style="background-color: white">
                 <br>
                 <div class="list-group">
                     <a class="list-group-item vertical-center blogger-favourite"
                        href="/${pageOwnerBloggerName}/blog/favourite/like">
-                        <i class="material-icons icons">favorite_border</i>&nbsp;
+                        <%--<i class="material-icons icons">favorite_border</i>&nbsp;--%>
+                        <img class="icon24px" src="/images/icon/icons8-heart-outline-64.png">&nbsp;
                         他喜欢的文章&nbsp;<span class="count">(${ownerBgStat.likedCount})</span>
                     </a>
                     <a class="list-group-item vertical-center blogger-favourite"
                        href="/${pageOwnerBloggerName}/blog/favourite/collect">
-                        <i class="material-icons icons">collections_bookmark</i>&nbsp;
+                        <img class="icon24px" src="/images/icon/icons8-collect-50.png">&nbsp;
                         他收藏的文章&nbsp;<span class="count">(${ownerBgStat.collectCount})</span>
                     </a>
                 </div>
@@ -236,7 +241,7 @@
             <%--标签--%>
             <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerLabelContainer').slideToggle()"
                  onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerLabelContainer').slideToggle()"
-                 class="blogger-profile shadow-border">
+                 class="blogger-profile border">
 
                 <p class="text-center blogger-profile-title">
                     标签&nbsp;<small id="labelCount" style="color: darkgray">(${ownerBgStat.labelCount})</small>
@@ -259,7 +264,7 @@
             <%--创建的类别--%>
             <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerCategoryContainer').slideToggle()"
                  onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerCategoryContainer').slideToggle()"
-                 class="blogger-profile shadow-border">
+                 class="blogger-profile border">
                 <p class="text-center blogger-profile-title">
                     类别&nbsp;<small id="categoryCount" style="color: darkgray">(${ownerBgStat.categoryCount})</small>
                 </p>
@@ -279,7 +284,7 @@
             <%--联系我--%>
             <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerLinkContainer').slideToggle()"
                  onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerLinkContainer').slideToggle()"
-                 class="blogger-profile shadow-border">
+                 class="blogger-profile border">
                 <p class="text-center blogger-profile-title">
                     联系我&nbsp;<small id="linkCount" style="color: darkgray">(${ownerBgStat.linkCount})</small>
                 </p>

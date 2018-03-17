@@ -44,7 +44,7 @@
 </head>
 <body>
 
-<div class="operation-container shadow-border">
+<div class="operation-container border">
     <button id="scroll-to-top" title="回到顶部">TOP</button>
 </div>
 
@@ -70,7 +70,7 @@
     <p style="border-bottom: solid 1px lightgray"></p>
     <br>
 
-    <div class="shadow-border blog-container">
+    <div class="border blog-container">
         <div id="blogList">
         </div>
         <div class="box" id="box"></div>

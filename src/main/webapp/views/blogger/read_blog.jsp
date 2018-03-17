@@ -36,44 +36,56 @@
 </head>
 <body>
 
-<div class="operation-container shadow-border">
-    <button id="goto-top" title="回到顶部">TOP</button>
-    <br>
+<div class="operation-container border">
+    <div onclick="scrollToTop()" title="回到顶部" class="clickable-gray oper-item sper-bottom">
+        <img class="icon24px" src="/images/icon/icons8-collapse-arrow-64.png">
+    </div>
 
-    <button title="分享" onclick="shareBlog()">分享</button>
-    <br>
+    <div onclick="shareBlog()" title="分享" class="clickable-gray oper-item sper-bottom">
+        <img class="icon24px" src="/images/icon/icons8-share-3-64.png">
+    </div>
 
-    <button title="投诉" onclick="complainBlog()">投诉</button>
-    <br>
+    <div onclick="complainBlog()" title="投诉" class="clickable-gray oper-item sper-bottom">
+        <img class="icon24px" src="/images/icon/icons8-info-64.png">
+    </div>
 
     <%--未登录，或登录了但登录博主不是当前博文所有者时显示--%>
-    <c:if test="${empty sessionScope['bloggerLoginSignal'] or (blogOwnerBloggerId ne bloggerId)}">
-        <c:choose>
-            <c:when test="${not empty collectState}">
-                <button title="取消收藏" onclick="collectBlog(this)">取消收藏</button>
-            </c:when>
-            <c:otherwise>
-                <button title="收藏" onclick="collectBlog(this)">收藏</button>
-            </c:otherwise>
-        </c:choose>
-        <br>
-    </c:if>
+    <div onclick="collectBlog(this)">
+        <c:if test="${empty sessionScope['bloggerLoginSignal'] or (blogOwnerBloggerId ne bloggerId)}">
+            <c:choose>
+                <c:when test="${not empty collectState}">
+                    <div onclick="collectBlog(this)" title="取消收藏" class="clickable-gray oper-item sper-bottom">
+                        <img class="icon24px" src="/images/icon/icons8-collect-50.png">
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div onclick="collectBlog(this)" title="收藏" class="clickable-gray oper-item sper-bottom">
+                        <img class="icon24px" src="/images/icon/icons8-collect-50.png">
+                    </div>
+                </c:otherwise>
+            </c:choose>
+        </c:if>
+    </div>
 
     <c:choose>
         <%--likeState不为null代表有博主登录了--%>
         <c:when test="${not empty likeState}">
-            <button title="取消喜欢" onclick="likeBlog(this)">取消喜欢</button>
+            <div onclick="likeBlog(this)" title="取消喜欢" class="clickable-gray oper-item sper-top">
+                <img class="icon24px" src="/images/icon/icons8-heart-outline-64.png">
+            </div>
         </c:when>
         <c:otherwise>
-            <button title="喜欢" onclick="likeBlog(this)">喜欢</button>
+            <div onclick="likeBlog(this)" title="喜欢" class="clickable-gray oper-item sper-top">
+                <img class="icon24px" src="/images/icon/icons8-heart-outline-64.png">
+            </div>
         </c:otherwise>
     </c:choose>
-    <br>
+
 </div>
 
 <div class="container" style="min-height: 100%">
 
-    <div class="shadow-border blog-container">
+    <div class="border blog-container">
 
         <p class="text-center title">
             ${main["title"]}
@@ -102,8 +114,10 @@
     </div>
 
     <br>
-    <div class="shadow-border blog-container">
+    <div class="border blog-container">
 
+        <%--锚点--%>
+        <a name="comment"></a>
         <p class="text-left title title-small">
             留言（<span id="commentCount"></span>）条
         </p>
@@ -125,7 +139,7 @@
 
     <c:if test="${not empty sessionScope['bloggerLoginSignal']}">
         <br>
-        <div class="shadow-border blog-container">
+        <div class="border blog-container">
             <p class="text-left" style="color: gray;">
                 我要留言
             </p>

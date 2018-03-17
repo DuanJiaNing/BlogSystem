@@ -235,6 +235,7 @@ span {
 .search-container {
     box-shadow: -2px 5px 10px whitesmoke;
     border: solid 1px #DCE2E8;
+    border-radius: 5px;
 }
 
 .input-search {

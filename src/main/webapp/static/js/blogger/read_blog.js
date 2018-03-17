@@ -6,14 +6,6 @@ function funAfterLoginSuccess(result, name) {
 function funAfterLoginFail(result) {
 }
 
-// 回到顶部
-$(function () {
-    $("#goto-top").click(function () {
-        scrollToTop();
-        $("#goto-top").tooltip('hide');
-    });
-});
-
 function checkLogin() {
     if (!bloggerLoginSignal) {
         // 显示登录对话框
@@ -27,13 +19,14 @@ function likeBlog(th) {
     if (!checkLogin()) return;
 
     var like = $(th);
-    if (like.html() === '喜欢') {
+    if (like.attr('title') === '喜欢') {
         $.post(
             '/blogger/' + loginBloggerId + '/' + blogId + '/operate=like',
             null,
             function (result) {
                 if (result.code === 0) {
-                    splash('取消喜欢', like, "dimgray", "orangered");
+                    like.attr('title', '取消喜欢');
+                    toast('已喜欢', 1000);
                     updateBlogCountStatistics();
                 } else {
                     toast('出错啦：' + result.msg, 2000);
@@ -46,7 +39,8 @@ function likeBlog(th) {
             type: 'delete',
             success: function (result) {
                 if (result.code === 0) {
-                    splash('喜欢', like, "dimgray", "orangered");
+                    like.attr('title', '喜欢');
+                    toast('已取消喜欢', 1000);
                     updateBlogCountStatistics();
                 } else {
                     toast('出错啦：' + result.msg, 2000);
@@ -61,13 +55,14 @@ function collectBlog(th) {
     if (!checkLogin()) return;
 
     var collect = $(th);
-    if (collect.html() === '收藏') {
+    if (collect.attr('title') === '收藏') {
         $.post(
             '/blogger/' + loginBloggerId + '/' + blogId + '/operate=collect',
             null,
             function (result) {
                 if (result.code === 0) {
-                    splash('取消收藏', collect, "dimgray", "orangered");
+                    collect.attr('title', '取消收藏');
+                    toast('已收藏', 1000);
                     updateBlogCountStatistics();
                 } else {
                     toast('出错啦：' + result.msg, 2000);
@@ -80,7 +75,8 @@ function collectBlog(th) {
             type: 'delete',
             success: function (result) {
                 if (result.code === 0) {
-                    splash('收藏', collect, "dimgray", "orangered");
+                    collect.attr('title', '收藏');
+                    toast('已取消收藏', 1000);
                     updateBlogCountStatistics();
                 } else {
                     toast('出错啦：' + result.msg, 2000);
@@ -147,16 +143,26 @@ function loadComment() {
 
                     var bgname = comment.spokesman.username;
                     html += '<div class="comment">' +
-                        '         <small style="color: gray">' + dateFormat_(comment.releaseDate) + del +
-                        '         </small>' +
-                        '         <hr class="default-line">' +
-                        '         <dl class="dl-horizontal">' +
-                        '             <dt style="cursor: pointer" data-toggle="tooltip" title="' + comment.spokesman.profile.aboutMe +
-                        '" data-placement="top"' +
-                        ' onclick="window.open(\'/' + bgname + '/archives\',\'_blank\')">' + bgname + '</dt>' +
-                        '             <dd style="word-wrap: break-word">' + comment.content + '</dd>' +
-                        '         </dl>' +
-                        '     </div>';
+
+                        '<b style="cursor: pointer" data-toggle="tooltip" title="' + comment.spokesman.profile.aboutMe +
+                        '"data-placement="top"' +
+                        'onclick="window.open(\'/' + bgname + '/archives\',\'_blank\')">' + bgname +
+                        '</b>' +
+                        '&nbsp;&nbsp;<small style="color: gray">' + dateFormat_(comment.releaseDate) + del +
+                        '</small>' +
+
+                        '<hr class="default-line">' +
+                        '<dl class="dl-horizontal">' +
+
+                        '<dt><br>' +
+                        '<img style="cursor: pointer" class="img-circle img64px" src="' + comment.spokesman.avatar.path +
+                        '" onclick="window.open(\'/' + bgname + '/archives\',\'_blank\')">' +
+                        '&nbsp;&nbsp;&nbsp;&nbsp;</dt>' +
+
+                        '<dd style="word-wrap: break-word"><br>' +
+                        comment.content + '</dd>' +
+                        '</dl>' +
+                        '</div>';
                 }
 
             } else if (result.code === 14) {

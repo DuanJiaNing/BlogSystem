@@ -416,42 +416,53 @@ function setBlogs(array, defaulz) {
                 var lb = label[l];
                 labels += '<span title="标签" class="blog-link" onclick="filterBlogByLabel(' + lb.id + ')">#' + lb.title
                     + '</span>&nbsp;&nbsp;';
+                html += '<li ' +
+                    'onmouseenter="if(isPageOwnerBloggerLogin()) $(this).find(\'.col-md-3 > p\').fadeToggle(\'fast\',\'linear\')" ' +
+                    'onmouseleave="if(isPageOwnerBloggerLogin()) $(this).find(\'.col-md-3 > p\').fadeToggle(\'fast\',\'linear\')" ' +
+                    'class="list-group-item blog-list-item shadow-border">' +
+                    '<div class="row">' +
+                    '<div class="col-md-9">' +
+                    '<p>' +
+                    '<h3 class="list-group-item-heading"><span onclick="window.open(\'/' + pageOwnerBloggerName + '/blog/' +
+                    item.title + '\',\'_blank\')" class="blog-list-item-title" title="' + item.title + '">' +
+                    item.title + '</span></h3>' +
+                    '</p>' +
+                    '</div>' +
+                    '<div class="col-md-3">' +
+                    '<p style="display: none;" class="text-right">' +
+                    '<span class="button-edit" onclick="window.open(\'/edit_blog?bid=' + pageOwnerBloggerId + '&blogId=' +
+                    item.id + '\',\'_blank\')">编辑</span>&nbsp;&nbsp;<span class="button-edit-check">数据</span>&nbsp;&nbsp;' +
+                    '<span class="button-edit-delete" onclick="showDeleteConfirmDialog(' + item.id + ')">删除</span>' +
+                    '</p>' +
+                    '</div>' +
+                    '</div>' +
+
+                    '<h4>' +
+                    '<small class="list-group-item-count-text"><b>' + dateFormat(item.releaseDate) + '</b>&nbsp;&nbsp;' +
+
+                    item.collectCount + '收藏&nbsp;&nbsp;' +
+                    item.viewCount + '浏览&nbsp;&nbsp;' +
+                    '</small>' +
+                    '</h4>' +
+                    '<p class="blog-list-item-summary">' + item.summary + '</p><br>' +
+
+                    '<div class="row">' +
+
+                    '<div class="col-md-10"> ' +
+                    '<span style="color: gray">' + cates + '&nbsp;&nbsp;</span>' +
+                    (labels === '' ? '' : '<span style="color: gray">' + labels + '</span>') +
+                    '</div>' +
+
+                    '<div class="col-md-2" style="color: darkgray;font-size: smaller">&nbsp;&nbsp;&nbsp;&nbsp; ' +
+                    '<img class="icon13px" src="/images/icon/icons8-heart-outline-64.png">&nbsp;' + item.likeCount + '&nbsp;&nbsp;&nbsp;' +
+                    '<img class="icon13px-clickable" ' +
+                    'onclick="if (' + item.commentCount + ' > 0) window.open(\'/' + pageOwnerBloggerName + '/blog/' + item.title + '/#comment\',\'_blank\')" ' +
+                    'src="/images/icon/icons8-topic-64.png">&nbsp;' + item.commentCount + '&nbsp;&nbsp;' +
+                    '</div>' +
+                    '</div>' +
+                    '</li><br>'
+
             }
-
-            html += '<li ' +
-                'onmouseenter="if(isPageOwnerBloggerLogin()) $(this).find(\'.col-md-3 > p\').fadeToggle(\'fast\',\'linear\')" ' +
-                'onmouseleave="if(isPageOwnerBloggerLogin()) $(this).find(\'.col-md-3 > p\').fadeToggle(\'fast\',\'linear\')" ' +
-                'class="list-group-item blog-list-item shadow-border">' +
-                '<div class="row">' +
-                '<div class="col-md-9">' +
-                '<p>' +
-                '<h3 class="list-group-item-heading"><span onclick="window.open(\'/' + pageOwnerBloggerName + '/blog/' +
-                item.title + '\',\'_blank\')" class="blog-list-item-title" title="' + item.title + '">' +
-                item.title + '</span></h3>' +
-                '</p>' +
-                '</div>' +
-                '<div class="col-md-3">' +
-                '<p style="display: none;" class="text-right">' +
-                '<span class="button-edit" onclick="window.open(\'/edit_blog?bid=' + pageOwnerBloggerId + '&blogId=' +
-                item.id + '\',\'_blank\')">编辑</span>&nbsp;&nbsp;<span class="button-edit-check">数据</span>&nbsp;&nbsp;' +
-                '<span class="button-edit-delete" onclick="showDeleteConfirmDialog(' + item.id + ')">删除</span>' +
-                '</p>' +
-                '</div>' +
-                '</div>' +
-
-                '<h4>' +
-                '<small class="list-group-item-count-text"><b>' + dateFormat(item.releaseDate) + '</b>&nbsp;&nbsp;' +
-                item.collectCount + '收藏&nbsp;&nbsp;' + item.viewCount + '浏览&nbsp;&nbsp;' + item.likeCount + '喜欢&nbsp;&nbsp;' + item.commentCount + '评论' +
-                '</small>' +
-                '</h4>' +
-                '<p class="blog-list-item-summary">' + item.summary + '</p><br>' +
-                '<table>' +
-                '  <tr>' +
-                '    <td style="color: gray">' + cates + '&nbsp;&nbsp;</td>' +
-                (labels === '' ? '' : '<td style="color: gray">' + labels + '</td>') +
-                '  </tr>' +
-                '</table>' +
-                '</li><br>'
         }
 
         html += '</ul>';
@@ -575,13 +586,6 @@ function setPageIndicator(initIndex) {
 function editAvatar() {
     $('#editAvatarDialog').modal('show')
 }
-
-// 回到顶部
-$(function () {
-    $("#scroll-to-top").click(function () {
-        scrollToTop();
-    });
-});
 
 // -------------------------------------------------------------------------------------------------------创建标签时回调
 var funWhenCreateLabelSuccess = function (id) {

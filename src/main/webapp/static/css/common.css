@@ -287,8 +287,19 @@ h4.default-h4 {
 }
 
 .shadow-border {
-    border: solid 1px #efefef;
-    box-shadow: -2px 2px 8px #e2e2e2;
+    border: solid 1px #DBE2E8;
+    /*box-shadow: -2px 2px 8px #e2e2e2;*/
+    /*box-shadow: 0 0 20px #e2e2e2;*/
+}
+
+.border {
+    border: solid 1px #DBE2E8;
+    /*box-shadow: -2px 2px 8px #e2e2e2;*/
+    /*box-shadow: 0 0 20px #e2e2e2;*/
+}
+
+.shadow-border:hover {
+    box-shadow: 0 0 30px #e2e2e2;
 }
 
 .count {
@@ -343,10 +354,6 @@ h4.default-h4 {
 
     z-index: 9999;
 
-    width: 48px;
-
-    padding: 8px;
-
     text-align: center;
 
     background: white;
@@ -354,4 +361,41 @@ h4.default-h4 {
 
     text-decoration: none;
     opacity: 0.7;
+}
+
+.icon13px-clickable {
+    opacity: 0.5;
+    width: 13px;
+    height: 13px;
+    cursor: pointer;
+}
+
+.icon13px {
+    opacity: 0.5;
+    width: 13px;
+    height: 13px;
+}
+
+.icon13px-clickable:hover {
+    opacity: 1;
+}
+
+.icon24px {
+    opacity: 0.5;
+    width: 24px;
+    height: 24px;
+}
+
+.img48px {
+    width: 48px;
+    height: 48px;
+}
+
+.img64px {
+    width: 64px;
+    height: 64px;
+}
+
+.clickable-gray:hover {
+    background-color: #ebebeb;
 }
