@@ -22,7 +22,7 @@
 
 <nav class=" navbar navbar-default navbar-fixed-top "
      style="background-color: white;">
-    <div class="container">
+    <div class="container" style="height: 100px;">
 
         <table style="height: 100%;width: 100%">
             <tr style="height: 100%">
@@ -90,16 +90,6 @@
                 </td>
             </tr>
         </table>
-
-        <%--<li>--%>
-        <%--<div class="input-group search navbar-btn">--%>
-        <%--<input type="text" class="form-control" placeholder="搜索博文" id="searchBlog"--%>
-        <%--aria-describedby="basic-addon2">--%>
-        <%--<span class="input-group-addon search-btn" id="basic-addon2"--%>
-        <%--onclick="filterBlogByKeyWord()">搜索</span>--%>
-        <%--</div>--%>
-        <%--</li>--%>
-
 
     </div><!-- /.container-fluid -->
 </nav>

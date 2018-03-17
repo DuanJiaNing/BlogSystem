@@ -135,7 +135,7 @@ h4.default-h4 {
 .button-success {
     outline: none;
     background-color: #00CBBA;
-    border-radius: 8px;
+    border-radius: 5px;
     color: white;
     padding: 8px 32px;
     border: 0;
@@ -162,7 +162,8 @@ h4.default-h4 {
     padding: 8px 40px;
     border: 0;
     font-size: medium;
-    box-shadow: -2px 2px 8px dimgray;
+    border-radius: 5px;
+    box-shadow: -3px 3px 10px darkgray;
 }
 
 /*---------------------------------------------button-edit*/

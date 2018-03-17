@@ -128,29 +128,47 @@
     </div>
 </div>
 
-<div class="container">
-    <!-- Content here -->
-    <div class="row">
-        <div class="col-md-9">
-            <p>
-            <h3>&nbsp;&nbsp;${blogName}</h3>
-            </p>
-        </div>
-        <div class="col-md-3">
-            <br>
-            <h4>
-                <small><span id="blogCount">${ownerBgStat["blogCount"]}&nbsp;篇博文</span><span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                    ${ownerBgStat["wordCount"]}&nbsp;字<span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                    收获&nbsp;${ownerBgStat["likeCount"]}&nbsp;个喜欢
-                </small>
-            </h4>
-        </div>
-    </div>
+<div class="sec-nav">
+    <div class="container">
+        <table style="height: 100%;width: 100%">
+            <tr style="height: 100%">
+                <td valign="middle">
+                    <h4>${blogName}
+                        <small>
+                            &nbsp;
+                            <span id="blogCount">${ownerBgStat["blogCount"]}&nbsp;篇博文</span>
+                            <span class="vertical-line">&nbsp;|&nbsp;</span>
+                            ${ownerBgStat["wordCount"]}&nbsp;字<span
+                                class="vertical-line">&nbsp;|&nbsp;</span>
+                            收获&nbsp;${ownerBgStat["likeCount"]}&nbsp;个喜欢
+                        </small>
+                    </h4>
+                </td>
+                <td align="right">
+                    <div class="input-group search navbar-btn text-right search-container">
+                        <input type="text" class="form-control input-search" placeholder="搜索博文" id="searchBlog"
+                               aria-describedby="basic-addon2">
+                        <span class="input-group-addon input-search-btn" id="basic-addon2"
+                              onclick="filterBlogByKeyWord()">搜索</span>
 
-    <p class="text-left blog-filter">
-        <span class="blog-filter-text" data-toggle="modal"
-              data-target="#complexFilterDialog">高级检索</span>
-    </p>
+                    </div>
+                </td>
+                <td>
+                    &nbsp;
+                    <button data-toggle="modal" class="complex-filter-btn"
+                            data-target="#complexFilterDialog">高级
+                    </button>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<div class="container">
+
+    <br>
 
     <div class="row">
         <%--博文列表部分--%>

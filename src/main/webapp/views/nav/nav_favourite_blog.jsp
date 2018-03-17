@@ -21,7 +21,7 @@
 
 <nav class="navbar navbar-default navbar-static-top"
      style="background-color: white;padding-top: 8px;padding-bottom: 8px">
-    <div class="container">
+    <div class="container" style="height: 50px">
 
         <table style="height: 100%;width: 100%">
             <tr style="height: 100%">
@@ -48,21 +48,46 @@
                         <c:otherwise>
 
                             &nbsp;&nbsp;
-                            <a class="operation" style="color: #00CBBA;"
+                            <a class="operation"
                                href="/${sessionScope['bloggerName']}/archives">主页</a>
                             &nbsp;&nbsp;
 
-                            &nbsp;&nbsp;
-                            <a class="operation" href="/${sessionScope["bloggerName"]}/blog/favourite/collect">收藏
-                                    <%--<span class="count">(${loginBgStat.collectCount})</span>--%>
-                            </a>
-                            &nbsp;&nbsp;
+                            <c:choose>
+                                <c:when test="${type eq 'like'}">
 
-                            &nbsp;&nbsp;
-                            <a class="operation" href="/${sessionScope["bloggerName"]}/blog/favourite/like">喜欢
-                                    <%--<span class="count">(${loginBgStat.likedCount})</span>--%>
-                            </a>
-                            &nbsp;&nbsp;
+                                    &nbsp;&nbsp;
+                                    <a class="operation" href="/${sessionScope["bloggerName"]}/blog/favourite/collect">收藏
+                                            <%--<span class="count">(${loginBgStat.collectCount})</span>--%>
+                                    </a>
+                                    &nbsp;&nbsp;
+
+                                    &nbsp;&nbsp;
+                                    <a class="operation" style="color: #00CBBA;"
+                                       href="/${sessionScope["bloggerName"]}/blog/favourite/like">喜欢
+                                            <%--<span class="count">(${loginBgStat.likedCount})</span>--%>
+                                    </a>
+                                    &nbsp;&nbsp;
+
+                                </c:when>
+                                <c:otherwise>
+
+                                    &nbsp;&nbsp;
+                                    <a class="operation" style="color: #00CBBA;"
+                                       href="/${sessionScope["bloggerName"]}/blog/favourite/collect">收藏
+                                            <%--<span class="count">(${loginBgStat.collectCount})</span>--%>
+                                    </a>
+                                    &nbsp;&nbsp;
+
+                                    &nbsp;&nbsp;
+                                    <a class="operation"
+                                       href="/${sessionScope["bloggerName"]}/blog/favourite/like">喜欢
+                                            <%--<span class="count">(${loginBgStat.likedCount})</span>--%>
+                                    </a>
+                                    &nbsp;&nbsp;
+
+                                </c:otherwise>
+                            </c:choose>
+
 
                             &nbsp;&nbsp;
                             <a class="line-sperate">|</a>

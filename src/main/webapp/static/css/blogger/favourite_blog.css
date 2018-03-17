@@ -2,7 +2,9 @@ body {
     font-family: 微软雅黑, serif;
 
     background-size: cover;
-    background: url(/images/background.jpg) no-repeat fixed center center;
+    background-color: #F9FAFB;
+
+    /*background: url(/images/background.jpg) no-repeat fixed center center;*/
 }
 
 a {

@@ -1,21 +1,3 @@
-.my-nav {
-    background-color: white;
-    border-bottom: solid 1px #e6e6e6;
-}
-
-.search {
-    width: 230px;
-}
-
-.search-btn {
-    cursor: pointer;
-}
-
-.search-btn:hover {
-    cursor: pointer;
-    background-color: lightgray;
-    color: black;
-}
 
 .quit {
     color: rgba(255, 0, 0, 0.34);
@@ -37,10 +19,6 @@
 
 .operation:hover {
     color: #00CBBA;
-}
-
-nav > div {
-    height: 100px;
 }
 
 .line-sperate {

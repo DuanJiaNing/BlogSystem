@@ -1,9 +1,10 @@
 body {
-    padding-top: 70px;
+    padding-top: 100px;
     font-family: 微软雅黑, serif;
 
     background-size: cover;
-    background: url(/images/background.jpg) no-repeat fixed center center;
+    background-color: #F9FAFB;
+    /*background: url(/images/background.jpg) no-repeat fixed center center;*/
 }
 
 a {
@@ -48,8 +49,7 @@ a {
 
 .avatar-img {
     height: 140px;
-    border: solid 5px #e0e0e0;
-    outline: solid 5px #f0f0f0;
+    border: solid 5px #f0f0f0;
     /*width: 180px;*/
 }
 
@@ -104,18 +104,18 @@ a {
 }
 
 .blog-filter-text {
-    margin-right: 5%;
-    padding-right: 10px;
-    padding-left: 10px;
-    color: rgba(255, 69, 0, 0.56);
-    background-color: #dedede;
-    border-radius: 0 0 10px 0;
+    /*margin-right: 5%;*/
+    /*padding-right: 10px;*/
+    /*padding-left: 10px;*/
+    color: dimgray;
+    /*background-color: #dedede;*/
+    /*border-radius: 0 0 10px 0;*/
     cursor: pointer;
 }
 
 .blog-filter-text:hover {
-    color: white;
-    background-color: #686868;
+    color: black;
+    /*background-color: #686868;*/
 }
 
 .blog-filter {
@@ -224,4 +224,49 @@ span {
     padding-left: 3px;
     font-family: 方正姚体, serif;
     font-weight: bold;
+}
+
+.sec-nav {
+    height: 100px;
+    background-color: white;
+    border-bottom: solid 1px #e6e6e6;
+}
+
+.search-container {
+    box-shadow: -2px 5px 10px whitesmoke;
+    border: solid 1px #DCE2E8;
+}
+
+.input-search {
+    border: 0;
+    background-color: transparent;
+    width: 300px;
+    height: 40px
+}
+
+.input-search-btn:hover {
+    color: black;
+}
+
+.input-search-btn {
+    border: 0;
+    color: dimgray;
+    background-color: transparent;
+    height: 40px;
+    cursor: pointer;
+}
+
+.complex-filter-btn:hover {
+    background-color: #f3f3f3;
+}
+
+.complex-filter-btn {
+    background-color: transparent;
+    height: 40px;
+    vertical-align: middle;
+    border: solid 1px #DCE2E8;
+    outline: 0;
+    color: dimgray;
+    padding-left: 8px;
+    padding-right: 8px
 }
