@@ -190,13 +190,6 @@ function removeFavourite(blogId) {
 
 }
 
-// 回到顶部
-$(function () {
-    $("#scroll-to-top").click(function () {
-        scrollToTop();
-    });
-});
-
 $(document).ready(function () {
     initBlog();
 });
