@@ -4,6 +4,10 @@
          id="WebApp_ID" version="3.0">
     <display-name>Archetype Created Web Application</display-name>
 
+    <welcome-file-list>
+        <welcome-file>/views/blogger/register.jsp</welcome-file>
+    </welcome-file-list>
+
     <error-page>
         <error-code>404</error-code>
         <location>/views/404.jsp</location>

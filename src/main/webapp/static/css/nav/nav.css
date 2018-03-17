@@ -1,4 +1,4 @@
-nav {
+.my-nav {
     background-color: white;
     border-bottom: solid 1px #e6e6e6;
 }
@@ -17,36 +17,32 @@ nav {
     color: black;
 }
 
-nav {
-    background-color: white;
-}
-
-.blogger-option {
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
 .quit {
+    color: rgba(255, 0, 0, 0.34);
+    background-color: transparent;
+    border: 0;
+    font-size: smaller;
+}
+
+.quit:hover {
     color: red;
 }
 
-.button-top-main {
-    margin-top: 10px;
-    background-color: #00aa00;
-    outline: 0;
-    border: 0;
-    border-radius: 20px;
-    color: white;
-    padding: 6px 13px;
-    box-shadow: -3px 3px 5px #cecece;
+.operation {
+    color: dimgray;
+    cursor: pointer;
+    letter-spacing: 3px;
+    font-size: medium;
 }
 
-.button-top-main:hover {
-    background-color: limegreen;
-    color: white;
-    box-shadow: -3px 3px 10px #cecece;
+.operation:hover {
+    color: #00CBBA;
 }
 
-.button-top-main:active {
-    opacity: 0.5;
+nav > div {
+    height: 100px;
+}
+
+.line-sperate {
+    color: darkgray;
 }

@@ -121,25 +121,26 @@ h4.default-h4 {
 }
 
 .button-success:hover {
-    background-color: limegreen;
+    background-color: #00ddca;
     color: white;
-    box-shadow: -3px 3px 10px dimgray;
+    box-shadow: -3px 3px 10px darkgray;
 }
 
 .button-success:active {
-    background-color: darkgreen;
+    background-color: #00a698;
     color: white;
-    box-shadow: -3px 3px 10px dimgray;
+    box-shadow: -3px 3px 10px darkgray;
 }
 
 .button-success {
     outline: none;
-    background-color: #00aa00;
+    background-color: #00CBBA;
+    border-radius: 8px;
     color: white;
-    padding: 8px 40px;
+    padding: 8px 32px;
     border: 0;
     font-size: medium;
-    box-shadow: -2px 2px 8px dimgray;
+    box-shadow: -2px 10px 20px lightgray;
 }
 
 .button-dangerous:hover {

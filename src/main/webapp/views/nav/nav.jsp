@@ -20,73 +20,87 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class=" navbar navbar-default navbar-fixed-top "
+     style="background-color: white;">
     <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <b><a class="navbar-brand BLOG">BLOG</a></b>
-        </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <table style="height: 100%;width: 100%">
+            <tr style="height: 100%">
+                <td valign="middle">
+                    <b class="navbar-brand BLOG ">BLOG</b>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <div class="input-group search navbar-btn">
-                        <input type="text" class="form-control" placeholder="搜索博文" id="searchBlog"
-                               aria-describedby="basic-addon2">
-                        <span class="input-group-addon search-btn" id="basic-addon2"
-                              onclick="filterBlogByKeyWord()">搜索</span>
-                    </div>
-                </li>
-                <c:choose>
-                    <c:when test="${empty bloggerLoginSignal}">
-                        <li><a data-toggle="modal"
-                               data-target="#loginDialog">登录</a></li>
-                        <li><a href="/register">注册</a></li>
-                    </c:when>
-                    <c:otherwise>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true"
-                               aria-expanded="false">${sessionScope["bloggerName"]}<span
-                                    class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li class="blogger-option"><a href="/${sessionScope['bloggerName']}/archives">我的主页</a>
-                                </li>
-                                <li class="blogger-option">
-                                    <a href="/${sessionScope["bloggerName"]}/blog/favourite/collect">收藏的文章&nbsp;
-                                        <span class="count">(${loginBgStat.collectCount})</span></a>
-                                </li>
-                                <li class="blogger-option">
-                                    <a href="/${sessionScope["bloggerName"]}/blog/favourite/like">喜欢的文章&nbsp;
-                                        <span class="count">(${loginBgStat.likedCount})</span></a>
-                                </li>
-                                <li class="blogger-option"><a href="#">设置</a></li>
-                                <li class="blogger-option"><a href="#">反馈</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li class="blogger-option"><a onclick="logout(${sessionScope['bloggerId']})"><span
-                                        class="quit">退出</span></a></li>
-                            </ul>
-                        </li>
+                </td>
+                <td class="text-right" style="vertical-align: middle">
 
-                        <li>
-                            <button type="button" class="button-top-main"
+                    <c:choose>
+                        <c:when test="${empty bloggerLoginSignal}">
+
+                            &nbsp;&nbsp;
+                            <a class="operation " href="/register">注册</a>
+                            &nbsp;&nbsp;
+
+                            &nbsp;&nbsp;
+                            <button class="button-success" data-toggle="modal"
+                                    data-target="#loginDialog">登录
+                            </button>
+                            &nbsp;&nbsp;
+
+                        </c:when>
+                        <c:otherwise>
+
+                            &nbsp;&nbsp;
+                            <a class="operation" style="color: #00CBBA;"
+                               href="/${sessionScope['bloggerName']}/archives">主页</a>
+                            &nbsp;&nbsp;
+
+                            &nbsp;&nbsp;
+                            <a class="operation" href="/${sessionScope["bloggerName"]}/blog/favourite/collect">收藏
+                                    <%--<span class="count">(${loginBgStat.collectCount})</span>--%>
+                            </a>
+                            &nbsp;&nbsp;
+
+                            &nbsp;&nbsp;
+                            <a class="operation" href="/${sessionScope["bloggerName"]}/blog/favourite/like">喜欢
+                                    <%--<span class="count">(${loginBgStat.likedCount})</span>--%>
+                            </a>
+                            &nbsp;&nbsp;
+
+                            &nbsp;&nbsp;
+                            <a class="line-sperate">|</a>
+                            &nbsp;&nbsp;
+
+                            &nbsp;&nbsp;
+                            <a class="operation" href="#">设置</a>
+                            &nbsp;&nbsp;
+
+                            &nbsp;&nbsp;
+                            <button class="button-success"
                                     onclick="window.open('/edit_blog?bid=${sessionScope['bloggerId']}') ">写博文
                             </button>
-                        </li>
-                    </c:otherwise>
-                </c:choose>
+                            &nbsp;&nbsp;
 
-            </ul>
-        </div><!-- /.navbar-collapse -->
+                            &nbsp;&nbsp;
+                            <button onclick="logout(${sessionScope['bloggerId']})" class="quit">退出
+                            </button>
+                            &nbsp;&nbsp;
+
+                        </c:otherwise>
+                    </c:choose>
+
+                </td>
+            </tr>
+        </table>
+
+        <%--<li>--%>
+        <%--<div class="input-group search navbar-btn">--%>
+        <%--<input type="text" class="form-control" placeholder="搜索博文" id="searchBlog"--%>
+        <%--aria-describedby="basic-addon2">--%>
+        <%--<span class="input-group-addon search-btn" id="basic-addon2"--%>
+        <%--onclick="filterBlogByKeyWord()">搜索</span>--%>
+        <%--</div>--%>
+        <%--</li>--%>
+
+
     </div><!-- /.container-fluid -->
 </nav>
 
