@@ -1,6 +1,6 @@
 <p align="center">
 	<img width="130px" src="https://raw.githubusercontent.com/DuanJiaNing/Pictures/master/BlogSystem/logo.png"/>
-	<br/><h1 align="center">Musicoco</h1><br/><br/>
+	<br/><h1 align="center">BlogSystem</h1><br/><br/><br/>
 </p>
 
 ## 博客系统
