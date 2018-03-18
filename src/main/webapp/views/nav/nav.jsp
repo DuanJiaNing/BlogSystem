@@ -27,8 +27,8 @@
         <table style="height: 100%;width: 100%">
             <tr style="height: 100%">
                 <td valign="middle">
-                    <b class="navbar-brand BLOG ">BLOG</b>
-
+                    <%--<b class="navbar-brand BLOG ">BLOG</b>--%>
+                    <img class="img108px" src="/images/logo/logo.png">
                 </td>
                 <td class="text-right" style="vertical-align: middle">
 
