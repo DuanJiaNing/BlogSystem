@@ -1,3 +1,8 @@
+<p align="center">
+	<img width="130px" src="https://raw.githubusercontent.com/DuanJiaNing/Pictures/master/BlogSystem/logo.png"/>
+	<br/><h1 align="center">Musicoco</h1><br/><br/>
+</p>
+
 ## 博客系统
 
 BLOG 是学习 JavaWeb 开发4个月以来的总结实践项目，使用 SSM（Spring、SpringMVC、MyBatis）框架，MVC 三层结构、Lucene全文检索引擎、Junit 4单元测试、logback日志框架、Druid数据库连接池、Shiro安全框架的一个博文系统；
