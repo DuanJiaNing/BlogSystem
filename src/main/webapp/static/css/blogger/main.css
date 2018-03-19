@@ -1,6 +1,7 @@
 body {
     padding-top: 100px;
     font-family: 微软雅黑, serif;
+    /*font-weight: bold;*/
 
     background-size: cover;
     background-color: #F9FAFB;
@@ -17,7 +18,7 @@ a {
 }
 
 .blog-list-item-title {
-    color: black;
+    color: #35404C;
     padding-left: 3px;
 }
 
@@ -31,10 +32,10 @@ a {
 }
 
 .blog-list-item-summary {
-    font-size: small;
+    font-size: medium;
     padding-top: 10px;
-    line-height: 23px;
-    color: #626061;
+    line-height: 32px;
+    color: #575F66;
 
     display: -webkit-box;
     -webkit-box-orient: vertical;

@@ -130,7 +130,7 @@
 </div>
 
 <div class="sec-nav">
-    <div class="container">
+    <div class="container" style=";width: 82%">
         <table style="height: 100%;width: 100%">
             <tr style="height: 100%">
                 <td valign="middle">
@@ -169,8 +169,7 @@
     </div>
 </div>
 
-
-<div class="container">
+<div class="container" style="width: 82%">
 
     <br>
 

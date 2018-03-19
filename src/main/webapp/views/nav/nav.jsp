@@ -22,7 +22,7 @@
 
 <nav class=" navbar navbar-default navbar-fixed-top "
      style="background-color: white;">
-    <div class="container" style="height: 100px;">
+    <div class="container" style="height: 100px;width: 82%">
 
         <table style="height: 100%;width: 100%">
             <tr style="height: 100%">
@@ -49,8 +49,16 @@
                         <c:otherwise>
 
                             &nbsp;&nbsp;
-                            <a class="operation" style="color: #00CBBA;"
-                               href="/${sessionScope['bloggerName']}/archives">主页</a>
+                            <c:choose>
+                                <c:when test="${pageOwnerBloggerId eq sessionScope.bloggerId}">
+                                    <a class="operation" style="color: #00CBBA;"
+                                       href="/${sessionScope['bloggerName']}/archives">主页</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a class="operation"
+                                       href="/${sessionScope['bloggerName']}/archives">主页</a>
+                                </c:otherwise>
+                            </c:choose>
                             &nbsp;&nbsp;
 
                             &nbsp;&nbsp;

@@ -41,9 +41,9 @@
         <img class="icon24px" src="/images/icon/icons8-collapse-arrow-64.png">
     </div>
 
-    <div onclick="shareBlog()" title="分享" class="clickable-gray oper-item sper-bottom">
-        <img class="icon24px" src="/images/icon/icons8-share-3-64.png">
-    </div>
+    <%--<div onclick="shareBlog()" title="分享" class="clickable-gray oper-item sper-bottom">--%>
+        <%--<img class="icon24px" src="/images/icon/icons8-share-3-64.png">--%>
+    <%--</div>--%>
 
     <div onclick="complainBlog()" title="投诉" class="clickable-gray oper-item sper-bottom">
         <img class="icon24px" src="/images/icon/icons8-info-64.png">
@@ -54,12 +54,12 @@
         <c:if test="${empty sessionScope['bloggerLoginSignal'] or (blogOwnerBloggerId ne bloggerId)}">
             <c:choose>
                 <c:when test="${not empty collectState}">
-                    <div onclick="collectBlog(this)" title="取消收藏" class="clickable-gray oper-item sper-bottom">
+                    <div onclick="collectBlog(this)" title="你已收藏，点击可取消收藏" class="clickable-gray oper-item sper-bottom">
                         <img class="icon24px" src="/images/icon/icons8-collect-50.png">
                     </div>
                 </c:when>
                 <c:otherwise>
-                    <div onclick="collectBlog(this)" title="收藏" class="clickable-gray oper-item sper-bottom">
+                    <div onclick="collectBlog(this)" title="点击添加至 [收藏]" class="clickable-gray oper-item sper-bottom">
                         <img class="icon24px" src="/images/icon/icons8-collect-50.png">
                     </div>
                 </c:otherwise>
@@ -70,12 +70,12 @@
     <c:choose>
         <%--likeState不为null代表有博主登录了--%>
         <c:when test="${not empty likeState}">
-            <div onclick="likeBlog(this)" title="取消喜欢" class="clickable-gray oper-item sper-top">
+            <div onclick="likeBlog(this)" title="你已喜欢，点击取消喜欢" class="clickable-gray oper-item sper-top">
                 <img class="icon24px" src="/images/icon/icons8-heart-outline-64.png">
             </div>
         </c:when>
         <c:otherwise>
-            <div onclick="likeBlog(this)" title="喜欢" class="clickable-gray oper-item sper-top">
+            <div onclick="likeBlog(this)" title="点击添加至 [喜欢]" class="clickable-gray oper-item sper-top">
                 <img class="icon24px" src="/images/icon/icons8-heart-outline-64.png">
             </div>
         </c:otherwise>
@@ -158,6 +158,24 @@
 
         </div>
     </c:if>
+
+    <br>
+    <!-- JiaThis Button BEGIN -->
+    &nbsp;&nbsp;<div class="jiathis_style_24x24">
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+    <script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
+    <!-- JiaThis Button END -->
+    <!-- UJian Button BEGIN -->
+    <div class="ujian-hook"></div>
+    <script type="text/javascript" src="http://v1.ujian.cc/code/ujian.js"></script>
+    <!-- UJian Button END -->
 
 </div>
 

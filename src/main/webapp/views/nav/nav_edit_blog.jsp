@@ -20,7 +20,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-top"
      style="background-color: white;padding-top: 8px;padding-bottom: 8px">
-    <div class="container" style="height: 50px">
+    <div class="container" style="height: 50px;width: 82%">
 
         <table style="height: 100%;width: 100%">
             <tr style="height: 100%">

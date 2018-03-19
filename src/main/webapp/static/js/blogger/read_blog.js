@@ -25,7 +25,7 @@ function likeBlog(th) {
             null,
             function (result) {
                 if (result.code === 0) {
-                    like.attr('title', '取消喜欢');
+                    like.attr('title', '你已喜欢，点击取消喜欢');
                     toast('已喜欢', 1000);
                     updateBlogCountStatistics();
                 } else {
@@ -39,7 +39,7 @@ function likeBlog(th) {
             type: 'delete',
             success: function (result) {
                 if (result.code === 0) {
-                    like.attr('title', '喜欢');
+                    like.attr('title', '点击添加至 [喜欢]');
                     toast('已取消喜欢', 1000);
                     updateBlogCountStatistics();
                 } else {
@@ -61,7 +61,7 @@ function collectBlog(th) {
             null,
             function (result) {
                 if (result.code === 0) {
-                    collect.attr('title', '取消收藏');
+                    collect.attr('title', '你已收藏，点击可取消收藏');
                     toast('已收藏', 1000);
                     updateBlogCountStatistics();
                 } else {
@@ -75,7 +75,7 @@ function collectBlog(th) {
             type: 'delete',
             success: function (result) {
                 if (result.code === 0) {
-                    collect.attr('title', '收藏');
+                    collect.attr('title', '点击收藏博文');
                     toast('已取消收藏', 1000);
                     updateBlogCountStatistics();
                 } else {

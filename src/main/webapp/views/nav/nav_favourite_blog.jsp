@@ -21,7 +21,7 @@
 
 <nav class="navbar navbar-default navbar-static-top"
      style="background-color: white;padding-top: 8px;padding-bottom: 8px">
-    <div class="container" style="height: 50px">
+    <div class="container" style="height: 50px;width: 82%">
 
         <table style="height: 100%;width: 100%">
             <tr style="height: 100%">
@@ -62,20 +62,32 @@
                                     &nbsp;&nbsp;
 
                                     &nbsp;&nbsp;
-                                    <a class="operation" style="color: #00CBBA;"
-                                       href="/${sessionScope["bloggerName"]}/blog/favourite/like">喜欢
-                                            <%--<span class="count">(${loginBgStat.likedCount})</span>--%>
-                                    </a>
+                                    <c:choose>
+                                        <c:when test="${pageOwnerBloggerId eq sessionScope.bloggerId}">
+                                            <a class="operation" style="color: #00CBBA;"
+                                               href="/${sessionScope["bloggerName"]}/blog/favourite/like">喜欢</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a class="operation"
+                                               href="/${sessionScope["bloggerName"]}/blog/favourite/like">喜欢</a>
+                                        </c:otherwise>
+                                    </c:choose>
                                     &nbsp;&nbsp;
 
                                 </c:when>
                                 <c:otherwise>
 
                                     &nbsp;&nbsp;
-                                    <a class="operation" style="color: #00CBBA;"
-                                       href="/${sessionScope["bloggerName"]}/blog/favourite/collect">收藏
-                                            <%--<span class="count">(${loginBgStat.collectCount})</span>--%>
-                                    </a>
+                                    <c:choose>
+                                        <c:when test="${pageOwnerBloggerId eq sessionScope.bloggerId}">
+                                            <a class="operation" style="color: #00CBBA;"
+                                            href="/${sessionScope["bloggerName"]}/blog/favourite/collect">收藏</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a class="operation"
+                                               href="/${sessionScope["bloggerName"]}/blog/favourite/collect">收藏</a>
+                                        </c:otherwise>
+                                    </c:choose>
                                     &nbsp;&nbsp;
 
                                     &nbsp;&nbsp;
