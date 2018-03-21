@@ -9,7 +9,7 @@ import com.duan.blogos.exception.BaseRuntimeException;
  */
 public class DuplicationDataException extends BaseRuntimeException {
 
-    private static final int code = 18;
+    public static final int code = 18;
 
     public DuplicationDataException() {
         super(code);

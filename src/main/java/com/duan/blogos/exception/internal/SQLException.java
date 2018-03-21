@@ -8,7 +8,7 @@ package com.duan.blogos.exception.internal;
  */
 public class SQLException extends InternalRuntimeException {
 
-    private static final int code = 3;
+    public static final int code = 3;
 
     public SQLException() {
         super(code);

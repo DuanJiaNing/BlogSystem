@@ -10,7 +10,7 @@ import com.duan.blogos.exception.BaseRuntimeException;
  */
 public class OperateFailException extends BaseRuntimeException {
 
-    private static final int code = 18;
+    public static final int code = 18;
 
     public OperateFailException() {
         super(code);

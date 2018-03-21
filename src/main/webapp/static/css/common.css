@@ -380,7 +380,7 @@ h4.default-h4 {
     opacity: 1;
 }
 
-.icon24px {
+.img24px {
     opacity: 0.5;
     width: 24px;
     height: 24px;
@@ -389,6 +389,11 @@ h4.default-h4 {
 .img48px {
     width: 48px;
     height: 48px;
+}
+
+.img32px {
+    width: 32px;
+    height: 32px;
 }
 
 .img64px {

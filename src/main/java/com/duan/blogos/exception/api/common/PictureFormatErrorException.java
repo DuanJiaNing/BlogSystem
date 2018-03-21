@@ -10,7 +10,7 @@ import com.duan.blogos.exception.BaseRuntimeException;
  */
 public class PictureFormatErrorException extends BaseRuntimeException {
 
-    private static final int code = 22;
+    public static final int code = 22;
 
     public PictureFormatErrorException() {
         super(code);

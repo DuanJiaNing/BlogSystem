@@ -8,7 +8,7 @@ package com.duan.blogos.exception.internal;
  */
 public class UnknownInternalException extends InternalRuntimeException {
 
-    private static final int code = 21;
+    public static final int code = 21;
 
     public UnknownInternalException(Throwable cause) {
         super(cause, code);

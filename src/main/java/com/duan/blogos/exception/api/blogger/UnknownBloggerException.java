@@ -10,7 +10,7 @@ import com.duan.blogos.exception.BaseRuntimeException;
  */
 public class UnknownBloggerException extends BaseRuntimeException {
 
-    private static final int code = 6;
+    public static final int code = 6;
 
     public UnknownBloggerException(String message) {
         super(message,code);

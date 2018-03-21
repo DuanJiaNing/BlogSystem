@@ -10,7 +10,7 @@ import com.duan.blogos.exception.BaseRuntimeException;
  */
 public class MissingRequestParameterException extends BaseRuntimeException {
 
-    private static final int code = 16;
+    public static final int code = 16;
 
     public MissingRequestParameterException() {
         super(code);

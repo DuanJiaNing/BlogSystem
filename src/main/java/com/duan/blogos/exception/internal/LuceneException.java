@@ -8,7 +8,7 @@ package com.duan.blogos.exception.internal;
  */
 public class LuceneException extends InternalRuntimeException {
 
-    private static final int code = 1;
+    public static final int code = 1;
 
     public LuceneException(Throwable e) {
         super(e, code);

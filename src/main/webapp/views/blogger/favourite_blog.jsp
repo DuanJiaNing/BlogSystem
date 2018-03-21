@@ -45,7 +45,7 @@
 <body>
 
 <div class="operation-container border clickable-gray" onclick="scrollToTop();" style="padding: 11px">
-    <img class="icon24px" src="/images/icon/icons8-collapse-arrow-64.png" title="回到顶部">
+    <img class="img24px" src="/images/icon/icons8-collapse-arrow-64.png" title="回到顶部">
 </div>
 
 <div class="container" style="min-height: 100%">

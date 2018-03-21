@@ -12,7 +12,7 @@ import com.duan.blogos.exception.BaseRuntimeException;
  */
 public class BloggerNotLoggedInException extends BaseRuntimeException {
 
-    private static final int code = 1;
+    public static final int code = 1;
 
     public BloggerNotLoggedInException() {
         super(code);

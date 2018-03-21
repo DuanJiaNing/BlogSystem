@@ -10,7 +10,7 @@ import com.duan.blogos.exception.BaseRuntimeException;
  */
 public class UnknownPictureException extends BaseRuntimeException {
 
-    private static final int code = 8;
+    public static final int code = 8;
 
     public UnknownPictureException(String message) {
         super(message,code);

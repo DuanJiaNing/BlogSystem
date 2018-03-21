@@ -10,7 +10,7 @@ import com.duan.blogos.exception.BaseRuntimeException;
  */
 public class ParameterFormatIllegalException extends BaseRuntimeException {
 
-    private static final int code = 3;
+    public static final int code = 3;
 
     public ParameterFormatIllegalException() {
         super(code);

@@ -50,7 +50,7 @@
 
 <div class="operation-container border clickable-gray" onclick="scrollToTop();" style="padding: 11px">
     <%--<button id="scroll-to-top" title="回到顶部">TOP</button>--%>
-    <img class="icon24px" src="/images/icon/icons8-collapse-arrow-64.png" title="回到顶部">
+    <img class="img24px" src="/images/icon/icons8-collapse-arrow-64.png" title="回到顶部">
 </div>
 
 <%--高级检索--%>
@@ -151,7 +151,7 @@
                                aria-describedby="basic-addon2">
                         <span class="input-group-addon input-search-btn" id="basic-addon2"
                               onclick="filterBlogByKeyWord()">
-                            <img class="icon24px" src="/images/icon/icons8-search-50.png">&nbsp;
+                            <img class="img24px" src="/images/icon/icons8-search-50.png">&nbsp;
 
                         </span>
 
@@ -225,12 +225,12 @@
                     <a class="list-group-item vertical-center blogger-favourite"
                        href="/${pageOwnerBloggerName}/blog/favourite/like">
                         <%--<i class="material-icons icons">favorite_border</i>&nbsp;--%>
-                        <img class="icon24px" src="/images/icon/icons8-heart-outline-64.png">&nbsp;
+                        <img class="img24px" src="/images/icon/icons8-heart-outline-64.png">&nbsp;
                         他喜欢的文章&nbsp;<span class="count">(${ownerBgStat.likedCount})</span>
                     </a>
                     <a class="list-group-item vertical-center blogger-favourite"
                        href="/${pageOwnerBloggerName}/blog/favourite/collect">
-                        <img class="icon24px" src="/images/icon/icons8-collect-50.png">&nbsp;
+                        <img class="img24px" src="/images/icon/icons8-collect-50.png">&nbsp;
                         他收藏的文章&nbsp;<span class="count">(${ownerBgStat.collectCount})</span>
                     </a>
                 </div>

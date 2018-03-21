@@ -12,7 +12,7 @@ import com.duan.blogos.exception.BaseRuntimeException;
  */
 public class BlogContentIllegalException extends BaseRuntimeException {
 
-    private static final int code = 11;
+    public static final int code = 11;
 
     public BlogContentIllegalException(String message) {
         super(message, code);

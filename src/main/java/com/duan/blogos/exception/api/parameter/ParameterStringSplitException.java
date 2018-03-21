@@ -10,7 +10,7 @@ import com.duan.blogos.exception.BaseRuntimeException;
  */
 public class ParameterStringSplitException extends BaseRuntimeException {
 
-    private static final int code = 2;
+    public static final int code = 2;
 
     public ParameterStringSplitException(String message) {
         super(message, code);

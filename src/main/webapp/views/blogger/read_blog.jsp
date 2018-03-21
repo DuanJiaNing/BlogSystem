@@ -38,7 +38,7 @@
 
 <div class="operation-container border">
     <div onclick="scrollToTop()" title="回到顶部" class="clickable-gray oper-item sper-bottom">
-        <img class="icon24px" src="/images/icon/icons8-collapse-arrow-64.png">
+        <img class="img24px" src="/images/icon/icons8-collapse-arrow-64.png">
     </div>
 
     <%--<div onclick="shareBlog()" title="分享" class="clickable-gray oper-item sper-bottom">--%>
@@ -46,7 +46,7 @@
     <%--</div>--%>
 
     <div onclick="complainBlog()" title="投诉" class="clickable-gray oper-item sper-bottom">
-        <img class="icon24px" src="/images/icon/icons8-info-64.png">
+        <img class="img24px" src="/images/icon/icons8-info-64.png">
     </div>
 
     <%--未登录，或登录了但登录博主不是当前博文所有者时显示--%>
@@ -55,12 +55,12 @@
             <c:choose>
                 <c:when test="${not empty collectState}">
                     <div onclick="collectBlog(this)" title="你已收藏，点击可取消收藏" class="clickable-gray oper-item sper-bottom">
-                        <img class="icon24px" src="/images/icon/icons8-collect-50.png">
+                        <img class="img24px" src="/images/icon/icons8-collect-50.png">
                     </div>
                 </c:when>
                 <c:otherwise>
                     <div onclick="collectBlog(this)" title="点击添加至 [收藏]" class="clickable-gray oper-item sper-bottom">
-                        <img class="icon24px" src="/images/icon/icons8-collect-50.png">
+                        <img class="img24px" src="/images/icon/icons8-collect-50.png">
                     </div>
                 </c:otherwise>
             </c:choose>
@@ -71,12 +71,12 @@
         <%--likeState不为null代表有博主登录了--%>
         <c:when test="${not empty likeState}">
             <div onclick="likeBlog(this)" title="你已喜欢，点击取消喜欢" class="clickable-gray oper-item sper-top">
-                <img class="icon24px" src="/images/icon/icons8-heart-outline-64.png">
+                <img class="img24px" src="/images/icon/icons8-heart-outline-64.png">
             </div>
         </c:when>
         <c:otherwise>
             <div onclick="likeBlog(this)" title="点击添加至 [喜欢]" class="clickable-gray oper-item sper-top">
-                <img class="icon24px" src="/images/icon/icons8-heart-outline-64.png">
+                <img class="img24px" src="/images/icon/icons8-heart-outline-64.png">
             </div>
         </c:otherwise>
     </c:choose>

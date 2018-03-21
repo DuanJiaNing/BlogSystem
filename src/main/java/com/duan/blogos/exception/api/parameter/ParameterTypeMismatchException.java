@@ -10,7 +10,7 @@ import com.duan.blogos.exception.BaseRuntimeException;
  */
 public class ParameterTypeMismatchException extends BaseRuntimeException {
 
-    private static final int code = 19;
+    public static final int code = 19;
 
     public ParameterTypeMismatchException() {
         super(code);

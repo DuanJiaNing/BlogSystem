@@ -10,7 +10,7 @@ import com.duan.blogos.exception.BaseRuntimeException;
  */
 public class EmptyResultException extends BaseRuntimeException {
 
-    private static final int code = 14;
+    public static final int code = 14;
 
     public EmptyResultException() {
         super(code);

@@ -10,7 +10,7 @@ import com.duan.blogos.exception.BaseRuntimeException;
  */
 public class UnauthorizedException extends BaseRuntimeException {
 
-    private static final int code = 4;
+    public static final int code = 4;
 
     public UnauthorizedException() {
         super(code);

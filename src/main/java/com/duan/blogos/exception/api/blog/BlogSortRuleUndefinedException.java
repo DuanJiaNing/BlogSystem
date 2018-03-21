@@ -12,7 +12,7 @@ import com.duan.blogos.exception.BaseRuntimeException;
  */
 public class BlogSortRuleUndefinedException extends BaseRuntimeException {
 
-    private static final int code = 13;
+    public static final int code = 13;
 
     public BlogSortRuleUndefinedException(String message) {
         super(message, code);

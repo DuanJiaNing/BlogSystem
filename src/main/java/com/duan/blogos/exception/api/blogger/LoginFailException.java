@@ -10,7 +10,7 @@ import com.duan.blogos.exception.BaseRuntimeException;
  */
 public class LoginFailException extends BaseRuntimeException {
 
-    private static final int code = 20;
+    public static final int code = 20;
 
     public LoginFailException() {
         super(code);

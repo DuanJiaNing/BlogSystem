@@ -10,7 +10,7 @@ import com.duan.blogos.exception.BaseRuntimeException;
  */
 public class UnspecifiedOperationException extends BaseRuntimeException {
 
-    private static final int code = 9;
+    public static final int code = 9;
 
     public UnspecifiedOperationException() {
         super(code);

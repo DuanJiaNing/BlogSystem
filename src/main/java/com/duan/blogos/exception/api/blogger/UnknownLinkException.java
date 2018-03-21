@@ -10,7 +10,7 @@ import com.duan.blogos.exception.BaseRuntimeException;
  */
 public class UnknownLinkException extends BaseRuntimeException {
 
-    private static final int code = 17;
+    public static final int code = 17;
 
     public UnknownLinkException(String message) {
         super(message,code);

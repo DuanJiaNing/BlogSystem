@@ -8,7 +8,7 @@ package com.duan.blogos.exception.internal;
  */
 public class InternalIOException extends InternalRuntimeException {
 
-    private static final int code = 2;
+    public static final int code = 2;
 
     public InternalIOException(Throwable e) {
         super(e, code);
