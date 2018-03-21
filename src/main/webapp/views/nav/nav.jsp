@@ -78,7 +78,7 @@
                             &nbsp;&nbsp;
 
                             &nbsp;&nbsp;
-                            <a class="operation" href="#">设置</a>
+                            <a class="operation" href="/${sessionScope["bloggerName"]}/setting">设置</a>
                             &nbsp;&nbsp;
 
                             &nbsp;&nbsp;

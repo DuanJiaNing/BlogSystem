@@ -106,7 +106,7 @@ public abstract class BlogFilterAbstract<T> implements BlogFilter<T> {
 
         // 关键字检索得到的博文集合
         List<Integer> filterByLuceneIds = new ArrayList<>();
-        //取最前面的rows条结果
+        // UPDATE 取最前面的rows条结果
         int row = Math.min(rows, ids.length);
         for (int i = 0; i < row; i++) filterByLuceneIds.add(ids[i]);
 

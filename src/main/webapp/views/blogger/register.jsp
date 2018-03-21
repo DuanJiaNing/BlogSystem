@@ -106,7 +106,8 @@
                 </button>
             </div>
             <div style="height: 10%">
-                <span class="powered-by">Powered by DuanJiaNing</span>
+                <span class="powered-by">Powered by <a style="color: black"
+                                                       href="https://www.jianshu.com/u/897bb1600def" target="_blank">DuanJiaNing</a></span>
             </div>
 
         </div>

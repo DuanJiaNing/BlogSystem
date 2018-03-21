@@ -1,10 +1,10 @@
 
 #.gitignore
 #/src/test
+#src/doc
 
 *.iml
 .idea
 test
 target
 out
-src/doc

@@ -32,9 +32,9 @@ a {
 }
 
 .blog-list-item-summary {
-    font-size: medium;
+    font-size: small;
     padding-top: 10px;
-    line-height: 32px;
+    line-height: 24px;
     color: #575F66;
 
     display: -webkit-box;

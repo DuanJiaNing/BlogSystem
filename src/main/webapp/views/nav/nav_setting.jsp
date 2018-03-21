@@ -81,7 +81,7 @@
                                     <c:choose>
                                         <c:when test="${pageOwnerBloggerId eq sessionScope.bloggerId}">
                                             <a class="operation" style="color: #00CBBA;"
-                                            href="/${sessionScope["bloggerName"]}/blog/favourite/collect">收藏</a>
+                                               href="/${sessionScope["bloggerName"]}/blog/favourite/collect">收藏</a>
                                         </c:when>
                                         <c:otherwise>
                                             <a class="operation"
@@ -106,7 +106,8 @@
                             &nbsp;&nbsp;
 
                             &nbsp;&nbsp;
-                            <a class="operation" href="/${sessionScope["bloggerName"]}/setting">设置</a>
+                            <a style="color: #00CBBA"
+                               class="operation" href="/${sessionScope["bloggerName"]}/setting">设置</a>
                             &nbsp;&nbsp;
 
                             &nbsp;&nbsp;
