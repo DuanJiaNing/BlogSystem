@@ -1,7 +1,63 @@
+body {
+    font-family: 微软雅黑, serif;
+    /*font-weight: bold;*/
+
+    background-color: #F9FAFB;
+    /*background-size: cover;*/
+    /*background: url(/images/background.jpg) no-repeat fixed center center;*/
+}
 
 .avatar-img {
     height: 80px;
     width: 80px;
     border: solid 5px #f0f0f0;
     /*width: 180px;*/
+}
+
+.td-title {
+    color: darkgray;
+    font-size: smaller;
+}
+
+.td-top-border {
+    border-top: solid 1px #DBE2E8;
+}
+
+#mainTable tr {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.group .list-group-item {
+    border: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 0;
+    border-top: solid 1px #e5edf3;
+}
+
+.li-title {
+    color: gray;
+    display: inline-block;
+    font-size: small;
+    width: 15%;
+}
+
+.li-input {
+    min-width: 40%;
+    border: solid 1px lightgray;
+    padding: 5px;
+    font-size: 0.9em;
+    background-color: rgba(211, 211, 211, 0.22);
+    border-radius: 5px;
+}
+
+.li-textarea {
+    min-width: 40%;
+    min-height: 100px;
+    border: solid 1px lightgray;
+    padding: 8px;
+    font-size: 0.9em;
+    background-color: rgba(211, 211, 211, 0.22);
+    border-radius: 8px;
 }

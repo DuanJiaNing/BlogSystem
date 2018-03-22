@@ -43,8 +43,7 @@ function sendAvatarData(base64url, bloggerId) {
 
                 setTimeout(function () {
                     var imgId = result.data;
-                    var url = '/image/' + bloggerId + '/type=private/' + imgId;
-                    $('#bloggerAvatar').attr('src', url);
+                    funAfterAvatarUpdateSuccess(imgId);
 
                     disableButton(true, 'editAvatarBtn', '上传', "button-disable");
 

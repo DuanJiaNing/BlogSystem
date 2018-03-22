@@ -42,26 +42,111 @@
     <div class="row" style="padding: 48px 128px;">
         <div class="col-md-3">
             <div class="list-group">
-                <button type="button" class="list-group-item" style="border: 0;">
+                <button type="button" class="list-group-item" onclick="showDiv('divBase')" style="border: 0;">
                     <img class="img32px" style="opacity: 0.5" src="/images/icon/icons8-tune-80.png">
                     &nbsp;&nbsp;基础设置
                 </button>
-                <button type="button" class="list-group-item" style="border: 0;">
+                <button type="button" class="list-group-item" onclick="showDiv('divProfile')" style="border: 0;">
                     <img class="img32px" style="opacity: 0.5" src="/images/icon/icons8-profile-100.png">
                     &nbsp;&nbsp;资料
                 </button>
-                <button type="button" class="list-group-item" style="border: 0;">
+                <button type="button" class="list-group-item" onclick="showDiv('divAccount')" style="border: 0;">
                     <img class="img32px" style="opacity: 0.5" src="/images/icon/icons8-user-80.png">
                     &nbsp;&nbsp;账号
+                </button>
+                <button type="button" class="list-group-item" onclick="showDiv('divStatistic')" style="border: 0;">
+                    <img class="img32px" style="opacity: 0.5" src="/images/icon/icons8-combo-chart-80.png">
+                    &nbsp;&nbsp;统计数据
                 </button>
             </div>
         </div>
         <div class="col-md-9">
-            <img src="/image/${sessionScope.bloggerId}/type=public/${profile.avatarId}"
-                 class="avatar-img">
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="button-edit-new" data-target="#editAvatarDialog"
-                  data-toggle="modal">更改头像</span>
+
+            <div id="divBase">
+                <img src="/image/${sessionScope.bloggerId}/type=public/${profile.avatarId}"
+                     id="blogAvatar"
+                     class="avatar-img">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="button-edit-new" data-target="#editAvatarDialog"
+                      data-toggle="modal">更改头像</span>
+
+                <br>
+                <br>
+                <ul class="list-group group">
+                    <li class="list-group-item" style="border: 0;">
+                        <span class="li-title">用户名</span>
+                        &nbsp;&nbsp;
+                        <input class="li-input" type="text" value="${sessionScope["bloggerName"]}">
+                    </li>
+                    <li class="list-group-item">
+                        <span class="li-title">电子邮件</span>
+                        &nbsp;&nbsp;
+                        <input class="li-input" type="email" value="${profile.email}">
+                    </li>
+                    <li class="list-group-item">
+                        <span class="li-title">手机</span>
+                        &nbsp;&nbsp;
+                        <input class="li-input" type="number" value="${profile.phone}">
+                    </li>
+                </ul>
+
+                <br>
+                <br>
+                <br>
+                <button class="button-save">保存</button>
+            </div>
+
+            <div style="display: none" id="divProfile">
+                <ul class="list-group group">
+                    <li class="list-group-item" style="border: 0;">
+                        <span class="li-title">主页 title</span>
+                        &nbsp;&nbsp;
+                        <input class="li-input" style="width: 80%" type="text" value="${profile.intro}">
+                        <br>
+                        <br>
+                        <p class="text-right">
+                            <small style="color: darkgray">显示在个人主页&nbsp;&nbsp;&nbsp;</small>
+                        </p>
+
+                    </li>
+                    <li class="list-group-item">
+                        <div class="vertical-center">
+                            <span class="li-title">个人简介</span>
+                            &nbsp;&nbsp;
+                            <textarea style="width: 80%" class="li-textarea">${profile.aboutMe}</textarea>
+                        </div>
+                    </li>
+                </ul>
+
+                <br>
+                <br>
+                <br>
+                <button class="button-save">保存</button>
+            </div>
+
+            <div style="display: none" id="divAccount">
+                <ul class="list-group group">
+                    <li class="list-group-item" style="border: 0;">
+                        <span class="li-title">批量导入博文</span>
+                        &nbsp;&nbsp;
+                        <span class="button-edit-new" data-target="#editAvatarDialog"
+                              data-toggle="modal">下载</span>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="li-title">打包下载</span>
+                        &nbsp;&nbsp;
+                        <span class="button-edit-check" data-target="#editAvatarDialog"
+                              data-toggle="modal">下载所有博文</span>
+                    </li>
+                    <li class="list-group-item">
+                        <a>修改密码</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div style="display: none" id="divStatistic">
+            </div>
+
         </div>
     </div>
 
@@ -71,8 +156,13 @@
 
 <jsp:include page="/views/footer.jsp"/>
 
+<script type="application/javascript">
+    var bloggerId = ${sessionScope["bloggerId"]};
+</script>
+
 <script type="application/javascript" src="/js/paging.js"></script>
 <script type="application/javascript" src="/js/common.js"></script>
+<script type="application/javascript" src="/js/blogger/setting.js"></script>
 
 </body>
 </html>

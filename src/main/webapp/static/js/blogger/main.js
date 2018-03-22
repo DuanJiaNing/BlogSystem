@@ -330,6 +330,14 @@ function complexFilter() {
  * @param refreshTotalRealCount 刷新总博文数量（博文新增或删除时才需刷新）
  */
 function filterBloggerBlog(offset, rows, refreshPageIndicator, toTop, refreshTotalRealCount) {
+
+    if (toTop) {
+        scrollToTop();
+    }
+
+    $('#blogList').html('<br><br><br><p class="text-center lead">正在加载...</p><br><br><br>');
+    $('#blogCount').css('display', 'none');
+
     $.get(
         '/blog',
         {
@@ -356,10 +364,6 @@ function filterBloggerBlog(offset, rows, refreshPageIndicator, toTop, refreshTot
 
             if (refreshTotalRealCount)
                 $('#blogCount').html(result.data.length + '篇博文');
-
-            if (toTop) {
-                scrollToTop();
-            }
 
             initToolTip();
 
@@ -465,11 +469,19 @@ function setBlogs(array, defaulz) {
                 '</li><br>'
 
         }
+
+        html += '</ul>';
+
+        setTimeout(function () {
+
+            // 手动延伸
+            $('#blogList').html(html);
+            $('#blogList').css('display', 'none');
+
+            $('#blogList').slideToggle('slow');
+        }, 1000);
+
     }
-
-    html += '</ul>';
-
-    $('#blogList').html(html);
 
 }
 
@@ -541,7 +553,7 @@ function isPageOwnerBloggerLogin() {
 function initBlog() {
     // 将会加载两次
     setFilterData(null, null, null, "release_date", "desc");
-    filterBloggerBlog(0, defaultBlogCount, true, false, false);
+    filterBloggerBlog(0, defaultBlogCount, true, true, false);
 }
 
 // 填充检索条件
@@ -649,6 +661,12 @@ var funWhenDeleteLinkSuccess = function () {
 // ------------------------------------------------------------------------------------------------------ 登录对话框回调
 function funAfterLoginSuccess(result, name) {
     location.href = '/' + name + '/archives';
+}
+
+// ------------------------------------------------------------------------------------------------------ 头像修改成功后回调回调
+function funAfterAvatarUpdateSuccess(imgId) {
+    var url = '/image/' + loginBloggerId + '/type=private/' + imgId;
+    $('#bloggerAvatar').attr('src', url);
 }
 
 function funAfterLoginFail(result) {
