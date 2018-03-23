@@ -18,9 +18,9 @@ import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.entity.blogger.BloggerProfile;
 import com.duan.blogos.enums.BlogCommentStatusEnum;
-import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.manager.StringConstructorManager;
+import com.duan.blogos.manager.properties.BloggerProperties;
 import com.duan.blogos.manager.properties.DbProperties;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.audience.BlogBrowseService;
@@ -31,6 +31,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.duan.blogos.enums.BloggerPictureCategoryEnum.DEFAULT_BLOGGER_AVATAR;
 
 /**
  * Created on 2017/12/19.
@@ -57,6 +59,9 @@ public class BlogBrowseServiceImpl implements BlogBrowseService {
 
     @Autowired
     private StringConstructorManager constructorManager;
+
+    @Autowired
+    private BloggerProperties bloggerProperties;
 
     @Autowired
     private BlogCommentDao commentDao;
@@ -113,16 +118,19 @@ public class BlogBrowseServiceImpl implements BlogBrowseService {
     }
 
     private BloggerPicture getAvatar(Integer id) {
+        BloggerPicture avatar;
         if (id != null) {
-            BloggerPicture avatar = pictureDao.getPictureById(id);
-            if (avatar != null) {
-                avatar.setPath(constructorManager.constructPictureUrl(avatar, BloggerPictureCategoryEnum.DEFAULT_BLOGGER_AVATAR));
-            }
-
-            return avatar;
+            avatar = pictureDao.getPictureById(id);
+        } else {
+            avatar = pictureDao.getBloggerUniquePicture(bloggerProperties.getPictureManagerBloggerId(),
+                    DEFAULT_BLOGGER_AVATAR.getCode());
         }
 
-        return null;
+        if (avatar != null) {
+            avatar.setPath(constructorManager.constructPictureUrl(avatar, DEFAULT_BLOGGER_AVATAR));
+        }
+
+        return avatar;
     }
 
 

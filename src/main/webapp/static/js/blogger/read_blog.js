@@ -19,7 +19,7 @@ function likeBlog(th) {
     if (!checkLogin()) return;
 
     var like = $(th);
-    if (like.attr('title') === '喜欢') {
+    if (like.attr('title') === '点击添加至 [喜欢]') {
         $.post(
             '/blogger/' + loginBloggerId + '/' + blogId + '/operate=like',
             null,
@@ -55,7 +55,7 @@ function collectBlog(th) {
     if (!checkLogin()) return;
 
     var collect = $(th);
-    if (collect.attr('title') === '收藏') {
+    if (collect.attr('title') === '点击添加至 [收藏]') {
         $.post(
             '/blogger/' + loginBloggerId + '/' + blogId + '/operate=collect',
             null,
@@ -75,7 +75,7 @@ function collectBlog(th) {
             type: 'delete',
             success: function (result) {
                 if (result.code === 0) {
-                    collect.attr('title', '点击收藏博文');
+                    collect.attr('title', '点击添加至 [收藏]');
                     toast('已取消收藏', 1000);
                     updateBlogCountStatistics();
                 } else {
