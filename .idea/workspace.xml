@@ -11,11 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8ac934af-05bc-46b7-aaa8-6f8c621b9fd3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/blog/BloggerSettingPageController.java" afterPath="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/blog/BloggerSettingPageController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/blogger/main.css" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/blogger/main.css" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/blogger/setting.css" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/blogger/setting.css" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/blogger/setting.js" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/blogger/setting.js" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/blogger/setting.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/views/blogger/setting.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -292,9 +287,9 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="226" />
-    <option name="y" value="128" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="164" />
+    <option name="y" value="105" />
     <option name="width" value="1347" />
     <option name="height" value="799" />
   </component>
@@ -1165,14 +1160,7 @@
       <workItem from="1521720622922" duration="10867000" />
       <workItem from="1521767440026" duration="5978000" />
       <workItem from="1522023143903" duration="7183000" />
-      <workItem from="1522030902612" duration="9893000" />
-    </task>
-    <task id="LOCAL-00093" summary="设计博客系统主页，实现博文高级检索">
-      <created>1518491449735</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1518491449736</updated>
+      <workItem from="1522030902612" duration="9982000" />
     </task>
     <task id="LOCAL-00094" summary="设计博客系统主页，完成博文高级检索，实现博主登录功能菜单">
       <created>1518506038871</created>
@@ -1510,7 +1498,14 @@
       <option name="project" value="LOCAL" />
       <updated>1522038688948</updated>
     </task>
-    <option name="localTasksCounter" value="142" />
+    <task id="LOCAL-00142" summary="修改博主设置，可自定义主页个人信息位置（左或右）">
+      <created>1522043283227</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1522043283228</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1546,7 +1541,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1041776000" />
+    <option name="totallyTimeSpent" value="1041865000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1557,8 +1552,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="70" y="-9" width="1859" height="1098" extended-state="6" />
-    <editor active="true" />
+    <frame x="164" y="105" width="1347" height="799" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41749722" sideWeight="0.5019608" order="4" side_tool="true" content_ui="tabs" />
@@ -1574,7 +1568,7 @@
       <window_info id="Spring" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6929972" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.66998893" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2739496" sideWeight="0.48172757" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38413197" sideWeight="0.48172757" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6611296" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26610646" sideWeight="0.50777775" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27731094" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -1671,7 +1665,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加标签/类别/链接编辑对话框入口，对应html。&#10;整理js注释" />
     <MESSAGE value="完成标签修改功能" />
     <MESSAGE value="完成标签删除，类别修改、删除，链接修改、删除功能" />
     <MESSAGE value="完成博主主页页面" />
@@ -1696,7 +1689,8 @@
     <MESSAGE value="完成设置界面UI编写" />
     <MESSAGE value="修改一些错误" />
     <MESSAGE value="修改博主首页，博文列表添加图片展示" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改博主首页，博文列表添加图片展示" />
+    <MESSAGE value="修改博主设置，可自定义主页个人信息位置（左或右）" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改博主设置，可自定义主页个人信息位置（左或右）" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
