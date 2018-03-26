@@ -473,10 +473,15 @@ function setBlogs(array, defaulz) {
                 cates + '&nbsp;&nbsp;' +
                 (labels === '' ? '' : labels + '&nbsp;&nbsp;') +
                 '</div>' +
-
                 '</div>' +
+
+                // (!isStrEmpty_(blogImg) ? '' +
+                //     '<div style="height: 100%;background-size: contain;background: url(' + blogImg + ') center no-repeat" class="vertical-center img-thumbnail col-md-' + colmd2 + '" ></div>' +
+                //     '' : '') +
+
                 '<div style="height: 100%;" class="vertical-center col-md-' + colmd2 + '">' +
-                (!isStrEmpty_(blogImg) ? '<img class="img-rounded" style="width: auto;height: 100px;overflow: hidden" src="' + blogImg + '">' : '') +
+                (!isStrEmpty_(blogImg) ? '<img class="img-thumbnail" style="width: auto;height: 100px;overflow: hidden" src="' + blogImg + '">' : '') +
+                // (!isStrEmpty_(blogImg) ? '' : '') +
                 '</div>' +
                 '</div>' +
 
