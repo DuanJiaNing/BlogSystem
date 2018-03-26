@@ -455,8 +455,8 @@ function setBlogs(array, defaulz) {
 
                 '<h4>' +
                 '<small style="color: black">' + dateFormat(item.releaseDate) + '</small><small class="list-group-item-count-text">&nbsp;&nbsp;' +
-                item.collectCount + '收藏&nbsp;&nbsp;' +
-                item.viewCount + '浏览&nbsp;&nbsp;' +
+                item.collectCount + '&nbsp;收藏&nbsp;&nbsp;' +
+                item.viewCount + '&nbsp;浏览&nbsp;&nbsp;' +
                 '</small>' +
                 '</h4>' +
 
@@ -475,7 +475,7 @@ function setBlogs(array, defaulz) {
 
                 '</div>' +
                 '<div style="height: 100%;" class="vertical-center col-md-' + colmd2 + '">' +
-                (!isStrEmpty_(blogImg) ? '<img class="img-rounded img128px" style="width: 100%;height: auto" src="' + blogImg + '">' : '') +
+                (!isStrEmpty_(blogImg) ? '<img class="img-rounded" style="width: auto;height: 100px;overflow: hidden" src="' + blogImg + '">' : '') +
                 '</div>' +
                 '</div>' +
 

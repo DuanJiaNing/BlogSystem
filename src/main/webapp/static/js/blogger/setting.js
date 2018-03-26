@@ -7,7 +7,14 @@ function funAfterAvatarUpdateSuccess(imgId) {
 
 var currentShowDiv = 'divBase';
 
-function showDiv(id) {
+function showDiv(id, th) {
+
+    var btn = $('.btn-item');
+    for (var index in btn) {
+        $(btn[index]).css('color', 'gray');
+    }
+
+    $(th).css('color', 'orangered');
 
     if (currentShowDiv !== id) {
         $('#' + currentShowDiv).fadeOut("fast", function () {
@@ -16,8 +23,12 @@ function showDiv(id) {
         });
     }
 
+}
+
+function chooseManNavPos(th, pos) {
 
 }
+
 
 $(document).ready(function () {
 

@@ -3,16 +3,12 @@ package com.duan.blogos.web.blog;
 import com.duan.blogos.dto.blogger.BloggerStatisticsDTO;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerProfile;
+import com.duan.blogos.entity.blogger.BloggerSetting;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.manager.BloggerSessionManager;
 import com.duan.blogos.manager.properties.BloggerProperties;
 import com.duan.blogos.restful.ResultBean;
-import com.duan.blogos.service.blogger.BloggerAccountService;
-import com.duan.blogos.service.blogger.BloggerStatisticsService;
-import com.duan.blogos.service.blogger.BloggerPictureService;
-import com.duan.blogos.service.blogger.BloggerProfileService;
-import com.sun.org.apache.regexp.internal.RE;
-import org.apache.shiro.session.mgt.SessionManager;
+import com.duan.blogos.service.blogger.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,6 +46,9 @@ public class BloggerPageController {
     @Autowired
     private BloggerSessionManager sessionManager;
 
+    @Autowired
+    private BloggerSettingService settingService;
+
     @RequestMapping("/archives")
     public ModelAndView mainPage(HttpServletRequest request,
                                  @PathVariable String bloggerName) {
@@ -67,8 +66,8 @@ public class BloggerPageController {
         mv.addObject(bloggerProperties.getNameOfPageOwnerBloggerId(), account.getId());
         mv.addObject(bloggerProperties.getNameOfPageOwnerBloggerName(), account.getUsername());
 
-        int id = account.getId();
-        BloggerProfile profile = bloggerProfileService.getBloggerProfile(id);
+        int ownerId = account.getId();
+        BloggerProfile profile = bloggerProfileService.getBloggerProfile(ownerId);
         mv.addObject("blogName", profile.getIntro());
         mv.addObject("aboutMe", profile.getAboutMe());
         mv.addObject("avatarId",
@@ -78,7 +77,7 @@ public class BloggerPageController {
                                 .getId()));
 
 
-        ResultBean<BloggerStatisticsDTO> ownerBgStat = statisticsService.getBloggerStatistics(account.getId());
+        ResultBean<BloggerStatisticsDTO> ownerBgStat = statisticsService.getBloggerStatistics(ownerId);
         mv.addObject("ownerBgStat", ownerBgStat.getData());
 
         int loginBgId;
@@ -86,6 +85,9 @@ public class BloggerPageController {
             ResultBean<BloggerStatisticsDTO> loginBgStat = statisticsService.getBloggerStatistics(loginBgId);
             mv.addObject("loginBgStat", loginBgStat.getData());
         }
+
+        BloggerSetting setting = settingService.getSetting(ownerId);
+        mv.addObject("setting", setting);
 
         return mv;
     }

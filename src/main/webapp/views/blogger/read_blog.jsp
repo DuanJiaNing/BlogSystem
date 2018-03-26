@@ -42,7 +42,7 @@
     </div>
 
     <%--<div onclick="shareBlog()" title="分享" class="clickable-gray oper-item sper-bottom">--%>
-        <%--<img class="icon24px" src="/images/icon/icons8-share-3-64.png">--%>
+    <%--<img class="icon24px" src="/images/icon/icons8-share-3-64.png">--%>
     <%--</div>--%>
 
     <div onclick="complainBlog()" title="投诉" class="clickable-gray oper-item sper-bottom">
@@ -83,34 +83,41 @@
 
 </div>
 
-<div class="container" style="min-height: 100%">
+<div class="container" style="min-height: 100%;">
 
-    <div class="border blog-container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div>
 
-        <p class="text-center title">
-            ${main["title"]}
-        </p>
-        <p class="text-center">
-            <small style="color: gray">
-                <a target="_blank" href="/${bloggerName}/archives" class="button-info blog-author">${bloggerName}</a>&nbsp;&nbsp;&nbsp;发表于&nbsp;
-                <script>document.write(dateFormat(new Date('${main.releaseDate}')))</script>
-                <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                喜欢&nbsp;<span id="blogLikeCount">${stat.likeCount}</span>
-                <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                收藏&nbsp;<span id="blogCollectCount">${stat.collectCount}</span>
-                <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                留言&nbsp;<span id="blogCommentCount">${stat.commentCount}</span>
-                <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                ${main["wordCount"]}&nbsp;字
-                <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                <span id="blogViewCount">${stat.viewCount}</span>&nbsp;次浏览
-            </small>
-        </p>
-        <hr>
+                <p class="text-center title">
+                    ${main["title"]}
+                </p>
+                <p class="text-center">
+                    <small style="color: gray">
+                        <a target="_blank" href="/${bloggerName}/archives"
+                           class="button-info blog-author">${bloggerName}</a>&nbsp;&nbsp;&nbsp;发表于&nbsp;
+                        <script>document.write(dateFormat(new Date('${main.releaseDate}')))</script>
+                        <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                        喜欢&nbsp;<span id="blogLikeCount">${stat.likeCount}</span>
+                        <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                        收藏&nbsp;<span id="blogCollectCount">${stat.collectCount}</span>
+                        <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                        留言&nbsp;<span id="blogCommentCount">${stat.commentCount}</span>
+                        <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                        ${main["wordCount"]}&nbsp;字
+                        <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                        <span id="blogViewCount">${stat.viewCount}</span>&nbsp;次浏览
+                    </small>
+                </p>
+                <hr>
 
-        <p class="text-center">
-            ${main["content"]}
-        </p>
+                <p class="text-center">
+                    ${main["content"]}
+                </p>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
     </div>
 
     <br>
@@ -159,17 +166,19 @@
         </div>
     </c:if>
 
+
     <br>
     <!-- JiaThis Button BEGIN -->
-    &nbsp;&nbsp;<div class="jiathis_style_24x24">
-    <a class="jiathis_button_qzone"></a>
-    <a class="jiathis_button_tsina"></a>
-    <a class="jiathis_button_tqq"></a>
-    <a class="jiathis_button_weixin"></a>
-    <a class="jiathis_button_renren"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-    <a class="jiathis_counter_style"></a>
-</div>
+    &nbsp;&nbsp;
+    <div class="jiathis_style_24x24">
+        <a class="jiathis_button_qzone"></a>
+        <a class="jiathis_button_tsina"></a>
+        <a class="jiathis_button_tqq"></a>
+        <a class="jiathis_button_weixin"></a>
+        <a class="jiathis_button_renren"></a>
+        <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+        <a class="jiathis_counter_style"></a>
+    </div>
     <script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
     <!-- JiaThis Button END -->
     <!-- UJian Button BEGIN -->

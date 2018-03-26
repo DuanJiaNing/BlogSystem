@@ -42,19 +42,23 @@
     <div class="row" style="padding: 48px 128px;">
         <div class="col-md-3">
             <div class="list-group">
-                <button type="button" class="list-group-item" onclick="showDiv('divBase')" style="border: 0;">
+                <button type="button" class="list-group-item btn-item" onclick="showDiv('divBase',this)"
+                        style="border: 0;color: orangered;">
                     <img class="img32px" style="opacity: 0.5" src="/images/icon/icons8-tune-80.png">
                     &nbsp;&nbsp;基础设置
                 </button>
-                <button type="button" class="list-group-item" onclick="showDiv('divProfile')" style="border: 0;">
+                <button type="button" class="list-group-item btn-item" onclick="showDiv('divProfile',this)"
+                        style="border: 0;">
                     <img class="img32px" style="opacity: 0.5" src="/images/icon/icons8-profile-100.png">
                     &nbsp;&nbsp;资料
                 </button>
-                <button type="button" class="list-group-item" onclick="showDiv('divAccount')" style="border: 0;">
+                <button type="button" class="list-group-item btn-item" onclick="showDiv('divAccount',this)"
+                        style="border: 0;">
                     <img class="img32px" style="opacity: 0.5" src="/images/icon/icons8-user-80.png">
                     &nbsp;&nbsp;账号
                 </button>
-                <button type="button" class="list-group-item" onclick="showDiv('divStatistic')" style="border: 0;">
+                <button type="button" class="list-group-item btn-item" onclick="showDiv('divStatistic',this)"
+                        style="border: 0;">
                     <img class="img32px" style="opacity: 0.5" src="/images/icon/icons8-combo-chart-80.png">
                     &nbsp;&nbsp;统计数据
                 </button>
@@ -87,6 +91,20 @@
                         <span class="li-title">手机</span>
                         &nbsp;&nbsp;
                         <input class="li-input" type="number" value="${profile.phone}">
+                    </li>
+
+                    <li class="list-group-item">
+                        <span class="li-title">主页布局</span><br><br>
+                        <div>
+                            <img style="height: 20%;width: auto" class="shadow-border"
+                                 onclick="chooseManNavPos(this,0)"
+                                 src="/images/img/main-page-nav-left.jpg">
+                            &nbsp;&nbsp;&nbsp;
+                            <img style="height: 20%;width: auto" class="shadow-border"
+                                 onclick="chooseManNavPos(this,1)"
+                                 src="/images/img/main-page-nav-right.jpg">
+                        </div>
+
                     </li>
                 </ul>
 

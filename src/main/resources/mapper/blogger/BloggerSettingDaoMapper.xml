@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duan.blogos.dao.blogger.BloggerSettingDao">
+
+    <update id="update" parameterType="BloggerSetting">
+        UPDATE blogger_setting
+        <set>
+            <if test="mainPageNavPos != null">
+                main_page_nav_pos=#{mainPageNavPos},
+            </if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <update id="updateMainPageNavPos">
+        UPDATE blogger_setting
+        SET main_page_nav_pos = #{pos}
+        WHERE blogger_id = #{bloggerId}
+
+    </update>
+
+    <delete id="delete">
+        DELETE FROM blogger_setting
+        WHERE id = #{value}
+    </delete>
+
+    <select id="getSetting" resultType="BloggerSetting">
+        SELECT *
+        FROM blogger_setting
+        WHERE blogger_id = #{value}
+    </select>
+
+    <insert id="insert" parameterType="BloggerSetting" useGeneratedKeys="true" keyProperty="id">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+        INSERT INTO blogger_setting (
+        blogger_id,
+        main_page_nav_pos,
+        ) VALUE (
+        #{bloggerId},
+        #{mainPageNavPos}
+        )
+    </insert>
+
+</mapper>

@@ -3,12 +3,14 @@ package com.duan.blogos.service.impl.blogger;
 import com.duan.blogos.dao.blogger.BloggerAccountDao;
 import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.dao.blogger.BloggerProfileDao;
+import com.duan.blogos.dao.blogger.BloggerSettingDao;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.entity.blogger.BloggerProfile;
+import com.duan.blogos.entity.blogger.BloggerSetting;
 import com.duan.blogos.exception.internal.UnknownInternalException;
-import com.duan.blogos.manager.properties.BloggerProperties;
 import com.duan.blogos.manager.ImageManager;
+import com.duan.blogos.manager.properties.BloggerProperties;
 import com.duan.blogos.service.blogger.BloggerAccountService;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,9 @@ public class BloggerAccountServiceImpl implements BloggerAccountService {
     private BloggerProfileDao profileDao;
 
     @Autowired
+    private BloggerSettingDao settingDao;
+
+    @Autowired
     private ImageManager imageManager;
 
     @Autowired
@@ -59,7 +64,14 @@ public class BloggerAccountServiceImpl implements BloggerAccountService {
         int effect = accountDao.insert(account);
         if (effect <= 0) return -1;
 
-        return account.getId();
+        int bloggerId = account.getId();
+
+        // 生成博主设置数据
+        BloggerSetting setting = new BloggerSetting();
+        setting.setBloggerId(bloggerId);
+        settingDao.insert(setting);
+
+        return bloggerId;
     }
 
     @Override

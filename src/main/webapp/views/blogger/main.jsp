@@ -175,130 +175,266 @@
 
     <div class="row">
 
-        <%--右侧--%>
-        <div class="col-md-3">
+        <c:choose>
+            <c:when test="${setting.mainPageNavPos eq 0}">
 
-            <%--头像--%>
-            <div class="blogger-profile border">
-                <c:choose>
-                    <c:when test="${sessionScope['bloggerId'] == pageOwnerBloggerId}">
+                <%--左侧--%>
+                <div class="col-md-3">
+
                         <%--头像--%>
-                        <div class="avatar">
-                            <a class="avatar-edit" id="editAvatar" style="display: none">点击更换头像</a>
+                    <div class="blogger-profile border">
+                        <c:choose>
+                            <c:when test="${sessionScope['bloggerId'] == pageOwnerBloggerId}">
+                                <%--头像--%>
+                                <div class="avatar">
+                                    <a class="avatar-edit" id="editAvatar" style="display: none">点击更换头像</a>
 
-                            <img src="/image/${pageOwnerBloggerId}/type=public/${avatarId}?default=13"
-                                 class="avatar-img avatar-img-editable"
-                                 id="bloggerAvatar"
-                                 onmouseenter="if(isPageOwnerBloggerLogin())$('#editAvatar').show()"
-                                 onmouseleave="if(isPageOwnerBloggerLogin())$('#editAvatar').hide()"
-                                 onclick="editAvatar()">
+                                    <img src="/image/${pageOwnerBloggerId}/type=public/${avatarId}?default=13"
+                                         class="avatar-img avatar-img-editable"
+                                         id="bloggerAvatar"
+                                         onmouseenter="if(isPageOwnerBloggerLogin())$('#editAvatar').show()"
+                                         onmouseleave="if(isPageOwnerBloggerLogin())$('#editAvatar').hide()"
+                                         onclick="editAvatar()">
+                                </div>
+                                <%--用户名--%>
+                                <p class="text-center blogger-name">
+                                        ${pageOwnerBloggerName}
+                                </p>
+                            </c:when>
+                            <c:otherwise>
+                                <%--头像--%>
+                                <div class="avatar">
+                                    <img src="/image/${pageOwnerBloggerId}/type=public/${avatarId}?default=13"
+                                         class="avatar-img">
+                                </div>
+                                <%--用户名--%>
+                                <p class="text-center blogger-name">${pageOwnerBloggerName}</p>
+                            </c:otherwise>
+                        </c:choose>
+                        <hr>
+                        <p class="text-center lead blogger-aboutme">${aboutMe}</p>
+                    </div>
+                    <br>
+
+                        <%--他的喜欢，收藏--%>
+                    <div class="border" style="background-color: white">
+                        <br>
+                        <div class="list-group">
+                            <a class="list-group-item vertical-center blogger-favourite"
+                               href="/${pageOwnerBloggerName}/blog/favourite/like">
+                                    <%--<i class="material-icons icons">favorite_border</i>&nbsp;--%>
+                                <img class="img24px" src="/images/icon/icons8-heart-outline-64.png">&nbsp;
+                                他喜欢的文章&nbsp;<span class="count">(${ownerBgStat.likedCount})</span>
+                            </a>
+                            <a class="list-group-item vertical-center blogger-favourite"
+                               href="/${pageOwnerBloggerName}/blog/favourite/collect">
+                                <img class="img24px" src="/images/icon/icons8-collect-50.png">&nbsp;
+                                他收藏的文章&nbsp;<span class="count">(${ownerBgStat.collectCount})</span>
+                            </a>
                         </div>
-                        <%--用户名--%>
-                        <p class="text-center blogger-name">
-                                ${pageOwnerBloggerName}
+                    </div>
+                    <br>
+
+                        <%--标签--%>
+                    <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerLabelContainer').slideToggle()"
+                         onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerLabelContainer').slideToggle()"
+                         class="blogger-profile border">
+
+                        <p class="text-center blogger-profile-title">
+                            标签&nbsp;<small id="labelCount" style="color: darkgray">(${ownerBgStat.labelCount})</small>
                         </p>
-                    </c:when>
-                    <c:otherwise>
-                        <%--头像--%>
-                        <div class="avatar">
-                            <img src="/image/${pageOwnerBloggerId}/type=public/${avatarId}?default=13"
-                                 class="avatar-img">
-                        </div>
-                        <%--用户名--%>
-                        <p class="text-center blogger-name">${pageOwnerBloggerName}</p>
-                    </c:otherwise>
-                </c:choose>
-                <hr>
-                <p class="text-center lead blogger-aboutme">${aboutMe}</p>
-            </div>
-            <br>
 
-            <%--他的喜欢，收藏--%>
-            <div class="border" style="background-color: white">
-                <br>
-                <div class="list-group">
-                    <a class="list-group-item vertical-center blogger-favourite"
-                       href="/${pageOwnerBloggerName}/blog/favourite/like">
-                        <%--<i class="material-icons icons">favorite_border</i>&nbsp;--%>
-                        <img class="img24px" src="/images/icon/icons8-heart-outline-64.png">&nbsp;
-                        他喜欢的文章&nbsp;<span class="count">(${ownerBgStat.likedCount})</span>
-                    </a>
-                    <a class="list-group-item vertical-center blogger-favourite"
-                       href="/${pageOwnerBloggerName}/blog/favourite/collect">
-                        <img class="img24px" src="/images/icon/icons8-collect-50.png">&nbsp;
-                        他收藏的文章&nbsp;<span class="count">(${ownerBgStat.collectCount})</span>
-                    </a>
-                </div>
-            </div>
-            <br>
-
-            <%--标签--%>
-            <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerLabelContainer').slideToggle()"
-                 onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerLabelContainer').slideToggle()"
-                 class="blogger-profile border">
-
-                <p class="text-center blogger-profile-title">
-                    标签&nbsp;<small id="labelCount" style="color: darkgray">(${ownerBgStat.labelCount})</small>
-                </p>
-
-                <p class="text-center" style="display: none" id="bloggerLabelContainer">
+                        <p class="text-center" style="display: none" id="bloggerLabelContainer">
                     <span class="button-edit" id="labelEditBtn"
                           data-target="#modifyLabelDialog" data-toggle="modal">编辑</span>
-                    <span class="button-edit-new" id="labelNewBtn"
-                          data-target="#newLabelDialog" data-toggle="modal">新建</span>
-                </p>
+                            <span class="button-edit-new" id="labelNewBtn"
+                                  data-target="#newLabelDialog" data-toggle="modal">新建</span>
+                        </p>
 
-                <hr class="default-line">
-                <p class="blogger-label-content" id="blogLabel">
-                </p>
+                        <hr class="default-line">
+                        <p class="blogger-label-content" id="blogLabel">
+                        </p>
 
-            </div>
-            <br>
+                    </div>
+                    <br>
 
-            <%--创建的类别--%>
-            <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerCategoryContainer').slideToggle()"
-                 onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerCategoryContainer').slideToggle()"
-                 class="blogger-profile border">
-                <p class="text-center blogger-profile-title">
-                    类别&nbsp;<small id="categoryCount" style="color: darkgray">(${ownerBgStat.categoryCount})</small>
-                </p>
+                        <%--创建的类别--%>
+                    <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerCategoryContainer').slideToggle()"
+                         onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerCategoryContainer').slideToggle()"
+                         class="blogger-profile border">
+                        <p class="text-center blogger-profile-title">
+                            类别&nbsp;<small id="categoryCount" style="color: darkgray">(${ownerBgStat.categoryCount})
+                        </small>
+                        </p>
 
-                <p class="text-center" style="display: none" id="bloggerCategoryContainer">
+                        <p class="text-center" style="display: none" id="bloggerCategoryContainer">
                     <span class="button-edit" id="categoryEditBtn"
                           data-target="#modifyCategoryDialog" data-toggle="modal">编辑</span>
-                    <span class="button-edit-new" id="categoryNewBtn"
-                          data-target="#newCategoryDialog"
-                          data-toggle="modal">新建</span>
-                </p>
-                <hr class="default-line">
-                <div class="list-group category-list-group" id="blogCategory"></div>
-            </div>
-            <br>
+                            <span class="button-edit-new" id="categoryNewBtn"
+                                  data-target="#newCategoryDialog"
+                                  data-toggle="modal">新建</span>
+                        </p>
+                        <hr class="default-line">
+                        <div class="list-group category-list-group" id="blogCategory"></div>
+                    </div>
+                    <br>
 
-            <%--联系我--%>
-            <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerLinkContainer').slideToggle()"
-                 onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerLinkContainer').slideToggle()"
-                 class="blogger-profile border">
-                <p class="text-center blogger-profile-title">
-                    联系我&nbsp;<small id="linkCount" style="color: darkgray">(${ownerBgStat.linkCount})</small>
-                </p>
+                        <%--联系我--%>
+                    <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerLinkContainer').slideToggle()"
+                         onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerLinkContainer').slideToggle()"
+                         class="blogger-profile border">
+                        <p class="text-center blogger-profile-title">
+                            联系我&nbsp;<small id="linkCount" style="color: darkgray">(${ownerBgStat.linkCount})</small>
+                        </p>
 
-                <p class="text-center" style="display: none" id="bloggerLinkContainer">
+                        <p class="text-center" style="display: none" id="bloggerLinkContainer">
                     <span class="button-edit" id="linkEditBtn"
                           data-target="#modifyLinkDialog" data-toggle="modal">编辑</span>
-                    <span class="button-edit-new" id="linkNewBtn"
-                          data-target="#newLinkDialog" data-toggle="modal">新建</span>
-                </p>
-                <hr class="default-line">
-                <p class="blogger-link" id="bloggerLink"></p>
-            </div>
-        </div>
+                            <span class="button-edit-new" id="linkNewBtn"
+                                  data-target="#newLinkDialog" data-toggle="modal">新建</span>
+                        </p>
+                        <hr class="default-line">
+                        <p class="blogger-link" id="bloggerLink"></p>
+                    </div>
+                </div>
 
-        <%--博文列表部分--%>
-        <div class="col-md-9">
-            <div id="blogList"></div>
-            <div class="box" id="box"></div>
-        </div>
+                <%--博文列表部分--%>
+                <div class="col-md-9">
+                    <div id="blogList"></div>
+                    <div class="box" id="box"></div>
+                </div>
+
+            </c:when>
+            <c:otherwise>
+
+                <%--博文列表部分--%>
+                <div class="col-md-9">
+                    <div id="blogList"></div>
+                    <div class="box" id="box"></div>
+                </div>
+
+                <%--右侧--%>
+                <div class="col-md-3">
+
+                        <%--头像--%>
+                    <div class="blogger-profile border">
+                        <c:choose>
+                            <c:when test="${sessionScope['bloggerId'] == pageOwnerBloggerId}">
+                                <%--头像--%>
+                                <div class="avatar">
+                                    <a class="avatar-edit" id="editAvatar" style="display: none">点击更换头像</a>
+
+                                    <img src="/image/${pageOwnerBloggerId}/type=public/${avatarId}?default=13"
+                                         class="avatar-img avatar-img-editable"
+                                         id="bloggerAvatar"
+                                         onmouseenter="if(isPageOwnerBloggerLogin())$('#editAvatar').show()"
+                                         onmouseleave="if(isPageOwnerBloggerLogin())$('#editAvatar').hide()"
+                                         onclick="editAvatar()">
+                                </div>
+                                <%--用户名--%>
+                                <p class="text-center blogger-name">
+                                        ${pageOwnerBloggerName}
+                                </p>
+                            </c:when>
+                            <c:otherwise>
+                                <%--头像--%>
+                                <div class="avatar">
+                                    <img src="/image/${pageOwnerBloggerId}/type=public/${avatarId}?default=13"
+                                         class="avatar-img">
+                                </div>
+                                <%--用户名--%>
+                                <p class="text-center blogger-name">${pageOwnerBloggerName}</p>
+                            </c:otherwise>
+                        </c:choose>
+                        <hr>
+                        <p class="text-center lead blogger-aboutme">${aboutMe}</p>
+                    </div>
+                    <br>
+
+                        <%--他的喜欢，收藏--%>
+                    <div class="border" style="background-color: white">
+                        <br>
+                        <div class="list-group">
+                            <a class="list-group-item vertical-center blogger-favourite"
+                               href="/${pageOwnerBloggerName}/blog/favourite/like">
+                                    <%--<i class="material-icons icons">favorite_border</i>&nbsp;--%>
+                                <img class="img24px" src="/images/icon/icons8-heart-outline-64.png">&nbsp;
+                                他喜欢的文章&nbsp;<span class="count">(${ownerBgStat.likedCount})</span>
+                            </a>
+                            <a class="list-group-item vertical-center blogger-favourite"
+                               href="/${pageOwnerBloggerName}/blog/favourite/collect">
+                                <img class="img24px" src="/images/icon/icons8-collect-50.png">&nbsp;
+                                他收藏的文章&nbsp;<span class="count">(${ownerBgStat.collectCount})</span>
+                            </a>
+                        </div>
+                    </div>
+                    <br>
+
+                        <%--标签--%>
+                    <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerLabelContainer').slideToggle()"
+                         onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerLabelContainer').slideToggle()"
+                         class="blogger-profile border">
+
+                        <p class="text-center blogger-profile-title">
+                            标签&nbsp;<small id="labelCount" style="color: darkgray">(${ownerBgStat.labelCount})</small>
+                        </p>
+
+                        <p class="text-center" style="display: none" id="bloggerLabelContainer">
+                    <span class="button-edit" id="labelEditBtn"
+                          data-target="#modifyLabelDialog" data-toggle="modal">编辑</span>
+                            <span class="button-edit-new" id="labelNewBtn"
+                                  data-target="#newLabelDialog" data-toggle="modal">新建</span>
+                        </p>
+
+                        <hr class="default-line">
+                        <p class="blogger-label-content" id="blogLabel">
+                        </p>
+
+                    </div>
+                    <br>
+
+                        <%--创建的类别--%>
+                    <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerCategoryContainer').slideToggle()"
+                         onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerCategoryContainer').slideToggle()"
+                         class="blogger-profile border">
+                        <p class="text-center blogger-profile-title">
+                            类别&nbsp;<small id="categoryCount" style="color: darkgray">(${ownerBgStat.categoryCount})
+                        </small>
+                        </p>
+
+                        <p class="text-center" style="display: none" id="bloggerCategoryContainer">
+                    <span class="button-edit" id="categoryEditBtn"
+                          data-target="#modifyCategoryDialog" data-toggle="modal">编辑</span>
+                            <span class="button-edit-new" id="categoryNewBtn"
+                                  data-target="#newCategoryDialog"
+                                  data-toggle="modal">新建</span>
+                        </p>
+                        <hr class="default-line">
+                        <div class="list-group category-list-group" id="blogCategory"></div>
+                    </div>
+                    <br>
+
+                        <%--联系我--%>
+                    <div onmouseenter="if(isPageOwnerBloggerLogin())$('#bloggerLinkContainer').slideToggle()"
+                         onmouseleave="if(isPageOwnerBloggerLogin())$('#bloggerLinkContainer').slideToggle()"
+                         class="blogger-profile border">
+                        <p class="text-center blogger-profile-title">
+                            联系我&nbsp;<small id="linkCount" style="color: darkgray">(${ownerBgStat.linkCount})</small>
+                        </p>
+
+                        <p class="text-center" style="display: none" id="bloggerLinkContainer">
+                    <span class="button-edit" id="linkEditBtn"
+                          data-target="#modifyLinkDialog" data-toggle="modal">编辑</span>
+                            <span class="button-edit-new" id="linkNewBtn"
+                                  data-target="#newLinkDialog" data-toggle="modal">新建</span>
+                        </p>
+                        <hr class="default-line">
+                        <p class="blogger-link" id="bloggerLink"></p>
+                    </div>
+                </div>
+
+            </c:otherwise>
+        </c:choose>
 
     </div>
 </div>
