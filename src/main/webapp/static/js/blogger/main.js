@@ -454,9 +454,16 @@ function setBlogs(array, defaulz) {
                 '<div class="col-md-' + colmd + '">' +
 
                 '<h4>' +
-                '<small style="color: black">' + dateFormat(item.releaseDate) + '</small><small class="list-group-item-count-text">&nbsp;&nbsp;' +
-                item.collectCount + '&nbsp;收藏&nbsp;&nbsp;' +
-                item.viewCount + '&nbsp;浏览&nbsp;&nbsp;' +
+                '<small style="color: black">' + dateFormat(item.releaseDate) + '</small>' +
+                '<small class="list-group-item-count-text">&nbsp;&nbsp;' +
+                '喜欢&nbsp;' + item.likeCount + '<span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>' +
+                '收藏&nbsp;' + item.collectCount + '<span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>' +
+                '<span class="text-clickable"' +
+                ' onclick="if (' + item.commentCount + ' > 0) ' +
+                'window.open(\'/' + pageOwnerBloggerName + '/blog/' + item.title + '/#comment\',\'_blank\')" >' +
+                '留言&nbsp;' + item.commentCount + '</span>' +
+                '<span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>' +
+                item.viewCount + '&nbsp;次浏览' +
                 '</small>' +
                 '</h4>' +
 
@@ -465,12 +472,6 @@ function setBlogs(array, defaulz) {
                 '<div class="vertical-center">' +
                 cates + '&nbsp;&nbsp;' +
                 (labels === '' ? '' : labels + '&nbsp;&nbsp;') +
-                '<span  style="color: darkgray;font-size: smaller">' +
-                '<img class="icon13px" src="/images/icon/icons8-heart-outline-64.png">&nbsp;' + item.likeCount + '&nbsp;&nbsp;&nbsp;' +
-                '<img class="icon13px-clickable" ' +
-                'onclick="if (' + item.commentCount + ' > 0) window.open(\'/' + pageOwnerBloggerName + '/blog/' + item.title + '/#comment\',\'_blank\')" ' +
-                'src="/images/icon/icons8-topic-64.png">&nbsp;' + item.commentCount + '&nbsp;&nbsp;' +
-                '</span>' +
                 '</div>' +
 
                 '</div>' +
@@ -492,7 +493,8 @@ function setBlogs(array, defaulz) {
             $('#blogList').css('display', 'none');
 
             $('#blogList').slideToggle('slow');
-        }, 1000);
+            // UPDATE 缩短手动延时
+        }, 500);
 
     }
 

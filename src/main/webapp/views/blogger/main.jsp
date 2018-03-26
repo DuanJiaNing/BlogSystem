@@ -212,7 +212,7 @@
                             </c:otherwise>
                         </c:choose>
                         <hr>
-                        <p class="text-center lead blogger-aboutme">${aboutMe}</p>
+                        <p class="text-center blogger-aboutme">${aboutMe}</p>
                     </div>
                     <br>
 
@@ -347,7 +347,7 @@
                             </c:otherwise>
                         </c:choose>
                         <hr>
-                        <p class="text-center lead blogger-aboutme">${aboutMe}</p>
+                        <p class="text-center blogger-aboutme">${aboutMe}</p>
                     </div>
                     <br>
 

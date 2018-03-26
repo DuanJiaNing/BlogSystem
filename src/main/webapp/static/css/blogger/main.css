@@ -1,6 +1,6 @@
 body {
     padding-top: 100px;
-    font-family: 微软雅黑, serif;
+    font-family: "Segoe UI Semibold", 微软雅黑, serif;
     /*font-weight: bold;*/
 
     background-size: cover;
@@ -30,14 +30,21 @@ a {
 }
 
 .list-group-item-count-text {
-    color: #8199AE;
+    /*color: #8199AE;*/
+    font-size: x-small;
+}
+
+.text-clickable:hover {
+    color: black;
+    cursor: pointer;
 }
 
 .blog-list-item-summary {
     font-size: small;
     padding-top: 10px;
     line-height: 24px;
-    color: #575F66;
+    color: black;
+    /*color: #575F66;*/
 
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -52,7 +59,7 @@ a {
 
 .avatar-img {
     height: 140px;
-    border: solid 5px #f0f0f0;
+    /*border: solid 5px #f0f0f0;*/
     /*width: 180px;*/
 }
 

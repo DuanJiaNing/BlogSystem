@@ -1,5 +1,5 @@
 body {
-    font-family: 微软雅黑, serif;
+    font-family: "Segoe UI Semibold", 微软雅黑, serif;
     /*font-weight: bold;*/
 
     background-color: #F9FAFB;
@@ -10,7 +10,7 @@ body {
 .avatar-img {
     height: 80px;
     width: 80px;
-    border: solid 5px #f0f0f0;
+    /*border: solid 5px #f0f0f0;*/
     /*width: 180px;*/
 }
 

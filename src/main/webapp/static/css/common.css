@@ -32,13 +32,14 @@ a {
 
 .form-input:focus {
     outline: 0;
-    font-weight: bold;
+    border-bottom: solid 1px #09b0e1;
 }
 
 .form-input {
     border-top: 0;
     border-left: 0;
     border-right: 0;
+    border-bottom: solid 1px lightgray;
     width: 100%;
     padding: 8px;
 }

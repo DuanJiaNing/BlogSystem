@@ -173,7 +173,7 @@
                         <span class="li-title">批量导入博文</span>
                         &nbsp;&nbsp;
                         <span class="button-edit-new" data-target="#editAvatarDialog"
-                              data-toggle="modal">下载</span>
+                              data-toggle="modal">导入</span>
                     </li>
                     <li class="list-group-item">
                         <span class="li-title">打包下载</span>
