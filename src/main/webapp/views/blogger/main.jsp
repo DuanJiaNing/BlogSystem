@@ -174,11 +174,6 @@
     <br>
 
     <div class="row">
-        <%--博文列表部分--%>
-        <div class="col-md-9">
-            <div id="blogList"></div>
-            <div class="box" id="box"></div>
-        </div>
 
         <%--右侧--%>
         <div class="col-md-3">
@@ -297,6 +292,12 @@
                 <hr class="default-line">
                 <p class="blogger-link" id="bloggerLink"></p>
             </div>
+        </div>
+
+        <%--博文列表部分--%>
+        <div class="col-md-9">
+            <div id="blogList"></div>
+            <div class="box" id="box"></div>
         </div>
 
     </div>

@@ -46,7 +46,8 @@ public class BlogRetrievalServiceImpl extends BlogFilterAbstract<ResultBean<List
     @Override
     protected ResultBean<List<BlogListItemDTO>> constructResult(Map<Integer, Blog> blogHashMap,
                                                                 List<BlogStatistics> statistics,
-                                                                Map<Integer, int[]> blogIdMapCategoryIds) {
+                                                                Map<Integer, int[]> blogIdMapCategoryIds,
+                                                                Map<Integer, String> blogImgs) {
 
         // 重组结果
         List<BlogListItemDTO> result = new ArrayList<>();
@@ -70,10 +71,11 @@ public class BlogRetrievalServiceImpl extends BlogFilterAbstract<ResultBean<List
                 labels = labelDao.listLabelById(lids);
             }
 
+            String blogImg = blogImgs.get(blogId);
             BlogListItemDTO dto = dataFillingManager.blogListItemToDTO(ss,
                     CollectionUtils.isEmpty(categories) ? null : categories.toArray(new BlogCategory[categories.size()]),
                     CollectionUtils.isEmpty(labels) ? null : labels.toArray(new BlogLabel[labels.size()]),
-                    blog);
+                    blog, blogImg);
 
             result.add(dto);
         }

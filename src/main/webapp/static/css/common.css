@@ -439,6 +439,11 @@ h4.default-h4 {
     height: 108px;
 }
 
+.img128px {
+    width: 128px;
+    height: 128px;
+}
+
 .clickable-gray:hover {
     background-color: #ebebeb;
 }

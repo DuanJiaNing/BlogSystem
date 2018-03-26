@@ -19,6 +19,8 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -55,9 +57,11 @@ public abstract class BlogFilterAbstract<T> implements BlogFilter<T> {
      * @param blogHashMap          博文id为键，博文为值的map
      * @param statistics           已排序的博文统计信息集合
      * @param blogIdMapCategoryIds 博文id为键，博文类别数组为值的map
+     * @param blogImgs
      * @return 最终结果
      */
-    protected abstract T constructResult(Map<Integer, Blog> blogHashMap, List<BlogStatistics> statistics, Map<Integer, int[]> blogIdMapCategoryIds);
+    protected abstract T constructResult(Map<Integer, Blog> blogHashMap, List<BlogStatistics> statistics,
+                                         Map<Integer, int[]> blogIdMapCategoryIds, Map<Integer, String> blogImgs);
 
     @Override
     public T listFilterAll(int[] categoryIds, int[] labelIds, String keyWord,
@@ -151,17 +155,28 @@ public abstract class BlogFilterAbstract<T> implements BlogFilter<T> {
 
         //方便排序后的重组
         Map<Integer, Blog> blogHashMap = new HashMap<>();
+
+        // 从 html 中获得图片
+        Map<Integer, String> blogImgs = new HashMap<>();
+
         for (Blog blog : blogs) {
             int blogId = blog.getId();
             BlogStatistics statistics = statisticsDao.getStatistics(blogId);
             temp.add(statistics);
             blogHashMap.put(blogId, blog);
+
+            String content = blog.getContent();
+            Pattern pattern = Pattern.compile("<img src=\"(.*)\" .*>");
+            Matcher matcher = pattern.matcher(content);
+            if (matcher.find())
+                blogImgs.put(blogId, matcher.group(1));
+
         }
 
         BlogListItemComparatorFactory factory = new BlogListItemComparatorFactory();
         temp.sort(factory.get(sortRule.getRule(), sortRule.getOrder()));
 
-        return constructResult(blogHashMap, temp, map);
+        return constructResult(blogHashMap, temp, map, blogImgs);
 
     }
 

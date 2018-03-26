@@ -19,11 +19,9 @@ import com.duan.blogos.service.BlogFilterAbstract;
 import com.duan.blogos.service.blogger.BloggerBlogService;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
-import jdk.nashorn.internal.runtime.options.Option;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.border.TitledBorder;
 import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -280,7 +278,8 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
     @Override
     protected ResultBean<List<BlogListItemDTO>> constructResult(Map<Integer, Blog> blogHashMap,
                                                                 List<BlogStatistics> statistics,
-                                                                Map<Integer, int[]> blogIdMapCategoryIds) {
+                                                                Map<Integer, int[]> blogIdMapCategoryIds,
+                                                                Map<Integer, String> blogImgs) {
         // 重组结果
         List<BlogListItemDTO> result = new ArrayList<>();
         for (BlogStatistics s : statistics) {

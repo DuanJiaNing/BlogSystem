@@ -60,7 +60,8 @@ public class DataFillingManager {
         return dto;
     }
 
-    public BlogListItemDTO blogListItemToDTO(BlogStatistics statistics, BlogCategory[] categories, BlogLabel[] labels, Blog blog) {
+    public BlogListItemDTO blogListItemToDTO(BlogStatistics statistics, BlogCategory[] categories, BlogLabel[] labels,
+                                             Blog blog, String blogImg) {
         BlogListItemDTO dto = new BlogListItemDTO();
         dto.setCategories(categories);
         dto.setLabels(labels);
@@ -72,6 +73,7 @@ public class DataFillingManager {
         dto.setSummary(blog.getSummary());
         dto.setTitle(blog.getTitle());
         dto.setViewCount(statistics.getViewCount());
+        dto.setImg(blogImg);
         return dto;
 
     }

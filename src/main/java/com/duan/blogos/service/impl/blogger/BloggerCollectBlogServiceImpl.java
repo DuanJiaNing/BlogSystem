@@ -114,7 +114,7 @@ public class BloggerCollectBlogServiceImpl implements BloggerCollectBlogService 
             BlogListItemDTO listItemDTO = fillingManager.blogListItemToDTO(statistics,
                     CollectionUtils.isEmpty(categories) ? null : categories.toArray(new BlogCategory[categories.size()]),
                     CollectionUtils.isEmpty(labels) ? null : labels.toArray(new BlogLabel[labels.size()]),
-                    blog);
+                    blog, null);
 
             // BloggerDTO
             int authorId = blog.getBloggerId();

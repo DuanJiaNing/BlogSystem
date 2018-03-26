@@ -18,17 +18,19 @@ a {
 }
 
 .blog-list-item-title {
-    color: #35404C;
+    /*color: #35404C;*/
+    color: #09B2E3;
     padding-left: 3px;
 }
 
 .blog-list-item-title:hover {
-    color: dimgray;
+    /*color: dimgray;*/
+    color: #08799e;
     cursor: pointer;
 }
 
 .list-group-item-count-text {
-    color: #0A0A0A;
+    color: #8199AE;
 }
 
 .blog-list-item-summary {

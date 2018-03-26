@@ -31,6 +31,9 @@ public class BlogListItemDTO implements Serializable {
     //博文标题
     private String title;
 
+    //博文图片
+    private String img;
+
     //博文摘要
     private String summary;
 

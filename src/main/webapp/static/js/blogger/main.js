@@ -422,6 +422,13 @@ function setBlogs(array, defaulz) {
                     + '</span>&nbsp;&nbsp;';
             }
 
+            var blogImg = item.img;
+            var colmd = 9, colmd2 = 3;
+            if (isStrEmpty_(blogImg)) {
+                colmd = 12;
+                colmd2 = 0;
+            }
+
             html += '<li ' +
                 'onmouseenter="if(isPageOwnerBloggerLogin()) $(this).find(\'.col-md-3 > p\').fadeToggle(\'fast\',\'linear\')" ' +
                 'onmouseleave="if(isPageOwnerBloggerLogin()) $(this).find(\'.col-md-3 > p\').fadeToggle(\'fast\',\'linear\')" ' +
@@ -443,29 +450,35 @@ function setBlogs(array, defaulz) {
                 '</div>' +
                 '</div>' +
 
-                '<h4>' +
-                '<small class="list-group-item-count-text"><b>' + dateFormat(item.releaseDate) + '</b>&nbsp;&nbsp;' +
+                '<div class="row" style="height: 155px">' +
+                '<div class="col-md-' + colmd + '">' +
 
+                '<h4>' +
+                '<small style="color: black">' + dateFormat(item.releaseDate) + '</small><small class="list-group-item-count-text">&nbsp;&nbsp;' +
                 item.collectCount + '收藏&nbsp;&nbsp;' +
                 item.viewCount + '浏览&nbsp;&nbsp;' +
                 '</small>' +
                 '</h4>' +
+
                 '<p class="blog-list-item-summary">' + item.summary + '</p><br>' +
 
-                '<div class="row">' +
-
-                '<div class="col-md-10"> ' +
-                '<span style="color: gray">' + cates + '&nbsp;&nbsp;</span>' +
-                (labels === '' ? '' : '<span style="color: gray">' + labels + '</span>') +
-                '</div>' +
-
-                '<div class="col-md-2" style="color: darkgray;font-size: smaller">&nbsp;&nbsp;&nbsp;&nbsp; ' +
+                '<div class="vertical-center">' +
+                cates + '&nbsp;&nbsp;' +
+                (labels === '' ? '' : labels + '&nbsp;&nbsp;') +
+                '<span  style="color: darkgray;font-size: smaller">' +
                 '<img class="icon13px" src="/images/icon/icons8-heart-outline-64.png">&nbsp;' + item.likeCount + '&nbsp;&nbsp;&nbsp;' +
                 '<img class="icon13px-clickable" ' +
                 'onclick="if (' + item.commentCount + ' > 0) window.open(\'/' + pageOwnerBloggerName + '/blog/' + item.title + '/#comment\',\'_blank\')" ' +
                 'src="/images/icon/icons8-topic-64.png">&nbsp;' + item.commentCount + '&nbsp;&nbsp;' +
+                '</span>' +
+                '</div>' +
+
+                '</div>' +
+                '<div style="height: 100%;" class="vertical-center col-md-' + colmd2 + '">' +
+                (!isStrEmpty_(blogImg) ? '<img class="img-rounded img128px" style="width: 100%;height: auto" src="' + blogImg + '">' : '') +
                 '</div>' +
                 '</div>' +
+
                 '</li><br>'
 
         }
