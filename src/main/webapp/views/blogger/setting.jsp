@@ -63,6 +63,11 @@
                     &nbsp;&nbsp;统计数据
                 </button>
             </div>
+
+            <br>
+            <small style="color: gray">
+                修改之后记得点击&nbsp;<b>保存</b>&nbsp;使修改生效。
+            </small>
         </div>
         <div class="col-md-9">
 
@@ -80,38 +85,58 @@
                     <li class="list-group-item" style="border: 0;">
                         <span class="li-title">用户名</span>
                         &nbsp;&nbsp;
-                        <input class="li-input" type="text" value="${sessionScope["bloggerName"]}">
+                        <input class="li-input" type="text" value="${sessionScope["bloggerName"]}"
+                               id="modifyBloggerName">
                     </li>
                     <li class="list-group-item">
                         <span class="li-title">电子邮件</span>
                         &nbsp;&nbsp;
-                        <input class="li-input" type="email" value="${profile.email}">
+                        <input class="li-input" type="email" value="${profile.email}" id="modifyProfileEmail">
                     </li>
                     <li class="list-group-item">
                         <span class="li-title">手机</span>
                         &nbsp;&nbsp;
-                        <input class="li-input" type="number" value="${profile.phone}">
+                        <input class="li-input" type="number" value="${profile.phone}" id="modifyProfilePhone">
                     </li>
 
                     <li class="list-group-item">
                         <span class="li-title">主页布局</span><br><br>
                         <div>
-                            <img style="height: 20%;width: auto" class="shadow-border"
-                                 onclick="chooseManNavPos(this,0)"
-                                 src="/images/img/main-page-nav-left.jpg">
-                            &nbsp;&nbsp;&nbsp;
-                            <img style="height: 20%;width: auto" class="shadow-border"
-                                 onclick="chooseManNavPos(this,1)"
-                                 src="/images/img/main-page-nav-right.jpg">
+                            <c:choose>
+                                <c:when test="${setting.mainPageNavPos eq 0}">
+
+                                    <img style="height: 20%;width: auto;border-radius: 5px;border-bottom: solid 2px #09B2E3"
+                                         id="mainPageNavLeft"
+                                         class="shadow-border"
+                                         onclick="chooseManNavPos(this,0)"
+                                         src="/images/img/main-page-nav-left.jpg">
+                                    &nbsp;&nbsp;&nbsp;
+                                    <img style="height: 20%;width: auto;border-radius: 5px" id="mainPageNavRight"
+                                         class="shadow-border"
+                                         onclick="chooseManNavPos(this,1)"
+                                         src="/images/img/main-page-nav-right.jpg">
+                                </c:when>
+                                <c:otherwise>
+
+                                    <img style="height: 20%;width: auto;border-radius: 5px" id="mainPageNavLeft"
+                                         class="shadow-border"
+                                         onclick="chooseManNavPos(this,0)"
+                                         src="/images/img/main-page-nav-left.jpg">
+                                    &nbsp;&nbsp;&nbsp;
+                                    <img style="height: 20%;width: auto;border-radius: 5px;border-bottom: solid 2px #09B2E3"
+                                         id="mainPageNavRight"
+                                         class="shadow-border"
+                                         onclick="chooseManNavPos(this,1)"
+                                         src="/images/img/main-page-nav-right.jpg">
+                                </c:otherwise>
+                            </c:choose>
                         </div>
 
                     </li>
                 </ul>
 
                 <br>
-                <br>
-                <br>
-                <button class="button-save">保存</button>
+                <button class="button-save" onclick="saveBaseDiv(this)">保存</button>
             </div>
 
             <div style="display: none" id="divProfile">

@@ -61,3 +61,7 @@ body {
     background-color: rgba(211, 211, 211, 0.22);
     border-radius: 8px;
 }
+
+.main-page-nav-choose {
+    border: solid 2px #09B2E3;
+}

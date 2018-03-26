@@ -19,13 +19,13 @@ a {
 
 .blog-list-item-title {
     /*color: #35404C;*/
-    color: #09B2E3;
+    color: #09b0e1;
     padding-left: 3px;
 }
 
 .blog-list-item-title:hover {
     /*color: dimgray;*/
-    color: #08799e;
+    color: black;
     cursor: pointer;
 }
 

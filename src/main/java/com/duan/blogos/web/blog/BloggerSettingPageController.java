@@ -3,6 +3,7 @@ package com.duan.blogos.web.blog;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.entity.blogger.BloggerProfile;
+import com.duan.blogos.entity.blogger.BloggerSetting;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.exception.api.blogger.BloggerNotLoggedInException;
 import com.duan.blogos.exception.api.blogger.UnknownBloggerException;
@@ -11,6 +12,7 @@ import com.duan.blogos.manager.validate.BloggerValidateManager;
 import com.duan.blogos.service.blogger.BloggerAccountService;
 import com.duan.blogos.service.blogger.BloggerPictureService;
 import com.duan.blogos.service.blogger.BloggerProfileService;
+import com.duan.blogos.service.blogger.BloggerSettingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -44,6 +46,9 @@ public class BloggerSettingPageController {
     @Autowired
     private BloggerPictureService pictureService;
 
+    @Autowired
+    private BloggerSettingService settingService;
+
     @RequestMapping
     public ModelAndView pageLike(HttpServletRequest request,
                                  @ModelAttribute
@@ -71,6 +76,9 @@ public class BloggerSettingPageController {
             profile.setAvatarId(picture.getId());
         }
         mv.addObject("profile", profile);
+
+        BloggerSetting setting = settingService.getSetting(bloggerId);
+        mv.addObject("setting",setting);
 
         return mv;
     }

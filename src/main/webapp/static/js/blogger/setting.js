@@ -27,6 +27,23 @@ function showDiv(id, th) {
 
 function chooseManNavPos(th, pos) {
 
+    if ($(th).attr('id') === 'mainPageNavLeft') {
+        $("#mainPageNavRight").css('border-bottom', 'solid 1px #DBE2E8');
+        $('#mainPageNavLeft').css('border-bottom', 'solid 2px #09B2E3');
+    } else {
+        $('#mainPageNavLeft').css('border-bottom', 'solid 1px #DBE2E8');
+        $('#mainPageNavRight').css('border-bottom', 'solid 2px #09B2E3');
+    }
+
+}
+
+function saveBaseDiv(th) {
+    var modifyBloggerName = $('#modifyBloggerName').val();
+    var modifyProfileEmail = $('#modifyProfileEmail').val();
+    var modifyProfilePhone = $('#modifyProfilePhone').val();
+
+
+
 }
 
 
