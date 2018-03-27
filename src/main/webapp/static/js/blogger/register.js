@@ -85,11 +85,30 @@ function checkInputAccount() {
     else return false;
 }
 
+var maxIntroCount = 25;
+var maxAboutMeCount = 180;
+
 function checkInputProfile() {
     if (checkInputEmptyWhenRegister('registerPhone') ||
         checkInputEmptyWhenRegister('registerEmail') ||
         checkInputEmptyWhenRegister('registerIntro') ||
         checkInputEmptyWhenRegister('registerAboutMe')) {
+        return false;
+    }
+
+    // 检查 intro 字数
+    var intro = $('#registerIntro').val();
+    if (intro.length > maxIntroCount) {
+        error('博客标题字数不能超过 ' + maxIntroCount + ' 个，当前 '
+            + intro.length + ' 字', 'registerErrorMsg', true, 3000);
+        return false;
+    }
+
+    // 检查 aboutMe 字数
+    var aboutMe = $('#registerAboutMe').val();
+    if (aboutMe.length > maxAboutMeCount) {
+        error('博主自述字数不能超过 ' + maxAboutMeCount + ' 个，当前 '
+            + aboutMe.length + ' 字', 'registerErrorMsg', true, 3000);
         return false;
     }
 
@@ -125,9 +144,8 @@ function checkInputProfile() {
 
 
 function errorInfoWhenRegister(msg) {
-    error(msg, 'registerErrorMsg', true);
+    error(msg, 'registerErrorMsg', true, 1000);
 }
-
 
 function register() {
     var userName = $('#registerUserName').val();

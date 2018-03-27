@@ -35,7 +35,7 @@ function addModifyLinkChoose(th) {
 
 function exeLinkUpdate(th, bloggerId, funWhenEditLinkSuccess) {
     if (checkHtmlEmpty('showChoosedLink')) {
-        error('请选择链接', 'modifyLinkErrorMsg', true)
+        error('请选择链接', 'modifyLinkErrorMsg', true, 1000)
         return;
     }
 
@@ -43,7 +43,7 @@ function exeLinkUpdate(th, bloggerId, funWhenEditLinkSuccess) {
     var newUrl = $('#editLinkUrl').val();
     var newBewrite = $('#editLinkBewrite').val();
     if (isStrEmpty(newTitle) && isStrEmpty(newBewrite) && isStrEmpty(newUrl)) {
-        error('请至少更新标题、url和说明其中之一', 'modifyLinkErrorMsg', true);
+        error('请至少更新标题、url和说明其中之一', 'modifyLinkErrorMsg', true, 1000);
         return;
     }
 
@@ -85,7 +85,7 @@ function exeLinkUpdate(th, bloggerId, funWhenEditLinkSuccess) {
                 }, 1000);
 
             } else {
-                error(result.msg, 'modifyLinkErrorMsg', false);
+                error(result.msg, 'modifyLinkErrorMsg', false, 1000);
             }
         }
     });
@@ -94,7 +94,7 @@ function exeLinkUpdate(th, bloggerId, funWhenEditLinkSuccess) {
 
 function exeLinkDelete(th, bloggerId, funWhenDeleteLinkSuccess) {
     if (checkHtmlEmpty('showChoosedLink')) {
-        error('请选择链接', 'modifyLinkErrorMsg', true)
+        error('请选择链接', 'modifyLinkErrorMsg', true, 1000)
         return;
     }
 
@@ -120,7 +120,7 @@ function exeLinkDelete(th, bloggerId, funWhenDeleteLinkSuccess) {
         });
 
         if (fail) {
-            error(msg, 'modifyLinkErrorMsg', true);
+            error(msg, 'modifyLinkErrorMsg', true, 1000);
             return;
         }
     }

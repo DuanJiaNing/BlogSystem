@@ -125,4 +125,14 @@ public class BloggerValidateManager {
         String regex = "^(?:(?=.*[A-z])(?=.*[0-9])).{6,12}$";
         return password.matches(regex);
     }
+
+    /**
+     * 检查博主主页个人信息栏位置，0 在左，1 在右
+     *
+     * @param mainPageNavPos 位置
+     * @return 非 0 或 1 时返回 false
+     */
+    public boolean checkMainPageNavPos(int mainPageNavPos) {
+        return mainPageNavPos == 0 || mainPageNavPos == 1;
+    }
 }

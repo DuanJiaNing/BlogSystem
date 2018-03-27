@@ -134,7 +134,7 @@ function countDown(count, cir, callback) {
  * @param id id
  * @param disappear 1s 后错误信息消失
  */
-function error(msg, id, disappear) {
+function error(msg, id, disappear, disTime) {
     var dom = $('#' + id);
     dom.html(msg);
     dom.css('background-color', 'red');
@@ -156,7 +156,7 @@ function error(msg, id, disappear) {
     };
 
     if (disappear)
-        setTimeout(f, 1000);
+        setTimeout(f, disTime);
 }
 
 function splash(msg, $dom, color, splashColor) {
@@ -205,7 +205,7 @@ function toggleDivState(blockId, noneId, boldId, normalId, errorMsgId, msg) {
     $('#' + boldId).css('font-weight', 'bold');
     $('#' + normalId).css('font-weight', 'normal');
 
-    error(msg, errorMsgId, true);
+    error(msg, errorMsgId, true, 1000);
 }
 
 /**

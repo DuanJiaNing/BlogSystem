@@ -66,7 +66,12 @@
 
             <br>
             <small style="color: gray">
-                修改之后记得点击&nbsp;<b>保存</b>&nbsp;使修改生效。
+                <hr>
+                <p>
+                    &nbsp;&nbsp;修改之后记得点击&nbsp;<b>保存</b><br>
+                    &nbsp;&nbsp;使修改生效。
+                </p>
+                <hr>
             </small>
         </div>
         <div class="col-md-9">
@@ -135,8 +140,7 @@
                     </li>
                 </ul>
 
-                <br>
-                <button class="button-save" onclick="saveBaseDiv(this)">保存</button>
+                <button class="button-save" id="settingBtnBase" onclick="saveBaseDiv()">保存</button>
             </div>
 
             <div style="display: none" id="divProfile">
@@ -144,7 +148,8 @@
                     <li class="list-group-item" style="border: 0;">
                         <span class="li-title">主页 title</span>
                         &nbsp;&nbsp;
-                        <input class="li-input" style="width: 80%" type="text" value="${profile.intro}">
+                        <input class="li-input" style="width: 80%" type="text" value="${profile.intro}"
+                               id="modifyProfileIntro">
                         <br>
                         <br>
                         <p class="text-right">
@@ -154,17 +159,15 @@
                     </li>
                     <li class="list-group-item">
                         <div class="vertical-center">
-                            <span class="li-title">个人简介</span>
+                            <span class="li-title">博主自述</span>
                             &nbsp;&nbsp;
-                            <textarea style="width: 80%" class="li-textarea">${profile.aboutMe}</textarea>
+                            <textarea style="width: 80%" class="li-textarea"
+                                      id="modifyProfileAboutMe">${profile.aboutMe}</textarea>
                         </div>
                     </li>
                 </ul>
 
-                <br>
-                <br>
-                <br>
-                <button class="button-save">保存</button>
+                <button class="button-save" id="settingBtnProfile" onclick="saveProfileDiv()">保存</button>
             </div>
 
             <div style="display: none" id="divAccount">
@@ -190,6 +193,9 @@
             <div style="display: none" id="divStatistic">
             </div>
 
+            <br>
+            <span class="error-msg" id="settingErrorMsg"></span>
+
         </div>
     </div>
 
@@ -201,6 +207,17 @@
 
 <script type="application/javascript">
     var bloggerId = ${sessionScope["bloggerId"]};
+
+    // baseSetting
+    var bloggerName = '${sessionScope["bloggerName"]}';
+    var email = '${profile.email}';
+    var phone = '${profile.phone}';
+    var mainNavPos = ${setting.mainPageNavPos};
+
+    // Profile
+    var intro = '${profile.intro}';
+    var aboutMe = '${profile.aboutMe}';
+
 </script>
 
 <script type="application/javascript" src="/js/paging.js"></script>

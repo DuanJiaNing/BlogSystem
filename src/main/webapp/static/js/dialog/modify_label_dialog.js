@@ -25,13 +25,13 @@ function addModifyLabelChoose(th) {
 
 function exeLabelUpdate(th, bloggerId, funWhenEditLabelSuccess) {
     if (checkHtmlEmpty('showChoosedLabel')) {
-        error('请选择标签', 'modifyLabelErrorMsg', true)
+        error('请选择标签', 'modifyLabelErrorMsg', true, 1000)
         return;
     }
 
     var newName = $('#chooseEditLabel > div > input').val();
     if (newName === '') {
-        error('请输入新的标签名', 'modifyLabelErrorMsg', true);
+        error('请输入新的标签名', 'modifyLabelErrorMsg', true, 1000);
         return;
     }
 
@@ -55,7 +55,7 @@ function exeLabelUpdate(th, bloggerId, funWhenEditLabelSuccess) {
                 }, 1000);
 
             } else {
-                error(result.msg, 'modifyLabelErrorMsg', false);
+                error(result.msg, 'modifyLabelErrorMsg', false, 1000);
             }
         }
     });
@@ -64,7 +64,7 @@ function exeLabelUpdate(th, bloggerId, funWhenEditLabelSuccess) {
 
 function exeLabelDelete(th, bloggerId, funWhenDeleteLabelSuccess) {
     if (checkHtmlEmpty('showChoosedLabel')) {
-        error('请选择标签', 'modifyLabelErrorMsg', true)
+        error('请选择标签', 'modifyLabelErrorMsg', true, 1000)
         return;
     }
 
@@ -90,7 +90,7 @@ function exeLabelDelete(th, bloggerId, funWhenDeleteLabelSuccess) {
         });
 
         if (fail) {
-            error(msg, 'modifyLabelErrorMsg', true);
+            error(msg, 'modifyLabelErrorMsg', true, 1000);
             return;
         }
     }

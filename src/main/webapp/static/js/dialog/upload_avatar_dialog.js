@@ -16,7 +16,7 @@ function selectImg(file) {
 //裁剪后的处理
 function saveAvatar(bloggerId) {
     if ($("#tailoringImg").attr("src") == null) {
-        error('还未选择图像', 'editAvatarErrorMsg', true);
+        error('还未选择图像', 'editAvatarErrorMsg', true, 1000);
         return false;
     } else {
         var cas = $('#tailoringImg').cropper('getCroppedCanvas');//获取被裁剪后的canvas
@@ -51,7 +51,7 @@ function sendAvatarData(base64url, bloggerId) {
                 }, 1000);
 
             } else {
-                error('上传失败', 'editAvatarErrorMsg', true);
+                error('上传失败', 'editAvatarErrorMsg', true, 1000);
                 disableButton(true, 'editAvatarBtn', '上传', "button-disable");
             }
         }

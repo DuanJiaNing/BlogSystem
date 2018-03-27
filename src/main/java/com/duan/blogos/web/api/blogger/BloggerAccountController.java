@@ -82,7 +82,7 @@ public class BloggerAccountController extends BaseBloggerController {
     /**
      * 修改用户名
      */
-    @RequestMapping(value = "/{bloggerId}/update=name", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{bloggerId}/item=name", method = RequestMethod.PUT)
     public ResultBean modifyUsername(HttpServletRequest request,
                                      @PathVariable Integer bloggerId,
                                      @RequestParam(value = "username") String newUserName) {
@@ -102,7 +102,7 @@ public class BloggerAccountController extends BaseBloggerController {
     /**
      * 修改密码
      */
-    @RequestMapping(value = "/{bloggerId}/update=pwd", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{bloggerId}/item=pwd", method = RequestMethod.PUT)
     public ResultBean modifyPassword(HttpServletRequest request,
                                      @PathVariable Integer bloggerId,
                                      @RequestParam(value = "old") String oldPassword,

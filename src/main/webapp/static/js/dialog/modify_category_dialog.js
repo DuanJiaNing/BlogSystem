@@ -33,14 +33,14 @@ function addModifyCategoryChoose(th) {
 
 function exeCategoryUpdate(th, bloggerId, funWhenEditCategorySuccess) {
     if (checkHtmlEmpty('showChoosedCategory')) {
-        error('请选择类别', 'modifyCategoryErrorMsg', true)
+        error('请选择类别', 'modifyCategoryErrorMsg', true, 1000)
         return;
     }
 
     var newTitle = $('#editCategoryTitle').val();
     var newBewrite = $('#editCategoryBewrite').val();
     if (isStrEmpty(newTitle) && isStrEmpty(newBewrite)) {
-        error('请至少更新标题和说明其中之一', 'modifyCategoryErrorMsg', true);
+        error('请至少更新标题和说明其中之一', 'modifyCategoryErrorMsg', true, 1000);
         return;
     }
 
@@ -83,7 +83,7 @@ function exeCategoryUpdate(th, bloggerId, funWhenEditCategorySuccess) {
                 }, 1000);
 
             } else {
-                error(result.msg, 'modifyCategoryErrorMsg', false);
+                error(result.msg, 'modifyCategoryErrorMsg', false, 1000);
             }
         }
     });
@@ -92,7 +92,7 @@ function exeCategoryUpdate(th, bloggerId, funWhenEditCategorySuccess) {
 
 function exeCategoryDelete(th, bloggerId, funWhenDeleteCategorySuccess) {
     if (checkHtmlEmpty('showChoosedCategory')) {
-        error('请选择类别', 'modifyCategoryErrorMsg', true)
+        error('请选择类别', 'modifyCategoryErrorMsg', true, 1000)
         return;
     }
 
@@ -118,7 +118,7 @@ function exeCategoryDelete(th, bloggerId, funWhenDeleteCategorySuccess) {
         });
 
         if (fail) {
-            error(msg, 'modifyCategoryErrorMsg', true);
+            error(msg, 'modifyCategoryErrorMsg', true, 1000);
             return;
         }
     }
