@@ -444,7 +444,7 @@ function setBlogs(array, defaulz) {
                 '<div class="col-md-3">' +
                 '<p style="display: none;" class="text-right">' +
                 '<span class="button-edit" onclick="window.open(\'/edit_blog?bid=' + pageOwnerBloggerId + '&blogId=' +
-                item.id + '\',\'_blank\')">编辑</span>&nbsp;&nbsp;<span class="button-edit-check">数据</span>&nbsp;&nbsp;' +
+                item.id + '\',\'_blank\')">编辑</span>&nbsp;&nbsp;<span class="button-edit-check" onclick="showBlogStatisticsDialog(' + item.id + ')">数据</span>&nbsp;&nbsp;' +
                 '<span class="button-edit-delete" onclick="showDeleteConfirmDialog(' + item.id + ')">删除</span>' +
                 '</p>' +
                 '</div>' +
@@ -511,6 +511,10 @@ function showDeleteConfirmDialog(blogId) {
     $('#confirmDialog').modal('show');
     $('#confirmText').html('确认删除，删除后将无法恢复');
     confirmDeleteBlogId = blogId;
+}
+
+function showBlogStatisticsDialog(blogId) {
+    window.open('/' + pageOwnerBloggerName + '/blog-statistics?blogId=' + blogId, '_blank');
 }
 
 // -------------------------------------------------------------------------------------------------------- 确认删除博文
