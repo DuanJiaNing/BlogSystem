@@ -1,0 +1,27 @@
+body {
+    /*padding-top: 100px;*/
+    font-family: "Segoe UI Semibold", 微软雅黑, serif;
+    /*font-weight: bold;*/
+
+    background-size: cover;
+    background-color: #F9FAFB;
+    /*background: url(/images/background.jpg) no-repeat fixed center center;*/
+}
+
+a {
+    cursor: pointer;
+}
+
+.blog-comment {
+    width: 10px;
+    overflow: hidden;/*超出部分隐藏*/
+    white-space: nowrap;/*不换行*/
+    text-overflow:ellipsis;/*超出部分文字以...显示*/
+}
+
+.blog-author {
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: medium;
+    font-weight: bold;
+}

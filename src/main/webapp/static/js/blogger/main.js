@@ -430,8 +430,8 @@ function setBlogs(array, defaulz) {
             }
 
             html += '<li ' +
-                'onmouseenter="if(isPageOwnerBloggerLogin()) $(this).find(\'.col-md-3 > p\').fadeToggle(\'fast\',\'linear\')" ' +
-                'onmouseleave="if(isPageOwnerBloggerLogin()) $(this).find(\'.col-md-3 > p\').fadeToggle(\'fast\',\'linear\')" ' +
+                'onmouseenter="$(this).find(\'.button-edit-check\').fadeToggle(\'fast\');if(isPageOwnerBloggerLogin()) $(this).find(\'.loginNeedEdit\').fadeToggle(\'fast\')" ' +
+                'onmouseleave="$(this).find(\'.button-edit-check\').fadeToggle(\'fast\');if(isPageOwnerBloggerLogin()) $(this).find(\'.loginNeedEdit\').fadeToggle(\'fast\')" ' +
                 'class="list-group-item blog-list-item shadow-border">' +
                 '<div class="row">' +
                 '<div class="col-md-9">' +
@@ -441,13 +441,15 @@ function setBlogs(array, defaulz) {
                 item.title + '</span></h3>' +
                 '</p>' +
                 '</div>' +
+
                 '<div class="col-md-3">' +
-                '<p style="display: none;" class="text-right">' +
-                '<span class="button-edit" onclick="window.open(\'/edit_blog?bid=' + pageOwnerBloggerId + '&blogId=' +
-                item.id + '\',\'_blank\')">编辑</span>&nbsp;&nbsp;<span class="button-edit-check" onclick="showBlogStatisticsDialog(' + item.id + ')">数据</span>&nbsp;&nbsp;' +
-                '<span class="button-edit-delete" onclick="showDeleteConfirmDialog(' + item.id + ')">删除</span>' +
+                '<p class="text-right">' +
+                '<span style="display: none;" class="button-edit loginNeedEdit" onclick="window.open(\'/edit_blog?bid=' + pageOwnerBloggerId + '&blogId=' + item.id + '\',\'_blank\')">编辑</span>&nbsp;&nbsp;' +
+                '<span style="display: none;" class="button-edit-delete loginNeedEdit" onclick="showDeleteConfirmDialog(' + item.id + ')">删除</span>&nbsp;&nbsp;' +
+                '<span style="display: none;" class="button-edit-check" onclick="showBlogStatisticsDialog(' + item.id + ')">数据</span>' +
                 '</p>' +
                 '</div>' +
+
                 '</div>' +
 
                 '<div class="row" style="height: 155px">' +

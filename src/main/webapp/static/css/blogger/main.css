@@ -63,11 +63,6 @@ a {
     /*width: 180px;*/
 }
 
-.divcss5 img {
-    max-width: 300px;
-    _width: expression(this.width > 300 ? "300px" : this.width);
-}
-
 .avatar-img-editable:hover {
     opacity: 0.8;
     cursor: pointer;

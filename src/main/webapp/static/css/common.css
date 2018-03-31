@@ -326,6 +326,10 @@ h4.default-h4 {
     box-shadow: 0 0 30px #e2e2e2;
 }
 
+.shadow {
+    box-shadow: 0 0 30px #e2e2e2;
+}
+
 .count {
     color: orangered;
     font-size: small;

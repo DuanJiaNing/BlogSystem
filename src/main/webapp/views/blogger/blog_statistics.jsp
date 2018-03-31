@@ -21,6 +21,7 @@
           rel="stylesheet">
 
     <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/blogger/blog_statistics.css">
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 要在最前面引入-->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/core.js"></script>
@@ -38,68 +39,92 @@
 <body>
 <div class="container">
 
-    <p class="lead" id="blogStatistics-title"></p>
-    <hr>
-    <p>
-        博文首次发布于&nbsp;
-        <mark id="blogStatistics-releaseDate"></mark>
-        <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-        最近修改时间&nbsp;
-        <mark id="blogStatistics-nearestModifyDate"></mark>
-    </p>
-
-    <p class="vertical-center">
-        浏览次数&nbsp;<mark id="blogStatistics-viewCount"></mark>
-        <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-        字数&nbsp;<mark id="blogStatistics-wordCount"></mark>
-    </p>
-
-    <br>
-    <p>
-        <mark id="blogStatistics-likeCount"></mark>&nbsp;<b>名博主喜欢了该篇博文</b>
-    <hr class="default-line">
-    <br>
-
-    <div class="row" id="blogStatistics-liker">
-    </div>
-    </p>
-
-    <p>
-        <mark id="blogStatistics-collectCount"></mark>&nbsp;<b>名博主收藏了该篇博文</b>
-    <hr class="default-line">
-    <br>
-
-    <div class="row" id="blogStatistics-collector">
-    </div>
-    </p>
-
-    <hr>
-    <p>
-        <b>精彩评论</b>(
-        <mark id="blogStatistics-commentCount"></mark>
-        )
-    <hr class="default-line">
-
-    <div class="row" id="blogStatistics-comment">
-    </div>
-    </p>
-
-
     <%--标题--%>
     <%--字数、首次发布日期、最近修改日期--%>
     <%--浏览次数--%>
 
     <%--头像：评论、喜欢、收藏--%>
 
+    <p class="lead" id="blogStatistics-title"></p>
+    <hr>
+
+    <div class="row">
+        <div class="col-md-7">
+            <div class="panel panel-default shadow">
+                <div class="panel-body" style="margin: 32px;">
+
+                    <br>
+                    <p>
+                        <b>作者：</b>
+                        <a target="_blank" href="/${bloggerName}/archives"
+                           class="button-info blog-author">${bloggerName}</a>
+                    </p>
+                    <br>
+                    <p>
+                        博文首次发布于&nbsp;
+                        <mark id="blogStatistics-releaseDate"></mark>
+                        <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                        最近修改时间&nbsp;
+                        <mark id="blogStatistics-nearestModifyDate"></mark>
+                    </p>
+
+                    <p class="vertical-center">
+                        浏览次数&nbsp;<mark id="blogStatistics-viewCount"></mark>
+                        <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                        字数&nbsp;<mark id="blogStatistics-wordCount"></mark>
+                    </p>
+
+                    <br>
+                    <p>
+                        <mark id="blogStatistics-likeCount"></mark>&nbsp;<b>名博主喜欢了这篇博文</b>
+                    <hr class="default-line">
+                    <br>
+
+                    <div class="row" id="blogStatistics-liker">
+                    </div>
+                    </p>
+
+                    <p>
+                        <mark id="blogStatistics-collectCount"></mark>&nbsp;<b>名博主收藏了这篇博文</b>
+                    <hr class="default-line">
+                    <br>
+
+                    <div class="row" id="blogStatistics-collector">
+                    </div>
+                    </p>
+
+                    <button class="button-save" id="newLinkBtn" onclick="goCheckBlog()">前往查看
+                    </button>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <p>
+                <b>精彩评论</b>(
+                <mark id="blogStatistics-commentCount"></mark>
+                )
+            <hr>
+
+            <div id="blogStatistics-comment" style="overflow: auto">
+            </div>
+            </p>
+
+        </div>
+    </div>
 
 </div>
 
-<script type="application/javascript" src="/js/common.js"></script>
-<script type="application/javascript" src="/js/blogger/blog_statistics.js"></script>
+<br>
+<jsp:include page="/views/footer.jsp"/>
 
 <script type="application/javascript">
     var blogId = ${blogId};
+    var bloggerName = '${bloggerName}';
 </script>
+
+<script type="application/javascript" src="/js/common.js"></script>
+<script type="application/javascript" src="/js/blogger/blog_statistics.js"></script>
 
 
 </body>
