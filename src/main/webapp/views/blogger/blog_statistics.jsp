@@ -37,7 +37,7 @@
 
 </head>
 <body>
-<div class="container">
+<div class="container" style="min-height: 80%">
 
     <%--标题--%>
     <%--字数、首次发布日期、最近修改日期--%>
@@ -106,7 +106,7 @@
                 )
             <hr>
 
-            <div id="blogStatistics-comment" style="overflow: auto">
+            <div id="blogStatistics-comment" style="overflow: auto;max-height: 60%;">
             </div>
             </p>
 

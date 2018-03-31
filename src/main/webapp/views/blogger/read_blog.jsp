@@ -85,37 +85,40 @@
 
 <div class="container" style="min-height: 100%;">
 
-    <div class="row">
+    <div class="row border" style="background-color: white">
         <div class="col-md-2"></div>
         <div class="col-md-8">
-            <div>
+            <br>
+            <br>
 
-                <p class="text-center title">
-                    ${main["title"]}
-                </p>
-                <p class="text-center">
-                    <small style="color: gray">
-                        <a target="_blank" href="/${bloggerName}/archives"
-                           class="button-info blog-author">${bloggerName}</a>&nbsp;&nbsp;&nbsp;发表于&nbsp;
-                        <script>document.write(dateFormat(new Date('${main.releaseDate}')))</script>
-                        <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                        喜欢&nbsp;<span id="blogLikeCount">${stat.likeCount}</span>
-                        <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                        收藏&nbsp;<span id="blogCollectCount">${stat.collectCount}</span>
-                        <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                        留言&nbsp;<span id="blogCommentCount">${stat.commentCount}</span>
-                        <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                        ${main["wordCount"]}&nbsp;字
-                        <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                        <span id="blogViewCount">${stat.viewCount}</span>&nbsp;次浏览
-                    </small>
-                </p>
-                <hr>
+            <p class="text-center title">
+                ${main["title"]}
+            </p>
+            <p class="text-center">
+                <small style="color: gray">
+                    <a target="_blank" href="/${bloggerName}/archives"
+                       class="button-info blog-author">${bloggerName}</a>&nbsp;&nbsp;&nbsp;发表于&nbsp;
+                    <script>document.write(dateFormat(new Date('${main.releaseDate}')))</script>
+                    <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    喜欢&nbsp;<span id="blogLikeCount">${stat.likeCount}</span>
+                    <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    收藏&nbsp;<span id="blogCollectCount">${stat.collectCount}</span>
+                    <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    留言&nbsp;<span id="blogCommentCount">${stat.commentCount}</span>
+                    <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    ${main["wordCount"]}&nbsp;字
+                    <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    <span id="blogViewCount">${stat.viewCount}</span>&nbsp;次浏览
+                </small>
+            </p>
+            <hr>
 
-                <p class="text-center">
-                    ${main["content"]}
-                </p>
-            </div>
+            <p class="text-center">
+                ${main["content"]}
+            </p>
+
+            <br>
+            <br>
         </div>
         <div class="col-md-2"></div>
     </div>

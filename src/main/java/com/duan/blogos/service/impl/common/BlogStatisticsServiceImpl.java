@@ -79,6 +79,8 @@ public class BlogStatisticsServiceImpl implements BlogStatisticsService {
         Blog blog = blogDao.getBlogById(blogId);
         if (blog == null) return null;
 
+        int bloggerId = blog.getBloggerId();
+
         // 统计信息
         BlogStatistics statistics = statisticsDao.getStatistics(blogId);
         if (statistics == null) return null;
@@ -107,7 +109,7 @@ public class BlogStatisticsServiceImpl implements BlogStatisticsService {
             for (BlogLike like : likeList) {
                 ids[c++] = like.getLikerId();
             }
-            likes = getBlogger(ids);
+            likes = getBlogger(ids, bloggerId);
         }
 
         // 收藏了该篇文章的人
@@ -119,7 +121,7 @@ public class BlogStatisticsServiceImpl implements BlogStatisticsService {
             for (BlogCollect collect : collectList) {
                 ids[c++] = collect.getCollectorId();
             }
-            collects = getBlogger(ids);
+            collects = getBlogger(ids, bloggerId);
         }
 
         // 评论过该篇文章的人
@@ -135,7 +137,7 @@ public class BlogStatisticsServiceImpl implements BlogStatisticsService {
                     ids[c++] = id;
             }
             // ids 需要去重
-            commenter = getBlogger(IntStream.of(Arrays.copyOf(ids, c)).distinct().toArray());
+            commenter = getBlogger(IntStream.of(Arrays.copyOf(ids, c)).distinct().toArray(), bloggerId);
         }
 
         BlogStatisticsDTO dto = dataFillingManager.blogStatisticsToDTO(blog, statistics, categories, labels,
@@ -145,7 +147,7 @@ public class BlogStatisticsServiceImpl implements BlogStatisticsService {
     }
 
     // 获得博主dto
-    private BloggerDTO[] getBlogger(int[] ids) {
+    private BloggerDTO[] getBlogger(int[] ids, int bloggerId) {
         if (CollectionUtils.isEmpty(ids)) return null;
 
         BloggerDTO[] dtos = new BloggerDTO[ids.length];
@@ -160,6 +162,15 @@ public class BlogStatisticsServiceImpl implements BlogStatisticsService {
 
             if (avatar != null)
                 avatar.setPath(stringConstructorManager.constructPictureUrl(avatar, BloggerPictureCategoryEnum.DEFAULT_BLOGGER_AVATAR));
+
+            // 设置默认头像
+            if (avatar == null) {
+                avatar = new BloggerPicture();
+                avatar.setBloggerId(bloggerId);
+                avatar.setCategory(BloggerPictureCategoryEnum.PUBLIC.getCode());
+                avatar.setId(-1);
+                avatar.setPath(stringConstructorManager.constructPictureUrl(avatar, BloggerPictureCategoryEnum.DEFAULT_BLOGGER_AVATAR));
+            }
 
             BloggerDTO dto = dataFillingManager.bloggerAccountToDTO(account, profile, avatar);
             dtos[c++] = dto;
