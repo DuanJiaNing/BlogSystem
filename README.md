@@ -88,7 +88,7 @@ http://...XXX.../blogger/1/link?iconId=2&title=Git&url=https://git&bewrite=描�
 ![](https://raw.githubusercontent.com/DuanJiaNing/Pictures/master/BlogSystem/blogger-setting.png)
 
 #### 博文统计数据页面
-![](https://raw.githubusercontent.com/DuanJiaNing/Pictures/master/BlogSystem/blog-statistics)
+![](https://raw.githubusercontent.com/DuanJiaNing/Pictures/master/BlogSystem/blog-statistics.png)
 
 
 License
