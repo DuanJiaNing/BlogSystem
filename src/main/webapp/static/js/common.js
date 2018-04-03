@@ -113,19 +113,17 @@ function getArrayIndex(array, item) {
  * @param callback 回调函数，如果需要结束倒计数（默认倒数到0时结束），返回true，否则返回false
  */
 function countDown(count, cir, callback) {
-    if (count <= 0) return;
-
     var timer;
 
     var down = function () {
-        if (callback(count)) {
+        if (count <= 0 || callback(count)) {
             clearInterval(timer);
         } else {
             count--;
         }
     };
 
-    timer = setInterval(down, 1000);
+    timer = setInterval(down, cir);
 }
 
 /**
