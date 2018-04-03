@@ -1,5 +1,5 @@
 body {
-    font-family: "Segoe UI Semibold", 微软雅黑, serif;
+    font-family: 微软雅黑,华文细黑,"Segoe UI Semibold", serif;
 
     background-size: cover;
     background-color: #F9FAFB;
@@ -64,4 +64,9 @@ a {
 
 .sper-top {
     border-top: solid 1px #e9e9e9;
+}
+
+.blog-content {
+    line-height: 30px;
+    font-size: 1.2em;
 }

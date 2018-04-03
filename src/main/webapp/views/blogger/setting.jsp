@@ -11,6 +11,7 @@
 
 <%@ include file="/views/nav/nav_setting.jsp" %>
 <%@ include file="/views/dialog/toast_dialog.jsp" %>
+<%@ include file="/views/dialog/blog_import.jsp" %>
 
 <html>
 <head>
@@ -175,7 +176,7 @@
                     <li class="list-group-item" style="border: 0;">
                         <span class="li-title">批量导入博文</span>
                         &nbsp;&nbsp;
-                        <span class="button-edit-new" data-target="#editAvatarDialog"
+                        <span class="button-edit-new" data-target="#fileUploadDialog"
                               data-toggle="modal">导入</span>
                     </li>
                     <li class="list-group-item">

@@ -96,7 +96,7 @@
             </p>
             <p class="text-center">
                 <small style="color: gray">
-                    <a target="_blank" href="/${bloggerName}/archives"
+                    <a href="/${bloggerName}/archives"
                        class="button-info blog-author">${bloggerName}</a>&nbsp;&nbsp;&nbsp;发表于&nbsp;
                     <script>document.write(dateFormat(new Date('${main.releaseDate}')))</script>
                     <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
@@ -113,9 +113,9 @@
             </p>
             <hr>
 
-            <p class="text-center">
+            <div class="blog-content">
                 ${main["content"]}
-            </p>
+            </div>
 
             <br>
             <br>

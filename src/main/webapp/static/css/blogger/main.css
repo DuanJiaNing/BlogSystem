@@ -40,7 +40,7 @@ a {
 }
 
 .blog-list-item-summary {
-    font-size: small;
+    font-size: 1.0em;
     padding-top: 10px;
     line-height: 24px;
     color: black;
