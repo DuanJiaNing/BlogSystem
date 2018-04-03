@@ -1,64 +1,76 @@
 <%@ page pageEncoding="utf-8" %>
 <html>
 <head>
-    <%--<meta http-equiv="content-type" content="text/html; charset=UTF-8">--%>
-    <%--<meta charset="UTF-8">--%>
-
-    <script type="text/javascript">
-
-        function onSubmit() {
-            var method = document.getElementById('method').value;
-            var action = document.getElementById('action').value;
-            var form = document.getElementById('form');
-            form.method = method;
-            form.action = action;
-            form.submit();
+    <style>
+        .step {
+            padding: 2%;
+            border: solid 1px gray;
+            border-radius: 5px;
+            margin-top: 16px;
+            background-color: white;
         }
 
-        function onSubmit1() {
-            var bid = document.getElementById('bid').value;
-            var methd = document.getElementById('method1').value;
-            var form = document.getElementById('form1');
-            form.method = methd;
-            form.action = 'http://localhost:8080/image/' + bid;
-            form.submit();
+        li {
+            margin-top: 5px;
         }
-
-    </script>
-
+    </style>
 </head>
-<body>
-<h2>上传图片</h2>
-<ul>
-    <li>method:<input type="text" id="method1" value="post"></li>
-    <li>bloggerId：<input type="number" id="bid" value="1"></li>
-</ul>
-<form enctype="multipart/form-data" id="form1">
-    <input type="file" name="image"> <br>
-    category:<input type="number" name="category"><br>
-    bewrite:<input type="text" name="bewrite"><br>
-    title:<input type="text" name="title"><br>
-    <input type="button" onclick="onSubmit1()" value="提交">
-</form>
+<body style="padding: 5% 10%;background-color: rgba(49,255,233,0.04)">
+<h1>BlogSystem&nbsp;用前必看</h1>
 
-<hr>
-<hr>
-<ul>
-    <li>method:<input type="text" id="method" value="post"></li>
-    <li>action:<input type="text" id="action" value="http://localhost:8080/blogger/1/blog"></li>
-</ul>
-<h2>新增博文</h2>
-<form id="form">
+<div class="step">
+    <h2>Step 1</h2>
     <ol>
-        <li>cids:<input type="text" name="cids"></li>
-        <li>lids:<input type="text" name="lids"></li>
-        <li>title:<input type="text" name="title"></li>
-        <li>content:<input type="text" name="content"/></li>
-        <li>summary:<input type="text" name="summary"></li>
-        <li>keyWords:<input type="text" name="keyWords"></li>
+        <li>
+            测试系统前需前往系统&nbsp;<b><a href="http://localhost:8080/register">注册页面</a></b>&nbsp;注册一位博主，<b>确保数据库blogger_account表中其对应的主键id为1</b>（
+            conf.properties中配置了默认的图片管理员为id为1的博主）
+        </li>
+        <li>
+            id 为 1 的博主<b>登录</b>
+        </li>
+        <li>
+            在下方&nbsp;<b>上传博主默认头像</b>&nbsp;栏中上传博主默认头像
+        </li>
+        <li>
+            可以前往主页访问了:&nbsp;
+            <span style="color: whitesmoke;background-color: #00b4a5">http://localhost:8080/<b>博主用户名</b>/archives</span>
+        </li>
     </ol>
-    <input type="button" onclick="onSubmit()" value="提交">
-</form>
+
+    <br>
+    <h3>登录</h3>
+    <hr>
+    <form action="http://localhost:8080/blogger/login/way=name" method="post">
+        <table>
+            <tr>
+                <td>用户名</td>
+                <td>
+                    <input type="text" name="username">
+                </td>
+            </tr>
+            <tr>
+                <td>密码</td>
+                <td>
+                    <input type="text" name="password">
+                </td>
+            </tr>
+        </table>
+
+        <br>
+        <input type="submit" value="登录">
+    </form>
+
+    <br>
+    <h3>上传博主默认头像</h3>
+    <hr>
+    <form enctype="multipart/form-data" action="http://localhost:8080/image/1" method="post">
+        <input type="file" name="image" accept="image/*">
+        <input type="hidden" name="category" value="13">
+        <br>
+        <br>
+        <input type="submit" value="上传">
+    </form>
+</div>
 
 </body>
 </html>
