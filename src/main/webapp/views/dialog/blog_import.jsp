@@ -25,36 +25,42 @@
             </div>
 
             <div class="modal-body dialog-body">
-                <form enctype="multipart/form-data" id="patchImportForm" action="/blogger/${sessionScope["bloggerId"]}/blog/patch"
-                      method="post">
-                    <div class="row">
-                        <div class="col-md-8 vertical-center">
-                            <a class="file">选择文件
-                                <input type="file" accept=".zip" name="zipFile" onchange="chooseFileChange(this)">
-                            </a>
-                            &nbsp;&nbsp;<small style="color: gray;">请将博文打包为&nbsp;<b>zip</b>&nbsp;格式再上传</small>
-                        </div>
-                        <div class="col-md-4 vertical-center">
-                            <p class="text-right" style="width: 100%;margin-top: 10px">
-                                <button onclick="importBlog()" class="button-edit-check">上传</button>
-                            </p>
-                        </div>
+                <div class="row">
+                    <div class="col-md-8 vertical-center">
+                        <a class="file">选择文件
+                            <input type="file" accept=".zip" id="zipFile" onchange="chooseFileChange(this)">
+                        </a>
+                        &nbsp;&nbsp;<small style="color: gray;">请将博文打包为&nbsp;<b>zip</b>&nbsp;格式再上传</small>
                     </div>
+                    <div class="col-md-4 vertical-center">
+                        <p class="text-right" style="width: 100%;margin-top: 10px">
+                            <button onclick="importBlog(${sessionScope["bloggerId"]})" class="button-edit-check">
+                                上传
+                            </button>
+                        </p>
+                    </div>
+                </div>
 
-                </form>
                 <hr>
                 <div class="progress">
                     <div class="progress-bar progress-bar-danger progress-bar-striped" id="progressbar"
                          role="progressbar"
-                         aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 1%">
+                         aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
                         <span class="sr-only">80% Complete (danger)</span>
                     </div>
                 </div>
 
                 <br>
-                <span class="error-msg" id="blogImportErrorMsg"></span>
+                <small id="processStatus"></small>&nbsp;&nbsp;
                 <small id="showChoosedFileName"></small>&nbsp;&nbsp;
-                <small id="processStatus"></small>
+                <span class="error-msg" id="blogImportErrorMsg"></span>
+
+                <br>
+                <br>
+                <div id="importSucc">
+
+                </div>
+
             </div>
 
         </div><!-- /.modal-content -->

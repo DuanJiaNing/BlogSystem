@@ -1,10 +1,17 @@
 function chooseFileChange(th) {
     $('#showChoosedFileName').html(th.files[0].name);
+
+    $('#progressbar').css('width', '0%');
+    $('#progressbar').removeClass('active');
+
+    $('#processStatus').html('');
+    $('#importSucc').html('');
+
 }
 
 var process = false;
 
-function importBlog() {
+function importBlog(bloggerId) {
 
     if (process) {
         error('正在处理', 'blogImportErrorMsg', true, 1000);
@@ -14,30 +21,97 @@ function importBlog() {
     var name = $('#showChoosedFileName').html();
     if (isStrEmpty_(name)) {
         error('请先选择文件', 'blogImportErrorMsg', true, 1000);
-        return false;
+        return;
     }
     if (name.indexOf('.zip') !== name.length - 4) {
         error('文件格式不正确，请重新选择 zip 文件', 'blogImportErrorMsg', true, 3000);
-        return false;
+        return;
     }
 
     $('#progressbar').addClass('active');
     $('#processStatus').html('正在上传...');
     process = true;
+
     //从默认的 1% -> 60% 上传时间
-    countDown(59, 20, function (count) {
+    var stopSuc = false;
+    var stopFail = false;
+    countDown(60, 20, function (count) {
+        if (stopFail) {
+            $('#progressbar').css('width', '0%');
+            return true;
+        }
+
+        if (stopSuc) {
+            $('#progressbar').css('width', '60%');
+            return true;
+        }
         $('#progressbar').css('width', (60 - count) + '%');
     });
 
-    $("#patchImportForm").submit(function(message){
-        alert(message);
+    var data = new FormData();
+    data.append('zipFile', $('#zipFile').prop('files')[0]);
+
+    $.ajax({
+        url: '/blogger/' + bloggerId + '/blog/patch',
+        type: 'POST',
+        data: data,
+        cache: false,
+        processData: false,
+        contentType: false,
+        success: function (result) {
+
+            if (result.code === 0) {
+                stopSuc = true;
+
+                // 60% -> 100% 处理时间
+                $('#processStatus').html('正在解析...');
+                countDown(40, 20, function (count) {
+                    if (count === 0) {
+                        process = false;
+                        $('#progressbar').css('width', '100%');
+
+                        $('#progressbar').removeClass('active');
+
+                        $('#processStatus').html('');
+                        $('#showChoosedFileName').html('');
+                        $('#zipFile').val('');
+
+                        handleImportSucc(result.data);
+                        return true;
+                    } else {
+                        $('#progressbar').css('width', (100 - count) + '%');
+                    }
+                });
+
+            } else {
+                process = false;
+                stopFail = true;
+
+                $('#processStatus').html('');
+                $('#showChoosedFileName').html('');
+                $('#zipFile').val('');
+
+                $('#progressbar').css('width', '0%');
+                $('#progressbar').removeClass('active');
+                error(result.msg, 'blogImportErrorMsg', true, 3000);
+            }
+
+        }
     });
+}
 
-    // 60% -> 100% 处理时间
+function handleImportSucc(data) {
+    var html = '';
+    if (data.length === 0 || data === '') {
+        html = '<3>没有导入博文</h3>';
+    } else {
+        $('#processStatus').html('成功导入以下博文');
 
-    process = false;
-    $('#progressbar').removeClass('active');
-    $('#processStatus').html('导入成功');
+        for (var index in data) {
+            var item = data[index];
+            html += item.title + '<hr class="default-line">';
+        }
+    }
 
-    return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+    $('#importSucc').html(html);
 }

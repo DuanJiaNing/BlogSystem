@@ -1,5 +1,6 @@
 package com.duan.blogos.service.blogger;
 
+import com.duan.blogos.dto.blog.BlogTitleIdDTO;
 import com.duan.blogos.dto.blogger.BlogListItemDTO;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.enums.BlogStatusEnum;
@@ -113,5 +114,5 @@ public interface BloggerBlogService extends BlogFilter<ResultBean<List<BlogListI
      * @param bloggerId 博主id
      * @return 成功导入的博文标题和id
      */
-    Map<String, Integer> insertBlogPatch(MultipartFile file, int bloggerId);
+    List<BlogTitleIdDTO> insertBlogPatch(MultipartFile file, int bloggerId);
 }

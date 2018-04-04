@@ -3,6 +3,7 @@ package com.duan.blogos.service.impl.blogger;
 import com.duan.blogos.dao.blog.BlogCategoryDao;
 import com.duan.blogos.dao.blog.BlogStatisticsDao;
 import com.duan.blogos.dao.blogger.BloggerPictureDao;
+import com.duan.blogos.dto.blog.BlogTitleIdDTO;
 import com.duan.blogos.dto.blogger.BlogListItemDTO;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogCategory;
@@ -33,6 +34,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -320,13 +322,13 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
     }
 
     @Override
-    public Map<String, Integer> insertBlogPatch(MultipartFile file, int bloggerId) {
+    public List<BlogTitleIdDTO> insertBlogPatch(MultipartFile file, int bloggerId) {
 
         // 保存到临时文件
         StringBuilder b = new StringBuilder();
         File dir = new File(bloggerProperties.getPatchImportBlogTempPath());
         if (!dir.exists() || dir.isFile()) {
-            if (!dir.mkdir())
+            if (!dir.mkdirs())
                 return null;
         }
 
@@ -343,29 +345,31 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
         FileUtils.saveFileTo(file, fullPath);
 
         // 解析博文
-        Map<String, Integer> result = new HashMap<>();
+        List<BlogTitleIdDTO> result = new ArrayList<>();
         try {
             ZipFile zipFile = new ZipFile(fullPath);
             Enumeration<? extends ZipEntry> entries = zipFile.entries();
             while (entries.hasMoreElements()) {
                 ZipEntry entry = entries.nextElement();
                 BufferedInputStream stream = new BufferedInputStream(zipFile.getInputStream(entry));
-                InputStreamReader reader = new InputStreamReader(stream);
+                InputStreamReader reader = new InputStreamReader(stream, Charset.forName("UTF-8"));
 
-                StrIntNode node = analysisAndInsertMdFile(entry, reader, bloggerId);
+                BlogTitleIdDTO node = analysisAndInsertMdFile(entry, reader, bloggerId);
                 if (node != null)
-                    result.put(node.key, node.value);
+                    result.add(node);
             }
 
         } catch (IOException e) {
             throw new InternalIOException(e);
         }
 
+        // 删除临时文件
+
         return result;
     }
 
     // 解析 md 文件读取字符流，新增记录到数据库
-    private StrIntNode analysisAndInsertMdFile(ZipEntry entry, InputStreamReader reader, int bloggerId) throws IOException {
+    private BlogTitleIdDTO analysisAndInsertMdFile(ZipEntry entry, InputStreamReader reader, int bloggerId) throws IOException {
 
         if (!entry.getName().endsWith(".md")) return null;
 
@@ -388,20 +392,20 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
         HtmlRenderer renderer = HtmlRenderer.builder().build();
         String htmlContent = renderer.render(document);
 
+        // 摘要
+        String tmpStr = htmlContent.length() > 500 ? htmlContent.substring(0, 500) : htmlContent;
+        String aftReg = tmpStr.replaceAll("<.*?>", "").replaceAll("\\n", "");
+        String summary = aftReg.length() > 180 ? aftReg.substring(0, 180) : aftReg;
+
         // UPDATE: 2018/4/4 更新 图片引用
-        int id = insertBlog(bloggerId, null, null, PUBLIC, title, htmlContent, mdContent, "", null, false);
+        int id = insertBlog(bloggerId, null, null, PUBLIC, title, htmlContent, mdContent, summary, null, false);
         if (id < 0) return null;
 
-        StrIntNode node = new StrIntNode();
-        node.key = title;
-        node.value = id;
+        BlogTitleIdDTO node = new BlogTitleIdDTO();
+        node.setTitle(title);
+        node.setId(id);
 
         return node;
-    }
-
-    private static class StrIntNode {
-        String key;
-        int value;
     }
 
 }

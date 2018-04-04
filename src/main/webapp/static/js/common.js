@@ -116,7 +116,7 @@ function countDown(count, cir, callback) {
     var timer;
 
     var down = function () {
-        if (count <= 0 || callback(count)) {
+        if (count < 0 || callback(count)) {
             clearInterval(timer);
         } else {
             count--;

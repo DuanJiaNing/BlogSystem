@@ -183,8 +183,25 @@ function saveBaseDiv() {
 }
 
 
+function initImportBlogListener() {
+
+    $('#fileUploadDialog').on('hidden.bs.modal', function (e) {
+
+        $('#progressbar').css('width', '0%');
+        $('#progressbar').removeClass('active');
+
+        $('#processStatus').html('');
+        $('#importSucc').html('');
+        $('#showChoosedFileName').html('');
+        $('#zipFile').val('');
+
+    });
+}
+
 $(document).ready(function () {
 
     // 初始化修改头像模态框
     initCropper();
+
+    initImportBlogListener();
 });

@@ -3,6 +3,7 @@ package com.duan.blogos.web.api.blogger;
 import com.duan.blogos.common.BlogSortRule;
 import com.duan.blogos.common.Order;
 import com.duan.blogos.common.Rule;
+import com.duan.blogos.dto.blog.BlogTitleIdDTO;
 import com.duan.blogos.dto.blogger.BlogListItemDTO;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.enums.BlogStatusEnum;
@@ -242,7 +243,7 @@ public class BloggerBlogController extends BaseBloggerController {
      * 返回成功导入博文的博文名和id
      */
     @RequestMapping(value = "/patch", method = RequestMethod.POST)
-    public ResultBean<Map<String, Integer>> patchImportBlog(HttpServletRequest request,
+    public ResultBean<List<BlogTitleIdDTO>> patchImportBlog(HttpServletRequest request,
                                                             @PathVariable Integer bloggerId,
                                                             @RequestParam("zipFile") MultipartFile file) {
 
@@ -252,8 +253,8 @@ public class BloggerBlogController extends BaseBloggerController {
         if (file.isEmpty() || !file.getOriginalFilename().endsWith(".zip"))
             throw exceptionManager.getParameterIllegalException(new RequestContext(request));
 
-        Map<String, Integer> blogsTitles = bloggerBlogService.insertBlogPatch(file, bloggerId);
-        if (blogsTitles == null || blogsTitles.size() == 0)
+        List<BlogTitleIdDTO> blogsTitles = bloggerBlogService.insertBlogPatch(file, bloggerId);
+        if (CollectionUtils.isEmpty(blogsTitles))
             handlerOperateFail(request);
 
         return new ResultBean<>(blogsTitles);
