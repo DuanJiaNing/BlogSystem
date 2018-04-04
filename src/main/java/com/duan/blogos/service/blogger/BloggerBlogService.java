@@ -5,8 +5,10 @@ import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.BlogFilter;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created on 2017/12/18.
@@ -31,10 +33,11 @@ public interface BloggerBlogService extends BlogFilter<ResultBean<List<BlogListI
      * @param contentMd  md内容
      * @param summary    摘要
      * @param keyWords   关键字
+     * @param analysisImg 解析博文中的图片引用
      * @return 新纪录id
      */
     int insertBlog(int bloggerId, int[] categories, int[] labels, BlogStatusEnum status,
-                   String title, String content, String contentMd, String summary, String[] keyWords);
+                   String title, String content, String contentMd, String summary, String[] keyWords, boolean analysisImg);
 
     /**
      * 1 更新博文
@@ -102,4 +105,13 @@ public interface BloggerBlogService extends BlogFilter<ResultBean<List<BlogListI
      * @return 存在返回id，否则-1
      */
     int getBlogId(int bloggerId, String blogName);
+
+    /**
+     * 通过上传的 zip 文件批量导入博文
+     *
+     * @param file      文件
+     * @param bloggerId 博主id
+     * @return 成功导入的博文标题和id
+     */
+    Map<String, Integer> insertBlogPatch(MultipartFile file, int bloggerId);
 }

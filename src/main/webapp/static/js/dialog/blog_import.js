@@ -4,7 +4,7 @@ function chooseFileChange(th) {
 
 var process = false;
 
-function importBlog(th) {
+function importBlog() {
 
     if (process) {
         error('正在处理', 'blogImportErrorMsg', true, 1000);
@@ -28,10 +28,9 @@ function importBlog(th) {
     countDown(59, 20, function (count) {
         $('#progressbar').css('width', (60 - count) + '%');
     });
-    $(th).submit(function (message) {
-        // 对于表单提交成功后处理，message为返回内容
 
-
+    $("#patchImportForm").submit(function(message){
+        alert(message);
     });
 
     // 60% -> 100% 处理时间

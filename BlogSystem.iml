@@ -108,5 +108,7 @@
     <orderEntry type="library" name="Maven: com.squareup.okhttp3:okhttp:3.9.1" level="project" />
     <orderEntry type="library" name="Maven: com.squareup.okio:okio:1.14.0" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.17" level="project" />
+    <orderEntry type="library" name="Maven: com.vladsch.flexmark:flexmark:0.32.18" level="project" />
+    <orderEntry type="library" name="Maven: com.vladsch.flexmark:flexmark-util:0.32.18" level="project" />
   </component>
 </module>

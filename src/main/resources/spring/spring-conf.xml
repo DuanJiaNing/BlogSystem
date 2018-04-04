@@ -33,6 +33,7 @@
         <property name="requestBloggerBlogLabelCount" value="${blog.requestBloggerBlogLabelCount}"/>
         <property name="nameOfPageOwnerBloggerId" value="${blogger.pageOwnerBloggerId}"/>
         <property name="nameOfPageOwnerBloggerName" value="${blogger.pageOwnerBloggerName}"/>
+        <property name="patchImportBlogTempPath" value="${blogger.patchImportBlogTempPath}"/>
     </bean>
 
     <!--站点配置-->

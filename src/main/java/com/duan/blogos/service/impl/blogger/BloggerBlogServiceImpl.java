@@ -9,24 +9,38 @@ import com.duan.blogos.entity.blog.BlogCategory;
 import com.duan.blogos.entity.blog.BlogStatistics;
 import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
+import com.duan.blogos.exception.internal.InternalIOException;
 import com.duan.blogos.exception.internal.LuceneException;
 import com.duan.blogos.exception.internal.SQLException;
 import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.manager.ImageManager;
+import com.duan.blogos.manager.properties.BloggerProperties;
 import com.duan.blogos.manager.properties.WebsiteProperties;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.BlogFilterAbstract;
 import com.duan.blogos.service.blogger.BloggerBlogService;
 import com.duan.blogos.util.CollectionUtils;
+import com.duan.blogos.util.FileUtils;
 import com.duan.blogos.util.StringUtils;
+import com.vladsch.flexmark.ast.Document;
+import com.vladsch.flexmark.html.HtmlRenderer;
+import com.vladsch.flexmark.parser.Parser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+
+import static com.duan.blogos.enums.BlogStatusEnum.PUBLIC;
 
 /**
  * Created on 2017/12/19.
@@ -44,6 +58,9 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
     private WebsiteProperties websiteProperties;
 
     @Autowired
+    private BloggerProperties bloggerProperties;
+
+    @Autowired
     private DataFillingManager dataFillingManager;
 
     @Autowired
@@ -58,7 +75,7 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
     @Override
     public int insertBlog(int bloggerId, int[] categories, int[] labels,
                           BlogStatusEnum status, String title, String content, String contentMd,
-                          String summary, String[] keyWords) {
+                          String summary, String[] keyWords, boolean analysisImg) {
 
         // 1 插入数据到bolg表
         String ch = dbProperties.getStringFiledSplitCharacterForNumber();
@@ -86,12 +103,14 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
         effect = statisticsDao.insert(statistics);
         if (effect <= 0) throw new SQLException();
 
-        // 3 解析本地图片引用并使自增
-        int[] imids = parseContentForImageIds(content, bloggerId);
-        // UPDATE: 2018/1/19 更新 自增并没有实际作用
-        if (!CollectionUtils.isEmpty(imids)) {
-            // 修改图片可见性，引用次数
-            Arrays.stream(imids).forEach(id -> imageManager.imageInsertHandle(bloggerId, id));
+        if (analysisImg) {
+            // 3 解析本地图片引用并使自增
+            int[] imids = parseContentForImageIds(content, bloggerId);
+            // UPDATE: 2018/1/19 更新 自增并没有实际作用
+            if (!CollectionUtils.isEmpty(imids)) {
+                // 修改图片可见性，引用次数
+                Arrays.stream(imids).forEach(id -> imageManager.imageInsertHandle(bloggerId, id));
+            }
         }
 
         // 4 lucene创建索引
@@ -298,6 +317,91 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
     public int getBlogId(int bloggerId, String blogName) {
         Integer id = blogDao.getBlogIdByUniqueKey(bloggerId, blogName);
         return Optional.ofNullable(id).orElse(-1);
+    }
+
+    @Override
+    public Map<String, Integer> insertBlogPatch(MultipartFile file, int bloggerId) {
+
+        // 保存到临时文件
+        StringBuilder b = new StringBuilder();
+        File dir = new File(bloggerProperties.getPatchImportBlogTempPath());
+        if (!dir.exists() || dir.isFile()) {
+            if (!dir.mkdir())
+                return null;
+        }
+
+        String fullPath = b.append(dir.getAbsolutePath())
+                .append(File.separator)
+                .append("temp-")
+                .append(bloggerId)
+                .append("-")
+                .append(System.currentTimeMillis())
+                .append("-")
+                .append(file.getOriginalFilename())
+                .toString();
+
+        FileUtils.saveFileTo(file, fullPath);
+
+        // 解析博文
+        Map<String, Integer> result = new HashMap<>();
+        try {
+            ZipFile zipFile = new ZipFile(fullPath);
+            Enumeration<? extends ZipEntry> entries = zipFile.entries();
+            while (entries.hasMoreElements()) {
+                ZipEntry entry = entries.nextElement();
+                BufferedInputStream stream = new BufferedInputStream(zipFile.getInputStream(entry));
+                InputStreamReader reader = new InputStreamReader(stream);
+
+                StrIntNode node = analysisAndInsertMdFile(entry, reader, bloggerId);
+                if (node != null)
+                    result.put(node.key, node.value);
+            }
+
+        } catch (IOException e) {
+            throw new InternalIOException(e);
+        }
+
+        return result;
+    }
+
+    // 解析 md 文件读取字符流，新增记录到数据库
+    private StrIntNode analysisAndInsertMdFile(ZipEntry entry, InputStreamReader reader, int bloggerId) throws IOException {
+
+        if (!entry.getName().endsWith(".md")) return null;
+
+        // 文件名作为标题
+        String title = entry.getName().replace(".md", "");
+
+        StringBuilder b = new StringBuilder((int) entry.getSize());
+        int len = 0;
+        char[] buff = new char[1024];
+        while ((len = reader.read(buff)) > 0) {
+            b.append(buff, 0, len);
+        }
+
+        // 内容
+        String mdContent = b.toString();
+
+        // 对应的 html 内容
+        Parser parser = Parser.builder().build();
+        Document document = parser.parse(mdContent);
+        HtmlRenderer renderer = HtmlRenderer.builder().build();
+        String htmlContent = renderer.render(document);
+
+        // UPDATE: 2018/4/4 更新 图片引用
+        int id = insertBlog(bloggerId, null, null, PUBLIC, title, htmlContent, mdContent, "", null, false);
+        if (id < 0) return null;
+
+        StrIntNode node = new StrIntNode();
+        node.key = title;
+        node.value = id;
+
+        return node;
+    }
+
+    private static class StrIntNode {
+        String key;
+        int value;
     }
 
 }

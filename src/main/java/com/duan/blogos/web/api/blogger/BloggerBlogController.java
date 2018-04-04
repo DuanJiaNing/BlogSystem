@@ -1,21 +1,23 @@
 package com.duan.blogos.web.api.blogger;
 
+import com.duan.blogos.common.BlogSortRule;
 import com.duan.blogos.common.Order;
 import com.duan.blogos.common.Rule;
 import com.duan.blogos.dto.blogger.BlogListItemDTO;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.enums.BlogStatusEnum;
-import com.duan.blogos.common.BlogSortRule;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.BloggerBlogService;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.RequestContext;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -72,8 +74,8 @@ public class BloggerBlogController extends BaseBloggerController {
         handleCategoryAndLabelCheck(request, bloggerId, cids, lids);
 
         String[] kw = StringUtils.stringArrayToArray(keyWords, sp);
-        // UPDATE: 2018/1/16 更新 博文审核
-        int id = bloggerBlogService.insertBlog(bloggerId, cids, lids, BlogStatusEnum.PUBLIC, title, content, contentMd, summary, kw);
+        // UPDATE: 2018/1/16 更新 博文审核 图片引用
+        int id = bloggerBlogService.insertBlog(bloggerId, cids, lids, BlogStatusEnum.PUBLIC, title, content, contentMd, summary, kw, false);
         if (id <= 0) handlerOperateFail(request);
 
         return new ResultBean<>(id);
@@ -232,6 +234,29 @@ public class BloggerBlogController extends BaseBloggerController {
             handlerOperateFail(request);
 
         return new ResultBean<>("");
+    }
+
+    /**
+     * 批量导入博文
+     * <p>
+     * 返回成功导入博文的博文名和id
+     */
+    @RequestMapping(value = "/patch", method = RequestMethod.POST)
+    public ResultBean<Map<String, Integer>> patchImportBlog(HttpServletRequest request,
+                                                            @PathVariable Integer bloggerId,
+                                                            @RequestParam("zipFile") MultipartFile file) {
+
+        handleBloggerSignInCheck(request, bloggerId);
+
+        // 检查是否为 zip 文件
+        if (file.isEmpty() || !file.getOriginalFilename().endsWith(".zip"))
+            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
+
+        Map<String, Integer> blogsTitles = bloggerBlogService.insertBlogPatch(file, bloggerId);
+        if (blogsTitles == null || blogsTitles.size() == 0)
+            handlerOperateFail(request);
+
+        return new ResultBean<>(blogsTitles);
     }
 
     // 检查博文是否存在，且博文是否属于指定博主
