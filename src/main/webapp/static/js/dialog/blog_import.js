@@ -14,6 +14,7 @@ var process = false;
 function importBlog(bloggerId) {
 
     if (process) {
+        // 正在执行上传或解析操作
         error('正在处理', 'blogImportErrorMsg', true, 1000);
         return;
     }
@@ -32,7 +33,7 @@ function importBlog(bloggerId) {
     $('#processStatus').html('正在上传...');
     process = true;
 
-    //从默认的 1% -> 60% 上传时间
+    //从默认的 0% -> 60% 上传时间
     var stopSuc = false;
     var stopFail = false;
     countDown(60, 20, function (count) {

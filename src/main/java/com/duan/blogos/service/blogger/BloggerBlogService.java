@@ -9,7 +9,6 @@ import com.duan.blogos.service.BlogFilter;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created on 2017/12/18.
@@ -25,15 +24,15 @@ public interface BloggerBlogService extends BlogFilter<ResultBean<List<BlogListI
      * 3 解析博文中引用的本地图片（以使其useCount自增）
      * 4 lucene添加索引
      *
-     * @param bloggerId  博主id
-     * @param categories 类别
-     * @param labels     标签
-     * @param status     状态
-     * @param title      标题
-     * @param content    内容
-     * @param contentMd  md内容
-     * @param summary    摘要
-     * @param keyWords   关键字
+     * @param bloggerId   博主id
+     * @param categories  类别
+     * @param labels      标签
+     * @param status      状态
+     * @param title       标题
+     * @param content     内容
+     * @param contentMd   md内容
+     * @param summary     摘要
+     * @param keyWords    关键字
      * @param analysisImg 解析博文中的图片引用
      * @return 新纪录id
      */
