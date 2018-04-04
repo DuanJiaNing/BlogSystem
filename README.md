@@ -90,6 +90,9 @@ http://...XXX.../blogger/1/link?iconId=2&title=Git&url=https://git&bewrite=描�
 #### 博文统计数据页面
 ![](https://raw.githubusercontent.com/DuanJiaNing/Pictures/master/BlogSystem/blog-statistics.png)
 
+#### 博文批量导入对话框
+![](https://raw.githubusercontent.com/DuanJiaNing/Pictures/master/BlogSystem/blog-patch-import.png)
+
 
 License
 ============

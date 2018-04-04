@@ -109,7 +109,7 @@ function handleImportSucc(data) {
 
         for (var index in data) {
             var item = data[index];
-            html += item.title + '<hr class="default-line">';
+            html += item.title + '<hr class="default-line" style="margin-bottom: 16px">';
         }
     }
 

@@ -30,7 +30,8 @@
                         <a class="file">选择文件
                             <input type="file" accept=".zip" id="zipFile" onchange="chooseFileChange(this)">
                         </a>
-                        &nbsp;&nbsp;<small style="color: gray;">请将博文打包为&nbsp;<b>zip</b>&nbsp;格式再上传</small>
+                        &nbsp;&nbsp;<small style="color: gray;">请将&nbsp;<b>md</b>&nbsp;为后缀的博文文件打包为&nbsp;<b>zip</b>&nbsp;格式再上传
+                    </small>
                     </div>
                     <div class="col-md-4 vertical-center">
                         <p class="text-right" style="width: 100%;margin-top: 10px">
@@ -52,12 +53,12 @@
 
                 <br>
                 <small id="processStatus"></small>&nbsp;&nbsp;
-                <small id="showChoosedFileName"></small>&nbsp;&nbsp;
+                <span id="showChoosedFileName"></span>&nbsp;&nbsp;
                 <span class="error-msg" id="blogImportErrorMsg"></span>
 
                 <br>
                 <br>
-                <div id="importSucc">
+                <div id="importSucc" style="max-height: 230px;overflow: auto">
 
                 </div>
 

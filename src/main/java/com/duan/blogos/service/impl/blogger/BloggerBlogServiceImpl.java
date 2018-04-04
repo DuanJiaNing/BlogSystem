@@ -364,6 +364,7 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
         }
 
         // 删除临时文件
+        // TODO
 
         return result;
     }
@@ -393,9 +394,10 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
         String htmlContent = renderer.render(document);
 
         // 摘要
-        String tmpStr = htmlContent.length() > 500 ? htmlContent.substring(0, 500) : htmlContent;
-        String aftReg = tmpStr.replaceAll("<.*?>", "").replaceAll("\\n", "");
-        String summary = aftReg.length() > 180 ? aftReg.substring(0, 180) : aftReg;
+        String firReg = htmlContent.replaceAll("<.*?>", ""); // 避免 subString 使有遗留的 html 标签，前端显示时会出错
+        String tmpStr = firReg.length() > 500 ? firReg.substring(0, 500) : firReg;
+        String aftReg = tmpStr.replaceAll("\\n", "");
+        String summary = aftReg.length() > 200 ? aftReg.substring(0, 200) : aftReg;
 
         // UPDATE: 2018/4/4 更新 图片引用
         int id = insertBlog(bloggerId, null, null, PUBLIC, title, htmlContent, mdContent, summary, null, false);
