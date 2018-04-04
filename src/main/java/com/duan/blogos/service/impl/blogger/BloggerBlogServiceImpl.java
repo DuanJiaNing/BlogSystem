@@ -346,31 +346,45 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
 
         // 解析博文
         List<BlogTitleIdDTO> result = new ArrayList<>();
+        final Parser parser = Parser.builder().build();
+        final HtmlRenderer renderer = HtmlRenderer.builder().build();
+
+        ZipFile zipFile = null;
         try {
-            ZipFile zipFile = new ZipFile(fullPath);
+            zipFile = new ZipFile(fullPath);
             Enumeration<? extends ZipEntry> entries = zipFile.entries();
             while (entries.hasMoreElements()) {
                 ZipEntry entry = entries.nextElement();
                 BufferedInputStream stream = new BufferedInputStream(zipFile.getInputStream(entry));
                 InputStreamReader reader = new InputStreamReader(stream, Charset.forName("UTF-8"));
 
-                BlogTitleIdDTO node = analysisAndInsertMdFile(entry, reader, bloggerId);
+                BlogTitleIdDTO node = analysisAndInsertMdFile(parser, renderer, entry, reader, bloggerId);
                 if (node != null)
                     result.add(node);
             }
 
         } catch (IOException e) {
             throw new InternalIOException(e);
-        }
+        } finally {
+            if (zipFile != null) try {
+                zipFile.close();
 
-        // 删除临时文件
-        // TODO
+                // 删除临时文件
+                File tempFile = new File(fullPath);
+                if (tempFile.exists() && tempFile.isFile())
+                    tempFile.delete();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
 
         return result;
     }
 
     // 解析 md 文件读取字符流，新增记录到数据库
-    private BlogTitleIdDTO analysisAndInsertMdFile(ZipEntry entry, InputStreamReader reader, int bloggerId) throws IOException {
+    private BlogTitleIdDTO analysisAndInsertMdFile(Parser parser, HtmlRenderer renderer, ZipEntry entry, InputStreamReader reader, int bloggerId) throws IOException {
 
         if (!entry.getName().endsWith(".md")) return null;
 
@@ -384,13 +398,14 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
             b.append(buff, 0, len);
         }
 
+        // reader.close();
+        // zip 文件关闭由 370行：zipFile.close() 统一关闭
+
         // 内容
         String mdContent = b.toString();
 
         // 对应的 html 内容
-        Parser parser = Parser.builder().build();
         Document document = parser.parse(mdContent);
-        HtmlRenderer renderer = HtmlRenderer.builder().build();
         String htmlContent = renderer.render(document);
 
         // 摘要
