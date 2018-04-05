@@ -24,6 +24,7 @@
         <property name="requestBloggerPictureCount" value="${blogger.requestBloggerPictureCount}"/>
         <property name="requestBloggerCollectCount" value="${blogger.requestBloggerCollectCount}"/>
         <property name="defaultBlogCollectCategory" value="${blogger.defaultBlogCollectCategory}"/>
+        <property name="mainPageNavPos" value="${blogger.mainPageNavPos}"/>
         <property name="requestBloggerBlogCategoryCount" value="${blogger.requestBloggerBlogCategoryCount}"/>
         <property name="sessionNameOfBloggerId" value="${blogger.session.bloggerId}"/>
         <property name="sessionNameOfBloggerName" value="${blogger.session.bloggerName}"/>

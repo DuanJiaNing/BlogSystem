@@ -40,7 +40,7 @@
         </selectKey>
         INSERT INTO blogger_setting (
         blogger_id,
-        main_page_nav_pos,
+        main_page_nav_pos
         ) VALUE (
         #{bloggerId},
         #{mainPageNavPos}

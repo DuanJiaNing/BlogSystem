@@ -69,6 +69,7 @@ public class BloggerAccountServiceImpl implements BloggerAccountService {
         // 生成博主设置数据
         BloggerSetting setting = new BloggerSetting();
         setting.setBloggerId(bloggerId);
+        setting.setMainPageNavPos(propertiesManager.getMainPageNavPos());
         settingDao.insert(setting);
 
         return bloggerId;

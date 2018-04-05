@@ -22,7 +22,7 @@
     <h2>Step 1</h2>
     <ol>
         <li>
-            测试系统前需前往系统&nbsp;<b><a href="http://localhost:8080/register">注册页面</a></b>&nbsp;注册一位博主，<b>确保数据库blogger_account表中其对应的主键id为1</b>（
+            测试系统前需前往系统&nbsp;<b><a href="/register">注册页面</a></b>&nbsp;注册一位博主，<b>确保数据库blogger_account表中其对应的主键id为1</b>（
             conf.properties中配置了默认的图片管理员为id为1的博主）
         </li>
         <li>
@@ -33,14 +33,14 @@
         </li>
         <li>
             可以前往主页访问了:&nbsp;
-            <span style="color: whitesmoke;background-color: #00b4a5">http://localhost:8080/<b>博主用户名</b>/archives</span>
+            <span style="color: whitesmoke;background-color: #00b4a5">http://.../<b>博主用户名</b>/archives</span>
         </li>
     </ol>
 
     <br>
     <h3>登录</h3>
     <hr>
-    <form action="http://localhost:8080/blogger/login/way=name" method="post">
+    <form action="/blogger/login/way=name" method="post">
         <table>
             <tr>
                 <td>用户名</td>
@@ -63,7 +63,7 @@
     <br>
     <h3>上传博主默认头像</h3>
     <hr>
-    <form enctype="multipart/form-data" action="http://localhost:8080/image/1" method="post">
+    <form enctype="multipart/form-data" action="/image/1" method="post">
         <input type="file" name="image" accept="image/*">
         <input type="hidden" name="category" value="13">
         <br>

@@ -87,6 +87,11 @@ public class BloggerProperties {
     private Integer requestBloggerBlogLabelCount;
 
     /**
+     * 默认的博文收藏类别
+     */
+    private Integer mainPageNavPos;
+
+    /**
      * 批量导入博文时临时 zip 文件路径
      */
     private String patchImportBlogTempPath;
