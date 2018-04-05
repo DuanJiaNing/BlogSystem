@@ -275,9 +275,9 @@ public class BloggerBlogController extends BaseBloggerController {
      * 下载博文
      */
     @RequestMapping(value = "/download-type={type}", method = RequestMethod.GET)
-    public void getBlogPicture(HttpServletRequest request, HttpServletResponse response,
-                               @PathVariable Integer bloggerId,
-                               @PathVariable String type) {
+    public void download(HttpServletRequest request, HttpServletResponse response,
+                         @PathVariable Integer bloggerId,
+                         @PathVariable String type) {
         handleBloggerSignInCheck(request, bloggerId);
 
         // 检查请求的文件类别
@@ -290,10 +290,10 @@ public class BloggerBlogController extends BaseBloggerController {
         if (StringUtils.isEmpty(zipFilePath)) handlerOperateFail(request);
 
         // 输出文件流
-//        outFile(zipFilePath, request, response);
+        outFile(zipFilePath, request, response);
 
         // 删除临时 zip 文件
-//        fileManager.deleteFileIfExist(zipFilePath);
+        fileManager.deleteFileIfExist(zipFilePath);
     }
 
     // 输出文件流

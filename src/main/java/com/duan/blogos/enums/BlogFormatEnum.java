@@ -27,7 +27,7 @@ public enum BlogFormatEnum {
     public static boolean contains(String type) {
         if (StringUtils.isEmpty(type)) return false;
 
-        return type.equals(MD.name()) || type.equalsIgnoreCase(HTML.name());
+        return type.equalsIgnoreCase(MD.name()) || type.equalsIgnoreCase(HTML.name());
     }
 
     public static BlogFormatEnum get(String type) {

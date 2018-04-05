@@ -328,8 +328,7 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
     @Override
     public List<BlogTitleIdDTO> insertBlogPatch(MultipartFile file, int bloggerId) {
 
-        if (!fileManager.mkdirsIfNotExist(bloggerProperties.getPatchImportBlogTempPath()))
-            return null;
+        fileManager.mkdirsIfNotExist(bloggerProperties.getPatchImportBlogTempPath());
 
         // 保存到临时文件
         String fullPath = bloggerProperties.getPatchImportBlogTempPath() +
@@ -385,8 +384,7 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
         List<Blog> blogs = blogDao.listAllByFormat(bloggerId, format.getCode());
         if (CollectionUtils.isEmpty(blogs)) return null;
 
-        if (!fileManager.mkdirsIfNotExist(bloggerProperties.getPatchDownloadBlogTempPath()))
-            return null;
+        fileManager.mkdirsIfNotExist(bloggerProperties.getPatchDownloadBlogTempPath());
 
         String zipFilePath = bloggerProperties.getPatchDownloadBlogTempPath() +
                 File.separator +
@@ -422,7 +420,7 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
         }
 
         // 统一删除临时博文文件
-//        tempBlogFile.forEach(fileManager::deleteFileIfExist);
+        tempBlogFile.forEach(fileManager::deleteFileIfExist);
 
         return zipFile.getAbsolutePath();
     }
