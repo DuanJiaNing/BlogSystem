@@ -12,6 +12,7 @@
 <%@ include file="/views/nav/nav_setting.jsp" %>
 <%@ include file="/views/dialog/toast_dialog.jsp" %>
 <%@ include file="/views/dialog/blog_import.jsp" %>
+<%@ include file="/views/dialog/download_all_blog_dialog.jsp" %>
 
 <html>
 <head>
@@ -182,7 +183,7 @@
                     <li class="list-group-item">
                         <span class="li-title">打包下载</span>
                         &nbsp;&nbsp;
-                        <span class="button-edit-check" data-target="#editAvatarDialog"
+                        <span class="button-edit-check" data-target="#downloadAllBlogDialog"
                               data-toggle="modal">下载所有博文</span>
                     </li>
                     <li class="list-group-item">

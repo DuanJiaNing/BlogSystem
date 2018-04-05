@@ -34,6 +34,7 @@
         <property name="nameOfPageOwnerBloggerId" value="${blogger.pageOwnerBloggerId}"/>
         <property name="nameOfPageOwnerBloggerName" value="${blogger.pageOwnerBloggerName}"/>
         <property name="patchImportBlogTempPath" value="${blogger.patchImportBlogTempPath}"/>
+        <property name="patchDownloadBlogTempPath" value="${blogger.patchDownloadBlogTempPath}"/>
     </bean>
 
     <!--站点配置-->

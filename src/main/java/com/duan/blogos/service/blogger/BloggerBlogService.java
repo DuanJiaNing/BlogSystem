@@ -3,6 +3,7 @@ package com.duan.blogos.service.blogger;
 import com.duan.blogos.dto.blog.BlogTitleIdDTO;
 import com.duan.blogos.dto.blogger.BlogListItemDTO;
 import com.duan.blogos.entity.blog.Blog;
+import com.duan.blogos.enums.BlogFormatEnum;
 import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.BlogFilter;
@@ -114,4 +115,13 @@ public interface BloggerBlogService extends BlogFilter<ResultBean<List<BlogListI
      * @return 成功导入的博文标题和id
      */
     List<BlogTitleIdDTO> insertBlogPatch(MultipartFile file, int bloggerId);
+
+    /**
+     * 生成用于 [导出所有博文] 功能的 zip 文件
+     *
+     * @param bloggerId 博主 id
+     * @param format    格式
+     * @return zip 文件全路径
+     */
+    String getAllBlogForDownload(int bloggerId, BlogFormatEnum format);
 }

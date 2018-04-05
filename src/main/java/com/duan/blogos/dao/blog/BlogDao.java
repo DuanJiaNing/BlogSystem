@@ -1,9 +1,8 @@
 package com.duan.blogos.dao.blog;
 
 import com.duan.blogos.dao.BaseDao;
-import com.duan.blogos.entity.blog.BlogLabel;
-import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.entity.blog.Blog;
+import com.duan.blogos.enums.BlogStatusEnum;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -145,4 +144,13 @@ public interface BlogDao extends BaseDao<Blog> {
     Integer countBlogByBloggerId(@Param("bloggerId") int bloggerId,
                                  @Param("state") int state);
 
+    /**
+     * 查询指定博主的所有博文，限定查询博文的内容为 md 或 html。
+     *
+     * @param bloggerId 博主id
+     * @param format    md 或 html
+     * @return 查询结果，format 为 md 时只查询 content_md，为 html 时只查询 content
+     */
+    List<Blog> listAllByFormat(@Param("bloggerId") int bloggerId,
+                               @Param("format") int format);
 }

@@ -6,19 +6,27 @@ import com.duan.blogos.common.Rule;
 import com.duan.blogos.dto.blog.BlogTitleIdDTO;
 import com.duan.blogos.dto.blogger.BlogListItemDTO;
 import com.duan.blogos.entity.blog.Blog;
+import com.duan.blogos.enums.BlogFormatEnum;
 import com.duan.blogos.enums.BlogStatusEnum;
+import com.duan.blogos.manager.FileManager;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.BloggerBlogService;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
+import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.RequestContext;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -41,6 +49,9 @@ public class BloggerBlogController extends BaseBloggerController {
 
     @Autowired
     private BloggerBlogService bloggerBlogService;
+
+    @Autowired
+    private FileManager fileManager;
 
     /**
      * 新增博文
@@ -258,6 +269,55 @@ public class BloggerBlogController extends BaseBloggerController {
             handlerOperateFail(request);
 
         return new ResultBean<>(blogsTitles);
+    }
+
+    /**
+     * 下载博文
+     */
+    @RequestMapping(value = "/download-type={type}", method = RequestMethod.GET)
+    public void getBlogPicture(HttpServletRequest request, HttpServletResponse response,
+                               @PathVariable Integer bloggerId,
+                               @PathVariable String type) {
+        handleBloggerSignInCheck(request, bloggerId);
+
+        // 检查请求的文件类别
+        BlogFormatEnum format = BlogFormatEnum.get(type);
+        if (format == null) {
+            throw exceptionManager.getParameterIllegalException(new RequestContext(request));
+        }
+
+        String zipFilePath = bloggerBlogService.getAllBlogForDownload(bloggerId, format);
+        if (StringUtils.isEmpty(zipFilePath)) handlerOperateFail(request);
+
+        // 输出文件流
+//        outFile(zipFilePath, request, response);
+
+        // 删除临时 zip 文件
+//        fileManager.deleteFileIfExist(zipFilePath);
+    }
+
+    // 输出文件流
+    private void outFile(String zipFilePath, HttpServletRequest request, HttpServletResponse response) {
+
+        try (ServletOutputStream os = response.getOutputStream()) {
+            File zipFile = new File(zipFilePath);
+            if (!zipFile.exists()) handlerOperateFail(request);
+
+            response.setContentType("application/x-zip-compressed");
+            FileInputStream in = new FileInputStream(zipFile);
+            byte[] buff = new byte[in.available()];
+            in.read(buff);
+
+            os.write(buff);
+            os.flush();
+
+            in.close();
+            os.close();
+
+        } catch (IOException e) {
+            handlerOperateFail(request, e);
+        }
+
     }
 
     // 检查博文是否存在，且博文是否属于指定博主

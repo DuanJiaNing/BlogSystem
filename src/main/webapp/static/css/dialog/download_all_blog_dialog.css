@@ -1,0 +1,39 @@
+
+.file-format-choosed {
+    height: 130px;
+    background: #f5f6f7;
+    border: solid 1px lightgray;
+    cursor: pointer;
+
+    color: dodgerblue;
+    font-size: x-large;
+}
+
+.file-format-choosed:hover {
+    background: #edeeef;
+}
+
+.file-format {
+    height: 130px;
+    background: #F9FAFB;
+    border: solid 1px lightgray;
+    cursor: pointer;
+
+    color: dimgray;
+    font-size: large;
+}
+
+.file-format:hover {
+    background: #edeeef;
+}
+
+.format-center {
+    display: table;
+    width: 100%;
+}
+
+.format-center-text {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}

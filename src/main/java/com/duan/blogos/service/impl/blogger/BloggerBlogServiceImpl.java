@@ -8,12 +8,14 @@ import com.duan.blogos.dto.blogger.BlogListItemDTO;
 import com.duan.blogos.entity.blog.Blog;
 import com.duan.blogos.entity.blog.BlogCategory;
 import com.duan.blogos.entity.blog.BlogStatistics;
+import com.duan.blogos.enums.BlogFormatEnum;
 import com.duan.blogos.enums.BlogStatusEnum;
 import com.duan.blogos.enums.BloggerPictureCategoryEnum;
 import com.duan.blogos.exception.internal.InternalIOException;
 import com.duan.blogos.exception.internal.LuceneException;
 import com.duan.blogos.exception.internal.SQLException;
 import com.duan.blogos.manager.DataFillingManager;
+import com.duan.blogos.manager.FileManager;
 import com.duan.blogos.manager.ImageManager;
 import com.duan.blogos.manager.properties.BloggerProperties;
 import com.duan.blogos.manager.properties.WebsiteProperties;
@@ -30,10 +32,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -41,7 +40,9 @@ import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import java.util.zip.ZipOutputStream;
 
+import static com.duan.blogos.enums.BlogFormatEnum.MD;
 import static com.duan.blogos.enums.BlogStatusEnum.PUBLIC;
 
 /**
@@ -67,6 +68,9 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
 
     @Autowired
     private ImageManager imageManager;
+
+    @Autowired
+    private FileManager fileManager;
 
     @Autowired
     private BlogCategoryDao categoryDao;
@@ -324,23 +328,18 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
     @Override
     public List<BlogTitleIdDTO> insertBlogPatch(MultipartFile file, int bloggerId) {
 
-        // 保存到临时文件
-        StringBuilder b = new StringBuilder();
-        File dir = new File(bloggerProperties.getPatchImportBlogTempPath());
-        if (!dir.exists() || dir.isFile()) {
-            if (!dir.mkdirs())
-                return null;
-        }
+        if (!fileManager.mkdirsIfNotExist(bloggerProperties.getPatchImportBlogTempPath()))
+            return null;
 
-        String fullPath = b.append(dir.getAbsolutePath())
-                .append(File.separator)
-                .append("temp-")
-                .append(bloggerId)
-                .append("-")
-                .append(System.currentTimeMillis())
-                .append("-")
-                .append(file.getOriginalFilename())
-                .toString();
+        // 保存到临时文件
+        String fullPath = bloggerProperties.getPatchImportBlogTempPath() +
+                File.separator +
+                "temp-" +
+                bloggerId +
+                "-" +
+                System.currentTimeMillis() +
+                "-" +
+                file.getOriginalFilename();
 
         FileUtils.saveFileTo(file, fullPath);
 
@@ -370,9 +369,7 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
                 zipFile.close();
 
                 // 删除临时文件
-                File tempFile = new File(fullPath);
-                if (tempFile.exists() && tempFile.isFile())
-                    tempFile.delete();
+                fileManager.deleteFileIfExist(fullPath);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -381,6 +378,86 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
         }
 
         return result;
+    }
+
+    @Override
+    public String getAllBlogForDownload(int bloggerId, BlogFormatEnum format) {
+        List<Blog> blogs = blogDao.listAllByFormat(bloggerId, format.getCode());
+        if (CollectionUtils.isEmpty(blogs)) return null;
+
+        if (!fileManager.mkdirsIfNotExist(bloggerProperties.getPatchDownloadBlogTempPath()))
+            return null;
+
+        String zipFilePath = bloggerProperties.getPatchDownloadBlogTempPath() +
+                File.separator +
+                System.currentTimeMillis() +
+                "-" +
+                "total-of-" +
+                blogs.size() +
+                "-blogs.zip";
+
+        File zipFile = new File(zipFilePath);
+        List<String> tempBlogFile = new ArrayList<>();
+
+        // 压缩博文
+        ZipOutputStream zipOut = null;
+        try {
+            zipOut = new ZipOutputStream(new FileOutputStream(zipFile));
+            for (Blog blog : blogs) {
+                String path = addBlogToZip(blog, zipOut, format);
+                if (path != null) {
+                    tempBlogFile.add(path);
+                }
+            }
+        } catch (IOException e) {
+            throw new InternalIOException(e);
+        } finally {
+            if (zipOut != null) {
+                try {
+                    zipOut.close();
+                } catch (IOException e) {
+                    throw new InternalIOException(e);
+                }
+            }
+        }
+
+        // 统一删除临时博文文件
+//        tempBlogFile.forEach(fileManager::deleteFileIfExist);
+
+        return zipFile.getAbsolutePath();
+    }
+
+    private String addBlogToZip(Blog blog, ZipOutputStream zipOut, BlogFormatEnum format) throws IOException {
+
+        // 新建博文文件
+        String title = blog.getTitle();
+        String content = format == MD ? blog.getContentMd() : blog.getContent();
+
+        String bp = bloggerProperties.getPatchDownloadBlogTempPath() +
+                File.separator +
+                title +
+                (format == MD ? ".md" : ".html");
+
+        FileOutputStream fo = new FileOutputStream(bp);
+        OutputStreamWriter writer = new OutputStreamWriter(fo, "UTF-8");
+        writer.write(content);
+        writer.close();
+
+        // 添加到 zip 压缩文件
+        File entryFile = new File(bp);
+        zipOut.putNextEntry(new ZipEntry(entryFile.getName()));
+
+        BufferedInputStream bis = new BufferedInputStream(new FileInputStream(entryFile));
+        byte[] buffer = new byte[1024];
+        int len;
+        while ((len = bis.read(buffer)) > 0) {
+            zipOut.write(buffer, 0, len);
+        }
+
+        bis.close();
+        zipOut.closeEntry();
+
+        return bp;
     }
 
     // 解析 md 文件读取字符流，新增记录到数据库

@@ -87,7 +87,12 @@ public class BloggerProperties {
     private Integer requestBloggerBlogLabelCount;
 
     /**
-     * 批量导入博文时 zip 文件临时路径
+     * 批量导入博文时临时 zip 文件路径
      */
     private String patchImportBlogTempPath;
+
+    /**
+     * 批量下载时临时 zip 文件和 md/html 文件路径
+     */
+    private String patchDownloadBlogTempPath;
 }

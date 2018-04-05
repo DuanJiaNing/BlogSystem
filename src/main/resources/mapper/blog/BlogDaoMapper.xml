@@ -182,4 +182,28 @@
         WHERE blogger_id = #{bloggerId} AND state = #{state}
     </select>
 
+    <select id="listAllByFormat" resultType="Blog">
+        SELECT
+        blogger_id,
+        category_ids,
+        label_ids,
+        state,
+        title,
+        <choose>
+            <when test="format == 1">
+                content,
+            </when>
+            <otherwise>
+                content_md,
+            </otherwise>
+        </choose>
+        summary,
+        release_date,
+        nearest_modify_date,
+        key_words,
+        word_count
+        FROM blog
+        WHERE blogger_id = #{bloggerId}
+    </select>
+
 </mapper>
