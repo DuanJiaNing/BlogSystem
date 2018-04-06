@@ -80,7 +80,7 @@
 
 </div>
 
-<jsp:include page="/views/footer.jsp"/>
+<jsp:include page="/views/footer/footer.jsp"/>
 
 <script type="application/javascript" src="/js/paging.js"></script>
 <script type="application/javascript" src="/js/blogger/favourite_blog.js"></script>

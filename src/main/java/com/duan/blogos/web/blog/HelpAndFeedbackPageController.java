@@ -19,7 +19,7 @@ public class HelpAndFeedbackPageController {
     public ModelAndView page(HttpServletRequest request) {
 
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("/help_feedback");
+        mv.setViewName("blogger/help_feedback");
 
         return mv;
     }

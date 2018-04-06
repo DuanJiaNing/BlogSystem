@@ -478,7 +478,7 @@
 <br>
 <br>
 <br>
-<jsp:include page="/views/footer.jsp"/>
+<jsp:include page="/views/footer/footer.jsp"/>
 
 <script type="application/javascript">
     var pageOwnerBloggerId = ${pageOwnerBloggerId};

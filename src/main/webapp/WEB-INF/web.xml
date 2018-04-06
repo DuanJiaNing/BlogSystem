@@ -10,12 +10,12 @@
 
     <error-page>
         <error-code>404</error-code>
-        <location>/views/404.jsp</location>
+        <location>/views/error/404.jsp</location>
     </error-page>
 
     <error-page>
         <error-code>500</error-code>
-        <location>/views/500.jsp</location>
+        <location>/views/error/500.jsp</location>
     </error-page>
 
     <!--<context-param> 和 servlet的<init-param>只能二选一 见chrome的javaee-spring书签-->

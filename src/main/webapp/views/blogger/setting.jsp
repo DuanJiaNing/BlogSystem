@@ -42,7 +42,7 @@
 <jsp:include page="/views/dialog/upload_avatar_dialog.jsp"/>
 
 <div class="container border" style="min-height: 100%;background-color: white">
-    <div class="row" style="padding: 48px 128px;">
+    <div class="row" style="padding: 5% 10%;">
         <div class="col-md-3">
             <div class="list-group">
                 <button type="button" class="list-group-item btn-item" onclick="showDiv('divBase',this)"
@@ -68,15 +68,16 @@
             </div>
 
             <br>
-            <small style="color: gray">
+            <div style="padding-left: 16px;">
+                <a href="/help-feedback">帮助与反馈</a>
                 <hr>
-                <p>
-                    &nbsp;&nbsp;修改之后记得点击&nbsp;<b>保存</b><br>
-                    &nbsp;&nbsp;使修改生效。
-                </p>
-                <hr>
-            </small>
+                <small style="color: gray">
+                    修改之后记得点击&nbsp;<b>保存</b><br>
+                    使修改生效。
+                </small>
+            </div>
         </div>
+
         <div class="col-md-9">
 
             <div id="divBase">
@@ -93,18 +94,20 @@
                     <li class="list-group-item" style="border: 0;">
                         <span class="li-title">用户名</span>
                         &nbsp;&nbsp;
-                        <input class="li-input" type="text" value="${sessionScope["bloggerName"]}"
+                        <input class="jianshu-style-input" type="text" value="${sessionScope["bloggerName"]}"
                                id="modifyBloggerName">
                     </li>
                     <li class="list-group-item">
                         <span class="li-title">电子邮件</span>
                         &nbsp;&nbsp;
-                        <input class="li-input" type="email" value="${profile.email}" id="modifyProfileEmail">
+                        <input class="jianshu-style-input" type="email" value="${profile.email}"
+                               id="modifyProfileEmail">
                     </li>
                     <li class="list-group-item">
                         <span class="li-title">手机</span>
                         &nbsp;&nbsp;
-                        <input class="li-input" type="number" value="${profile.phone}" id="modifyProfilePhone">
+                        <input class="jianshu-style-input" type="number" value="${profile.phone}"
+                               id="modifyProfilePhone">
                     </li>
 
                     <li class="list-group-item">
@@ -151,7 +154,7 @@
                     <li class="list-group-item" style="border: 0;">
                         <span class="li-title">主页 title</span>
                         &nbsp;&nbsp;
-                        <input class="li-input" style="width: 80%" type="text" value="${profile.intro}"
+                        <input class="jianshu-style-input" style="width: 80%" type="text" value="${profile.intro}"
                                id="modifyProfileIntro">
                         <br>
                         <br>
@@ -164,7 +167,7 @@
                         <div class="vertical-center">
                             <span class="li-title">博主自述</span>
                             &nbsp;&nbsp;
-                            <textarea style="width: 80%" class="li-textarea"
+                            <textarea style="width: 80%" class="jianshu-style-textarea"
                                       id="modifyProfileAboutMe">${profile.aboutMe}</textarea>
                         </div>
                     </li>
@@ -188,10 +191,10 @@
                               data-toggle="modal">下载所有博文</span>
                     </li>
                     <%--<li class="list-group-item">--%>
-                        <%--<a>修改密码</a>--%>
-                        <%--<div>--%>
+                    <%--<a>修改密码</a>--%>
+                    <%--<div>--%>
 
-                        <%--</div>--%>
+                    <%--</div>--%>
                     <%--</li>--%>
                     <li class="list-group-item">
                         <a onclick="$('#deleteAccountDiv').slideToggle('first')">删除账号</a>
@@ -232,7 +235,7 @@
 
 <br>
 
-<jsp:include page="/views/footer.jsp"/>
+<jsp:include page="/views/footer/footer.jsp"/>
 
 <script type="application/javascript">
     var bloggerId = ${sessionScope["bloggerId"]};

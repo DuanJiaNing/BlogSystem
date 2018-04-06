@@ -10,7 +10,6 @@
 <head>
     <link rel="stylesheet" href="/css/footer.css">
 
-    <title>footer</title>
 </head>
 <body>
 
@@ -32,7 +31,7 @@
         <div class="col-md-5">
             <p class="text-right bottom-item">
                 <a href="https://github.com/DuanJiaNing/BlogSystem">Source</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a>Help</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/help-feedback">Help</a>&nbsp;&nbsp;&nbsp;&nbsp;
             </p>
         </div>
 

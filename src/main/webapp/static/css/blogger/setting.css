@@ -43,25 +43,6 @@ body {
     width: 15%;
 }
 
-.li-input {
-    min-width: 40%;
-    border: solid 1px lightgray;
-    padding: 5px;
-    font-size: 0.9em;
-    background-color: rgba(211, 211, 211, 0.22);
-    border-radius: 5px;
-}
-
-.li-textarea {
-    min-width: 40%;
-    min-height: 100px;
-    border: solid 1px lightgray;
-    padding: 8px;
-    font-size: 0.9em;
-    background-color: rgba(211, 211, 211, 0.22);
-    border-radius: 8px;
-}
-
 .main-page-nav-choose {
     border: solid 2px #09B2E3;
 }
