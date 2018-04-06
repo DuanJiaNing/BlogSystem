@@ -71,6 +71,12 @@
         WHERE blog_id = #{blogId} AND collector_id = #{bloggerId}
     </select>
 
+    <select id="listAllIdByBloggerId" resultType="BlogCollect">
+        SELECT blog_id
+        FROM blog_collect
+        WHERE collector_id = #{value}
+    </select>
+
     <insert id="insert" parameterType="BlogCollect" useGeneratedKeys="true" keyProperty="id">
         <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
             SELECT LAST_INSERT_ID() AS id

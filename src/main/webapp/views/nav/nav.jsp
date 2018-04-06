@@ -88,7 +88,7 @@
                             &nbsp;&nbsp;
 
                             &nbsp;&nbsp;
-                            <button onclick="logout(${sessionScope['bloggerId']})" class="quit">退出
+                            <button onclick="logout(${sessionScope['bloggerId']},'${sessionScope['bloggerName']}')" class="quit">退出
                             </button>
                             &nbsp;&nbsp;
 

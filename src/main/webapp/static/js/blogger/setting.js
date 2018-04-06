@@ -198,10 +198,41 @@ function initImportBlogListener() {
     });
 }
 
+
+function confirmExe() {
+
+    disableButton(false, 'confirmBtn', '正在删除...', 'button-disable');
+
+    $.ajax({
+        url: '/blogger/' + bloggerId,
+        async: false,
+        type: 'delete',
+        success: function (result) {
+            if (result.code === 0) {
+                disableButton(false, 'confirmBtn', '删除成功', 'button-disable');
+
+                setTimeout(function () {
+                    location.href = '/register';
+                }, 1000);
+
+            } else {
+                error(result.msg, 'confirmErrorMsg', true, 6000);
+                disableButton(true, 'confirmBtn', '删除', 'button-disable');
+            }
+        }
+    });
+}
+
+function initDeleteAccountConfirmDialog() {
+    $('#confirmText').html('确认永久删除账号');
+}
+
 $(document).ready(function () {
 
     // 初始化修改头像模态框
     initCropper();
 
     initImportBlogListener();
+
+    initDeleteAccountConfirmDialog()
 });

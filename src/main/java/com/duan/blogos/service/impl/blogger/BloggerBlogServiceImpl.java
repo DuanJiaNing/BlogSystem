@@ -243,12 +243,7 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
             Arrays.stream(ids).forEach(pictureDao::updateUseCountMinus);
 
         // 4 删除lucene索引
-        try {
-            luceneIndexManager.delete(blogId);
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new LuceneException(e);
-        }
+        luceneIndexManager.delete(blogId);
 
         return true;
     }

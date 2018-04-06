@@ -23,7 +23,6 @@
                 <h4 id="confirmText" style="color: gray"></h4>
                 <br>
                 <span class="error-msg" id="confirmErrorMsg"></span>
-
             </div>
             <div class="modal-footer dialog-footer">
                 <p class="text-right">

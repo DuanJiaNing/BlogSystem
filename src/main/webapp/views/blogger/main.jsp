@@ -224,12 +224,30 @@
                                href="/${pageOwnerBloggerName}/blog/favourite/like">
                                     <%--<i class="material-icons icons">favorite_border</i>&nbsp;--%>
                                 <img class="img24px" src="/images/icon/icons8-heart-outline-64.png">&nbsp;
-                                他喜欢的文章&nbsp;<span class="count">(${ownerBgStat.likedCount})</span>
+                                <c:choose>
+                                    <c:when test="${sessionScope['bloggerId'] == pageOwnerBloggerId}">
+                                        我喜欢的文章
+                                    </c:when>
+                                    <c:otherwise>
+                                        他喜欢的文章
+                                    </c:otherwise>
+
+                                </c:choose>
+                                &nbsp;<span class="count">(${ownerBgStat.likedCount})</span>
                             </a>
                             <a class="list-group-item vertical-center blogger-favourite"
                                href="/${pageOwnerBloggerName}/blog/favourite/collect">
                                 <img class="img24px" src="/images/icon/icons8-collect-50.png">&nbsp;
-                                他收藏的文章&nbsp;<span class="count">(${ownerBgStat.collectCount})</span>
+                                <c:choose>
+                                    <c:when test="${sessionScope['bloggerId'] == pageOwnerBloggerId}">
+                                        我收藏的文章
+                                    </c:when>
+                                    <c:otherwise>
+                                        他收藏的文章
+                                    </c:otherwise>
+                                </c:choose>
+
+                                &nbsp;<span class="count">(${ownerBgStat.collectCount})</span>
                             </a>
                         </div>
                     </div>
@@ -359,12 +377,30 @@
                                href="/${pageOwnerBloggerName}/blog/favourite/like">
                                     <%--<i class="material-icons icons">favorite_border</i>&nbsp;--%>
                                 <img class="img24px" src="/images/icon/icons8-heart-outline-64.png">&nbsp;
-                                他喜欢的文章&nbsp;<span class="count">(${ownerBgStat.likedCount})</span>
+                                <c:choose>
+                                    <c:when test="${sessionScope['bloggerId'] == pageOwnerBloggerId}">
+                                        我喜欢的文章
+                                    </c:when>
+                                    <c:otherwise>
+                                        他喜欢的文章
+                                    </c:otherwise>
+                                </c:choose>
+
+                                &nbsp;<span class="count">(${ownerBgStat.likedCount})</span>
                             </a>
                             <a class="list-group-item vertical-center blogger-favourite"
                                href="/${pageOwnerBloggerName}/blog/favourite/collect">
                                 <img class="img24px" src="/images/icon/icons8-collect-50.png">&nbsp;
-                                他收藏的文章&nbsp;<span class="count">(${ownerBgStat.collectCount})</span>
+                                <c:choose>
+                                    <c:when test="${sessionScope['bloggerId'] == pageOwnerBloggerId}">
+                                        我收藏的文章
+                                    </c:when>
+                                    <c:otherwise>
+                                        他收藏的文章
+                                    </c:otherwise>
+                                </c:choose>
+
+                                &nbsp;<span class="count">(${ownerBgStat.collectCount})</span>
                             </a>
                         </div>
                     </div>

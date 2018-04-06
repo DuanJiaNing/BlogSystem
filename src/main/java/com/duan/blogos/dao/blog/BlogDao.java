@@ -153,4 +153,12 @@ public interface BlogDao extends BaseDao<Blog> {
      */
     List<Blog> listAllByFormat(@Param("bloggerId") int bloggerId,
                                @Param("format") int format);
+
+    /**
+     * 查询博主的所有博文的id
+     *
+     * @param bloggerId 博主id
+     * @return 查询结果，只查询 id
+     */
+    List<Blog> listAllIdByBloggerId(int bloggerId);
 }

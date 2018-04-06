@@ -13,6 +13,7 @@
 <%@ include file="/views/dialog/toast_dialog.jsp" %>
 <%@ include file="/views/dialog/blog_import.jsp" %>
 <%@ include file="/views/dialog/download_all_blog_dialog.jsp" %>
+<%@ include file="/views/dialog/confirm_dialog.jsp" %>
 
 <html>
 <head>
@@ -186,8 +187,34 @@
                         <span class="button-edit-check" data-target="#downloadAllBlogDialog"
                               data-toggle="modal">下载所有博文</span>
                     </li>
+                    <%--<li class="list-group-item">--%>
+                        <%--<a>修改密码</a>--%>
+                        <%--<div>--%>
+
+                        <%--</div>--%>
+                    <%--</li>--%>
                     <li class="list-group-item">
-                        <a>修改密码</a>
+                        <a onclick="$('#deleteAccountDiv').slideToggle('first')">删除账号</a>
+                        </small>
+                        <div style="display: none" id="deleteAccountDiv">
+                            <br>
+                            <h4>永久删除帐号</h4>
+                            <br>
+                            该操作将会清空您的所有博文和博文相关数据，创建的类别、标签，发表的评论，收藏和喜欢的博文以及账号相关数据，在此之前你可能需要
+                            &nbsp;<a data-target="#downloadAllBlogDialog" data-toggle="modal">打包下载博文</a>&nbsp;。
+                            <hr class="default-line">
+                            如果你对&nbsp;<i>BLOG</i>&nbsp;的某些内容、功能不满意，你可以在&nbsp;<a href="/help-feedback">帮助与反馈</a>&nbsp;页向我提出。
+                            <hr class="default-line">
+                            删除帐号是不可逆的操作，删除后将无法恢复。
+                            <br>
+                            <br>
+                            <button class="button-dangerous" data-target="#confirmDialog" data-toggle="modal">删除
+                            </button>&nbsp;
+                            <small style="color: darkgray;">期待下次注册</small>
+                            <br>
+                            <br>
+                            <span class="error-msg" id="errorMsgDeleteAccount"></span>
+                        </div>
                     </li>
                 </ul>
             </div>

@@ -1,9 +1,9 @@
 package com.duan.blogos.manager;
 
 import com.duan.blogos.entity.blog.Blog;
+import com.duan.blogos.exception.internal.LuceneException;
 import com.duan.blogos.manager.properties.WebsiteProperties;
 import com.duan.blogos.util.StringUtils;
-import lombok.val;
 import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -141,13 +141,19 @@ public class BlogLuceneIndexManager {
      *
      * @param blogId 博文id
      */
-    public void delete(int blogId) throws IOException {
-        IndexWriter writer = getWriter();
-        writer.deleteDocuments(new Term(INDEX_BLOG_ID, blogId + ""));
-        writer.forceMergeDeletes(); // 强制删除
-        writer.commit();
+    public boolean delete(int blogId) {
 
-        writer.close();
+        try (IndexWriter writer = getWriter()) {
+
+            writer.deleteDocuments(new Term(INDEX_BLOG_ID, blogId + ""));
+            writer.forceMergeDeletes(); // 强制删除
+            writer.commit();
+
+        } catch (IOException e) {
+            throw new LuceneException(e);
+        }
+
+        return true;
     }
 
     /**

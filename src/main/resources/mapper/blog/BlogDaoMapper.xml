@@ -206,4 +206,10 @@
         WHERE blogger_id = #{bloggerId}
     </select>
 
+    <select id="listAllIdByBloggerId" resultType="Blog">
+        SELECT id
+        FROM blog
+        WHERE blogger_id = #{value}
+    </select>
+
 </mapper>

@@ -62,4 +62,11 @@ public interface BlogLikeDao extends BaseDao<BlogLike> {
             @Param("offset") int offset,
             @Param("rows") int rows);
 
+    /**
+     * 查询指定博主喜欢的所有博文 id
+     *
+     * @param bloggerId 博主 id
+     * @return 只查询博文 id
+     */
+    List<BlogLike> listAllIdByBloggerId(int bloggerId);
 }

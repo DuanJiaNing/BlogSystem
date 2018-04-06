@@ -1,17 +1,26 @@
 package com.duan.blogos.service.impl.blogger;
 
+import com.duan.blogos.dao.blog.BlogCollectDao;
+import com.duan.blogos.dao.blog.BlogDao;
+import com.duan.blogos.dao.blog.BlogLikeDao;
+import com.duan.blogos.dao.blog.BlogStatisticsDao;
 import com.duan.blogos.dao.blogger.BloggerAccountDao;
 import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.dao.blogger.BloggerProfileDao;
 import com.duan.blogos.dao.blogger.BloggerSettingDao;
+import com.duan.blogos.entity.blog.Blog;
+import com.duan.blogos.entity.blog.BlogCollect;
+import com.duan.blogos.entity.blog.BlogLike;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import com.duan.blogos.entity.blogger.BloggerPicture;
 import com.duan.blogos.entity.blogger.BloggerProfile;
 import com.duan.blogos.entity.blogger.BloggerSetting;
 import com.duan.blogos.exception.internal.UnknownInternalException;
+import com.duan.blogos.manager.BlogLuceneIndexManager;
 import com.duan.blogos.manager.ImageManager;
 import com.duan.blogos.manager.properties.BloggerProperties;
 import com.duan.blogos.service.blogger.BloggerAccountService;
+import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +50,22 @@ public class BloggerAccountServiceImpl implements BloggerAccountService {
     private BloggerSettingDao settingDao;
 
     @Autowired
+    private BlogDao blogDao;
+
+    @Autowired
+    private BlogCollectDao collectDao;
+
+    @Autowired
+    private BlogLikeDao likeDao;
+
+    @Autowired
+    private BlogStatisticsDao blogStatisticsDao;
+
+    @Autowired
     private ImageManager imageManager;
+
+    @Autowired
+    private BlogLuceneIndexManager luceneIndexManager;
 
     @Autowired
     private BloggerProperties propertiesManager;
@@ -92,13 +116,31 @@ public class BloggerAccountServiceImpl implements BloggerAccountService {
         if (propertiesManager.getPictureManagerBloggerId().equals(bloggerId))
             return false;
 
-        // 账户相关数据由关系数据库负责处理
-        int effect = accountDao.delete(bloggerId);
-        if (effect <= 0) return false;
-
         //博主图片需要手动删除
         List<BloggerPicture> ps = pictureDao.getPictureByBloggerId(bloggerId);
-        ps.forEach(p -> imageManager.deleteImageFromDisk(p.getPath()));
+        if (!CollectionUtils.isEmpty(ps))
+            ps.stream().map(BloggerPicture::getPath).forEach(imageManager::deleteImageFromDisk);
+
+        // 删除博文的lucene索引
+        List<Blog> blogIds = blogDao.listAllLabelByBloggerId(bloggerId);
+        if (!CollectionUtils.isEmpty(blogIds))
+            blogIds.stream().mapToInt(Blog::getId).forEach(luceneIndexManager::delete);
+
+        // 将博主喜欢和收藏的博文的喜欢/收藏次数减一
+        List<BlogCollect> collects = collectDao.listAllIdByBloggerId(bloggerId);
+        if (!CollectionUtils.isEmpty(collects))
+            collects.stream().mapToInt(BlogCollect::getBlogId).forEach(blogStatisticsDao::updateCollectCountMinus);
+
+        List<BlogLike> likes = likeDao.listAllIdByBloggerId(bloggerId);
+        if (!CollectionUtils.isEmpty(likes))
+            likes.stream().mapToInt(BlogLike::getBlogId).forEach(blogStatisticsDao::updateLikeCountMinus);
+
+
+        // 账户相关数据删除由关系数据库负责处理
+        // 删除 blogger_account 数据
+        // ->
+        int effect = accountDao.delete(bloggerId);
+        if (effect <= 0) return false;
 
         return true;
     }
