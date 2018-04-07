@@ -336,7 +336,6 @@ function filterBloggerBlog(offset, rows, refreshPageIndicator, toTop, refreshTot
     }
 
     $('#blogList').html('<br><br><br><p class="text-center lead">正在加载...</p><br><br><br>');
-    $('#blogCount').css('display', 'none');
 
     $.get(
         '/blog',
@@ -362,8 +361,11 @@ function filterBloggerBlog(offset, rows, refreshPageIndicator, toTop, refreshTot
                 setPageIndicator(0);
             }
 
-            if (refreshTotalRealCount)
-                $('#blogCount').html(result.data.length + '篇博文');
+            if (refreshTotalRealCount) {
+                $('#blogCount').html(result.data.length + '&nbsp;篇博文');
+                $('#subBlogCount').html('(' + result.data.length + ')');
+
+            }
 
             initToolTip();
 

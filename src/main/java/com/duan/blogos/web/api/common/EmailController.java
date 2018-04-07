@@ -1,6 +1,5 @@
 package com.duan.blogos.web.api.common;
 
-import com.duan.blogos.manager.BloggerSessionManager;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.common.EmailService;
 import com.duan.blogos.web.api.BaseCheckController;

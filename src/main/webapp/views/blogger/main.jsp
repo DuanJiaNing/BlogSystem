@@ -221,9 +221,15 @@
                         <br>
                         <div class="list-group">
                             <a class="list-group-item vertical-center blogger-favourite"
+                               onclick="initBlog()">
+                                <img class="img24px" src="/images/icon/icons8-news-80.png">&nbsp;
+                                所有文章
+                                &nbsp;<span class="count" id="subBlogCount">(${ownerBgStat["blogCount"]})</span>
+                            </a>
+                            <a class="list-group-item vertical-center blogger-favourite"
                                href="/${pageOwnerBloggerName}/blog/favourite/like">
                                     <%--<i class="material-icons icons">favorite_border</i>&nbsp;--%>
-                                <img class="img24px" src="/images/icon/icons8-heart-outline-64.png">&nbsp;
+                                <img class="img24px" src="/images/icon/icons8-heart-outline-80.png">&nbsp;
                                 <c:choose>
                                     <c:when test="${sessionScope['bloggerId'] == pageOwnerBloggerId}">
                                         我喜欢的文章
@@ -237,7 +243,7 @@
                             </a>
                             <a class="list-group-item vertical-center blogger-favourite"
                                href="/${pageOwnerBloggerName}/blog/favourite/collect">
-                                <img class="img24px" src="/images/icon/icons8-collect-50.png">&nbsp;
+                                <img class="img24px" src="/images/icon/icons8-collect-100.png">&nbsp;
                                 <c:choose>
                                     <c:when test="${sessionScope['bloggerId'] == pageOwnerBloggerId}">
                                         我收藏的文章
@@ -374,9 +380,15 @@
                         <br>
                         <div class="list-group">
                             <a class="list-group-item vertical-center blogger-favourite"
+                               onclick="initBlog()">
+                                <img class="img24px" src="/images/icon/icons8-news-80.png">&nbsp;
+                                所有文章
+                                &nbsp;<span class="count" id="subBlogCount">(${ownerBgStat["blogCount"]})</span>
+                            </a>
+                            <a class="list-group-item vertical-center blogger-favourite"
                                href="/${pageOwnerBloggerName}/blog/favourite/like">
                                     <%--<i class="material-icons icons">favorite_border</i>&nbsp;--%>
-                                <img class="img24px" src="/images/icon/icons8-heart-outline-64.png">&nbsp;
+                                <img class="img24px" src="/images/icon/icons8-heart-outline-80.png">&nbsp;
                                 <c:choose>
                                     <c:when test="${sessionScope['bloggerId'] == pageOwnerBloggerId}">
                                         我喜欢的文章
@@ -384,13 +396,13 @@
                                     <c:otherwise>
                                         他喜欢的文章
                                     </c:otherwise>
-                                </c:choose>
 
+                                </c:choose>
                                 &nbsp;<span class="count">(${ownerBgStat.likedCount})</span>
                             </a>
                             <a class="list-group-item vertical-center blogger-favourite"
                                href="/${pageOwnerBloggerName}/blog/favourite/collect">
-                                <img class="img24px" src="/images/icon/icons8-collect-50.png">&nbsp;
+                                <img class="img24px" src="/images/icon/icons8-collect-100.png">&nbsp;
                                 <c:choose>
                                     <c:when test="${sessionScope['bloggerId'] == pageOwnerBloggerId}">
                                         我收藏的文章
