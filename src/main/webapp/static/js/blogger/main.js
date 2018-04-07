@@ -63,7 +63,7 @@ function loadCategory() {
 
                 for (var index in array) {
                     var ca = array[index];
-                    html += '<a class="list-group-item border0" ' +
+                    html += '<a class="list-group-item vertical-center border0" ' +
                         'onclick="filterBlogByCategory(' + ca.id + ')"' +
                         'onmouseenter="if(isPageOwnerBloggerLogin()) $(this).find(\'.badge\').fadeToggle(\'fast\',\'linear\');"' +
                         'onmouseleave="if(isPageOwnerBloggerLogin()) $(this).find(\'.badge\').fadeToggle(\'fast\',\'linear\');">'
@@ -74,8 +74,7 @@ function loadCategory() {
             if (html === '') {
                 setCategoryWhenEmpty('blogCategory');
             } else {
-                $('#blogCategory').html('<a class="list-group-item border0" onclick="initBlog()">' +
-                    '全部<span class="count">&nbsp;(' + blogCount + ')</span> </a>' + html);
+                $('#blogCategory').html(html);
             }
 
         }, 'json'

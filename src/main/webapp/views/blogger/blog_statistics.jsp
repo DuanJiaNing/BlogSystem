@@ -69,14 +69,14 @@
                     </p>
 
                     <p class="vertical-center">
-                        浏览次数&nbsp;<mark id="blogStatistics-viewCount"></mark>
+                        浏览次数&nbsp;<span class="count" id="blogStatistics-viewCount"></span>
                         <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                        字数&nbsp;<mark id="blogStatistics-wordCount"></mark>
+                        字数&nbsp;<span class="count" id="blogStatistics-wordCount"></span>
                     </p>
 
                     <br>
                     <p>
-                        <mark id="blogStatistics-likeCount"></mark>&nbsp;<b>名博主喜欢了这篇博文</b>
+                        <span class="count" id="blogStatistics-likeCount"></span>&nbsp;<b>名博主喜欢了这篇博文</b>
                     <hr class="default-line">
                     <br>
 
@@ -85,7 +85,7 @@
                     </p>
 
                     <p>
-                        <mark id="blogStatistics-collectCount"></mark>&nbsp;<b>名博主收藏了这篇博文</b>
+                        <span class="count" id="blogStatistics-collectCount"></span>&nbsp;<b>名博主收藏了这篇博文</b>
                     <hr class="default-line">
                     <br>
 
@@ -101,9 +101,8 @@
         </div>
         <div class="col-md-5">
             <p>
-                <b>精彩评论</b>(
-                <mark id="blogStatistics-commentCount"></mark>
-                )
+                <b>精彩评论</b>
+                <span class="count" id="blogStatistics-commentCount"></span>
             <hr>
 
             <div id="blogStatistics-comment" style="overflow: auto;max-height: 60%;">

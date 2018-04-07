@@ -31,7 +31,7 @@ function setData(data) {
     $('#blogStatistics-wordCount').html(data.wordCount);
     $('#blogStatistics-likeCount').html(data.statistics.likeCount);
     $('#blogStatistics-collectCount').html(data.statistics.collectCount);
-    $('#blogStatistics-commentCount').html(data.statistics.commentCount);
+    $('#blogStatistics-commentCount').html('(' + data.statistics.commentCount + ')');
     blogName = data.title;
 
     var colC = 6; // 每行6个头像

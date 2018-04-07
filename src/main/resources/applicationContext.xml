@@ -30,6 +30,7 @@
     <mvc:resources mapping="/js/**" location="/static/js/"/>
     <mvc:resources mapping="/images/**" location="/static/image/"/>
     <mvc:resources mapping="/plugin/**" location="/static/plugin/"/>
+    <mvc:resources mapping="/favicon.ico" location="/static/image/favicon.ico"/>
 
 
     <!--国际化-->
