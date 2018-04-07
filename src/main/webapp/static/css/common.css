@@ -462,6 +462,20 @@ h4.default-h4 {
     border-radius: 5px;
 }
 
+.jianshu-style-input:focus {
+    outline: 0;
+    background-color: white;
+    box-shadow: 0 0 30px #e2e2e2;
+    border: solid 1px deepskyblue;
+}
+
+.jianshu-style-textarea:focus {
+    background-color: white;
+    outline: 0;
+    box-shadow: 0 0 30px #e2e2e2;
+    border: solid 1px deepskyblue;
+}
+
 .jianshu-style-textarea {
     min-width: 40%;
     min-height: 100px;

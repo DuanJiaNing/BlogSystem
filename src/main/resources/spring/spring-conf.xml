@@ -43,6 +43,7 @@
         <property name="addr" value="${website.addr}"/>
         <property name="urlConditionSplitCharacter" value="${website.urlConditionSplitCharacter}"/>
         <property name="luceneIndexDir" value="${website.luceneIndexDir}"/>
+        <property name="manageEmailAddress" value="${website.manageEmailAddress}"/>
     </bean>
 
     <!--管理者-->

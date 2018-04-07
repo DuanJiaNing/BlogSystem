@@ -27,4 +27,8 @@ public class WebsiteProperties {
      */
     private String urlConditionSplitCharacter;
 
+    /**
+     * 网站管理者的邮箱
+     */
+    private String manageEmailAddress;
 }

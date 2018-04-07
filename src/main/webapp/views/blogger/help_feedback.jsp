@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ page isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 
 <%@ include file="/views/nav/nav_none_selected.jsp" %>
 
@@ -41,18 +41,23 @@
         <hr class="default-line">
         <br>
         <p style="color: gray;font-size: smaller">描述您的问题或建议，填入下方输入框中，点击提交发送给我。</p>
-        <textarea style="width: 80%" class="jianshu-style-textarea"></textarea>
+        <textarea style="width: 80%" class="jianshu-style-textarea" id="adviceOrOpinion"></textarea>
         <br>
 
         <br>
         <p style="color: gray;font-size: smaller">联系方式
             <small>（可不填）</small>
         </p>
-        <input class="jianshu-style-input">
+        <input class="jianshu-style-input" id="contactInfo">
         <br>
 
         <br>
-        <button class="button-save">提交</button>
+        <button id="sendFeedbackBtn" class="button-save" onclick="sendFeedback(${sessionScope["bloggerId"]})">提交</button>
+
+        <br>
+        <br>
+        <span class="error-msg" id="sendFeedbackErrorMsg"></span>
+
     </div>
     <br>
     <br>
