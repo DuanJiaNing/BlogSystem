@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.RequestContext;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -35,7 +36,9 @@ public class EmailController extends BaseCheckController {
             handleBloggerSignInCheck(request, bloggerId);
         }
 
-        emailService.sendFeedback(bloggerId == null ? -1 : bloggerId, content, contact);
+        String subject = new RequestContext(request).getMessage("common.feedbackTitle");
+        if (!emailService.sendFeedback(bloggerId == null ? -1 : bloggerId, subject, content, contact))
+            handlerOperateFail(request);
 
         return new ResultBean<>("");
     }

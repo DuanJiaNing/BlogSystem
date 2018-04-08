@@ -27,6 +27,9 @@ function sendFeedback(bloggerId) {
                     $('#contactInfo').val('');
                 }, 1000);
 
+            } else if (result.code === 18) {
+                disableButton(true, 'sendFeedbackBtn', '提交', "button-disable");
+                error('发送失败', 'sendFeedbackErrorMsg', true, 2000);
             } else {
                 disableButton(true, 'sendFeedbackBtn', '提交', "button-disable");
                 error(result.msg, 'sendFeedbackErrorMsg', true, 2000);
@@ -34,4 +37,12 @@ function sendFeedback(bloggerId) {
         }
     )
 
+}
+
+// ------------------------------------------------------------------------------------------------------ 登录对话框回调
+function funAfterLoginSuccess(result, name) {
+    location.href = '/' + name + '/archives';
+}
+
+function funAfterLoginFail(result) {
 }

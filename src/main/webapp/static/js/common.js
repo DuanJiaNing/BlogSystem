@@ -130,31 +130,25 @@ function countDown(count, cir, callback) {
  * 在指定id处显示错误信息（有闪动效果）
  * @param msg 错误信息
  * @param id id
- * @param disappear 1s 后错误信息消失
+ * @param disappear 错误信息消失
+ * @param disTime 错误信息显示时长
  */
 function error(msg, id, disappear, disTime) {
     var dom = $('#' + id);
+
     dom.html(msg);
-    dom.css('background-color', 'red');
-    dom.css('color', 'white');
-    if (msg === '') {
+    // dom.css('background-color', 'red');
+    dom.css('color', 'red');
+    if (msg === '')
         dom.css('padding', '4px 0');
-    }
 
-    var s = function () {
-        dom.css('background-color', 'transparent');
-        dom.css('color', 'red');
-        dom.css('padding', '4px 8px');
-    };
+    dom.slideDown('fast', function () {
+        if (disappear)
+            setTimeout(function () {
+                dom.slideUp('fast');
+            }, disTime);
+    });
 
-    setTimeout(s, 200);
-
-    var f = function () {
-        dom.html('');
-    };
-
-    if (disappear)
-        setTimeout(f, disTime);
 }
 
 function splash(msg, $dom, color, splashColor) {

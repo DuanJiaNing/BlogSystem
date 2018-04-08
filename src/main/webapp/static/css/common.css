@@ -93,6 +93,7 @@ h4.default-h4 {
     color: red;
     font-size: medium;
     padding: 4px 8px;
+    display: none;
 }
 
 .default-textarea {

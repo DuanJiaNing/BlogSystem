@@ -57,6 +57,9 @@
           <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.17" />
           <element id="library" level="project" name="Maven: com.vladsch.flexmark:flexmark:0.32.18" />
           <element id="library" level="project" name="Maven: com.vladsch.flexmark:flexmark-util:0.32.18" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context-support:4.3.8.RELEASE" />
+          <element id="library" level="project" name="Maven: javax.mail:mail:1.4.7" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">

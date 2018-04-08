@@ -124,7 +124,7 @@
     </div>
 
     <br>
-    <div class="border blog-container">
+    <div class="border row blog-container">
 
         <%--锚点--%>
         <a name="comment"></a>
@@ -149,7 +149,7 @@
 
     <c:if test="${not empty sessionScope['bloggerLoginSignal']}">
         <br>
-        <div class="border blog-container">
+        <div class="border row blog-container">
             <p class="text-left" style="color: gray;">
                 我要留言
             </p>

@@ -31,4 +31,14 @@ public class WebsiteProperties {
      * 网站管理者的邮箱
      */
     private String manageEmailAddress;
+
+    /**
+     * 配置了smtp 的邮件发送者
+     */
+    private String mailSenderAddress;
+
+    /**
+     * 配置了smtp 的邮件发送者的授权码
+     */
+    private String mailSenderPassword;
 }

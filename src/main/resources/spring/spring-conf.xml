@@ -44,6 +44,8 @@
         <property name="urlConditionSplitCharacter" value="${website.urlConditionSplitCharacter}"/>
         <property name="luceneIndexDir" value="${website.luceneIndexDir}"/>
         <property name="manageEmailAddress" value="${website.manageEmailAddress}"/>
+        <property name="mailSenderAddress" value="${website.mailSenderAddress}"/>
+        <property name="mailSenderPassword" value="${website.mailSenderPassword}"/>
     </bean>
 
     <!--管理者-->

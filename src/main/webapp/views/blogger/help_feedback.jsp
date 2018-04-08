@@ -53,6 +53,7 @@
 
         <br>
         <button id="sendFeedbackBtn" class="button-save" onclick="sendFeedback(${sessionScope["bloggerId"]})">提交</button>
+        &nbsp;&nbsp;<small style="color: darkgray;">也可直接发送邮件到我的邮箱<mark>duan_jia_ning@163.com</mark></small>
 
         <br>
         <br>
