@@ -25,7 +25,7 @@ a {
 
 .blog-list-item-title:hover {
     /*color: dimgray;*/
-    color: black;
+    color: #089cc7;
     cursor: pointer;
 }
 

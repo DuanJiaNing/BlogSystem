@@ -5,10 +5,10 @@ import com.duan.blogos.dao.blogger.BloggerPictureDao;
 import com.duan.blogos.dto.blogger.BloggerLinkDTO;
 import com.duan.blogos.entity.blogger.BloggerLink;
 import com.duan.blogos.entity.blogger.BloggerPicture;
-import com.duan.blogos.manager.properties.BloggerProperties;
 import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.manager.ImageManager;
 import com.duan.blogos.manager.StringConstructorManager;
+import com.duan.blogos.manager.properties.BloggerProperties;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.blogger.BloggerLinkService;
 import com.duan.blogos.util.CollectionUtils;
@@ -58,7 +58,10 @@ public class BloggerLinkServiceImpl implements BloggerLinkService {
                     pictureDao.getBloggerUniquePicture(bloggerProperties.getPictureManagerBloggerId(),
                             DEFAULT_BLOGGER_LINK_ICON.getCode()) :
                     pictureDao.getPictureById(iconId);
-            icon.setPath(constructorManager.constructPictureUrl(icon, DEFAULT_BLOGGER_LINK_ICON));
+
+            // 默认的链接图标可能没有上传
+            if (icon != null)
+                icon.setPath(constructorManager.constructPictureUrl(icon, DEFAULT_BLOGGER_LINK_ICON));
 
             BloggerLinkDTO dto = fillingManager.bloggerLinkToDTO(link, icon);
             result.add(dto);

@@ -15,6 +15,7 @@
     cursor: pointer;
     letter-spacing: 3px;
     font-size: medium;
+    transition: color 300ms;
 }
 
 .operation:hover {
