@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="BlogSystem:war exploded" />
+      <artifact name="BlogSystem:war" />
     </artifacts-to-build>
   </component>
   <component name="BookmarkManager">
@@ -11,12 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8ac934af-05bc-46b7-aaa8-6f8c621b9fd3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/css/blogger/setting.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/css/blogger/setting.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/blogger/setting.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/blogger/setting.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/dialog/login_dialog.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/dialog/login_dialog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/blogger/setting.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/blogger/setting.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/dialog/login_dialog.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/dialog/login_dialog.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/conf.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/conf.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/db.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -61,7 +58,26 @@
     <favorites_list name="BlogSystem" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="conf.properties" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/config/conf.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="67" column="17" lean-forward="true" selection-start-line="67" selection-start-column="17" selection-end-line="67" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="db.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/config/db.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -93,7 +109,7 @@
       <find>li-input</find>
       <find>li-texta</find>
       <find>box-s</find>
-      <find>-webkit-box-shadow: 0 0 0px 1000px white inset;</find>
+      <find />
       <find>shadow</find>
       <find>icons8-brief-100.png</find>
       <find>icons8-news-80.png</find>
@@ -107,13 +123,13 @@
       <find>lom</find>
       <find>sha</find>
       <find>button.*:hover</find>
-      <find># linux</find>
       <find>http://lab.lepture.com/editor/</find>
       <find>headingOne</find>
       <find>headingTwo</find>
       <find>errorMsgDeleteAccount</find>
       <find>collapseOne</find>
       <find>shadow-border</find>
+      <find />
     </findStrings>
     <replaceStrings>
       <replace />
@@ -168,7 +184,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/blogger/help_feedback.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/blogger/help_feedback.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/blogger/read_blog.jsp" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/doc/readme.md" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/entity/blog/Blog.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/common.css" />
@@ -176,8 +191,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/nav/nav.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/blogger/main.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/service/impl/blogger/BloggerLinkServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/config/db.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/config/conf.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/duan/blogos/web/blog/BloggerSettingPageController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/dialog/login_dialog.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/common.js" />
@@ -185,6 +198,9 @@
         <option value="$PROJECT_DIR$/src/main/webapp/static/js/blogger/setting.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/views/blogger/setting.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/static/css/blogger/setting.css" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/main/resources/config/db.properties" />
+        <option value="$PROJECT_DIR$/src/main/resources/config/conf.properties" />
       </list>
     </option>
   </component>
@@ -237,8 +253,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="130" />
-    <option name="y" value="318" />
+    <option name="x" value="407" />
+    <option name="y" value="77" />
     <option name="width" value="1363" />
     <option name="height" value="687" />
   </component>
@@ -315,61 +331,23 @@
               <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="blogos" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="blog" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="blogger" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BlogSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="blogger" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BlogSystem" type="b2602c69:ProjectViewProjectNode" />
@@ -1116,21 +1094,7 @@
       <workItem from="1524230633415" duration="5252000" />
       <workItem from="1524279318382" duration="385000" />
       <workItem from="1524300120281" duration="1714000" />
-      <workItem from="1524362099556" duration="4415000" />
-    </task>
-    <task id="LOCAL-00119" summary="分离博文发布对话框">
-      <created>1520404415134</created>
-      <option name="number" value="00119" />
-      <option name="presentableId" value="LOCAL-00119" />
-      <option name="project" value="LOCAL" />
-      <updated>1520404415135</updated>
-    </task>
-    <task id="LOCAL-00120" summary="编写博文创作和博文修改，并完成部分功能">
-      <created>1520414517918</created>
-      <option name="number" value="00120" />
-      <option name="presentableId" value="LOCAL-00120" />
-      <option name="project" value="LOCAL" />
-      <updated>1520414517919</updated>
+      <workItem from="1524362099556" duration="6524000" />
     </task>
     <task id="LOCAL-00121" summary="编写博文创作和博文修改，并完成部分功能">
       <created>1520415969820</created>
@@ -1461,7 +1425,21 @@
       <option name="project" value="LOCAL" />
       <updated>1524235236139</updated>
     </task>
-    <option name="localTasksCounter" value="168" />
+    <task id="LOCAL-00168" summary="添加修改密码功能入口，美化设置界面UI">
+      <created>1524366592279</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1524366592280</updated>
+    </task>
+    <task id="LOCAL-00169" summary="绑定到域名">
+      <created>1524369156141</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
+      <option name="project" value="LOCAL" />
+      <updated>1524369156141</updated>
+    </task>
+    <option name="localTasksCounter" value="170" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1497,7 +1475,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1197744000" />
+    <option name="totallyTimeSpent" value="1199853000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1623,8 +1601,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改博主首页，博文列表添加图片展示" />
-    <MESSAGE value="修改博主设置，可自定义主页个人信息位置（左或右）" />
     <MESSAGE value="修改网站字体" />
     <MESSAGE value="修改UI" />
     <MESSAGE value="完成博主设置功能，修改用户名，界面布局，个人资料。" />
@@ -1648,7 +1624,9 @@
     <MESSAGE value="添加网站图标" />
     <MESSAGE value="完成帮助与反馈功能和页面" />
     <MESSAGE value="1 美化UI，添加一些动画效果&#10;2 修复默认友情链接图标未上传时友情链接无法获取的情况" />
-    <option name="LAST_COMMIT_MESSAGE" value="1 美化UI，添加一些动画效果&#10;2 修复默认友情链接图标未上传时友情链接无法获取的情况" />
+    <MESSAGE value="添加修改密码功能入口，美化设置界面UI" />
+    <MESSAGE value="绑定到域名" />
+    <option name="LAST_COMMIT_MESSAGE" value="绑定到域名" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1820,16 +1798,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="908">
-            <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="104" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/doc/readme.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
@@ -1967,20 +1935,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/db.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config/conf.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="23" column="39" lean-forward="true" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/duan/blogos/manager/DataFillingManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1380">
@@ -2099,6 +2053,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="61" column="67" selection-start-line="61" selection-start-column="67" selection-end-line="61" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="216">
+            <caret line="15" column="16" lean-forward="true" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/db.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/conf.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="67" column="17" lean-forward="true" selection-start-line="67" selection-start-column="17" selection-end-line="67" selection-end-column="17" />
         </state>
       </provider>
     </entry>
