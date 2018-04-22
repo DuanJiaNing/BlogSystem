@@ -223,9 +223,76 @@ function confirmExe() {
     });
 }
 
+
+// 发送短信验证码
+function sendPhoneCode() {
+
+    if (!isPassword($('#newPwd').val())) {
+        error('密码格式不正确，<small>密码由 6-12 位字母和数字组成</small>', 'errorMsgOperAccount', true, 2000);
+        return;
+    }
+
+    createPhoneCode();
+
+    // 10分钟后验证码失效
+    setTimeout(function () {
+        phoneCode = null;
+    }, 10 * 60 * 1000);
+
+    $.post(
+        '/sms',
+        {
+            phone: phone,
+            content: '【BLOG】 你的验证码是: ' + phoneCode + ' ,此验证码用于重置登录密码，10分钟内有效。'
+        },
+        function (result) {
+            if (result.code === 0) {
+                countDown(60, 1000, function (c) {
+                    if (c === 0) {
+                        return true;
+                    } else {
+                        disableButton(false, 'sendPhoneCodeBtn', c + ' 秒后重新发送', "button-info-disable");
+                        return false;
+                    }
+                });
+            } else {
+                error('验证码无法发送', 'errorMsgOperAccount', true, 2000);
+            }
+        }, 'json');
+}
+
+// 短信验证码
+var phoneCode;
+
+function createPhoneCode() {
+    var code = '';
+    for (var i = 0; i < 6; i++) {
+        var n = Math.floor(Math.random() * 10);//输出1～10之间的随机整数
+        code += n;
+    }
+    phoneCode = code + '';
+}
+
 function initDeleteAccountConfirmDialog() {
     $('#confirmText').html('确认永久删除账号');
 }
+
+function updatePwd() {
+    var code = $('#phoneCode').val();
+    if (isStrEmpty(code)) {
+        error('请输入验证码', 'errorMsgOperAccount', true, 2000);
+        return;
+    }
+
+    if (code !== phoneCode) {
+        error('验证码错误', 'errorMsgOperAccount', true, 2000);
+        return;
+    }
+
+    // TODO
+
+}
+
 
 $(document).ready(function () {
 
@@ -236,3 +303,4 @@ $(document).ready(function () {
 
     initDeleteAccountConfirmDialog()
 });
+

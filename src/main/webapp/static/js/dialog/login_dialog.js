@@ -116,7 +116,7 @@ function sendPhoneCode() {
         '/sms',
         {
             phone: phone,
-            content: '【BLOG】 你的验证码是 ' + phoneCode + ' ,此验证码用户登录BLOG，10分钟内有效。'
+            content: '【BLOG】 你的验证码是: ' + phoneCode + ' ,此验证码用于登录 BLOG，10分钟内有效。'
         },
         function (result) {
             if (result.code === 0) {

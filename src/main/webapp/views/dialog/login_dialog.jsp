@@ -52,7 +52,7 @@
                         <div id="useUserPhone" style="display: none;">
                             <div class="form-group">
                                 <label>电话</label><br>
-                                <input type="number" class="form-input" id="loginPhone" placeholder="电话号码">
+                                <input type="text" class="form-input" id="loginPhone" placeholder="电话号码">
                             </div>
                             <div class="form-group">
                                 <label>验证码</label><br>

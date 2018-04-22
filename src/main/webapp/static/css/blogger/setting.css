@@ -46,3 +46,11 @@ body {
 .main-page-nav-choose {
     border: solid 2px #09B2E3;
 }
+
+.shadow-border-for-setting {
+    transition: all 0.3s ease-in-out;
+}
+
+.shadow-border-for-setting:hover {
+    box-shadow: 0 0 30px #d7d7d7;
+}

@@ -59,6 +59,9 @@ function isPhone(phone) {
  * @returns {boolean} 是返回true
  */
 function isPassword(str) {
+
+    if (isStrEmpty(str)) return false;
+
     var pwdRegex = "^(?:(?=.*[A-z])(?=.*[0-9])).{6,12}$";
 
     var re = str.match(pwdRegex);
