@@ -38,9 +38,6 @@ public class BloggerSettingPageController {
     private BloggerProfileService profileService;
 
     @Autowired
-    private BloggerProperties bloggerProperties;
-
-    @Autowired
     private BloggerValidateManager bloggerValidateManager;
 
     @Autowired
@@ -50,23 +47,20 @@ public class BloggerSettingPageController {
     private BloggerSettingService settingService;
 
     @RequestMapping
-    public ModelAndView pageLike(HttpServletRequest request,
-                                 @ModelAttribute
-                                 @PathVariable String bloggerName) {
+    public ModelAndView pageSetting(HttpServletRequest request,
+                                    @ModelAttribute
+                                    @PathVariable String bloggerName) {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("/blogger/setting");
 
         BloggerAccount account = accountService.getAccount(bloggerName);
         int bloggerId;
         if (account == null) {
-            mv.addObject("code", UnknownBloggerException.code);
-            mv.addObject(bloggerProperties.getSessionNameOfErrorMsg(), "博主不存在！");
-            mv.setViewName("error/error");
+            request.setAttribute("code", UnknownBloggerException.code);
+            mv.setViewName("/blogger/register");
             return mv;
         } else if (!bloggerValidateManager.checkBloggerSignIn(request, bloggerId = account.getId())) {
-            mv.addObject("code", BloggerNotLoggedInException.code);
-            mv.addObject(bloggerProperties.getSessionNameOfErrorMsg(), "博主未登录！");
-            mv.setViewName("error/error");
+            mv.setViewName("blogger/login");
             return mv;
         }
 
@@ -78,7 +72,7 @@ public class BloggerSettingPageController {
         mv.addObject("profile", profile);
 
         BloggerSetting setting = settingService.getSetting(bloggerId);
-        mv.addObject("setting",setting);
+        mv.addObject("setting", setting);
 
         return mv;
     }

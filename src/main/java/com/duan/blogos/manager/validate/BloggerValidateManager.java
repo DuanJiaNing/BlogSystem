@@ -81,7 +81,7 @@ public class BloggerValidateManager {
         HttpSession session = request.getSession();
         Object obj = session.getAttribute(propertiesManager.getSessionNameOfBloggerId());
 
-        return obj != null && bloggerId.equals(obj);
+        return bloggerId.equals(obj);
 
     }
 

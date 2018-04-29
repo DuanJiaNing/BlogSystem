@@ -81,7 +81,7 @@
             </div>
             <div class="modal-footer dialog-footer">
                 <p class="text-right">
-                    <a>忘记密码？</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <%--<a>忘记密码？</a>&nbsp;&nbsp;&nbsp;&nbsp;--%>
                     <button class="button-success" id="loginBtn"
                             onclick="login(funAfterLoginSuccess,funAfterLoginFail)">
                         登入

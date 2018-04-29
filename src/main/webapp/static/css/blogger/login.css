@@ -1,0 +1,38 @@
+body {
+    font-family: "Segoe UI Semibold", 微软雅黑, serif;
+    /*font-weight: bold;*/
+
+    background-size: cover;
+    background-color: #F9FAFB;
+    /*background: url(/images/background.jpg) no-repeat fixed center center;*/
+}
+
+a {
+    cursor: pointer;
+}
+
+.main-content {
+    border-radius: 10px;
+    box-shadow: 0 0 50px lightgray;
+    background-color: white;
+    padding: 2% 4%;
+}
+
+.login-input:focus {
+    background-color: transparent;
+}
+
+.login-input {
+    width: 90%;
+    height: 40px;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+input[type=text]:focus, input[type=password]:focus, textarea:focus {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}

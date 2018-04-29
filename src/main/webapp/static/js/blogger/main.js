@@ -544,7 +544,7 @@ function confirmExe() {
 
             } else {
                 disableButton(true, 'confirmBtn', '确认', "button-disable");
-                error('删除失败：' + result.msg, 'confirmErrorMsg', false, 1000);
+                error('删除失败：' + result.msg, 'confirmErrorMsg', true, 3000);
             }
         }
     });

@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author DuanJiaNing
  */
 @Controller
-@RequestMapping("/register")
-public class RegisterPageController {
+@RequestMapping("/login")
+public class LoginPageController {
 
     @RequestMapping
-    public String registerPage() {
-        return "blogger/register";
+    public String loginPage() {
+        return "blogger/login";
     }
 }

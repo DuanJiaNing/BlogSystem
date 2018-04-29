@@ -41,8 +41,7 @@ public class EditBlogPageController {
         ModelAndView mv = new ModelAndView();
 
         if (bloggerId == null || !bloggerValidateManager.checkBloggerSignIn(request, bloggerId)) {
-            mv.setViewName("/error/error");
-            mv.addObject("errorMsg", "请先登录");
+            mv.setViewName("/blogger/login");
         } else {
             if (blogId != null) {
                 ResultBean<Blog> blog = blogService.getBlog(bloggerId, blogId);

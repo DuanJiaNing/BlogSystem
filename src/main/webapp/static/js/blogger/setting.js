@@ -76,6 +76,12 @@ function saveProfileDiv() {
             type: 'put',
             success: function (result) {
                 if (result.code === 0) {
+                    disableButton(false, btnId, '修改成功', "button-disable");
+                    toast('修改成功', 1000);
+                    setTimeout(function () {
+                        disableButton(true, btnId, '保存', "button-disable");
+                    }, 1000);
+
                     intro = mIntro;
                     aboutMe = mAboutMe;
                 } else {
@@ -84,11 +90,6 @@ function saveProfileDiv() {
             }
         });
 
-        disableButton(false, btnId, '修改成功', "button-disable");
-        toast('修改成功', 1000);
-        setTimeout(function () {
-            disableButton(true, btnId, '保存', "button-disable");
-        }, 1000);
     } else {
         error('未修改', 'settingErrorMsg', true, 1000);
     }
@@ -149,6 +150,7 @@ function saveBaseDiv() {
     }
 
     // 若 mMainNavPos 修改，发起 Setting 请求
+    var editSucc = false;
     if (mMainNavPos !== mainNavPos) {
         sendReq = true;
         disableButton(false, btnId, '正在修改...', "button-disable");
@@ -160,6 +162,7 @@ function saveBaseDiv() {
             type: 'put',
             success: function (result) {
                 if (result.code === 0) {
+                    editSucc = true;
                     mainNavPos = mMainNavPos;
                 } else {
                     error(result.msg, 'settingErrorMsg', true, 2000);
@@ -168,16 +171,20 @@ function saveBaseDiv() {
         });
     }
 
-    if (sendReq) {
-        disableButton(false, btnId, '修改成功', "button-disable");
-        toast('修改成功', 1000);
-        setTimeout(function () {
-            disableButton(true, btnId, '保存', "button-disable");
-            if (bloggerNameModify)
-                location.href = '/' + bloggerName + '/setting';
-        }, 1000);
-    } else {
-        error('未修改', 'settingErrorMsg', true, 1000);
+    if (editSucc) {
+
+        if (sendReq) {
+            disableButton(false, btnId, '修改成功', "button-disable");
+            toast('修改成功', 1000);
+            setTimeout(function () {
+                disableButton(true, btnId, '保存', "button-disable");
+                if (bloggerNameModify)
+                    location.href = '/' + bloggerName + '/setting';
+            }, 1000);
+        } else {
+            error('未修改', 'settingErrorMsg', true, 1000);
+        }
+
     }
 
 }
@@ -216,7 +223,7 @@ function confirmExe() {
                 }, 1000);
 
             } else {
-                error(result.msg, 'confirmErrorMsg', true, 6000);
+                error(result.msg, 'confirmErrorMsg', true, 3000);
                 disableButton(true, 'confirmBtn', '删除', 'button-disable');
             }
         }

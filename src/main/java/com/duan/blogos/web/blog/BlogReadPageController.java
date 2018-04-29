@@ -4,6 +4,7 @@ import com.duan.blogos.dto.blog.BlogMainContentDTO;
 import com.duan.blogos.dto.blog.BlogStatisticsCountDTO;
 import com.duan.blogos.dto.blogger.BloggerStatisticsDTO;
 import com.duan.blogos.entity.blogger.BloggerAccount;
+import com.duan.blogos.exception.api.blogger.UnknownBloggerException;
 import com.duan.blogos.manager.BloggerSessionManager;
 import com.duan.blogos.manager.properties.BloggerProperties;
 import com.duan.blogos.restful.ResultBean;
@@ -64,9 +65,8 @@ public class BlogReadPageController {
         BloggerAccount account = accountService.getAccount(bloggerName);
 
         if (account == null) {
-            mv.setViewName("error/error");
-            mv.addObject("code", 6);
-            mv.addObject(bloggerProperties.getSessionNameOfErrorMsg(), "博主不存在！");
+            request.setAttribute("code", UnknownBloggerException.code);
+            mv.setViewName("/blogger/register");
             return mv;
         }
 

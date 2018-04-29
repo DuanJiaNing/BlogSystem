@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="/views/dialog/login_dialog.jsp" %>
 
 <html>
 <head>
@@ -116,8 +115,7 @@
             <p class="text-right">
                 <br>
                 <br>
-                <a data-toggle="modal"
-                   data-target="#loginDialog">登录</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/login">登录</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </p>
         </div>
     </div>
