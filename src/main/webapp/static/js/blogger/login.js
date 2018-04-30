@@ -62,3 +62,7 @@ function checkInputEmptyWhenLogin(id) {
 function errorInfoWhenLogin(msg) {
     error(msg, 'loginErrorMsg', true, 1000);
 }
+
+$(document).ready(function () {
+    initToolTip();
+});

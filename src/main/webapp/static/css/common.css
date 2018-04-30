@@ -468,6 +468,7 @@ h4.default-h4 {
     font-size: 0.9em;
     background-color: rgba(236, 236, 236, 0.22);
     border-radius: 5px;
+    transition:all 300ms;
 }
 
 .jianshu-style-input:focus {
@@ -492,4 +493,5 @@ h4.default-h4 {
     font-size: 0.9em;
     background-color: rgba(211, 211, 211, 0.22);
     border-radius: 8px;
+    transition:all 300ms;
 }

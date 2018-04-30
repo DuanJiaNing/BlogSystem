@@ -37,19 +37,21 @@
 </head>
 <body style="height: 100%">
 
-<div class="container-fluid">
+<div class="container-fluid" onclick="if (show)$('#loginDiv').slideUp(function() {show = false;})">
 
-    <div style="height: 65%;">
+    <div style="height: 65%;" >
         <div class="row">
             <div class="col-md-5"></div>
             <div class="col-md-2">
-                <img src="/images/logo/logo.png" style="width: 100%;">
+                <img src="/images/logo/logo.png" style="width: 100%;cursor: pointer"
+                     onclick="$('#loginDiv').slideToggle(function() {show=!show});" title="登录" data-toggle="tooltip"
+                     data-placement="bottom">
             </div>
             <div class="col-md-5"></div>
         </div>
         <div class="row">
             <div class="col-md-4"></div>
-            <div class="col-md-4 main-content text-center">
+            <div class="col-md-4 main-content text-center" id="loginDiv" style="display: none" onclick="event.stopPropagation()">
                 <br>
                 <small style="color: gray;font-size: 1.3em" class="lead">请输入您的用户名和密码</small>
                 <br>
@@ -88,6 +90,10 @@
 
 <script type="application/javascript" src="/js/common.js"></script>
 <script type="application/javascript" src="/js/blogger/login.js"></script>
+<script>
+    var show=false;
+</script>
+
 
 </body>
 </html>
