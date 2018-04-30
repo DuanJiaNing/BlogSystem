@@ -55,10 +55,10 @@
         <h3>&nbsp;&nbsp;
             <c:choose>
                 <c:when test="${type eq 'like'}">
-                    <b><a style="color: black" href="/${pageOwnerBloggerName}/archives">${pageOwnerBloggerName}</a></b>&nbsp;喜欢的博文
+                    <b><a href="/${pageOwnerBloggerName}/archives">${pageOwnerBloggerName}</a></b>&nbsp;喜欢的博文
                 </c:when>
                 <c:otherwise>
-                    <b><a style="color: black" href="/${pageOwnerBloggerName}/archives">${pageOwnerBloggerName}</a></b>&nbsp;收藏的博文
+                    <b><a href="/${pageOwnerBloggerName}/archives">${pageOwnerBloggerName}</a></b>&nbsp;收藏的博文
                 </c:otherwise>
             </c:choose>
             <small id="blogCount"></small>

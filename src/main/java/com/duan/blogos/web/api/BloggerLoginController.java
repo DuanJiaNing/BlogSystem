@@ -41,27 +41,27 @@ public class BloggerLoginController extends BaseBloggerController {
     public ResultBean loginWithUserName(HttpServletRequest request,
                                         @RequestParam("username") String userName,
                                         @RequestParam("password") String password) throws NoSuchAlgorithmException {
-        // TODO 使用shiro
+        // update 使用shiro
 
         BloggerAccount account = accountService.getAccount(userName);
-        if (account != null && account.getUsername().equals(userName) &&
-                account.getPassword().equals(new BigInteger(StringUtils.toSha(password)).toString())) {
 
-            HttpSession session = request.getSession();
-            session.setAttribute(bloggerProperties.getSessionNameOfBloggerId(), account.getId());
-            session.setAttribute(bloggerProperties.getSessionNameOfBloggerName(), account.getUsername());
-            session.setAttribute(bloggerProperties.getSessionBloggerLoginSignal(), "login");
-
-            // 成功登录
-            return new ResultBean<>("");
-        } else {
-
-            // TODO 判断登录失败的原因
-            String errorMsg = messageManager.getLoginFailMessage(new RequestContext(request), false);
-            request.getServletContext().setAttribute(bloggerProperties.getSessionNameOfErrorMsg(), errorMsg);
-
-            return new ResultBean(exceptionManager.getLoginFailException(new RequestContext(request), false));
+        // 用户不存在
+        if (account == null) {
+            throw exceptionManager.getUnknownBloggerException(new RequestContext(request));
         }
+
+        // 密码错误
+        if (!account.getPassword().equals(new BigInteger(StringUtils.toSha(password)).toString())) {
+            throw exceptionManager.getLoginFailException(new RequestContext(request), true);
+        }
+
+        HttpSession session = request.getSession();
+        session.setAttribute(bloggerProperties.getSessionNameOfBloggerId(), account.getId());
+        session.setAttribute(bloggerProperties.getSessionNameOfBloggerName(), account.getUsername());
+        session.setAttribute(bloggerProperties.getSessionBloggerLoginSignal(), "login");
+
+        // 成功登录
+        return new ResultBean<>("");
     }
 
     @RequestMapping(value = "/way=phone", method = RequestMethod.POST)

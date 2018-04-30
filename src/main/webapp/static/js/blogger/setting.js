@@ -101,12 +101,13 @@ function saveBaseDiv() {
     var mEmail = $('#modifyProfileEmail').val();
     var mPhone = $('#modifyProfilePhone').val();
     var btnId = 'settingBtnBase';
-    var sendReq = false, bloggerNameModify = false;
+    var bloggerNameModify = false;
+
+    var editSucc = false;
 
     // 若用户名修改发起 Account 修改请求
     // 修改用户名需要刷新网页
     if (mBloggerName !== bloggerName) {
-        sendReq = true;
         disableButton(false, btnId, '正在修改...', "button-disable");
 
         $.ajax({
@@ -118,7 +119,9 @@ function saveBaseDiv() {
                 if (result.code === 0) {
                     bloggerName = mBloggerName;
                     bloggerNameModify = true;
+                    editSucc = true;
                 } else {
+                    editSucc = false;
                     error(result.msg, 'settingErrorMsg', true, 2000);
                 }
             }
@@ -127,7 +130,6 @@ function saveBaseDiv() {
 
     // 若 email ，phone 任一项修改，发起 Profile 修改请求
     if (mEmail !== email || mPhone !== phone) {
-        sendReq = true;
         disableButton(false, btnId, '正在修改...', "button-disable");
 
         $.ajax({
@@ -142,7 +144,9 @@ function saveBaseDiv() {
                 if (result.code === 0) {
                     email = mEmail;
                     phone = mPhone;
+                    editSucc = true;
                 } else {
+                    editSucc = false;
                     error(result.msg, 'settingErrorMsg', true, 2000);
                 }
             }
@@ -150,7 +154,6 @@ function saveBaseDiv() {
     }
 
     // 若 mMainNavPos 修改，发起 Setting 请求
-    var editSucc = false;
     if (mMainNavPos !== mainNavPos) {
         sendReq = true;
         disableButton(false, btnId, '正在修改...', "button-disable");
@@ -165,6 +168,7 @@ function saveBaseDiv() {
                     editSucc = true;
                     mainNavPos = mMainNavPos;
                 } else {
+                    editSucc = false;
                     error(result.msg, 'settingErrorMsg', true, 2000);
                 }
             }
@@ -172,20 +176,17 @@ function saveBaseDiv() {
     }
 
     if (editSucc) {
-
-        if (sendReq) {
-            disableButton(false, btnId, '修改成功', "button-disable");
-            toast('修改成功', 1000);
-            setTimeout(function () {
-                disableButton(true, btnId, '保存', "button-disable");
-                if (bloggerNameModify)
-                    location.href = '/' + bloggerName + '/setting';
-            }, 1000);
-        } else {
-            error('未修改', 'settingErrorMsg', true, 1000);
-        }
-
+        disableButton(false, btnId, '修改成功', "button-disable");
+        toast('修改成功', 1000);
+        setTimeout(function () {
+            disableButton(true, btnId, '保存', "button-disable");
+            if (bloggerNameModify)
+                location.href = '/' + bloggerName + '/setting';
+        }, 1000);
+    } else {
+        error('未修改', 'settingErrorMsg', true, 1000);
     }
+
 
 }
 
