@@ -41,4 +41,9 @@ public class WebsiteProperties {
      * 配置了smtp 的邮件发送者的授权码
      */
     private String mailSenderPassword;
+
+    /**
+     * 默认获取活跃博主数
+     */
+    private Integer WebsiteActiveBloggerCount;
 }

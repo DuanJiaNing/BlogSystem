@@ -9,8 +9,6 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ include file="/views/dialog/confirm_dialog.jsp" %>
-
 <html>
 <head>
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
@@ -35,63 +33,70 @@
     <title>登录-Blog</title>
 
 </head>
-<body style="height: 100%">
+<body style="padding: 3% 4%">
 
-<div class="container-fluid" onclick="if (show)$('#loginDiv').slideUp(function() {show = false;})">
+<div class="grid">
+    <div class="grid-item">
+        <div class="main-content text-center">
+            <br>
+            <small style="color: gray;font-size: 1.3em" class="lead">请输入您的用户名和密码</small>
+            <br>
+            <br>
+            <hr class="default-line">
+            <br>
 
-    <div style="height: 65%;" >
-        <div class="row">
-            <div class="col-md-5"></div>
-            <div class="col-md-2">
-                <img src="/images/logo/logo.png" style="width: 100%;cursor: pointer"
-                     onclick="$('#loginDiv').slideToggle(function() {show=!show});" title="登录" data-toggle="tooltip"
-                     data-placement="bottom">
-            </div>
-            <div class="col-md-5"></div>
-        </div>
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4 main-content text-center" id="loginDiv" style="display: none" onclick="event.stopPropagation()">
-                <br>
-                <small style="color: gray;font-size: 1.3em" class="lead">请输入您的用户名和密码</small>
-                <br>
-                <br>
-                <hr class="default-line">
-                <br>
+            <input type="text" id="loginUserName" placeholder="用户名" class="jianshu-style-input login-input">
+            <br>
+            <br>
 
-                <input type="text" id="loginUserName" placeholder="用户名" class="jianshu-style-input login-input">
-                <br>
-                <br>
+            <input type="password" class="jianshu-style-input login-input" id="loginPassword"
+                   placeholder="密码">
+            <br>
+            <br>
 
-                <input type="password" class="jianshu-style-input login-input" id="loginPassword"
-                       placeholder="密码">
-                <br>
-                <br>
-
-                <button class="button-success" style="width: 90%;height: 45px" id="loginBtn" onclick="login()">登录
-                </button>
-                <br>
-                <br>
-                <span class="error-msg" id="loginErrorMsg"></span>
-                <br>
-                <p style="opacity: 0.5" class="text-right">还没账号，去<a href="/register">&nbsp;注册</a></p>
-            </div>
-            <div class="col-md-4"></div>
+            <button class="button-success" style="width: 90%;height: 45px" id="loginBtn" onclick="login()">登录
+            </button>
+            <br>
+            <br>
+            <span class="error-msg" id="loginErrorMsg"></span>
+            <br>
+            <p style="opacity: 0.5" class="text-right">还没账号，去<a href="/register">&nbsp;注册</a></p>
         </div>
     </div>
-    <div style="height: 35%;">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-        </div>
-        <div class="col-md-2"></div>
-    </div>
 
+    <c:forEach items="${activeBlogger}" var="blogger">
+        <div class="grid-item grid-item-sub"><img src="${blogger.avatar.path}"></div>
+    </c:forEach>
+    <%----%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
 </div>
-
 <script type="application/javascript" src="/js/common.js"></script>
 <script type="application/javascript" src="/js/blogger/login.js"></script>
+<script type="application/javascript" src="/plugin/masonry/masonry.pkgd.min.js"></script>
 <script>
-    var show=false;
+    var show = false;
 </script>
 
 

@@ -65,4 +65,10 @@ function errorInfoWhenLogin(msg) {
 
 $(document).ready(function () {
     initToolTip();
+
+    $('.grid').masonry({
+        // options
+        itemSelector: '.grid-item',
+        columnWidth: 30
+    });
 });

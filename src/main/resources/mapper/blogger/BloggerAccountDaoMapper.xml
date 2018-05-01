@@ -47,13 +47,13 @@
             SELECT LAST_INSERT_ID() AS id
         </selectKey>
         INSERT INTO blogger_account (
-            username,
-            password,
-            register_date
+        username,
+        password,
+        register_date
         ) VALUE (
-            #{username},
-            #{password},
-            NOW()
+        #{username},
+        #{password},
+        NOW()
         )
     </insert>
 
@@ -61,5 +61,11 @@
         DELETE FROM blogger_account
         WHERE id = #{value}
     </delete>
+
+    <select id="listId" resultType="int">
+        select id
+        from blogger_account
+        limit 0, #{value}
+    </select>
 
 </mapper>

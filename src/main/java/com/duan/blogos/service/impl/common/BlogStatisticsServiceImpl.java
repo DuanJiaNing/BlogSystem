@@ -16,6 +16,7 @@ import com.duan.blogos.manager.DataFillingManager;
 import com.duan.blogos.manager.StringConstructorManager;
 import com.duan.blogos.manager.properties.DbProperties;
 import com.duan.blogos.restful.ResultBean;
+import com.duan.blogos.service.blogger.BloggerStatisticsService;
 import com.duan.blogos.service.common.BlogStatisticsService;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.StringUtils;
@@ -41,9 +42,6 @@ public class BlogStatisticsServiceImpl implements BlogStatisticsService {
     private DataFillingManager dataFillingManager;
 
     @Autowired
-    private StringConstructorManager stringConstructorManager;
-
-    @Autowired
     private BlogCategoryDao categoryDao;
 
     @Autowired
@@ -65,13 +63,7 @@ public class BlogStatisticsServiceImpl implements BlogStatisticsService {
     private BlogCommentDao commentDao;
 
     @Autowired
-    private BloggerAccountDao accountDao;
-
-    @Autowired
-    private BloggerPictureDao pictureDao;
-
-    @Autowired
-    private BloggerProfileDao profileDao;
+    private BloggerStatisticsService statisticsService;
 
     @Override
     public ResultBean<BlogStatisticsDTO> getBlogStatistics(int blogId) {
@@ -109,7 +101,7 @@ public class BlogStatisticsServiceImpl implements BlogStatisticsService {
             for (BlogLike like : likeList) {
                 ids[c++] = like.getLikerId();
             }
-            likes = getBlogger(ids, bloggerId);
+            likes = statisticsService.listBloggerDTO(ids);
         }
 
         // 收藏了该篇文章的人
@@ -121,7 +113,7 @@ public class BlogStatisticsServiceImpl implements BlogStatisticsService {
             for (BlogCollect collect : collectList) {
                 ids[c++] = collect.getCollectorId();
             }
-            collects = getBlogger(ids, bloggerId);
+            collects = statisticsService.listBloggerDTO(ids);
         }
 
         // 评论过该篇文章的人
@@ -137,7 +129,7 @@ public class BlogStatisticsServiceImpl implements BlogStatisticsService {
                     ids[c++] = id;
             }
             // ids 需要去重
-            commenter = getBlogger(IntStream.of(Arrays.copyOf(ids, c)).distinct().toArray(), bloggerId);
+            commenter = statisticsService.listBloggerDTO(IntStream.of(Arrays.copyOf(ids, c)).distinct().toArray());
         }
 
         BlogStatisticsDTO dto = dataFillingManager.blogStatisticsToDTO(blog, statistics, categories, labels,
@@ -146,38 +138,6 @@ public class BlogStatisticsServiceImpl implements BlogStatisticsService {
         return new ResultBean<>(dto);
     }
 
-    // 获得博主dto
-    private BloggerDTO[] getBlogger(int[] ids, int bloggerId) {
-        if (CollectionUtils.isEmpty(ids)) return null;
-
-        BloggerDTO[] dtos = new BloggerDTO[ids.length];
-        int c = 0;
-        for (int id : ids) {
-            BloggerAccount account = accountDao.getAccountById(id);
-            BloggerProfile profile = profileDao.getProfileByBloggerId(id);
-            BloggerPicture avatar = null;
-            Integer avatarId = profile.getAvatarId();
-            if (avatarId != null)
-                avatar = pictureDao.getPictureById(avatarId);
-
-            if (avatar != null)
-                avatar.setPath(stringConstructorManager.constructPictureUrl(avatar, BloggerPictureCategoryEnum.DEFAULT_BLOGGER_AVATAR));
-
-            // 设置默认头像
-            if (avatar == null) {
-                avatar = new BloggerPicture();
-                avatar.setBloggerId(bloggerId);
-                avatar.setCategory(BloggerPictureCategoryEnum.PUBLIC.getCode());
-                avatar.setId(-1);
-                avatar.setPath(stringConstructorManager.constructPictureUrl(avatar, BloggerPictureCategoryEnum.DEFAULT_BLOGGER_AVATAR));
-            }
-
-            BloggerDTO dto = dataFillingManager.bloggerAccountToDTO(account, profile, avatar);
-            dtos[c++] = dto;
-        }
-
-        return Arrays.copyOf(dtos, c);
-    }
 
     @Override
     public ResultBean<BlogStatisticsCountDTO> getBlogStatisticsCount(int blogId) {

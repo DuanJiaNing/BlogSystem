@@ -5,6 +5,8 @@ import com.duan.blogos.dao.blog.BlogDao;
 import com.duan.blogos.entity.blogger.BloggerAccount;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created on 2017/12/19.
  *
@@ -28,4 +30,12 @@ public interface BloggerAccountDao extends BaseDao<BloggerAccount> {
      * @return 查询结果
      */
     BloggerAccount getAccountById(int bloggerId);
+
+    /**
+     * 获取id
+     * @param count 获取个数
+     * @return id数组
+     */
+    // UPDATE: 2018/5/1 更新 调整活跃用户获取策略后删除
+    List<Integer> listId(int count);
 }

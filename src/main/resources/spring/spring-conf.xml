@@ -46,6 +46,7 @@
         <property name="manageEmailAddress" value="${website.manageEmailAddress}"/>
         <property name="mailSenderAddress" value="${website.mailSenderAddress}"/>
         <property name="mailSenderPassword" value="${website.mailSenderPassword}"/>
+        <property name="websiteActiveBloggerCount" value="${website.websiteActiveBloggerCount}"/>
     </bean>
 
     <!--管理者-->
