@@ -197,4 +197,11 @@ public class DataFillingManager {
         dto.setId(like.getId());
         return dto;
     }
+
+    public BloggerBriefDTO bloggerTobrief(BloggerDTO bloggerDTO, BloggerStatisticsDTO statisticsDTO) {
+        BloggerBriefDTO dto = new BloggerBriefDTO();
+        dto.setBlogger(bloggerDTO);
+        dto.setStatistics(statisticsDTO);
+        return dto;
+    }
 }

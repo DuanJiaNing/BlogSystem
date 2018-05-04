@@ -34,9 +34,8 @@
 
 </head>
 <body style="padding: 3% 4%">
-
-<div class="grid">
-    <div class="grid-item">
+<div class="row">
+    <div class="col-md-5"  style="padding-left: 64px">
         <div class="main-content text-center">
             <br>
             <small style="color: gray;font-size: 1.3em" class="lead">请输入您的用户名和密码</small>
@@ -63,38 +62,58 @@
             <p style="opacity: 0.5" class="text-right">还没账号，去<a href="/register">&nbsp;注册</a></p>
         </div>
     </div>
+    <div class="col-md-7 text-right" style="padding-right: 256px">
+        <img src="/images/logo/logo.png" class="logo">
+    </div>
 
-    <c:forEach items="${activeBlogger}" var="blogger">
-        <div class="grid-item grid-item-sub"><img src="${blogger.avatar.path}"></div>
+</div>
+<br>
+<br>
+
+<div class="grid">
+
+    <c:forEach items="${briefs}" var="brief">
+        <div class="grid-item grid-item-sub">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="image-bg">
+                        <img class="grid-item-img img-circle" src="${brief.blogger.avatar.path}"
+                             data-adaptive-background='1'>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+            <p class="text-center">
+                <br>
+                <span class="check-blog" title="查看主页"
+                      onclick="location.href = '/${brief.blogger.username}/archives'">${brief.blogger.username}</span>
+            </p>
+            <hr>
+
+            <p class="text-center">
+                <small>
+                    <span>${brief.statistics.blogCount}&nbsp;篇博文</span>
+                    <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    被喜欢&nbsp;<span>${brief.statistics.likeCount}&nbsp;次</span>
+                    <span class="vertical-line">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                    共写了&nbsp;<span>${brief.statistics.wordCount}&nbsp;字</span>
+                </small>
+            </p>
+            <p class="text-center about-me">
+                    ${brief.blogger.profile.aboutMe}
+            </p>
+
+        </div>
     </c:forEach>
-    <%----%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
-    <%--<div class="grid-item grid-item-sub"><img src="/images/favicon.ico"></div>--%>
+
 </div>
 <script type="application/javascript" src="/js/common.js"></script>
 <script type="application/javascript" src="/js/blogger/login.js"></script>
 <script type="application/javascript" src="/plugin/masonry/masonry.pkgd.min.js"></script>
+<script type="text/javascript" src='/plugin/adaptiveBgColor/jquery.adaptive-backgrounds.js'></script>
+
 <script>
     var show = false;
 </script>

@@ -66,9 +66,12 @@ function errorInfoWhenLogin(msg) {
 $(document).ready(function () {
     initToolTip();
 
+    $.adaptiveBackground.run()
+
     $('.grid').masonry({
         // options
         itemSelector: '.grid-item',
-        columnWidth: 30
+        columnWidth: 15,
+        fitWidth: true
     });
 });

@@ -1,5 +1,6 @@
 package com.duan.blogos.web.blog;
 
+import com.duan.blogos.dto.blogger.BloggerBriefDTO;
 import com.duan.blogos.dto.blogger.BloggerDTO;
 import com.duan.blogos.manager.properties.WebsiteProperties;
 import com.duan.blogos.service.website.WebSiteStatisticsService;
@@ -35,9 +36,9 @@ public class LoginPageController {
         if (activeCount == null || activeCount < 0)
             activeCount = websiteProperties.getWebsiteActiveBloggerCount();
 
-        List<BloggerDTO> dtos = webSiteStatisticsService.listActiveBlogger(activeCount);
+        List<BloggerBriefDTO> dtos = webSiteStatisticsService.listActiveBlogger(activeCount);
         if (!CollectionUtils.isEmpty(dtos)) {
-            mv.addObject("activeBlogger", dtos);
+            mv.addObject("briefs", dtos);
         }
 
         return mv;

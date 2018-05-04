@@ -3,7 +3,7 @@ body {
     /*font-weight: bold;*/
 
     background-size: cover;
-    background-color: #F9FAFB;
+    background-color: #FFFFFF;
     /*background: url(/images/background.jpg) no-repeat fixed center center;*/
 }
 
@@ -16,9 +16,9 @@ a {
     box-shadow: 0 0 50px lightgray;
     background-color: white;
     padding: 4% 5%;
-    min-width: 500px;
-    min-height: 400px;
-    margin-right: 30px;
+
+    width: 520px;
+    height: 450px;
 }
 
 .login-input:focus {
@@ -41,13 +41,69 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
 }
 
 .grid-item-sub {
-    width: 290px;
-    height: 400px;
-    background-color: lightgray;
-    box-shadow: -3px 3px 10px darkgray;
-    margin-right: 20px;
+    width: 300px;
+    /*height: 400px;*/
+    min-height: 300px;
+    padding: 16px 8px;
+
+    background-color: rgba(249, 250, 251, 0.48);
+
+    margin-right: 15px;
+    border-radius: 5px;
+
+    border: solid 1px #d5dce2;
+    transition: all 0.3s ease-in-out;
+}
+.grid-item-sub:hover {
+    transform: scale(1.02);
+    border-radius: 20px;
+    box-shadow: 0 0 30px #b4b4b4;
 }
 
 .grid-item {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
+}
+
+.grid-item-img {
+    width: 100%;
+}
+
+.image-bg{
+    width: 100%;
+    /*控制外圈大小*/
+    padding: 2px;
+    border-radius: 50%;
+}
+
+.grid {
+    margin: 0 auto;
+}
+
+.user-name {
+    color: white;
+}
+
+.check-blog{
+    border-radius: 10px;
+    padding: 4px 13px;
+    font-size: x-small;
+    border: solid 1px orangered;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    color: orangered;
+}
+
+.check-blog:hover {
+    background-color: orangered;
+    color: white;
+}
+
+.about-me{
+    padding: 8px;
+    color: gray;
+    font-size: 0.9em;
+}
+
+.logo{
+    width: 160px;
 }

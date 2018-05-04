@@ -1,6 +1,6 @@
 package com.duan.blogos.service.website;
 
-import com.duan.blogos.dto.blogger.BloggerDTO;
+import com.duan.blogos.dto.blogger.BloggerBriefDTO;
 
 import java.util.List;
 
@@ -18,6 +18,6 @@ public interface WebSiteStatisticsService {
      * @param count 获取博主格式
      * @return 集合
      */
-    List<BloggerDTO> listActiveBlogger(int count);
+    List<BloggerBriefDTO> listActiveBlogger(int count);
 
 }
