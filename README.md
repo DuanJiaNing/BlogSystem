@@ -76,6 +76,9 @@ http://...XXX.../blogger/1/link?iconId=2&title=Git&url=https://git&bewrite=描�
 #### 博主主页
 ![](https://raw.githubusercontent.com/DuanJiaNing/Pictures/master/BlogSystem/blog-main-page.png)
 
+#### 登录页面（首页）
+![](https://raw.githubusercontent.com/DuanJiaNing/Pictures/master/BlogSystem/blogger-login.png)
+
 #### 注册页面
 ![](https://raw.githubusercontent.com/DuanJiaNing/Pictures/master/BlogSystem/register.png)
 
@@ -103,8 +106,6 @@ http://...XXX.../blogger/1/link?iconId=2&title=Git&url=https://git&bewrite=描�
 #### 帮助与反馈页面
 ![](https://raw.githubusercontent.com/DuanJiaNing/Pictures/master/BlogSystem/help-feedback.png)
 
-#### 登录页面
-![](https://raw.githubusercontent.com/DuanJiaNing/Pictures/master/BlogSystem/login.png)
 
 
 License
