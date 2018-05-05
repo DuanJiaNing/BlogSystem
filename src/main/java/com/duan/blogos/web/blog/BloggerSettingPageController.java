@@ -60,8 +60,7 @@ public class BloggerSettingPageController {
             mv.setViewName("/blogger/register");
             return mv;
         } else if (!bloggerValidateManager.checkBloggerSignIn(request, bloggerId = account.getId())) {
-            mv.setViewName("blogger/login");
-            return mv;
+            return new ModelAndView("redirect:/login");
         }
 
         BloggerProfile profile = profileService.getBloggerProfile(bloggerId);

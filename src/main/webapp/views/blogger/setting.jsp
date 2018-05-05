@@ -61,9 +61,9 @@
                     &nbsp;&nbsp;账号
                 </button>
                 <%--<button type="button" class="list-group-item btn-item" onclick="showDiv('divStatistic',this)"--%>
-                        <%--style="border: 0;">--%>
-                    <%--<img class="img32px" style="opacity: 0.5" src="/images/icon/icons8-combo-chart-80.png">--%>
-                    <%--&nbsp;&nbsp;统计数据--%>
+                <%--style="border: 0;">--%>
+                <%--<img class="img32px" style="opacity: 0.5" src="/images/icon/icons8-combo-chart-80.png">--%>
+                <%--&nbsp;&nbsp;统计数据--%>
                 <%--</button>--%>
             </div>
 
@@ -106,7 +106,7 @@
                     <li class="list-group-item">
                         <span class="li-title">手机</span>
                         &nbsp;&nbsp;
-                        <input class="jianshu-style-input" type="text" value="${profile.phone}"
+                        <input class="jianshu-style-input" value="${profile.phone}"
                                id="modifyProfilePhone">
                     </li>
 

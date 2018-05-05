@@ -41,7 +41,7 @@ public class EditBlogPageController {
         ModelAndView mv = new ModelAndView();
 
         if (bloggerId == null || !bloggerValidateManager.checkBloggerSignIn(request, bloggerId)) {
-            mv.setViewName("/blogger/login");
+            return new ModelAndView("redirect:/login");
         } else {
             if (blogId != null) {
                 ResultBean<Blog> blog = blogService.getBlog(bloggerId, blogId);

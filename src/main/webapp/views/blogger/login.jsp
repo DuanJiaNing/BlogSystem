@@ -59,7 +59,7 @@
             <br>
             <span class="error-msg" id="loginErrorMsg"></span>
             <br>
-            <p style="opacity: 0.5" class="text-right">还没账号，去<a href="/register">&nbsp;注册</a></p>
+            <p style="opacity: 0.5;" class="text-center">还没账号，去<a href="/register">&nbsp;注册</a></p>
         </div>
     </div>
     <div class="col-md-7 text-right" style="padding-right: 100px;padding-left: 50px">

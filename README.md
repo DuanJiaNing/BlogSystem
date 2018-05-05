@@ -109,7 +109,7 @@ http://...XXX.../blogger/1/link?iconId=2&title=Git&url=https://git&bewrite=描�
 #### 开发者入口
 
 系统对后端的 api 接口大都整理了文档说明，在 src/doc/wiki 目录下，但后续变更没有及时同步文档，仅可作为参考，api 用法以
-src/main/com.duan.blogos/web/api 下源码为准。
+src/main/java/com.duan.blogos/web/api 下源码为准。
 
 在本地搭建系统时，需要做些前置准备。部署启动后会进入登录页面，登录页面底部有 *开发者入口* 链接，可点击链接进入系统搭建引导页面，
 或者直接访问 '/dev_help.jsp' 亦可进入。
