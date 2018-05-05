@@ -18,7 +18,7 @@ a {
     padding: 4% 5%;
 
     width: 520px;
-    height: 450px;
+    height: 430px;
 }
 
 .login-input:focus {
@@ -28,6 +28,7 @@ a {
 .login-input {
     width: 90%;
     height: 50px;
+    margin-bottom: 8px;
 }
 
 input:-webkit-autofill,
@@ -46,7 +47,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     min-height: 300px;
     padding: 16px 8px;
 
-    background-color: rgba(249, 250, 251, 0.48);
+    background-color: rgba(249, 250, 251, 0.39);
 
     margin-right: 15px;
     border-radius: 5px;
@@ -54,9 +55,11 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     border: solid 1px #d5dce2;
     transition: all 0.3s ease-in-out;
 }
+
 .grid-item-sub:hover {
     transform: scale(1.02);
     border-radius: 20px;
+    background-color: rgb(244, 245, 246);
     box-shadow: 0 0 30px #b4b4b4;
 }
 
@@ -66,13 +69,22 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
 
 .grid-item-img {
     width: 100%;
+    min-height: 160px;
+    cursor: pointer;
 }
 
-.image-bg{
+.image-bg {
     width: 100%;
     /*控制外圈大小*/
     padding: 2px;
+    box-shadow: 0 0 20px #b4b4b4;
     border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+}
+
+.image-bg:hover {
+    /*控制外圈大小*/
+    padding: 8px;
 }
 
 .grid {
@@ -83,7 +95,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     color: white;
 }
 
-.check-blog{
+.check-blog {
     border-radius: 10px;
     padding: 4px 13px;
     font-size: x-small;
@@ -98,12 +110,24 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     color: white;
 }
 
-.about-me{
-    padding: 8px;
+.about-me {
+    padding: 16px;
     color: gray;
     font-size: 0.9em;
 }
 
-.logo{
+.logo {
     width: 160px;
+}
+
+.scroll-down:hover {
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+.scroll-down {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.3s ease-in-out;
+    width: 40px;
 }

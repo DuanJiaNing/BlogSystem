@@ -35,7 +35,7 @@
 </head>
 <body style="padding: 3% 4%">
 <div class="row">
-    <div class="col-md-5"  style="padding-left: 64px">
+    <div class="col-md-5" style="padding-left: 64px">
         <div class="main-content text-center">
             <br>
             <small style="color: gray;font-size: 1.3em" class="lead">请输入您的用户名和密码</small>
@@ -62,8 +62,28 @@
             <p style="opacity: 0.5" class="text-right">还没账号，去<a href="/register">&nbsp;注册</a></p>
         </div>
     </div>
-    <div class="col-md-7 text-right" style="padding-right: 256px">
+    <div class="col-md-7 text-right" style="padding-right: 100px;padding-left: 50px">
         <img src="/images/logo/logo.png" class="logo">
+
+        <br>
+        <hr class="default-line">
+        <br>
+
+        <p style="padding-top: 16px;line-height:25px;padding-left:32px;padding-right: 16px;color: dimgray"
+           class="text-right">
+            创建自己的博文类别和标签，使用 Markdown 语法创作博文，将博文分类，贴上标签既可发布<br>
+            只要知道你的用户名，不论他/她是否注册，都能浏览和检索你的公开博文<br>
+            注册成为博主，就能评论、喜欢和收藏别人的博文<br>
+        </p>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <p>
+            去看看他们的主页&nbsp;&nbsp;<img class="scroll-down" src="/images/icon/icons8-scroll-down-80.png"
+                                     onclick="$('html,body').animate({scrollTop:500},300);">
+        </p>
     </div>
 
 </div>
@@ -79,7 +99,8 @@
                 <div class="col-md-8">
                     <div class="image-bg">
                         <img class="grid-item-img img-circle" src="${brief.blogger.avatar.path}"
-                             data-adaptive-background='1'>
+                             data-adaptive-background='1' title="查看主页"
+                             onclick="location.href = '/${brief.blogger.username}/archives'">
                     </div>
                 </div>
                 <div class="col-md-2"></div>
@@ -101,7 +122,7 @@
                     共写了&nbsp;<span>${brief.statistics.wordCount}&nbsp;字</span>
                 </small>
             </p>
-            <p class="text-center about-me">
+            <p class="text-left about-me lead">
                     ${brief.blogger.profile.aboutMe}
             </p>
 
