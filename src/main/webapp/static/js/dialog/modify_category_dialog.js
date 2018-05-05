@@ -23,7 +23,7 @@ function addModifyCategoryChoose(th) {
 
     var title = $(th).html();
     var span = '<span did="' + did + '" class="modify-item-choosed" ' +
-        'onclick="disChooseCategory(this)">' + title + ' <span style="opacity: 0.5">x</span></span>';
+        'onclick="disChooseCategory(this)">' + title + ' &nbsp;x</span>';
 
     if (selectCategoryModel === 1 && dom.html() !== '') {
         // 编辑时只能选择一个
@@ -33,14 +33,14 @@ function addModifyCategoryChoose(th) {
 
 function exeCategoryUpdate(th, bloggerId, funWhenEditCategorySuccess) {
     if (checkHtmlEmpty('showChoosedCategory')) {
-        error('请选择类别', 'modifyCategoryErrorMsg', true, 1000)
+        error('请选择类别', 'modifyCategoryErrorMsg', true, 2000)
         return;
     }
 
     var newTitle = $('#editCategoryTitle').val();
     var newBewrite = $('#editCategoryBewrite').val();
     if (isStrEmpty(newTitle) && isStrEmpty(newBewrite)) {
-        error('请至少更新标题和说明其中之一', 'modifyCategoryErrorMsg', true, 1000);
+        error('请至少更新标题和说明其中之一', 'modifyCategoryErrorMsg', true, 2000);
         return;
     }
 
@@ -83,7 +83,7 @@ function exeCategoryUpdate(th, bloggerId, funWhenEditCategorySuccess) {
                 }, 1000);
 
             } else {
-                error(result.msg, 'modifyCategoryErrorMsg', false, 1000);
+                error(result.msg, 'modifyCategoryErrorMsg', false, 3000);
             }
         }
     });
@@ -92,7 +92,7 @@ function exeCategoryUpdate(th, bloggerId, funWhenEditCategorySuccess) {
 
 function exeCategoryDelete(th, bloggerId, funWhenDeleteCategorySuccess) {
     if (checkHtmlEmpty('showChoosedCategory')) {
-        error('请选择类别', 'modifyCategoryErrorMsg', true, 1000)
+        error('请选择类别', 'modifyCategoryErrorMsg', true, 2000)
         return;
     }
 
@@ -118,7 +118,7 @@ function exeCategoryDelete(th, bloggerId, funWhenDeleteCategorySuccess) {
         });
 
         if (fail) {
-            error(msg, 'modifyCategoryErrorMsg', true, 1000);
+            error(msg, 'modifyCategoryErrorMsg', true, 2000);
             return;
         }
     }

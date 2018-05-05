@@ -85,13 +85,13 @@ function saveProfileDiv() {
                     intro = mIntro;
                     aboutMe = mAboutMe;
                 } else {
-                    error(result.msg, 'settingErrorMsg', true, 2000);
+                    error(result.msg, 'settingErrorMsg', true, 3000);
                 }
             }
         });
 
     } else {
-        error('未修改', 'settingErrorMsg', true, 1000);
+        error('未修改', 'settingErrorMsg', true, 3000);
     }
 
 }
@@ -122,7 +122,7 @@ function saveBaseDiv() {
                     editSucc = true;
                 } else {
                     editSucc = false;
-                    error(result.msg, 'settingErrorMsg', true, 2000);
+                    error(result.msg, 'settingErrorMsg', true, 3000);
                 }
             }
         });
@@ -147,7 +147,7 @@ function saveBaseDiv() {
                     editSucc = true;
                 } else {
                     editSucc = false;
-                    error(result.msg, 'settingErrorMsg', true, 2000);
+                    error(result.msg, 'settingErrorMsg', true, 3000);
                 }
             }
         });
@@ -169,7 +169,7 @@ function saveBaseDiv() {
                     mainNavPos = mMainNavPos;
                 } else {
                     editSucc = false;
-                    error(result.msg, 'settingErrorMsg', true, 2000);
+                    error(result.msg, 'settingErrorMsg', true, 3000);
                 }
             }
         });
@@ -184,7 +184,7 @@ function saveBaseDiv() {
                 location.href = '/' + bloggerName + '/setting';
         }, 1000);
     } else {
-        error('未修改', 'settingErrorMsg', true, 1000);
+        error('未修改', 'settingErrorMsg', true, 3000);
     }
 
 
@@ -264,7 +264,7 @@ function sendPhoneCode() {
                     }
                 });
             } else {
-                error('验证码无法发送', 'errorMsgOperAccount', true, 2000);
+                error('验证码无法发送', 'errorMsgOperAccount', true, 3000);
             }
         }, 'json');
 }
@@ -288,12 +288,12 @@ function initDeleteAccountConfirmDialog() {
 function updatePwd() {
     var code = $('#phoneCode').val();
     if (isStrEmpty(code)) {
-        error('请输入验证码', 'errorMsgOperAccount', true, 2000);
+        error('请输入验证码', 'errorMsgOperAccount', true, 3000);
         return;
     }
 
     if (code !== phoneCode) {
-        error('验证码错误', 'errorMsgOperAccount', true, 2000);
+        error('验证码错误', 'errorMsgOperAccount', true, 3000);
         return;
     }
 

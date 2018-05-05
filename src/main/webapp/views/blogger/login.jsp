@@ -36,7 +36,7 @@
 <body style="padding: 3% 4%">
 <div class="row">
     <div class="col-md-5" style="padding-left: 64px">
-        <div class="main-content text-center">
+        <div class=" text-center">
             <br>
             <small style="color: gray;font-size: 1.3em" class="lead">请输入您的用户名和密码</small>
             <br>
@@ -53,7 +53,7 @@
             <br>
             <br>
 
-            <button class="button-success" style="width: 90%;height: 45px" id="loginBtn" onclick="login()">登录
+            <button class="button-success" style="width: 80%;height: 45px" id="loginBtn" onclick="login()">登录
             </button>
             <br>
             <br>
@@ -130,6 +130,10 @@
     </c:forEach>
 
 </div>
+
+<br>
+<br>
+<a href="/dev_help.jsp">开发者入口</a>
 <script type="application/javascript" src="/js/common.js"></script>
 <script type="application/javascript" src="/js/blogger/login.js"></script>
 <script type="application/javascript" src="/plugin/masonry/masonry.pkgd.min.js"></script>

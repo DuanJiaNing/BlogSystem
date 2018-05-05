@@ -200,7 +200,7 @@ function toggleDivState(blockId, noneId, boldId, normalId, errorMsgId, msg) {
     $('#' + boldId).css('font-weight', 'bold');
     $('#' + normalId).css('font-weight', 'normal');
 
-    error(msg, errorMsgId, true, 1000);
+    error(msg, errorMsgId, true, 2000);
 }
 
 /**

@@ -53,7 +53,7 @@
 
                         <div class="row">
                             <div class="col-md-7">
-                                <small style="color: darkgray;">选择标签</small>
+                                <small style="color: darkgray;">已选标签</small>
                                 <hr class="default-line">
                                 <p id="showChoosedLabel" style="line-height: 24px;min-height: 120px"></p>
 

@@ -25,7 +25,7 @@ function addModifyLinkChoose(th) {
 
     var title = $(th).html();
     var span = '<span did="' + did + '" class="modify-item-choosed" ' +
-        'onclick="disChooseLink(this)">' + title + ' <span style="opacity: 0.5">x</span></span>';
+        'onclick="disChooseLink(this)">' + title + '&nbsp;x</span>';
     if (selectLinkModel === 1 && dom.html() !== '') {
         // 编辑时只能选择一个
         dom.html(span);
@@ -35,7 +35,7 @@ function addModifyLinkChoose(th) {
 
 function exeLinkUpdate(th, bloggerId, funWhenEditLinkSuccess) {
     if (checkHtmlEmpty('showChoosedLink')) {
-        error('请选择链接', 'modifyLinkErrorMsg', true, 1000)
+        error('请选择链接', 'modifyLinkErrorMsg', true, 2000)
         return;
     }
 
@@ -43,7 +43,7 @@ function exeLinkUpdate(th, bloggerId, funWhenEditLinkSuccess) {
     var newUrl = $('#editLinkUrl').val();
     var newBewrite = $('#editLinkBewrite').val();
     if (isStrEmpty(newTitle) && isStrEmpty(newBewrite) && isStrEmpty(newUrl)) {
-        error('请至少更新标题、url和说明其中之一', 'modifyLinkErrorMsg', true, 1000);
+        error('请至少更新标题、url和说明其中之一', 'modifyLinkErrorMsg', true, 2000);
         return;
     }
 
@@ -85,7 +85,7 @@ function exeLinkUpdate(th, bloggerId, funWhenEditLinkSuccess) {
                 }, 1000);
 
             } else {
-                error(result.msg, 'modifyLinkErrorMsg', false, 1000);
+                error(result.msg, 'modifyLinkErrorMsg', false, 3000);
             }
         }
     });
@@ -94,7 +94,7 @@ function exeLinkUpdate(th, bloggerId, funWhenEditLinkSuccess) {
 
 function exeLinkDelete(th, bloggerId, funWhenDeleteLinkSuccess) {
     if (checkHtmlEmpty('showChoosedLink')) {
-        error('请选择链接', 'modifyLinkErrorMsg', true, 1000)
+        error('请选择链接', 'modifyLinkErrorMsg', true, 2000)
         return;
     }
 
@@ -120,7 +120,7 @@ function exeLinkDelete(th, bloggerId, funWhenDeleteLinkSuccess) {
         });
 
         if (fail) {
-            error(msg, 'modifyLinkErrorMsg', true, 1000);
+            error(msg, 'modifyLinkErrorMsg', true, 3000);
             return;
         }
     }

@@ -15,13 +15,13 @@ function importBlog(bloggerId) {
 
     if (process) {
         // 正在执行上传或解析操作
-        error('正在处理', 'blogImportErrorMsg', true, 1000);
+        error('正在处理', 'blogImportErrorMsg', true, 2000);
         return;
     }
 
     var name = $('#showChoosedFileName').html();
     if (isStrEmpty_(name)) {
-        error('请先选择文件', 'blogImportErrorMsg', true, 1000);
+        error('请先选择文件', 'blogImportErrorMsg', true, 2000);
         return;
     }
     if (name.indexOf('.zip') !== name.length - 4) {

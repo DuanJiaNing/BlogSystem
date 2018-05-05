@@ -4,7 +4,7 @@ function sendFeedback(bloggerId) {
     var contactInfo = $('#contactInfo').val();
 
     if (isStrEmpty(adviceOrOpinion)) {
-        error('请输入问题或建议', 'sendFeedbackErrorMsg', true, 2000);
+        error('请输入问题或建议', 'sendFeedbackErrorMsg', true, 3000);
         return;
     }
 
@@ -29,10 +29,10 @@ function sendFeedback(bloggerId) {
 
             } else if (result.code === 18) {
                 disableButton(true, 'sendFeedbackBtn', '提交', "button-disable");
-                error('发送失败', 'sendFeedbackErrorMsg', true, 2000);
+                error('发送失败', 'sendFeedbackErrorMsg', true, 3000);
             } else {
                 disableButton(true, 'sendFeedbackBtn', '提交', "button-disable");
-                error(result.msg, 'sendFeedbackErrorMsg', true, 2000);
+                error(result.msg, 'sendFeedbackErrorMsg', true, 3000);
             }
         }
     )

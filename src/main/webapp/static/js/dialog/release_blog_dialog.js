@@ -55,7 +55,7 @@ var categoryMaxCount = 3;
 var labelMaxCount = 5;
 
 function errorInfoWhenRelease(msg) {
-    error(msg, 'editBlogErrorMsg', true, 1000);
+    error(msg, 'editBlogErrorMsg', true, 3000);
 }
 
 function toggleLabelClass(t) {

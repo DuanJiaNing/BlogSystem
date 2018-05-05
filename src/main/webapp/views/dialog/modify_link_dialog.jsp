@@ -51,7 +51,7 @@
 
                         <div class="row">
                             <div class="col-md-7">
-                                <small style="color: darkgray;">选择链接</small>
+                                <small style="color: darkgray;">已选链接</small>
                                 <hr class="default-line">
                                 <p id="showChoosedLink" style="line-height: 24px;min-height: 120px"></p>
                             </div>

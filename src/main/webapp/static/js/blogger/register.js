@@ -144,7 +144,7 @@ function checkInputProfile() {
 
 
 function errorInfoWhenRegister(msg) {
-    error(msg, 'registerErrorMsg', true, 1000);
+    error(msg, 'registerErrorMsg', true, 3000);
 }
 
 function register() {

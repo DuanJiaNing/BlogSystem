@@ -52,8 +52,11 @@
         <br>
 
         <br>
-        <button id="sendFeedbackBtn" class="button-save" onclick="sendFeedback(${sessionScope["bloggerId"]})">提交</button>
-        &nbsp;&nbsp;<small style="color: darkgray;">也可直接发送邮件到我的邮箱<mark>duan_jia_ning@163.com</mark></small>
+        <button id="sendFeedbackBtn" class="button-save" onclick="sendFeedback(${sessionScope["bloggerId"]})">提交
+        </button>
+        &nbsp;&nbsp;<small style="color: darkgray;">也可直接发送邮件到我的邮箱
+        <mark>duan_jia_ning@163.com</mark>
+    </small>
 
         <br>
         <br>
@@ -66,6 +69,28 @@
     <div>
         <h3>常见问题</h3>
         <hr class="default-line">
+        <br>
+        <a href="https://blog.csdn.net/guodongxiaren/article/details/23690801">GitHub上README写法暨GFM语法解读</a>
+        <br>
+        <br>
+
+        <a href="http://www.williamlong.info/archives/2983.html">科技博客的黄金时代远未结束-月光博客</a>
+        <br>
+        <br>
+
+        <a href="https://www.zhihu.com/question/21987958">如何写好一篇文章？</a>
+        <br>
+        <br>
+
+        <a href="https://www.jianshu.com/p/896ca48b9168">BLOG - 个人博文系统开发总结 三：批量博文导入功能</a>
+        <br>
+        <br>
+
+        <a href="https://www.jianshu.com/p/38fc4d07c8e0">BLOG - 个人博文系统开发总结 二：使用Lucene完成博文检索功能</a>
+        <br>
+        <br>
+
+        <a href="https://www.jianshu.com/p/08eeafc8bd39">BLOG - 个人博文系统开发总结 一：概览</a>
     </div>
 
 </div>

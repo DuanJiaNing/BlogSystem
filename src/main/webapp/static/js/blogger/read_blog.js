@@ -10,7 +10,7 @@ function checkLogin() {
     if (!bloggerLoginSignal) {
         // 显示登录对话框
         $('#loginDialog').modal('show');
-        error('请先登录', 'loginErrorMsg', true, 1000);
+        error('请先登录', 'loginErrorMsg', true, 3000);
         return false;
     } else return true;
 }
@@ -214,12 +214,12 @@ function leaveAComment() {
     var comment = dom.val();
 
     if (isStrEmpty(comment)) {
-        error('留言不能为空', 'commentErrorMsg', true, 1000);
+        error('留言不能为空', 'commentErrorMsg', true, 3000);
         return;
     }
 
     if (comment.length > commentMaxLimit) {
-        error('留言字数最多为400字', 'commentErrorMsg', true, 1000);
+        error('留言字数最多为400字', 'commentErrorMsg', true, 3000);
         return;
     }
 
@@ -242,7 +242,7 @@ function leaveAComment() {
                 }, 1000);
 
             } else {
-                error('留言出错：' + result.code, 'commentErrorMsg', true, 1000);
+                error('留言出错：' + result.code, 'commentErrorMsg', true, 3000);
                 disableButton(true, 'loginBtn', '提交', "button-disable");
             }
         }

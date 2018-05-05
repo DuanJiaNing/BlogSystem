@@ -16,7 +16,7 @@ function addModifyLabelChoose(th) {
 
     var title = $(th).html();
     var span = '<span did="' + did + '" class="modify-item-choosed" ' +
-        'onclick="disChooseLabel(this)">' + title + ' <span style="opacity: 0.5">x</span></span>';
+        'onclick="disChooseLabel(this)">' + title + ' &nbsp;x</span>';
     if (selectLabelModel === 1 && dom.html() !== '') {
         // 编辑时只能选择一个
         dom.html(span);
@@ -25,13 +25,13 @@ function addModifyLabelChoose(th) {
 
 function exeLabelUpdate(th, bloggerId, funWhenEditLabelSuccess) {
     if (checkHtmlEmpty('showChoosedLabel')) {
-        error('请选择标签', 'modifyLabelErrorMsg', true, 1000)
+        error('请选择标签', 'modifyLabelErrorMsg', true, 2000)
         return;
     }
 
     var newName = $('#chooseEditLabel > div > input').val();
     if (newName === '') {
-        error('请输入新的标签名', 'modifyLabelErrorMsg', true, 1000);
+        error('请输入新的标签名', 'modifyLabelErrorMsg', true, 2000);
         return;
     }
 
@@ -55,7 +55,7 @@ function exeLabelUpdate(th, bloggerId, funWhenEditLabelSuccess) {
                 }, 1000);
 
             } else {
-                error(result.msg, 'modifyLabelErrorMsg', false, 1000);
+                error(result.msg, 'modifyLabelErrorMsg', false, 3000);
             }
         }
     });
@@ -64,7 +64,7 @@ function exeLabelUpdate(th, bloggerId, funWhenEditLabelSuccess) {
 
 function exeLabelDelete(th, bloggerId, funWhenDeleteLabelSuccess) {
     if (checkHtmlEmpty('showChoosedLabel')) {
-        error('请选择标签', 'modifyLabelErrorMsg', true, 1000)
+        error('请选择标签', 'modifyLabelErrorMsg', true, 2000)
         return;
     }
 
@@ -90,7 +90,7 @@ function exeLabelDelete(th, bloggerId, funWhenDeleteLabelSuccess) {
         });
 
         if (fail) {
-            error(msg, 'modifyLabelErrorMsg', true, 1000);
+            error(msg, 'modifyLabelErrorMsg', true, 3000);
             return;
         }
     }

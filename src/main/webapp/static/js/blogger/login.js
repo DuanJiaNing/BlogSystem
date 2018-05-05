@@ -60,7 +60,7 @@ function checkInputEmptyWhenLogin(id) {
 }
 
 function errorInfoWhenLogin(msg) {
-    error(msg, 'loginErrorMsg', true, 1000);
+    error(msg, 'loginErrorMsg', true, 3000);
 }
 
 $(document).ready(function () {

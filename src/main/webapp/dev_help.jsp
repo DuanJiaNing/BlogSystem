@@ -1,12 +1,17 @@
 <%@ page pageEncoding="utf-8" %>
 <html>
 <head>
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/core.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+
     <style>
         .step {
             padding: 2%;
             border: solid 1px gray;
             border-radius: 5px;
             margin-top: 16px;
+            margin-bottom: 32px;
             background-color: white;
         }
 
@@ -16,10 +21,10 @@
     </style>
 </head>
 <body style="padding: 5% 10%;background-color: rgba(49,255,233,0.04)">
-<h1>BlogSystem&nbsp;用前必看</h1>
+<h1>BlogSystem&nbsp;系统运行搭建前必看</h1>
 
 <div class="step">
-    <h2>Step 1</h2>
+    <h2>Step 1：添加博主默认头像</h2>
     <ol>
         <li>
             测试系统前需前往系统&nbsp;<b><a href="/register">注册页面</a></b>&nbsp;注册一位博主，<b>确保数据库blogger_account表中其对应的主键id为1</b>（
@@ -70,6 +75,15 @@
         <br>
         <input type="submit" value="上传">
     </form>
+</div>
+
+
+<div class="step">
+    <h2>Step 2：enjoy it</h2>
+    <br>
+    <input type="text" id="username">&nbsp;&nbsp;
+    <button value="输入用户名" onclick="location.href='/'+$('#username').val()+'/archives'">前往主页</button>
+
 </div>
 
 </body>
