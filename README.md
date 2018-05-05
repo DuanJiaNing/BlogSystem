@@ -7,9 +7,7 @@
 
 BLOG 是学习 JavaWeb 开发4个月以来的总结实践项目，使用 SSM（Spring、SpringMVC、MyBatis）框架，MVC 三层结构、Lucene全文检索引擎、Junit 4单元测试、logback日志框架、Druid数据库连接池、Shiro安全框架的一个博文系统；
 
-在线查看：[http://120.79.128.250:8080/duan/archives](http://120.79.128.250:8080/duan/archives)<br>
-用户名：duan<br>
-密码：duan123456<br>
+在线查看：[http://120.79.128.250:8080/](http://120.79.128.250:8080/duan/archives)<br>
 
 #### 项目简介
 
