@@ -27,7 +27,7 @@
             <tr style="height: 100%">
                 <td valign="middle">
                     <%--<b class="navbar-brand BLOG ">BLOG</b>--%>
-                    <img class="img58px" src="/images/logo/logo.png">
+                    <img class="img58px website-logo" src="/images/logo/logo.png" onclick="gotoRegister()">
                 </td>
                 <td class="text-right" style="vertical-align: middle">
 

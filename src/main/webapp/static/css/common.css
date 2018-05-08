@@ -501,3 +501,14 @@ h4.default-h4 {
     border-radius: 8px;
     transition: all 300ms;
 }
+
+.website-logo {
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    opacity: 0.8;
+}
+
+.website-logo:hover {
+    transform: scale(1.2);
+    opacity: 1;
+}

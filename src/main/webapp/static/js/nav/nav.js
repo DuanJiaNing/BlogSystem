@@ -11,3 +11,7 @@ function logout(bloggerId, bloggerName) {
         }
     );
 }
+
+function gotoRegister() {
+    window.location = '/login';
+}

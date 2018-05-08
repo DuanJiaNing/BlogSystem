@@ -63,7 +63,7 @@
         </div>
     </div>
     <div class="col-md-7 text-right" style="padding-right: 100px;padding-left: 50px">
-        <img src="/images/logo/logo.png" class="logo">
+        <img src="/images/logo/logo.png" class="logo website-logo">
 
         <br>
         <hr class="default-line">
