@@ -13,62 +13,6 @@ BLOG 是学习 JavaWeb 开发4个月以来的总结实践项目，使用 SSM（S
 
 网站面向有撰写博客习惯的用户，个人可注册成为网站用户（博主），在系统中创建自己的博文类别、标签，使用Markdown语法创作博文，创作好后将博文分类，贴上标签既可发布；普通用户通过用户名就能浏览和检索博主的公开博文，注册成为博主后可以评论、喜欢和收藏博文。
 
-### API示例
-
-#### 新增友情链接
-
-- 接口地址：http://...XXX.../blogger/1/link（数字1为博主id）
-- 返回格式：json
-- 请求方式：post
-- 前提条件：博主需登录
-- 请求参数说明：
-<table>
-<tr>
-<th>名称</th>
-<th>类型</th>
-<th>必填</th>
-<th>说明</th>
-<th>默认</th>
-</tr>
-<tr>
-<td>iconId</td>
-<td>int</td>
-<td>否</td>
-<td>链接使用的图标的图片id</td>
-<td>系统默认图标</td>
-</tr>
-<tr>
-<td>title</td>
-<td>string</td>
-<td>是</td>
-<td>标题</td>
-<td></td>
-</tr>
-<tr>
-<td>url</td>
-<td>string</td>
-<td>是</td>
-<td>url</td>
-<td></td>
-</tr>
-<tr>
-<td>bewrite</td>
-<td>string</td>
-<td>否</td>
-<td>链接描述</td>
-<td>无</td>
-</tr>
-</table>
-
-- 请求示例：
-http://...XXX.../blogger/1/link?iconId=2&title=Git&url=https://git&bewrite=描述
-
-- 返回值：
-操作成功返回新链接记录的id
-
-- 后端接口
-![](https://github.com/DuanJiaNing/Pictures/blob/master/BlogSystem/code-BloggerLinkController%23add.png?raw=true)
-
 ### 示例网站截图
 
 #### 博主主页
@@ -112,6 +56,10 @@ src/main/java/com.duan.blogos/web/api 下源码为准。
 在本地搭建系统时，需要做些前置准备。部署启动后会进入登录页面，登录页面底部有 *开发者入口* 链接，可点击链接进入系统搭建引导页面，
 或者直接访问 '/dev_help.jsp' 亦可进入。
 
+### 版本更新
+
+- 2.0.0 
+2018/07/14 批量导入博文可以根据压缩文件目录名创建类别，并把里面的博文归到其类别下
 
 License
 ============
