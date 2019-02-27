@@ -22,6 +22,7 @@ import com.duan.blogos.manager.properties.WebsiteProperties;
 import com.duan.blogos.restful.ResultBean;
 import com.duan.blogos.service.BlogFilterAbstract;
 import com.duan.blogos.service.blogger.BloggerBlogService;
+import com.duan.blogos.service.blogger.BloggerCategoryService;
 import com.duan.blogos.util.CollectionUtils;
 import com.duan.blogos.util.FileUtils;
 import com.duan.blogos.util.StringUtils;
@@ -77,6 +78,9 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
 
     @Autowired
     private BloggerPictureDao pictureDao;
+
+    @Autowired
+    private BloggerCategoryService categoryService;
 
     @Override
     public int insertBlog(int bloggerId, int[] categories, int[] labels,
@@ -343,6 +347,7 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
         final HtmlRenderer renderer = HtmlRenderer.builder().build();
 
         ZipFile zipFile = null;
+        Long cateId = null;
         try {
             zipFile = new ZipFile(fullPath);
             Enumeration<? extends ZipEntry> entries = zipFile.entries();
@@ -362,10 +367,36 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
                     }
                 }
 
+                // 类别处理
+                String name = entry.getName();
+                if (entry.isDirectory()) {
+
+                    if (name.indexOf("/") != name.length() - 1) {
+                        continue; // 只取第一级目录作为类别
+                    }
+
+                    String dirName = name.substring(0, name.length() - 1);
+
+                    Long id = categoryDao.getCategoryIdByTitle(Long.valueOf(bloggerId + ""), dirName);
+                    if (id != null) {
+                        cateId = id;
+                    } else {
+                        int ctid = categoryService.insertBlogCategory(bloggerId, -1, dirName, "");
+                        cateId = Long.valueOf(ctid + "");
+                    }
+
+                    continue;
+                }
+
+                // 跟目录下
+                if (!name.contains("/")) {
+                    cateId = null;
+                }
+
                 BufferedInputStream stream = new BufferedInputStream(zipFile.getInputStream(entry));
                 InputStreamReader reader = new InputStreamReader(stream, Charset.forName("UTF-8"));
 
-                BlogTitleIdDTO node = analysisAndInsertMdFile(parser, renderer, entry, reader, bloggerId);
+                BlogTitleIdDTO node = analysisAndInsertMdFile(parser, renderer, entry, reader, bloggerId, cateId);
                 if (node != null)
                     result.add(node);
             }
@@ -468,12 +499,11 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
     }
 
     // 解析 md 文件读取字符流，新增记录到数据库
-    private BlogTitleIdDTO analysisAndInsertMdFile(Parser parser, HtmlRenderer renderer, ZipEntry entry, InputStreamReader reader, int bloggerId) throws IOException {
+    private BlogTitleIdDTO analysisAndInsertMdFile(Parser parser, HtmlRenderer renderer, ZipEntry entry,
+                                                   InputStreamReader reader, int bloggerId, Long cateId) throws IOException {
+        String name = entry.getName();
 
-        if (!entry.getName().endsWith(".md")) return null;
-
-        // 文件名作为标题
-        String title = entry.getName().replace(".md", "");
+        if (!name.endsWith(".md")) return null;
 
         StringBuilder b = new StringBuilder((int) entry.getSize());
         int len = 0;
@@ -499,7 +529,22 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
         String summary = aftReg.length() > 200 ? aftReg.substring(0, 200) : aftReg;
 
         // UPDATE: 2018/4/4 更新 图片引用
-        int id = insertBlog(bloggerId, null, null, PUBLIC, title, htmlContent, mdContent, summary, null, false);
+
+        // 文件名作为标题
+        String title = cateId == -1 ? name.replace(".md", "") :
+                name.substring(name.lastIndexOf("/") + 1).replace(".md", "");
+
+        int[] cts = {Math.toIntExact(cateId)};
+        int id = insertBlog(bloggerId,
+                cts,
+                null,
+                PUBLIC,
+                title,
+                htmlContent,
+                mdContent,
+                summary,
+                null,
+                false);
         if (id < 0) return null;
 
         BlogTitleIdDTO node = new BlogTitleIdDTO();

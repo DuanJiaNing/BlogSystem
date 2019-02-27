@@ -52,4 +52,6 @@ public interface BlogCategoryDao extends BaseDao<BlogCategory> {
      * @return 数量
      */
     Integer countByBloggerId(int bloggerId);
+
+    Long getCategoryIdByTitle(@Param("bloggerId") Long bloggerId, @Param("title") String title);
 }

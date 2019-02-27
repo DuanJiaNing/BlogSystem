@@ -34,6 +34,12 @@
         WHERE blogger_id = #{value}
     </select>
 
+    <select id="getCategoryIdByTitle" resultType="java.lang.Long">
+        select id
+        from blog_category
+        where title = #{title} and blogger_id = #{bloggerId}
+    </select>
+
     <update id="update" parameterType="BlogCategory">
         UPDATE blog_category
         <set>
