@@ -347,7 +347,21 @@ public class BloggerBlogServiceImpl extends BlogFilterAbstract<ResultBean<List<B
             zipFile = new ZipFile(fullPath);
             Enumeration<? extends ZipEntry> entries = zipFile.entries();
             while (entries.hasMoreElements()) {
-                ZipEntry entry = entries.nextElement();
+                ZipEntry entry;
+                try {
+                    entry = entries.nextElement();
+                } catch (IllegalArgumentException e) {
+                    if (e.getMessage().equals("MALFORMED")) {
+                        zipFile.close();
+
+                        zipFile = new ZipFile(fullPath, Charset.forName("GBK"));
+                        entries = zipFile.entries();
+                        continue;
+                    } else {
+                        throw e;
+                    }
+                }
+
                 BufferedInputStream stream = new BufferedInputStream(zipFile.getInputStream(entry));
                 InputStreamReader reader = new InputStreamReader(stream, Charset.forName("UTF-8"));
 
