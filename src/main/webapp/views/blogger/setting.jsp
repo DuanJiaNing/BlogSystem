@@ -116,25 +116,25 @@
                             <c:choose>
                                 <c:when test="${setting.mainPageNavPos eq 0}">
 
-                                    <img style="height: 20%;width: auto;border-radius: 5px;border-bottom: solid 2px #09B2E3"
+                                    <img style="height: 15%;width: auto;border-radius: 5px;border-bottom: solid 2px #09B2E3"
                                          id="mainPageNavLeft"
                                          class="shadow-border"
                                          onclick="chooseManNavPos(this,0)"
                                          src="/images/img/main-page-nav-left.jpg">
                                     &nbsp;&nbsp;&nbsp;
-                                    <img style="height: 20%;width: auto;border-radius: 5px" id="mainPageNavRight"
+                                    <img style="height: 15%;width: auto;border-radius: 5px" id="mainPageNavRight"
                                          class="shadow-border"
                                          onclick="chooseManNavPos(this,1)"
                                          src="/images/img/main-page-nav-right.jpg">
                                 </c:when>
                                 <c:otherwise>
 
-                                    <img style="height: 20%;width: auto;border-radius: 5px" id="mainPageNavLeft"
+                                    <img style="height: 15%;width: auto;border-radius: 5px" id="mainPageNavLeft"
                                          class="shadow-border"
                                          onclick="chooseManNavPos(this,0)"
                                          src="/images/img/main-page-nav-left.jpg">
                                     &nbsp;&nbsp;&nbsp;
-                                    <img style="height: 20%;width: auto;border-radius: 5px;border-bottom: solid 2px #09B2E3"
+                                    <img style="height: 15%;width: auto;border-radius: 5px;border-bottom: solid 2px #09B2E3"
                                          id="mainPageNavRight"
                                          class="shadow-border"
                                          onclick="chooseManNavPos(this,1)"
