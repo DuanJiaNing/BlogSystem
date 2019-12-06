@@ -41,7 +41,7 @@
 
                 <div class="form-group">
                     <label>选择类别</label><br>
-                    <p id="editBlogCategory" style="line-height: 28px;max-height: 100px"></p>
+                    <p id="editBlogCategory"></p>
                 </div>
                 <div class="form-group">
                     <label>选择标签</label><br>

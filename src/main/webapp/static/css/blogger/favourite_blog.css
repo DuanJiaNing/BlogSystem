@@ -1,5 +1,4 @@
 body {
-    font-family: "Segoe UI Semibold", 微软雅黑, serif;
 
     background-size: cover;
     background-color: #F9FAFB;
@@ -47,7 +46,6 @@ td {
 
 .item-blog-title {
     font-weight: bold;
-    font-family: 华文中宋, 方正姚体, serif;
     cursor: pointer;
 }
 

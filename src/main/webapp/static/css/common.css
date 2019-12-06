@@ -1,4 +1,12 @@
 /*通用*/
+@font-face {
+    font-family: 'sanjicuyuanjianti';
+    src: url('../font/sanjicuyuanjianti.ttf');
+}
+
+body {
+    font-family: "sanjicuyuanjianti";
+}
 
 button {
     outline: 0;
@@ -22,12 +30,10 @@ a {
 .BLOG {
     font-size: 1.6em;
     color: #767676;
-    font-family: 华文中宋, serif;
 }
 
 .BLOG-white {
     color: white;
-    font-family: 华文中宋, serif;
 }
 
 .form-input:focus {
@@ -67,7 +73,6 @@ h4.default-h4 {
 .dialog-title {
     text-align: center;
     color: #656565;
-    font-family: 华文中宋, 方正姚体, serif;
     font-weight: bolder;
 }
 
@@ -336,7 +341,7 @@ h4.default-h4 {
 
 .shadow-border:hover {
     border-radius: 20px;
-    transform: scale(1.02);
+    /*transform: scale(1.02);*/
     box-shadow: 0 0 30px #d7d7d7;
 }
 

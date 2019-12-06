@@ -19,7 +19,6 @@
     border-radius: 12px;
     font-size: small;
     background-color: green;
-    border: solid 1px darkgreen;
     box-shadow: -3px 3px 10px #bababa;
 }
 
@@ -30,15 +29,16 @@
     border-radius: 12px;
     font-size: small;
     background-color: red;
-    border: solid 1px darkred;
     box-shadow: -3px 3px 10px #adadad;
 }
 
-span {
-    word-break: normal;
-    /*width: auto;*/
-    display: inline-block;
-    /*white-space: pre-wrap;*/
-    word-wrap: break-word;
-    overflow: hidden;
+#editBlogCategory {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    line-height: 28px
+}
+
+#editBlogCategory span {
+    margin: 5px;
 }

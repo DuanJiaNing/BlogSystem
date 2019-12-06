@@ -140,7 +140,7 @@ function setBlogs(array, defaulz) {
                 '                </div>' +
                 '                <div class="col-md-9">' +
                 '                    <h4>' +
-                '                     <span  class="item-blog-title" onclick="window.open(\'/' + name + '/blog/' + title + '\',\'_blank\')">' + title + '</span>' +
+                '                     <a  class="item-blog-title" onclick="window.open(\'/' + name + '/blog/' + title + '\',\'_blank\')">' + title + '</a>' +
                 '                     &nbsp;<span style="display: none" class="button-edit-delete" onclick="removeFavourite(' + item.blog.id + ')">移除</span>' +
                 '                    </h4>' +
                 '                    <p class="item-blog-summary">' + summary +

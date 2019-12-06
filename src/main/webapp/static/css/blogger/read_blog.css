@@ -1,5 +1,4 @@
 body {
-    font-family: 微软雅黑,华文细黑,"Segoe UI Semibold", serif;
 
     background-size: cover;
     background-color: #F9FAFB;
@@ -18,7 +17,6 @@ a {
 .title {
     font-size: 2.4em;
 
-    font-family: 华文中宋, 方正姚体, serif;
     font-weight: bold;
 
     display: -webkit-box;

@@ -26,6 +26,7 @@
     <!--对于静态资源使用默认的拦截器-->
     <!--<mvc:default-servlet-handler/>-->
     <!--把静态资源放在了statics目录下，资源映射如下-->
+    <mvc:resources mapping="/font/**" location="/static/font/"/>
     <mvc:resources mapping="/css/**" location="/static/css/"/>
     <mvc:resources mapping="/js/**" location="/static/js/"/>
     <mvc:resources mapping="/images/**" location="/static/image/"/>

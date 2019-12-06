@@ -1,6 +1,5 @@
 body {
     padding-top: 100px;
-    font-family: "Segoe UI Semibold", 微软雅黑, serif;
     /*font-weight: bold;*/
 
     background-size: cover;
@@ -178,7 +177,6 @@ a {
     border-radius: 12px;
     font-size: small;
     background-color: green;
-    border: solid 1px darkgreen;
     box-shadow: -3px 3px 10px #adadad;
 }
 
@@ -189,17 +187,18 @@ a {
     border-radius: 12px;
     font-size: small;
     background-color: red;
-    border: solid 1px darkred;
     box-shadow: -3px 3px 10px #adadad;
 }
 
-span {
-    word-break: normal;
-    /*width: auto;*/
-    display: inline-block;
-    /*white-space: pre-wrap;*/
-    word-wrap: break-word;
-    overflow: hidden;
+#complexFilterCategory {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    line-height: 28px
+}
+
+#complexFilterCategory span {
+    margin: 5px;
 }
 
 .category-list-group {
@@ -209,7 +208,6 @@ span {
 
 .blogger-profile-title {
     font-weight: bold;
-    font-family: 华文中宋, 方正姚体, serif;
 
     font-size: medium;
     margin-bottom: 16px;
@@ -231,7 +229,6 @@ span {
     margin-top: 10px;
     color: black;
     padding-left: 3px;
-    font-family: 方正姚体, serif;
     font-weight: bold;
 }
 

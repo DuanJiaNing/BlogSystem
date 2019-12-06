@@ -1,5 +1,4 @@
 body {
-    font-family: "Segoe UI Semibold", 微软雅黑, serif;
     /*font-weight: bold;*/
 
     background-size: cover;
@@ -122,7 +121,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
 
 .scroll-down:hover {
     opacity: 1;
-    transform: scale(1.02);
+    /*transform: scale(1.02);*/
 }
 
 .scroll-down {
