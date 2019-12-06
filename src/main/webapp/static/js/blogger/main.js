@@ -483,7 +483,7 @@ function setBlogs(array, defaulz) {
                 //     '' : '') +
 
                 '<div style="height: 100%;" class="vertical-center col-md-' + colmd2 + '">' +
-                (!isStrEmpty_(blogImg) ? '<img class="img-thumbnail" style="width: auto;height: 100px;overflow: hidden" src="' + blogImg + '">' : '') +
+                (!isStrEmpty_(blogImg) ? '<img class="img-thumbnail" style="width: auto;height: 100px;overflow: hidden" onerror="this.style.display=\'none\';" src="' + blogImg + '">' : '') +
                 // (!isStrEmpty_(blogImg) ? '' : '') +
                 '</div>' +
                 '</div>' +
