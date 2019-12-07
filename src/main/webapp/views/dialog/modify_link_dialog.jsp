@@ -8,6 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?16d0bc3cd3f726eb1301473261e67e6e";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
 </head>
 <body>
 
@@ -53,7 +63,7 @@
                             <div class="col-md-7">
                                 <small style="color: darkgray;">已选链接</small>
                                 <hr class="default-line">
-                                <p id="showChoosedLink" style="line-height: 24px;min-height: 120px"></p>
+                                <p id="showChoosedLink" style="line-height: 24px; display: flex; justify-content: flex-start;flex-wrap: wrap"></p>
                             </div>
                             <div class="col-md-5">
                                 <p id="showChoosedLinkDetail" style="max-height: 230px;overflow-y: auto"></p>

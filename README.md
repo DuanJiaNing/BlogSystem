@@ -7,7 +7,7 @@
 
 BLOG 是学习 JavaWeb 开发4个月以来的总结实践项目，使用 SSM（Spring、SpringMVC、MyBatis）框架，MVC 三层结构、Lucene全文检索引擎、Junit 4单元测试、logback日志框架、Druid数据库连接池、Shiro安全框架的一个博文系统；
 
-在线查看：[blog](http://123.57.237.176/),&nbsp;[我的主页](http://123.57.237.176/CAFE_BABE/archives)<br>
+在线查看：[blog](blog.duanjn.com),&nbsp;[我的主页](http://blog.duanjn.com/CAFE_BABE/archives)<br>
 
 #### 项目简介
 

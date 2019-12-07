@@ -8,6 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?16d0bc3cd3f726eb1301473261e67e6e";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
     <link rel="stylesheet" href="/css/dialog/modify_label_dialog.css">
 
 </head>
@@ -55,7 +65,7 @@
                             <div class="col-md-7">
                                 <small style="color: darkgray;">已选标签</small>
                                 <hr class="default-line">
-                                <p id="showChoosedLabel" style="line-height: 24px;min-height: 120px"></p>
+                                <p id="showChoosedLabel" style="line-height: 24px; display: flex; justify-content: flex-start;flex-wrap: wrap"></p>
 
                             </div>
                             <div class="col-md-5">

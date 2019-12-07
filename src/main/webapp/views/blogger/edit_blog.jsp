@@ -17,6 +17,16 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?16d0bc3cd3f726eb1301473261e67e6e";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
     <script type="application/javascript">
         var bloggerName = '${bloggerName}';
     </script>

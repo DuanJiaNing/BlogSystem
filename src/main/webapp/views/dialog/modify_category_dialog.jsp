@@ -9,6 +9,16 @@
 <html>
 <head>
 
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?16d0bc3cd3f726eb1301473261e67e6e";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
 </head>
 <body>
 
@@ -55,7 +65,8 @@
                             <div class="col-md-7">
                                 <small style="color: darkgray;">已选类别</small>
                                 <hr class="default-line">
-                                <p id="showChoosedCategory" style="line-height: 24px;min-height: 120px"></p>
+                                <p id="showChoosedCategory"
+                                   style="line-height: 24px; display: flex; justify-content: flex-start;flex-wrap: wrap"></p>
                             </div>
                             <div class="col-md-5">
                                 <small style="color: darkgray">类别说明</small>

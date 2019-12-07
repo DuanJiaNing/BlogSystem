@@ -39,7 +39,9 @@ function loadLabel() {
 
             if (html === '') {
                 setLabelWhenEmpty('blogLabel');
+                $('#labelEditBtn').hide()
             } else {
+                $('#labelEditBtn').show()
                 $('#blogLabel').html(html);
             }
 
@@ -73,7 +75,9 @@ function loadCategory() {
 
             if (html === '') {
                 setCategoryWhenEmpty('blogCategory');
+                $('#categoryEditBtn').hide()
             } else {
+                $('#categoryEditBtn').show()
                 $('#blogCategory').html(html);
             }
 
@@ -107,7 +111,9 @@ function loadContact() {
 
             if (html === '') {
                 setContactWhenEmpty("bloggerLink");
+                $('#linkEditBtn').hide()
             } else {
+                $('#linkEditBtn').show()
                 $('#bloggerLink').html(html);
                 initToolTip();
             }
@@ -163,7 +169,9 @@ function setModifyLabel(array) {
 
     if (html === '') {
         setLabelWhenEmpty('modifyLabelListGroup');
+        $('#labelEditBtn').hide()
     } else {
+        $('#labelEditBtn').show()
         $('#modifyLabelListGroup').html(html);
     }
 
@@ -179,7 +187,9 @@ function setModifyLink(array) {
 
     if (html === '') {
         setLabelWhenEmpty('modifyLinkListGroup');
+        $('#labelEditBtn').hide()
     } else {
+        $('#labelEditBtn').show()
         $('#modifyLinkListGroup').html(html);
     }
 
@@ -195,7 +205,9 @@ function setModifyCategory(array) {
 
     if (html === '') {
         setCategoryWhenEmpty('modifyCategoryListGroup');
+        $('#categoryEditBtn').hide()
     } else {
+        $('#categoryEditBtn').show()
         $('#modifyCategoryListGroup').html(html);
     }
 
@@ -232,8 +244,9 @@ function setCategoryWhenEmpty(id) {
 
 function setLabelWhenEmpty(id) {
     var html = '<p class="text-center"><small>没有标签&nbsp;</small>';
-    if (isPageOwnerBloggerLogin())
+    if (isPageOwnerBloggerLogin()) {
         html += '<a data-toggle="modal" data-target="#newLabelDialog">新建标签</a></p>';
+    }
 
     $('#' + id).html(html);
 }
@@ -250,7 +263,9 @@ function setComplexFilterLabel(array) {
 
     if (html === '') {
         setLabelWhenEmpty('complexFilterLabel');
+        $('#labelEditBtn').hide()
     } else {
+        $('#labelEditBtn').show()
         $('#complexFilterLabel').html(html);
     }
 
@@ -267,7 +282,9 @@ function setComplexFilterCategory(array) {
 
     if (html === '') {
         setLabelWhenEmpty('complexFilterCategory');
+        $('#labelEditBtn').hide()
     } else {
+        $('#labelEditBtn').show()
         $('#complexFilterCategory').html(html);
     }
 
@@ -483,7 +500,7 @@ function setBlogs(array, defaulz) {
                 //     '' : '') +
 
                 '<div style="height: 100%;" class="vertical-center col-md-' + colmd2 + '">' +
-                (!isStrEmpty_(blogImg) ? '<img class="img-thumbnail" style="width: auto;height: 100px;overflow: hidden" onerror="this.style.display=\'none\';" src="' + blogImg + '">' : '') +
+                (!isStrEmpty_(blogImg) ? '<img class="img-thumbnail" style="width: auto;height: 100px;overflow: hidden" onerror="this.src=\'/images/defaultfail.jpg\';" src="' + blogImg + '">' : '') +
                 // (!isStrEmpty_(blogImg) ? '' : '') +
                 '</div>' +
                 '</div>' +
