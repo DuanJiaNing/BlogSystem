@@ -30,7 +30,7 @@
     <properties>
         <spring.version>4.1.7.RELEASE</spring.version>
         <lucene.version>7.1.0</lucene.version>
-        <shiro.version>1.2.5</shiro.version>
+        <shiro.version>1.9.1</shiro.version>
     </properties>
 
     <dependencies>
